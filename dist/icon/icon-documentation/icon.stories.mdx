@@ -1,0 +1,42 @@
+import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+import { Icon, icons, DecorativeIcon } from '..';
+import './icon-story.scss';
+
+<Meta title='Icons' component={Icon} />
+
+# Icons
+
+With `MDX` we can define a story for `Icons` right in the middle of our
+markdown documentation.
+
+<Preview>
+  <Story name='Icon'>
+    <div className='icon-story'>
+      <ul className='icon-story-grid'>
+        {Object.keys(icons).map((iconName) => (
+          <li key={iconName}>
+            <Icon name={iconName} />
+            <br />
+            {iconName}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name='Decorative Icon'>
+    <div className='icon-story'>
+      <ul className='icon-story-grid'>
+        {['black', 'red', 'green', 'blue', '#e30066'].map((colorName) => (
+          <li key={colorName}>
+            <DecorativeIcon name='flame' color={colorName} />
+            <br />
+            {colorName}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </Story>
+</Preview>
