@@ -2,6 +2,8 @@
   "name": "lc-component-library",
   "version": "0.1.0",
   "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "dependencies": {
     "classnames": "^2.2.6",
     "node-sass": "^4.14.1",
@@ -14,7 +16,10 @@
   "scripts": {
     "prestart": "yarn build:tailwind",
     "prebuild": "yarn build:tailwind",
+    "prebuild:library": "yarn build:tailwind && rm -rf ./dist",
+    "postbuild:library": "cpy '**/*' '!**/*.ts' ../../dist --cwd=src/lib --no-overwrite --parents",
     "prestorybook": "yarn build:tailwind",
+    "prebuild:storybook": "yarn build:tailwind",
     "start": "concurrently \"watch:tailwind\" \"react-scripts start\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -23,7 +28,7 @@
     "build:storybook": "build-storybook",
     "build:tailwind": "postcss src/styles/index.scss -o src/styles/tailwind.scss",
     "watch:tailwind": "chokidar 'src/**/*.css' 'src/**/*.scss' --ignore src/styles/tailwind.scss -c 'yarn build:tailwind'",
-    "build:library": "rm -rf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files --extensions '.ts,.tsx' --ignore __tests__,spec.ts,test.ts,__snapshots__,stories.mdx"
+    "build:library": "tsc --build ./tsconfig.library.json"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -73,6 +78,7 @@
     "babel-plugin-remove-graphql-queries": "^2.9.17",
     "chokidar-cli": "^2.1.0",
     "concurrently": "^5.3.0",
+    "cpy-cli": "^3.1.1",
     "postcss-cli": "^7.1.1",
     "postcss-scss": "^2.1.1",
     "url-loader": "^4.1.0"
