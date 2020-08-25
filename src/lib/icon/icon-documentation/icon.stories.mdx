@@ -1,5 +1,6 @@
 import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
-import { Icon, icons, DecorativeIcon } from '..';
+import { Icon, defaultIcons, DecorativeIcon } from '..';
+
 import './icon-story.scss';
 
 <Meta title='Icons' component={Icon} />
@@ -7,13 +8,14 @@ import './icon-story.scss';
 # Icons
 
 With `MDX` we can define a story for `Icons` right in the middle of our
-markdown documentation.
+markdown documentation. Out of the box we provide plenty of default icons that you can use throughout your app.
+However, You can add or replace icons by wrapping your App with the Icon Registry component.
 
 <Preview>
   <Story name='Icon'>
     <div className='icon-story'>
       <ul className='icon-story-grid'>
-        {Object.keys(icons).map((iconName) => (
+        {Object.keys(defaultIcons).map((iconName) => (
           <li key={iconName}>
             <Icon name={iconName} />
             <br />
@@ -24,6 +26,29 @@ markdown documentation.
     </div>
   </Story>
 </Preview>
+
+# Icon Registry
+
+You can add or replace icons by wrapping your App with the Icon Registry component.
+
+```
+import { ReactComponent as peaceSymbol } from './assets/hand-peace-light.svg';
+
+export const App = ({ children }) => (
+  <IconRegistry icons={{ peaceSymbol }}>
+    {children}
+  </IconRegistry>
+```
+
+<Preview>
+  <Story name='Icon Registry'>
+    <div className='icon-story'>
+      <Icon name='peaceSymbol' />
+    </div>
+  </Story>
+</Preview>
+
+# Decorative Icon
 
 <Preview>
   <Story name='Decorative Icon'>

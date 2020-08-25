@@ -1,1 +1,1 @@
-export { Icon, icons, DecorativeIcon } from './icon';
+export { Icon, IconRegistry, defaultIcons, DecorativeIcon } from './icon';

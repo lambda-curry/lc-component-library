@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { Icon } from './Icon';
-import { IconNames } from './Icon';
+import { DefaultIconNames } from './IconRegistry';
 import { getCssVar } from '../util/colors';
 
 export type DecorativeIconBackgroundColors =
@@ -18,7 +18,7 @@ export type DecorativeIconBackgroundColors =
 export const DecorativeIcon: React.FC<{
   className?: string;
   color: DecorativeIconBackgroundColors | string;
-  name: IconNames;
+  name: DefaultIconNames | string;
 }> = ({ className, color, ...props }) => {
   // const colorIsVariable = [].includes(color);
   const style = {

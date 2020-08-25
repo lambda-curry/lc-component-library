@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import classNames from 'classnames';
+import { RegisteredIconContext } from './IconRegistry';
 import './icon.scss';
 
 import { ReactComponent as addUser } from '../assets/icons/addUser.svg';
@@ -49,7 +50,7 @@ import { ReactComponent as user } from '../assets/icons/user.svg';
 import { ReactComponent as users } from '../assets/icons/users.svg';
 import { ReactComponent as video } from '../assets/icons/video.svg';
 
-export const icons = {
+export const defaultIcons = {
   addUser,
   analytics,
   apps,
@@ -98,12 +99,19 @@ export const icons = {
   video,
 };
 
-export type IconNames = keyof typeof icons;
+export type DefaultIconNames = keyof typeof defaultIcons;
 
 export const Icon: React.FC<{
   className?: string;
-  name: IconNames;
+  name: DefaultIconNames | string;
 }> = ({ className, name, ...props }) => {
+  const registeredIcons = useContext(RegisteredIconContext);
+
+  const icons: { [x: string]: React.SFC<React.SVGProps<SVGSVGElement>> } = {
+    ...defaultIcons,
+    ...registeredIcons,
+  };
+
   if (!name) {
     throw new Error(
       `You must provide a valid "name" prop to the "Icon" component.`
