@@ -1,5 +1,5 @@
 {
-  "name": "lc-component-library",
+  "name": "@lambdacurry/component-library",
   "version": "0.1.0",
   "private": true,
   "main": "dist/index.js",
@@ -82,5 +82,21 @@
     "postcss-cli": "^7.1.1",
     "postcss-scss": "^2.1.1",
     "url-loader": "^4.1.0"
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lambda-Curry/lc-component-library.git"
+  },
+  "keywords": [
+    "react",
+    "component",
+    "library"
+  ],
+  "author": "Lambda Curry",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lambda-Curry/lc-component-library/issues"
+  },
+  "homepage": "https://github.com/Lambda-Curry/lc-component-library#readme"
 }
