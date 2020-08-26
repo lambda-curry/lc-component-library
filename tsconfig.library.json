@@ -12,7 +12,6 @@
     "moduleResolution": "node",
     "jsx": "react",
     "resolveJsonModule": true,
-    "isolatedModules": true,
     "preserveConstEnums": true
   },
   "include": ["src/lib/**/*"],

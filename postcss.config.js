@@ -10,5 +10,10 @@
  */
 module.exports = {
   syntax: 'postcss-scss',
-  plugins: [require('tailwindcss'), require('autoprefixer')],
+  plugins: [
+    // Note: adding postcss-import plugin here removed my default-theme.scss from the tailwind build
+    // require('postcss-import'),
+    require('tailwindcss'),
+    require('autoprefixer'),
+  ],
 };
