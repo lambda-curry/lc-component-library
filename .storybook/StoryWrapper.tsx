@@ -5,6 +5,7 @@ import { IconRegistry } from '../src/lib/icon';
 import { ReactComponent as peaceSymbol } from './assets/hand-peace-light.svg';
 
 import '../src/styles/tailwind.scss';
+import './storybook-preview.scss';
 
 export const StoryWrapper = ({ children }) => (
   <IconRegistry icons={{ peaceSymbol }}>
