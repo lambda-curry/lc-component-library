@@ -1,9 +1,15 @@
-import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs/blocks';
 import { Icon, defaultIcons, DecorativeIcon } from '..';
 
 import './icon-story.scss';
 
-<Meta title='Icons' component={Icon} />
+<Meta
+  title="Icons"
+  component={Icon}
+  argTypes={{
+    name: { control: { disable: true } }
+  }}
+/>
 
 # Icons
 
@@ -11,26 +17,35 @@ Out of the box we provide plenty of default icons that you can use throughout yo
 However, You can add or replace icons by wrapping your App with the Icon Registry component.
 
 <Canvas>
-  <Story name='Icon'>
-    <div className='icon-story'>
-      <ul className='icon-story-grid'>
-        {Object.keys(defaultIcons).map((iconName) => (
-          <li key={iconName}>
-            <Icon name={iconName} />
-            <br />
-            {iconName}
-          </li>
-        ))}
-      </ul>
-    </div>
+  <Story
+    name="Icon"
+    args={{ className: '' }}
+    paramaters={{
+      docs: { source: { code: `<Icon name={iconName} />` } }
+    }}
+  >
+    {args => (
+      <div className="icon-story">
+        <ul className="icon-story-grid">
+          {Object.keys(defaultIcons).map(iconName => (
+            <li key={iconName}>
+              <Icon name={iconName} {...args} />
+              <br />
+              {iconName}
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
   </Story>
+  <ArgsTable of={Icon} />
 </Canvas>
 
 # Icon Registry
 
 You can add or replace icons by wrapping your App with the Icon Registry component.
 
-```
+```tsx
 import { ReactComponent as peaceSymbol } from './assets/hand-peace-light.svg';
 
 export const App = ({ children }) => (
@@ -39,10 +54,12 @@ export const App = ({ children }) => (
   </IconRegistry>
 ```
 
+Once the above code is implemented correctly, you should be able to use the Icon component to display your new custom icon.
+
 <Canvas>
-  <Story name='Icon Registry'>
-    <div className='icon-story'>
-      <Icon name='peaceSymbol' />
+  <Story name="Icon Registry">
+    <div className="icon-story">
+      <Icon name="peaceSymbol" />
     </div>
   </Story>
 </Canvas>
@@ -50,12 +67,12 @@ export const App = ({ children }) => (
 # Decorative Icon
 
 <Canvas>
-  <Story name='Decorative Icon'>
-    <div className='icon-story'>
-      <ul className='icon-story-grid'>
-        {['black', 'red', 'green', 'blue', '#e30066'].map((colorName) => (
+  <Story name="Decorative Icon">
+    <div className="icon-story">
+      <ul className="icon-story-grid">
+        {['black', 'red', 'green', 'blue', '#e30066'].map(colorName => (
           <li key={colorName}>
-            <DecorativeIcon name='flame' color={colorName} />
+            <DecorativeIcon name="flame" color={colorName} />
             <br />
             {colorName}
           </li>
@@ -63,4 +80,5 @@ export const App = ({ children }) => (
       </ul>
     </div>
   </Story>
+  <ArgsTable of={DecorativeIcon} />
 </Canvas>

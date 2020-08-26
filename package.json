@@ -36,20 +36,20 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
     "@babel/preset-typescript": "^7.10.4",
     "@rollup/plugin-typescript": "^5.0.2",
-    "@storybook/addon-a11y": "^6.0.18",
-    "@storybook/addon-actions": "^6.0.18",
-    "@storybook/addon-docs": "^6.0.18",
+    "@storybook/addon-a11y": "^6.0.19",
+    "@storybook/addon-actions": "^6.0.19",
+    "@storybook/addon-controls": "^6.0.19",
+    "@storybook/addon-docs": "^6.0.19",
     "@storybook/addon-info": "^5.3.19",
-    "@storybook/addon-knobs": "^6.0.18",
-    "@storybook/addon-links": "^6.0.18",
+    "@storybook/addon-links": "^6.0.19",
     "@storybook/addon-notes": "^5.3.19",
-    "@storybook/addon-storyshots": "^6.0.18",
-    "@storybook/addon-storyshots-puppeteer": "^6.0.18",
-    "@storybook/addon-storysource": "^6.0.18",
-    "@storybook/addon-viewport": "^6.0.18",
-    "@storybook/addons": "^6.0.18",
+    "@storybook/addon-storyshots": "^6.0.19",
+    "@storybook/addon-storyshots-puppeteer": "^6.0.19",
+    "@storybook/addon-storysource": "^6.0.19",
+    "@storybook/addon-viewport": "^6.0.19",
+    "@storybook/addons": "^6.0.19",
     "@storybook/preset-create-react-app": "^3.1.4",
-    "@storybook/react": "^6.0.18",
+    "@storybook/react": "^6.0.19",
     "@svgr/rollup": "^5.4.0",
     "@svgr/webpack": "^5.4.0",
     "@testing-library/jest-dom": "^4.2.4",
@@ -66,6 +66,7 @@
     "chokidar-cli": "^2.1.0",
     "concurrently": "^5.3.0",
     "cpy-cli": "^3.1.1",
+    "eslint-plugin-mdx": "^1.8.2",
     "postcss-cli": "^7.1.1",
     "postcss-import": "^12.0.1",
     "postcss-scss": "^2.1.1",
@@ -77,7 +78,10 @@
     "url-loader": "^4.1.0"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "plugin:mdx/recommended"
+    ]
   },
   "browserslist": {
     "production": [
