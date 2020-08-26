@@ -3,15 +3,7 @@
   "version": "0.1.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "dependencies": {
-    "classnames": "^2.2.6",
-    "node-sass": "^4.14.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3",
-    "tailwindcss": "^1.7.3",
-    "typescript": "~3.7.2"
-  },
+  "description": "A React component library created by Lambda Curry.",
   "scripts": {
     "prestart": "yarn build:tailwind",
     "prebuild": "yarn build:tailwind",
@@ -27,28 +19,23 @@
     "build:storybook": "build-storybook",
     "build:tailwind": "postcss src/styles/index.scss -o src/styles/tailwind.scss",
     "watch:tailwind": "chokidar 'src/**/*.css' 'src/**/*.scss' --ignore src/styles/tailwind.scss -c 'yarn build:tailwind'",
-    "build:library": "tsc --build ./tsconfig.library.json"
+    "build:library": "rollup --config"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "node-sass": "^4.14.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.3",
+    "tailwindcss": "^1.7.3",
+    "typescript": "~3.7.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
     "@babel/preset-typescript": "^7.10.4",
+    "@rollup/plugin-typescript": "^5.0.2",
     "@storybook/addon-a11y": "^6.0.16",
     "@storybook/addon-actions": "^6.0.16",
     "@storybook/addon-docs": "^6.0.16",
@@ -63,6 +50,7 @@
     "@storybook/addons": "^6.0.16",
     "@storybook/preset-create-react-app": "^3.1.4",
     "@storybook/react": "^6.0.16",
+    "@svgr/rollup": "^5.4.0",
     "@svgr/webpack": "^5.4.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -80,9 +68,28 @@
     "cpy-cli": "^3.1.1",
     "postcss-cli": "^7.1.1",
     "postcss-scss": "^2.1.1",
+    "rollup": "^2.26.5",
+    "rollup-plugin-postcss": "^3.1.6",
+    "rollup-plugin-scss": "^2.6.0",
+    "rollup-plugin-tailwind": "^1.0.0",
+    "rollup-plugin-url": "^3.0.1",
     "url-loader": "^4.1.0"
   },
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Lambda-Curry/lc-component-library.git"

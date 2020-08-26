@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "rootDir": "src/lib",
     "outDir": "dist",
     "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -11,7 +12,8 @@
     "moduleResolution": "node",
     "jsx": "react",
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "preserveConstEnums": true
   },
   "include": ["src/lib/**/*"],
   "exclude": [

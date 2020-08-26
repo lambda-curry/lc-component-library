@@ -1,7 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Icon } from './Icon';
-import { DefaultIconNames } from './IconRegistry';
+import { Icon, DefaultIconNames } from './Icon';
 import { getCssVar } from '../util/colors';
 
 export type DecorativeIconBackgroundColors =
