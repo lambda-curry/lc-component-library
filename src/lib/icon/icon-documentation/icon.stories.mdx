@@ -1,5 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs/blocks';
 import { Icon, defaultIcons, DecorativeIcon } from '..';
+import dedent from 'string-dedent';
 
 import './icon-story.scss';
 
@@ -20,8 +21,19 @@ However, You can add or replace icons by wrapping your App with the Icon Registr
   <Story
     name="Icon"
     args={{ className: '' }}
-    paramaters={{
-      docs: { source: { code: `<Icon name={iconName} />` } }
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+          {Object.keys(defaultIcons).map(iconName => (
+            <li key={iconName}>
+              <Icon name={iconName} {...args} />
+              <br />
+              {iconName}
+            </li>
+          ))}`
+        }
+      }
     }}
   >
     {args => (
@@ -57,7 +69,16 @@ export const App = ({ children }) => (
 Once the above code is implemented correctly, you should be able to use the Icon component to display your new custom icon.
 
 <Canvas>
-  <Story name="Icon Registry">
+  <Story
+    name="Icon Registry"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`<Icon name="peaceSymbol" />`
+        }
+      }
+    }}
+  >
     <div className="icon-story">
       <Icon name="peaceSymbol" />
     </div>
@@ -67,7 +88,23 @@ Once the above code is implemented correctly, you should be able to use the Icon
 # Decorative Icon
 
 <Canvas>
-  <Story name="Decorative Icon">
+  <Story
+    name="Decorative Icon"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+        {['black', 'red', 'green', 'blue', '#e30066'].map(colorName => (
+          <li key={colorName}>
+            <DecorativeIcon name="flame" color={colorName} />
+            <br />
+            {colorName}
+          </li>
+        ))}`
+        }
+      }
+    }}
+  >
     <div className="icon-story">
       <ul className="icon-story-grid">
         {['black', 'red', 'green', 'blue', '#e30066'].map(colorName => (

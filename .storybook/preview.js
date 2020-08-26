@@ -1,11 +1,10 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
+// import { action } from '@storybook/addon-actions';
 import { addDecorator } from '@storybook/react';
 import { addParameters } from '@storybook/react';
 import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks';
-import { withInfo } from '@storybook/addon-info';
+// import { withInfo } from '@storybook/addon-info';
 import StorybookWrapper from './StoryWrapper';
-import StoryPropTypesTable from './StoryPropTypesTable';
 
 // Gatsby's Link overrides:
 // Gatsby Link calls the `enqueue` & `hovering` methods on the global variable ___loader.
