@@ -1,0 +1,4 @@
+// Removes the extra "MDXCreateElement" Component from the Prop Types withInfo table
+#story-root + div > div > div:last-child {
+  display: none;
+}
