@@ -1,0 +1,44 @@
+// @import '../../../css/colors';
+
+.MuiFormControl-root {
+    &.input {
+        display: flex;
+        margin-bottom: 24px;
+
+        input {
+            zoom: 1;
+        }
+    }
+
+    .MuiInputBase-root,
+    .MuiInputLabel-root,
+    .MuiFormHelperText-root {
+        font-size: inherit;
+    }
+
+    .MuiOutlinedInput-notchedOutline {
+        border-color: var(--lighter-gray);
+    }
+
+    // Override for Marcus to center the input label
+    .MuiInputLabel-outlined.MuiInputLabel-marginDense {
+        color: var(--black);
+        opacity: 0.64;
+
+        &:not(.MuiInputLabel-shrink) {
+            transform: translate(14px, 17px);
+            opacity: 0.44;
+        }
+    }
+
+    .MuiOutlinedInput-input {
+        padding: 16px 14px;
+        height: 46px;
+        box-sizing: border-box;
+    }
+
+    .MuiInputAdornment-positionEnd,
+    .MuiInputAdornment-positionStart {
+        color: var(--gray);
+    }
+}

@@ -1,0 +1,20 @@
+.input-checkbox {
+  &.MuiFormControlLabel-root {
+    margin-top: -11px;
+    margin-bottom: 8px;
+
+    .MuiCheckbox {
+      &-colorPrimary.Mui-checked {
+        color: var(--primary-color);
+      }
+    }
+
+    .MuiTypography-body1 {
+      font-size: inherit;
+    }
+
+    .MuiFormControlLabel-label {
+      font-family: inherit;
+    }
+  }
+}

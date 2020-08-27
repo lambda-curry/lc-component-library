@@ -1,0 +1,82 @@
+import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs/blocks';
+import { InputSwitch } from '../..';
+import dedent from 'string-dedent';
+import './input-switch-story.scss';
+
+<Meta title="Input Switch" component={InputSwitch} />
+
+# Input Switch
+
+<Canvas>
+  <Story
+    name="Input Switch Default"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+            <h4>Default</h4>
+            <InputSwitch name="switchDefault" />`
+        }
+      }
+    }}
+  >
+    <div className="input-switch-story">
+      <h4>Default</h4>
+      <InputSwitch name="switchDefault" />
+    </div>
+  </Story>
+  <Story
+    name="Input Switch Active"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+            <h4>Active</h4>
+            <InputSwitch name="switchActive" checked={true} />`
+        }
+      }
+    }}
+  >
+    <div className="input-switch-story">
+      <h4>Active</h4>
+      <InputSwitch name="switchActive" checked={true} />
+    </div>
+  </Story>
+  <Story
+    name="Input Switch Disabled"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+            <h4>Disabled</h4>
+            <InputSwitch name="switchDisabled" disabled={true} />`
+        }
+      }
+    }}
+  >
+    <div className="input-switch-story">
+      <h4>Disabled</h4>
+      <InputSwitch name="switchActive" disabled={true} />
+    </div>
+  </Story>
+  <Story
+    name="Input Switch with Label"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+            <h4>With Label</h4>
+            <InputSwitch name="switchWithLabelEnd" label="Click Me" labelPlacement="end" />
+            <InputSwitch name="switchWithLabeLStart" labelOn="On" labelOff="Off" labelPlacement="start" />`
+        }
+      }
+    }}
+  >
+    <div className="input-switch-story">
+      <h4>With Label</h4>
+      <InputSwitch name="switchWithLabelEnd" label="Click Me" labelPlacement="end" />
+      <InputSwitch name="switchWithLabeLStart" labelOn="On" labelOff="Off" labelPlacement="start" />
+    </div>
+  </Story>
+  <ArgsTable of={InputSwitch} />
+</Canvas>

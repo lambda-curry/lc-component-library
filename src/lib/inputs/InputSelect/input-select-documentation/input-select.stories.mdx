@@ -1,0 +1,70 @@
+import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs/blocks';
+import { InputSelect } from '../..';
+import { Formik } from 'formik';
+import dedent from 'string-dedent';
+import './input-select-story.scss';
+
+<Meta title="Input Select" component={InputSelect} />
+
+# Input Select
+
+<Canvas>
+  <Story
+    name="Input Select"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+          <Formik
+            initialValues={{
+              select: {}
+            }}
+            onSubmit={() => {}}
+          >
+            {formikProps => (
+              <>
+                <p className="lc-mb-8">Value: {\`\${formikProps.values.select?.value}\`}</p>
+                <InputSelect
+                  label="Select Option"
+                  name="select"
+                  options={[
+                    { label: 'Option 1', value: 1 },
+                    { label: 'Option 2', value: 2 },
+                    { label: 'Option 3', value: 3 }
+                  ]}
+                  formikProps={formikProps}
+                />
+              </>
+            )}
+          </Formik>`
+        }
+      }
+    }}
+  >
+    <div className="input-select-story">
+      <Formik
+        initialValues={{
+          select: undefined
+        }}
+        onSubmit={() => {}}
+      >
+        {formikProps => (
+          <>
+            <p className="lc-mb-8">Value: {`${formikProps.values.select?.value}`}</p>
+            <InputSelect
+              label="Select Option"
+              name="select"
+              options={[
+                { label: 'Option 1', value: 1 },
+                { label: 'Option 2', value: 2 },
+                { label: 'Option 3', value: 3 }
+              ]}
+              formikProps={formikProps}
+            />
+          </>
+        )}
+      </Formik>
+    </div>
+  </Story>
+  <ArgsTable of={InputSelect} />
+</Canvas>
