@@ -1,6 +1,5 @@
 import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs/blocks';
-import { InputSelect } from '../..';
-import { Formik } from 'formik';
+import { InputSelect, Form } from '../../..';
 import dedent from 'string-dedent';
 import './input-select-story.scss';
 
@@ -15,9 +14,9 @@ import './input-select-story.scss';
       docs: {
         source: {
           code: dedent`
-          <Formik
+          <Form
             initialValues={{
-              select: {}
+              select: undefined
             }}
             onSubmit={() => {}}
           >
@@ -36,13 +35,13 @@ import './input-select-story.scss';
                 />
               </>
             )}
-          </Formik>`
+          </Form>`
         }
       }
     }}
   >
     <div className="input-select-story">
-      <Formik
+      <Form
         initialValues={{
           select: undefined
         }}
@@ -63,7 +62,7 @@ import './input-select-story.scss';
             />
           </>
         )}
-      </Formik>
+      </Form>
     </div>
   </Story>
   <ArgsTable of={InputSelect} />

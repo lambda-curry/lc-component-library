@@ -1,6 +1,5 @@
 import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs/blocks';
-import { InputText } from '../..';
-import { Formik } from 'formik';
+import { InputText, Form } from '../../..';
 import dedent from 'string-dedent';
 import './input-text-story.scss';
 
@@ -27,7 +26,7 @@ import './input-text-story.scss';
     }}
   >
     <div className="input-text-story">
-      <Formik
+      <Form
         initialValues={{
           sampleInput1: '',
           sampleInput2: '',
@@ -42,7 +41,7 @@ import './input-text-story.scss';
             <InputText name="sampleInput3" label="Password Input" type="password" formikProps={formikProps} />
           </>
         )}
-      </Formik>
+      </Form>
     </div>
   </Story>
   <ArgsTable of={InputText} />
