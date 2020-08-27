@@ -8,7 +8,7 @@ module.exports = {
     '@storybook/addon-actions',
     '@storybook/addon-links',
     '@storybook/addon-knobs/register',
-    '@storybook/addon-notes/register',
+    // '@storybook/addon-notes/register',
     '@storybook/addon-a11y',
     '@storybook/addon-viewport/register',
     {

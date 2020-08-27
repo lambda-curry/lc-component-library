@@ -1,0 +1,19 @@
+.alternate-theme {
+  --primary-color: red;
+  --secondary-color: orange;
+}
+
+.theme-story {
+  li {
+    @apply lc-mr-8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    div {
+      border-radius: theme('borderRadius.default');
+      @apply lc-h-96;
+      @apply lc-w-96;
+    }
+  }
+}

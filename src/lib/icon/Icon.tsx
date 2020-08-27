@@ -125,7 +125,7 @@ export const Icon: React.FC<{
   const IconSvg = icons[name];
 
   return (
-    <span className={classNames(`icon icon-${name}`, className)} {...props}>
+    <span className={classNames('icon', `icon-${name}`, className)} {...props}>
       <IconSvg />
     </span>
   );

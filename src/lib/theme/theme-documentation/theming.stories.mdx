@@ -1,0 +1,50 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import { Icon, defaultIcons, DecorativeIcon } from '..';
+import classNames from 'classnames';
+
+import './theme-story.scss';
+
+<Meta title='Theming' component={() => <></>} />
+
+# Theming
+
+Mixing Tailwind with CSS Variables provides some powerful tools for themeing.
+
+<Canvas>
+  <Story name='Theme Colors'>
+    <div className='theme-story'>
+      <ul className='lc-flex'>
+        {['primary', 'secondary'].map((colorName) => (
+          <li key={colorName}>
+            <div className={classNames(`lc-bg-${colorName}`, 'border')} />
+            {colorName}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </Story>
+</Canvas>
+
+It is easy to change the theme with CSS Variables and classNames.
+
+```css
+.alternate-theme {
+  --primary-color: red;
+  --secondary-color: orange;
+}
+```
+
+<Canvas>
+  <Story name='Alternate Theme Colors'>
+    <div className='theme-story alternate-theme'>
+      <ul className='lc-flex'>
+        {['primary', 'secondary'].map((colorName) => (
+          <li key={colorName}>
+            <div className={classNames(`lc-bg-${colorName}`, 'border')} />
+            {colorName}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </Story>
+</Canvas>

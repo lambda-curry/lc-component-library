@@ -1,4 +1,4 @@
-import { Meta, Story, Preview } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
 import { Icon, defaultIcons, DecorativeIcon } from '..';
 
 import './icon-story.scss';
@@ -7,11 +7,10 @@ import './icon-story.scss';
 
 # Icons
 
-With `MDX` we can define a story for `Icons` right in the middle of our
-markdown documentation. Out of the box we provide plenty of default icons that you can use throughout your app.
+Out of the box we provide plenty of default icons that you can use throughout your app.
 However, You can add or replace icons by wrapping your App with the Icon Registry component.
 
-<Preview>
+<Canvas>
   <Story name='Icon'>
     <div className='icon-story'>
       <ul className='icon-story-grid'>
@@ -25,7 +24,7 @@ However, You can add or replace icons by wrapping your App with the Icon Registr
       </ul>
     </div>
   </Story>
-</Preview>
+</Canvas>
 
 # Icon Registry
 
@@ -40,17 +39,17 @@ export const App = ({ children }) => (
   </IconRegistry>
 ```
 
-<Preview>
+<Canvas>
   <Story name='Icon Registry'>
     <div className='icon-story'>
       <Icon name='peaceSymbol' />
     </div>
   </Story>
-</Preview>
+</Canvas>
 
 # Decorative Icon
 
-<Preview>
+<Canvas>
   <Story name='Decorative Icon'>
     <div className='icon-story'>
       <ul className='icon-story-grid'>
@@ -64,4 +63,4 @@ export const App = ({ children }) => (
       </ul>
     </div>
   </Story>
-</Preview>
+</Canvas>
