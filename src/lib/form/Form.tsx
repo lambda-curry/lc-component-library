@@ -7,6 +7,7 @@ import { Modal, ModalHeader, ModalActions, Button, ButtonPrimary } from '..';
 interface UnsavedChangesConfig {
   containerQuerySelectorAll?: string;
   targetQuerySelector?: string;
+  modalProps?: ReactModal.Props;
 }
 
 export function Form<T>({
@@ -58,18 +59,16 @@ export function Form<T>({
 
   return (
     <>
-      <Formik
-        innerRef={formRef}
-        {...rest}
-        render={(formikProps: FormikProps<T>) => (
+      <Formik innerRef={formRef} {...rest}>
+        {(formikProps: FormikProps<T>) => (
           <FormikForm className={classNames(className, 'form')}>{children(formikProps)}</FormikForm>
         )}
-      />
-      <Modal isOpen={activeModal === 'unsavedChangesModal'} closeButton={false}>
+      </Formik>
+      <Modal isOpen={activeModal === 'unsavedChangesModal'} closeButton={false} {...unsavedChangesConfig.modalProps}>
         <ModalHeader title="You have unsaved changes!" />
         <p className="text">Click continue to abandon your changes and continue on.</p>
         <ModalActions>
-          <div className="flex-spacer" />
+          <div className="lc-flex-1" />
           <Button onClick={handleUnsavedChangesModalClose}>Cancel</Button>
           <ButtonPrimary onClick={() => null}>Continue</ButtonPrimary>
         </ModalActions>
