@@ -1,0 +1,52 @@
+import { useState } from 'react';
+import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs/blocks';
+import { Form, InputText, ButtonOutlinePrimary } from '../..';
+import dedent from 'string-dedent';
+
+<Meta title="Form" component={Form} />
+
+# Form
+
+<Canvas>
+  <Story
+    name="Form"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+          <Form
+            initialValues={{
+              input: ''
+            }}
+            onSubmit={() => {}}
+            unsavedChangesConfig={{ containerQuerySelectorAll: '.form', modalProps: { ariaHideApp: false } }}
+          >
+            {formikProps => (
+              <>
+                <InputText label="Text Input" name="input" formikProps={formikProps} />
+              </>
+            )}
+          </Form>`
+        }
+      }
+    }}
+  >
+    <div className="input-form-story">
+      <ButtonOutlinePrimary className="lc-mb-16">try clicking me when the input has a value</ButtonOutlinePrimary>
+      <Form
+        initialValues={{
+          input: ''
+        }}
+        onSubmit={() => {}}
+        unsavedChangesConfig={{ containerQuerySelectorAll: '.form', modalProps: { ariaHideApp: false } }}
+      >
+        {formikProps => (
+          <>
+            <InputText label="Text Input" name="input" formikProps={formikProps} />
+          </>
+        )}
+      </Form>
+    </div>
+  </Story>
+  <ArgsTable of={Form} />
+</Canvas>
