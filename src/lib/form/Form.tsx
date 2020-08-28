@@ -1,11 +1,8 @@
 import React, { useRef, useState } from 'react';
 import { Formik, FormikConfig, FormikProps, Form as FormikForm } from 'formik';
 import classNames from 'classnames';
-import { useOnClickOutside } from '..';
-// Modal,
-// ModalHeader,
-// ModalActions
-// Button, ButtonPrimary
+import { useOnClickOutside } from '../hooks';
+import { Modal, ModalHeader, ModalActions, Button, ButtonPrimary } from '..';
 
 interface UnsavedChangesConfig {
   containerQuerySelectorAll?: string;
@@ -68,7 +65,7 @@ export function Form<T>({
           <FormikForm className={classNames(className, 'form')}>{children(formikProps)}</FormikForm>
         )}
       />
-      {/* <Modal isOpen={activeModal === 'unsavedChangesModal'} closeButton={false}>
+      <Modal isOpen={activeModal === 'unsavedChangesModal'} closeButton={false}>
         <ModalHeader title="You have unsaved changes!" />
         <p className="text">Click continue to abandon your changes and continue on.</p>
         <ModalActions>
@@ -76,7 +73,7 @@ export function Form<T>({
           <Button onClick={handleUnsavedChangesModalClose}>Cancel</Button>
           <ButtonPrimary onClick={() => null}>Continue</ButtonPrimary>
         </ModalActions>
-      </Modal> */}
+      </Modal>
     </>
   );
 }
