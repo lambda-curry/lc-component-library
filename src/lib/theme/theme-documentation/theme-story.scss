@@ -4,20 +4,16 @@
 }
 
 .theme-story {
-  &-grid {
-    display: flex;
-  }
-
   li {
-    margin-right: 8px;
+    @apply lc-mr-8;
     display: flex;
     flex-direction: column;
     align-items: center;
 
     div {
       border-radius: theme('borderRadius.default');
-      height: 100px;
-      width: 100px;
+      @apply lc-h-96;
+      @apply lc-w-96;
     }
   }
 }

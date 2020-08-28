@@ -29,7 +29,7 @@ Mixing Tailwind with CSS Variables provides some powerful tools for themeing.
     }}
   >
     <div className="theme-story">
-      <ul className="theme-story-grid">
+      <ul className="lc-flex">
         {['primary', 'secondary'].map(colorName => (
           <li key={colorName}>
             <div className={classNames(`lc-bg-${colorName}`, 'border')} />
@@ -68,7 +68,7 @@ It is easy to change the theme with CSS Variables and classNames.
     }}
   >
     <div className="theme-story alternate-theme">
-      <ul className="theme-story-grid">
+      <ul className="lc-flex">
         {['primary', 'secondary'].map(colorName => (
           <li key={colorName}>
             <div className={classNames(`lc-bg-${colorName}`, 'border')} />
