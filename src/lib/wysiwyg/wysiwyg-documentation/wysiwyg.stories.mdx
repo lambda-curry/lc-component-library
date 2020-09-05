@@ -1,0 +1,43 @@
+import { useState } from 'react';
+import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs/blocks';
+import { Form, InputText, ButtonOutlinePrimary, Wysiwyg } from '../..';
+import dedent from 'string-dedent';
+
+<Meta title="Wysiwyg" component={Wysiwyg} />
+
+# Form
+
+<Canvas>
+  <Story
+    name="Wysiwyg"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+          <Form
+            initialValues={{
+              input: ''
+            }}
+            onSubmit={() => {}}
+            unsavedChangesConfig={{ containerQuerySelectorAll: '.form', modalProps: { ariaHideApp: false } }}
+          >
+            {formikProps => (
+              <>
+                <InputText label="Text Input" name="input" formikProps={formikProps} />
+              </>
+            )}
+          </Form>`
+        }
+      }
+    }}
+  >
+    <div className="input-form-story">
+      <Form initialValues={{ example: '' }} onSubmit={() => {}}>
+        {formikProps => (
+          <Wysiwyg formikProps={formikProps} value={formikProps.values.example} name="example" characterLimit={2000} />
+        )}
+      </Form>
+    </div>
+  </Story>
+  <ArgsTable of={Form} />
+</Canvas>

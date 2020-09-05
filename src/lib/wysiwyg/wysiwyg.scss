@@ -1,0 +1,59 @@
+.wysiwyg {
+  position: relative;
+
+  &-character-limit {
+    z-index: 2;
+    position: absolute;
+    right: 44px;
+    bottom: 16px;
+    font-size: 10px;
+    color: theme('colors.gray.normal');
+    pointer-events: none;
+  }
+
+  &-resize {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 12px;
+    bottom: 12px;
+    width: 24px;
+    height: 24px;
+    background: #fff;
+    pointer-events: none;
+    border-radius: 7px;
+    color: theme('colors.gray.normal');
+  }
+
+  &-editor {
+    .ql-toolbar {
+      padding: 4px;
+      background: theme('colors.gray.lightest');
+      border-top-left-radius: theme('spacing.8');
+      border-top-right-radius: theme('spacing.8');
+      border-color: theme('colors.gray.lighter');
+
+      .ql-formats {
+        margin-right: 4px;
+      }
+
+      button {
+        padding: 3px;
+      }
+    }
+
+    .ql-container {
+      border-bottom-right-radius: theme('spacing.8');
+      border-bottom-left-radius: theme('spacing.8');
+      border-color: theme('colors.gray.lighter');
+      padding: 16px;
+    }
+
+    .ql-editor {
+      min-height: 240px;
+      resize: vertical;
+      padding: 0;
+    }
+  }
+}
