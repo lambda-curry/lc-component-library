@@ -15,8 +15,11 @@ module.exports = {
       warn: '#f8ba44',
       success: '#21cdac',
       gray: {
-        light: '#e5e5e5',
-        lighter: '#fafafa'
+        dark: '#707070',
+        normal: '#a0a5ba',
+        light: '#bdbdbd',
+        lighter: '#e2e2e2',
+        lightest: '#f5f6fa'
       },
       primary: 'var(--primary-color)',
       secondary: 'var(--secondary-color)'
