@@ -20,6 +20,7 @@ export { IconButton } from './icon-button';
 export { InputCheckbox, InputSelect, InputSwitch, InputText } from './inputs';
 export { Form } from './form';
 export { Modal, ModalActions, ModalHeader } from './modal';
+export { Snackbar, useSnackbar } from './snackbars';
 export { Wysiwyg } from './wysiwyg';
 
 // Hooks

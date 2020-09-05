@@ -5,7 +5,7 @@ import dedent from 'string-dedent';
 
 <Meta title="Wysiwyg" component={Wysiwyg} />
 
-# Form
+# Wysiwyg
 
 <Canvas>
   <Story
@@ -14,19 +14,7 @@ import dedent from 'string-dedent';
       docs: {
         source: {
           code: dedent`
-          <Form
-            initialValues={{
-              input: ''
-            }}
-            onSubmit={() => {}}
-            unsavedChangesConfig={{ containerQuerySelectorAll: '.form', modalProps: { ariaHideApp: false } }}
-          >
-            {formikProps => (
-              <>
-                <InputText label="Text Input" name="input" formikProps={formikProps} />
-              </>
-            )}
-          </Form>`
+          <Wysiwyg formikProps={formikProps} value={formikProps.values.example} name="example" characterLimit={2000} />`
         }
       }
     }}
@@ -39,5 +27,5 @@ import dedent from 'string-dedent';
       </Form>
     </div>
   </Story>
-  <ArgsTable of={Form} />
+  <ArgsTable of={Wysiwyg} />
 </Canvas>

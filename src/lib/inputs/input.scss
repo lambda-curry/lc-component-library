@@ -1,44 +1,44 @@
 // @import '../../../css/colors';
 
 .MuiFormControl-root {
-    &.input {
-        display: flex;
-        margin-bottom: 24px;
+  &.input {
+    display: flex;
+    margin-bottom: 24px;
 
-        input {
-            zoom: 1;
-        }
+    input {
+      zoom: 1;
     }
+  }
 
-    .MuiInputBase-root,
-    .MuiInputLabel-root,
-    .MuiFormHelperText-root {
-        font-size: inherit;
+  .MuiInputBase-root,
+  .MuiInputLabel-root,
+  .MuiFormHelperText-root {
+    font-size: inherit;
+  }
+
+  .MuiOutlinedInput-notchedOutline {
+    border-color: theme('colors.gray.lighter');
+  }
+
+  // Override for Marcus to center the input label
+  .MuiInputLabel-outlined.MuiInputLabel-marginDense {
+    color: theme('colors.black');
+    opacity: 0.64;
+
+    &:not(.MuiInputLabel-shrink) {
+      transform: translate(14px, 17px);
+      opacity: 0.44;
     }
+  }
 
-    .MuiOutlinedInput-notchedOutline {
-        border-color: var(--lighter-gray);
-    }
+  .MuiOutlinedInput-input {
+    padding: 16px 14px;
+    height: 46px;
+    box-sizing: border-box;
+  }
 
-    // Override for Marcus to center the input label
-    .MuiInputLabel-outlined.MuiInputLabel-marginDense {
-        color: var(--black);
-        opacity: 0.64;
-
-        &:not(.MuiInputLabel-shrink) {
-            transform: translate(14px, 17px);
-            opacity: 0.44;
-        }
-    }
-
-    .MuiOutlinedInput-input {
-        padding: 16px 14px;
-        height: 46px;
-        box-sizing: border-box;
-    }
-
-    .MuiInputAdornment-positionEnd,
-    .MuiInputAdornment-positionStart {
-        color: var(--gray);
-    }
+  .MuiInputAdornment-positionEnd,
+  .MuiInputAdornment-positionStart {
+    color: var(--gray);
+  }
 }
