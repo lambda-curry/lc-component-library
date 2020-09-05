@@ -1,0 +1,48 @@
+import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs/blocks';
+import { InputText, Form } from '../../..';
+import dedent from 'string-dedent';
+import './input-text-story.scss';
+
+<Meta title="Text Input" component={InputText} />
+
+# Text Input
+
+<Canvas>
+  <Story
+    name="Text Input"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+          {Object.keys(defaultIcons).map(iconName => (
+            <li key={iconName}>
+              <Icon name={iconName} {...args} />
+              <br />
+              {iconName}
+            </li>
+          ))}`
+        }
+      }
+    }}
+  >
+    <div className="input-text-story">
+      <Form
+        initialValues={{
+          sampleInput1: '',
+          sampleInput2: '',
+          sampleInput3: ''
+        }}
+        onSubmit={() => {}}
+      >
+        {formikProps => (
+          <>
+            <InputText name="sampleInput1" label="Text Input" formikProps={formikProps} />
+            <InputText name="sampleInput2" label="Text Input" value="Example" formikProps={formikProps} />
+            <InputText name="sampleInput3" label="Password Input" type="password" formikProps={formikProps} />
+          </>
+        )}
+      </Form>
+    </div>
+  </Story>
+  <ArgsTable of={InputText} />
+</Canvas>

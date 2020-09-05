@@ -1,0 +1,82 @@
+import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs/blocks';
+import { InputCheckbox } from '../..';
+import dedent from 'string-dedent';
+import './input-checkbox-story.scss';
+
+<Meta title="Input Checkbox" component={InputCheckbox} />
+
+# Input Checkbox
+
+<Canvas>
+  <Story
+    name="Input Checkbox Default"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+            <h4>Default</h4>
+            <InputCheckbox name="checkboxDefault" label="Default checkbox" />`
+        }
+      }
+    }}
+  >
+    <div className="input-checkbox-story">
+      <h4>Default</h4>
+      <InputCheckbox name="checkboxDefault" label="Default checkbox" />
+    </div>
+  </Story>
+  <Story
+    name="Input Checkbox Checked"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+            <h4>Checked</h4>
+            <InputCheckbox name="checkboxChecked" label="Checked checkbox" checked={true} />`
+        }
+      }
+    }}
+  >
+    <div className="input-checkbox-story">
+      <h4>Checked</h4>
+      <InputCheckbox name="checkboxChecked" label="Checked checkbox" checked={true} />
+    </div>
+  </Story>
+  <Story
+    name="Input Checkbox Disabled"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+            <h4>Disabled</h4>
+            <InputCheckbox name="checkboxDisabled" label="Disabled checkbox" disabled={true} />`
+        }
+      }
+    }}
+  >
+    <div className="input-checkbox-story">
+      <h4>Disabled</h4>
+      <InputCheckbox name="checkboxDisabled" label="Disabled checkbox" disabled={true} />
+    </div>
+  </Story>
+  <Story
+    name="Input Checkbox Label Placement"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+            <h4>Label Placement</h4>
+            <InputCheckbox name="chedWithLabelEnd" label={\`Label placement "end"\`} labelPlacement="end" />
+            <InputCheckbox name="switchWithLabeLStart" label={\`Label placement "start"\`} labelPlacement="start" />`
+        }
+      }
+    }}
+  >
+    <div className="input-checkbox-story">
+      <h4>Label Placement</h4>
+      <InputCheckbox name="chedWithLabelEnd" label={`Label placement "end"`} labelPlacement="end" />
+      <InputCheckbox name="switchWithLabeLStart" label={`Label placement "start"`} labelPlacement="start" />
+    </div>
+  </Story>
+  <ArgsTable of={InputCheckbox} />
+</Canvas>

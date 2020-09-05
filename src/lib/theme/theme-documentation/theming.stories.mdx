@@ -1,20 +1,36 @@
 import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
 import { Icon, defaultIcons, DecorativeIcon } from '..';
 import classNames from 'classnames';
+import dedent from 'string-dedent';
 
 import './theme-story.scss';
 
-<Meta title='Theming' component={() => <></>} />
+<Meta title="Theming" component={() => <></>} />
 
 # Theming
 
 Mixing Tailwind with CSS Variables provides some powerful tools for themeing.
 
 <Canvas>
-  <Story name='Theme Colors'>
-    <div className='theme-story'>
-      <ul className='lc-flex'>
-        {['primary', 'secondary'].map((colorName) => (
+  <Story
+    name="Theme Colors"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+        {['primary', 'secondary'].map(colorName => (
+          <li key={colorName}>
+            <div className={classNames(\`lc-bg-\${colorName}\`, 'border')} />
+            {colorName}
+          </li>
+        ))}`
+        }
+      }
+    }}
+  >
+    <div className="theme-story">
+      <ul className="lc-flex">
+        {['primary', 'secondary'].map(colorName => (
           <li key={colorName}>
             <div className={classNames(`lc-bg-${colorName}`, 'border')} />
             {colorName}
@@ -35,10 +51,25 @@ It is easy to change the theme with CSS Variables and classNames.
 ```
 
 <Canvas>
-  <Story name='Alternate Theme Colors'>
-    <div className='theme-story alternate-theme'>
-      <ul className='lc-flex'>
-        {['primary', 'secondary'].map((colorName) => (
+  <Story
+    name="Alternate Theme Colors"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+        {['primary', 'secondary'].map(colorName => (
+          <li key={colorName}>
+            <div className={classNames(\`lc-bg-\${colorName}\`, 'border')} />
+            {colorName}
+          </li>
+        ))}`
+        }
+      }
+    }}
+  >
+    <div className="theme-story alternate-theme">
+      <ul className="lc-flex">
+        {['primary', 'secondary'].map(colorName => (
           <li key={colorName}>
             <div className={classNames(`lc-bg-${colorName}`, 'border')} />
             {colorName}

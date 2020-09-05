@@ -7,7 +7,9 @@ module.exports = {
     colors: {
       black: '#000',
       white: '#fff',
-      green: '#21cdac',
+      green: {
+        active: '#5bd067'
+      },
       blue: '#28a7db',
       danger: '#f44336',
       warn: '#f8ba44',
@@ -20,7 +22,7 @@ module.exports = {
         lightest: '#f5f6fa',
       },
       primary: 'var(--primary-color)',
-      secondary: 'var(--secondary-color)',
+      secondary: 'var(--secondary-color)'
     },
     spacing: {
       '0': '0',
@@ -38,16 +40,16 @@ module.exports = {
       '96': '96px',
       '104': '104px',
       '112': '112px',
-      '120': '120px',
+      '120': '120px'
     },
     fontFamily: {
-      sans: ['lc-gilroy', 'sans-serif'],
+      sans: ['lc-gilroy', 'sans-serif']
     },
     fontWeight: {
       ...defaultTheme.fontWeight,
       ultralight: 200,
       regular: 400,
-      heavy: 900,
+      heavy: 900
     },
     fontSize: {
       xs: ['12px', '1.5'],
@@ -57,16 +59,16 @@ module.exports = {
       xl: ['24px', '1.15'],
       '2xl': ['32px', '1.15'],
       '3xl': ['36px', '1.15'],
-      '4xl': ['48px', '1.15'],
+      '4xl': ['48px', '1.15']
     },
     borderWidth: {
       '0': '0',
       '1': '1px',
       '2': '2px',
       '4': '4px',
-      '8': '8px',
-    },
+      '8': '8px'
+    }
   },
   variants: {},
-  plugins: [],
+  plugins: []
 };

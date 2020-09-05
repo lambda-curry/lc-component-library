@@ -1,0 +1,109 @@
+import { useState } from 'react';
+import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs/blocks';
+import { useSnackbar, Button, Snackbar } from '../..';
+import dedent from 'string-dedent';
+import './snackbars-stories.scss';
+
+<Meta title="Snackbars" component={Snackbar} />
+
+export const SnackbarTemplate = () => {
+  const { addSnackbar, removeSnackbar } = useSnackbar();
+  return (
+    <div className="snackbars-stories">
+      <h4>Variants</h4>
+      <p>
+        <Button onClick={() => addSnackbar('Your notification here.')}>Default</Button>
+        <Button onClick={() => addSnackbar('Your notification here.', { variant: 'success' })}>Success</Button>
+        <Button onClick={() => addSnackbar('Your notification here.', { variant: 'warning' })}>Warning</Button>
+        <Button onClick={() => addSnackbar('Your notification here.', { variant: 'error' })}>Error</Button>
+        <Button onClick={() => addSnackbar('Your notification here.', { variant: 'info' })}>Info</Button>
+      </p>
+      <br />
+      <h4>Persistent</h4>
+      <p>
+        <Button
+          onClick={() =>
+            addSnackbar(`I won't leave the screen until you dismiss me.`, {
+              persist: true
+            })
+          }
+        >
+          Persistent
+        </Button>
+      </p>
+      <br />
+      <h4>Custom Actions</h4>
+      <p>
+        <Button
+          onClick={() =>
+            addSnackbar('You can customize actions and use primary and secondary action variations.', {
+              variant: 'info',
+              action: key => (
+                <>
+                  <Snackbar.Action onClick={() => alert('Hello World!')}>Alert</Snackbar.Action>
+                  <Snackbar.ActionPrimary onClick={() => removeSnackbar(key)}>Dismiss</Snackbar.ActionPrimary>
+                </>
+              )
+            })
+          }
+        >
+          Custom Actions
+        </Button>
+      </p>
+      <br />
+      <h4>Long Message</h4>
+      <p>
+        <Button
+          onClick={() =>
+            addSnackbar(
+              `I'm a really long message. I might flow onto two lines, but that's OK, because the actions are positioned so that the text never overlaps :)`
+            )
+          }
+        >
+          Long Message
+        </Button>
+      </p>
+    </div>
+  );
+};
+
+export const SnackbarAppTemplate = () => (
+  <Snackbar.Provider>
+    <SnackbarTemplate />
+  </Snackbar.Provider>
+);
+
+# Snackbar
+
+<Canvas>
+  <Story
+    name="Snackbars"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+          const { addSnackbar, removeSnackbar } = useSnackbar();
+          <Button
+            onClick={() =>
+              addSnackbar('You can customize actions and use primary and secondary action variations.', {
+                variant: 'info',
+                action: key => (
+                  <>
+                    <Snackbar.Action onClick={() => alert('Hello World!')}>Alert</Snackbar.Action>
+                    <Snackbar.ActionPrimary onClick={() => removeSnackbar(key)}>Dismiss</Snackbar.ActionPrimary>
+                  </>
+                )
+              })
+            }
+          >
+            Custom Actions
+          </Button>
+          `
+        }
+      }
+    }}
+  >
+    {SnackbarAppTemplate.bind({})}
+  </Story>
+  <ArgsTable of={Snackbar} />
+</Canvas>

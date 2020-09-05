@@ -1,0 +1,19 @@
+.icon-button {
+  // TODO: No need to have this `.button` specificity once we remove the old Bootstrap styles
+  // and import `buttons.scss` into the `Button` component
+  &.button {
+    display: inline-flex;
+    min-height: auto;
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    height: 36px;
+    width: 36px;
+    min-width: 36px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    // TODO: Figure out CSS Variables with Tailwind
+    color: var(--gray);
+  }
+}

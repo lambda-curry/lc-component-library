@@ -1,0 +1,51 @@
+.modal {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &-close {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+  }
+
+  &-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    padding: 0;
+    border: 0;
+  }
+
+  & &-actions {
+    border-top: 1px solid var(--lighter-gray);
+    padding: 12px;
+    margin: 24px -16px -24px;
+  }
+
+  .MuiCard-root {
+    min-width: 320px;
+    position: relative;
+
+    @media (min-width: 600px) {
+      min-width: 480px;
+    }
+  }
+}
+
+.ReactModal__Overlay {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  opacity: 0 !important;
+  transition: opacity 500ms ease-in-out !important;
+  z-index: 9999;
+
+  &.ReactModal__Overlay--after-open {
+    opacity: 1 !important;
+  }
+
+  &.ReactModal__Overlay--before-close {
+    opacity: 0 !important;
+  }
+}
