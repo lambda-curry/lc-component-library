@@ -1,0 +1,84 @@
+$snackbars-min-width: 280px;
+
+.snackbars {
+  min-width: $snackbars-min-width;
+}
+
+.snackbar-action {
+  padding: 8px 12px;
+  margin-left: 4px;
+  min-height: 40px;
+  font-weight: 700;
+  border-radius: 6px;
+  border: solid 1px rgba(255, 255, 255, 0.35);
+
+  &:hover:not([disabled]),
+  &:focus:not([disabled]) {
+    background-color: rgba(255, 255, 255, 0.16);
+    border: solid 1px rgba(255, 255, 255, 0.35);
+  }
+
+  &-primary {
+    color: theme('colors.black');
+    background-color: #fff;
+
+    &:hover:not([disabled]),
+    &:focus:not([disabled]) {
+      color: theme('colors.black');
+      background-color: rgba(255, 255, 255, 0.85);
+    }
+  }
+}
+
+.snackbar {
+  .MuiSnackbarContent-root {
+    padding: 8px 16px;
+    min-width: $snackbars-min-width;
+    color: #fff;
+    font-size: inherit;
+    line-height: inherit;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
+    background-color: theme('colors.black');
+
+    &[class*='variantSuccess'] {
+      color: #fff;
+      background-color: theme('colors.green.active');
+
+      .snackbar-action-primary {
+        color: theme('colors.green.active');
+      }
+    }
+
+    &[class*='variantWarning'] {
+      color: #fff;
+      background-color: theme('colors.warn');
+
+      .snackbar-action-primary {
+        color: theme('colors.warn');
+      }
+    }
+
+    &[class*='variantError'] {
+      color: #fff;
+      background-color: theme('colors.danger');
+
+      .snackbar-action-primary {
+        color: theme('colors.danger');
+      }
+    }
+
+    &[class*='variantInfo'] {
+      color: #fff;
+      background-color: theme('colors.primary');
+
+      .snackbar-action-primary {
+        color: theme('colors.primary');
+      }
+    }
+  }
+
+  .MuiSnackbarContent-message {
+    padding: 10px 0 8px;
+  }
+}
