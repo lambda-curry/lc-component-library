@@ -3,18 +3,26 @@ import scss from 'rollup-plugin-scss';
 import url from 'rollup-plugin-url';
 import svgr from '@svgr/rollup';
 import postcss from 'rollup-plugin-postcss';
+import { terser } from 'rollup-plugin-terser';
 
-export default {
-  input: 'src/lib/index.ts',
-  output: {
-    dir: 'dist',
-    format: 'cjs',
+const plugins = [url(), svgr(), scss(), postcss({ extract: false }), terser()];
+
+export default [
+  {
+    input: 'src/lib/index.ts',
+    output: {
+      dir: 'dist',
+      format: 'esm'
+    },
+    plugins: [typescript({ tsconfig: 'tsconfig.library.json' }), ...plugins]
   },
-  plugins: [
-    typescript({ tsconfig: 'tsconfig.library.json' }),
-    url(),
-    svgr(),
-    scss(),
-    postcss(),
-  ],
-};
+  {
+    input: 'src/lib/index.ts',
+    output: {
+      name: 'lc-component-library',
+      dir: 'umd',
+      format: 'umd'
+    },
+    plugins: [typescript({ tsconfig: 'tsconfig.browser.json' }), ...plugins]
+  }
+];

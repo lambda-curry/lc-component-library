@@ -13,6 +13,10 @@
 /dist
 /docs
 /storybook-static
+/umd
+
+# random
+bundle.css
 
 # misc
 .DS_Store
