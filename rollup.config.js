@@ -4,6 +4,8 @@ import url from 'rollup-plugin-url';
 import svgr from '@svgr/rollup';
 import postcss from 'rollup-plugin-postcss';
 import { terser } from 'rollup-plugin-terser';
+import nodeResolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 
 const plugins = [url(), svgr(), scss(), postcss({ extract: false }), terser()];
 
@@ -14,7 +16,7 @@ export default [
       dir: 'cjs',
       format: 'cjs'
     },
-    plugins: [typescript({ tsconfig: 'tsconfig.cjs.json' }), ...plugins]
+    plugins: [typescript({ tsconfig: 'tsconfig.cjs.json' }), ...plugins, nodeResolve({ browser: true }), commonjs()]
   },
   {
     input: 'src/lib/index.ts',
