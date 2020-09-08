@@ -11,10 +11,18 @@ export default [
   {
     input: 'src/lib/index.ts',
     output: {
+      dir: 'cjs',
+      format: 'cjs'
+    },
+    plugins: [typescript({ tsconfig: 'tsconfig.cjs.json' }), ...plugins]
+  },
+  {
+    input: 'src/lib/index.ts',
+    output: {
       dir: 'dist',
       format: 'esm'
     },
-    plugins: [typescript({ tsconfig: 'tsconfig.library.json' }), ...plugins]
+    plugins: [typescript({ tsconfig: 'tsconfig.esm.json' }), ...plugins]
   },
   {
     input: 'src/lib/index.ts',
@@ -23,6 +31,6 @@ export default [
       dir: 'umd',
       format: 'umd'
     },
-    plugins: [typescript({ tsconfig: 'tsconfig.browser.json' }), ...plugins]
+    plugins: [typescript({ tsconfig: 'tsconfig.umd.json' }), ...plugins]
   }
 ];

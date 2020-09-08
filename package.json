@@ -1,7 +1,8 @@
 {
   "name": "@lambdacurry/component-library",
   "version": "0.2.2",
-  "main": "dist/index.js",
+  "main": "cjs/index.js",
+  "module": "dist/index.js",
   "browser": "umd/index.js",
   "types": "dist/index.d.ts",
   "description": "A React component library created by Lambda Curry.",
