@@ -1,6 +1,6 @@
 {
   "name": "@lambdacurry/component-library",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "main": "cjs/index.js",
   "module": "dist/index.js",
   "browser": "umd/index.js",
