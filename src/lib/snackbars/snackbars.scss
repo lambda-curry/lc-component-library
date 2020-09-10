@@ -34,46 +34,46 @@ $snackbars-min-width: 280px;
   .MuiSnackbarContent-root {
     padding: 8px 16px;
     min-width: $snackbars-min-width;
-    color: #fff;
+    color: theme('colors.white');
     font-size: inherit;
     line-height: inherit;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
     border-radius: 6px;
-    background-color: theme('colors.black');
+    background-color: theme('colors.gray.darker');
 
     &[class*='variantSuccess'] {
-      color: #fff;
-      background-color: theme('colors.green.active');
+      color: theme('colors.success.text');
+      background-color: theme('colors.success.default');
 
       .snackbar-action-primary {
-        color: theme('colors.green.active');
+        color: theme('colors.success.default');
       }
     }
 
     &[class*='variantWarning'] {
-      color: #fff;
-      background-color: theme('colors.warn');
+      color: theme('colors.warn.text');
+      background-color: theme('colors.warn.default');
 
       .snackbar-action-primary {
-        color: theme('colors.warn');
+        color: theme('colors.warn.default');
       }
     }
 
     &[class*='variantError'] {
-      color: #fff;
-      background-color: theme('colors.danger');
+      color: theme('colors.danger.text');
+      background-color: theme('colors.danger.default');
 
       .snackbar-action-primary {
-        color: theme('colors.danger');
+        color: theme('colors.danger.default');
       }
     }
 
     &[class*='variantInfo'] {
-      color: #fff;
-      background-color: theme('colors.primary');
+      color: theme('colors.primary.text');
+      background-color: theme('colors.primary.default');
 
       .snackbar-action-primary {
-        color: theme('colors.primary');
+        color: theme('colors.primary.default');
       }
     }
   }

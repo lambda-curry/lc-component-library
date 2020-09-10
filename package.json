@@ -17,7 +17,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "clean": "rm -rf ./node-modules && yarn",
-    "storybook": "concurrently \"yarn watch:tailwind\" \"start-storybook -p 6006\"",
+    "storybook": "concurrently \"yarn watch:tailwind\" \"start-storybook -p 6007\"",
     "build:storybook": "build-storybook -s docs",
     "build:tailwind": "postcss src/styles/index.scss -o src/styles/tailwind.scss",
     "watch:tailwind": "chokidar 'src/**/*.css' 'src/**/*.scss' --ignore src/styles/tailwind.scss -c 'yarn build:tailwind'",

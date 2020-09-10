@@ -1,74 +1,43 @@
-// TODO: Replace these with tailwind colors and CSS variables
-$black: #282d30;
-$green: #5bd067;
-$purple: #7854f6;
-$yellow: #f99b0f;
-
-$light-red: #ed5f5f;
-$red: #d65858;
-
-$app-red: #d66245;
-// TODO: this is pretty close to the green we already use, we can see if Marcus wants to consolidate colors
-// $app-green: #3fc053;
-
-$dark-gray: #707070;
-$gray: #a0a5ba;
-$light-gray: #bdbdbd;
-$lighter-gray: #e2e2e2;
-$lightest-gray: #f5f6fa;
-
-$light-bluegray: #eef4ff;
-
-$dark-blue: #0021cb;
-$blue: #0054fe;
-$light-blue: #017aff;
-$lighter-blue: #1785cc;
-$lightest-blue: #4ab8ff;
-
-$text-color: $black;
-$text-color-light: $gray;
-
-:root {
-  --primary_color: #0021cb;
-  --primary_color_dark: #001aa3;
-  --primary_button_text_color: white;
-  --secondary_color: #017aff;
-  --secondary_color_dark: #0063d1;
-  --secondary_button_text_color: white;
-}
-
 @use "sass:map";
 
 $default-button-height: 48px;
-$default-button-text-color: $dark-gray;
-$default-button-bg-color: #ededed;
+$default-button-text-color: theme('colors.gray.dark');
+$default-button-text-color-darker: theme('colors.gray.darker');
+
+$default-button-bg-color: theme('colors.gray.lighter');
+$default-button-bg-color-darker: theme('colors.gray.light');
 $default-button-font-size: 14px;
 $default-button-border-radius: 6px;
 $default-button-font-weight: bold;
 $default-button-padding: 14px 20px;
 
-$primary-button-bg-color: var(--primary_color);
-$primary-button-bg-color-dark: var(--primary_color_dark);
-$primary-button-text-color: var(--primary_button_text_color);
-$accent-button-bg-color: var(--secondary_color);
-$accent-button-bg-color-dark: var(--secondary_color_dark);
-$accent-button-text-color: var(--secondary_button_text_color);
-$success-button-bg-color: $green;
-$success-button-bg-color-dark: darken($green, 20%);
-$success-button-text-color: white;
-$danger-button-bg-color: $red;
-$danger-button-bg-color-dark: darken($red, 20%);
-$danger-button-text-color: white;
+$primary-button-bg-color: theme('colors.primary.default');
+$primary-button-bg-color-dark: theme('colors.primary.dark');
+$primary-button-text-color: theme('colors.primary.text');
+$accent-button-bg-color: theme('colors.accent.default');
+$accent-button-bg-color-dark: theme('colors.accent.dark');
+$accent-button-text-color: theme('colors.accent.text');
+$success-button-bg-color: theme('colors.success.default');
+$success-button-bg-color-dark: theme('colors.success.dark');
+$success-button-text-color: theme('colors.success.text');
+$warn-button-bg-color: theme('colors.warn.default');
+$warn-button-bg-color-dark: theme('colors.warn.dark');
+$warn-button-text-color: theme('colors.warn.text');
+$danger-button-bg-color: theme('colors.danger.default');
+$danger-button-bg-color-dark: theme('colors.danger.dark');
+$danger-button-text-color: theme('colors.danger.text');
 $outline-button-bg-color: transparent;
-$outline-button-bg-color-dark: $lightest-gray;
+$outline-button-bg-color-dark: theme('colors.gray.lighter');
 $outline-button-text-color: $default-button-text-color;
-$outline-button-border-color: $lighter-gray;
+$outline-button-border-color: theme('colors.gray.lighter');
+$outline-button-border-color-darker: theme('colors.gray.light');
 
-$button-types: 'primary', 'accent', 'success', 'outline', 'danger';
+$button-types: 'primary', 'accent', 'success', 'warn', 'danger', 'outline';
 $button-bg-colors: (
   'primary': $primary-button-bg-color,
   'accent': $accent-button-bg-color,
   'success': $success-button-bg-color,
+  'warn': $warn-button-bg-color,
   'danger': $danger-button-bg-color,
   'outline': $outline-button-bg-color
 );
@@ -76,6 +45,7 @@ $button-bg-colors-dark: (
   'primary': $primary-button-bg-color-dark,
   'accent': $accent-button-bg-color-dark,
   'success': $success-button-bg-color-dark,
+  'warn': $warn-button-bg-color-dark,
   'danger': $danger-button-bg-color-dark,
   'outline': $outline-button-bg-color-dark
 );
@@ -83,6 +53,7 @@ $button-text-colors: (
   'primary': $primary-button-text-color,
   'accent': $accent-button-text-color,
   'success': $success-button-text-color,
+  'warn': $warn-button-text-color,
   'danger': $danger-button-text-color,
   'outline': $outline-button-text-color
 );
@@ -109,16 +80,16 @@ $button-text-colors: (
 
   // Default Button Hover State
   &:hover:not([disabled]) {
-    background-color: darken($default-button-bg-color, 5%);
-    color: darken($default-button-text-color, 20%);
-    border-color: darken($default-button-bg-color, 5%);
+    background-color: $default-button-bg-color-darker;
+    color: $default-button-text-color-darker;
+    border-color: $default-button-bg-color-darker;
     box-shadow: none !important;
   }
 
   &:active:not([disabled]) {
     transform: scale(0.98);
-    color: darken($default-button-text-color, 20%);
-    border-color: darken($default-button-bg-color, 5%);
+    color: $default-button-text-color-darker;
+    border-color: $default-button-bg-color-darker;
   }
 
   &[disabled] {
@@ -167,8 +138,8 @@ $button-text-colors: (
 
         &:hover:not([disabled]) {
           background-color: $outline-button-bg-color-dark;
-          color: darken($default-button-text-color, 20%);
-          border-color: darken($outline-button-border-color, 5%);
+          color: $default-button-text-color-darker;
+          border-color: $outline-button-border-color-darker;
         }
 
         &:focus {
@@ -234,7 +205,7 @@ $button-text-colors: (
   &:focus {
     outline: 1px dotted #212121;
     outline: 5px auto -webkit-focus-ring-color;
-    outline: 5px auto var(--primary_color);
+    outline: 5px auto theme('colors.primary.default');
     box-shadow: none;
     background-color: transparent;
     color: inherit;
@@ -255,20 +226,6 @@ $button-text-colors: (
 
   &:active {
     transform: scale(1);
-  }
-}
-
-// TC-150 Fix for button within the alert panel, we can remove or update this when we update the alert component
-.button.inPanel {
-  display: flex;
-  padding: 8px;
-  min-height: 0;
-  line-height: 12px;
-  border: 1px solid white;
-  margin-right: 40px;
-
-  .buttonText {
-    margin-right: 4px;
   }
 }
 
