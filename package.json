@@ -9,7 +9,7 @@
     "prestart": "yarn build:tailwind",
     "prebuild": "yarn build:tailwind",
     "prebuild:library": "yarn build:tailwind && rm -rf ./dist",
-    "postbuild:library": "cpy '**/*' '!**/*.ts' ../../dist --cwd=src/lib --no-overwrite --parents",
+    "postbuild:library": "cpy '**/*' '!**/{*.ts*,*.scss,*.mdx}' ../../dist --cwd=src/lib --no-overwrite --parents",
     "prestorybook": "yarn build:tailwind",
     "prebuild:storybook": "yarn build:tailwind",
     "start": "concurrently \"yarn watch:tailwind\" \"react-scripts start\"",
