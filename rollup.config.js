@@ -25,14 +25,14 @@ export default [
       format: 'esm'
     },
     plugins: [typescript({ tsconfig: 'tsconfig.esm.json' }), ...plugins]
-  },
-  {
-    input: 'src/lib/index.ts',
-    output: {
-      name: 'lc-component-library',
-      dir: 'umd',
-      format: 'umd'
-    },
-    plugins: [typescript({ tsconfig: 'tsconfig.umd.json' }), ...plugins]
   }
+  // {
+  //   input: 'src/lib/index.ts',
+  //   output: {
+  //     name: 'lc-component-library',
+  //     dir: 'umd',
+  //     format: 'umd'
+  //   },
+  //   plugins: [typescript({ tsconfig: 'tsconfig.umd.json' }), ...plugins]
+  // }
 ];
