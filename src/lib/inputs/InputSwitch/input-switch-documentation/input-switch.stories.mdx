@@ -1,5 +1,5 @@
 import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs/blocks';
-import { InputSwitch } from '../..';
+import { InputSwitch, Form } from '../../..';
 import dedent from 'string-dedent';
 import './input-switch-story.scss';
 
@@ -15,14 +15,28 @@ import './input-switch-story.scss';
         source: {
           code: dedent`
             <h4>Default</h4>
-            <InputSwitch name="switchDefault" />`
+            <Form
+              initialValues={{
+                switchDefault: false
+              }}
+              onSubmit={() => {}}
+            >
+              {formikProps => <InputSwitch name="switchDefault" formikProps={formikProps} />}
+            </Form>`
         }
       }
     }}
   >
     <div className="input-switch-story">
       <h4>Default</h4>
-      <InputSwitch name="switchDefault" />
+      <Form
+        initialValues={{
+          switchDefault: false
+        }}
+        onSubmit={() => {}}
+      >
+        {formikProps => <InputSwitch name="switchDefault" formikProps={formikProps} />}
+      </Form>
     </div>
   </Story>
   <Story
@@ -32,14 +46,28 @@ import './input-switch-story.scss';
         source: {
           code: dedent`
             <h4>Active</h4>
-            <InputSwitch name="switchActive" checked={true} />`
+            <Form
+              initialValues={{
+                switchActive: true
+              }}
+              onSubmit={() => {}}
+            >
+              {formikProps => <InputSwitch name="switchActive" formikProps={formikProps} />}
+            </Form>`
         }
       }
     }}
   >
     <div className="input-switch-story">
       <h4>Active</h4>
-      <InputSwitch name="switchActive" checked={true} />
+      <Form
+        initialValues={{
+          switchActive: true
+        }}
+        onSubmit={() => {}}
+      >
+        {formikProps => <InputSwitch name="switchActive" formikProps={formikProps} />}
+      </Form>
     </div>
   </Story>
   <Story
@@ -49,14 +77,28 @@ import './input-switch-story.scss';
         source: {
           code: dedent`
             <h4>Disabled</h4>
-            <InputSwitch name="switchDisabled" disabled={true} />`
+            <Form
+              initialValues={{
+                switchActive: true
+              }}
+              onSubmit={() => {}}
+            >
+              {formikProps => <InputSwitch name="switchActive" disabled={true} formikProps={formikProps} />}
+            </Form>`
         }
       }
     }}
   >
     <div className="input-switch-story">
       <h4>Disabled</h4>
-      <InputSwitch name="switchActive" disabled={true} />
+      <Form
+        initialValues={{
+          switchActive: true
+        }}
+        onSubmit={() => {}}
+      >
+        {formikProps => <InputSwitch name="switchActive" disabled={true} formikProps={formikProps} />}
+      </Form>
     </div>
   </Story>
   <Story
@@ -66,16 +108,52 @@ import './input-switch-story.scss';
         source: {
           code: dedent`
             <h4>With Label</h4>
-            <InputSwitch name="switchWithLabelEnd" label="Click Me" labelPlacement="end" />
-            <InputSwitch name="switchWithLabeLStart" labelOn="On" labelOff="Off" labelPlacement="start" />`
+            <Form
+              initialValues={{
+                switchWithLabelEnd: true,
+                switchWithLabeLStart: false
+              }}
+              onSubmit={() => {}}
+            >
+              {formikProps => (
+                <>
+                  <InputSwitch name="switchWithLabelEnd" label="Click Me" labelPlacement="end" formikProps={formikProps} />
+                  <InputSwitch
+                    name="switchWithLabeLStart"
+                    labelOn="On"
+                    labelOff="Off"
+                    labelPlacement="start"
+                    formikProps={formikProps}
+                  />
+                </>
+              )}
+            </Form>`
         }
       }
     }}
   >
     <div className="input-switch-story">
       <h4>With Label</h4>
-      <InputSwitch name="switchWithLabelEnd" label="Click Me" labelPlacement="end" />
-      <InputSwitch name="switchWithLabeLStart" labelOn="On" labelOff="Off" labelPlacement="start" />
+      <Form
+        initialValues={{
+          switchWithLabelEnd: true,
+          switchWithLabeLStart: false
+        }}
+        onSubmit={() => {}}
+      >
+        {formikProps => (
+          <>
+            <InputSwitch name="switchWithLabelEnd" label="Click Me" labelPlacement="end" formikProps={formikProps} />
+            <InputSwitch
+              name="switchWithLabeLStart"
+              labelOn="On"
+              labelOff="Off"
+              labelPlacement="start"
+              formikProps={formikProps}
+            />
+          </>
+        )}
+      </Form>
     </div>
   </Story>
   <ArgsTable of={InputSwitch} />
