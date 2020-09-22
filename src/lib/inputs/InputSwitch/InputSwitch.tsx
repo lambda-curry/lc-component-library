@@ -48,6 +48,10 @@ export const InputSwitch = ({
     if (onChange) {
       onChange(event, checked);
     }
+
+    if (fieldProps?.onChange) {
+      fieldProps.onChange(event);
+    }
   };
 
   return (
