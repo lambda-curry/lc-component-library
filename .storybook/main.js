@@ -2,14 +2,10 @@ const path = require('path');
 
 // Gatsby Storybook documentation: https://www.gatsbyjs.org/docs/visual-testing-with-storybook/
 module.exports = {
-  stories: ['../src/**/*.stories.(js|tsx|mdx)'],
+  stories: ['../src/**/*.stories.@(js|tsx|mdx)'],
   addons: [
-    // '@storybook/preset-create-react-app',
     '@storybook/addon-actions',
     '@storybook/addon-links',
-    '@storybook/addon-controls',
-    // '@storybook/addon-knobs/register',
-    // '@storybook/addon-notes/register',
     '@storybook/addon-a11y',
     '@storybook/addon-viewport/register',
     {
@@ -25,7 +21,8 @@ module.exports = {
           prettierConfig: { printWidth: 80, singleQuote: true }
         }
       }
-    }
+    },
+    '@storybook/addon-controls'
   ],
   webpackFinal: async config => {
     // Transpile Gatsby module because Gatsby includes un-transpiled ES6 code.
