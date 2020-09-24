@@ -7,7 +7,7 @@
     right: 44px;
     bottom: 16px;
     font-size: 10px;
-    color: theme('colors.gray.normal');
+    color: theme('colors.gray.default');
     pointer-events: none;
   }
 
@@ -23,7 +23,7 @@
     background: #fff;
     pointer-events: none;
     border-radius: 7px;
-    color: theme('colors.gray.normal');
+    color: theme('colors.gray.default');
   }
 
   &-editor {

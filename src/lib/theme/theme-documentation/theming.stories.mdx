@@ -1,5 +1,4 @@
 import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
-import { Icon, defaultIcons, DecorativeIcon } from '..';
 import classNames from 'classnames';
 import dedent from 'string-dedent';
 
@@ -18,7 +17,7 @@ Mixing Tailwind with CSS Variables provides some powerful tools for themeing.
       docs: {
         source: {
           code: dedent`
-        {['primary', 'secondary'].map(colorName => (
+        {['primary', 'accent'].map(colorName => (
           <li key={colorName}>
             <div className={classNames(\`lc-bg-\${colorName}\`, 'border')} />
             {colorName}
@@ -30,7 +29,7 @@ Mixing Tailwind with CSS Variables provides some powerful tools for themeing.
   >
     <div className="theme-story">
       <ul className="lc-flex">
-        {['primary', 'secondary'].map(colorName => (
+        {['primary', 'accent'].map(colorName => (
           <li key={colorName}>
             <div className={classNames(`lc-bg-${colorName}`, 'border')} />
             {colorName}
@@ -45,8 +44,8 @@ It is easy to change the theme with CSS Variables and classNames.
 
 ```css
 .alternate-theme {
-  --primary-color: red;
-  --secondary-color: orange;
+  --primary-default-color: red;
+  --accent-default-color: orange;
 }
 ```
 
@@ -57,7 +56,7 @@ It is easy to change the theme with CSS Variables and classNames.
       docs: {
         source: {
           code: dedent`
-        {['primary', 'secondary'].map(colorName => (
+        {['primary', 'accent'].map(colorName => (
           <li key={colorName}>
             <div className={classNames(\`lc-bg-\${colorName}\`, 'border')} />
             {colorName}
@@ -69,7 +68,7 @@ It is easy to change the theme with CSS Variables and classNames.
   >
     <div className="theme-story alternate-theme">
       <ul className="lc-flex">
-        {['primary', 'secondary'].map(colorName => (
+        {['primary', 'accent'].map(colorName => (
           <li key={colorName}>
             <div className={classNames(`lc-bg-${colorName}`, 'border')} />
             {colorName}

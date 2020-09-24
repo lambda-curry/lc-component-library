@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "rootDir": "src/lib",
+    "outDir": "dist",
+    "target": "es6",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "declaration": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "jsx": "react",
+    "resolveJsonModule": true,
+    "preserveConstEnums": true
+  },
+  "include": ["src/lib/**/*"],
+  "exclude": ["node_modules", "__tests__", "**/*.spec.ts", "**/*.spec.tsx", "**/*.mdx"]
+}

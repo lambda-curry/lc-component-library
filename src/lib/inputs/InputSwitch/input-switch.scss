@@ -23,7 +23,7 @@
     &-switchBase {
       &.Mui-checked {
         .MuiSwitch-thumb {
-          background-color: theme('colors.green.active');
+          background-color: theme('colors.active.default');
         }
 
         + .MuiSwitch-track {

@@ -8,29 +8,30 @@ import {
 import classNames from 'classnames';
 
 import './input-switch.scss';
-import { FieldProps } from 'formik';
+import { FormikProps } from 'formik';
 
-export type InputSwitchProps = SwitchProps &
-  FieldProps & {
-    label?: string;
-    labelOn?: string;
-    labelOff?: string;
-    labelPlacement?: FormControlLabelProps['labelPlacement'];
-  };
+export type InputSwitchProps<T> = SwitchProps & {
+  formikProps?: FormikProps<T>;
+  name?: string;
+  label?: string;
+  labelOn?: string;
+  labelOff?: string;
+  labelPlacement?: FormControlLabelProps['labelPlacement'];
+};
 
 export const InputSwitch = ({
   className,
-  field,
-  form,
-  meta,
+  name,
+  formikProps,
   labelOn,
   labelOff,
   labelPlacement = 'end',
   onChange,
   ...props
-}: InputSwitchProps) => {
+}: InputSwitchProps<any>) => {
+  const fieldProps = formikProps?.getFieldProps(name);
   const [label, setLabel] = useState(props.label);
-  const [checked, setChecked] = useState(!!field?.checked || !!props.checked);
+  const [checked, setChecked] = useState(!!fieldProps?.value || !!props.checked);
 
   useEffect(() => {
     if (checked && labelOn) {
@@ -47,13 +48,24 @@ export const InputSwitch = ({
     if (onChange) {
       onChange(event, checked);
     }
+
+    if (fieldProps?.onChange) {
+      fieldProps.onChange(event);
+    }
   };
 
   return (
     <div className={classNames(className, 'input input-switch')}>
       <MuiFormControlLabel
         control={
-          <MuiSwitch {...field} {...props} checked={checked} onChange={handleChange} color="default" size="medium" />
+          <MuiSwitch
+            {...fieldProps}
+            {...props}
+            checked={checked}
+            onChange={handleChange}
+            color="default"
+            size="medium"
+          />
         }
         label={label}
         labelPlacement={labelPlacement}

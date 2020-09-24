@@ -11,6 +11,12 @@
 # production
 /build
 /dist
+/storybook-static
+/umd
+/cjs
+
+# random
+bundle.css
 
 # misc
 .DS_Store

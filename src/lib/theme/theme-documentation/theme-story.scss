@@ -1,6 +1,8 @@
+// TODO: include documentation for updating all color types that are required for the theme
+// so far these color types are just default, dark, and text, but there should be more
 .alternate-theme {
-  --primary-color: red;
-  --secondary-color: orange;
+  --primary-default-color: red;
+  --accent-default-color: orange;
 }
 
 .theme-story {

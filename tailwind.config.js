@@ -1,5 +1,17 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
+const themeColorTypes = ['text', 'default', 'dark'];
+const buildThemeColorTypes = themeColor =>
+  themeColorTypes.reduce((acc, curr) => {
+    acc[curr] = `var(--${themeColor}-${curr}-color)`;
+    return acc;
+  }, {});
+
+const themeColors = ['primary', 'accent', 'success', 'warn', 'danger'].reduce((acc, curr) => {
+  acc[curr] = buildThemeColorTypes(curr);
+  return acc;
+}, {});
+
 module.exports = {
   purge: ['./src/**/*.tsx'],
   prefix: 'lc-',
@@ -7,22 +19,21 @@ module.exports = {
     colors: {
       black: '#000',
       white: '#fff',
-      green: {
-        active: '#5bd067'
-      },
+
       blue: '#28a7db',
-      danger: '#f44336',
+      active: {
+        default: 'var(--active-default-color)'
+      },
       warn: '#f8ba44',
-      success: '#21cdac',
       gray: {
+        darker: '#404040',
         dark: '#707070',
-        normal: '#a0a5ba',
+        default: '#a0a5ba',
         light: '#bdbdbd',
         lighter: '#e2e2e2',
         lightest: '#f5f6fa'
       },
-      primary: 'var(--primary-color)',
-      secondary: 'var(--secondary-color)'
+      ...themeColors
     },
     spacing: {
       '0': '0',

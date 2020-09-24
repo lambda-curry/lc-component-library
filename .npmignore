@@ -7,3 +7,5 @@ build
 postcss.config.js
 tailwind.config.js
 .babelrc
+storybook-static
+bundle.css
