@@ -1272,7 +1272,6 @@ code {
 
 .lc-appearance-none {
   -webkit-appearance: none;
-     -moz-appearance: none;
           appearance: none;
 }
 
@@ -3799,6 +3798,74 @@ code {
   flex-wrap: nowrap;
 }
 
+.lc-place-items-auto {
+  place-items: auto;
+}
+
+.lc-place-items-start {
+  place-items: start;
+}
+
+.lc-place-items-end {
+  place-items: end;
+}
+
+.lc-place-items-center {
+  place-items: center;
+}
+
+.lc-place-items-stretch {
+  place-items: stretch;
+}
+
+.lc-place-content-center {
+  place-content: center;
+}
+
+.lc-place-content-start {
+  place-content: start;
+}
+
+.lc-place-content-end {
+  place-content: end;
+}
+
+.lc-place-content-between {
+  place-content: space-between;
+}
+
+.lc-place-content-around {
+  place-content: space-around;
+}
+
+.lc-place-content-evenly {
+  place-content: space-evenly;
+}
+
+.lc-place-content-stretch {
+  place-content: stretch;
+}
+
+.lc-place-self-auto {
+  place-self: auto;
+}
+
+.lc-place-self-start {
+  place-self: start;
+}
+
+.lc-place-self-end {
+  place-self: end;
+}
+
+.lc-place-self-center {
+  place-self: center;
+}
+
+.lc-place-self-stretch {
+  place-self: stretch;
+}
+
 .lc-items-start {
   align-items: flex-start;
 }
@@ -3819,6 +3886,30 @@ code {
   align-items: stretch;
 }
 
+.lc-content-center {
+  align-content: center;
+}
+
+.lc-content-start {
+  align-content: flex-start;
+}
+
+.lc-content-end {
+  align-content: flex-end;
+}
+
+.lc-content-between {
+  align-content: space-between;
+}
+
+.lc-content-around {
+  align-content: space-around;
+}
+
+.lc-content-evenly {
+  align-content: space-evenly;
+}
+
 .lc-self-auto {
   align-self: auto;
 }
@@ -3837,6 +3928,26 @@ code {
 
 .lc-self-stretch {
   align-self: stretch;
+}
+
+.lc-justify-items-auto {
+  justify-items: auto;
+}
+
+.lc-justify-items-start {
+  justify-items: start;
+}
+
+.lc-justify-items-end {
+  justify-items: end;
+}
+
+.lc-justify-items-center {
+  justify-items: center;
+}
+
+.lc-justify-items-stretch {
+  justify-items: stretch;
 }
 
 .lc-justify-start {
@@ -3863,24 +3974,24 @@ code {
   justify-content: space-evenly;
 }
 
-.lc-content-center {
-  align-content: center;
+.lc-justify-self-auto {
+  justify-self: auto;
 }
 
-.lc-content-start {
-  align-content: flex-start;
+.lc-justify-self-start {
+  justify-self: start;
 }
 
-.lc-content-end {
-  align-content: flex-end;
+.lc-justify-self-end {
+  justify-self: end;
 }
 
-.lc-content-between {
-  align-content: space-between;
+.lc-justify-self-center {
+  justify-self: center;
 }
 
-.lc-content-around {
-  align-content: space-around;
+.lc-justify-self-stretch {
+  justify-self: stretch;
 }
 
 .lc-flex-1 {
@@ -7129,6 +7240,51 @@ code {
 .lc-subpixel-antialiased {
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
+}
+
+.lc-ordinal, .lc-slashed-zero, .lc-lining-nums, .lc-oldstyle-nums, .lc-proportional-nums, .lc-tabular-nums, .lc-diagonal-fractions, .lc-stacked-fractions {
+  --font-variant-numeric-ordinal: var(--tailwind-empty,/*!*/ /*!*/);
+  --font-variant-numeric-slashed-zero: var(--tailwind-empty,/*!*/ /*!*/);
+  --font-variant-numeric-figure: var(--tailwind-empty,/*!*/ /*!*/);
+  --font-variant-numeric-spacing: var(--tailwind-empty,/*!*/ /*!*/);
+  --font-variant-numeric-fraction: var(--tailwind-empty,/*!*/ /*!*/);
+  font-variant-numeric: var(--font-variant-numeric-ordinal) var(--font-variant-numeric-slashed-zero) var(--font-variant-numeric-figure) var(--font-variant-numeric-spacing) var(--font-variant-numeric-fraction);
+}
+
+.lc-normal-nums {
+  font-variant-numeric: normal;
+}
+
+.lc-ordinal {
+  --font-variant-numeric-ordinal: ordinal;
+}
+
+.lc-slashed-zero {
+  --font-variant-numeric-slashed-zero: slashed-zero;
+}
+
+.lc-lining-nums {
+  --font-variant-numeric-figure: lining-nums;
+}
+
+.lc-oldstyle-nums {
+  --font-variant-numeric-figure: oldstyle-nums;
+}
+
+.lc-proportional-nums {
+  --font-variant-numeric-spacing: proportional-nums;
+}
+
+.lc-tabular-nums {
+  --font-variant-numeric-spacing: tabular-nums;
+}
+
+.lc-diagonal-fractions {
+  --font-variant-numeric-fraction: diagonal-fractions;
+}
+
+.lc-stacked-fractions {
+  --font-variant-numeric-fraction: stacked-fractions;
 }
 
 .lc-tracking-tighter {
@@ -10581,7 +10737,6 @@ code {
 
   .sm\:lc-appearance-none {
     -webkit-appearance: none;
-       -moz-appearance: none;
             appearance: none;
   }
 
@@ -13108,6 +13263,74 @@ code {
     flex-wrap: nowrap;
   }
 
+  .sm\:lc-place-items-auto {
+    place-items: auto;
+  }
+
+  .sm\:lc-place-items-start {
+    place-items: start;
+  }
+
+  .sm\:lc-place-items-end {
+    place-items: end;
+  }
+
+  .sm\:lc-place-items-center {
+    place-items: center;
+  }
+
+  .sm\:lc-place-items-stretch {
+    place-items: stretch;
+  }
+
+  .sm\:lc-place-content-center {
+    place-content: center;
+  }
+
+  .sm\:lc-place-content-start {
+    place-content: start;
+  }
+
+  .sm\:lc-place-content-end {
+    place-content: end;
+  }
+
+  .sm\:lc-place-content-between {
+    place-content: space-between;
+  }
+
+  .sm\:lc-place-content-around {
+    place-content: space-around;
+  }
+
+  .sm\:lc-place-content-evenly {
+    place-content: space-evenly;
+  }
+
+  .sm\:lc-place-content-stretch {
+    place-content: stretch;
+  }
+
+  .sm\:lc-place-self-auto {
+    place-self: auto;
+  }
+
+  .sm\:lc-place-self-start {
+    place-self: start;
+  }
+
+  .sm\:lc-place-self-end {
+    place-self: end;
+  }
+
+  .sm\:lc-place-self-center {
+    place-self: center;
+  }
+
+  .sm\:lc-place-self-stretch {
+    place-self: stretch;
+  }
+
   .sm\:lc-items-start {
     align-items: flex-start;
   }
@@ -13128,6 +13351,30 @@ code {
     align-items: stretch;
   }
 
+  .sm\:lc-content-center {
+    align-content: center;
+  }
+
+  .sm\:lc-content-start {
+    align-content: flex-start;
+  }
+
+  .sm\:lc-content-end {
+    align-content: flex-end;
+  }
+
+  .sm\:lc-content-between {
+    align-content: space-between;
+  }
+
+  .sm\:lc-content-around {
+    align-content: space-around;
+  }
+
+  .sm\:lc-content-evenly {
+    align-content: space-evenly;
+  }
+
   .sm\:lc-self-auto {
     align-self: auto;
   }
@@ -13146,6 +13393,26 @@ code {
 
   .sm\:lc-self-stretch {
     align-self: stretch;
+  }
+
+  .sm\:lc-justify-items-auto {
+    justify-items: auto;
+  }
+
+  .sm\:lc-justify-items-start {
+    justify-items: start;
+  }
+
+  .sm\:lc-justify-items-end {
+    justify-items: end;
+  }
+
+  .sm\:lc-justify-items-center {
+    justify-items: center;
+  }
+
+  .sm\:lc-justify-items-stretch {
+    justify-items: stretch;
   }
 
   .sm\:lc-justify-start {
@@ -13172,24 +13439,24 @@ code {
     justify-content: space-evenly;
   }
 
-  .sm\:lc-content-center {
-    align-content: center;
+  .sm\:lc-justify-self-auto {
+    justify-self: auto;
   }
 
-  .sm\:lc-content-start {
-    align-content: flex-start;
+  .sm\:lc-justify-self-start {
+    justify-self: start;
   }
 
-  .sm\:lc-content-end {
-    align-content: flex-end;
+  .sm\:lc-justify-self-end {
+    justify-self: end;
   }
 
-  .sm\:lc-content-between {
-    align-content: space-between;
+  .sm\:lc-justify-self-center {
+    justify-self: center;
   }
 
-  .sm\:lc-content-around {
-    align-content: space-around;
+  .sm\:lc-justify-self-stretch {
+    justify-self: stretch;
   }
 
   .sm\:lc-flex-1 {
@@ -16438,6 +16705,51 @@ code {
   .sm\:lc-subpixel-antialiased {
     -webkit-font-smoothing: auto;
     -moz-osx-font-smoothing: auto;
+  }
+
+  .sm\:lc-ordinal, .sm\:lc-slashed-zero, .sm\:lc-lining-nums, .sm\:lc-oldstyle-nums, .sm\:lc-proportional-nums, .sm\:lc-tabular-nums, .sm\:lc-diagonal-fractions, .sm\:lc-stacked-fractions {
+    --font-variant-numeric-ordinal: var(--tailwind-empty,/*!*/ /*!*/);
+    --font-variant-numeric-slashed-zero: var(--tailwind-empty,/*!*/ /*!*/);
+    --font-variant-numeric-figure: var(--tailwind-empty,/*!*/ /*!*/);
+    --font-variant-numeric-spacing: var(--tailwind-empty,/*!*/ /*!*/);
+    --font-variant-numeric-fraction: var(--tailwind-empty,/*!*/ /*!*/);
+    font-variant-numeric: var(--font-variant-numeric-ordinal) var(--font-variant-numeric-slashed-zero) var(--font-variant-numeric-figure) var(--font-variant-numeric-spacing) var(--font-variant-numeric-fraction);
+  }
+
+  .sm\:lc-normal-nums {
+    font-variant-numeric: normal;
+  }
+
+  .sm\:lc-ordinal {
+    --font-variant-numeric-ordinal: ordinal;
+  }
+
+  .sm\:lc-slashed-zero {
+    --font-variant-numeric-slashed-zero: slashed-zero;
+  }
+
+  .sm\:lc-lining-nums {
+    --font-variant-numeric-figure: lining-nums;
+  }
+
+  .sm\:lc-oldstyle-nums {
+    --font-variant-numeric-figure: oldstyle-nums;
+  }
+
+  .sm\:lc-proportional-nums {
+    --font-variant-numeric-spacing: proportional-nums;
+  }
+
+  .sm\:lc-tabular-nums {
+    --font-variant-numeric-spacing: tabular-nums;
+  }
+
+  .sm\:lc-diagonal-fractions {
+    --font-variant-numeric-fraction: diagonal-fractions;
+  }
+
+  .sm\:lc-stacked-fractions {
+    --font-variant-numeric-fraction: stacked-fractions;
   }
 
   .sm\:lc-tracking-tighter {
@@ -19860,7 +20172,6 @@ code {
 
   .md\:lc-appearance-none {
     -webkit-appearance: none;
-       -moz-appearance: none;
             appearance: none;
   }
 
@@ -22387,6 +22698,74 @@ code {
     flex-wrap: nowrap;
   }
 
+  .md\:lc-place-items-auto {
+    place-items: auto;
+  }
+
+  .md\:lc-place-items-start {
+    place-items: start;
+  }
+
+  .md\:lc-place-items-end {
+    place-items: end;
+  }
+
+  .md\:lc-place-items-center {
+    place-items: center;
+  }
+
+  .md\:lc-place-items-stretch {
+    place-items: stretch;
+  }
+
+  .md\:lc-place-content-center {
+    place-content: center;
+  }
+
+  .md\:lc-place-content-start {
+    place-content: start;
+  }
+
+  .md\:lc-place-content-end {
+    place-content: end;
+  }
+
+  .md\:lc-place-content-between {
+    place-content: space-between;
+  }
+
+  .md\:lc-place-content-around {
+    place-content: space-around;
+  }
+
+  .md\:lc-place-content-evenly {
+    place-content: space-evenly;
+  }
+
+  .md\:lc-place-content-stretch {
+    place-content: stretch;
+  }
+
+  .md\:lc-place-self-auto {
+    place-self: auto;
+  }
+
+  .md\:lc-place-self-start {
+    place-self: start;
+  }
+
+  .md\:lc-place-self-end {
+    place-self: end;
+  }
+
+  .md\:lc-place-self-center {
+    place-self: center;
+  }
+
+  .md\:lc-place-self-stretch {
+    place-self: stretch;
+  }
+
   .md\:lc-items-start {
     align-items: flex-start;
   }
@@ -22407,6 +22786,30 @@ code {
     align-items: stretch;
   }
 
+  .md\:lc-content-center {
+    align-content: center;
+  }
+
+  .md\:lc-content-start {
+    align-content: flex-start;
+  }
+
+  .md\:lc-content-end {
+    align-content: flex-end;
+  }
+
+  .md\:lc-content-between {
+    align-content: space-between;
+  }
+
+  .md\:lc-content-around {
+    align-content: space-around;
+  }
+
+  .md\:lc-content-evenly {
+    align-content: space-evenly;
+  }
+
   .md\:lc-self-auto {
     align-self: auto;
   }
@@ -22425,6 +22828,26 @@ code {
 
   .md\:lc-self-stretch {
     align-self: stretch;
+  }
+
+  .md\:lc-justify-items-auto {
+    justify-items: auto;
+  }
+
+  .md\:lc-justify-items-start {
+    justify-items: start;
+  }
+
+  .md\:lc-justify-items-end {
+    justify-items: end;
+  }
+
+  .md\:lc-justify-items-center {
+    justify-items: center;
+  }
+
+  .md\:lc-justify-items-stretch {
+    justify-items: stretch;
   }
 
   .md\:lc-justify-start {
@@ -22451,24 +22874,24 @@ code {
     justify-content: space-evenly;
   }
 
-  .md\:lc-content-center {
-    align-content: center;
+  .md\:lc-justify-self-auto {
+    justify-self: auto;
   }
 
-  .md\:lc-content-start {
-    align-content: flex-start;
+  .md\:lc-justify-self-start {
+    justify-self: start;
   }
 
-  .md\:lc-content-end {
-    align-content: flex-end;
+  .md\:lc-justify-self-end {
+    justify-self: end;
   }
 
-  .md\:lc-content-between {
-    align-content: space-between;
+  .md\:lc-justify-self-center {
+    justify-self: center;
   }
 
-  .md\:lc-content-around {
-    align-content: space-around;
+  .md\:lc-justify-self-stretch {
+    justify-self: stretch;
   }
 
   .md\:lc-flex-1 {
@@ -25717,6 +26140,51 @@ code {
   .md\:lc-subpixel-antialiased {
     -webkit-font-smoothing: auto;
     -moz-osx-font-smoothing: auto;
+  }
+
+  .md\:lc-ordinal, .md\:lc-slashed-zero, .md\:lc-lining-nums, .md\:lc-oldstyle-nums, .md\:lc-proportional-nums, .md\:lc-tabular-nums, .md\:lc-diagonal-fractions, .md\:lc-stacked-fractions {
+    --font-variant-numeric-ordinal: var(--tailwind-empty,/*!*/ /*!*/);
+    --font-variant-numeric-slashed-zero: var(--tailwind-empty,/*!*/ /*!*/);
+    --font-variant-numeric-figure: var(--tailwind-empty,/*!*/ /*!*/);
+    --font-variant-numeric-spacing: var(--tailwind-empty,/*!*/ /*!*/);
+    --font-variant-numeric-fraction: var(--tailwind-empty,/*!*/ /*!*/);
+    font-variant-numeric: var(--font-variant-numeric-ordinal) var(--font-variant-numeric-slashed-zero) var(--font-variant-numeric-figure) var(--font-variant-numeric-spacing) var(--font-variant-numeric-fraction);
+  }
+
+  .md\:lc-normal-nums {
+    font-variant-numeric: normal;
+  }
+
+  .md\:lc-ordinal {
+    --font-variant-numeric-ordinal: ordinal;
+  }
+
+  .md\:lc-slashed-zero {
+    --font-variant-numeric-slashed-zero: slashed-zero;
+  }
+
+  .md\:lc-lining-nums {
+    --font-variant-numeric-figure: lining-nums;
+  }
+
+  .md\:lc-oldstyle-nums {
+    --font-variant-numeric-figure: oldstyle-nums;
+  }
+
+  .md\:lc-proportional-nums {
+    --font-variant-numeric-spacing: proportional-nums;
+  }
+
+  .md\:lc-tabular-nums {
+    --font-variant-numeric-spacing: tabular-nums;
+  }
+
+  .md\:lc-diagonal-fractions {
+    --font-variant-numeric-fraction: diagonal-fractions;
+  }
+
+  .md\:lc-stacked-fractions {
+    --font-variant-numeric-fraction: stacked-fractions;
   }
 
   .md\:lc-tracking-tighter {
@@ -29139,7 +29607,6 @@ code {
 
   .lg\:lc-appearance-none {
     -webkit-appearance: none;
-       -moz-appearance: none;
             appearance: none;
   }
 
@@ -31666,6 +32133,74 @@ code {
     flex-wrap: nowrap;
   }
 
+  .lg\:lc-place-items-auto {
+    place-items: auto;
+  }
+
+  .lg\:lc-place-items-start {
+    place-items: start;
+  }
+
+  .lg\:lc-place-items-end {
+    place-items: end;
+  }
+
+  .lg\:lc-place-items-center {
+    place-items: center;
+  }
+
+  .lg\:lc-place-items-stretch {
+    place-items: stretch;
+  }
+
+  .lg\:lc-place-content-center {
+    place-content: center;
+  }
+
+  .lg\:lc-place-content-start {
+    place-content: start;
+  }
+
+  .lg\:lc-place-content-end {
+    place-content: end;
+  }
+
+  .lg\:lc-place-content-between {
+    place-content: space-between;
+  }
+
+  .lg\:lc-place-content-around {
+    place-content: space-around;
+  }
+
+  .lg\:lc-place-content-evenly {
+    place-content: space-evenly;
+  }
+
+  .lg\:lc-place-content-stretch {
+    place-content: stretch;
+  }
+
+  .lg\:lc-place-self-auto {
+    place-self: auto;
+  }
+
+  .lg\:lc-place-self-start {
+    place-self: start;
+  }
+
+  .lg\:lc-place-self-end {
+    place-self: end;
+  }
+
+  .lg\:lc-place-self-center {
+    place-self: center;
+  }
+
+  .lg\:lc-place-self-stretch {
+    place-self: stretch;
+  }
+
   .lg\:lc-items-start {
     align-items: flex-start;
   }
@@ -31686,6 +32221,30 @@ code {
     align-items: stretch;
   }
 
+  .lg\:lc-content-center {
+    align-content: center;
+  }
+
+  .lg\:lc-content-start {
+    align-content: flex-start;
+  }
+
+  .lg\:lc-content-end {
+    align-content: flex-end;
+  }
+
+  .lg\:lc-content-between {
+    align-content: space-between;
+  }
+
+  .lg\:lc-content-around {
+    align-content: space-around;
+  }
+
+  .lg\:lc-content-evenly {
+    align-content: space-evenly;
+  }
+
   .lg\:lc-self-auto {
     align-self: auto;
   }
@@ -31704,6 +32263,26 @@ code {
 
   .lg\:lc-self-stretch {
     align-self: stretch;
+  }
+
+  .lg\:lc-justify-items-auto {
+    justify-items: auto;
+  }
+
+  .lg\:lc-justify-items-start {
+    justify-items: start;
+  }
+
+  .lg\:lc-justify-items-end {
+    justify-items: end;
+  }
+
+  .lg\:lc-justify-items-center {
+    justify-items: center;
+  }
+
+  .lg\:lc-justify-items-stretch {
+    justify-items: stretch;
   }
 
   .lg\:lc-justify-start {
@@ -31730,24 +32309,24 @@ code {
     justify-content: space-evenly;
   }
 
-  .lg\:lc-content-center {
-    align-content: center;
+  .lg\:lc-justify-self-auto {
+    justify-self: auto;
   }
 
-  .lg\:lc-content-start {
-    align-content: flex-start;
+  .lg\:lc-justify-self-start {
+    justify-self: start;
   }
 
-  .lg\:lc-content-end {
-    align-content: flex-end;
+  .lg\:lc-justify-self-end {
+    justify-self: end;
   }
 
-  .lg\:lc-content-between {
-    align-content: space-between;
+  .lg\:lc-justify-self-center {
+    justify-self: center;
   }
 
-  .lg\:lc-content-around {
-    align-content: space-around;
+  .lg\:lc-justify-self-stretch {
+    justify-self: stretch;
   }
 
   .lg\:lc-flex-1 {
@@ -34996,6 +35575,51 @@ code {
   .lg\:lc-subpixel-antialiased {
     -webkit-font-smoothing: auto;
     -moz-osx-font-smoothing: auto;
+  }
+
+  .lg\:lc-ordinal, .lg\:lc-slashed-zero, .lg\:lc-lining-nums, .lg\:lc-oldstyle-nums, .lg\:lc-proportional-nums, .lg\:lc-tabular-nums, .lg\:lc-diagonal-fractions, .lg\:lc-stacked-fractions {
+    --font-variant-numeric-ordinal: var(--tailwind-empty,/*!*/ /*!*/);
+    --font-variant-numeric-slashed-zero: var(--tailwind-empty,/*!*/ /*!*/);
+    --font-variant-numeric-figure: var(--tailwind-empty,/*!*/ /*!*/);
+    --font-variant-numeric-spacing: var(--tailwind-empty,/*!*/ /*!*/);
+    --font-variant-numeric-fraction: var(--tailwind-empty,/*!*/ /*!*/);
+    font-variant-numeric: var(--font-variant-numeric-ordinal) var(--font-variant-numeric-slashed-zero) var(--font-variant-numeric-figure) var(--font-variant-numeric-spacing) var(--font-variant-numeric-fraction);
+  }
+
+  .lg\:lc-normal-nums {
+    font-variant-numeric: normal;
+  }
+
+  .lg\:lc-ordinal {
+    --font-variant-numeric-ordinal: ordinal;
+  }
+
+  .lg\:lc-slashed-zero {
+    --font-variant-numeric-slashed-zero: slashed-zero;
+  }
+
+  .lg\:lc-lining-nums {
+    --font-variant-numeric-figure: lining-nums;
+  }
+
+  .lg\:lc-oldstyle-nums {
+    --font-variant-numeric-figure: oldstyle-nums;
+  }
+
+  .lg\:lc-proportional-nums {
+    --font-variant-numeric-spacing: proportional-nums;
+  }
+
+  .lg\:lc-tabular-nums {
+    --font-variant-numeric-spacing: tabular-nums;
+  }
+
+  .lg\:lc-diagonal-fractions {
+    --font-variant-numeric-fraction: diagonal-fractions;
+  }
+
+  .lg\:lc-stacked-fractions {
+    --font-variant-numeric-fraction: stacked-fractions;
   }
 
   .lg\:lc-tracking-tighter {
@@ -38418,7 +39042,6 @@ code {
 
   .xl\:lc-appearance-none {
     -webkit-appearance: none;
-       -moz-appearance: none;
             appearance: none;
   }
 
@@ -40945,6 +41568,74 @@ code {
     flex-wrap: nowrap;
   }
 
+  .xl\:lc-place-items-auto {
+    place-items: auto;
+  }
+
+  .xl\:lc-place-items-start {
+    place-items: start;
+  }
+
+  .xl\:lc-place-items-end {
+    place-items: end;
+  }
+
+  .xl\:lc-place-items-center {
+    place-items: center;
+  }
+
+  .xl\:lc-place-items-stretch {
+    place-items: stretch;
+  }
+
+  .xl\:lc-place-content-center {
+    place-content: center;
+  }
+
+  .xl\:lc-place-content-start {
+    place-content: start;
+  }
+
+  .xl\:lc-place-content-end {
+    place-content: end;
+  }
+
+  .xl\:lc-place-content-between {
+    place-content: space-between;
+  }
+
+  .xl\:lc-place-content-around {
+    place-content: space-around;
+  }
+
+  .xl\:lc-place-content-evenly {
+    place-content: space-evenly;
+  }
+
+  .xl\:lc-place-content-stretch {
+    place-content: stretch;
+  }
+
+  .xl\:lc-place-self-auto {
+    place-self: auto;
+  }
+
+  .xl\:lc-place-self-start {
+    place-self: start;
+  }
+
+  .xl\:lc-place-self-end {
+    place-self: end;
+  }
+
+  .xl\:lc-place-self-center {
+    place-self: center;
+  }
+
+  .xl\:lc-place-self-stretch {
+    place-self: stretch;
+  }
+
   .xl\:lc-items-start {
     align-items: flex-start;
   }
@@ -40965,6 +41656,30 @@ code {
     align-items: stretch;
   }
 
+  .xl\:lc-content-center {
+    align-content: center;
+  }
+
+  .xl\:lc-content-start {
+    align-content: flex-start;
+  }
+
+  .xl\:lc-content-end {
+    align-content: flex-end;
+  }
+
+  .xl\:lc-content-between {
+    align-content: space-between;
+  }
+
+  .xl\:lc-content-around {
+    align-content: space-around;
+  }
+
+  .xl\:lc-content-evenly {
+    align-content: space-evenly;
+  }
+
   .xl\:lc-self-auto {
     align-self: auto;
   }
@@ -40983,6 +41698,26 @@ code {
 
   .xl\:lc-self-stretch {
     align-self: stretch;
+  }
+
+  .xl\:lc-justify-items-auto {
+    justify-items: auto;
+  }
+
+  .xl\:lc-justify-items-start {
+    justify-items: start;
+  }
+
+  .xl\:lc-justify-items-end {
+    justify-items: end;
+  }
+
+  .xl\:lc-justify-items-center {
+    justify-items: center;
+  }
+
+  .xl\:lc-justify-items-stretch {
+    justify-items: stretch;
   }
 
   .xl\:lc-justify-start {
@@ -41009,24 +41744,24 @@ code {
     justify-content: space-evenly;
   }
 
-  .xl\:lc-content-center {
-    align-content: center;
+  .xl\:lc-justify-self-auto {
+    justify-self: auto;
   }
 
-  .xl\:lc-content-start {
-    align-content: flex-start;
+  .xl\:lc-justify-self-start {
+    justify-self: start;
   }
 
-  .xl\:lc-content-end {
-    align-content: flex-end;
+  .xl\:lc-justify-self-end {
+    justify-self: end;
   }
 
-  .xl\:lc-content-between {
-    align-content: space-between;
+  .xl\:lc-justify-self-center {
+    justify-self: center;
   }
 
-  .xl\:lc-content-around {
-    align-content: space-around;
+  .xl\:lc-justify-self-stretch {
+    justify-self: stretch;
   }
 
   .xl\:lc-flex-1 {
@@ -44275,6 +45010,51 @@ code {
   .xl\:lc-subpixel-antialiased {
     -webkit-font-smoothing: auto;
     -moz-osx-font-smoothing: auto;
+  }
+
+  .xl\:lc-ordinal, .xl\:lc-slashed-zero, .xl\:lc-lining-nums, .xl\:lc-oldstyle-nums, .xl\:lc-proportional-nums, .xl\:lc-tabular-nums, .xl\:lc-diagonal-fractions, .xl\:lc-stacked-fractions {
+    --font-variant-numeric-ordinal: var(--tailwind-empty,/*!*/ /*!*/);
+    --font-variant-numeric-slashed-zero: var(--tailwind-empty,/*!*/ /*!*/);
+    --font-variant-numeric-figure: var(--tailwind-empty,/*!*/ /*!*/);
+    --font-variant-numeric-spacing: var(--tailwind-empty,/*!*/ /*!*/);
+    --font-variant-numeric-fraction: var(--tailwind-empty,/*!*/ /*!*/);
+    font-variant-numeric: var(--font-variant-numeric-ordinal) var(--font-variant-numeric-slashed-zero) var(--font-variant-numeric-figure) var(--font-variant-numeric-spacing) var(--font-variant-numeric-fraction);
+  }
+
+  .xl\:lc-normal-nums {
+    font-variant-numeric: normal;
+  }
+
+  .xl\:lc-ordinal {
+    --font-variant-numeric-ordinal: ordinal;
+  }
+
+  .xl\:lc-slashed-zero {
+    --font-variant-numeric-slashed-zero: slashed-zero;
+  }
+
+  .xl\:lc-lining-nums {
+    --font-variant-numeric-figure: lining-nums;
+  }
+
+  .xl\:lc-oldstyle-nums {
+    --font-variant-numeric-figure: oldstyle-nums;
+  }
+
+  .xl\:lc-proportional-nums {
+    --font-variant-numeric-spacing: proportional-nums;
+  }
+
+  .xl\:lc-tabular-nums {
+    --font-variant-numeric-spacing: tabular-nums;
+  }
+
+  .xl\:lc-diagonal-fractions {
+    --font-variant-numeric-fraction: diagonal-fractions;
+  }
+
+  .xl\:lc-stacked-fractions {
+    --font-variant-numeric-fraction: stacked-fractions;
   }
 
   .xl\:lc-tracking-tighter {
