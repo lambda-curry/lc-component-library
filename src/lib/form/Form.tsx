@@ -10,11 +10,11 @@ interface UnsavedChangesConfig {
   modalProps?: ReactModal.Props;
 }
 
-type FormProps<T> = FormikConfig<T> &
-  React.FC<{ children: (formikProps: FormikProps<T>) => React.ReactNode }> & {
-    className?: string;
-    unsavedChangesConfig?: UnsavedChangesConfig;
-  };
+type FormProps<T> = FormikConfig<T> & {
+  className?: string;
+  unsavedChangesConfig?: UnsavedChangesConfig;
+  children: (formikProps: FormikProps<T>) => React.ReactNode;
+};
 
 export function Form<T extends Object>({ className, children, unsavedChangesConfig = {}, ...rest }: FormProps<T>) {
   const formRef = useRef<FormikProps<T>>(null);
