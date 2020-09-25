@@ -10,16 +10,13 @@ interface UnsavedChangesConfig {
   modalProps?: ReactModal.Props;
 }
 
-export function Form<T>({
-  className,
-  children,
-  unsavedChangesConfig = {},
-  ...rest
-}: FormikConfig<T> & {
-  className?: string;
-  unsavedChangesConfig?: UnsavedChangesConfig;
-  children: (formikProps: FormikProps<T>) => React.ReactNode;
-}) {
+type FormProps<T> = FormikConfig<T> &
+  React.FC<{ children: (formikProps: FormikProps<T>) => React.ReactNode }> & {
+    className?: string;
+    unsavedChangesConfig?: UnsavedChangesConfig;
+  };
+
+export function Form<T extends Object>({ className, children, unsavedChangesConfig = {}, ...rest }: FormProps<T>) {
   const formRef = useRef<FormikProps<T>>(null);
   const [activeModal, setActiveModal] = useState<'none' | 'unsavedChangesModal'>('none');
   const [shouldCheckForUnsavedChanges, setShouldCheckForUnsavedChanges] = useState<boolean>(true);
