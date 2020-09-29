@@ -44,11 +44,18 @@
         color: var(--gray);
         width: 16px;
         height: 16px;
-    }
+    }f
 
     &-paper {
         &.MuiAutocomplete-paper {
             font-size: inherit;
+
         }
     }
+}
+
+// Fixes when material UI popovers are within a modal.
+
+.MuiAutocomplete-popper{
+    z-index: 10000;
 }
