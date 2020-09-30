@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import './buttons.scss';
 
 export type ButtonProps = ButtonHTMLAttributes<any> & {
-  as?: (props: ButtonHTMLAttributes<any>) => JSX.Element;
+  as?: (props: ButtonHTMLAttributes<{ children: React.ReactNode }>) => JSX.Element;
   type?: 'button' | 'submit' | 'reset' | undefined;
 };
 
