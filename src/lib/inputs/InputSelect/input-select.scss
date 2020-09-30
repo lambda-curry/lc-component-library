@@ -45,12 +45,11 @@
     width: 16px;
     height: 16px;
   }
+}
 
-  &-paper {
-    &.MuiAutocomplete-paper {
-      font-size: inherit;
-    }
-  }
+// Fixes times when rem font-size is way off for autocomplete paper.
+body .MuiAutocomplete-paper {
+  font-size: inherit;
 }
 
 // Fixes when material UI popovers are within a modal.
