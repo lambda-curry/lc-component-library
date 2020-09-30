@@ -21,11 +21,11 @@ export const DecorativeIcon: React.FC<{
 }> = ({ className, color, ...props }) => {
   // const colorIsVariable = [].includes(color);
   const style = {
-    backgroundColor: false ? getCssVar(color) : color,
+    backgroundColor: false ? getCssVar(color) : color
   };
 
   return (
-    <div className={classNames(className, 'icon-decorative')} style={style}>
+    <div className={classNames(className, 'lc-icon-decorative')} style={style}>
       <Icon {...props} />
     </div>
   );
