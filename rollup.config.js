@@ -7,7 +7,7 @@ import { terser } from 'rollup-plugin-terser';
 import nodeResolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 
-const plugins = [url(), svgr({ removeViewBox: false }), scss(), postcss({ extract: false }), terser()];
+const plugins = [url(), svgr(), scss(), postcss({ extract: false }), terser()];
 
 export default [
   {

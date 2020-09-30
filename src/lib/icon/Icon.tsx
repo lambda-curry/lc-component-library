@@ -104,7 +104,8 @@ export type DefaultIconNames = keyof typeof defaultIcons;
 export const Icon: React.FC<{
   className?: string;
   name: DefaultIconNames | string;
-}> = ({ className, name, ...props }) => {
+  viewBox?: string;
+}> = ({ className, name, viewBox = '0 0 24 24', ...props }) => {
   const registeredIcons = useContext(RegisteredIconContext);
 
   const icons: { [x: string]: React.SFC<React.SVGProps<SVGSVGElement>> } = {
@@ -124,7 +125,7 @@ export const Icon: React.FC<{
 
   return (
     <span className={classNames('lc-icon', `lc-icon-${name}`, className)} {...props}>
-      <IconSvg />
+      <IconSvg viewBox={viewBox} />
     </span>
   );
 };
