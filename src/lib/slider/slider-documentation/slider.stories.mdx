@@ -1,0 +1,51 @@
+import { useState } from 'react';
+import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs/blocks';
+import { Form, Slider } from '../..';
+import dedent from 'string-dedent';
+
+<Meta title="Slider" component={Slider} />
+
+# Slider
+
+<Canvas>
+  <Story
+    name="Slider"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+            <Form
+              initialValues={{
+                sliderValue: [20, 27]
+              }}
+              onSubmit={() => {}}
+            >
+              {formikProps => (
+                <>
+                  <p>Value: {JSON.stringify(formikProps.values.sliderValue)}</p>
+                  <Slider name="sliderValue" min={0} max={100} label="Slider" formikProps={formikProps} />
+                </>
+              )}
+            </Form>`
+        }
+      }
+    }}
+  >
+    <div className="slider-story">
+      <Form
+        initialValues={{
+          sliderValue: [20, 27]
+        }}
+        onSubmit={() => {}}
+      >
+        {formikProps => (
+          <>
+            <p>Value: {JSON.stringify(formikProps.values.sliderValue)}</p>
+            <Slider name="sliderValue" min={0} max={100} label="Example Slider" formikProps={formikProps} />
+          </>
+        )}
+      </Form>
+    </div>
+  </Story>
+  <ArgsTable of={Slider} />
+</Canvas>
