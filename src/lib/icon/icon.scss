@@ -1,9 +1,9 @@
 .lc-icon {
   box-sizing: border-box;
-  display: inline-block;
+  display: inline-grid;
+  place-content: center;
   width: 24px;
   height: 24px;
-  box-sizing: content-box;
   color: inherit;
 
   svg {
