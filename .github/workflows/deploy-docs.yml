@@ -1,0 +1,21 @@
+name: NPM Publish
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build docs
+        run: yarn install and yarn build:storybook
+      - uses: actions/checkout@v2
+      - run: |
+          git checkout branch docs
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "generated latest docs build from master"
+          git push origin docs -f
