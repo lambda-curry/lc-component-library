@@ -16,13 +16,14 @@ jobs:
         with:
           node-version: 12
       - name: Merge in master
-        run: git pull origin master --no-edit --allow-unrelated-histories --no-rebase
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git pull origin master --no-edit --allow-unrelated-histories --no-rebase
       - name: Build docs
         run: yarn install && yarn build:storybook
       - name: Push to docs branch
         run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
           git add .
           git commit -m "generated latest docs build from master"
           git push origin docs -f
