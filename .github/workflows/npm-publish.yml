@@ -12,14 +12,17 @@ jobs:
       - name: Check if version has been updated
         id: check
         uses: EndBug/version-check@v1
-        if: steps.check.outputs.changed == 'true'
       - uses: actions/checkout@v2
+        if: steps.check.outputs.changed == 'true'
       - uses: actions/setup-node@v1
+        if: steps.check.outputs.changed == 'true'
         with:
           node-version: 12
       - name: Install & Build
+        if: steps.check.outputs.changed == 'true'
         run: yarn install && yarn build:library
       - name: Publish
+        if: steps.check.outputs.changed == 'true'
         id: publish
         uses: JS-DevTools/npm-publish@v1
         with:
