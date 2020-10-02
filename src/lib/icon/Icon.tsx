@@ -96,7 +96,7 @@ export const defaultIcons = {
   trash,
   user,
   users,
-  video,
+  video
 };
 
 export type DefaultIconNames = keyof typeof defaultIcons;
@@ -104,18 +104,17 @@ export type DefaultIconNames = keyof typeof defaultIcons;
 export const Icon: React.FC<{
   className?: string;
   name: DefaultIconNames | string;
-}> = ({ className, name, ...props }) => {
+  viewBox?: string;
+}> = ({ className, name, viewBox = '0 0 24 24', ...props }) => {
   const registeredIcons = useContext(RegisteredIconContext);
 
   const icons: { [x: string]: React.SFC<React.SVGProps<SVGSVGElement>> } = {
     ...defaultIcons,
-    ...registeredIcons,
+    ...registeredIcons
   };
 
   if (!name) {
-    throw new Error(
-      `You must provide a valid "name" prop to the "Icon" component.`
-    );
+    throw new Error(`You must provide a valid "name" prop to the "Icon" component.`);
   }
 
   if (!icons[name]) {
@@ -125,8 +124,8 @@ export const Icon: React.FC<{
   const IconSvg = icons[name];
 
   return (
-    <span className={classNames('icon', `icon-${name}`, className)} {...props}>
-      <IconSvg />
+    <span className={classNames('lc-icon', `lc-icon-${name}`, className)} {...props}>
+      <IconSvg viewBox={viewBox} />
     </span>
   );
 };

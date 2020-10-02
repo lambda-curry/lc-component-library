@@ -20,7 +20,7 @@ export const Modal: FunctionComponent<ReactModal.Props & { closeButton?: boolean
   }, [isOpen]);
 
   return (
-    <ReactModal {...rest} isOpen={open} className={classNames('modal', className)} closeTimeoutMS={500}>
+    <ReactModal {...rest} isOpen={open} className={classNames('lc-modal', className)} closeTimeoutMS={500}>
       <AnimatePresence>
         {open ? (
           <motion.div
@@ -30,7 +30,9 @@ export const Modal: FunctionComponent<ReactModal.Props & { closeButton?: boolean
             exit={{ opacity: 0, scale: 0.8, y: 20, transition: { ease: 'easeOut' } }}
           >
             <Card>
-              {closeButton ? <IconButton className="modal-close" icon="close" onClick={() => setOpen(false)} /> : null}
+              {closeButton ? (
+                <IconButton className="lc-modal-close" icon="close" onClick={() => setOpen(false)} />
+              ) : null}
               <CardContent>{children}</CardContent>
             </Card>
           </motion.div>

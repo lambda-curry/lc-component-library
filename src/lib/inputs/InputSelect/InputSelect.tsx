@@ -27,7 +27,7 @@ export const InputSelect: FunctionComponent<InputSelectProps> = ({
   const autocompleteConfig: AutocompleteProps<any, boolean, boolean, boolean> = {
     options,
     multiple,
-    value: (formikProps as FormikProps<any>).values[name],
+    value: formikProps.values[name],
     openOnFocus: true,
     closeIcon: <Icon className="input-select-icon-close" name="close" />,
     popupIcon: <Icon className="input-select-icon-popup" name="chevronDown" />,
