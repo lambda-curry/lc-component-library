@@ -9,11 +9,10 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Check if version has been updated
         id: check
         uses: EndBug/version-check@v1
-      - uses: actions/checkout@v2
-        if: steps.check.outputs.changed == 'true'
       - uses: actions/setup-node@v1
         if: steps.check.outputs.changed == 'true'
         with:
