@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: 12
       - name: Merge in master
-        run: git pull origin master --no-edit
+        run: git pull origin master --no-edit --allow-unrelated-histories --no-rebase
       - name: Build docs
         run: yarn install && yarn build:storybook
       - name: Push to docs branch
