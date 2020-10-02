@@ -16,7 +16,7 @@ jobs:
       - name: Build docs
         run: yarn install && yarn build:storybook
       - run: |
-          git checkout branch docs
+          git checkout -b docs
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
