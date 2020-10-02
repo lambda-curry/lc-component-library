@@ -13,6 +13,9 @@ jobs:
       - name: Check if version has been updated
         id: check
         uses: EndBug/version-check@v1
+        with:
+          file-url: https://unpkg.com/@lambdacurry/component-library/package.json
+          static-checking: localIsNew
       - uses: actions/setup-node@v1
         if: steps.check.outputs.changed == 'true'
         with:
