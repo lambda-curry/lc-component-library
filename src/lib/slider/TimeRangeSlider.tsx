@@ -16,8 +16,13 @@ const labelFromRangeMinutes = (rangeMinutes: number) => {
   return dateTime.toLocaleString(DateTime.TIME_SIMPLE);
 };
 
+export interface TimeRange {
+  startTime: string; // 00:00 - 23:59
+  endTime: string;
+}
+
 type TimeRangeSliderProps = SliderProps & {
-  value: string[];
+  value?: TimeRange;
   minuteInterval?: number;
   minTime?: string;
   maxTime?: string;
@@ -37,16 +42,22 @@ export const TimeRangeSlider: React.FC<TimeRangeSliderProps> = ({
 }) => {
   const sliderValue = formikProps?.values[name] || value;
 
-  if ((sliderValue as any[]).length !== 2) {
+  if (!sliderValue || !(sliderValue as TimeRange).startTime || !(sliderValue as TimeRange).endTime) {
     throw new Error(
-      `Time Range Slider expects a value of type string[] where string is a date format '00:00' - '23:59'`
+      `Time Range Slider expects a value of type TimeRange {
+        startTime: string; // 00:00 - 23:59
+        endTime: string;
+      }`
     );
   }
 
   const minDateTime = dateTimeFromValue(minTime);
   const maxDateTime = dateTimeFromValue(maxTime);
   const rangeInterval = Interval.fromDateTimes(minDateTime, maxDateTime);
-  const valueInterval = Interval.fromDateTimes(dateTimeFromValue(sliderValue[0]), dateTimeFromValue(sliderValue[1]));
+  const valueInterval = Interval.fromDateTimes(
+    dateTimeFromValue(sliderValue.startTime),
+    dateTimeFromValue(sliderValue.endTime)
+  );
 
   const min = intervalStartInMinutes(rangeInterval);
   const max = intervalEndInMinutes(rangeInterval);
@@ -56,12 +67,8 @@ export const TimeRangeSlider: React.FC<TimeRangeSliderProps> = ({
   const handleChange: (event: FormEvent<any>, value: number[]) => void = (event, newValue) => {
     if (typeof onChange === 'function') onChange(event as FormEvent<any>);
 
-    if (formikProps && newValue) {
-      formikProps.setFieldValue(
-        name,
-        newValue.map(rangeItem => localeFromRangeMinutes(rangeItem))
-      );
-    }
+    const [startTime, endTime] = newValue.map(rangeItem => localeFromRangeMinutes(rangeItem));
+    if (formikProps && newValue) formikProps.setFieldValue(name, { startTime, endTime });
   };
 
   return (
