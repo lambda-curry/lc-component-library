@@ -22,14 +22,8 @@ const FormContent: React.FC<{
   className?: string;
   state: FormReducerState;
   dispatch: React.Dispatch<FormReducerAction>;
-  unsavedChangesConfig?: UnsavedChangesConfig;
+  unsavedChangesConfig: UnsavedChangesConfig;
 }> = ({ className, state, dispatch, unsavedChangesConfig, ...rest }) => {
-  // TODO: update .navbar-back to utilize a button, avoid actions on clicks for things that are not <a> or <button>
-  unsavedChangesConfig = {
-    targetQuerySelector: 'a, button, .navbar-back',
-    ...unsavedChangesConfig
-  };
-
   const formContext = useFormikContext();
 
   const handleClickOutside = (event: Event) => {
@@ -50,6 +44,12 @@ const FormContent: React.FC<{
 };
 
 export function Form<T>({ className, children, unsavedChangesConfig = {}, ...rest }: FormProps<T>) {
+  // TODO: update .navbar-back to utilize a button, avoid actions on clicks for things that are not <a> or <button>
+  unsavedChangesConfig = {
+    targetQuerySelector: 'a, button, .navbar-back',
+    ...unsavedChangesConfig
+  };
+
   const [state, dispatch] = useReducer<Reducer<FormReducerState, FormReducerAction>>(formReducer, {
     activeModal: 'none',
     shouldCheckForUnsavedChanges: true
