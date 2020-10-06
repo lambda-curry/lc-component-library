@@ -61,7 +61,7 @@ import dedent from 'string-dedent';
           code: dedent`
             <Form
               initialValues={{
-                sliderValue: ['09:00', '17:00']
+                sliderValue: { startTime: '09:00', endTime: '17:00' }
               }}
               onSubmit={() => {}}
             >
@@ -79,7 +79,7 @@ import dedent from 'string-dedent';
     <div className="slider-story">
       <Form
         initialValues={{
-          sliderValue: ['09:00', '17:00']
+          sliderValue: { startTime: '09:00', endTime: '17:00' }
         }}
         onSubmit={() => {}}
       >
