@@ -4,6 +4,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  outline: none;
+
+  &-flex {
+    flex: 1;
+  }
 
   &-close {
     position: absolute;
@@ -19,7 +24,8 @@
     border: 0;
   }
 
-  & &-actions {
+  &-actions {
+    display: flex;
     border-top: 1px solid var(--lighter-gray);
     padding: 12px;
     margin: 24px -16px -24px;
