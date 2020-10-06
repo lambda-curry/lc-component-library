@@ -17,7 +17,7 @@ const labelFromRangeMinutes = (rangeMinutes: number) => {
 };
 
 type TimeRangeSliderProps = SliderProps & {
-  value: string[];
+  value?: string[];
   minuteInterval?: number;
   minTime?: string;
   maxTime?: string;
