@@ -58,6 +58,8 @@ export const Slider: React.FC<SliderProps> = ({
   };
 
   const handleBlur: (event: React.FocusEvent<HTMLSpanElement>) => void = event => {
+    // Note: we need to set the id here, because the Mui slider is not a normal input
+    event.target.id = name;
     if (typeof onBlur === 'function') onBlur(event);
     if (formikProps) formikProps.handleBlur(event);
   };

@@ -1,8 +1,10 @@
-import React, { useRef, useState } from 'react';
-import { Formik, FormikConfig, FormikProps, Form as FormikForm } from 'formik';
+import React, { Reducer, useReducer, useRef } from 'react';
+import { Formik, FormikConfig, FormikProps, Form as FormikForm, FormikHelpers, useFormikContext } from 'formik';
 import classNames from 'classnames';
 import { useOnClickOutside } from '../hooks';
 import { Modal, ModalHeader, ModalActions, Button, ButtonPrimary } from '..';
+import { formReducer, FormReducerAction, FormReducerState } from './Form.helpers';
+import './form.scss';
 
 interface UnsavedChangesConfig {
   containerQuerySelectorAll?: string;
@@ -16,58 +18,96 @@ type FormProps<T> = FormikConfig<T> & {
   children: (formikProps: FormikProps<T>) => React.ReactNode;
 };
 
-export function Form<T extends Object>({ className, children, unsavedChangesConfig = {}, ...rest }: FormProps<T>) {
-  const formRef = useRef<FormikProps<T>>(null);
-  const [activeModal, setActiveModal] = useState<'none' | 'unsavedChangesModal'>('none');
-  const [shouldCheckForUnsavedChanges, setShouldCheckForUnsavedChanges] = useState<boolean>(true);
-
-  const handleClickOutside = (event: Event) => {
-    if (!shouldCheckForUnsavedChanges || !formRef.current?.dirty) {
-      return;
-    }
-
-    event.preventDefault();
-    setActiveModal('unsavedChangesModal');
-  };
-
-  const handleUnsavedChangesModalClose = () => {
-    setActiveModal('none');
-
-    setShouldCheckForUnsavedChanges(false);
-
-    // Note: Wait for the modal to close before checking for clicks again, this avoids the modal from reopening
-    // if the user clicks as the modal is closing.
-    setTimeout(() => {
-      setShouldCheckForUnsavedChanges(true);
-    }, 500);
-  };
-
+const FormContent: React.FC<{
+  className?: string;
+  state: FormReducerState;
+  dispatch: React.Dispatch<FormReducerAction>;
+  unsavedChangesConfig?: UnsavedChangesConfig;
+}> = ({ className, state, dispatch, unsavedChangesConfig, ...rest }) => {
   // TODO: update .navbar-back to utilize a button, avoid actions on clicks for things that are not <a> or <button>
   unsavedChangesConfig = {
     targetQuerySelector: 'a, button, .navbar-back',
     ...unsavedChangesConfig
   };
 
+  const formContext = useFormikContext();
+
+  const handleClickOutside = (event: Event) => {
+    if (!state.shouldCheckForUnsavedChanges || !formContext.dirty) return;
+
+    event.preventDefault();
+    dispatch({ name: 'openModal', payload: 'unsavedChangesModal' });
+    dispatch({ name: 'setCapturedUnsavedChangesEvent', payload: event });
+  };
+
   useOnClickOutside(
     handleClickOutside,
-    unsavedChangesConfig.containerQuerySelectorAll,
+    `${unsavedChangesConfig.containerQuerySelectorAll}, #lc-unsaved-changes-modal`,
     unsavedChangesConfig.targetQuerySelector
   );
 
+  return <FormikForm className={classNames(className, 'lc-form')} {...rest} />;
+};
+
+export function Form<T>({ className, children, unsavedChangesConfig = {}, ...rest }: FormProps<T>) {
+  const [state, dispatch] = useReducer<Reducer<FormReducerState, FormReducerAction>>(formReducer, {
+    activeModal: 'none',
+    shouldCheckForUnsavedChanges: true
+  });
+
+  const handleUnsavedChangesModalClose = () => {
+    dispatch({ name: 'closeModal' });
+    dispatch({ name: 'setShouldCheckForUnsavedChanges', payload: false });
+
+    // Note: Wait for the modal to close before checking for clicks again, this avoids the modal from reopening
+    // if the user clicks as the modal is closing.
+    setTimeout(() => {
+      dispatch({ name: 'setShouldCheckForUnsavedChanges', payload: true });
+    }, 500);
+  };
+
+  const handleUnsavedChangesModalContinue = () => {
+    dispatch({ name: 'closeModal' });
+    dispatch({ name: 'setShouldCheckForUnsavedChanges', payload: false });
+
+    // Note: We want to allow the user to continue on with the action they were trying to do as they opened
+    // currently I am thinking triggering a click on the target element is the best approach for this.
+    if (state.capturedUnsavedChangesEvent && unsavedChangesConfig.targetQuerySelector) {
+      const targetElement: HTMLElement | null = (state.capturedUnsavedChangesEvent.target as HTMLElement).closest(
+        unsavedChangesConfig.targetQuerySelector
+      );
+
+      if (targetElement) targetElement.click();
+    }
+
+    // Note: Wait for the modal to close before checking for clicks again, this avoids the modal from reopening
+    // if the user clicks as the modal is closing.
+    setTimeout(() => {
+      dispatch({ name: 'setShouldCheckForUnsavedChanges', payload: true });
+    }, 500);
+  };
+
   return (
     <>
-      <Formik innerRef={formRef} {...rest}>
+      <Formik {...rest}>
         {(formikProps: FormikProps<T>) => (
-          <FormikForm className={classNames(className, 'form')}>{children(formikProps)}</FormikForm>
+          <FormContent
+            className={className}
+            state={state}
+            dispatch={dispatch}
+            unsavedChangesConfig={unsavedChangesConfig}
+          >
+            {children(formikProps)}
+          </FormContent>
         )}
       </Formik>
-      <Modal isOpen={activeModal === 'unsavedChangesModal'} closeButton={false} {...unsavedChangesConfig.modalProps}>
+      <Modal id="lc-unsaved-changes-modal" isOpen={state.activeModal === 'unsavedChangesModal'} closeButton={false}>
         <ModalHeader title="You have unsaved changes!" />
         <p className="text">Click continue to abandon your changes and continue on.</p>
         <ModalActions>
-          <div className="lc-flex-1" />
+          <div className="flex-spacer" />
           <Button onClick={handleUnsavedChangesModalClose}>Cancel</Button>
-          <ButtonPrimary onClick={() => null}>Continue</ButtonPrimary>
+          <ButtonPrimary onClick={handleUnsavedChangesModalContinue}>Continue</ButtonPrimary>
         </ModalActions>
       </Modal>
     </>

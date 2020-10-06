@@ -7,7 +7,7 @@ export interface ModalHeaderProps {
 export const ModalHeader: FunctionComponent<ModalHeaderProps> = ({ title, children }) => (
   <header className="lc-modal-header">
     <h2 className="lc-modal-title">{title}</h2>
-    <span className="lc-flex-1" />
+    <span className="lc-modal-flex" />
     <div>{children}</div>
   </header>
 );
