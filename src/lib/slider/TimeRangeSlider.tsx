@@ -42,6 +42,7 @@ export const TimeRangeSlider: React.FC<TimeRangeSliderProps> = ({
   minuteInterval = 15,
   formikProps,
   onChange,
+  onBlur,
   ...sliderProps
 }) => {
   const sliderValue = formikProps?.values[name] || value;
@@ -76,6 +77,11 @@ export const TimeRangeSlider: React.FC<TimeRangeSliderProps> = ({
     if (formikProps) formikProps.setFieldValue(name, timeRange);
   };
 
+  const handleBlur: (event: React.FocusEvent<Element>) => void = event => {
+    if (typeof onBlur === 'function') onBlur(event);
+    if (formikProps) formikProps.handleBlur(event);
+  };
+
   return (
     <Slider
       {...sliderProps}
@@ -90,6 +96,7 @@ export const TimeRangeSlider: React.FC<TimeRangeSliderProps> = ({
       // Note: Mui types were expecting onChange?: (((event: React.ChangeEvent<{}>, value: number | number[]) => void) & ((event: React.FormEvent<HTMLSpanElement>) => void)) | undefined
       // but ((event: React.FormEvent<HTMLSpanElement>) => void)) is coming from an extended value and I'm not sure what to do about that. - Jake 10/05/2020
       onChange={handleChange}
+      onBlur={handleBlur}
     />
   );
 };
