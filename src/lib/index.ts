@@ -21,7 +21,7 @@ export { InputCheckbox, InputSelect, InputSwitch, InputText } from './inputs';
 export { Form } from './form';
 export { Modal, ModalActions, ModalHeader } from './modal';
 export { Snackbar, useSnackbar } from './snackbars';
-export { Slider } from './slider';
+export { Slider, TimeRangeSlider } from './slider';
 export { Wysiwyg } from './wysiwyg';
 
 // Hooks
