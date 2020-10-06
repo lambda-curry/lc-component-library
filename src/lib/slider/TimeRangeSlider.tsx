@@ -23,6 +23,7 @@ export interface TimeRange {
 
 type TimeRangeSliderProps = SliderProps & {
   value?: TimeRange;
+  onChange?: (event: FormEvent<any>, value: TimeRange) => void;
   minuteInterval?: number;
   minTime?: string;
   maxTime?: string;
@@ -64,11 +65,12 @@ export const TimeRangeSlider: React.FC<TimeRangeSliderProps> = ({
 
   const rangeValue = [intervalStartInMinutes(valueInterval), intervalEndInMinutes(valueInterval)];
 
-  const handleChange: (event: FormEvent<any>, value: number | number[]) => void = (event, newValue) => {
-    if (typeof onChange === 'function') onChange(event as FormEvent<any>, newValue);
+  const handleChange: (event: FormEvent<any>, value: number | number[]) => void = (event, rangeValue) => {
+    if (!rangeValue) return;
+    const [startTime, endTime] = (rangeValue as number[]).map(rangeItem => localeFromRangeMinutes(rangeItem));
+    if (typeof onChange === 'function') onChange(event as FormEvent<any>, { startTime, endTime });
 
-    const [startTime, endTime] = (newValue as number[]).map(rangeItem => localeFromRangeMinutes(rangeItem));
-    if (formikProps && newValue) formikProps.setFieldValue(name, { startTime, endTime });
+    if (formikProps) formikProps.setFieldValue(name, { startTime, endTime });
   };
 
   return (
