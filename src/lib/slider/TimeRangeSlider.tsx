@@ -64,10 +64,10 @@ export const TimeRangeSlider: React.FC<TimeRangeSliderProps> = ({
 
   const rangeValue = [intervalStartInMinutes(valueInterval), intervalEndInMinutes(valueInterval)];
 
-  const handleChange: (event: FormEvent<any>, value: number[]) => void = (event, newValue) => {
-    if (typeof onChange === 'function') onChange(event as FormEvent<any>);
+  const handleChange: (event: FormEvent<any>, value: number | number[]) => void = (event, newValue) => {
+    if (typeof onChange === 'function') onChange(event as FormEvent<any>, newValue);
 
-    const [startTime, endTime] = newValue.map(rangeItem => localeFromRangeMinutes(rangeItem));
+    const [startTime, endTime] = (newValue as number[]).map(rangeItem => localeFromRangeMinutes(rangeItem));
     if (formikProps && newValue) formikProps.setFieldValue(name, { startTime, endTime });
   };
 
@@ -84,7 +84,7 @@ export const TimeRangeSlider: React.FC<TimeRangeSliderProps> = ({
       valueLabelFormat={minutes => labelFromRangeMinutes(minutes)}
       // Note: Mui types were expecting onChange?: (((event: React.ChangeEvent<{}>, value: number | number[]) => void) & ((event: React.FormEvent<HTMLSpanElement>) => void)) | undefined
       // but ((event: React.FormEvent<HTMLSpanElement>) => void)) is coming from an extended value and I'm not sure what to do about that. - Jake 10/05/2020
-      onChange={handleChange as any}
+      onChange={handleChange}
     />
   );
 };
