@@ -27,7 +27,8 @@ const FormContent: React.FC<{
   const formContext = useFormikContext();
 
   const handleClickOutside = (event: Event) => {
-    if (!state.shouldCheckForUnsavedChanges || !formContext.dirty) return;
+    if (!unsavedChangesConfig.containerQuerySelectorAll || !state.shouldCheckForUnsavedChanges || !formContext.dirty)
+      return;
 
     event.preventDefault();
     dispatch({ name: 'openModal', payload: 'unsavedChangesModal' });
