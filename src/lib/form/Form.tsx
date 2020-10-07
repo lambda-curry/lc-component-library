@@ -37,7 +37,9 @@ const FormContent: React.FC<{
 
   useOnClickOutside(
     handleClickOutside,
-    `${unsavedChangesConfig.containerQuerySelectorAll}, #lc-unsaved-changes-modal`,
+    unsavedChangesConfig.containerQuerySelectorAll
+      ? `${unsavedChangesConfig.containerQuerySelectorAll}, #lc-unsaved-changes-modal`
+      : undefined,
     unsavedChangesConfig.targetQuerySelector
   );
 
