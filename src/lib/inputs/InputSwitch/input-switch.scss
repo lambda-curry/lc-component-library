@@ -37,6 +37,14 @@
       transform: translateX(100%);
       background: theme('colors.active.default');
     }
+
+    &:focus {
+      outline: none;
+
+      &::before {
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.17), 0 0 0 8px rgba(0, 0, 255, 0.1);
+      }
+    }
   }
 
   &--disabled {
