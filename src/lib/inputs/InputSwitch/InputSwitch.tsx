@@ -56,10 +56,14 @@ export const InputSwitch = ({
     }
   };
 
-  const inputSwitchClassName = classNames(className, 'input input-switch', {
-    [`input-switch--label-position-${labelPlacement}`]: label && labelPlacement,
-    [`input-switch--disabled`]: disabled
-  });
+  const inputSwitchClassName = classNames(
+    'input input-switch',
+    {
+      [`input-switch--label-position-${labelPlacement}`]: label && labelPlacement,
+      [`input-switch--disabled`]: disabled
+    },
+    className
+  );
 
   return (
     <label htmlFor={id} className={inputSwitchClassName}>
