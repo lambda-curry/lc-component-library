@@ -11,11 +11,21 @@ export interface TimeRange {
 const intervalStartInMinutes = (interval: Interval) => interval.start.toSeconds() / 60;
 const intervalEndInMinutes = (interval: Interval) => interval.end.toSeconds() / 60;
 const dateTimeFromValue = (value: string) => DateTime.fromFormat(value, 'HH:mm');
-const timeRangeFromRangeValue: (rangeValue: number[]) => TimeRange = rangeValue => {
+const timeRangeFromRangeValue: (rangeValue: number[], data: { minTime: string; min: number }) => TimeRange = (
+  rangeValue,
+  { minTime, min }
+) => {
   const localeStartTimeString = DateTime.fromSeconds(rangeValue[0] * 60).toLocaleString(DateTime.TIME_24_SIMPLE);
+  const localeEndTimeString = DateTime.fromSeconds(rangeValue[1] * 60).toLocaleString(DateTime.TIME_24_SIMPLE);
+  const [minTimeHours] = minTime.split(':');
   const [startTimeHours, startTimeMinutes] = localeStartTimeString.split(':');
-  const startTime = `${startTimeHours === '24' ? '00' : startTimeHours}:${startTimeMinutes}`;
-  const endTime = DateTime.fromSeconds(rangeValue[1] * 60).toLocaleString(DateTime.TIME_24_SIMPLE);
+  const [endTimeHours, endTimeMinutes] = localeEndTimeString.split(':');
+
+  const isStartTimeBefore1AM = startTimeHours === '24' && minTimeHours === '00' && rangeValue[0] - min < 60;
+  const isEndTimeBefore1AM = endTimeHours === '24' && minTimeHours === '00' && rangeValue[1] - min < 60;
+
+  const startTime = `${isStartTimeBefore1AM ? '00' : startTimeHours}:${startTimeMinutes}`;
+  const endTime = `${isEndTimeBefore1AM ? '00' : endTimeHours}:${endTimeMinutes}`;
 
   return { startTime, endTime };
 };
@@ -71,7 +81,7 @@ export const TimeRangeSlider: React.FC<TimeRangeSliderProps> = ({
 
   const handleChange: (event: FormEvent<any>, value: number | number[]) => void = (event, rangeValue) => {
     if (!rangeValue) return;
-    const timeRange: TimeRange = timeRangeFromRangeValue(rangeValue as number[]);
+    const timeRange: TimeRange = timeRangeFromRangeValue(rangeValue as number[], { minTime, min });
     if (typeof onChange === 'function') onChange(event as FormEvent<any>, timeRange);
 
     if (formikProps) formikProps.setFieldValue(name, timeRange);
