@@ -15,7 +15,7 @@ export type InputSwitchProps<T> = {
   labelPlacement?: 'end' | 'start';
   formikProps?: FormikProps<T>;
   className?: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
 };
 
 export const InputSwitch = ({
