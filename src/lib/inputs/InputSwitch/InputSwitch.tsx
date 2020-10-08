@@ -1,31 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Switch as MuiSwitch,
-  SwitchProps,
-  FormControlLabel as MuiFormControlLabel,
-  FormControlLabelProps
-} from '@material-ui/core';
+import { FormikProps } from 'formik';
 import classNames from 'classnames';
 
 import './input-switch.scss';
-import { FormikProps } from 'formik';
 
-export type InputSwitchProps<T> = SwitchProps & {
-  formikProps?: FormikProps<T>;
+export type InputSwitchProps<T> = {
+  id?: string;
   name?: string;
   label?: string;
+  checked?: boolean;
+  disabled?: boolean;
   labelOn?: string;
   labelOff?: string;
-  labelPlacement?: FormControlLabelProps['labelPlacement'];
+  labelPlacement?: 'end' | 'start';
+  formikProps?: FormikProps<T>;
+  className?: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
 };
 
 export const InputSwitch = ({
-  className,
+  id,
   name,
-  formikProps,
+  disabled,
   labelOn,
   labelOff,
   labelPlacement = 'end',
+  formikProps,
+  className,
   onChange,
   ...props
 }: InputSwitchProps<any>) => {
@@ -37,6 +38,7 @@ export const InputSwitch = ({
     if (checked && labelOn) {
       setLabel(labelOn);
     }
+
     if (!checked && labelOff) {
       setLabel(labelOff);
     }
@@ -46,7 +48,7 @@ export const InputSwitch = ({
     setChecked(event.target.checked);
 
     if (onChange) {
-      onChange(event, checked);
+      onChange(event, event.target.checked);
     }
 
     if (fieldProps?.onChange) {
@@ -54,22 +56,25 @@ export const InputSwitch = ({
     }
   };
 
+  const inputSwitchClassName = classNames(className, 'input input-switch', {
+    [`input-switch--label-position-${labelPlacement}`]: label && labelPlacement,
+    [`input-switch--disabled`]: disabled
+  });
+
   return (
-    <div className={classNames(className, 'input input-switch')}>
-      <MuiFormControlLabel
-        control={
-          <MuiSwitch
-            {...fieldProps}
-            {...props}
-            checked={checked}
-            onChange={handleChange}
-            color="default"
-            size="medium"
-          />
-        }
-        label={label}
-        labelPlacement={labelPlacement}
+    <label htmlFor={id} className={inputSwitchClassName}>
+      <input
+        id={id}
+        name={name}
+        type="checkbox"
+        className="input-switch__input"
+        {...fieldProps}
+        {...props}
+        checked={checked}
+        disabled={disabled}
+        onChange={handleChange}
       />
-    </div>
+      <span className="input-switch__label">{label}</span>
+    </label>
   );
 };
