@@ -23,6 +23,7 @@ export { Modal, ModalActions, ModalHeader } from './modal';
 export { Snackbar, useSnackbar } from './snackbars';
 export { Slider, TimeRangeSlider } from './slider';
 export { Wysiwyg } from './wysiwyg';
+export { Tooltip } from './tooltips';
 
 // Hooks
 export { useOnClickOutside } from './hooks';
