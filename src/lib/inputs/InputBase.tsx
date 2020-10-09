@@ -42,7 +42,8 @@ export const InputBase = ({ name, className, formikProps, prefix, suffix, ...pro
       helperText={fieldError}
       size="small"
       className={classNames(className, 'input')}
-      variant={'outlined'}
+      // Don't remove as typing because this breaks the build. - Jake
+      variant={'outlined' as 'standard' | 'outlined'}
       InputProps={inputProps}
       value={fieldValue || props.value}
       onChange={handleChange}
