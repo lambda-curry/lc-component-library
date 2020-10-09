@@ -51,9 +51,6 @@ import { ReactComponent as users } from '../assets/icons/users.svg';
 import { ReactComponent as video } from '../assets/icons/video.svg';
 import { ReactComponent as pdf } from '../assets/icons/file-pdf.svg';
 
-
-
-
 export const defaultIcons = {
   addUser,
   analytics,
@@ -101,8 +98,7 @@ export const defaultIcons = {
   user,
   users,
   video,
-  pdf,
-
+  pdf
 };
 
 export type DefaultIconNames = keyof typeof defaultIcons;
