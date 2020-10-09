@@ -1,0 +1,30 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { IconButton, Tooltip } from '../..';
+import dedent from 'string-dedent';
+
+<Meta title="Tooltip" component={Tooltip} />
+
+# Tooltip
+
+<Canvas>
+  <Story
+    name="Tooltip"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+            <Tooltip title="Sample Edit Tooltip">
+              <IconButton icon="pencil" />
+            </Tooltip>`
+        }
+      }
+    }}
+  >
+    <div className="icon-button-story">
+      <Tooltip title="Sample Edit Tooltip">
+        <IconButton icon="pencil" />
+      </Tooltip>
+    </div>
+  </Story>
+  <ArgsTable of={Tooltip} />
+</Canvas>
