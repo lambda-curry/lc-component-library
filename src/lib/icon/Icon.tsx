@@ -49,6 +49,10 @@ import { ReactComponent as trash } from '../assets/icons/trash.svg';
 import { ReactComponent as user } from '../assets/icons/user.svg';
 import { ReactComponent as users } from '../assets/icons/users.svg';
 import { ReactComponent as video } from '../assets/icons/video.svg';
+import { ReactComponent as pdf } from '../assets/icons/file-pdf.svg';
+
+
+
 
 export const defaultIcons = {
   addUser,
@@ -96,7 +100,9 @@ export const defaultIcons = {
   trash,
   user,
   users,
-  video
+  video,
+  pdf,
+
 };
 
 export type DefaultIconNames = keyof typeof defaultIcons;
