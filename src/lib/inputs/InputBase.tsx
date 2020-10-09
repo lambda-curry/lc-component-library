@@ -12,9 +12,18 @@ export type InputProps = TextFieldProps & {
   prefix?: JSX.Element;
   suffix?: JSX.Element;
   formikProps?: FormikProps<any>;
+  variant: any; // Don't remove any typing because this breaks the build. - Jake
 };
 
-export const InputBase = ({ name, className, formikProps, prefix, suffix, ...props }: InputProps) => {
+export const InputBase = ({
+  name,
+  className,
+  formikProps,
+  prefix,
+  suffix,
+  variant = 'outlined',
+  ...props
+}: InputProps) => {
   const fieldError =
     formikProps?.errors && name && _get(formikProps.touched, name) ? _get(formikProps.errors, name) : '';
 
@@ -42,8 +51,6 @@ export const InputBase = ({ name, className, formikProps, prefix, suffix, ...pro
       helperText={fieldError}
       size="small"
       className={classNames(className, 'input')}
-      // Don't remove as any typing because this breaks the build. - Jake
-      variant={'outlined' as any}
       InputProps={inputProps}
       value={fieldValue || props.value}
       onChange={handleChange}
