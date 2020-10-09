@@ -17,7 +17,7 @@ export {
 
 export { Icon, IconRegistry, defaultIcons, DecorativeIcon } from './icon';
 export { IconButton } from './icon-button';
-export { InputCheckbox, InputSelect, InputSwitch, InputText } from './inputs';
+export { InputCheckbox, InputSelect, InputSwitch, InputText, InputDate } from './inputs';
 export { Form } from './form';
 export { Modal, ModalActions, ModalHeader } from './modal';
 export { Snackbar, useSnackbar } from './snackbars';

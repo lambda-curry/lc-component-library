@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent, FocusEvent } from 'react';
 import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 import { FormikProps } from 'formik';
 import classNames from 'classnames';
@@ -11,18 +11,28 @@ export type InputProps = TextFieldProps & {
   name: string;
   prefix?: JSX.Element;
   suffix?: JSX.Element;
-  formikProps: FormikProps<any>;
+  formikProps?: FormikProps<any>;
 };
 
 export const InputBase = ({ name, className, formikProps, prefix, suffix, ...props }: InputProps) => {
   const fieldError =
-    formikProps.errors && name && _get(formikProps.touched, name) ? _get(formikProps.errors, name) : '';
+    formikProps?.errors && name && _get(formikProps.touched, name) ? _get(formikProps.errors, name) : '';
 
-  const fieldValue = _get(formikProps.values, name);
+  const fieldValue = _get(formikProps?.values, name);
 
   const inputProps = {
     startAdornment: prefix ? <InputAdornment position="start">{prefix}</InputAdornment> : false,
     endAdornment: suffix ? <InputAdornment position="end">{suffix}</InputAdornment> : false
+  };
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    if (formikProps) formikProps.handleChange(event);
+    if (typeof props.onChange === 'function') props.onChange(event);
+  };
+
+  const handleBlur = (event: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    if (formikProps) formikProps.handleBlur(event);
+    if (typeof props.onBlur === 'function') props.onBlur(event);
   };
 
   return (
@@ -32,12 +42,11 @@ export const InputBase = ({ name, className, formikProps, prefix, suffix, ...pro
       helperText={fieldError}
       size="small"
       className={classNames(className, 'input')}
-      // Note: `as any` needed to help with expected types for the variant prop from Material UI
-      variant={'outlined' as any}
+      variant={'outlined'}
       InputProps={inputProps}
-      value={fieldValue}
-      onChange={formikProps.handleChange}
-      onBlur={formikProps.handleBlur}
+      value={fieldValue || props.value}
+      onChange={handleChange}
+      onBlur={handleBlur}
       {...props}
     />
   );
