@@ -9,6 +9,7 @@ import { get as _get } from 'lodash';
 export type InputDateProps = InputProps & {
   value?: Date;
   onChange?: (date: Date) => void;
+  inputFormat?: string;
 };
 
 export const InputDate: React.FC<InputDateProps> = ({
@@ -16,9 +17,10 @@ export const InputDate: React.FC<InputDateProps> = ({
   value,
   onChange,
   formikProps,
+  inputFormat = 'LL/dd/yyyy',
   ...props
 }) => {
-  const fieldValue = _get(formikProps?.values, name, '');
+  const fieldValue = _get(formikProps?.values, props.name, '');
 
   const handleChange = (updatedDate: DateTime | null, keyboardInputValue?: string | undefined) => {
     if (!updatedDate) return;
@@ -38,6 +40,7 @@ export const InputDate: React.FC<InputDateProps> = ({
         label={label}
         value={fieldValue || value}
         onChange={handleChange}
+        inputFormat={inputFormat}
         renderInput={renderProps => <InputText {...(renderProps as InputProps)} {...props} onBlur={handleBlur} />}
       />
     </LocalizationProvider>
