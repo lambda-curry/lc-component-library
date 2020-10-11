@@ -55,6 +55,7 @@ export const InputBase = ({
       value={fieldValue || props.value}
       onChange={handleChange}
       onBlur={handleBlur}
+      variant={variant}
       {...props}
     />
   );
