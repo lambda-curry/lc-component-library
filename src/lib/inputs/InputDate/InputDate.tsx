@@ -6,10 +6,18 @@ import LuxonUtils from '@date-io/luxon';
 import { DateTime } from 'luxon';
 import { get as _get } from 'lodash';
 
-export const InputDate: React.FC<InputProps & {
+export type InputDateProps = InputProps & {
   value?: Date;
   onChange?: (date: Date) => void;
-}> = ({ label = 'Select Date', value, onChange, formikProps, ...props }) => {
+};
+
+export const InputDate: React.FC<InputDateProps> = ({
+  label = 'Select Date',
+  value,
+  onChange,
+  formikProps,
+  ...props
+}) => {
   const fieldValue = _get(formikProps?.values, name, '');
 
   const handleChange = (updatedDate: DateTime | null, keyboardInputValue?: string | undefined) => {
