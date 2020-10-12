@@ -40,10 +40,7 @@
     border-radius: 4px;
     width: auto;
     transform: none;
-
-    .lc-time-range-slider & {
-      width: 68px;
-    }
+    white-space: nowrap;
   }
 
   [class^='PrivateValueLabel-label-'] {
