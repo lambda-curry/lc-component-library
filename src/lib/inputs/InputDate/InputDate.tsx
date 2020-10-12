@@ -10,6 +10,7 @@ export type InputDateProps = InputProps & {
   value?: Date;
   onChange?: (date: Date) => void;
   inputFormat?: string;
+  disablePast: boolean;
 };
 
 export const InputDate: React.FC<InputDateProps> = ({
@@ -18,6 +19,7 @@ export const InputDate: React.FC<InputDateProps> = ({
   onChange,
   formikProps,
   inputFormat = 'LL/dd/yyyy',
+  disablePast = false,
   ...props
 }) => {
   const fieldValue = _get(formikProps?.values, props.name, '');
@@ -41,6 +43,7 @@ export const InputDate: React.FC<InputDateProps> = ({
         value={fieldValue || value}
         onChange={handleChange}
         inputFormat={inputFormat}
+        disablePast={disablePast}
         renderInput={renderProps => <InputText {...(renderProps as InputProps)} {...props} onBlur={handleBlur} />}
       />
     </LocalizationProvider>
