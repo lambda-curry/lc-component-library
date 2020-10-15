@@ -4,5 +4,5 @@ import { Button } from '.';
 import { ButtonProps } from './Button';
 
 export const ButtonSuccess = ({ className, ...rest }: ButtonProps) => (
-  <Button {...rest} className={classNames('button-success', className)} />
+  <Button {...rest} className={classNames('lc-button-success', className)} />
 );

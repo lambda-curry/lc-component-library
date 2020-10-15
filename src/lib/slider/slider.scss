@@ -1,0 +1,52 @@
+.MuiSlider-root {
+  margin: 12px 0;
+
+  .MuiSlider-thumb {
+    width: 16px;
+    height: 16px;
+    border: solid 4px theme('colors.primary.default');
+    background-color: #fff;
+  }
+
+  .MuiSlider-rail,
+  .MuiSlider-track {
+    height: 6px;
+    background-color: theme('colors.primary.default');
+  }
+
+  .MuiSlider-rail {
+    opacity: 1;
+    background-color: #f3f3f3;
+    border-radius: 3px;
+  }
+
+  .MuiSlider-valueLabel {
+    background: none;
+    font-size: 12px;
+    left: 50%;
+    transform: translate(-50%, 0) !important;
+  }
+
+  [class^='PrivateValueLabel-offset-'] {
+    top: -26px;
+  }
+
+  [class^='PrivateValueLabel-circle-'] {
+    display: block;
+    width: auto;
+    height: auto;
+    background-color: #f3f3f3;
+    padding: 2px 6px;
+    border-radius: 4px;
+    width: auto;
+    transform: none;
+    white-space: nowrap;
+  }
+
+  [class^='PrivateValueLabel-label-'] {
+    display: block;
+    color: theme('colors.gray.darker');
+    transform: none;
+    text-align: center;
+  }
+}

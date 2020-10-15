@@ -11,8 +11,10 @@ import {
   ButtonOutlineAccent,
   ButtonOutlineSuccess,
   ButtonOutlineWarn,
-  ButtonOutlineDanger
-} from '..';
+  ButtonOutlineDanger,
+  ColorIcon,
+  Icon
+} from '../..';
 import dedent from 'string-dedent';
 import './button-story.scss';
 
@@ -97,6 +99,31 @@ import './button-story.scss';
       <ButtonOutlineSuccess disabled={true}>Success Outline Button</ButtonOutlineSuccess>
       <ButtonOutlineWarn disabled={true}>Warn Outline Button</ButtonOutlineWarn>
       <ButtonOutlineDanger disabled={true}>Danger Outline Button</ButtonOutlineDanger>
+    </div>
+  </Story>
+  <Story
+    name="Buttons with Icons"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+            <Button>
+              <ColorIcon name="googleCalendar" /> Default Button
+            </Button>
+            <ButtonOutline>
+              Outline Button <Icon name="settings" />
+            </ButtonOutline>`
+        }
+      }
+    }}
+  >
+    <div className="button-story">
+      <Button>
+        <ColorIcon name="googleCalendar" /> Default Button
+      </Button>
+      <ButtonOutline>
+        Outline Button <Icon name="settings" />
+      </ButtonOutline>
     </div>
   </Story>
   <ArgsTable of={Button} />

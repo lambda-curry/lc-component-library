@@ -4,5 +4,5 @@ import { Button } from '.';
 import { ButtonProps } from './Button';
 
 export const ButtonOutlinePrimary = ({ className, ...rest }: ButtonProps) => (
-  <Button {...rest} className={classNames('button-outline-primary', className)} />
+  <Button {...rest} className={classNames('lc-button-outline-primary', className)} />
 );
