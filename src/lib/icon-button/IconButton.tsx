@@ -10,7 +10,7 @@ export interface IconButtonProps extends ButtonProps {
   icon: DefaultIconNames | string;
 }
 export const IconButton: React.FC<IconButtonProps> = ({ className, icon, ...rest }) => (
-  <Button {...rest} className={classNames('icon-button', className)}>
+  <Button {...rest} className={classNames('lc-icon-button', className)}>
     <Icon name={icon} />
   </Button>
 );

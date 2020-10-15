@@ -4,5 +4,5 @@ import { Button } from '.';
 import { ButtonProps } from './Button';
 
 export const ButtonAccent = ({ className, ...rest }: ButtonProps) => (
-  <Button {...rest} className={classNames('button-accent', className)} />
+  <Button {...rest} className={classNames('lc-button-accent', className)} />
 );
