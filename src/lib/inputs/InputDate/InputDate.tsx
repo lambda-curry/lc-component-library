@@ -8,7 +8,7 @@ import { get as _get } from 'lodash';
 
 export type InputDateProps = InputProps & {
   value?: Date;
-  onChange?: (date: Date) => void;
+  onChange?: (date: Date | null) => void;
   inputFormat?: string;
   disablePast: boolean;
 };
@@ -25,8 +25,9 @@ export const InputDate: React.FC<InputDateProps> = ({
   const fieldValue = _get(formikProps?.values, props.name, '');
 
   const handleChange = (updatedDate: DateTime | null, keyboardInputValue?: string | undefined) => {
+    const newValue = updatedDate ? updatedDate.toJSDate() : null;
     if (formikProps) formikProps.setFieldValue(props.name, updatedDate ? updatedDate.toJSDate() : null);
-    if (typeof onChange === 'function') onChange(updatedDate.toJSDate());
+    if (typeof onChange === 'function') onChange(newValue);
   };
 
   const handleBlur = (event: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
