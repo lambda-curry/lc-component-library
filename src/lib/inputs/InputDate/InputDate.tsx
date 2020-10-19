@@ -26,13 +26,8 @@ export const InputDate: React.FC<InputDateProps> = ({
 
   const handleChange = (updatedDate: DateTime | null, keyboardInputValue?: string | undefined) => {
     const newValue = updatedDate ? updatedDate.toJSDate() : null;
-    if (formikProps) formikProps.setFieldValue(props.name, updatedDate ? updatedDate.toJSDate() : null);
+    if (formikProps) formikProps.setFieldValue(props.name, newValue);
     if (typeof onChange === 'function') onChange(newValue);
-  };
-
-  const handleBlur = (event: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    if (formikProps) formikProps.handleBlur(event);
-    if (typeof props.onBlur === 'function') props.onBlur(event);
   };
 
   return (
@@ -43,7 +38,7 @@ export const InputDate: React.FC<InputDateProps> = ({
         onChange={handleChange}
         inputFormat={inputFormat}
         disablePast={disablePast}
-        renderInput={renderProps => <InputText {...(renderProps as InputProps)} {...props} onBlur={handleBlur} />}
+        renderInput={renderProps => <InputText {...(renderProps as InputProps)} formikProps={formikProps} {...props} />}
       />
     </LocalizationProvider>
   );

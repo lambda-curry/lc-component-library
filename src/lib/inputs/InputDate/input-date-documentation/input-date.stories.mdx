@@ -21,7 +21,7 @@ import dedent from 'string-dedent';
             >
               {formikProps => (
                 <>
-                  Value: {formikProps.values.sampleDate.toLocaleDateString()}
+                  Value: {formikProps.values.sampleDate instanceof Date ? formikProps.values.sampleDate.toLocaleDateString() : ''}
                   <InputDate name="sampleDate" formikProps={formikProps} />
                 </>
               )}
@@ -39,7 +39,7 @@ import dedent from 'string-dedent';
       >
         {formikProps => (
           <>
-            Value: {formikProps.values.sampleDate.toLocaleDateString()}
+            Value: {formikProps.values.sampleDate instanceof Date ? formikProps.values.sampleDate.toLocaleDateString() : ''}
             <InputDate name="sampleDate" formikProps={formikProps} />
           </>
         )}
