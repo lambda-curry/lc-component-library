@@ -17,8 +17,7 @@ export const ColorIcon: React.FC<{
   className?: string;
   name: DefaultColorIconNames | string;
   viewBox?: string;
-  color: boolean;
-}> = ({ className, name, viewBox = '0 0 24 24', color, ...props }) => {
+}> = ({ className, name, viewBox = '0 0 24 24', ...props }) => {
   const registeredIcons = useContext(RegisteredIconContext);
 
   const icons: { [x: string]: React.SFC<React.SVGProps<SVGSVGElement>> } = {
@@ -37,7 +36,7 @@ export const ColorIcon: React.FC<{
   const IconSvg = icons[name];
 
   return (
-    <span className={classNames('lc-icon', `lc-icon-${name}`, `color`, className)} {...props}>
+    <span className={classNames('lc-icon', `lc-icon-color`, `lc-icon-${name}`, className)} {...props}>
       <IconSvg viewBox={viewBox} />
     </span>
   );
