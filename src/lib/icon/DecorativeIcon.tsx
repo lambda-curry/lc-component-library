@@ -8,9 +8,9 @@ export const DecorativeIcon: React.FC<{
   color: string;
   name: DefaultIconNames | string;
 }> = ({ className, color, ...props }) => {
-  // const colorIsVariable = [].includes(color);
+  const cssVar = getCssVar(color);
   const style = {
-    backgroundColor: false ? getCssVar(color) : color
+    backgroundColor: cssVar || color
   };
 
   return (
