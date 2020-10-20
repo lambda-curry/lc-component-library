@@ -1,11 +1,15 @@
 .lc-icon {
-  box-sizing: border-box;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
   width: 24px;
   height: 24px;
   color: inherit;
+
+  &,
+  &-decorative {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
 
   svg {
     width: 100%;
@@ -18,12 +22,9 @@
   }
 
   &-decorative {
-    box-sizing: border-box;
-    border-radius: 4px;
-    display: inline-block;
     width: 32px;
     height: 32px;
-    padding: 4px;
+    border-radius: 4px;
 
     &:not(.lc-icon-color) svg,
     &:not(.lc-icon-color) path {
