@@ -1,5 +1,5 @@
 import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs/blocks';
-import { Icon, defaultIcons, DecorativeIcon } from '..';
+import { Icon, defaultIcons, DecorativeIcon, ColorIcon, defaultColorIcons } from '..';
 import dedent from 'string-dedent';
 
 import './icon-story.scss';
@@ -118,4 +118,42 @@ Once the above code is implemented correctly, you should be able to use the Icon
     </div>
   </Story>
   <ArgsTable of={DecorativeIcon} />
+</Canvas>
+
+# Color Icon
+
+<Canvas>
+  <Story
+    name="Color Icon"
+    args={{ className: '' }}
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+          {Object.keys(defaultColorIcons).map(iconName => (
+            <li key={iconName}>
+              <ColorIcon name={iconName} {...args} />
+              <br />
+              {iconName}
+            </li>
+          ))}`
+        }
+      }
+    }}
+  >
+    {args => (
+      <div className="icon-story">
+        <ul className="icon-story-grid">
+          {Object.keys(defaultColorIcons).map(iconName => (
+            <li key={iconName}>
+              <ColorIcon name={iconName} {...args} />
+              <br />
+              {iconName}
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </Story>
+  <ArgsTable of={Icon} />
 </Canvas>

@@ -4,5 +4,5 @@ import { Button } from '.';
 import { ButtonProps } from './Button';
 
 export const ButtonOutlineDanger = ({ className, ...rest }: ButtonProps) => (
-  <Button {...rest} className={classNames('button-outline-danger', className)} />
+  <Button {...rest} className={classNames('lc-button-outline-danger', className)} />
 );

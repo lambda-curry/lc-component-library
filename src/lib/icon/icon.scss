@@ -12,8 +12,8 @@
     height: 100%;
   }
 
-  svg,
-  path {
+  &:not(.color) svg,
+  &:not(.color) path {
     fill: currentColor;
   }
 
@@ -25,8 +25,8 @@
     height: 32px;
     padding: 4px;
 
-    svg,
-    path {
+    &:not(.color) svg,
+    &:not(.color) path {
       fill: white;
     }
   }

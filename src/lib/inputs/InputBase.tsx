@@ -47,16 +47,16 @@ export const InputBase = ({
   return (
     <TextField
       name={name}
+      InputProps={inputProps}
+      {...props}
       error={!!fieldError}
       helperText={fieldError}
       size="small"
       className={classNames(className, 'input')}
-      InputProps={inputProps}
       value={fieldValue || props.value}
       onChange={handleChange}
       onBlur={handleBlur}
       variant={variant}
-      {...props}
     />
   );
 };
