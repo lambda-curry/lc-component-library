@@ -12,8 +12,8 @@
     height: 100%;
   }
 
-  &:not(.color) svg,
-  &:not(.color) path {
+  &:not(.lc-icon-color) svg,
+  &:not(.lc-icon-color) path {
     fill: currentColor;
   }
 
@@ -25,8 +25,8 @@
     height: 32px;
     padding: 4px;
 
-    &:not(.color) svg,
-    &:not(.color) path {
+    &:not(.lc-icon-color) svg,
+    &:not(.lc-icon-color) path {
       fill: white;
     }
   }
