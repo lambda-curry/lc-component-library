@@ -48,6 +48,7 @@ export const InputBase = ({
     <TextField
       name={name}
       InputProps={inputProps}
+      {...props}
       error={!!fieldError}
       helperText={fieldError}
       size="small"
@@ -56,8 +57,6 @@ export const InputBase = ({
       onChange={handleChange}
       onBlur={handleBlur}
       variant={variant}
-      {...props}
-
     />
   );
 };
