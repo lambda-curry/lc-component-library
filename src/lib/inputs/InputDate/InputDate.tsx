@@ -38,7 +38,7 @@ export const InputDate: React.FC<InputDateProps> = ({
         onChange={handleChange}
         inputFormat={inputFormat}
         disablePast={disablePast}
-        renderInput={renderProps => <InputText {...(renderProps as InputProps)} formikProps={formikProps} {...props} />}
+        renderInput={renderProps => <InputText {...(renderProps as InputProps)} {...props} formikProps={formikProps} />}
       />
     </LocalizationProvider>
   );
