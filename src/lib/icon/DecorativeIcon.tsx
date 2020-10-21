@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import classNames from 'classnames';
 import { Icon, DefaultIconNames } from './Icon';
 import { getCssVar } from '../util/colors';
@@ -9,7 +9,7 @@ export interface DecorativeIconProps {
   name: DefaultIconNames | string;
 }
 
-export const DecorativeIcon: React.FC<DecorativeIconProps> = ({ className, color, ...props }) => {
+export const DecorativeIcon: FC<DecorativeIconProps> = ({ className, color, ...props }) => {
   const cssVar = getCssVar(color);
   const style = {
     backgroundColor: cssVar || color

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { FC, SVGProps, useContext } from 'react';
 import classNames from 'classnames';
 import { RegisteredIconContext } from './IconRegistry';
 import './icon.scss';
@@ -19,10 +19,10 @@ export interface ColorIconProps {
   viewBox?: string;
 }
 
-export const ColorIcon: React.FC<ColorIconProps> = ({ className, name, viewBox = '0 0 24 24', ...props }) => {
+export const ColorIcon: FC<ColorIconProps> = ({ className, name, viewBox = '0 0 24 24', ...props }) => {
   const registeredIcons = useContext(RegisteredIconContext);
 
-  const icons: { [x: string]: React.SFC<React.SVGProps<SVGSVGElement>> } = {
+  const icons: { [x: string]: FC<SVGProps<SVGSVGElement>> } = {
     ...defaultColorIcons,
     ...registeredIcons
   };
