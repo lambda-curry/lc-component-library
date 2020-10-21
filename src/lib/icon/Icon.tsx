@@ -103,11 +103,13 @@ export const defaultIcons = {
 
 export type DefaultIconNames = keyof typeof defaultIcons;
 
-export const Icon: React.FC<{
+export interface IconProps {
   className?: string;
   name: DefaultIconNames | string;
   viewBox?: string;
-}> = ({ className, name, viewBox = '0 0 24 24', ...props }) => {
+}
+
+export const Icon: React.FC<IconProps> = ({ className, name, viewBox = '0 0 24 24', ...props }) => {
   const registeredIcons = useContext(RegisteredIconContext);
 
   const icons: { [x: string]: React.SFC<React.SVGProps<SVGSVGElement>> } = {

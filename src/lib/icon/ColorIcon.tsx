@@ -13,11 +13,13 @@ export const defaultColorIcons = {
 
 export type DefaultColorIconNames = keyof typeof defaultColorIcons;
 
-export const ColorIcon: React.FC<{
+export interface ColorIconProps {
   className?: string;
   name: DefaultColorIconNames | string;
   viewBox?: string;
-}> = ({ className, name, viewBox = '0 0 24 24', ...props }) => {
+}
+
+export const ColorIcon: React.FC<ColorIconProps> = ({ className, name, viewBox = '0 0 24 24', ...props }) => {
   const registeredIcons = useContext(RegisteredIconContext);
 
   const icons: { [x: string]: React.SFC<React.SVGProps<SVGSVGElement>> } = {
