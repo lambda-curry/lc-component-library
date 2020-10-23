@@ -1,8 +1,13 @@
-import React, { FunctionComponent, Reducer, useEffect, useReducer } from 'react';
+import React, { Reducer, useEffect, useReducer } from 'react';
 import classNames from 'classnames';
-import { InputSelect, InputSelectProps } from '../InputSelect/InputSelect';
+import { AutoCompleteChange, InputSelect, InputSelectProps } from '../InputSelect/InputSelect';
 import { useAsyncEffect, useDebounce } from '../../hooks';
-import { AutocompleteInputChangeReason, AutocompleteProps } from '@material-ui/lab';
+import {
+  AutocompleteChangeDetails,
+  AutocompleteChangeReason,
+  AutocompleteInputChangeReason,
+  AutocompleteProps
+} from '@material-ui/lab';
 import { InputProps } from '../InputBase';
 
 export interface InputSearchReducerState {
@@ -38,9 +43,10 @@ type InputSearchProps = InputProps & {
   getOptions: (data: any) => any;
   optionLabelKey?: string;
   autocompleteConfig?: Partial<AutocompleteProps<any, boolean, boolean, boolean>>;
+  onChange?: AutoCompleteChange;
 };
 
-export const InputSearch: FunctionComponent<InputSearchProps> = ({
+export const InputSearch: React.FC<InputSearchProps> = ({
   className,
   url,
   searchParam,
@@ -55,15 +61,23 @@ export const InputSearch: FunctionComponent<InputSearchProps> = ({
 
   const searchTerm = useDebounce(state.inputSearchValue, 200);
   const search = async () => {
-    const searchUrl = new URL(url);
-    if (searchParam) searchUrl.searchParams.set(searchParam, searchTerm);
-    const response = await fetch(searchUrl.toString());
+    const originalSearchParams = new URLSearchParams(url);
+    const searchParams = new URLSearchParams(url);
+    if (searchParam) searchParams.set(searchParam, searchTerm);
+    const searchUrl = url.replace(originalSearchParams.toString(), searchParams.toString());
+    const response = await fetch(searchUrl);
     const jsonData = await response.json();
 
     dispatch({ name: 'setOptions', payload: getOptions(jsonData) });
   };
 
   useAsyncEffect(search, undefined, [url, searchTerm]);
+
+  const handleChange: AutoCompleteChange = (event, value, reason, details) => {
+    if (props.formikProps) props.formikProps.setFieldValue(name, value);
+    if (typeof props.onChange === 'function')
+      props.onChange(event as React.ChangeEvent<HTMLInputElement>, value, reason, details);
+  };
 
   const handleInputChange: (
     event: React.ChangeEvent<{}>,
@@ -79,6 +93,7 @@ export const InputSearch: FunctionComponent<InputSearchProps> = ({
       className={classNames('input-search', className)}
       {...props}
       options={state.options}
+      onChange={handleChange}
       autocompleteConfig={{
         loading: state.options.length < 1,
         onInputChange: handleInputChange,
