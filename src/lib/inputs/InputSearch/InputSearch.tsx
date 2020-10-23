@@ -2,7 +2,8 @@ import React, { FunctionComponent, Reducer, useEffect, useReducer } from 'react'
 import classNames from 'classnames';
 import { InputSelect, InputSelectProps } from '../InputSelect/InputSelect';
 import { useAsyncEffect, useDebounce } from '../../hooks';
-import { AutocompleteInputChangeReason } from '@material-ui/lab';
+import { AutocompleteInputChangeReason, AutocompleteProps } from '@material-ui/lab';
+import { InputProps } from '../InputBase';
 
 export interface InputSearchReducerState {
   status?: ServerRequestStatus;
@@ -31,7 +32,13 @@ export const inputSearchReducer = (state: InputSearchReducerState, action: Input
   return nextState;
 };
 
-type InputSearchProps = InputSelectProps & { url: string; searchParam?: string; getOptions: (data: any) => any };
+type InputSearchProps = InputProps & {
+  url: string;
+  searchParam?: string;
+  getOptions: (data: any) => any;
+  optionLabelKey?: string;
+  autocompleteConfig: Partial<AutocompleteProps<any, boolean, boolean, boolean>>;
+};
 
 export const InputSearch: FunctionComponent<InputSearchProps> = ({
   className,
@@ -52,8 +59,6 @@ export const InputSearch: FunctionComponent<InputSearchProps> = ({
     if (searchParam) searchUrl.searchParams.set(searchParam, searchTerm);
     const response = await fetch(searchUrl.toString());
     const jsonData = await response.json();
-
-    console.log('>>>', jsonData);
 
     dispatch({ name: 'setOptions', payload: getOptions(jsonData) });
   };
