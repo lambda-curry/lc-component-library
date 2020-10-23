@@ -12,6 +12,7 @@ export type InputProps = OutlinedTextFieldProps & {
   prefix?: JSX.Element;
   suffix?: JSX.Element;
   formikProps?: FormikProps<any>;
+  variant?: 'outlined'; // Don't remove any typing because this breaks the build. - Jake
 };
 
 export const InputBase = ({
