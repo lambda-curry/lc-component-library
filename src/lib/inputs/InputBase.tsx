@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FocusEvent } from 'react';
-import TextField, { TextFieldProps } from '@material-ui/core/TextField';
+import TextField, { OutlinedTextFieldProps, TextFieldProps } from '@material-ui/core/TextField';
 import { FormikProps } from 'formik';
 import classNames from 'classnames';
 import { get as _get } from 'lodash';
@@ -7,12 +7,11 @@ import { get as _get } from 'lodash';
 import './input.scss';
 import { InputAdornment } from '@material-ui/core';
 
-export type InputProps = TextFieldProps & {
+export type InputProps = OutlinedTextFieldProps & {
   name: string;
   prefix?: JSX.Element;
   suffix?: JSX.Element;
   formikProps?: FormikProps<any>;
-  variant?: any; // Don't remove any typing because this breaks the build. - Jake
 };
 
 export const InputBase = ({
