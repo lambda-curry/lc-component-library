@@ -37,7 +37,7 @@ type InputSearchProps = InputProps & {
   searchParam?: string;
   getOptions: (data: any) => any;
   optionLabelKey?: string;
-  autocompleteConfig: Partial<AutocompleteProps<any, boolean, boolean, boolean>>;
+  autocompleteConfig?: Partial<AutocompleteProps<any, boolean, boolean, boolean>>;
 };
 
 export const InputSearch: FunctionComponent<InputSearchProps> = ({
