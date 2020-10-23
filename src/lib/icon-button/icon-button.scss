@@ -15,5 +15,9 @@
     border-radius: 50%;
     // TODO: Figure out CSS Variables with Tailwind
     color: theme('colors.gray.dark');
+
+    &:hover {
+      background-color: theme('colors.gray.lighter');
+    }
   }
 }
