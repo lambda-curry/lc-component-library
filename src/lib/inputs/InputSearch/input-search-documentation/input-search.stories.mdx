@@ -1,0 +1,73 @@
+import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs/blocks';
+import { InputSearch, Form } from '../../..';
+import dedent from 'string-dedent';
+import './input-search-story.scss';
+
+<Meta title="Input Search" component={InputSearch} />
+
+# Input Search
+
+<Canvas>
+  <Story
+    name="Input Search"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+          <Form
+            initialValues={{
+              search: undefined
+            }}
+            onSubmit={() => {}}
+          >
+            {formikProps => (
+              <>
+                <p className="lc-mb-8">Selected Abstract: {\`\${JSON.stringify(formikProps.values.search?.abstract)}\`}</p>
+                <InputSearch
+                  label="Search Option"
+                  name="search"
+                  url="https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=samplekey"
+                  searchParam="q"
+                  optionLabelKey="headline.main"
+                  getOptions={response => response?.response?.docs || []}
+                  autocompleteConfig={{
+                    loadingText: \`Please try again in a minute, NYT Rate Limits their APIs to 10 requests per minute\`
+                  }}
+                  formikProps={formikProps}
+                />
+              </>
+            )}
+          </Form>`
+        }
+      }
+    }}
+  >
+    <div className="input-search-story">
+      <Form
+        initialValues={{
+          search: undefined
+        }}
+        onSubmit={() => {}}
+      >
+        {formikProps => (
+          <>
+            <p className="lc-mb-8">Selected Abstract: {`${JSON.stringify(formikProps.values.search?.abstract)}`}</p>
+            <InputSearch
+              label="Search Option"
+              name="search"
+              url="https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=WymYNTjhumX7gEql9RMCAk9nopWwQVKG"
+              searchParam="q"
+              optionLabelKey="headline.main"
+              getOptions={response => response?.response?.docs || []}
+              autocompleteConfig={{
+                loadingText: `Please try again in a minute, NYT Rate Limits their APIs to 10 requests per minute`
+              }}
+              formikProps={formikProps}
+            />
+          </>
+        )}
+      </Form>
+    </div>
+  </Story>
+  <ArgsTable of={InputSearch} />
+</Canvas>

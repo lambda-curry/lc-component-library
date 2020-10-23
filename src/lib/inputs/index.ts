@@ -3,3 +3,4 @@ export { InputSelect } from './InputSelect/InputSelect';
 export { InputSwitch } from './InputSwitch/InputSwitch';
 export { InputText } from './InputText/InputText';
 export { InputDate } from './InputDate/InputDate';
+export { InputSearch } from './InputSearch/InputSearch';
