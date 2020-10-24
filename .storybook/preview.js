@@ -3,7 +3,6 @@ import React from 'react';
 import { addDecorator } from '@storybook/react';
 import { addParameters } from '@storybook/react';
 import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks';
-// import { withInfo } from '@storybook/addon-info';
 import StorybookWrapper from './StoryWrapper';
 
 // Gatsby's Link overrides:
@@ -23,15 +22,6 @@ import StorybookWrapper from './StoryWrapper';
 // };
 
 addDecorator(storyFn => <StorybookWrapper>{storyFn()}</StorybookWrapper>);
-// addDecorator(
-//   withInfo({
-//     inline: true,
-//     source: false,
-//     header: false,
-//     propTablesExclude: [StorybookWrapper],
-//     TableComponent: StoryPropTypesTable,
-//   })
-// );
 
 addParameters({
   viewMode: 'docs',

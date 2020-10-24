@@ -1,7 +1,9 @@
+// https://github.com/babel/babel/issues/11622#issuecomment-638609015 to fix build
 {
   "presets": [["react-app", { "absoluteRuntime": false }], "@babel/typescript"],
   "plugins": [
-    "@babel/proposal-class-properties",
-    "@babel/proposal-object-rest-spread"
+    "@babel/proposal-object-rest-spread",
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-proposal-private-methods"
   ]
 }
