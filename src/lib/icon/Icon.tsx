@@ -129,7 +129,7 @@ export const Icon: FC<IconProps> = ({ className, name, viewBox = '0 0 24 24', ..
 
   return (
     <span className={classNames('lc-icon', `lc-icon-${name}`, className)} {...props}>
-      <IconSvg viewBox={viewBox} />
+      <IconSvg viewBox={viewBox ? viewBox : undefined} />
     </span>
   );
 };
