@@ -1,12 +1,19 @@
 // @import '../../../css/colors';
 
 .MuiFormControl-root {
-  &.input {
+  &.lc-input {
     display: flex;
     margin-bottom: 24px;
 
     input {
+      border-radius: 4px;
       zoom: 1;
+    }
+
+    &-label-above {
+      input {
+        background-color: white;
+      }
     }
   }
 
@@ -41,4 +48,9 @@
   .MuiInputAdornment-positionStart {
     color: var(--gray);
   }
+}
+
+.lc-input-label {
+  display: block;
+  margin-bottom: 8px;
 }

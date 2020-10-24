@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { useState } from 'react';
 import { Autocomplete, AutocompleteChangeDetails, AutocompleteChangeReason, AutocompleteProps } from '@material-ui/lab';
 import { Paper } from '@material-ui/core';
 import classNames from 'classnames';
@@ -8,20 +8,31 @@ import { isEqual, get } from 'lodash';
 
 import './input-select.scss';
 
-export type InputSelectProps = InputProps & {
+export type AutoCompleteChange = (
+  event: React.ChangeEvent<{}>,
+  value: any,
+  reason: AutocompleteChangeReason,
+  details?: AutocompleteChangeDetails<any> | undefined
+) => void;
+
+export type InputSelectProps = Omit<InputProps, 'onChange'> & {
   options: any[];
   optionLabelKey?: string;
   autocompleteConfig: Partial<AutocompleteProps<any, boolean, boolean, boolean>>;
+  onChange?: AutoCompleteChange;
 };
 
-export const InputSelect: FunctionComponent<InputSelectProps> = ({
+export const InputSelect: React.FC<InputSelectProps> = ({
   options,
   optionLabelKey = 'label',
   name,
   className,
   autocompleteConfig,
+  onChange,
   ...props
 }) => {
+  const [inputValue, setInputValue] = useState(props.formikProps?.values[name] || props.value || null);
+
   // Note: We want to remove the change event from the rendered component so it can be handled by the autocomplete
   if (props.formikProps) {
     props.formikProps.handleChange = () => {};
@@ -32,9 +43,10 @@ export const InputSelect: FunctionComponent<InputSelectProps> = ({
     value: any,
     reason: AutocompleteChangeReason,
     details?: AutocompleteChangeDetails<any> | undefined
-  ) => void = (event, value) => {
+  ) => void = (event, value, reason, details) => {
+    setInputValue(value);
     if (props.formikProps) props.formikProps.setFieldValue(name, value);
-    if (typeof props.onChange === 'function') props.onChange(event as React.ChangeEvent<HTMLInputElement>);
+    if (typeof onChange === 'function') onChange(event, value, reason, details);
   };
 
   const autocompleteProps: AutocompleteProps<any, boolean, boolean, boolean> = {
@@ -42,7 +54,7 @@ export const InputSelect: FunctionComponent<InputSelectProps> = ({
     multiple: false,
     // Note: Value initialized as null instead of undefined to help with uncontrolled component warning
     // https://github.com/mui-org/material-ui/issues/18173#issuecomment-552420187
-    value: props.formikProps ? props.formikProps.values[name] || null : props.value || null,
+    value: inputValue,
     openOnFocus: true,
     closeIcon: <Icon className="input-select-icon-close" name="close" />,
     popupIcon: <Icon className="input-select-icon-popup" name="chevronDown" />,
