@@ -61,10 +61,15 @@ export const InputSearch: React.FC<InputSearchProps> = ({
 
   const searchTerm = useDebounce(state.inputSearchValue, 200);
   const search = async () => {
-    const originalSearchParams = new URLSearchParams(url);
-    const searchParams = new URLSearchParams(url);
+    const [base, params] = url.split('?');
+
+    const originalSearchParams = new URLSearchParams(params);
+    const searchParams = new URLSearchParams(params);
+    // console.log('>>>1', originalSearchParams.toString());
     if (searchParam) searchParams.set(searchParam, searchTerm);
-    const searchUrl = url.replace(originalSearchParams.toString(), searchParams.toString());
+    console.log('>>>2', searchParams.toString());
+    const searchUrl = `${base}?${searchParams.toString()}`;
+    console.log('>>>3', searchUrl);
     const response = await fetch(searchUrl);
     const jsonData = await response.json();
 
