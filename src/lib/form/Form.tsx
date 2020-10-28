@@ -15,6 +15,7 @@ interface UnsavedChangesConfig {
 type FormProps<T> = FormikConfig<T> & {
   className?: string;
   unsavedChangesConfig?: UnsavedChangesConfig;
+  withoutFormElement?: boolean;
   children: (formikProps: FormikProps<T>) => React.ReactNode;
 };
 
@@ -22,8 +23,9 @@ const FormContent: React.FC<{
   className?: string;
   state: FormReducerState;
   dispatch: React.Dispatch<FormReducerAction>;
+  withoutFormElement?: boolean;
   unsavedChangesConfig: UnsavedChangesConfig;
-}> = ({ className, state, dispatch, unsavedChangesConfig, ...rest }) => {
+}> = ({ className, state, dispatch, withoutFormElement, unsavedChangesConfig, ...rest }) => {
   const formContext = useFormikContext();
 
   const handleClickOutside = (event: Event) => {
@@ -43,10 +45,14 @@ const FormContent: React.FC<{
     unsavedChangesConfig.targetQuerySelector
   );
 
-  return <FormikForm className={classNames(className, 'lc-form')} {...rest} />;
+  return withoutFormElement ? (
+    <div className={classNames(className, 'lc-form')} {...rest} />
+  ) : (
+    <FormikForm className={classNames(className, 'lc-form')} {...rest} />
+  );
 };
 
-export function Form<T>({ className, children, unsavedChangesConfig = {}, ...rest }: FormProps<T>) {
+export function Form<T>({ className, children, withoutFormElement, unsavedChangesConfig = {}, ...rest }: FormProps<T>) {
   // TODO: update .navbar-back to utilize a button, avoid actions on clicks for things that are not <a> or <button>
   unsavedChangesConfig = {
     targetQuerySelector: 'a, button, .navbar-back',
@@ -98,6 +104,7 @@ export function Form<T>({ className, children, unsavedChangesConfig = {}, ...res
             className={className}
             state={state}
             dispatch={dispatch}
+            withoutFormElement={withoutFormElement}
             unsavedChangesConfig={unsavedChangesConfig}
           >
             {children(formikProps)}
