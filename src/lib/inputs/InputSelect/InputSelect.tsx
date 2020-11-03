@@ -18,7 +18,7 @@ export type AutoCompleteChange = (
 export type InputSelectProps = Omit<InputProps, 'onChange'> & {
   options: any[];
   optionLabelKey?: string;
-  autocompleteConfig: Partial<AutocompleteProps<any, boolean, boolean, boolean>>;
+  autocompleteConfig?: Partial<AutocompleteProps<any, boolean, boolean, boolean>>;
   onChange?: AutoCompleteChange;
 };
 
