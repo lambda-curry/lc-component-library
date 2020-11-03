@@ -9,7 +9,7 @@ import { InputAdornment } from '@material-ui/core';
 
 type LabelPlacements = 'inset' | 'above';
 
-export type InputProps = OutlinedTextFieldProps & {
+export type InputProps = Omit<OutlinedTextFieldProps, 'variant'> & {
   name: string;
   prefix?: JSX.Element;
   suffix?: JSX.Element;
