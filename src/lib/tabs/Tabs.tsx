@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontFamily: 'lc-gilroy'
   },
   tab: {
-    borderBottom: '2px solid gray',
+    borderBottom: '2px solid #e2e2e2',
     color: 'black',
     flex: 1,
     fontFamily: 'inherit',
@@ -51,6 +51,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     }
   },
   tabPanel: {
+    fontFamily: 'inherit',
     padding: '16px'
   }
 }));
