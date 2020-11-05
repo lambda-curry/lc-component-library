@@ -5,6 +5,7 @@ import { Tabs as MuiTabs, Tab } from '@material-ui/core';
 
 interface TabPanelProps {
   children?: React.ReactNode;
+  className: any,
   index: any;
   value: any;
 }
@@ -13,8 +14,8 @@ const TabPanel: React.FC<TabPanelProps> = props => {
   const { children, value, index, ...other } = props;
 
   return (
-    <div role="tabpanel" hidden={value !== index} id={`tabpanel-${index}`} aria-labelledby={`tab-${index}`} {...other}>
-      {value === index && <>{children}</>}
+    <div role='tabpanel' hidden={value !== index} id={`tabpanel-${index}`} aria-labelledby={`tab-${index}`} {...other}>
+      {value === index && <>{children}</>}   
     </div>
   );
 };
@@ -42,7 +43,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   tab: {
     borderBottom: '2px solid #e2e2e2',
     color: 'black',
-    flex: 1,
     fontFamily: 'inherit',
     maxWidth: 'none',
     '&:focus': {
@@ -53,13 +53,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     }
   },
   tabPanel: {
-    fontFamily: 'inherit',
+    fontFamily: 'inherit', 
     padding: '16px'
   }
 }));
 
-export const Tabs: React.FC<{ ariaLabel?: string; tabs: { label: string; render: React.ReactNode }[] }> = ({
+export const Tabs: React.FC<{ ariaLabel?: string; tabs: { label: string; render: React.ReactNode }[]; variant?: 'scrollable' | 'standard' | 'fullWidth'; }> = ({
   tabs,
+  variant = 'fullWidth',
   ariaLabel
 }) => {
   const classes = useStyles();
@@ -67,12 +68,12 @@ export const Tabs: React.FC<{ ariaLabel?: string; tabs: { label: string; render:
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
-  };
+  }; 
 
   return (
-      <div className={classes.root}>
-      <AppBar className={classes.appBar} position="static">
-        <MuiTabs classes={{indicator: classes.indicator}} value={value} onChange={handleChange} aria-label={ariaLabel}>
+    <div className={classes.root}>
+      <AppBar className={classes.appBar} color='default' position='static'>
+        <MuiTabs variant={variant} aria-label={ariaLabel} classes={{indicator: classes.indicator}} onChange={handleChange} value={value}>
           {tabs.map((tab, index) => (
             <Tab className={classes.tab} label={tab.label} {...a11yProps(index)} />
           ))}
