@@ -43,7 +43,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     textTransform: 'none',
     borderBottom: '2px solid #e2e2e2',
     color: 'black',
-    fontFamily: 'inherit',
     maxWidth: 'none',
     '&:focus': {
       outline: 'none'
