@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     }
   },
   tabPanel: {
-    fontFamily: 'inherit', 
+    fontFamily: 'inherit',
     padding: '16px'
   }
 }));
