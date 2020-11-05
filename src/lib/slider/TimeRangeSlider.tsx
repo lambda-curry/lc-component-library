@@ -1,7 +1,8 @@
-import React, { ChangeEvent, FormEvent } from 'react';
+import React, { FormEvent } from 'react';
 import { Slider, SliderProps } from './Slider';
 import { DateTime, Interval } from 'luxon';
 import classNames from 'classnames';
+import { isNullOrUndefined } from '../util/js-helpers';
 
 export interface TimeRange {
   startTime: string; // 00:00 - 24:00
@@ -55,7 +56,7 @@ export const TimeRangeSlider: React.FC<TimeRangeSliderProps> = ({
   onBlur,
   ...sliderProps
 }) => {
-  const sliderValue = formikProps?.values[name] || value;
+  const sliderValue = isNullOrUndefined(formikProps?.values[name]) ? value : formikProps?.values[name];
 
   if (!sliderValue || !(sliderValue as TimeRange).startTime || !(sliderValue as TimeRange).endTime) {
     throw new Error(

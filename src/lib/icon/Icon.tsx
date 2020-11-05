@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { FC, SVGProps, useContext } from 'react';
 import classNames from 'classnames';
 import { RegisteredIconContext } from './IconRegistry';
 import './icon.scss';
@@ -103,14 +103,16 @@ export const defaultIcons = {
 
 export type DefaultIconNames = keyof typeof defaultIcons;
 
-export const Icon: React.FC<{
+export interface IconProps {
   className?: string;
   name: DefaultIconNames | string;
   viewBox?: string;
-}> = ({ className, name, viewBox = '0 0 24 24', ...props }) => {
+}
+
+export const Icon: FC<IconProps> = ({ className, name, viewBox = '0 0 24 24', ...props }) => {
   const registeredIcons = useContext(RegisteredIconContext);
 
-  const icons: { [x: string]: React.SFC<React.SVGProps<SVGSVGElement>> } = {
+  const icons: { [x: string]: FC<SVGProps<SVGSVGElement>> } = {
     ...defaultIcons,
     ...registeredIcons
   };
@@ -127,7 +129,7 @@ export const Icon: React.FC<{
 
   return (
     <span className={classNames('lc-icon', `lc-icon-${name}`, className)} {...props}>
-      <IconSvg viewBox={viewBox} />
+      <IconSvg viewBox={viewBox ? viewBox : undefined} />
     </span>
   );
 };

@@ -4,8 +4,6 @@ import AppBar from '@material-ui/core/AppBar';
 import { Tabs as MuiTabs, Tab } from '@material-ui/core';
 
 interface TabPanelProps {
-  children?: React.ReactNode;
-  className: any,
   index: any;
   value: any;
 }
@@ -14,7 +12,7 @@ const TabPanel: React.FC<TabPanelProps> = props => {
   const { children, value, index, ...other } = props;
 
   return (
-    <div role='tabpanel' hidden={value !== index} id={`tabpanel-${index}`} aria-labelledby={`tab-${index}`} {...other}>
+    <div role="tabpanel" hidden={value !== index} id={`tabpanel-${index}`} aria-labelledby={`tab-${index}`} {...other}>
       {value === index && <>{children}</>}
     </div>
   );
@@ -30,13 +28,13 @@ function a11yProps(index: any) {
 const useStyles = makeStyles((theme: Theme) => ({
   appBar: {
     backgroundColor: 'rgba(0,0,0,0)',
-    boxShadow: 'none'
+    boxShadow: 'none',
+    color: 'inherit'
   },
   indicator: {
     backgroundColor: 'var(--primary-default-color, #3182ce)'
   },
   root: {
-    borderRadius: '4px',
     flexGrow: 1,
     fontFamily: 'inherit'
   },
@@ -51,18 +49,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     '&.Mui-selected': {
       fontWeight: '700'
     }
-  },
-  tabPanel: {
-    fontFamily: 'inherit',
-    padding: '16px'
   }
 }));
 
-export const Tabs: React.FC<{ ariaLabel?: string; tabs: { label: string; render: React.ReactNode }[]; variant?: 'scrollable' | 'standard' | 'fullWidth'; }> = ({
-  tabs,
-  variant = 'fullWidth',
-  ariaLabel
-}) => {
+export const Tabs: React.FC<{
+  ariaLabel?: string;
+  tabs: { label: string; render: React.ReactNode }[];
+  variant?: 'scrollable' | 'standard' | 'fullWidth';
+}> = ({ tabs, variant = 'fullWidth', ariaLabel }) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -72,8 +66,14 @@ export const Tabs: React.FC<{ ariaLabel?: string; tabs: { label: string; render:
 
   return (
     <div className={classes.root}>
-      <AppBar className={classes.appBar} color='default' position='static'>
-        <MuiTabs variant={variant} aria-label={ariaLabel} classes={{indicator: classes.indicator}} onChange={handleChange} value={value}>
+      <AppBar className={classes.appBar} color="default" position="static">
+        <MuiTabs
+          variant={variant}
+          aria-label={ariaLabel}
+          classes={{ indicator: classes.indicator }}
+          onChange={handleChange}
+          value={value}
+        >
           {tabs.map((tab, index) => (
             <Tab className={classes.tab} label={tab.label} {...a11yProps(index)} />
           ))}
@@ -81,7 +81,7 @@ export const Tabs: React.FC<{ ariaLabel?: string; tabs: { label: string; render:
       </AppBar>
 
       {tabs.map((tab, index) => (
-        <TabPanel className={classes.tabPanel} value={value} index={index}>
+        <TabPanel value={value} index={index}>
           {tab.render}
         </TabPanel>
       ))}

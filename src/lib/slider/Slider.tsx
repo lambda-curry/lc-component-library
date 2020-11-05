@@ -9,6 +9,7 @@ import {
 import classNames from 'classnames';
 import { FormikProps } from 'formik';
 import './slider.scss';
+import { isNullOrUndefined } from '../util/js-helpers';
 
 export type SliderProps = {
   id?: string;
@@ -65,6 +66,8 @@ export const Slider: React.FC<SliderProps> = ({
     if (formikProps) formikProps.handleBlur(event);
   };
 
+  const defaultValue = isNullOrUndefined(formikProps?.values[name]) ? value : formikProps?.values[name];
+
   return (
     <div className={classNames('lc-slider', className)}>
       {label && <label htmlFor={id || name}>{label}</label>}
@@ -74,7 +77,7 @@ export const Slider: React.FC<SliderProps> = ({
         valueLabelDisplay={valueLabelDisplay}
         onChange={handleChange}
         onBlur={handleBlur}
-        value={formikProps?.values[name] || value}
+        defaultValue={defaultValue}
       />
     </div>
   );

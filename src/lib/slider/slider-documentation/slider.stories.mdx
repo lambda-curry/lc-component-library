@@ -34,14 +34,18 @@ import dedent from 'string-dedent';
     <div className="slider-story">
       <Form
         initialValues={{
-          sliderValue: [20, 27]
+          simpleSlider: 0,
+          rangeSlider: [20, 27]
         }}
         onSubmit={() => {}}
       >
         {formikProps => (
           <>
-            <p>Value: {JSON.stringify(formikProps.values.sliderValue)}</p>
-            <Slider name="sliderValue" min={0} max={100} label="Example Slider" formikProps={formikProps} />
+            <p>Value: {JSON.stringify(formikProps.values.simpleSlider)}</p>
+            <Slider name="simpleSlider" min={0} max={10} label="Example Simple Slider" formikProps={formikProps} />
+            <br />
+            <p>Value: {JSON.stringify(formikProps.values.rangeSlider)}</p>
+            <Slider name="rangeSlider" min={0} max={100} label="Example Range Slider" formikProps={formikProps} />
           </>
         )}
       </Form>

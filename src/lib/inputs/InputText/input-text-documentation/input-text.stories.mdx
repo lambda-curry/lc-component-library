@@ -27,6 +27,15 @@ import './input-text-story.scss';
                   <InputText name="sampleInput1" label="Text Input" formikProps={formikProps} />
                   <InputText name="sampleInput2" label="Text Input" value="Example" formikProps={formikProps} />
                   <InputText name="sampleInput3" label="Password Input" type="password" formikProps={formikProps} />
+                  <div className="input-text-story-dark">
+                    <InputText
+                      name="sampleInput4"
+                      label="Label Above"
+                      labelPlacement="above"
+                      placeholder="Enter text..."
+                      formikProps={formikProps}
+                    />
+                  </div>
                 </>
               )}
             </Form>`
@@ -39,7 +48,8 @@ import './input-text-story.scss';
         initialValues={{
           sampleInput1: '',
           sampleInput2: '',
-          sampleInput3: ''
+          sampleInput3: '',
+          sampleInput4: ''
         }}
         onSubmit={() => {}}
       >
@@ -48,6 +58,15 @@ import './input-text-story.scss';
             <InputText name="sampleInput1" label="Text Input" formikProps={formikProps} />
             <InputText name="sampleInput2" label="Text Input" value="Example" formikProps={formikProps} />
             <InputText name="sampleInput3" label="Password Input" type="password" formikProps={formikProps} />
+            <div className="input-text-story-dark">
+              <InputText
+                name="sampleInput4"
+                label="Label Above"
+                labelPlacement="above"
+                placeholder="Enter text..."
+                formikProps={formikProps}
+              />
+            </div>
           </>
         )}
       </Form>
