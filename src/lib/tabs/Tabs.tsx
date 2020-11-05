@@ -36,9 +36,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: 'var(--primary-default-color, #3182ce)'
   },
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    fontFamily: 'inherit'
   },
   tab: {
+    fontFamily: 'inherit',
+    textTransform: 'none',
     borderBottom: '2px solid #e2e2e2',
     flex: 1,
     maxWidth: 'none',
