@@ -1,7 +1,7 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 const defaultColors = {
-  primary: { text: 'white', default: '#3182ce', dark: '#2c5282' },
+  primary: { text: 'white', light: '#5e9bd5', default: '#3182ce', dark: '#2c5282' },
   accent: { text: 'white', default: '#ed64a6', dark: '#b83280' },
   success: { text: 'white', default: '#48bb78', dark: '#2f855a' },
   warn: { text: 'white', default: '#ed8936', dark: '#dd6b20' },
@@ -9,14 +9,13 @@ const defaultColors = {
   active: { default: '#5bd067' }
 };
 
-const themeColorTypes = ['text', 'default', 'dark'];
 const buildThemeColorTypes = themeColor =>
-  themeColorTypes.reduce((acc, curr) => {
+  Object.keys(defaultColors[themeColor]).reduce((acc, curr) => {
     acc[curr] = `var(--${themeColor}-${curr}-color, ${defaultColors[themeColor][curr]})`;
     return acc;
   }, {});
 
-const themeColors = ['primary', 'accent', 'success', 'warn', 'danger'].reduce((acc, curr) => {
+const themeColors = Object.keys(defaultColors).reduce((acc, curr) => {
   acc[curr] = buildThemeColorTypes(curr);
   return acc;
 }, {});

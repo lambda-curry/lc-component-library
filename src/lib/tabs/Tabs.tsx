@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontFamily: 'inherit'
   },
   tab: {
-    borderBottom: '2px solid #e2e2e2',
+    borderBottom: '2px solid var(--primary-light-color, #5e9bd5)',
     color: 'black',
     fontFamily: 'inherit',
     maxWidth: 'none',
