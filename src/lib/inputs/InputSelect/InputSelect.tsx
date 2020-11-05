@@ -7,6 +7,7 @@ import { InputProps } from '../InputBase';
 import { isEqual, get } from 'lodash';
 
 import './input-select.scss';
+import { isNullOrUndefined } from '../../util/js-helpers';
 
 export type AutoCompleteChange = (
   event: React.ChangeEvent<{}>,
@@ -18,7 +19,7 @@ export type AutoCompleteChange = (
 export type InputSelectProps = Omit<InputProps, 'onChange'> & {
   options: any[];
   optionLabelKey?: string;
-  autocompleteConfig: Partial<AutocompleteProps<any, boolean, boolean, boolean>>;
+  autocompleteConfig?: Partial<AutocompleteProps<any, boolean, boolean, boolean>>;
   onChange?: AutoCompleteChange;
 };
 
@@ -31,7 +32,10 @@ export const InputSelect: React.FC<InputSelectProps> = ({
   onChange,
   ...props
 }) => {
-  const [inputValue, setInputValue] = useState(props.formikProps?.values[name] || props.value || null);
+  const initialValue = isNullOrUndefined(props.formikProps?.values[name])
+    ? props.value || null
+    : props.formikProps?.values[name];
+  const [inputValue, setInputValue] = useState(initialValue);
 
   // Note: We want to remove the change event from the rendered component so it can be handled by the autocomplete
   if (props.formikProps) {

@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FocusEvent } from 'react';
-import TextField, { OutlinedTextFieldProps, TextFieldProps } from '@material-ui/core/TextField';
+import TextField, { OutlinedTextFieldProps } from '@material-ui/core/TextField';
 import { FormikProps } from 'formik';
 import classNames from 'classnames';
 import { get as _get } from 'lodash';
@@ -9,7 +9,7 @@ import { InputAdornment } from '@material-ui/core';
 
 type LabelPlacements = 'inset' | 'above';
 
-export type InputProps = OutlinedTextFieldProps & {
+export type InputProps = Omit<OutlinedTextFieldProps, 'variant'> & {
   name: string;
   prefix?: JSX.Element;
   suffix?: JSX.Element;
@@ -18,7 +18,7 @@ export type InputProps = OutlinedTextFieldProps & {
   variant?: 'outlined'; // Don't remove any typing because this breaks the build. - Jake
 };
 
-export const InputBase = ({
+export const InputBase: React.FC<InputProps> = ({
   name,
   id,
   className,
@@ -29,7 +29,7 @@ export const InputBase = ({
   labelPlacement = 'inset',
   variant = 'outlined',
   ...props
-}: InputProps) => {
+}) => {
   const fieldError =
     formikProps?.errors && name && _get(formikProps.touched, name) ? _get(formikProps.errors, name) : '';
 
