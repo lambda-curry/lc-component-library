@@ -36,5 +36,44 @@ import dedent from 'string-dedent';
       />
     </div>
   </Story>
+  <Story
+    name="Scrollable Tabs"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+            <Tabs
+              tabs={[
+                { label: 'Test 1', render: '1' },
+                { label: 'Test 2', render: '2' },
+                { label: 'Test 3', render: '3' },
+                { label: 'Test 4', render: '4' },
+                { label: 'Test 5', render: '5' },
+                { label: 'Test 6', render: '6' },
+                { label: 'Test 7', render: '7' },
+                { label: 'Test 8', render: '8' }
+              ]}
+              variant="scrollable"
+            />`
+        }
+      }
+    }}
+  >
+    <div className="tabs-story">
+      <Tabs
+        tabs={[
+          { label: 'Test 1', render: '1' },
+          { label: 'Test 2', render: '2' },
+          { label: 'Test 3', render: '3' },
+          { label: 'Test 4', render: '4' },
+          { label: 'Test 5', render: '5' },
+          { label: 'Test 6', render: '6' },
+          { label: 'Test 7', render: '7' },
+          { label: 'Test 8', render: '8' }
+        ]}
+        variant="scrollable"
+      />
+    </div>
+  </Story>
   <ArgsTable of={Tabs} />
 </Canvas>
