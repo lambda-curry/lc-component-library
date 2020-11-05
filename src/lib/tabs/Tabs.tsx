@@ -29,21 +29,18 @@ function a11yProps(index: any) {
 const useStyles = makeStyles((theme: Theme) => ({
   appBar: {
     backgroundColor: 'rgba(0,0,0,0)',
-    boxShadow: 'none'
+    boxShadow: 'none',
+    color: 'inherit'
   },
   indicator: {
     backgroundColor: 'var(--primary-default-color, #3182ce)'
   },
   root: {
-    borderRadius: '4px',
-    flexGrow: 1,
-    fontFamily: 'inherit'
+    flexGrow: 1
   },
   tab: {
     borderBottom: '2px solid #e2e2e2',
-    color: 'black',
     flex: 1,
-    fontFamily: 'inherit',
     maxWidth: 'none',
     '&:focus': {
       outline: 'none'
@@ -51,10 +48,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     '&.Mui-selected': {
       fontWeight: '700'
     }
-  },
-  tabPanel: {
-    fontFamily: 'inherit',
-    padding: '16px'
   }
 }));
 
@@ -70,9 +63,14 @@ export const Tabs: React.FC<{ ariaLabel?: string; tabs: { label: string; render:
   };
 
   return (
-      <div className={classes.root}>
+    <div className={classes.root}>
       <AppBar className={classes.appBar} position="static">
-        <MuiTabs classes={{indicator: classes.indicator}} value={value} onChange={handleChange} aria-label={ariaLabel}>
+        <MuiTabs
+          classes={{ indicator: classes.indicator }}
+          value={value}
+          onChange={handleChange}
+          aria-label={ariaLabel}
+        >
           {tabs.map((tab, index) => (
             <Tab className={classes.tab} label={tab.label} {...a11yProps(index)} />
           ))}
