@@ -31,11 +31,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: 'rgba(0,0,0,0)',
     boxShadow: 'none'
   },
+  indicator: {
+    backgroundColor: 'var(--primary-default-color, #3182ce)'
+  },
   root: {
     borderRadius: '4px',
-    boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)',
     flexGrow: 1,
-    fontFamily: 'lc-gilroy'
+    fontFamily: 'inherit'
   },
   tab: {
     borderBottom: '2px solid #e2e2e2',
@@ -68,9 +70,9 @@ export const Tabs: React.FC<{ ariaLabel?: string; tabs: { label: string; render:
   };
 
   return (
-    <div className={classes.root}>
+      <div className={classes.root}>
       <AppBar className={classes.appBar} position="static">
-        <MuiTabs value={value} onChange={handleChange} aria-label={ariaLabel}>
+        <MuiTabs classes={{indicator: classes.indicator}} value={value} onChange={handleChange} aria-label={ariaLabel}>
           {tabs.map((tab, index) => (
             <Tab className={classes.tab} label={tab.label} {...a11yProps(index)} />
           ))}
