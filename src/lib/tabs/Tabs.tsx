@@ -4,7 +4,6 @@ import AppBar from '@material-ui/core/AppBar';
 import { Tabs as MuiTabs, Tab } from '@material-ui/core';
 
 interface TabPanelProps {
-  children?: React.ReactNode;
   index: any;
   value: any;
 }
@@ -36,11 +35,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: 'var(--primary-default-color, #3182ce)'
   },
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    fontFamily: 'inherit'
   },
   tab: {
+    fontFamily: 'inherit',
+    textTransform: 'none',
     borderBottom: '2px solid #e2e2e2',
-    flex: 1,
+    color: 'black',
     maxWidth: 'none',
     '&:focus': {
       outline: 'none'
@@ -51,10 +53,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   }
 }));
 
-export const Tabs: React.FC<{ ariaLabel?: string; tabs: { label: string; render: React.ReactNode }[] }> = ({
-  tabs,
-  ariaLabel
-}) => {
+export const Tabs: React.FC<{
+  ariaLabel?: string;
+  tabs: { label: string; render: React.ReactNode }[];
+  variant?: 'scrollable' | 'standard' | 'fullWidth';
+}> = ({ tabs, variant = 'fullWidth', ariaLabel }) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -64,12 +67,13 @@ export const Tabs: React.FC<{ ariaLabel?: string; tabs: { label: string; render:
 
   return (
     <div className={classes.root}>
-      <AppBar className={classes.appBar} position="static">
+      <AppBar className={classes.appBar} color="default" position="static">
         <MuiTabs
-          classes={{ indicator: classes.indicator }}
-          value={value}
-          onChange={handleChange}
+          variant={variant}
           aria-label={ariaLabel}
+          classes={{ indicator: classes.indicator }}
+          onChange={handleChange}
+          value={value}
         >
           {tabs.map((tab, index) => (
             <Tab className={classes.tab} label={tab.label} {...a11yProps(index)} />
@@ -78,7 +82,7 @@ export const Tabs: React.FC<{ ariaLabel?: string; tabs: { label: string; render:
       </AppBar>
 
       {tabs.map((tab, index) => (
-        <TabPanel className={classes.tabPanel} value={value} index={index}>
+        <TabPanel value={value} index={index}>
           {tab.render}
         </TabPanel>
       ))}
