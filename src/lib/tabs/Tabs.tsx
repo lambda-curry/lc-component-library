@@ -68,7 +68,7 @@ export const Tabs: React.FC<{ ariaLabel?: string; tabs: { label: string; render:
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
-  }; 
+  };
 
   return (
     <div className={classes.root}>
