@@ -35,8 +35,11 @@ export const InputSelect: React.FC<InputSelectProps> = ({
   onChange,
   ...props
 }) => {
-  const getOptionSelected = (option: any, value: any) =>
-    optionValueKey ? option[optionValueKey] === value : isEqual(option, value);
+  const getOptionSelected = (option: any, value: any) => {
+    // Note: Sometimes we pass in the value as true value and sometimes value is the selected option.
+    // if (optionValueKey) console.log('>>>', optionValueKey, option, value, option[optionValueKey] === value);
+    return optionValueKey ? option[optionValueKey] === value || isEqual(option, value) : isEqual(option, value);
+  };
 
   const initialValue = isNullOrUndefined(props.formikProps?.values[name])
     ? props.value
@@ -59,10 +62,10 @@ export const InputSelect: React.FC<InputSelectProps> = ({
     reason: AutocompleteChangeReason,
     details?: AutocompleteChangeDetails<any> | undefined
   ) => void = (event, value, reason, details) => {
-    const fieldValue = optionValueKey ? value[optionValueKey] : value;
+    const fieldValue = optionValueKey && value ? value[optionValueKey] : value;
     setInputTextValue(value);
-    if (props.formikProps) props.formikProps.setFieldValue(name, fieldValue);
-    if (typeof onChange === 'function') onChange(event, fieldValue, reason, details);
+    if (props.formikProps && fieldValue) props.formikProps.setFieldValue(name, fieldValue);
+    if (typeof onChange === 'function' && fieldValue) onChange(event, fieldValue, reason, details);
   };
 
   const autocompleteProps: AutocompleteProps<any, boolean, boolean, boolean> = {
