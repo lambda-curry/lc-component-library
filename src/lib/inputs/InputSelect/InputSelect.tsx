@@ -17,7 +17,7 @@ export type AutoCompleteChange = (
 ) => void;
 
 export type InputSelectProps = Omit<InputProps, 'onChange'> & {
-  value: { [x: string]: any };
+  value?: { [x: string]: any };
   options: any[];
   optionLabelKey?: string;
   optionValueKey?: string;
@@ -74,7 +74,7 @@ export const InputSelect: React.FC<InputSelectProps> = ({
         ? inputProps => <InputText name={name} {...inputProps} {...props} />
         : inputProps => (
             <>
-              <input name={name} type="hidden" value={props.value[optionValueKey]} />
+              <input name={name} type="hidden" value={props.value?[optionValueKey]} />
               <InputText name={`_${name}`} {...inputProps} {...props} />
             </>
           ),
