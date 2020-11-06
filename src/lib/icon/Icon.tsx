@@ -6,6 +6,7 @@ import './icon.scss';
 import { ReactComponent as addUser } from '../assets/icons/addUser.svg';
 import { ReactComponent as analytics } from '../assets/icons/analytics.svg';
 import { ReactComponent as apps } from '../assets/icons/apps.svg';
+import { ReactComponent as archive } from '../assets/icons/archive.svg';
 import { ReactComponent as arrowLeft } from '../assets/icons/arrowLeft.svg';
 import { ReactComponent as bell } from '../assets/icons/bell.svg';
 import { ReactComponent as chat } from '../assets/icons/chat.svg';
@@ -55,6 +56,7 @@ export const defaultIcons = {
   addUser,
   analytics,
   apps,
+  archive,
   arrowLeft,
   bell,
   chat,
