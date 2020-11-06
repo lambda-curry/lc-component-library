@@ -18,6 +18,7 @@ import { ReactComponent as clockFilled } from '../assets/icons/clockFilled.svg';
 import { ReactComponent as close } from '../assets/icons/close.svg';
 import { ReactComponent as company } from '../assets/icons/company.svg';
 import { ReactComponent as concessionManager } from '../assets/icons/concessionManager.svg';
+import { ReactComponent as confirmationEmail } from '../assets/icons/confirmationEmail.svg';
 import { ReactComponent as copy } from '../assets/icons/copy.svg';
 import { ReactComponent as deal } from '../assets/icons/deal.svg';
 import { ReactComponent as download } from '../assets/icons/download.svg';
@@ -68,6 +69,7 @@ export const defaultIcons = {
   close,
   company,
   concessionManager,
+  confirmationEmail,
   copy,
   deal,
   download,
