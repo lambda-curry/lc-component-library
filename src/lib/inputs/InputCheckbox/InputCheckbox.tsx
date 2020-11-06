@@ -6,28 +6,28 @@ import {
   FormControlLabelProps
 } from '@material-ui/core';
 import classNames from 'classnames';
-import { FieldProps } from 'formik';
+import { FormikProps } from 'formik';
 import { Icon } from '../..';
 
 import './input-checkbox.scss';
 
-export type InputCheckboxProps = {
+export type InputCheckboxProps<T>  = {
   label: string;
   labelPlacement?: FormControlLabelProps['labelPlacement'];
-} & CheckboxProps &
-  FieldProps;
+  formikProps?: FormikProps<T>;
+} & CheckboxProps;
 
 export const InputCheckbox = ({
-  field,
-  form,
   label,
   onChange,
   className,
   labelPlacement,
   color = 'primary',
+  formikProps,
   ...props
-}: InputCheckboxProps) => {
-  const [checked, setChecked] = useState(!!field?.checked || !!props.checked);
+}: InputCheckboxProps<any>) => {
+  const fieldProps = formikProps?.getFieldProps(name);
+  const [checked, setChecked] = useState(!!fieldProps?.value || !!props.checked);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
@@ -44,12 +44,11 @@ export const InputCheckbox = ({
       labelPlacement={labelPlacement}
       control={
         <MuiCheckbox
-          {...field}
           {...props}
           checked={checked}
           onChange={handleChange}
-          icon={<Icon name="checkbox" />}
-          checkedIcon={<Icon name="checkboxFilled" />}
+          icon={<Icon name="checkbox" className="input-checkbox-icon" />}
+          checkedIcon={<Icon name="checkboxFilled" className="input-checkbox-icon-filled" />}
           color={color}
         />
       }
