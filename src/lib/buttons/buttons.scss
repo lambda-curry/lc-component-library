@@ -72,7 +72,7 @@ $button-text-colors: (
   // can run long and have ellipses (...)
   line-height: 1;
 
-  min-height: $default-button-height;
+  height: $default-button-height;
   color: $default-button-text-color;
   background-color: $default-button-bg-color;
   font-size: $default-button-font-size;
@@ -187,7 +187,7 @@ $button-text-colors: (
     }
   }
 
-  &.leftIcon {
+  &:not(.lc-button-unstyled).leftIcon {
     padding-left: 42px;
 
     .lc-icon:first-child {
@@ -196,7 +196,7 @@ $button-text-colors: (
     }
   }
 
-  &.rightIcon {
+  &:not(.lc-button-unstyled).rightIcon {
     padding-right: 42px;
 
     .lc-icon:last-child {
