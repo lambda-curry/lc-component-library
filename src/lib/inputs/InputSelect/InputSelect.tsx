@@ -74,7 +74,7 @@ export const InputSelect: React.FC<InputSelectProps> = ({
         ? inputProps => <InputText name={name} {...inputProps} {...props} />
         : inputProps => (
             <>
-              <input name={name} type="hidden" value={props.value?[optionValueKey]} />
+              <input name={name} type="hidden" value={props.value ? props.value[optionValueKey] : null} />
               <InputText name={`_${name}`} {...inputProps} {...props} />
             </>
           ),
