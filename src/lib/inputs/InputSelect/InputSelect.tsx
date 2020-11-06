@@ -79,7 +79,8 @@ export const InputSelect: React.FC<InputSelectProps> = ({
             </>
           ),
     PaperComponent: props => <Paper className="input-select-paper" {...props} />,
-    getOptionSelected: (option: any, value: any) => isEqual(option, value),
+    getOptionSelected: (option: any, value: any) =>
+      optionValueKey ? option[optionValueKey] === value : isEqual(option, value),
     getOptionLabel: (option: { [key: string]: any }) => get(option, optionLabelKey) || '',
     onChange: handleChange,
     ...autocompleteConfig
