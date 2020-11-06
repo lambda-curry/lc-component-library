@@ -16,16 +16,43 @@ import './input-select-story.scss';
           code: dedent`
           <Form
             initialValues={{
-              select: undefined
+              select: undefined,
+              initialSelect: { label: 'Option 1', value: 1 },
+              selectValueOnly: 2
             }}
             onSubmit={() => {}}
           >
             {formikProps => (
               <>
-                <p className="lc-mb-8">Value: {\`\${formikProps.values.select?.value}\`}</p>
+                <p className="lc-mb-8">Value: {JSON.stringify(formikProps.values.select)}</p>
                 <InputSelect
                   label="Select Option"
                   name="select"
+                  options={[
+                    { label: 'Option 1', value: 1 },
+                    { label: 'Option 2', value: 2 },
+                    { label: 'Option 3', value: 3 }
+                  ]}
+                  formikProps={formikProps}
+                />
+                <p className="lc-mb-8">Value with initial form value: {JSON.stringify(formikProps.values.initialSelect)}</p>
+                <InputSelect
+                  label="Select Option"
+                  name="initialSelect"
+                  options={[
+                    { label: 'Option 1', value: 1 },
+                    { label: 'Option 2', value: 2 },
+                    { label: 'Option 3', value: 3 }
+                  ]}
+                  formikProps={formikProps}
+                />
+                <p className="lc-my-8">
+                  Value when <code>optionValueKey</code> is passed: {\`\${formikProps.values.selectValueOnly}\`}
+                </p>
+                <InputSelect
+                  label="Select Option"
+                  name="selectValueOnly"
+                  optionValueKey="value"
                   options={[
                     { label: 'Option 1', value: 1 },
                     { label: 'Option 2', value: 2 },
@@ -43,16 +70,43 @@ import './input-select-story.scss';
     <div className="input-select-story">
       <Form
         initialValues={{
-          select: undefined
+          select: undefined,
+          initialSelect: { label: 'Option 1', value: 1 },
+          selectValueOnly: 2
         }}
         onSubmit={() => {}}
       >
         {formikProps => (
           <>
-            <p className="lc-mb-8">Value: {`${formikProps.values.select?.value}`}</p>
+            <p className="lc-mb-8">Value: {JSON.stringify(formikProps.values.select)}</p>
             <InputSelect
               label="Select Option"
               name="select"
+              options={[
+                { label: 'Option 1', value: 1 },
+                { label: 'Option 2', value: 2 },
+                { label: 'Option 3', value: 3 }
+              ]}
+              formikProps={formikProps}
+            />
+            <p className="lc-mb-8">Value with initial form value: {JSON.stringify(formikProps.values.initialSelect)}</p>
+            <InputSelect
+              label="Select Option"
+              name="initialSelect"
+              options={[
+                { label: 'Option 1', value: 1 },
+                { label: 'Option 2', value: 2 },
+                { label: 'Option 3', value: 3 }
+              ]}
+              formikProps={formikProps}
+            />
+            <p className="lc-my-8">
+              Value when <code>optionValueKey</code> is passed: {`${formikProps.values.selectValueOnly}`}
+            </p>
+            <InputSelect
+              label="Select Option"
+              name="selectValueOnly"
+              optionValueKey="value"
               options={[
                 { label: 'Option 1', value: 1 },
                 { label: 'Option 2', value: 2 },
