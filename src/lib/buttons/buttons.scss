@@ -67,6 +67,7 @@ $button-text-colors: (
   cursor: pointer;
   text-align: center;
   position: relative;
+  vertical-align: middle;
 
   // Note: Currently setting to 1, but will need to be updated to a new strategy if we ever need buttons where the text
   // can run long and have ellipses (...)
@@ -188,20 +189,16 @@ $button-text-colors: (
   }
 
   &:not(.lc-button-unstyled).leftIcon {
-    padding-left: 42px;
-
-    .lc-icon:first-child {
-      position: absolute;
-      left: 12px;
+    .lc-icon {
+      margin-left: -8px;
+      margin-right: 8px;
     }
   }
 
   &:not(.lc-button-unstyled).rightIcon {
-    padding-right: 42px;
-
     .lc-icon:last-child {
-      position: absolute;
-      right: 12px;
+      margin-left: 8px;
+      margin-right: -8px;
     }
   }
 }
