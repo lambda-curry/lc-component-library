@@ -38,7 +38,8 @@ export const InputBase: React.FC<InputProps> = ({
   const inputProps: any = {
     startAdornment: prefix ? <InputAdornment position="start">{prefix}</InputAdornment> : false,
     endAdornment: suffix ? <InputAdornment position="end">{suffix}</InputAdornment> : false,
-    ...props.inputProps
+    ...props.inputProps,
+    ...props.InputProps // Note: passing this in here allows InputSelect to work correctly
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -66,7 +67,7 @@ export const InputBase: React.FC<InputProps> = ({
         {...props}
         InputProps={inputProps}
         error={!!fieldError}
-        helperText={fieldError || props.helperText}
+        helperText={fieldError}
         className={classNames(className, { 'lc-input-label-above': labelPlacement === 'above' }, 'lc-input')}
         value={fieldValue}
         onChange={handleChange}
