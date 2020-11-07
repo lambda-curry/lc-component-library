@@ -36,10 +36,14 @@
     }
   }
 
-  .MuiOutlinedInput-input {
+  .lc-input .MuiOutlinedInput-input {
     padding: 16px 14px;
     height: 48px;
     box-sizing: border-box;
+
+    .input-select & input {
+      height: 20px;
+    }
   }
 
   .MuiInputAdornment-positionEnd,
@@ -66,4 +70,9 @@
   .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
     border-color: theme('colors.primary.default');
   }
+}
+
+// Fixes height of input select
+.input-select .lc-input .MuiOutlinedInput-root input.MuiAutocomplete-input {
+  height: 22px;
 }
