@@ -96,8 +96,6 @@ export function Form<T>({ className, children, withoutFormElement, unsavedChange
     }, 500);
   };
 
-  console.log('>>> rendering');
-
   return (
     <>
       <Formik {...rest}>
