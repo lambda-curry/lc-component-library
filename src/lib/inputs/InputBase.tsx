@@ -67,7 +67,7 @@ export const InputBase: React.FC<InputProps> = ({
         {...props}
         InputProps={inputProps}
         error={!!fieldError}
-        helperText={fieldError}
+        helperText={fieldError || props.helperText}
         className={classNames(className, { 'lc-input-label-above': labelPlacement === 'above' }, 'lc-input')}
         value={fieldValue}
         onChange={handleChange}
