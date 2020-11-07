@@ -74,5 +74,6 @@
 
 // Fixes height of input select
 .input-select .lc-input .MuiOutlinedInput-root input.MuiAutocomplete-input {
-  height: 22px;
+  box-sizing: content-box;
+  height: 16px;
 }
