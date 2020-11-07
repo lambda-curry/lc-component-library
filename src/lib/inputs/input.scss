@@ -4,6 +4,8 @@
     margin-bottom: 24px;
 
     input {
+      box-sizing: content-box;
+      height: 25px;
       border-radius: 4px;
       zoom: 1;
     }
@@ -40,15 +42,17 @@
     padding: 16px 14px;
     height: 48px;
     box-sizing: border-box;
-
-    .input-select & input {
-      height: 20px;
-    }
   }
 
   .MuiInputAdornment-positionEnd,
   .MuiInputAdornment-positionStart {
     color: var(--gray);
+  }
+
+  .MuiFormHelperText-root {
+    font-size: 0.75rem;
+    line-height: 1.25;
+    font-family: inherit;
   }
 }
 
