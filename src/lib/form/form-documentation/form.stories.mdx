@@ -1,6 +1,7 @@
+import * as Yup from 'yup';
 import { useState } from 'react';
 import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs/blocks';
-import { Form, InputText, ButtonOutlinePrimary } from '../..';
+import { Form, InputText, ButtonOutlinePrimary, ButtonPrimary } from '../..';
 import dedent from 'string-dedent';
 
 <Meta title="Form" component={Form} />
@@ -31,22 +32,36 @@ import dedent from 'string-dedent';
       }
     }}
   >
-    <div className="input-form-story">
-      <ButtonOutlinePrimary className="lc-mb-16">try clicking me when the input has a value</ButtonOutlinePrimary>
-      <Form
-        initialValues={{
-          input: ''
-        }}
-        onSubmit={() => {}}
-        unsavedChangesConfig={{ containerQuerySelectorAll: '.lc-form', modalProps: { ariaHideApp: false } }}
-      >
-        {formikProps => (
-          <>
-            <InputText label="Text Input" name="input" formikProps={formikProps} />
-          </>
-        )}
-      </Form>
-    </div>
+    {() => {
+      const [values, setValues] = useState({ input: '' });
+      return (
+        <div className="input-form-story">
+          <ButtonOutlinePrimary className="lc-mb-16">
+            try clicking me when the input has an unsaved value
+          </ButtonOutlinePrimary>
+          <Form
+            enableReinitialize={true}
+            initialValues={values}
+            onSubmit={setValues}
+            unsavedChangesConfig={{ containerQuerySelectorAll: '.lc-form', modalProps: { ariaHideApp: false } }}
+            validationSchema={Yup.object().shape({
+              input: Yup.string().required(`Please enter an input value.`)
+            })}
+          >
+            {formikProps => (
+              <>
+                <InputText autoComplete="off" label="Text Input" name="input" formikProps={formikProps} />
+                {formikProps.dirty ? (
+                  <ButtonPrimary type="submit">Save</ButtonPrimary>
+                ) : (
+                  <ButtonPrimary>Saved</ButtonPrimary>
+                )}
+              </>
+            )}
+          </Form>
+        </div>
+      );
+    }}
   </Story>
   <ArgsTable of={Form} />
 </Canvas>

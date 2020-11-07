@@ -33,7 +33,7 @@ export const InputBase: React.FC<InputProps> = ({
   const fieldError =
     formikProps?.errors && name && _get(formikProps.touched, name) ? _get(formikProps.errors, name) : '';
 
-  const fieldValue = _get(formikProps?.values, name);
+  const fieldValue = formikProps ? _get(formikProps?.values, name) : props.value;
 
   const inputProps = {
     startAdornment: prefix ? <InputAdornment position="start">{prefix}</InputAdornment> : false,
@@ -62,12 +62,12 @@ export const InputBase: React.FC<InputProps> = ({
         id={id || name}
         InputProps={inputProps}
         label={labelPlacement === 'inset' ? label : false}
+        size="small"
         {...props}
         error={!!fieldError}
         helperText={fieldError}
-        size="small"
         className={classNames(className, { 'lc-input-label-above': labelPlacement === 'above' }, 'lc-input')}
-        value={fieldValue || props.value}
+        value={fieldValue}
         onChange={handleChange}
         onBlur={handleBlur}
         variant={variant}

@@ -1,5 +1,3 @@
-// @import '../../../css/colors';
-
 .MuiFormControl-root {
   &.lc-input {
     display: flex;
@@ -53,4 +51,19 @@
 .lc-input-label {
   display: block;
   margin-bottom: 8px;
+}
+
+// Fixes
+
+.lc-input {
+  // Fix for hover style outline
+  .MuiOutlinedInput-notchedOutline {
+    top: -6px;
+  }
+  .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: theme('colors.primary.default');
+  }
+  .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: theme('colors.primary.default');
+  }
 }
