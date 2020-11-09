@@ -5,7 +5,9 @@
 
     input {
       box-sizing: content-box;
-      height: 16px;
+      height: 28px;
+      padding-top: 10px;
+      padding-bottom: 10px;
       border-radius: 4px;
       zoom: 1;
     }
@@ -49,9 +51,10 @@
   }
 
   .MuiFormHelperText-root {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     line-height: 1.25;
     font-family: inherit;
+    margin-top: 8px;
   }
 }
 
