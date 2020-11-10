@@ -49,7 +49,8 @@ import './input-text-story.scss';
           sampleInput1: '',
           sampleInput2: '',
           sampleInput3: '',
-          sampleInput4: ''
+          sampleInput4: '',
+          sampleInput5: ''
         }}
         onSubmit={() => {}}
       >
@@ -67,6 +68,12 @@ import './input-text-story.scss';
                 formikProps={formikProps}
               />
             </div>
+            <InputText
+              name="sampleInput5"
+              label="Text Input"
+              helperText="Example helper text can be placed below the input"
+              formikProps={formikProps}
+            />
           </>
         )}
       </Form>

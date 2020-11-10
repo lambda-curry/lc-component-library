@@ -55,7 +55,7 @@ const FormContent: React.FC<{
 export function Form<T>({ className, children, withoutFormElement, unsavedChangesConfig = {}, ...rest }: FormProps<T>) {
   // TODO: update .navbar-back to utilize a button, avoid actions on clicks for things that are not <a> or <button>
   unsavedChangesConfig = {
-    targetQuerySelector: 'a, button, .navbar-back',
+    targetQuerySelector: 'a, button, .navbar-back, .snackbar, [role="dialog"]',
     ...unsavedChangesConfig
   };
 
