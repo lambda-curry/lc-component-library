@@ -15,8 +15,10 @@ export type InputSwitchProps<T> = {
   labelPlacement?: 'end' | 'start';
   formikProps?: FormikProps<T>;
   className?: string;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
   onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
+  onMouseUp?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void
+  onMouseDown?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void
 };
 
 export const InputSwitch = ({
@@ -28,8 +30,10 @@ export const InputSwitch = ({
   labelPlacement = 'end',
   formikProps,
   className,
-  onChange,
   onClick,
+  onChange,
+  onMouseUp,
+  onMouseDown,
   ...props
 }: InputSwitchProps<any>) => {
   const fieldProps = formikProps?.getFieldProps(name);
@@ -80,6 +84,8 @@ export const InputSwitch = ({
         disabled={disabled}
         onChange={handleChange}
         onClick={onClick}
+        onMouseDown={onMouseDown}
+        onMouseUp={onMouseUp}
       />
       <span className="input-switch__label">{label}</span>
     </label>
