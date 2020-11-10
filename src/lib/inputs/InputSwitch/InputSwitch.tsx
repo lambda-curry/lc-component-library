@@ -16,6 +16,7 @@ export type InputSwitchProps<T> = {
   formikProps?: FormikProps<T>;
   className?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
+  onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void
 };
 
 export const InputSwitch = ({
@@ -28,6 +29,7 @@ export const InputSwitch = ({
   formikProps,
   className,
   onChange,
+  onClick,
   ...props
 }: InputSwitchProps<any>) => {
   const fieldProps = formikProps?.getFieldProps(name);
@@ -77,6 +79,7 @@ export const InputSwitch = ({
         checked={checked}
         disabled={disabled}
         onChange={handleChange}
+        onClick={onClick}
       />
       <span className="input-switch__label">{label}</span>
     </label>
