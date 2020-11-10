@@ -18,7 +18,8 @@ export type InputSwitchProps<T> = {
   onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void
   onChange?: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
   onMouseUp?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void
-  onMouseDown?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void
+  onMouseDown?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void,
+  disableOnChange?: boolean;
 };
 
 export const InputSwitch = ({
@@ -34,6 +35,7 @@ export const InputSwitch = ({
   onChange,
   onMouseUp,
   onMouseDown,
+  disableOnChange,
   ...props
 }: InputSwitchProps<any>) => {
   const fieldProps = formikProps?.getFieldProps(name);
@@ -51,6 +53,10 @@ export const InputSwitch = ({
   }, [checked, labelOn, labelOff]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (disableOnChange) {
+      return false;
+    }
+
     setChecked(event.target.checked);
 
     if (onChange) {
