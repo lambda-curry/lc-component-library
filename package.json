@@ -28,7 +28,7 @@
     "@material-ui/lab": "^4.0.0-alpha.56",
     "@material-ui/pickers": "4.0.0-alpha.12",
     "classnames": "^2.2.6",
-    "formik": "2.2.4",
+    "formik": "2.2.1",
     "framer-motion": "^2.9.4",
     "lodash": "^4.17.20",
     "luxon": "^1.25.0",
