@@ -52,6 +52,7 @@ import { ReactComponent as user } from '../assets/icons/user.svg';
 import { ReactComponent as users } from '../assets/icons/users.svg';
 import { ReactComponent as video } from '../assets/icons/video.svg';
 import { ReactComponent as pdf } from '../assets/icons/file-pdf.svg';
+import { ReactComponent as successMessage } from '../assets/icons/successMessage.svg';
 
 export const defaultIcons = {
   addUser,
@@ -69,7 +70,6 @@ export const defaultIcons = {
   close,
   company,
   concessionManager,
-  confirmationEmail,
   copy,
   deal,
   download,
@@ -102,10 +102,17 @@ export const defaultIcons = {
   user,
   users,
   video,
-  pdf
+  pdf,
+  successMessage
+};
+
+const aliasMap = {
+  confirmationEmail: 'successMessage'
 };
 
 export type DefaultIconNames = keyof typeof defaultIcons;
+export type AliasIconNames = keyof typeof aliasMap;
+export type IconNames = DefaultIconNames & AliasIconNames;
 
 export interface IconProps {
   className?: string;
@@ -122,7 +129,11 @@ export const Icon: FC<IconProps> = ({ className, name, viewBox = '0 0 24 24', ..
   };
 
   if (!name) {
-    throw new Error(`You must provide a valid "name" prop to the "Icon" component.`);
+    if ((aliasMap as { [x: string]: DefaultIconNames })[name])
+      name = (aliasMap as { [x: string]: DefaultIconNames })[name];
+    else {
+      throw new Error(`You must provide a valid "name" prop to the "Icon" component.`);
+    }
   }
 
   if (!icons[name]) {
