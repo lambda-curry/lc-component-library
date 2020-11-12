@@ -52,7 +52,7 @@ export const InputBase: React.FC<InputProps> = ({
     if (typeof props.onBlur === 'function') props.onBlur(event);
   };
 
-  if (formikProps?.status?.config.fastField) inputProps.inputComponent = FastField;
+  if (formikProps?.status?.config?.fastField) inputProps.inputComponent = FastField;
 
   return (
     <>
