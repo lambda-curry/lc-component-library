@@ -1,0 +1,14 @@
+.input-phone-story {
+  &-dark {
+    margin: 16px 0;
+    padding: 16px;
+    background-color: theme('colors.gray.dark');
+
+    .lc-input-label {
+      color: white;
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+}

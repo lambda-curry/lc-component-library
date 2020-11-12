@@ -1,0 +1,62 @@
+import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs/blocks';
+import { InputPhone, Form } from '../../..';
+import dedent from 'string-dedent';
+import './input-phone-story.scss';
+
+<Meta title="Input Phone" component={InputPhone} />
+
+# Phone Input
+
+<Canvas>
+  <Story
+    name="Input Phone"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+            <Form
+              initialValues={{
+                sampleInput1: '',
+                sampleInput2: '',
+                sampleInput3: ''
+              }}
+              onSubmit={() => {}}
+            >
+              {formikProps => (
+                <>
+                  <InputText name="sampleInput1" label="Text Input" formikProps={formikProps} />
+                  <InputText name="sampleInput2" label="Text Input" value="Example" formikProps={formikProps} />
+                  <InputText name="sampleInput3" label="Password Input" type="password" formikProps={formikProps} />
+                  <div className="input-text-story-dark">
+                    <InputText
+                      name="sampleInput4"
+                      label="Label Above"
+                      labelPlacement="above"
+                      placeholder="Enter text..."
+                      formikProps={formikProps}
+                    />
+                  </div>
+                </>
+              )}
+            </Form>`
+        }
+      }
+    }}
+  >
+    <div className="input-text-story">
+      <Form
+        initialValues={{
+          phone: ''
+        }}
+        onSubmit={() => {}}
+      >
+        {formikProps => (
+          <>
+            <InputPhone name="phone" label="Phone Input" formikProps={formikProps} />
+          </>
+        )}
+      </Form>
+    </div>
+  </Story>
+  <ArgsTable of={InputPhone} />
+</Canvas>
