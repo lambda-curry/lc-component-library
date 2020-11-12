@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FocusEvent } from 'react';
 import TextField, { OutlinedTextFieldProps } from '@material-ui/core/TextField';
-import { FastField, FormikProps } from 'formik';
+import { FormikProps } from 'formik';
 import classNames from 'classnames';
 import { get as _get } from 'lodash';
 
@@ -51,8 +51,6 @@ export const InputBase: React.FC<InputProps> = ({
     if (formikProps) formikProps.handleBlur(event);
     if (typeof props.onBlur === 'function') props.onBlur(event);
   };
-
-  if (formikProps?.status?.config?.fastField) inputProps.inputComponent = FastField;
 
   return (
     <>
