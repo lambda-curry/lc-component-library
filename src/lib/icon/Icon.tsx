@@ -129,15 +129,15 @@ export const Icon: FC<IconProps> = ({ className, name, viewBox = '0 0 24 24', ..
   };
 
   if (!name) {
-    if ((aliasMap as { [x: string]: DefaultIconNames })[name])
-      name = (aliasMap as { [x: string]: DefaultIconNames })[name];
-    else {
-      throw new Error(`You must provide a valid "name" prop to the "Icon" component.`);
-    }
+    throw new Error(`You must provide a valid "name" prop to the "Icon" component.`);
   }
 
   if (!icons[name]) {
-    throw new Error(`Icon with name "${name}" does not exist.`);
+    if ((aliasMap as { [x: string]: DefaultIconNames })[name])
+      name = (aliasMap as { [x: string]: DefaultIconNames })[name];
+    else {
+      throw new Error(`Icon with name "${name}" does not exist.`);
+    }
   }
 
   const IconSvg = icons[name];
