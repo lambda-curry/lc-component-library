@@ -17,8 +17,6 @@ export interface InputSwitchProps<T> {
     className?: string;
     onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
     onChange?: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
-    onMouseUp?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
-    onMouseDown?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
     disableOnChange?: boolean;
 }
 
@@ -31,10 +29,7 @@ export const InputSwitch = ({
     labelPlacement = 'end',
     formikProps,
     className,
-    onClick,
     onChange,
-    onMouseUp,
-    onMouseDown,
     disableOnChange,
     ...props
 }: InputSwitchProps<any>) => {
@@ -95,9 +90,6 @@ export const InputSwitch = ({
                 checked={checked}
                 disabled={disabled}
                 onChange={handleChange}
-                onClick={onClick}
-                onMouseDown={onMouseDown}
-                onMouseUp={onMouseUp}
             />
             <span className="input-switch__label">{label}</span>
         </label>
