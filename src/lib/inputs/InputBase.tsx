@@ -1,11 +1,11 @@
 import React, { ChangeEvent, FocusEvent } from 'react';
 import TextField, { OutlinedTextFieldProps } from '@material-ui/core/TextField';
-import { FormikProps } from 'formik';
+import { FastField, FormikProps } from 'formik';
 import classNames from 'classnames';
 import { get as _get } from 'lodash';
 
 import './input.scss';
-import { InputAdornment, OutlinedInputProps } from '@material-ui/core';
+import { InputAdornment } from '@material-ui/core';
 
 type LabelPlacements = 'inset' | 'above';
 
@@ -51,6 +51,8 @@ export const InputBase: React.FC<InputProps> = ({
     if (formikProps) formikProps.handleBlur(event);
     if (typeof props.onBlur === 'function') props.onBlur(event);
   };
+
+  if (formikProps?.status?.config.fastField) inputProps.inputComponent = FastField;
 
   return (
     <>

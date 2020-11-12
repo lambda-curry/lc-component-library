@@ -6,6 +6,14 @@ import { Modal, ModalHeader, ModalActions, Button, ButtonPrimary } from '..';
 import { formReducer, FormReducerAction, FormReducerState } from './Form.helpers';
 import './form.scss';
 
+interface FormConfig {
+  fastFields: boolean;
+}
+
+export interface FormStatus {
+  config?: FormConfig;
+}
+
 export interface UnsavedChangesConfig {
   containerQuerySelectorAll?: string;
   targetQuerySelector?: string;
@@ -17,6 +25,7 @@ export type FormProps<T> = FormikConfig<T> & {
   unsavedChangesConfig?: UnsavedChangesConfig;
   withoutFormElement?: boolean;
   children: (formikProps: FormikProps<T>) => React.ReactNode;
+  config?: FormConfig;
 };
 
 const FormContent: React.FC<{
@@ -52,7 +61,14 @@ const FormContent: React.FC<{
   );
 };
 
-export function Form<T>({ className, children, withoutFormElement, unsavedChangesConfig = {}, ...rest }: FormProps<T>) {
+export function Form<T>({
+  className,
+  children,
+  withoutFormElement,
+  unsavedChangesConfig = {},
+  config,
+  ...rest
+}: FormProps<T>) {
   // TODO: update .navbar-back to utilize a button, avoid actions on clicks for things that are not <a> or <button>
   unsavedChangesConfig = {
     targetQuerySelector: 'a, button, .navbar-back, .snackbar, [role="dialog"]',
@@ -96,9 +112,11 @@ export function Form<T>({ className, children, withoutFormElement, unsavedChange
     }, 500);
   };
 
+  console.log('>>>', config);
+
   return (
     <>
-      <Formik {...rest}>
+      <Formik initialStatus={{ config }} {...rest}>
         {(formikProps: FormikProps<T>) => (
           <FormContent
             className={className}
