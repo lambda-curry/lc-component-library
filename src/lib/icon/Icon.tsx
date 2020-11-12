@@ -6,6 +6,7 @@ import './icon.scss';
 import { ReactComponent as addUser } from '../assets/icons/addUser.svg';
 import { ReactComponent as analytics } from '../assets/icons/analytics.svg';
 import { ReactComponent as apps } from '../assets/icons/apps.svg';
+import { ReactComponent as archive } from '../assets/icons/archive.svg';
 import { ReactComponent as arrowLeft } from '../assets/icons/arrowLeft.svg';
 import { ReactComponent as bell } from '../assets/icons/bell.svg';
 import { ReactComponent as chat } from '../assets/icons/chat.svg';
@@ -17,6 +18,7 @@ import { ReactComponent as clockFilled } from '../assets/icons/clockFilled.svg';
 import { ReactComponent as close } from '../assets/icons/close.svg';
 import { ReactComponent as company } from '../assets/icons/company.svg';
 import { ReactComponent as concessionManager } from '../assets/icons/concessionManager.svg';
+import { ReactComponent as confirmationEmail } from '../assets/icons/confirmationEmail.svg';
 import { ReactComponent as copy } from '../assets/icons/copy.svg';
 import { ReactComponent as deal } from '../assets/icons/deal.svg';
 import { ReactComponent as download } from '../assets/icons/download.svg';
@@ -50,11 +52,13 @@ import { ReactComponent as user } from '../assets/icons/user.svg';
 import { ReactComponent as users } from '../assets/icons/users.svg';
 import { ReactComponent as video } from '../assets/icons/video.svg';
 import { ReactComponent as pdf } from '../assets/icons/file-pdf.svg';
+import { ReactComponent as successMessage } from '../assets/icons/successMessage.svg';
 
 export const defaultIcons = {
   addUser,
   analytics,
   apps,
+  archive,
   arrowLeft,
   bell,
   chat,
@@ -98,10 +102,17 @@ export const defaultIcons = {
   user,
   users,
   video,
-  pdf
+  pdf,
+  successMessage
+};
+
+const aliasMap = {
+  confirmationEmail: 'successMessage'
 };
 
 export type DefaultIconNames = keyof typeof defaultIcons;
+export type AliasIconNames = keyof typeof aliasMap;
+export type IconNames = DefaultIconNames & AliasIconNames;
 
 export interface IconProps {
   className?: string;
@@ -122,7 +133,11 @@ export const Icon: FC<IconProps> = ({ className, name, viewBox = '0 0 24 24', ..
   }
 
   if (!icons[name]) {
-    throw new Error(`Icon with name "${name}" does not exist.`);
+    if ((aliasMap as { [x: string]: DefaultIconNames })[name])
+      name = (aliasMap as { [x: string]: DefaultIconNames })[name];
+    else {
+      throw new Error(`Icon with name "${name}" does not exist.`);
+    }
   }
 
   const IconSvg = icons[name];

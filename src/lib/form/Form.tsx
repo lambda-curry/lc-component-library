@@ -1,18 +1,18 @@
-import React, { Reducer, useReducer, useRef } from 'react';
-import { Formik, FormikConfig, FormikProps, Form as FormikForm, FormikHelpers, useFormikContext } from 'formik';
+import React, { Reducer, useReducer } from 'react';
+import { Formik, FormikConfig, FormikProps, Form as FormikForm, useFormikContext } from 'formik';
 import classNames from 'classnames';
 import { useOnClickOutside } from '../hooks';
 import { Modal, ModalHeader, ModalActions, Button, ButtonPrimary } from '..';
 import { formReducer, FormReducerAction, FormReducerState } from './Form.helpers';
 import './form.scss';
 
-interface UnsavedChangesConfig {
+export interface UnsavedChangesConfig {
   containerQuerySelectorAll?: string;
   targetQuerySelector?: string;
   modalProps?: ReactModal.Props;
 }
 
-type FormProps<T> = FormikConfig<T> & {
+export type FormProps<T> = FormikConfig<T> & {
   className?: string;
   unsavedChangesConfig?: UnsavedChangesConfig;
   withoutFormElement?: boolean;
@@ -55,7 +55,7 @@ const FormContent: React.FC<{
 export function Form<T>({ className, children, withoutFormElement, unsavedChangesConfig = {}, ...rest }: FormProps<T>) {
   // TODO: update .navbar-back to utilize a button, avoid actions on clicks for things that are not <a> or <button>
   unsavedChangesConfig = {
-    targetQuerySelector: 'a, button, .navbar-back',
+    targetQuerySelector: 'a, button, .navbar-back, .snackbar, [role="dialog"]',
     ...unsavedChangesConfig
   };
 

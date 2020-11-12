@@ -118,12 +118,31 @@ import './button-story.scss';
     }}
   >
     <div className="button-story">
+      <p>
+        Unfortunately, forwarding refs to render components is difficult, so icons are currently only supported in
+        standard buttons right now.
+      </p>
       <Button>
         <ColorIcon name="googleCalendar" /> Default Button
       </Button>
       <ButtonOutline>
         Outline Button <Icon name="settings" />
       </ButtonOutline>
+    </div>
+  </Story>
+  <Story
+    name="Buttons as another component"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+            <Button as={buttonProps => <a {...buttonProps} />}>Anchor Tag Button</Button>`
+        }
+      }
+    }}
+  >
+    <div className="button-story">
+      <Button as={buttonProps => <a {...buttonProps} />}>Anchor Tag Button</Button>
     </div>
   </Story>
   <ArgsTable of={Button} />

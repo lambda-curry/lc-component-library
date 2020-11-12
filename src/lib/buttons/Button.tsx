@@ -9,12 +9,7 @@ export type ButtonProps = ButtonHTMLAttributes<any> & {
   type?: 'button' | 'submit' | 'reset' | undefined;
 };
 
-export const Button: React.FC<ButtonProps> = ({
-  className,
-  as = props => <button {...props} />,
-  type = 'button',
-  ...rest
-}) => {
+export const Button: React.FC<ButtonProps> = ({ className, as, type = 'button', ...rest }) => {
   const ref = useRef<HTMLElement>(null);
   const [{ leftIcon, rightIcon }, dispatch] = useReducer<Reducer<ButtonReducerState, ButtonReducerAction>>(
     buttonReducer,
@@ -31,7 +26,13 @@ export const Button: React.FC<ButtonProps> = ({
       dispatch({ name: 'setRightIcon', payload: true });
   }, [ref]);
 
-  return <>{as({ className: classNames('lc-button', { leftIcon, rightIcon }, className), type, ref, ...rest })}</>;
+  // Note: Only passing ref in for button components right now, because not all components passed in can use a ref.
+  // Also, I tried to refactor this code (see the latest version at commit 045d2af9ad87304d737bf7f0bf64c516cab1417b)
+  // but that version had a bug that required multiple clicks to focusout of inputs, no idea why. - Jake 11/07/2020
+  const buttonProps = { className: classNames('lc-button', { leftIcon, rightIcon }, className), type, ref, ...rest };
+  if (as) buttonProps.ref = ref;
+  as = as ? as : props => <button {...props} />;
+  return <>{as(buttonProps)}</>;
 };
 
 // Now we can simply pass in any element to use as a button
