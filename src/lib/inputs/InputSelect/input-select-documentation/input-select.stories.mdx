@@ -1,5 +1,5 @@
 import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs/blocks';
-import { InputSelect, Form } from '../../..';
+import { InputSelect, Form, InputText } from '../../..';
 import dedent from 'string-dedent';
 import './input-select-story.scss';
 
@@ -72,12 +72,14 @@ import './input-select-story.scss';
         initialValues={{
           select: undefined,
           initialSelect: { label: 'Option 1', value: 1 },
-          selectValueOnly: 2
+          selectValueOnly: 2,
+          inputText: ''
         }}
         onSubmit={() => {}}
       >
         {formikProps => (
           <>
+            <InputText name="inputText" formikProps={formikProps} />
             <p className="lc-mb-8">Value: {JSON.stringify(formikProps.values.select)}</p>
             <InputSelect
               label="Select Option"

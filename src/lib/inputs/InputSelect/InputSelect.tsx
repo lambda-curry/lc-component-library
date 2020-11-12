@@ -51,11 +51,6 @@ export const InputSelect: React.FC<InputSelectProps> = ({
     (optionValueKey ? options.find(option => getOptionSelected(option, initialValue)) : initialValue) || null
   );
 
-  // Note: We want to remove the change event from the rendered component so it can be handled by the autocomplete
-  if (props.formikProps) {
-    props.formikProps.handleChange = () => {};
-  }
-
   const handleChange: (
     event: React.ChangeEvent<{}>,
     value: any,
