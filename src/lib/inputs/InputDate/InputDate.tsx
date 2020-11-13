@@ -11,7 +11,7 @@ export type InputDateProps = InputProps & {
   onChange?: (date: Date | string | null) => void;
   inputFormat?: string;
   valueFormat?: string;
-  disablePast: boolean;
+  disablePast?: boolean;
 };
 
 const toDateTime = (value: string | Date, format?: string) => {
