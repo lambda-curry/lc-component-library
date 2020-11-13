@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { get as _get } from 'lodash';
 
 import './input.scss';
-import { InputAdornment, OutlinedInputProps } from '@material-ui/core';
+import { InputAdornment } from '@material-ui/core';
 
 type LabelPlacements = 'inset' | 'above';
 

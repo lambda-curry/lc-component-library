@@ -33,14 +33,18 @@ import dedent from 'string-dedent';
     <div className="input-text-story">
       <Form
         initialValues={{
-          sampleDate: new Date()
+          sampleDate: new Date(),
+          formattedDate: ''
         }}
         onSubmit={() => {}}
       >
         {formikProps => (
           <>
-            Value: {formikProps.values.sampleDate instanceof Date ? formikProps.values.sampleDate.toLocaleDateString() : ''}
+            Value:{' '}
+            {formikProps.values.sampleDate instanceof Date ? formikProps.values.sampleDate.toLocaleDateString() : ''}
             <InputDate name="sampleDate" formikProps={formikProps} />
+            Value: {formikProps.values.formattedDate}
+            <InputDate name="formattedDate" valueFormat={'LL/dd/yyyy'} formikProps={formikProps} />
           </>
         )}
       </Form>

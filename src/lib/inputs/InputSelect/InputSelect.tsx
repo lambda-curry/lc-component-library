@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Autocomplete, AutocompleteChangeDetails, AutocompleteChangeReason, AutocompleteProps } from '@material-ui/lab';
 import { Paper } from '@material-ui/core';
 import classNames from 'classnames';
@@ -47,14 +47,17 @@ export const InputSelect: React.FC<InputSelectProps> = ({
   // Note: If no value is passed initialValue should be initialized as null instead of undefined to help with uncontrolled component warning
   // https://github.com/mui-org/material-ui/issues/18173#issuecomment-552420187
 
-  const [inputTextValue, setInputTextValue] = useState(
-    (optionValueKey ? options.find(option => getOptionSelected(option, initialValue)) : initialValue) || null
-  );
+  const [inputValue, setInputValue] = useState(null);
 
-  // Note: We want to remove the change event from the rendered component so it can be handled by the autocomplete
-  if (props.formikProps) {
-    props.formikProps.handleChange = () => {};
-  }
+  const initialInputValue = optionValueKey
+    ? options.find(option => getOptionSelected(option, initialValue))
+    : initialValue || null;
+
+  // Note: We had to use a `useEffect` here to handle cases where the form is reset or manipulated outside of the input
+  // For some reason setting the initialInputValue in the initial useState did not reset the input on a form reset
+  useEffect(() => {
+    setInputValue(initialInputValue);
+  }, [initialInputValue]);
 
   const handleChange: (
     event: React.ChangeEvent<{}>,
@@ -63,7 +66,7 @@ export const InputSelect: React.FC<InputSelectProps> = ({
     details?: AutocompleteChangeDetails<any> | undefined
   ) => void = (event, value, reason, details) => {
     const fieldValue = optionValueKey && value ? value[optionValueKey] : value;
-    setInputTextValue(value);
+    setInputValue(value);
     if (props.formikProps && fieldValue) props.formikProps.setFieldValue(name, fieldValue);
     if (typeof onChange === 'function' && fieldValue) onChange(event, fieldValue, reason, details);
   };
@@ -71,7 +74,7 @@ export const InputSelect: React.FC<InputSelectProps> = ({
   const autocompleteProps: AutocompleteProps<any, boolean, boolean, boolean> = {
     options,
     multiple: false,
-    value: inputTextValue,
+    value: inputValue,
     openOnFocus: true,
     closeIcon: <Icon className="input-select-icon-close" name="close" />,
     popupIcon: <Icon className="input-select-icon-popup" name="chevronDown" />,

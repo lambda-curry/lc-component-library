@@ -47,6 +47,7 @@ import dedent from 'string-dedent';
             validationSchema={Yup.object().shape({
               input: Yup.string().required(`Please enter an input value.`)
             })}
+            config={{ fastField: true }}
           >
             {formikProps => (
               <>
