@@ -36,7 +36,7 @@ export const InputDate: React.FC<InputDateProps> = ({
   ...props
 }) => {
   const initialFieldValue = formikProps ? _get(formikProps?.values, props.name, '') : value;
-  const fieldValue = toDateTime(initialFieldValue, valueFormat);
+  const fieldValue = initialFieldValue ? toDateTime(initialFieldValue, valueFormat) : null;
 
   const handleChange = (updatedDate: DateTime | null, keyboardInputValue?: string | undefined) => {
     const updatedValue = fromDateTime(updatedDate, valueFormat);

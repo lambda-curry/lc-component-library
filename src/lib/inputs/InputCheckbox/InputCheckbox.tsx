@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Checkbox as MuiCheckbox,
   CheckboxProps,
@@ -15,31 +15,47 @@ export type InputCheckboxProps<T>  = {
   label: string;
   labelPlacement?: FormControlLabelProps['labelPlacement'];
   formikProps?: FormikProps<T>;
+  disableOnChange?: boolean;
 } & CheckboxProps;
 
 export const InputCheckbox = ({
   label,
-  onChange,
   className,
+  onChange,
+  disableOnChange,
   labelPlacement,
   color = 'primary',
   formikProps,
   ...props
 }: InputCheckboxProps<any>) => {
-  const fieldProps = formikProps?.getFieldProps(name);
+  const fieldProps = formikProps?.getFieldProps(props.name);
   const [checked, setChecked] = useState(!!fieldProps?.value || !!props.checked);
 
+  useEffect(() => {
+    if (disableOnChange) {
+        setChecked(!!props.checked);
+    }
+}, [props.checked]);
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (disableOnChange) {
+        return;
+    }
+
     setChecked(event.target.checked);
 
     if (onChange) {
-      onChange(event, checked);
+        onChange(event, event.target.checked);
     }
-  };
+
+    if (fieldProps?.onChange) {
+        fieldProps.onChange(event);
+    }
+};
 
   return (
     <MuiFormControlLabel
-      className={classNames('input input-checkbox', classNames)}
+      className={classNames('input input-checkbox', className)}
       label={label}
       labelPlacement={labelPlacement}
       control={
