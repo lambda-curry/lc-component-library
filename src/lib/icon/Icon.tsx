@@ -52,6 +52,7 @@ import { ReactComponent as user } from '../assets/icons/user.svg';
 import { ReactComponent as users } from '../assets/icons/users.svg';
 import { ReactComponent as video } from '../assets/icons/video.svg';
 import { ReactComponent as pdf } from '../assets/icons/file-pdf.svg';
+import { ReactComponent as excel } from '../assets/icons/excel.svg';
 import { ReactComponent as successMessage } from '../assets/icons/successMessage.svg';
 
 export const defaultIcons = {
@@ -103,6 +104,7 @@ export const defaultIcons = {
   users,
   video,
   pdf,
+  excel,
   successMessage
 };
 
