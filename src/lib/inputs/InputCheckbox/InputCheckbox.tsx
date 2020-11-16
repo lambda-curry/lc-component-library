@@ -39,7 +39,7 @@ export const InputCheckbox = ({
 
   return (
     <MuiFormControlLabel
-      className={classNames('input input-checkbox', classNames)}
+      className={classNames('input input-checkbox', className)}
       label={label}
       labelPlacement={labelPlacement}
       control={
