@@ -1,11 +1,12 @@
 // Based on https://usehooks.com/useOnClickOutside/
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 // Hook
 export function useOnClickOutside(
-  handler: (event: MouseEvent) => void,
+  handler: (event: MouseEvent | TouchEvent) => void,
   querySelectorAll?: string,
-  targetQuerySelector?: string
+  targetQuerySelector?: string,
+  allowTarget?: string
 ) {
   useEffect(
     () => {
@@ -15,7 +16,10 @@ export function useOnClickOutside(
         return;
       }
 
-      const listener = (event: MouseEvent) => {
+      const listener = (event: MouseEvent | TouchEvent) => {
+        const eventTarget = event.target as Element;
+        if (!eventTarget) return;
+
         const containers = Array.from(document.querySelectorAll(querySelectorAll));
 
         if (containers.length < 1) {
@@ -23,7 +27,10 @@ export function useOnClickOutside(
         }
 
         // Do nothing if event.target is not the expected target or does not exist
-        if (!event.target || (targetQuerySelector && !(event as any).target.closest(targetQuerySelector))) {
+        if (
+          (targetQuerySelector && !eventTarget.closest(targetQuerySelector)) ||
+          (allowTarget && !eventTarget.closest(allowTarget))
+        ) {
           return;
         }
 
@@ -36,11 +43,11 @@ export function useOnClickOutside(
       };
 
       document.addEventListener('mousedown', listener);
-      document.addEventListener('touchstart', listener as EventListener);
+      document.addEventListener('touchstart', listener);
 
       return () => {
         document.removeEventListener('mousedown', listener);
-        document.removeEventListener('touchstart', listener as EventListener);
+        document.removeEventListener('touchstart', listener);
       };
     },
     // Add ref and handler to effect dependencies
