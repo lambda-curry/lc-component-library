@@ -32,24 +32,22 @@ export const InputCheckbox = ({
   const [checked, setChecked] = useState(!!fieldProps?.value || !!props.checked);
 
   useEffect(() => {
-    if (disableOnChange) {
-        setChecked(!!props.checked);
-    }
-}, [props.checked]);
+    setChecked(!!props.checked);
+  }, [props.checked]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (disableOnChange) {
-        return;
+      return;
     }
 
     setChecked(event.target.checked);
 
     if (onChange) {
-        onChange(event, event.target.checked);
+      onChange(event, event.target.checked);
     }
 
     if (fieldProps?.onChange) {
-        fieldProps.onChange(event);
+      fieldProps.onChange(event);
     }
 };
 
