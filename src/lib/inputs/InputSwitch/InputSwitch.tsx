@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FormikProps } from 'formik';
 import classNames from 'classnames';
 
-import './input-switch.scss';
+// import './input-switch.scss';
 
 export interface InputSwitchProps<T> {
   id?: string;
@@ -49,15 +49,9 @@ export const InputSwitch = ({
 
   useEffect(() => {
     if (disableOnChange) {
-      setChecked(!!props.checked);
+      setChecked(!!fieldProps?.value || !!props.checked);
     }
-  }, [disableOnChange, props.checked]);
-
-  useEffect(() => {
-    if (disableOnChange) {
-      setChecked(!!fieldProps?.value);
-    }
-  }, [disableOnChange, fieldProps?.value]);
+  }, [disableOnChange, props.checked, fieldProps?.value]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!disableOnChange) {
