@@ -7,7 +7,7 @@ import {
 } from '@material-ui/core';
 import classNames from 'classnames';
 import { FormikProps } from 'formik';
-import { Icon } from '..';
+import { Icon } from '../..';
 
 export type InputCheckboxProps<T> = {
   label: string;
