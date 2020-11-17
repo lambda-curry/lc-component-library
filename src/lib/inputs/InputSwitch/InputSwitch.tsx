@@ -48,23 +48,23 @@ export const InputSwitch = ({
   }, [checked, labelOn, labelOff]);
 
   useEffect(() => {
-      setChecked(!!props.checked);
-  }, [props.checked]);
+    if (disableOnChange) {
+      setChecked(!!fieldProps?.value || !!props.checked);
+    }
+  }, [disableOnChange, props.checked, fieldProps?.value]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      if (disableOnChange) {
-        return;
-      }
-
+    if (!disableOnChange) {
       setChecked(event.target.checked);
+    }
 
-      if (onChange) {
-        onChange(event, event.target.checked);
-      }
+    if (onChange) {
+      onChange(event, event.target.checked);
+    }
 
-      if (fieldProps?.onChange) {
-        fieldProps.onChange(event);
-      }
+    if (fieldProps?.onChange) {
+      fieldProps.onChange(event);
+    }
   };
 
   const inputSwitchClassName = classNames(
@@ -79,15 +79,15 @@ export const InputSwitch = ({
   return (
     <label htmlFor={id} className={inputSwitchClassName}>
       <input
-          id={id}
-          name={name}
-          type="checkbox"
-          className="input-switch__input"
-          {...fieldProps}
-          {...props}
-          checked={checked}
-          disabled={disabled}
-          onChange={handleChange}
+        id={id}
+        name={name}
+        type="checkbox"
+        className="input-switch__input"
+        {...fieldProps}
+        {...props}
+        checked={checked}
+        disabled={disabled}
+        onChange={handleChange}
       />
       <span className="input-switch__label">{label}</span>
     </label>

@@ -7,11 +7,9 @@ import {
 } from '@material-ui/core';
 import classNames from 'classnames';
 import { FormikProps } from 'formik';
-import { Icon } from '../..';
+import { Icon } from '..';
 
-import './input-checkbox.scss';
-
-export type InputCheckboxProps<T>  = {
+export type InputCheckboxProps<T> = {
   label: string;
   labelPlacement?: FormControlLabelProps['labelPlacement'];
   formikProps?: FormikProps<T>;
@@ -32,15 +30,15 @@ export const InputCheckbox = ({
   const [checked, setChecked] = useState(!!fieldProps?.value || !!props.checked);
 
   useEffect(() => {
-    setChecked(!!props.checked);
-  }, [props.checked]);
+    if (disableOnChange) {
+      setChecked(!!fieldProps?.value || !!props.checked);
+    }
+  }, [disableOnChange, props.checked, fieldProps?.value]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (disableOnChange) {
-      return;
+    if (!disableOnChange) {
+      setChecked(event.target.checked);
     }
-
-    setChecked(event.target.checked);
 
     if (onChange) {
       onChange(event, event.target.checked);
@@ -49,7 +47,7 @@ export const InputCheckbox = ({
     if (fieldProps?.onChange) {
       fieldProps.onChange(event);
     }
-};
+  };
 
   return (
     <MuiFormControlLabel
