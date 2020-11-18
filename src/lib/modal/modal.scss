@@ -24,6 +24,10 @@
     border: 0;
   }
 
+  &-title {
+    margin: 0;
+  }
+
   &-actions {
     display: flex;
     border-top: 1px solid var(--lighter-gray);
