@@ -47,17 +47,17 @@ export const InputSelect: React.FC<InputSelectProps> = ({
   // Note: If no value is passed initialValue should be initialized as null instead of undefined to help with uncontrolled component warning
   // https://github.com/mui-org/material-ui/issues/18173#issuecomment-552420187
 
-  const [inputValue, setInputValue] = useState(null);
-
   const matchedOptionValue = options.find(option => getOptionSelected(option, initialValue));
 
-  const initialInputValue = optionValueKey && matchedOptionValue ? matchedOptionValue : initialValue;
+  const initialInputValue = matchedOptionValue || initialValue || null;
+
+  const [inputValue, setInputValue] = useState(initialInputValue);
 
   // Note: We had to use a `useEffect` here to handle cases where the form is reset or manipulated outside of the input
   // For some reason setting the initialInputValue in the initial useState did not reset the input on a form reset
-  useEffect(() => {
-    setInputValue(initialInputValue);
-  }, [initialInputValue]);
+  // useEffect(() => {
+  //   setInputValue(initialInputValue);
+  // }, [initialInputValue]);
 
   const handleChange: (
     event: React.ChangeEvent<{}>,
@@ -65,10 +65,10 @@ export const InputSelect: React.FC<InputSelectProps> = ({
     reason: AutocompleteChangeReason,
     details?: AutocompleteChangeDetails<any> | undefined
   ) => void = (event, value, reason, details) => {
-    const fieldValue = optionValueKey && value ? value[optionValueKey] : value;
-    setInputValue(value);
-    if (props.formikProps && fieldValue) props.formikProps.setFieldValue(name, fieldValue);
-    if (typeof onChange === 'function' && fieldValue) onChange(event, fieldValue, reason, details);
+    const fieldValue = optionValueKey && value ? value[optionValueKey] : value || null;
+    setInputValue(fieldValue);
+    if (props.formikProps) props.formikProps.setFieldValue(name, fieldValue);
+    if (typeof onChange === 'function') onChange(event, fieldValue, reason, details);
   };
 
   const autocompleteProps: AutocompleteProps<any, boolean, boolean, boolean> = {
