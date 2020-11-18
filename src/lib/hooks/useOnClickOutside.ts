@@ -29,7 +29,10 @@ export function useOnClickOutside(
         // Do nothing if event.target is not the expected target or does not exist
         if (
           (targetQuerySelector && !eventTarget.closest(targetQuerySelector)) ||
-          (allowTarget && !eventTarget.closest(allowTarget))
+          (targetQuerySelector &&
+            eventTarget.closest(targetQuerySelector) &&
+            allowTarget &&
+            !eventTarget.closest(allowTarget))
         ) {
           return;
         }
