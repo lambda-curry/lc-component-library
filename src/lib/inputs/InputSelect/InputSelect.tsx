@@ -41,17 +41,17 @@ export const InputSelect: React.FC<InputSelectProps> = ({
     return optionValueKey ? option[optionValueKey] === value || isEqual(option, value) : isEqual(option, value);
   };
 
-  const initialValue = isNullOrUndefined(props.formikProps?.values[name])
-    ? props.value
-    : props.formikProps?.values[name];
+  const formikFieldInitialValue = get(props.formikProps?.values, name);
+
+  const initialValue = isNullOrUndefined(formikFieldInitialValue) ? props.value : formikFieldInitialValue;
   // Note: If no value is passed initialValue should be initialized as null instead of undefined to help with uncontrolled component warning
   // https://github.com/mui-org/material-ui/issues/18173#issuecomment-552420187
 
   const [inputValue, setInputValue] = useState(null);
 
-  const initialInputValue = optionValueKey
-    ? options.find(option => getOptionSelected(option, initialValue))
-    : initialValue || null;
+  const matchedOptionValue = options.find(option => getOptionSelected(option, initialValue));
+
+  const initialInputValue = optionValueKey && matchedOptionValue ? matchedOptionValue : initialValue;
 
   // Note: We had to use a `useEffect` here to handle cases where the form is reset or manipulated outside of the input
   // For some reason setting the initialInputValue in the initial useState did not reset the input on a form reset
