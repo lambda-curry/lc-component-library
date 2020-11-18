@@ -63,10 +63,10 @@ export const InputSelect: React.FC<InputSelectProps> = ({
     reason: AutocompleteChangeReason,
     details?: AutocompleteChangeDetails<any> | undefined
   ) => void = (event, value, reason, details) => {
-    const fieldValue = optionValueKey && value ? value[optionValueKey] : value;
     setInputValue(value);
-    if (props.formikProps && fieldValue) props.formikProps.setFieldValue(name, fieldValue);
-    if (typeof onChange === 'function' && fieldValue) onChange(event, fieldValue, reason, details);
+    const fieldValue = optionValueKey && value ? value[optionValueKey] : value;
+    if (props.formikProps) props.formikProps.setFieldValue(name, fieldValue);
+    if (typeof onChange === 'function') onChange(event, fieldValue, reason, details);
   };
 
   const autocompleteProps: AutocompleteProps<any, boolean, boolean, boolean> = {
