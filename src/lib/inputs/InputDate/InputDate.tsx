@@ -5,6 +5,7 @@ import { InputProps } from '../InputBase';
 import LuxonUtils from '@date-io/luxon';
 import { DateTime } from 'luxon';
 import { get as _get } from 'lodash';
+import classNames from 'classnames';
 
 export type InputDateProps = InputProps & {
   value?: Date | string;
@@ -12,6 +13,7 @@ export type InputDateProps = InputProps & {
   inputFormat?: string;
   valueFormat?: string;
   disablePast?: boolean;
+  className?: string;
 };
 
 const toDateTime = (value: string | Date, format?: string) => {
@@ -33,6 +35,7 @@ export const InputDate: React.FC<InputDateProps> = ({
   inputFormat = 'LL/dd/yyyy',
   disablePast = false,
   valueFormat,
+  className,
   ...props
 }) => {
   const initialFieldValue = formikProps ? _get(formikProps?.values, props.name, '') : value;
@@ -52,7 +55,14 @@ export const InputDate: React.FC<InputDateProps> = ({
         onChange={handleChange}
         inputFormat={valueFormat || inputFormat}
         disablePast={disablePast}
-        renderInput={renderProps => <InputText {...(renderProps as InputProps)} {...props} formikProps={formikProps} />}
+        renderInput={renderProps => (
+          <InputText
+            {...(renderProps as InputProps)}
+            {...props}
+            formikProps={formikProps}
+            className={classNames('lc-input-date', className)}
+          />
+        )}
       />
     </LocalizationProvider>
   );
