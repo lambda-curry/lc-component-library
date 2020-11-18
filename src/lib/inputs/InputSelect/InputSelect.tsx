@@ -41,9 +41,7 @@ export const InputSelect: React.FC<InputSelectProps> = ({
     return optionValueKey ? option[optionValueKey] === value || isEqual(option, value) : isEqual(option, value);
   };
 
-  const initialValue = isNullOrUndefined(props.formikProps?.values[name])
-    ? props.value
-    : props.formikProps?.values[name];
+  const initialValue = props.formikProps ? get(props.formikProps?.values, name) : props.value;
   // Note: If no value is passed initialValue should be initialized as null instead of undefined to help with uncontrolled component warning
   // https://github.com/mui-org/material-ui/issues/18173#issuecomment-552420187
 
