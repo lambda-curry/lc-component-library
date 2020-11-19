@@ -7,7 +7,6 @@ import { InputProps } from '../InputBase';
 import { isEqual, get } from 'lodash';
 
 import './input-select.scss';
-import { isNullOrUndefined } from '../../util/js-helpers';
 
 export type AutoCompleteChange = (
   event: React.ChangeEvent<{}>,
@@ -53,9 +52,9 @@ export const InputSelect: React.FC<InputSelectProps> = ({
 
   // Note: We had to use a `useEffect` here to handle cases where the form is reset or manipulated outside of the input
   // For some reason setting the initialInputValue in the initial useState did not reset the input on a form reset
-  // useEffect(() => {
-  //   setInputValue(initialInputValue);
-  // }, [initialInputValue]);
+  useEffect(() => {
+    setInputValue(initialInputValue);
+  }, [initialInputValue]);
 
   const handleChange: (
     event: React.ChangeEvent<{}>,
