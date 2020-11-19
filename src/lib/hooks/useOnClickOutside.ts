@@ -27,18 +27,16 @@ export function useOnClickOutside(
         }
 
         // Do nothing if event.target is not the expected target or does not exist
-        if (
-          (targetQuerySelector && !eventTarget.closest(targetQuerySelector)) ||
-          (targetQuerySelector &&
-            eventTarget.closest(targetQuerySelector) &&
-            allowTarget &&
-            !eventTarget.closest(allowTarget))
-        ) {
+        if (targetQuerySelector && !eventTarget.closest(targetQuerySelector)) {
           return;
         }
 
         // Do nothing if clicking ref's element or descendent elements
-        if ((containers as Node[]).find(container => container.contains(event.target as Node))) {
+        if (
+          (containers as Node[]).find(container => container.contains(event.target as Node)) &&
+          allowTarget &&
+          !eventTarget.closest(allowTarget)
+        ) {
           return;
         }
 
