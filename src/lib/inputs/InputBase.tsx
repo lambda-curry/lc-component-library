@@ -35,10 +35,9 @@ export const InputBase: React.FC<InputProps> = ({
 
   const fieldValue = formikProps ? _get(formikProps?.values, name) : props.value;
 
-  const inputProps: any = {
+  const InputProps: any = {
     startAdornment: prefix ? <InputAdornment position="start">{prefix}</InputAdornment> : false,
     endAdornment: suffix ? <InputAdornment position="end">{suffix}</InputAdornment> : false,
-    ...props.inputProps,
     ...props.InputProps // Note: passing this in here allows InputSelect to work correctly
   };
 
@@ -66,7 +65,7 @@ export const InputBase: React.FC<InputProps> = ({
           label={labelPlacement === 'inset' ? label : false}
           size="small"
           {...props}
-          InputProps={inputProps}
+          InputProps={InputProps}
           error={!!fieldError}
           helperText={fieldError || props.helperText}
           className={classNames(className, !hasLabelAbove ? 'lc-input' : 'lc-input-label-above')}
@@ -86,7 +85,7 @@ export const InputBase: React.FC<InputProps> = ({
       label={labelPlacement === 'inset' ? label : false}
       size="small"
       {...props}
-      InputProps={inputProps}
+      InputProps={InputProps}
       error={!!fieldError}
       helperText={fieldError || props.helperText}
       className={classNames(className, !hasLabelAbove ? 'lc-input' : 'lc-input-label-above')}

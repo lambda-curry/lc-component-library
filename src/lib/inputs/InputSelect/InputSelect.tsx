@@ -76,15 +76,20 @@ export const InputSelect: React.FC<InputSelectProps> = ({
     closeIcon: <Icon className="input-select-icon-close" name="close" />,
     popupIcon: <Icon className="input-select-icon-popup" name="chevronDown" />,
     ChipProps: { deleteIcon: <Icon name="close" /> },
-    renderInput:
-      !optionValueKey || props.formikProps
-        ? inputProps => <InputText name={name} {...inputProps} {...props} />
-        : inputProps => (
+    renderInput: params => {
+      return (
+        <>
+          {!optionValueKey || props.formikProps ? (
+            <InputText name={name} {...params} {...props} />
+          ) : (
             <>
               <input name={name} type="hidden" value={props.value ? props.value[optionValueKey] : null} />
-              <InputText name={`_${name}`} {...inputProps} {...props} />
+              <InputText name={`_${name}`} {...params} {...props} />
             </>
-          ),
+          )}
+        </>
+      );
+    },
     PaperComponent: props => <Paper className="input-select-paper" {...props} />,
     getOptionSelected,
     getOptionLabel: (option: { [key: string]: any }) => get(option, optionLabelKey) || '',
