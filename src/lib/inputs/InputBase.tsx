@@ -52,28 +52,48 @@ export const InputBase: React.FC<InputProps> = ({
     if (typeof props.onBlur === 'function') props.onBlur(event);
   };
 
-  return (
-    <>
-      {label && labelPlacement === 'above' && (
+  const hasLabelAbove = label && labelPlacement === 'above';
+
+  if (hasLabelAbove) {
+    return (
+      <div className="lc-input">
         <label className="lc-input-label" htmlFor={id || name}>
           {label}
         </label>
-      )}
-      <TextField
-        name={name}
-        id={id || name}
-        label={labelPlacement === 'inset' ? label : false}
-        size="small"
-        {...props}
-        InputProps={inputProps}
-        error={!!fieldError}
-        helperText={fieldError || props.helperText}
-        className={classNames(className, { 'lc-input-label-above': labelPlacement === 'above' }, 'lc-input')}
-        value={fieldValue}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        variant={variant}
-      />
-    </>
+        <TextField
+          name={name}
+          id={id || name}
+          label={labelPlacement === 'inset' ? label : false}
+          size="small"
+          {...props}
+          InputProps={inputProps}
+          error={!!fieldError}
+          helperText={fieldError || props.helperText}
+          className={classNames(className, !hasLabelAbove ? 'lc-input' : 'lc-input-label-above')}
+          value={fieldValue}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          variant={variant}
+        />
+      </div>
+    );
+  }
+
+  return (
+    <TextField
+      name={name}
+      id={id || name}
+      label={labelPlacement === 'inset' ? label : false}
+      size="small"
+      {...props}
+      InputProps={inputProps}
+      error={!!fieldError}
+      helperText={fieldError || props.helperText}
+      className={classNames(className, !hasLabelAbove ? 'lc-input' : 'lc-input-label-above')}
+      value={fieldValue}
+      onChange={handleChange}
+      onBlur={handleBlur}
+      variant={variant}
+    />
   );
 };
