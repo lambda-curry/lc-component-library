@@ -32,13 +32,13 @@ export const InputBase: React.FC<InputProps> = ({
 }) => {
   const fieldError =
     formikProps?.errors && name && _get(formikProps.touched, name) ? _get(formikProps.errors, name) : '';
-
   const fieldValue = formikProps ? _get(formikProps?.values, name) : props.value;
 
   const InputProps: any = {
     startAdornment: prefix ? <InputAdornment position="start">{prefix}</InputAdornment> : false,
     endAdornment: suffix ? <InputAdornment position="end">{suffix}</InputAdornment> : false,
-    ...props.InputProps // Note: passing this in here allows InputSelect to work correctly
+    onChange: props.inputProps?.onChange, // Note: passing inputProps.onChange in here allows for custom input values to be made
+    ...props.InputProps // Note: don't remove these, passing `InputProps` in here allows InputSelect to work correctly
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
