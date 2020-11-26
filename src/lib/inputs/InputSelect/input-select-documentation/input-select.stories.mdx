@@ -194,14 +194,14 @@ import './input-select-story.scss';
                     autoHighlight: true,
                     getOptionDisabled: option => option.isDisabled,
                     filterOptions: (options, params) => {
-                      options.filter(({ value }) => value === undefined);
+                      const filtered = [...options].filter(({ value }) => value === undefined);
                       if (params.inputValue !== '') {
-                        options.unshift({
+                        filtered.unshift({
                           value: params.inputValue,
                           label: `Use "${params.inputValue}"`
                         });
                       }
-                      return options;
+                      return filtered;
                     },
                     getOptionLabel: option => {
                       if (typeof option === 'string') {
