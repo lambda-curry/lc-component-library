@@ -57,7 +57,7 @@ export const InputSelect: React.FC<InputSelectProps> = ({
   }, [initialInputValue]);
 
   // Note: This uses the filterOptions to add the initial option for fields who have selected a custom input option
-  if (initialInputValue && !matchedOptionValue && autocompleteConfig?.filterOptions)
+  if (initialInputValue && !matchedOptionValue && autocompleteConfig?.filterOptions && inputValue)
     options = autocompleteConfig.filterOptions(options, {
       inputValue,
       getOptionLabel: autocompleteConfig.getOptionLabel as (option: any) => string
