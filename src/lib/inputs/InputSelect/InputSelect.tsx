@@ -36,8 +36,10 @@ export const InputSelect: React.FC<InputSelectProps> = ({
 }) => {
   const getOptionSelected = (option: any, value: any) => {
     // Note: Sometimes we pass in the value as true value and sometimes value is the selected option.
-    // if (optionValueKey) console.log('>>>', optionValueKey, option, value, option[optionValueKey] === value);
-    return optionValueKey ? option[optionValueKey] === value || isEqual(option, value) : isEqual(option, value);
+    const selected = optionValueKey
+      ? option[optionValueKey] === value || isEqual(option, value)
+      : isEqual(option, value);
+    if (selected) return selected;
   };
 
   const initialValue = props.formikProps ? get(props.formikProps?.values, name) : props.value;
@@ -45,9 +47,7 @@ export const InputSelect: React.FC<InputSelectProps> = ({
   // https://github.com/mui-org/material-ui/issues/18173#issuecomment-552420187
 
   const matchedOptionValue = options.find(option => getOptionSelected(option, initialValue));
-
   const initialInputValue = matchedOptionValue || initialValue || null;
-
   const [inputValue, setInputValue] = useState(initialInputValue);
 
   // Note: We had to use a `useEffect` here to handle cases where the form is reset or manipulated outside of the input
@@ -55,6 +55,13 @@ export const InputSelect: React.FC<InputSelectProps> = ({
   useEffect(() => {
     setInputValue(initialInputValue);
   }, [initialInputValue]);
+
+  // Note: This uses the filterOptions to add the initial option for fields who have selected a custom input option
+  if (initialInputValue && !matchedOptionValue && autocompleteConfig?.filterOptions)
+    options = autocompleteConfig.filterOptions(options, {
+      inputValue,
+      getOptionLabel: autocompleteConfig.getOptionLabel as (option: any) => string
+    });
 
   const handleChange: (
     event: React.ChangeEvent<{}>,
