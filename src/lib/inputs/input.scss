@@ -28,6 +28,17 @@
     font-size: inherit;
   }
 
+  .MuiOutlinedInput-multiline {
+    // textarea {
+    //   min-height: 48px;
+    // }
+
+    &.MuiOutlinedInput-marginDense {
+      padding-top: 14px;
+      padding-bottom: 15px;
+    }
+  }
+
   .MuiOutlinedInput-notchedOutline {
     border-color: theme('colors.gray.lighter');
   }
