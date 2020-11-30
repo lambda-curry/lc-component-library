@@ -87,11 +87,16 @@ export const InputSelect: React.FC<InputSelectProps> = ({
       return (
         <>
           {!optionValueKey || props.formikProps ? (
-            <InputText name={name} {...params} {...props} />
+            <InputText name={name} {...params} {...props} inputProps={{ ...params.inputProps, ...props.inputProps }} />
           ) : (
             <>
               <input name={name} type="hidden" value={props.value ? props.value[optionValueKey] : null} />
-              <InputText name={`_${name}`} {...params} {...props} />
+              <InputText
+                name={`_${name}`}
+                {...params}
+                {...props}
+                inputProps={{ ...params.inputProps, ...props.inputProps }}
+              />
             </>
           )}
         </>

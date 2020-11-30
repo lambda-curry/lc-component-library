@@ -91,6 +91,7 @@ import './input-select-story.scss';
                 { label: 'Option 3', value: 3 }
               ]}
               formikProps={formikProps}
+              inputProps={{ maxLength: 60 }}
             />
             <p className="lc-mb-8">Value with initial form value: {JSON.stringify(formikProps.values.initialSelect)}</p>
             <InputSelect
