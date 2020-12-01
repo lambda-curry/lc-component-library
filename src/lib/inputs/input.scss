@@ -1,9 +1,11 @@
 .MuiFormControl-root {
+  width: 100%;
+
   &.lc-input {
     display: flex;
     margin-bottom: 24px;
 
-    input {
+    input:not([type='color']) {
       box-sizing: content-box;
       height: 28px;
       padding-top: 10px;
@@ -13,8 +15,9 @@
     }
 
     &-label-above {
-      input {
+      input:not([type='color']) {
         background-color: white;
+        border-radius: 4px;
       }
     }
   }
@@ -23,6 +26,13 @@
   .MuiInputLabel-root,
   .MuiFormHelperText-root {
     font-size: inherit;
+  }
+
+  .MuiOutlinedInput-multiline {
+    &.MuiOutlinedInput-marginDense {
+      padding-top: 14px;
+      padding-bottom: 15px;
+    }
   }
 
   .MuiOutlinedInput-notchedOutline {
@@ -79,7 +89,7 @@
 }
 
 // Fixes height of input select
-.input-select .lc-input .MuiOutlinedInput-root input.MuiAutocomplete-input {
+.lc-input-select .lc-input .MuiOutlinedInput-root input.MuiAutocomplete-input {
   box-sizing: content-box;
   height: 16px;
 }

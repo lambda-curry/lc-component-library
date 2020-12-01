@@ -28,8 +28,13 @@ const FormContent: React.FC<{
 }> = ({ className, state, dispatch, withoutFormElement, unsavedChangesConfig, ...rest }) => {
   const formContext = useFormikContext();
 
-  const handleClickOutside = (event: Event) => {
-    if (!unsavedChangesConfig.containerQuerySelectorAll || !state.shouldCheckForUnsavedChanges || !formContext.dirty)
+  const handleClickOutside = (event: MouseEvent | TouchEvent) => {
+    if (
+      !unsavedChangesConfig.containerQuerySelectorAll ||
+      !event.target ||
+      !state.shouldCheckForUnsavedChanges ||
+      !formContext.dirty
+    )
       return;
 
     event.preventDefault();
@@ -42,7 +47,8 @@ const FormContent: React.FC<{
     unsavedChangesConfig.containerQuerySelectorAll
       ? `${unsavedChangesConfig.containerQuerySelectorAll}, #lc-unsaved-changes-modal`
       : undefined,
-    unsavedChangesConfig.targetQuerySelector
+    unsavedChangesConfig.targetQuerySelector,
+    '[data-lc-trigger-unsaved-changes]'
   );
 
   return withoutFormElement ? (

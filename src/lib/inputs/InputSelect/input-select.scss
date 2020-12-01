@@ -1,4 +1,4 @@
-.input-select {
+.lc-input-select {
   .MuiAutocomplete-inputRoot[class*='MuiOutlinedInput-root'] {
     padding: 4px;
 
@@ -40,7 +40,7 @@
     }
   }
 
-  [class*='input-select-icon'] {
+  [class*='lc-input-select-icon'] {
     color: var(--gray);
   }
 }

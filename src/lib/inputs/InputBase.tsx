@@ -32,15 +32,16 @@ export const InputBase: React.FC<InputProps> = ({
 }) => {
   const fieldError =
     formikProps?.errors && name && _get(formikProps.touched, name) ? _get(formikProps.errors, name) : '';
-
   const fieldValue = formikProps ? _get(formikProps?.values, name) : props.value;
 
-  const inputProps: any = {
+  const InputProps: any = {
     startAdornment: prefix ? <InputAdornment position="start">{prefix}</InputAdornment> : false,
     endAdornment: suffix ? <InputAdornment position="end">{suffix}</InputAdornment> : false,
-    ...props.inputProps,
-    ...props.InputProps // Note: passing this in here allows InputSelect to work correctly
+    ...props.InputProps // Note: don't remove these, passing `InputProps` in here allows InputSelect to work correctly
   };
+
+  // Note: check to see if InputProps are passed to determine if the parent element is an InputSelect
+  if (props.InputProps && props.inputProps?.onChange) InputProps.onChange = props.inputProps.onChange; // passing inputProps.onChange in here allows for custom input values to be made
 
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (formikProps) formikProps.handleChange(event);
@@ -52,28 +53,50 @@ export const InputBase: React.FC<InputProps> = ({
     if (typeof props.onBlur === 'function') props.onBlur(event);
   };
 
-  return (
-    <>
-      {label && labelPlacement === 'above' && (
+  const hasLabelAbove = label && labelPlacement === 'above';
+
+  if (hasLabelAbove) {
+    return (
+      <div className="lc-input-wrapper">
         <label className="lc-input-label" htmlFor={id || name}>
           {label}
         </label>
-      )}
+        <TextField
+          name={name}
+          id={id || name}
+          label={labelPlacement === 'inset' ? label : false}
+          size="small"
+          {...props}
+          InputProps={InputProps}
+          error={!!fieldError}
+          helperText={fieldError || props.helperText}
+          className={classNames(className, 'lc-input', 'lc-input-label-above')}
+          value={fieldValue}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          variant={variant}
+        />
+      </div>
+    );
+  }
+
+  return (
+    <div className="lc-input-wrapper">
       <TextField
         name={name}
         id={id || name}
         label={labelPlacement === 'inset' ? label : false}
         size="small"
         {...props}
-        InputProps={inputProps}
+        InputProps={InputProps}
         error={!!fieldError}
         helperText={fieldError || props.helperText}
-        className={classNames(className, { 'lc-input-label-above': labelPlacement === 'above' }, 'lc-input')}
+        className={classNames(className, 'lc-input')}
         value={fieldValue}
         onChange={handleChange}
         onBlur={handleBlur}
         variant={variant}
       />
-    </>
+    </div>
   );
 };

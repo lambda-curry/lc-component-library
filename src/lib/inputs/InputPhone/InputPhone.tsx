@@ -28,5 +28,5 @@ const PhoneMask: React.FC<TextMaskCustomProps> = props => {
 
 export const InputPhone = ({ className, ...props }: InputProps) => {
   props.InputProps = { ...props.InputProps, inputComponent: PhoneMask as any };
-  return <InputBase type="text" className={classNames('input-text', className)} {...props} />;
+  return <InputBase type="text" className={classNames('lc-input-phone', className)} {...props} />;
 };

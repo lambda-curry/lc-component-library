@@ -1,6 +1,6 @@
 {
   "name": "@lambdacurry/component-library",
-  "version": "0.5.12",
+  "version": "0.5.42",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -36,6 +36,7 @@
     "notistack": "^1.0.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-input-mask": "^2.0.4",
     "react-modal": "^3.11.2",
     "react-quill": "2.0.0-beta.2",
     "react-scripts": "3.4.3",

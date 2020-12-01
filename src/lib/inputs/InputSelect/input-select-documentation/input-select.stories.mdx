@@ -122,5 +122,105 @@ import './input-select-story.scss';
       </Form>
     </div>
   </Story>
+  <Story
+    name="Input Select with Custom Input Value"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+          <Form enableReinitialize={true} initialValues={{ customValue: undefined }} onSubmit={() => {}}>
+            {formikProps => (
+              <>
+                <p className="lc-my-8">Value: {\`\${formikProps.values.customValue}\`}</p>
+                <InputSelect
+                  label="Select Custom Value"
+                  name="customValue"
+                  options={[
+                    { label: 'Option 1', value: 1 },
+                    { label: 'Option 2', value: 2 },
+                    { label: 'Option 3', value: 3 }
+                  ]}
+                  optionValueKey="value"
+                  formikProps={formikProps}
+                  autocompleteConfig={{
+                    getOptionDisabled: option => option.isDisabled,
+                    filterOptions: (options, params) => {
+                      options.filter(({ value }) => value === undefined);
+                      if (params.inputValue !== '') {
+                        options.unshift({
+                          value: params.inputValue,
+                          label: \`Use "\${params.inputValue}"\`
+                        });
+                      }
+                      return options;
+                    },
+                    getOptionLabel: option => {
+                      if (typeof option === 'string') {
+                        return option;
+                      }
+                      if (option.value && typeof option.value === 'string') {
+                        return option.value;
+                      }
+                      return option.label;
+                    },
+                    renderOption: option => option.label
+                  }}
+                />
+              </>
+            )}
+          </Form>`
+        }
+      }
+    }}
+  >
+    {() => {
+      return (
+        <div className="input-form-story">
+          <Form enableReinitialize={true} initialValues={{ customValue: undefined }} onSubmit={() => {}}>
+            {formikProps => (
+              <>
+                <p className="lc-my-8">Value: {`${formikProps.values.customValue}`}</p>
+                <InputSelect
+                  label="Select Custom Value"
+                  name="customValue"
+                  options={[
+                    { label: 'Option 1', value: 1 },
+                    { label: 'Option 2', value: 2 },
+                    { label: 'Option 3', value: 3 }
+                  ]}
+                  optionValueKey="value"
+                  formikProps={formikProps}
+                  autocompleteConfig={{
+                    autoHighlight: true,
+                    getOptionDisabled: option => option.isDisabled,
+                    filterOptions: (options, params) => {
+                      const filtered = [...options].filter(({ value }) => value !== undefined);
+                      if (params.inputValue !== '') {
+                        filtered.unshift({
+                          value: params.inputValue,
+                          label: `Use "${params.inputValue}"`
+                        });
+                      }
+                      return filtered;
+                    },
+                    getOptionLabel: option => {
+                      if (typeof option === 'string') {
+                        return option;
+                      }
+                      if (option.value && typeof option.value === 'string') {
+                        return option.value;
+                      }
+                      return option.label;
+                    },
+                    renderOption: option => option.label
+                  }}
+                />
+              </>
+            )}
+          </Form>
+        </div>
+      );
+    }}
+  </Story>
   <ArgsTable of={InputSelect} />
 </Canvas>

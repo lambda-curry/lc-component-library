@@ -9,9 +9,7 @@ import classNames from 'classnames';
 import { FormikProps } from 'formik';
 import { Icon } from '../..';
 
-import './input-checkbox.scss';
-
-export type InputCheckboxProps<T>  = {
+export type InputCheckboxProps<T> = {
   label: string;
   labelPlacement?: FormControlLabelProps['labelPlacement'];
   formikProps?: FormikProps<T>;
@@ -33,29 +31,27 @@ export const InputCheckbox = ({
 
   useEffect(() => {
     if (disableOnChange) {
-        setChecked(!!props.checked);
+      setChecked(!!fieldProps?.value || !!props.checked);
     }
-}, [props.checked]);
+  }, [disableOnChange, props.checked, fieldProps?.value]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (disableOnChange) {
-        return;
+    if (!disableOnChange) {
+      setChecked(event.target.checked);
     }
 
-    setChecked(event.target.checked);
-
     if (onChange) {
-        onChange(event, event.target.checked);
+      onChange(event, event.target.checked);
     }
 
     if (fieldProps?.onChange) {
-        fieldProps.onChange(event);
+      fieldProps.onChange(event);
     }
-};
+  };
 
   return (
     <MuiFormControlLabel
-      className={classNames('input input-checkbox', className)}
+      className={classNames('lc-input lc-input-checkbox', className)}
       label={label}
       labelPlacement={labelPlacement}
       control={
@@ -63,8 +59,8 @@ export const InputCheckbox = ({
           {...props}
           checked={checked}
           onChange={handleChange}
-          icon={<Icon name="checkbox" className="input-checkbox-icon" />}
-          checkedIcon={<Icon name="checkboxFilled" className="input-checkbox-icon-filled" />}
+          icon={<Icon name="checkbox" className="lc-input-checkbox-icon" />}
+          checkedIcon={<Icon name="checkboxFilled" className="lc-input-checkbox-icon-filled" />}
           color={color}
         />
       }
