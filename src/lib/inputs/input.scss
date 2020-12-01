@@ -15,7 +15,7 @@
     }
 
     &-label-above {
-      input {
+      input:not([type='color']) {
         background-color: white;
         border-radius: 4px;
       }
