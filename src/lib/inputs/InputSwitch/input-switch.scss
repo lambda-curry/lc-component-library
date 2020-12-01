@@ -1,11 +1,11 @@
-.input-switch {
+.lc-input-switch {
   position: relative;
   display: inline-flex;
   align-items: center;
   padding: 8px;
   cursor: pointer;
 
-  &__input {
+  &-input {
     position: relative;
     appearance: none;
     -moz-appearance: none;
@@ -47,21 +47,21 @@
     }
   }
 
-  &--disabled {
+  &-disabled {
     opacity: 0.6;
     pointer-events: none;
   }
 
-  &--label-position-end {
-    .input-switch__label {
+  &-label-position-end {
+    .lc-input-switch-label {
       margin-left: 8px;
     }
   }
 
-  &--label-position-start {
+  &-label-position-start {
     flex-direction: row-reverse;
 
-    .input-switch__label {
+    .lc-input-switch-label {
       margin-left: 0;
       margin-right: 8px;
     }

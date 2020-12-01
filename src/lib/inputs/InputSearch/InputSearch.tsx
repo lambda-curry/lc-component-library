@@ -90,7 +90,7 @@ export const InputSearch: React.FC<InputSearchProps> = ({
 
   return (
     <InputSelect
-      className={classNames('input-search', className)}
+      className={classNames('lc-input-search', className)}
       {...props}
       options={state.options}
       onChange={handleChange}

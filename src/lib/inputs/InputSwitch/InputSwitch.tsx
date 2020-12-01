@@ -68,10 +68,11 @@ export const InputSwitch = ({
   };
 
   const inputSwitchClassName = classNames(
-    'input input-switch',
+    'lc-input',
+    'lc-input-switch',
     {
-      [`input-switch--label-position-${labelPlacement}`]: label && labelPlacement,
-      [`input-switch--disabled`]: disabled
+      [`lc-input-switch-label-position-${labelPlacement}`]: label && labelPlacement,
+      [`lc-input-switch-disabled`]: disabled
     },
     className
   );
@@ -82,14 +83,14 @@ export const InputSwitch = ({
         id={id}
         name={name}
         type="checkbox"
-        className="input-switch__input"
+        className="lc-input-switch-input"
         {...fieldProps}
         {...props}
         checked={checked}
         disabled={disabled}
         onChange={handleChange}
       />
-      <span className="input-switch__label">{label}</span>
+      <span className="lc-input-switch-label">{label}</span>
     </label>
   );
 };

@@ -29,10 +29,6 @@
   }
 
   .MuiOutlinedInput-multiline {
-    // textarea {
-    //   min-height: 48px;
-    // }
-
     &.MuiOutlinedInput-marginDense {
       padding-top: 14px;
       padding-bottom: 15px;
@@ -93,7 +89,7 @@
 }
 
 // Fixes height of input select
-.input-select .lc-input .MuiOutlinedInput-root input.MuiAutocomplete-input {
+.lc-input-select .lc-input .MuiOutlinedInput-root input.MuiAutocomplete-input {
   box-sizing: content-box;
   height: 16px;
 }

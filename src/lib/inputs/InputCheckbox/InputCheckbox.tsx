@@ -51,7 +51,7 @@ export const InputCheckbox = ({
 
   return (
     <MuiFormControlLabel
-      className={classNames('input input-checkbox', className)}
+      className={classNames('lc-input lc-input-checkbox', className)}
       label={label}
       labelPlacement={labelPlacement}
       control={
@@ -59,8 +59,8 @@ export const InputCheckbox = ({
           {...props}
           checked={checked}
           onChange={handleChange}
-          icon={<Icon name="checkbox" className="input-checkbox-icon" />}
-          checkedIcon={<Icon name="checkboxFilled" className="input-checkbox-icon-filled" />}
+          icon={<Icon name="checkbox" className="lc-input-checkbox-icon" />}
+          checkedIcon={<Icon name="checkboxFilled" className="lc-input-checkbox-icon-filled" />}
           color={color}
         />
       }

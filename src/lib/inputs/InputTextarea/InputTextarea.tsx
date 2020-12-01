@@ -10,7 +10,7 @@ export interface InputTextareaProps extends InputProps {
 export const InputTextarea = ({ className, rows = 3, rowsMax = 10, ...props }: InputTextareaProps) => (
   <InputBase
     {...props}
-    className={classNames('input-textarea', className)}
+    className={classNames('lc-input-textarea', className)}
     multiline={true}
     rows={rows}
     rowsMax={rowsMax}

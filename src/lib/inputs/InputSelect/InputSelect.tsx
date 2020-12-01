@@ -80,8 +80,8 @@ export const InputSelect: React.FC<InputSelectProps> = ({
     multiple: false,
     value: inputValue,
     openOnFocus: true,
-    closeIcon: <Icon className="input-select-icon-close" name="close" />,
-    popupIcon: <Icon className="input-select-icon-popup" name="chevronDown" />,
+    closeIcon: <Icon className="lc-input-select-icon-close" name="close" />,
+    popupIcon: <Icon className="lc-input-select-icon-popup" name="chevronDown" />,
     ChipProps: { deleteIcon: <Icon name="close" /> },
     renderInput: params => {
       return (
@@ -102,12 +102,12 @@ export const InputSelect: React.FC<InputSelectProps> = ({
         </>
       );
     },
-    PaperComponent: props => <Paper className="input-select-paper" {...props} />,
+    PaperComponent: props => <Paper className="lc-input-select-paper" {...props} />,
     getOptionSelected,
     getOptionLabel: (option: { [key: string]: any }) => get(option, optionLabelKey) || '',
     onChange: handleChange,
     ...autocompleteConfig
   };
 
-  return <Autocomplete className={classNames('input-select', className)} {...autocompleteProps} />;
+  return <Autocomplete className={classNames('lc-input-select', className)} {...autocompleteProps} />;
 };
