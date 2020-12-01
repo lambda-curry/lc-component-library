@@ -64,7 +64,5 @@ export function lightenDarkenColor(hex: string, lum: number = -0.2) {
 
 export function isHexColor(value: string) {
   const newValue = value ? value.replace(/\s+/g, '') : value;
-  console.log(new RegExp(`^#${hexColorRegexString}{6}$`, 'i').test(newValue));
-  console.log(new RegExp(`^#${hexColorRegexString}{6}$`, 'i'));
   return new RegExp(`^#${hexColorRegexString}{6}$`, 'i').test(newValue);
 }
