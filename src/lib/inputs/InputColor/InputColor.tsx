@@ -67,7 +67,6 @@ export const InputColor: FC<InputColorProps<any>> = ({
   return (
     <InputText
       {...props}
-      label="Text color"
       labelPlacement="above"
       placeholder={placeholder}
       value={fieldValue}
