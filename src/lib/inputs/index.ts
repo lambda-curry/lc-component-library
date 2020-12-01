@@ -1,4 +1,5 @@
 export { InputCheckbox } from './InputCheckbox/InputCheckbox';
+export { InputColor } from './InputColor/InputColor';
 export { InputSelect } from './InputSelect/InputSelect';
 export { InputSwitch } from './InputSwitch/InputSwitch';
 export { InputText } from './InputText/InputText';

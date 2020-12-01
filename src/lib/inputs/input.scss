@@ -5,7 +5,7 @@
     display: flex;
     margin-bottom: 24px;
 
-    input {
+    input:not([type='color']) {
       box-sizing: content-box;
       height: 28px;
       padding-top: 10px;

@@ -57,7 +57,7 @@ export const InputBase: React.FC<InputProps> = ({
 
   if (hasLabelAbove) {
     return (
-      <div className="lc-input">
+      <div className="lc-input-wrapper">
         <label className="lc-input-label" htmlFor={id || name}>
           {label}
         </label>
@@ -70,7 +70,7 @@ export const InputBase: React.FC<InputProps> = ({
           InputProps={InputProps}
           error={!!fieldError}
           helperText={fieldError || props.helperText}
-          className={classNames(className, !hasLabelAbove ? 'lc-input' : 'lc-input-label-above')}
+          className={classNames(className, 'lc-input', 'lc-input-label-above')}
           value={fieldValue}
           onChange={handleChange}
           onBlur={handleBlur}
@@ -81,20 +81,22 @@ export const InputBase: React.FC<InputProps> = ({
   }
 
   return (
-    <TextField
-      name={name}
-      id={id || name}
-      label={labelPlacement === 'inset' ? label : false}
-      size="small"
-      {...props}
-      InputProps={InputProps}
-      error={!!fieldError}
-      helperText={fieldError || props.helperText}
-      className={classNames(className, !hasLabelAbove ? 'lc-input' : 'lc-input-label-above')}
-      value={fieldValue}
-      onChange={handleChange}
-      onBlur={handleBlur}
-      variant={variant}
-    />
+    <div className="lc-input-wrapper">
+      <TextField
+        name={name}
+        id={id || name}
+        label={labelPlacement === 'inset' ? label : false}
+        size="small"
+        {...props}
+        InputProps={InputProps}
+        error={!!fieldError}
+        helperText={fieldError || props.helperText}
+        className={classNames(className, 'lc-input')}
+        value={fieldValue}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        variant={variant}
+      />
+    </div>
   );
 };

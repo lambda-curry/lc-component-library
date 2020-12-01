@@ -1,7 +1,5 @@
 export function getCssVar(cssVar: string, computedStyle?: CSSStyleDeclaration) {
-  const styles = computedStyle
-    ? computedStyle
-    : getComputedStyle(document.documentElement);
+  const styles = computedStyle ? computedStyle : getComputedStyle(document.documentElement);
   return styles.getPropertyValue(`--${cssVar}`).replace(' ', '');
 }
 
@@ -14,20 +12,15 @@ export function isColor(color: string) {
 export function getHexColor(colorStr: string) {
   const a = document.createElement('div');
   a.style.color = colorStr;
-  const colorArray = window
-    .getComputedStyle(document.body.appendChild(a))
-    .color?.match(/\d+/g);
+  const colorArray = window.getComputedStyle(document.body.appendChild(a)).color?.match(/\d+/g);
   if (!colorArray) {
     return '';
   }
-  const colors = colorArray.map((c) => parseInt(c, 10));
+  const colors = colorArray.map(c => parseInt(c, 10));
   document.body.removeChild(a);
   return colors.length >= 3
     ? // tslint:disable-next-line: no-bitwise
-      '#' +
-        ((1 << 24) + (colors[0] << 16) + (colors[1] << 8) + colors[2])
-          .toString(16)
-          .substr(1)
+      '#' + ((1 << 24) + (colors[0] << 16) + (colors[1] << 8) + colors[2]).toString(16).substr(1)
     : '';
 }
 
@@ -64,4 +57,9 @@ export function lightenDarkenColor(hex: string, lum: number = -0.2) {
   }
 
   return rgb;
+}
+
+export function isHexColor(value: string) {
+  const newValue = value ? value.replace(/\s+/g, '') : value;
+  return /^#[0-9A-Fa-f]{6}$/i.test(newValue);
 }

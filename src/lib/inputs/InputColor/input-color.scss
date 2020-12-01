@@ -1,0 +1,44 @@
+$color-picker-size: 24px;
+
+@mixin color-picker-swatch {
+  width: $color-picker-size;
+  height: $color-picker-size;
+  margin: -4px -2px;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+}
+
+.lc-input-color {
+  &-picker {
+    width: $color-picker-size;
+    height: $color-picker-size;
+    border-radius: 2px;
+    background-image: linear-gradient(45deg, #ccc 25%, transparent 25%),
+      linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%),
+      linear-gradient(-45deg, transparent 75%, #ccc 75%);
+    background-size: 8px 8px;
+    background-position: 0 0, 0 4px, 4px -4px, -4px 0px;
+
+    &-input {
+      @include color-picker-swatch();
+      margin: 0;
+      border-radius: 2px;
+      overflow: hidden;
+      border: solid 1px #ccc;
+
+      &::-webkit-color-swatch {
+        @include color-picker-swatch();
+      }
+      &::-moz-color-swatch {
+        @include color-picker-swatch();
+      }
+    }
+  }
+
+  &-invalid-hex {
+    input[type='color'] {
+      opacity: 0;
+    }
+  }
+}
