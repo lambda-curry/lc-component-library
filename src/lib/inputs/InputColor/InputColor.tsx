@@ -5,7 +5,7 @@ import { InputAdornment } from '@material-ui/core';
 import MaskedInput from 'react-text-mask';
 import { InputText } from '..';
 import { InputProps } from '../InputBase';
-import { isHexColor } from '../../util/colors';
+import { isHexColor, hexColorRegex } from '../../util/colors';
 
 import './input-color.scss';
 
@@ -21,11 +21,10 @@ export interface InputColorProps<T> extends InputProps {
 
 const InputColorMask: React.FC<TextMaskCustomProps> = props => {
   const { inputRef, mask, ...rest } = props;
-  const hexRegex = /[a-fA-F0-9]/;
 
   return (
     <MaskedInput
-      mask={['#', hexRegex, hexRegex, hexRegex, hexRegex, hexRegex, hexRegex]}
+      mask={['#', ...new Array(6).fill(hexColorRegex, 0)]}
       {...rest}
       ref={(ref: any) => {
         inputRef(ref ? ref.inputElement : null);
@@ -79,7 +78,7 @@ export const InputColor: FC<InputColorProps<any>> = ({
           <InputAdornment position="start">
             <div className="lc-input-color-picker">
               <input
-                name={`_${name}_picker`}
+                name={`_${props.name}_picker`}
                 type="color"
                 className="lc-input-color-picker-input"
                 onChange={handleChange}
