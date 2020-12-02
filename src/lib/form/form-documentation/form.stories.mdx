@@ -15,16 +15,24 @@ import dedent from 'string-dedent';
       docs: {
         source: {
           code: dedent`
-          <Form
-            initialValues={{
-              input: ''
-            }}
-            onSubmit={() => {}}
+         <Form
+            enableReinitialize={true}
+            initialValues={values}
+            onSubmit={setValues}
             unsavedChangesConfig={{ containerQuerySelectorAll: '.lc-form', modalProps: { ariaHideApp: false } }}
+            validationSchema={Yup.object().shape({
+              input: Yup.string().required(`Please enter an input value.`)
+            })}
+            config={{ fastField: true }}
           >
             {formikProps => (
               <>
-                <InputText label="Text Input" name="input" formikProps={formikProps} />
+                <InputText autoComplete="off" label="Text Input" name="input" formikProps={formikProps} />
+                {formikProps.dirty ? (
+                  <ButtonPrimary type="submit">Save</ButtonPrimary>
+                ) : (
+                  <ButtonPrimary>Saved</ButtonPrimary>
+                )}
               </>
             )}
           </Form>`
