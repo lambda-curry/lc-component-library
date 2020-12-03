@@ -16,6 +16,7 @@ import dedent from 'string-dedent';
         source: {
           code: dedent`
           const [values, setValues] = useState({ input: '' });
+
           return (
             <div className="input-form-story">
               <ButtonOutlinePrimary className="lc-mb-16">
@@ -46,7 +47,9 @@ import dedent from 'string-dedent';
         }
       }
     }}
-  >
+
+>
+
     {() => {
       const [values, setValues] = useState({ input: '' });
       return (
@@ -77,6 +80,7 @@ import dedent from 'string-dedent';
         </div>
       );
     }}
+
   </Story>
   <ArgsTable of={Form} />
 </Canvas>
