@@ -13,7 +13,9 @@ interface TextMaskCustomProps {
   inputRef: (ref: HTMLInputElement | null) => void;
 }
 
-export interface InputColorProps extends InputProps {}
+export interface InputColorProps extends InputProps {
+  onPickerChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
 const InputColorMask: React.FC<TextMaskCustomProps> = props => {
   const { inputRef, mask, ...rest } = props;
@@ -30,16 +32,20 @@ const InputColorMask: React.FC<TextMaskCustomProps> = props => {
   );
 };
 
-export const InputColor: FC<InputColorProps> = ({ className, placeholder = 'Pick a color', ...props }) => {
+export const InputColor: FC<InputColorProps> = ({
+  className,
+  placeholder = 'Pick a color',
+  onPickerChange,
+  ...props
+}) => {
   const fieldProps = props.formikProps?.getFieldProps(props.name);
   const fieldHelpers = props.formikProps?.getFieldHelpers(props.name);
   const fieldValue = fieldProps?.value || props.value;
   const isValidColor = isHexColor(fieldValue);
 
   const handlePickerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (fieldHelpers) {
-      fieldHelpers.setValue(event.target.value);
-    }
+    if (fieldHelpers) fieldHelpers.setValue(event.target.value);
+    if (onPickerChange) onPickerChange(event);
   };
 
   return (
