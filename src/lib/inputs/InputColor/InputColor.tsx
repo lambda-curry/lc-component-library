@@ -60,7 +60,7 @@ export const InputColor: FC<InputColorProps> = ({ className, placeholder = 'Pick
                 type="color"
                 className="lc-input-color-picker-input"
                 onChange={handlePickerChange}
-                value={isValidColor ? fieldValue : '#000000'} // Set a valid hex value as the default to avoid console errors.
+                value={isValidColor ? fieldValue : '#000000'} // Set a valid hex value as the default to avoid console warnings.
               />
             </div>
           </InputAdornment>
