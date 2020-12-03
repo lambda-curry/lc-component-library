@@ -1,5 +1,5 @@
 import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs/blocks';
-import { InputCheckbox } from '../..';
+import { InputCheckbox, Form, Button } from '../../..';
 import dedent from 'string-dedent';
 import './input-checkbox-story.scss';
 
@@ -14,15 +14,43 @@ import './input-checkbox-story.scss';
       docs: {
         source: {
           code: dedent`
-            <h4>Default</h4>
-            <InputCheckbox name="checkboxDefault" label="Default checkbox" />`
+          <h4>Default</h4>
+          <Form enableReinitialize={true} initialValues={{ checkboxDefault: false }} onSubmit={() => {}}>
+            {formikProps => (
+              <>
+                <p>Value: {\`\${formikProps.values.checkboxDefault}\`}</p>
+                <InputCheckbox name="checkboxDefault" label="Default checkbox" formikProps={formikProps} />
+                <Button
+                  onClick={() => {
+                    formikProps.resetForm();
+                  }}
+                >
+                  Reset
+                </Button>
+              </>
+            )}
+          </Form>`
         }
       }
     }}
   >
     <div className="input-checkbox-story">
       <h4>Default</h4>
-      <InputCheckbox name="checkboxDefault" label="Default checkbox" />
+      <Form enableReinitialize={true} initialValues={{ checkboxDefault: false }} onSubmit={() => {}}>
+        {formikProps => (
+          <>
+            <p>Value: {`${formikProps.values.checkboxDefault}`}</p>
+            <InputCheckbox name="checkboxDefault" label="Default checkbox" formikProps={formikProps} />
+            <Button
+              onClick={() => {
+                formikProps.resetForm();
+              }}
+            >
+              Reset
+            </Button>
+          </>
+        )}
+      </Form>
     </div>
   </Story>
   <Story
