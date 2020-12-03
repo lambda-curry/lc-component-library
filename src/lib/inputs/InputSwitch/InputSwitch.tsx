@@ -32,17 +32,13 @@ export const InputSwitch = ({
   ...props
 }: InputSwitchProps<any>) => {
   const fieldProps = formikProps?.getFieldProps(name);
+  const fieldValue = !!fieldProps?.value || !!props.checked;
   const [label, setLabel] = useState(props.label);
-  const [checked, setChecked] = useState(!!fieldProps?.value || !!props.checked);
 
   useEffect(() => {
-    if (checked && labelOn) setLabel(labelOn);
-    if (!checked && labelOff) setLabel(labelOff);
-  }, [checked, labelOn, labelOff]);
-
-  useEffect(() => {
-    setChecked(!!fieldProps?.value || !!props.checked);
-  }, [props.checked, fieldProps?.value]);
+    if (fieldValue && labelOn) setLabel(labelOn);
+    if (!fieldValue && labelOff) setLabel(labelOff);
+  }, [fieldValue, labelOn, labelOff]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (onChange) onChange(event, event.target.checked);
@@ -68,7 +64,7 @@ export const InputSwitch = ({
         className="lc-input-switch-input"
         {...fieldProps}
         {...props}
-        checked={checked}
+        checked={fieldValue}
         disabled={disabled}
         onChange={handleChange}
       />

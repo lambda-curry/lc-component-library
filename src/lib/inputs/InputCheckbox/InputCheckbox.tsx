@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   Checkbox as MuiCheckbox,
   CheckboxProps,
@@ -25,11 +25,7 @@ export const InputCheckbox = ({
   ...props
 }: InputCheckboxProps<any>) => {
   const fieldProps = formikProps?.getFieldProps(props.name);
-  const [checked, setChecked] = useState(!!fieldProps?.value || !!props.checked);
-
-  useEffect(() => {
-    setChecked(!!fieldProps?.value || !!props.checked);
-  }, [props.checked, fieldProps?.value]);
+  const fieldValue = !!fieldProps?.value || !!props.checked;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (typeof onChange === 'function') onChange(event, event.target.checked);
@@ -44,7 +40,7 @@ export const InputCheckbox = ({
       control={
         <MuiCheckbox
           {...props}
-          checked={checked}
+          checked={fieldValue}
           onChange={handleChange}
           icon={<Icon name="checkbox" className="lc-input-checkbox-icon" />}
           checkedIcon={<Icon name="checkboxFilled" className="lc-input-checkbox-icon-filled" />}
