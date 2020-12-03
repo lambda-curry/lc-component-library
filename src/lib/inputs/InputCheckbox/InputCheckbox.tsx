@@ -13,14 +13,12 @@ export type InputCheckboxProps<T> = {
   label: string;
   labelPlacement?: FormControlLabelProps['labelPlacement'];
   formikProps?: FormikProps<T>;
-  disableOnChange?: boolean;
 } & CheckboxProps;
 
 export const InputCheckbox = ({
   label,
   className,
   onChange,
-  disableOnChange,
   labelPlacement,
   color = 'primary',
   formikProps,
@@ -30,23 +28,12 @@ export const InputCheckbox = ({
   const [checked, setChecked] = useState(!!fieldProps?.value || !!props.checked);
 
   useEffect(() => {
-    if (disableOnChange) {
-      setChecked(!!fieldProps?.value || !!props.checked);
-    }
-  }, [disableOnChange, props.checked, fieldProps?.value]);
+    setChecked(!!fieldProps?.value || !!props.checked);
+  }, [props.checked, fieldProps?.value]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (!disableOnChange) {
-      setChecked(event.target.checked);
-    }
-
-    if (onChange) {
-      onChange(event, event.target.checked);
-    }
-
-    if (fieldProps?.onChange) {
-      fieldProps.onChange(event);
-    }
+    if (typeof onChange === 'function') onChange(event, event.target.checked);
+    if (fieldProps?.onChange) fieldProps.onChange(event);
   };
 
   return (

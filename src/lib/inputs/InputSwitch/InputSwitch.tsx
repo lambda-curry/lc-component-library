@@ -17,7 +17,6 @@ export interface InputSwitchProps<T> {
   className?: string;
   onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
-  disableOnChange?: boolean;
 }
 
 export const InputSwitch = ({
@@ -30,7 +29,6 @@ export const InputSwitch = ({
   formikProps,
   className,
   onChange,
-  disableOnChange,
   ...props
 }: InputSwitchProps<any>) => {
   const fieldProps = formikProps?.getFieldProps(name);
@@ -38,33 +36,17 @@ export const InputSwitch = ({
   const [checked, setChecked] = useState(!!fieldProps?.value || !!props.checked);
 
   useEffect(() => {
-    if (checked && labelOn) {
-      setLabel(labelOn);
-    }
-
-    if (!checked && labelOff) {
-      setLabel(labelOff);
-    }
+    if (checked && labelOn) setLabel(labelOn);
+    if (!checked && labelOff) setLabel(labelOff);
   }, [checked, labelOn, labelOff]);
 
   useEffect(() => {
-    if (disableOnChange) {
-      setChecked(!!fieldProps?.value || !!props.checked);
-    }
-  }, [disableOnChange, props.checked, fieldProps?.value]);
+    setChecked(!!fieldProps?.value || !!props.checked);
+  }, [props.checked, fieldProps?.value]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (!disableOnChange) {
-      setChecked(event.target.checked);
-    }
-
-    if (onChange) {
-      onChange(event, event.target.checked);
-    }
-
-    if (fieldProps?.onChange) {
-      fieldProps.onChange(event);
-    }
+    if (onChange) onChange(event, event.target.checked);
+    if (fieldProps?.onChange) fieldProps.onChange(event);
   };
 
   const inputSwitchClassName = classNames(
