@@ -1,6 +1,5 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import classNames from 'classnames';
-import { FormikProps } from 'formik';
 import { InputAdornment } from '@material-ui/core';
 import MaskedInput from 'react-text-mask';
 import { InputText } from '..';
