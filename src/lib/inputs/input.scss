@@ -33,6 +33,11 @@
       padding-top: 14px;
       padding-bottom: 15px;
     }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
   }
 
   .MuiOutlinedInput-notchedOutline {

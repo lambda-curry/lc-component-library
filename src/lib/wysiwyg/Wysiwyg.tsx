@@ -1,9 +1,9 @@
 import React, { useEffect, FunctionComponent, useState } from 'react';
 import ReactQuill, { ReactQuillProps, QuillOptions } from 'react-quill';
 import { FormikProps } from 'formik';
-import { Icon } from '..';
 import { get as _get } from 'lodash';
 import { stripTags } from '../util/formatters';
+import { MultilineInputWrapper } from '../inputs/InputTextarea/MultilineInputWrapper';
 
 import 'react-quill/dist/quill.snow.css';
 import './wysiwyg.scss';
@@ -12,7 +12,7 @@ interface WysiwygProps extends ReactQuillProps {
   name: string;
   formikProps: FormikProps<{}>;
   templateVariables?: string[];
-  characterLimit?: number;
+  characterLimit: number;
 }
 
 const quillConfig: QuillOptions = {
@@ -45,13 +45,10 @@ const quillConfig: QuillOptions = {
 
 export const Wysiwyg: FunctionComponent<WysiwygProps> = ({
   placeholder = 'Enter your text here...',
-  characterLimit,
+  characterLimit = 0,
   formikProps,
   ...props
 }) => {
-  const [characterCount, setCharacterCount] = useState(0);
-  const [previousValue, setPreviousValue] = useState(_get(formikProps.values, props.name));
-
   const fieldValue = _get(formikProps.values, props.name);
 
   useEffect(() => {
@@ -67,49 +64,40 @@ export const Wysiwyg: FunctionComponent<WysiwygProps> = ({
     }
   }, []);
 
-  useEffect(() => {
-    const strippedValue = stripTags(_get(formikProps.values, props.name) || '');
-
-    setCharacterCount(strippedValue.length);
-    setPreviousValue(fieldValue);
-  }, [formikProps.values, props.name, fieldValue]);
-
-  const handleChange = (value: string) => {
-    let newValue = value;
-    const newValueLength = newValue.length;
-    const previousValueLength = previousValue.length;
-
-    // Enforce the character limit if it is set
-    if (newValueLength > previousValueLength && characterLimit && characterCount >= characterLimit) {
-      newValue = previousValue;
-    }
-
-    // Make sure we set a true empty value to avoid saving extra
-    // space when the editor is cleared out.
-    if (newValue === '<p><br></p>') {
-      newValue = '';
-    }
-
-    formikProps.setFieldValue(props.name, newValue);
-  };
-
   return (
-    <div className="wysiwyg">
-      <ReactQuill
-        className="wysiwyg-editor"
-        placeholder={placeholder}
-        theme={quillConfig.theme}
-        modules={quillConfig.modules}
-        value={fieldValue}
-        onChange={handleChange}
-        {...props}
-      />
-      {characterLimit && (
-        <div className="wysiwyg-character-limit">{characterLimit - characterCount} characters remaining</div>
-      )}
-      <div className="wysiwyg-resize">
-        <Icon name="resize" />
-      </div>
-    </div>
+    <MultilineInputWrapper value={fieldValue} characterLimit={characterLimit}>
+      {({ previousValue, characterCount }) => {
+        const handleChange = (value: string) => {
+          let newValue = value;
+          const newValueLength = newValue.length;
+          const previousValueLength = previousValue.length;
+
+          // Enforce the character limit if it is set
+          if (characterLimit && newValueLength > previousValueLength && characterCount >= characterLimit) {
+            newValue = previousValue;
+          }
+
+          // Make sure we set a true empty value to avoid saving extra
+          // space when the editor is cleared out.
+          if (newValue === '<p><br></p>') {
+            newValue = '';
+          }
+
+          formikProps.setFieldValue(props.name, newValue);
+        };
+
+        return (
+          <ReactQuill
+            className="wysiwyg-editor"
+            placeholder={placeholder}
+            theme={quillConfig.theme}
+            modules={quillConfig.modules}
+            value={fieldValue}
+            onChange={handleChange}
+            {...props}
+          />
+        );
+      }}
+    </MultilineInputWrapper>
   );
 };
