@@ -6,6 +6,7 @@ export * from './icon-button';
 export * from './inputs';
 export * from './form';
 export * from './modal';
+export * from './multiline-input';
 export * from './snackbars';
 export * from './slider';
 export * from './wysiwyg';

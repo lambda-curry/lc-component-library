@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { InputBase, InputProps } from '../InputBase';
 import { useCharacterLimit, CharacterLimit, Icon } from '../..';
-import { MultilineInputWrapper } from './MultilineInputWrapper';
+import { MultilineInput } from '../..';
 
 import './input-textarea.scss';
 
@@ -18,7 +18,7 @@ export const InputTextarea = ({ className, rows = 3, characterLimit = 0, onChang
   const fieldValue = fieldProps?.value || props.value;
 
   return (
-    <MultilineInputWrapper value={fieldValue} characterLimit={characterLimit}>
+    <MultilineInput value={fieldValue} characterLimit={characterLimit}>
       {({ previousValue, characterCount }) => {
         const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
           let newValue = event.target.value;
@@ -45,6 +45,6 @@ export const InputTextarea = ({ className, rows = 3, characterLimit = 0, onChang
           />
         );
       }}
-    </MultilineInputWrapper>
+    </MultilineInput>
   );
 };

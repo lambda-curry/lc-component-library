@@ -3,7 +3,7 @@ import ReactQuill, { ReactQuillProps, QuillOptions } from 'react-quill';
 import { FormikProps } from 'formik';
 import { get as _get } from 'lodash';
 import { stripTags } from '../util/formatters';
-import { MultilineInputWrapper } from '../inputs/InputTextarea/MultilineInputWrapper';
+import { MultilineInput } from '..';
 
 import 'react-quill/dist/quill.snow.css';
 import './wysiwyg.scss';
@@ -65,7 +65,7 @@ export const Wysiwyg: FunctionComponent<WysiwygProps> = ({
   }, []);
 
   return (
-    <MultilineInputWrapper value={fieldValue} characterLimit={characterLimit}>
+    <MultilineInput value={fieldValue} characterLimit={characterLimit}>
       {({ previousValue, characterCount }) => {
         const handleChange = (value: string) => {
           let newValue = value;
@@ -98,6 +98,6 @@ export const Wysiwyg: FunctionComponent<WysiwygProps> = ({
           />
         );
       }}
-    </MultilineInputWrapper>
+    </MultilineInput>
   );
 };

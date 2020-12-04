@@ -1,21 +1,16 @@
 import React, { FC } from 'react';
-import { CharacterLimit, Icon, useCharacterLimit, CharacterLimitHelpers } from '../..';
+import { CharacterLimit, Icon, useCharacterLimit, CharacterLimitHelpers } from '..';
 
 import './multiline-input.scss';
 
-export interface MultilineInputWrapperProps {
+export interface MultilineInputProps {
   value: string;
   characterLimit?: number;
   resize?: boolean;
   children: (characterLimitHelpers: CharacterLimitHelpers) => void;
 }
 
-export const MultilineInputWrapper: FC<MultilineInputWrapperProps> = ({
-  value,
-  characterLimit = 0,
-  resize = true,
-  children
-}) => {
+export const MultilineInput: FC<MultilineInputProps> = ({ value, characterLimit = 0, resize = true, children }) => {
   const characterLimitHelpers = useCharacterLimit({
     value,
     limit: characterLimit
