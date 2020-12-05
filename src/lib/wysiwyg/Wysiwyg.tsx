@@ -12,7 +12,7 @@ interface WysiwygProps extends ReactQuillProps {
   name: string;
   formikProps: FormikProps<{}>;
   templateVariables?: string[];
-  characterLimit: number;
+  characterLimit?: number;
 }
 
 const quillConfig: QuillOptions = {

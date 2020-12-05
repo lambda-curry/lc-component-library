@@ -5,7 +5,7 @@ import { MultilineInput } from '../..';
 
 export interface InputTextareaProps extends InputProps {
   rows?: number;
-  characterLimit: number;
+  characterLimit?: number;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
