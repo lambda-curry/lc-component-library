@@ -2,7 +2,6 @@ import React, { useEffect, FunctionComponent, useState } from 'react';
 import ReactQuill, { ReactQuillProps, QuillOptions } from 'react-quill';
 import { FormikProps } from 'formik';
 import { get as _get } from 'lodash';
-import { stripTags } from '../util/formatters';
 import { MultilineInput } from '..';
 
 import 'react-quill/dist/quill.snow.css';
