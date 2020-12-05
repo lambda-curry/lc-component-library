@@ -1,14 +1,10 @@
 import React from 'react';
 import classNames from 'classnames';
 import { InputBase, InputProps } from '../InputBase';
-import { useCharacterLimit, CharacterLimit, Icon } from '../..';
 import { MultilineInput } from '../..';
-
-import './input-textarea.scss';
 
 export interface InputTextareaProps extends InputProps {
   rows?: number;
-  rowsMax?: number;
   characterLimit: number;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -38,9 +34,9 @@ export const InputTextarea = ({ className, rows = 3, characterLimit = 0, onChang
         return (
           <InputBase
             {...props}
+            rows={rows}
             className={classNames('lc-input-textarea', className)}
             multiline={true}
-            rows={rows}
             onChange={handleChange}
           />
         );
