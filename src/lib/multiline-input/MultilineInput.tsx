@@ -20,7 +20,7 @@ export const MultilineInput: FC<MultilineInputProps> = ({ value, characterLimit 
     <div className="lc-multiline-input">
       {children(characterLimitHelpers)}
 
-      {characterLimit && (
+      {characterLimit > 0 && (
         <CharacterLimit
           className="lc-multiline-input-character-limit"
           limit={characterLimit}
