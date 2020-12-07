@@ -68,7 +68,7 @@ export const InputBase: React.FC<InputProps> = ({
           size="small"
           {...props}
           InputProps={InputProps}
-          error={!!fieldError}
+          error={!!fieldError || props.error}
           helperText={fieldError || props.helperText}
           className={classNames(className, 'lc-input', 'lc-input-label-above')}
           value={fieldValue}
@@ -89,7 +89,7 @@ export const InputBase: React.FC<InputProps> = ({
         size="small"
         {...props}
         InputProps={InputProps}
-        error={!!fieldError}
+        error={!!fieldError || props.error}
         helperText={fieldError || props.helperText}
         className={classNames(className, 'lc-input')}
         value={fieldValue}
