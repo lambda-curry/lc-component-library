@@ -9,6 +9,7 @@ import { ReactComponent as apps } from '../assets/icons/apps.svg';
 import { ReactComponent as archive } from '../assets/icons/archive.svg';
 import { ReactComponent as arrowLeft } from '../assets/icons/arrowLeft.svg';
 import { ReactComponent as bell } from '../assets/icons/bell.svg';
+import { ReactComponent as bellRing } from '../assets/icons/bellRing.svg';
 import { ReactComponent as chat } from '../assets/icons/chat.svg';
 import { ReactComponent as checkbox } from '../assets/icons/checkbox.svg';
 import { ReactComponent as checkboxFilled } from '../assets/icons/checkboxFilled.svg';
@@ -18,13 +19,14 @@ import { ReactComponent as clockFilled } from '../assets/icons/clockFilled.svg';
 import { ReactComponent as close } from '../assets/icons/close.svg';
 import { ReactComponent as company } from '../assets/icons/company.svg';
 import { ReactComponent as concessionManager } from '../assets/icons/concessionManager.svg';
-import { ReactComponent as confirmationEmail } from '../assets/icons/confirmationEmail.svg';
 import { ReactComponent as copy } from '../assets/icons/copy.svg';
 import { ReactComponent as deal } from '../assets/icons/deal.svg';
 import { ReactComponent as download } from '../assets/icons/download.svg';
 import { ReactComponent as drag } from '../assets/icons/drag.svg';
 import { ReactComponent as error } from '../assets/icons/error.svg';
 import { ReactComponent as expand } from '../assets/icons/expand.svg';
+import { ReactComponent as filePDF } from '../assets/icons/filePDF.svg';
+import { ReactComponent as fileExcel } from '../assets/icons/fileExcel.svg';
 import { ReactComponent as filter } from '../assets/icons/filter.svg';
 import { ReactComponent as flame } from '../assets/icons/flame.svg';
 import { ReactComponent as hamburger } from '../assets/icons/hamburger.svg';
@@ -47,13 +49,11 @@ import { ReactComponent as schedule } from '../assets/icons/schedule.svg';
 import { ReactComponent as search } from '../assets/icons/search.svg';
 import { ReactComponent as settings } from '../assets/icons/settings.svg';
 import { ReactComponent as sms } from '../assets/icons/sms.svg';
+import { ReactComponent as successMessage } from '../assets/icons/successMessage.svg';
 import { ReactComponent as trash } from '../assets/icons/trash.svg';
 import { ReactComponent as user } from '../assets/icons/user.svg';
 import { ReactComponent as users } from '../assets/icons/users.svg';
 import { ReactComponent as video } from '../assets/icons/video.svg';
-import { ReactComponent as pdf } from '../assets/icons/file-pdf.svg';
-import { ReactComponent as excel } from '../assets/icons/excel.svg';
-import { ReactComponent as successMessage } from '../assets/icons/successMessage.svg';
 
 export const defaultIcons = {
   addUser,
@@ -62,6 +62,7 @@ export const defaultIcons = {
   archive,
   arrowLeft,
   bell,
+  bellRing,
   chat,
   checkbox,
   checkboxFilled,
@@ -77,6 +78,8 @@ export const defaultIcons = {
   drag,
   error,
   expand,
+  fileExcel,
+  filePDF,
   filter,
   flame,
   hamburger,
@@ -99,17 +102,18 @@ export const defaultIcons = {
   search,
   settings,
   sms,
+  successMessage,
   trash,
   user,
   users,
-  video,
-  pdf,
-  excel,
-  successMessage
+  video
 };
 
 const aliasMap = {
-  confirmationEmail: 'successMessage'
+  confirmationEmail: 'successMessage',
+  notifications: 'bellRing',
+  pdf: 'filePDF',
+  excel: 'fileExcel'
 };
 
 export type DefaultIconNames = keyof typeof defaultIcons;

@@ -15,31 +15,41 @@ import dedent from 'string-dedent';
       docs: {
         source: {
           code: dedent`
-         <Form
-            enableReinitialize={true}
-            initialValues={values}
-            onSubmit={setValues}
-            unsavedChangesConfig={{ containerQuerySelectorAll: '.lc-form', modalProps: { ariaHideApp: false } }}
-            validationSchema={Yup.object().shape({
-              input: Yup.string().required(`Please enter an input value.`)
-            })}
-            config={{ fastField: true }}
-          >
-            {formikProps => (
-              <>
-                <InputText autoComplete="off" label="Text Input" name="input" formikProps={formikProps} />
-                {formikProps.dirty ? (
-                  <ButtonPrimary type="submit">Save</ButtonPrimary>
-                ) : (
-                  <ButtonPrimary>Saved</ButtonPrimary>
+          const [values, setValues] = useState({ input: '' });
+
+          return (
+            <div className="input-form-story">
+              <ButtonOutlinePrimary className="lc-mb-16">
+                Try clicking me when the input has an unsaved value
+              </ButtonOutlinePrimary>
+              <Form
+                enableReinitialize={true}
+                initialValues={values}
+                onSubmit={setValues}
+                unsavedChangesConfig={{ containerQuerySelectorAll: '.lc-form', modalProps: { ariaHideApp: false } }}
+                validationSchema={Yup.object().shape({
+                  input: Yup.string().required(`Please enter an input value.`)
+                })}
+              >
+                {formikProps => (
+                  <>
+                    <InputText autoComplete="off" label="Text Input" name="input" formikProps={formikProps} />
+                    {formikProps.dirty ? (
+                      <ButtonPrimary type="submit">Save</ButtonPrimary>
+                    ) : (
+                      <ButtonPrimary>Saved</ButtonPrimary>
+                    )}
+                  </>
                 )}
-              </>
-            )}
-          </Form>`
+              </Form>
+            </div>
+          );`
         }
       }
     }}
-  >
+
+>
+
     {() => {
       const [values, setValues] = useState({ input: '' });
       return (
@@ -55,7 +65,6 @@ import dedent from 'string-dedent';
             validationSchema={Yup.object().shape({
               input: Yup.string().required(`Please enter an input value.`)
             })}
-            config={{ fastField: true }}
           >
             {formikProps => (
               <>
@@ -71,6 +80,7 @@ import dedent from 'string-dedent';
         </div>
       );
     }}
+
   </Story>
   <ArgsTable of={Form} />
 </Canvas>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   Checkbox as MuiCheckbox,
   CheckboxProps,
@@ -13,40 +13,23 @@ export type InputCheckboxProps<T> = {
   label: string;
   labelPlacement?: FormControlLabelProps['labelPlacement'];
   formikProps?: FormikProps<T>;
-  disableOnChange?: boolean;
 } & CheckboxProps;
 
 export const InputCheckbox = ({
   label,
   className,
   onChange,
-  disableOnChange,
   labelPlacement,
   color = 'primary',
   formikProps,
   ...props
 }: InputCheckboxProps<any>) => {
   const fieldProps = formikProps?.getFieldProps(props.name);
-  const [checked, setChecked] = useState(!!fieldProps?.value || !!props.checked);
-
-  useEffect(() => {
-    if (disableOnChange) {
-      setChecked(!!fieldProps?.value || !!props.checked);
-    }
-  }, [disableOnChange, props.checked, fieldProps?.value]);
+  const fieldValue = !!fieldProps?.value || !!props.checked;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (!disableOnChange) {
-      setChecked(event.target.checked);
-    }
-
-    if (onChange) {
-      onChange(event, event.target.checked);
-    }
-
-    if (fieldProps?.onChange) {
-      fieldProps.onChange(event);
-    }
+    if (typeof onChange === 'function') onChange(event, event.target.checked);
+    if (fieldProps?.onChange) fieldProps.onChange(event);
   };
 
   return (
@@ -57,7 +40,7 @@ export const InputCheckbox = ({
       control={
         <MuiCheckbox
           {...props}
-          checked={checked}
+          checked={fieldValue}
           onChange={handleChange}
           icon={<Icon name="checkbox" className="lc-input-checkbox-icon" />}
           checkedIcon={<Icon name="checkboxFilled" className="lc-input-checkbox-icon-filled" />}

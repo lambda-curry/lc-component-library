@@ -27,6 +27,11 @@
     height: 32px;
     border-radius: 4px;
 
+    .lc-icon {
+      width: 20px;
+      height: 20px;
+    }
+
     &:not(.lc-icon-color) svg,
     &:not(.lc-icon-color) path {
       fill: white;

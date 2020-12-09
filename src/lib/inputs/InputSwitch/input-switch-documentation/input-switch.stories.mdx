@@ -1,5 +1,5 @@
 import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs/blocks';
-import { InputSwitch, Form } from '../../..';
+import { InputSwitch, Form, Button } from '../../..';
 import dedent from 'string-dedent';
 import './input-switch-story.scss';
 
@@ -21,7 +21,19 @@ import './input-switch-story.scss';
               }}
               onSubmit={() => {}}
             >
-              {formikProps => <InputSwitch name="switchDefault" formikProps={formikProps} />}
+              {formikProps => (
+                <>
+                  <p>Value: {\`\${formikProps.values.switchDefault}\`}</p>
+                  <InputSwitch name="switchDefault" formikProps={formikProps} />
+                  <Button
+                    onClick={() => {
+                      formikProps.resetForm();
+                    }}
+                  >
+                    Reset
+                  </Button>
+                </>
+              )}
             </Form>`
         }
       }
@@ -35,7 +47,19 @@ import './input-switch-story.scss';
         }}
         onSubmit={() => {}}
       >
-        {formikProps => <InputSwitch name="switchDefault" formikProps={formikProps} />}
+        {formikProps => (
+          <>
+            <p>Value: {`${formikProps.values.switchDefault}`}</p>
+            <InputSwitch name="switchDefault" formikProps={formikProps} />
+            <Button
+              onClick={() => {
+                formikProps.resetForm();
+              }}
+            >
+              Reset
+            </Button>
+          </>
+        )}
       </Form>
     </div>
   </Story>
@@ -144,7 +168,8 @@ import './input-switch-story.scss';
         {formikProps => (
           <>
             <InputSwitch name="switchWithLabelEnd" label="Click Me" labelPlacement="end" formikProps={formikProps} />
-            &nbsp;&nbsp;&nbsp;&nbsp;<InputSwitch
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <InputSwitch
               name="switchWithLabeLStart"
               labelOn="On"
               labelOff="Off"
