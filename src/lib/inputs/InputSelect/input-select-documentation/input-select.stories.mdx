@@ -72,6 +72,7 @@ import './input-select-story.scss';
         enableReinitialize={true}
         initialValues={{
           select: undefined,
+          select_gray_bg: undefined,
           initialSelect: { label: 'Option 1', value: 1 },
           selectValueOnly: 2,
           inputText: ''
@@ -92,6 +93,20 @@ import './input-select-story.scss';
               ]}
               formikProps={formikProps}
             />
+            <div className="lc-p-16 lc-bg-gray lc-text-white">
+              <p className="lc-mb-8">Value: {JSON.stringify(formikProps.values.select_gray_bg)}</p>
+              <InputSelect
+                labelPlacement="above"
+                label="Select Option"
+                name="select_gray_bg"
+                options={[
+                  { label: 'Option 1', value: 1 },
+                  { label: 'Option 2', value: 2 },
+                  { label: 'Option 3', value: 3 }
+                ]}
+                formikProps={formikProps}
+              />
+            </div>
             <p className="lc-mb-8">Value with initial form value: {JSON.stringify(formikProps.values.initialSelect)}</p>
             <InputSelect
               label="Select Option"

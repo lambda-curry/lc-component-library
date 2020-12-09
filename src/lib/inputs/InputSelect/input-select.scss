@@ -54,3 +54,9 @@ body .MuiAutocomplete-paper {
 .ReactModal__Body--open .MuiAutocomplete-popper {
   z-index: 10000;
 }
+
+.lc-input-label-above {
+  .MuiAutocomplete-inputRoot[class*='MuiOutlinedInput-root'] {
+    background: white;
+  }
+}
