@@ -1,6 +1,5 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import classNames from 'classnames';
-import { FormikProps } from 'formik';
 import { InputAdornment } from '@material-ui/core';
 import MaskedInput from 'react-text-mask';
 import { InputText } from '..';
@@ -14,7 +13,9 @@ interface TextMaskCustomProps {
   inputRef: (ref: HTMLInputElement | null) => void;
 }
 
-export interface InputColorProps extends InputProps {}
+export interface InputColorProps extends InputProps {
+  onPickerChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
 const InputColorMask: React.FC<TextMaskCustomProps> = props => {
   const { inputRef, mask, ...rest } = props;
@@ -31,16 +32,20 @@ const InputColorMask: React.FC<TextMaskCustomProps> = props => {
   );
 };
 
-export const InputColor: FC<InputColorProps> = ({ className, placeholder = 'Pick a color', ...props }) => {
+export const InputColor: FC<InputColorProps> = ({
+  className,
+  placeholder = 'Pick a color',
+  onPickerChange,
+  ...props
+}) => {
   const fieldProps = props.formikProps?.getFieldProps(props.name);
   const fieldHelpers = props.formikProps?.getFieldHelpers(props.name);
   const fieldValue = fieldProps?.value || props.value;
   const isValidColor = isHexColor(fieldValue);
 
   const handlePickerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (fieldHelpers) {
-      fieldHelpers.setValue(event.target.value);
-    }
+    if (fieldHelpers) fieldHelpers.setValue(event.target.value);
+    if (onPickerChange) onPickerChange(event);
   };
 
   return (
@@ -60,7 +65,7 @@ export const InputColor: FC<InputColorProps> = ({ className, placeholder = 'Pick
                 type="color"
                 className="lc-input-color-picker-input"
                 onChange={handlePickerChange}
-                value={isValidColor ? fieldValue : '#000000'} // Set a valid hex value as the default to avoid console errors.
+                value={isValidColor ? fieldValue : '#000000'} // Set a valid hex value as the default to avoid console warnings.
               />
             </div>
           </InputAdornment>

@@ -11,8 +11,8 @@ type LabelPlacements = 'inset' | 'above';
 
 export type InputProps = Omit<OutlinedTextFieldProps, 'variant'> & {
   name: string;
-  prefix?: JSX.Element;
-  suffix?: JSX.Element;
+  prefix?: React.ReactNode;
+  suffix?: React.ReactNode;
   formikProps?: FormikProps<any>;
   labelPlacement?: LabelPlacements;
   variant?: 'outlined'; // Don't remove any typing because this breaks the build. - Jake
@@ -68,7 +68,7 @@ export const InputBase: React.FC<InputProps> = ({
           size="small"
           {...props}
           InputProps={InputProps}
-          error={!!fieldError}
+          error={!!fieldError || props.error}
           helperText={fieldError || props.helperText}
           className={classNames(className, 'lc-input', 'lc-input-label-above')}
           value={fieldValue}
@@ -89,7 +89,7 @@ export const InputBase: React.FC<InputProps> = ({
         size="small"
         {...props}
         InputProps={InputProps}
-        error={!!fieldError}
+        error={!!fieldError || props.error}
         helperText={fieldError || props.helperText}
         className={classNames(className, 'lc-input')}
         value={fieldValue}
