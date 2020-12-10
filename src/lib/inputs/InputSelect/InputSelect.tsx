@@ -66,6 +66,7 @@ export const InputSelect: React.FC<InputSelectProps> = ({
   // Set default values for autocompleteConfig
   const autocompleteConfigAttributes: Partial<AutocompleteProps<any, boolean, boolean, boolean>> = {
     disableClearable: true,
+    autoHighlight: true,
     ...autocompleteConfig
   };
 
