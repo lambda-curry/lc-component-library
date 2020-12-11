@@ -11,7 +11,8 @@ type LabelPlacements = 'inset' | 'above';
 
 export interface InputConfig {
   labelPlacement?: 'inset' | 'above';
-  safeName: boolean;
+  safeName?: boolean;
+  inputBorderWhite?: boolean;
 }
 
 export type InputProps = Omit<OutlinedTextFieldProps, 'variant'> & {
@@ -69,7 +70,12 @@ export const InputBase: React.FC<InputProps> = ({
   const hasLabelAbove = label && config.labelPlacement === 'above';
 
   return (
-    <div className={classNames('lc-input-wrapper', { 'lc-input-label-above': hasLabelAbove })}>
+    <div
+      className={classNames('lc-input-wrapper', {
+        'lc-input-label-above': hasLabelAbove,
+        'lc-input-border-white': config.inputBorderWhite
+      })}
+    >
       {hasLabelAbove && (
         <label className="lc-input-label" htmlFor={id || name}>
           {label}

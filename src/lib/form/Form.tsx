@@ -73,8 +73,10 @@ export function Form<T>({
   };
 
   const containerQuerySelectorItems = ['form', '.snackbar', '[role=dialog]'];
+  // Note: If containerQuerySelectorAll is passed in, it will replace the form as a selector so you can target
+  // specific parts of the form if desired
   if (unsavedChangesConfig.containerQuerySelectorAll)
-    containerQuerySelectorItems.push(unsavedChangesConfig.containerQuerySelectorAll);
+    containerQuerySelectorItems[0] = unsavedChangesConfig.containerQuerySelectorAll;
   unsavedChangesConfig.containerQuerySelectorAll = containerQuerySelectorItems.join(', ');
 
   const [state, dispatch] = useReducer<Reducer<FormReducerState, FormReducerAction>>(formReducer, {
