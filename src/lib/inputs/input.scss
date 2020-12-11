@@ -13,13 +13,6 @@
       border-radius: 4px;
       zoom: 1;
     }
-
-    &-label-above {
-      input:not([type='color']) {
-        background-color: white;
-        border-radius: 4px;
-      }
-    }
   }
 
   .MuiInputBase-root,
@@ -76,6 +69,13 @@
 .lc-input-label {
   display: block;
   margin-bottom: 8px;
+
+  &-above {
+    input:not([type='color']) {
+      background-color: white;
+      border-radius: 4px;
+    }
+  }
 }
 
 // Fixes

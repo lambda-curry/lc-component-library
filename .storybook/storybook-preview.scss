@@ -1,4 +1,11 @@
 // Allows for full-width previews when the content is not wide enough
-.sbdocs-preview > div > div > div {
-  width: 100%;
+.sbdocs-preview {
+  .innerZoomElementWrapper > div {
+    width: 100%;
+  }
+
+  a {
+    color: blue;
+    text-decoration: underline;
+  }
 }

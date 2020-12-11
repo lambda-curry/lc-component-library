@@ -39,7 +39,7 @@ export const InputSelect: React.FC<InputSelectProps> = ({
     const selected = optionValueKey
       ? option[optionValueKey] === value || isEqual(option, value)
       : isEqual(option, value);
-    if (selected) return selected;
+    return selected;
   };
 
   const initialValue = props.formikProps ? get(props.formikProps?.values, name) : props.value;
@@ -62,6 +62,13 @@ export const InputSelect: React.FC<InputSelectProps> = ({
       inputValue,
       getOptionLabel: autocompleteConfig.getOptionLabel as (option: any) => string
     });
+
+  // Set default values for autocompleteConfig
+  const autocompleteConfigAttributes: Partial<AutocompleteProps<any, boolean, boolean, boolean>> = {
+    disableClearable: true,
+    autoHighlight: true,
+    ...autocompleteConfig
+  };
 
   const handleChange: (
     event: React.ChangeEvent<{}>,
@@ -106,7 +113,7 @@ export const InputSelect: React.FC<InputSelectProps> = ({
     getOptionSelected,
     getOptionLabel: (option: { [key: string]: any }) => get(option, optionLabelKey) || '',
     onChange: handleChange,
-    ...autocompleteConfig
+    ...autocompleteConfigAttributes
   };
 
   return <Autocomplete className={classNames('lc-input-select', className)} {...autocompleteProps} />;
