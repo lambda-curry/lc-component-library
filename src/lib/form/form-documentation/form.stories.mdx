@@ -1,8 +1,7 @@
-import * as Yup from 'yup';
-import { useState } from 'react';
 import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs/blocks';
-import { Form, InputText, ButtonOutlinePrimary, ButtonPrimary } from '../..';
 import dedent from 'string-dedent';
+import { FormExample1, FormExample2 } from '.';
+import { Form } from '../..';
 
 <Meta title="Form" component={Form} />
 
@@ -10,77 +9,80 @@ import dedent from 'string-dedent';
 
 <Canvas>
   <Story
-    name="Form"
+    name="Form1"
     parameters={{
       docs: {
         source: {
           code: dedent`
-          const [values, setValues] = useState({ input: '' });
-
-          return (
-            <div className="input-form-story">
-              <ButtonOutlinePrimary className="lc-mb-16">
-                Try clicking me when the input has an unsaved value
-              </ButtonOutlinePrimary>
-              <Form
-                enableReinitialize={true}
-                initialValues={values}
-                onSubmit={setValues}
-                unsavedChangesConfig={{ containerQuerySelectorAll: '.lc-form', modalProps: { ariaHideApp: false } }}
-                validationSchema={Yup.object().shape({
-                  input: Yup.string().required(`Please enter an input value.`)
-                })}
-              >
-                {formikProps => (
-                  <>
-                    <InputText autoComplete="off" label="Text Input" name="input" formikProps={formikProps} />
-                    {formikProps.dirty ? (
-                      <ButtonPrimary type="submit">Save</ButtonPrimary>
-                    ) : (
-                      <ButtonPrimary>Saved</ButtonPrimary>
-                    )}
-                  </>
-                )}
-              </Form>
-            </div>
-          );`
+    <div className="input-form-story">
+      <ButtonOutlinePrimary className="lc-mb-16" onClick={() => window.alert('form was left unsaved and reset')}>
+        Try clicking me when the input has an unsaved value
+      </ButtonOutlinePrimary>
+      <Form
+        enableReinitialize
+        initialValues={values}
+        onSubmit={setValues}
+        unsavedChanges
+        unsavedChangesConfig={{ modalProps: { ariaHideApp: false } }}
+        validationSchema={Yup.object().shape({
+          input: Yup.string().required(\`Please enter an input value.\`)
+        })}
+      >
+        {formikProps => (
+          <>
+            <InputText autoComplete="off" label="Text Input" name="input" formikProps={formikProps} />
+            {formikProps.dirty ? (
+              <ButtonPrimary type="submit">Save</ButtonPrimary>
+            ) : (
+              <ButtonPrimary>Saved</ButtonPrimary>
+            )}
+          </>
+        )}
+      </Form>
+    </div>`
         }
       }
     }}
-
->
-
-    {() => {
-      const [values, setValues] = useState({ input: '' });
-      return (
-        <div className="input-form-story">
-          <ButtonOutlinePrimary className="lc-mb-16">
-            Try clicking me when the input has an unsaved value
-          </ButtonOutlinePrimary>
-          <Form
-            enableReinitialize={true}
-            initialValues={values}
-            onSubmit={setValues}
-            unsavedChangesConfig={{ containerQuerySelectorAll: '.lc-form', modalProps: { ariaHideApp: false } }}
-            validationSchema={Yup.object().shape({
-              input: Yup.string().required(`Please enter an input value.`)
-            })}
-          >
-            {formikProps => (
-              <>
-                <InputText autoComplete="off" label="Text Input" name="input" formikProps={formikProps} />
-                {formikProps.dirty ? (
-                  <ButtonPrimary type="submit">Save</ButtonPrimary>
-                ) : (
-                  <ButtonPrimary>Saved</ButtonPrimary>
-                )}
-              </>
+  >
+    {FormExample1.bind({})}
+  </Story>
+  <Story
+    name="Form2"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+    <div className="input-form-story">
+      <ButtonOutlinePrimary className="lc-mb-16" onClick={() => window.alert('form was left unsaved and reset')}>
+        Try clicking me when the input has an unsaved value
+      </ButtonOutlinePrimary>
+      <Form
+        enableReinitialize
+        initialValues={values}
+        onSubmit={setValues}
+        unsavedChanges
+        unsavedChangesConfig={{ modalProps: { ariaHideApp: false } }}
+        validationSchema={Yup.object().shape({
+          input: Yup.string().required(\`Please enter an input value.\`)
+        })}
+      >
+        {formikProps => (
+          <>
+            <InputText autoComplete="off" label="Text Input" name="input" formikProps={formikProps} />
+            {formikProps.dirty ? (
+              <ButtonPrimary type="submit">Save</ButtonPrimary>
+            ) : (
+              <ButtonPrimary>Saved</ButtonPrimary>
             )}
-          </Form>
-        </div>
-      );
+          </>
+        )}
+      </Form>
+    </div>`
+        }
+      }
     }}
-
+  >
+    {FormExample2.bind({})}
   </Story>
   <ArgsTable of={Form} />
 </Canvas>

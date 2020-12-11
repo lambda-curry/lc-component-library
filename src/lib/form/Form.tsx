@@ -4,18 +4,23 @@ import classNames from 'classnames';
 import { useOnClickOutside } from '../hooks';
 import { Modal, ModalHeader, ModalActions, Button, ButtonPrimary } from '..';
 import { formReducer, FormReducerAction, FormReducerState } from './Form.helpers';
+import { InputConfig } from '../inputs/InputBase';
 import './form.scss';
+
+interface FormConfig extends InputConfig {}
 
 export interface UnsavedChangesConfig {
   containerQuerySelectorAll?: string;
   targetQuerySelector?: string;
-  modalProps?: ReactModal.Props;
+  modalProps?: Partial<ReactModal.Props>;
 }
 
 export type FormProps<T> = FormikConfig<T> & {
   className?: string;
+  unsavedChanges?: boolean;
   unsavedChangesConfig?: UnsavedChangesConfig;
   withoutFormElement?: boolean;
+  formConfig?: FormConfig;
   children: (formikProps: FormikProps<T>) => React.ReactNode;
 };
 
@@ -24,18 +29,13 @@ const FormContent: React.FC<{
   state: FormReducerState;
   dispatch: React.Dispatch<FormReducerAction>;
   withoutFormElement?: boolean;
+  unsavedChanges?: boolean;
   unsavedChangesConfig: UnsavedChangesConfig;
-}> = ({ className, state, dispatch, withoutFormElement, unsavedChangesConfig, ...rest }) => {
+}> = ({ className, state, dispatch, withoutFormElement, unsavedChanges, unsavedChangesConfig, ...rest }) => {
   const formContext = useFormikContext();
 
   const handleClickOutside = (event: MouseEvent | TouchEvent) => {
-    if (
-      !unsavedChangesConfig.containerQuerySelectorAll ||
-      !event.target ||
-      !state.shouldCheckForUnsavedChanges ||
-      !formContext.dirty
-    )
-      return;
+    if (!unsavedChanges || !event.target || !state.shouldCheckForUnsavedChanges || !formContext.dirty) return;
 
     event.preventDefault();
     dispatch({ name: 'openModal', payload: 'unsavedChangesModal' });
@@ -58,12 +58,24 @@ const FormContent: React.FC<{
   );
 };
 
-export function Form<T>({ className, children, withoutFormElement, unsavedChangesConfig = {}, ...rest }: FormProps<T>) {
-  // TODO: update .navbar-back to utilize a button, avoid actions on clicks for things that are not <a> or <button>
+export function Form<T>({
+  className,
+  children,
+  withoutFormElement,
+  unsavedChanges,
+  unsavedChangesConfig = {},
+  formConfig,
+  ...rest
+}: FormProps<T>) {
   unsavedChangesConfig = {
-    targetQuerySelector: 'a, button, .navbar-back, .snackbar, [role="dialog"]',
+    targetQuerySelector: 'a, button, .navbar-back',
     ...unsavedChangesConfig
   };
+
+  const containerQuerySelectorItems = ['form', '.snackbar', '[role=dialog]'];
+  if (unsavedChangesConfig.containerQuerySelectorAll)
+    containerQuerySelectorItems.push(unsavedChangesConfig.containerQuerySelectorAll);
+  unsavedChangesConfig.containerQuerySelectorAll = containerQuerySelectorItems.join(', ');
 
   const [state, dispatch] = useReducer<Reducer<FormReducerState, FormReducerAction>>(formReducer, {
     activeModal: 'none',
@@ -81,7 +93,7 @@ export function Form<T>({ className, children, withoutFormElement, unsavedChange
     }, 500);
   };
 
-  const handleUnsavedChangesModalContinue = () => {
+  const handleUnsavedChangesModalContinue = (formikProps: FormikProps<T>) => {
     dispatch({ name: 'closeModal' });
     dispatch({ name: 'setShouldCheckForUnsavedChanges', payload: false });
 
@@ -95,6 +107,10 @@ export function Form<T>({ className, children, withoutFormElement, unsavedChange
       if (targetElement) targetElement.click();
     }
 
+    // Note: Resetting the form here will prevent times where menu dropdowns might trigger an unsaved changes modal
+    // multiple times
+    formikProps.resetForm();
+
     // Note: Wait for the modal to close before checking for clicks again, this avoids the modal from reopening
     // if the user clicks as the modal is closing.
     setTimeout(() => {
@@ -103,29 +119,35 @@ export function Form<T>({ className, children, withoutFormElement, unsavedChange
   };
 
   return (
-    <>
-      <Formik {...rest}>
-        {(formikProps: FormikProps<T>) => (
-          <FormContent
-            className={className}
-            state={state}
-            dispatch={dispatch}
-            withoutFormElement={withoutFormElement}
-            unsavedChangesConfig={unsavedChangesConfig}
-          >
+    <Formik {...rest} initialStatus={{ formConfig }}>
+      {(formikProps: FormikProps<T>) => (
+        <FormContent
+          className={className}
+          state={state}
+          dispatch={dispatch}
+          withoutFormElement={withoutFormElement}
+          unsavedChanges={unsavedChanges}
+          unsavedChangesConfig={unsavedChangesConfig}
+        >
+          <>
             {children(formikProps)}
-          </FormContent>
-        )}
-      </Formik>
-      <Modal id="lc-unsaved-changes-modal" isOpen={state.activeModal === 'unsavedChangesModal'} closeButton={false}>
-        <ModalHeader title="You have unsaved changes!" />
-        <p className="text">Click continue to abandon your changes and continue on.</p>
-        <ModalActions>
-          <div className="flex-spacer" />
-          <Button onClick={handleUnsavedChangesModalClose}>Cancel</Button>
-          <ButtonPrimary onClick={handleUnsavedChangesModalContinue}>Continue</ButtonPrimary>
-        </ModalActions>
-      </Modal>
-    </>
+            <Modal
+              id="lc-unsaved-changes-modal"
+              isOpen={state.activeModal === 'unsavedChangesModal'}
+              closeButton={false}
+              {...unsavedChangesConfig?.modalProps}
+            >
+              <ModalHeader title="You have unsaved changes!" />
+              <p className="text">Click continue to abandon your changes and continue on.</p>
+              <ModalActions>
+                <div className="flex-spacer" />
+                <Button onClick={handleUnsavedChangesModalClose}>Cancel</Button>
+                <ButtonPrimary onClick={() => handleUnsavedChangesModalContinue(formikProps)}>Continue</ButtonPrimary>
+              </ModalActions>
+            </Modal>
+          </>
+        </FormContent>
+      )}
+    </Formik>
   );
 }

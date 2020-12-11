@@ -9,6 +9,11 @@ import { InputAdornment } from '@material-ui/core';
 
 type LabelPlacements = 'inset' | 'above';
 
+export interface InputConfig {
+  labelPlacement?: 'inset' | 'above';
+  safeName: boolean;
+}
+
 export type InputProps = Omit<OutlinedTextFieldProps, 'variant'> & {
   name: string;
   prefix?: React.ReactNode;
@@ -16,6 +21,7 @@ export type InputProps = Omit<OutlinedTextFieldProps, 'variant'> & {
   formikProps?: FormikProps<any>;
   labelPlacement?: LabelPlacements;
   variant?: 'outlined'; // Don't remove any typing because this breaks the build. - Jake
+  inputConfig?: InputConfig;
 };
 
 export const InputBase: React.FC<InputProps> = ({
@@ -28,8 +34,15 @@ export const InputBase: React.FC<InputProps> = ({
   label,
   labelPlacement = 'inset',
   variant = 'outlined',
+  inputConfig,
   ...props
 }) => {
+  const config: InputConfig = {
+    labelPlacement,
+    ...formikProps?.status?.formConfig,
+    ...inputConfig
+  };
+
   const fieldError =
     formikProps?.errors && name && _get(formikProps.touched, name) ? _get(formikProps.errors, name) : '';
   const fieldValue = formikProps ? _get(formikProps?.values, name) : props.value;
@@ -53,39 +66,19 @@ export const InputBase: React.FC<InputProps> = ({
     if (typeof props.onBlur === 'function') props.onBlur(event);
   };
 
-  const hasLabelAbove = label && labelPlacement === 'above';
+  const hasLabelAbove = label && config.labelPlacement === 'above';
 
-  if (hasLabelAbove) {
-    return (
-      <div className="lc-input-wrapper">
+  return (
+    <div className={classNames('lc-input-wrapper', { 'lc-input-label-above': hasLabelAbove })}>
+      {hasLabelAbove && (
         <label className="lc-input-label" htmlFor={id || name}>
           {label}
         </label>
-        <TextField
-          name={name}
-          id={id || name}
-          label={labelPlacement === 'inset' ? label : false}
-          size="small"
-          {...props}
-          InputProps={InputProps}
-          error={!!fieldError || props.error}
-          helperText={fieldError || props.helperText}
-          className={classNames(className, 'lc-input', 'lc-input-label-above')}
-          value={fieldValue}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          variant={variant}
-        />
-      </div>
-    );
-  }
-
-  return (
-    <div className="lc-input-wrapper">
+      )}
       <TextField
-        name={name}
+        name={config.safeName ? `['${name}']` : name}
         id={id || name}
-        label={labelPlacement === 'inset' ? label : false}
+        label={config.labelPlacement === 'inset' ? label : false}
         size="small"
         {...props}
         InputProps={InputProps}
@@ -97,6 +90,7 @@ export const InputBase: React.FC<InputProps> = ({
         onBlur={handleBlur}
         variant={variant}
       />
+      {inputConfig?.safeName && <input type="hidden" name={name} value={formikProps?.values[name]} />}
     </div>
   );
 };

@@ -50,12 +50,14 @@ import './input-text-story.scss';
           sampleInput2: '',
           sampleInput3: '',
           sampleInput4: '',
-          sampleInput5: ''
+          sampleInput5: '',
+          'test[safe]': ''
         }}
         onSubmit={() => {}}
       >
         {formikProps => (
           <>
+            <p className="lc-mb-16">{JSON.stringify(formikProps.values)}</p>
             <InputText name="sampleInput1" label="Text Input" formikProps={formikProps} />
             <InputText name="sampleInput2" label="Text Input" value="Example" formikProps={formikProps} />
             <InputText name="sampleInput3" label="Password Input" type="password" formikProps={formikProps} />
@@ -72,6 +74,20 @@ import './input-text-story.scss';
               name="sampleInput5"
               label="Text Input"
               helperText="Example helper text can be placed below the input"
+              formikProps={formikProps}
+            />
+            <p className="lc-mb-16">
+              Here is an example if you need to avoid Formik's default behavior of nesting based off of form names{' '}
+              <br /> (uses this technique:{' '}
+              <a href="https://formik.org/docs/guides/arrays#avoid-nesting" target="_blank">
+                Avoid Nesting
+              </a>
+              )
+            </p>
+            <InputText
+              name="test[safe]"
+              inputConfig={{ safeName: true }}
+              label="Text Input with a 'safe name'"
               formikProps={formikProps}
             />
           </>
