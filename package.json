@@ -16,6 +16,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "clean": "rm -rf ./node_modules && yarn",
+    "sb": "yarn storybook",
     "storybook": "concurrently \"yarn watch:tailwind\" \"start-storybook -p 6007\"",
     "build:storybook": "build-storybook -o docs",
     "build:tailwind": "postcss src/styles/index.scss -o src/styles/tailwind.scss",
