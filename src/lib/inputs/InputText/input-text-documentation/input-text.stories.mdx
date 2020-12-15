@@ -3,6 +3,60 @@ import { InputText, Form } from '../../..';
 import dedent from 'string-dedent';
 import './input-text-story.scss';
 
+export const InputTextExample = () => (
+  <div className="input-text-story">
+    <Form
+      initialValues={{
+        sampleInput1: '',
+        sampleInput2: '',
+        sampleInput3: '',
+        sampleInput4: '',
+        sampleInput5: '',
+        'test[safe]': ''
+      }}
+      onSubmit={() => {}}
+    >
+      {formikProps => (
+        <>
+          <p className="lc-mb-16">{JSON.stringify(formikProps.values)}</p>
+          <InputText name="sampleInput1" label="Text Input" formikProps={formikProps} />
+          <InputText name="sampleInput2" label="Text Input" value="Example" formikProps={formikProps} />
+          <InputText name="sampleInput3" label="Password Input" type="password" formikProps={formikProps} />
+          <div className="input-text-story-dark">
+            <InputText
+              name="sampleInput4"
+              label="Label Above"
+              labelPlacement="above"
+              placeholder="Enter text..."
+              formikProps={formikProps}
+            />
+          </div>
+          <InputText
+            name="sampleInput5"
+            label="Text Input"
+            helperText="Example helper text can be placed below the input"
+            formikProps={formikProps}
+          />
+          <p className="lc-mb-16">
+            Here is an example if you need to avoid Formik's default behavior of nesting based off of form names <br />{' '}
+            (uses this technique:{' '}
+            <a href="https://formik.org/docs/guides/arrays#avoid-nesting" target="_blank">
+              Avoid Nesting
+            </a>
+            )
+          </p>
+          <InputText
+            name="test[safe]"
+            inputConfig={{ safeName: true }}
+            label="Text Input with a 'safe name'"
+            formikProps={formikProps}
+          />
+        </>
+      )}
+    </Form>
+  </div>
+);
+
 <Meta title="Input Text" component={InputText} />
 
 # Text Input
@@ -14,36 +68,7 @@ import './input-text-story.scss';
       docs: {
         source: {
           code: dedent`
-            <Form
-              initialValues={{
-                sampleInput1: '',
-                sampleInput2: '',
-                sampleInput3: ''
-              }}
-              onSubmit={() => {}}
-            >
-              {formikProps => (
-                <>
-                  <InputText name="sampleInput1" label="Text Input" formikProps={formikProps} />
-                  <InputText name="sampleInput2" label="Text Input" value="Example" formikProps={formikProps} />
-                  <InputText name="sampleInput3" label="Password Input" type="password" formikProps={formikProps} />
-                  <div className="input-text-story-dark">
-                    <InputText
-                      name="sampleInput4"
-                      label="Label Above"
-                      labelPlacement="above"
-                      placeholder="Enter text..."
-                      formikProps={formikProps}
-                    />
-                  </div>
-                </>
-              )}
-            </Form>`
-        }
-      }
-    }}
-  >
-    <div className="input-text-story">
+            <div className="input-text-story">
       <Form
         initialValues={{
           sampleInput1: '',
@@ -93,7 +118,12 @@ import './input-text-story.scss';
           </>
         )}
       </Form>
-    </div>
+    </div>`
+        }
+      }
+    }}
+  >
+    {InputTextExample.bind({})}
   </Story>
   <ArgsTable of={InputText} />
 </Canvas>
