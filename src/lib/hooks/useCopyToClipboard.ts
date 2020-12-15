@@ -6,7 +6,7 @@ type CopyStates = 'copyable' | 'copied' | 'error';
 export function useCopyToClipboard(
   copyText: string,
   copyTarget: string,
-  config?: { copied?: string; copyable: string; error: string }
+  config?: { copied?: string; copyable?: string; error?: string }
 ) {
   const [copyState, setCopyState] = useState<CopyStates>('copyable');
   const [clipboard, setClipboard] = useState<ClipboardJS>();
