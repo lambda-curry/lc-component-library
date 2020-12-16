@@ -3,6 +3,26 @@ import { InputPhone, Form } from '../../..';
 import dedent from 'string-dedent';
 import './input-phone-story.scss';
 
+export const InputPhoneExample = () => {
+  return (
+    <div className="input-text-story">
+      <Form
+        initialValues={{
+          phone: ''
+        }}
+        onSubmit={() => {}}
+      >
+        {formikProps => (
+          <>
+            <p className="lc-mb-16">Values: {JSON.stringify(formikProps.values)}</p>
+            <InputPhone name="phone" label="Phone Input" formikProps={formikProps} />
+          </>
+        )}
+      </Form>
+    </div>
+  );
+};
+
 <Meta title="Input Phone" component={InputPhone} />
 
 # Phone Input
@@ -13,50 +33,12 @@ import './input-phone-story.scss';
     parameters={{
       docs: {
         source: {
-          code: dedent`
-            <Form
-              initialValues={{
-                sampleInput1: '',
-                sampleInput2: '',
-                sampleInput3: ''
-              }}
-              onSubmit={() => {}}
-            >
-              {formikProps => (
-                <>
-                  <InputText name="sampleInput1" label="Text Input" formikProps={formikProps} />
-                  <InputText name="sampleInput2" label="Text Input" value="Example" formikProps={formikProps} />
-                  <InputText name="sampleInput3" label="Password Input" type="password" formikProps={formikProps} />
-                  <div className="input-text-story-dark">
-                    <InputText
-                      name="sampleInput4"
-                      label="Label Above"
-                      labelPlacement="above"
-                      placeholder="Enter text..."
-                      formikProps={formikProps}
-                    />
-                  </div>
-                </>
-              )}
-            </Form>`
+          code: dedent``
         }
       }
     }}
   >
-    <div className="input-text-story">
-      <Form
-        initialValues={{
-          phone: ''
-        }}
-        onSubmit={() => {}}
-      >
-        {formikProps => (
-          <>
-            <InputPhone name="phone" label="Phone Input" formikProps={formikProps} />
-          </>
-        )}
-      </Form>
-    </div>
+    {InputPhoneExample.bind({})}
   </Story>
   <ArgsTable of={InputPhone} />
 </Canvas>

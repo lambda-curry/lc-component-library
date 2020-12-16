@@ -35,13 +35,7 @@ const FormContent: React.FC<{
   const formContext = useFormikContext();
 
   const handleClickOutside = (event: MouseEvent | TouchEvent) => {
-    if (
-      (!unsavedChanges && !unsavedChangesConfig) ||
-      !event.target ||
-      !state.shouldCheckForUnsavedChanges ||
-      !formContext.dirty
-    )
-      return;
+    if (!unsavedChanges || !event.target || !state.shouldCheckForUnsavedChanges || !formContext.dirty) return;
 
     event.preventDefault();
     dispatch({ name: 'openModal', payload: 'unsavedChangesModal' });
