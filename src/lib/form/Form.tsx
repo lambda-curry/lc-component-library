@@ -17,7 +17,7 @@ export interface UnsavedChangesConfig {
 
 export type FormProps<T> = FormikConfig<T> & {
   className?: string;
-  unsavedChanges?: boolean;
+  confirmUnsavedChanges?: boolean;
   unsavedChangesConfig?: UnsavedChangesConfig;
   withoutFormElement?: boolean;
   formConfig?: FormConfig;
@@ -29,13 +29,13 @@ const FormContent: React.FC<{
   state: FormReducerState;
   dispatch: React.Dispatch<FormReducerAction>;
   withoutFormElement?: boolean;
-  unsavedChanges?: boolean;
+  confirmUnsavedChanges?: boolean;
   unsavedChangesConfig: UnsavedChangesConfig;
-}> = ({ className, state, dispatch, withoutFormElement, unsavedChanges, unsavedChangesConfig, ...rest }) => {
+}> = ({ className, state, dispatch, withoutFormElement, confirmUnsavedChanges, unsavedChangesConfig, ...rest }) => {
   const formContext = useFormikContext();
 
   const handleClickOutside = (event: MouseEvent | TouchEvent) => {
-    if (!unsavedChanges || !event.target || !state.shouldCheckForUnsavedChanges || !formContext.dirty) return;
+    if (!confirmUnsavedChanges || !event.target || !state.shouldCheckForUnsavedChanges || !formContext.dirty) return;
 
     event.preventDefault();
     dispatch({ name: 'openModal', payload: 'unsavedChangesModal' });
@@ -62,7 +62,7 @@ export function Form<T>({
   className,
   children,
   withoutFormElement,
-  unsavedChanges,
+  confirmUnsavedChanges,
   unsavedChangesConfig = {},
   formConfig,
   ...rest
@@ -128,7 +128,7 @@ export function Form<T>({
           state={state}
           dispatch={dispatch}
           withoutFormElement={withoutFormElement}
-          unsavedChanges={unsavedChanges}
+          confirmUnsavedChanges={confirmUnsavedChanges}
           unsavedChangesConfig={unsavedChangesConfig}
         >
           <>

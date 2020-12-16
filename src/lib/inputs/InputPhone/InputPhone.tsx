@@ -8,25 +8,40 @@ import { InputBase, InputProps } from '../InputBase';
 interface TextMaskCustomProps {
   mask?: (string | RegExp)[];
   inputRef: (ref: HTMLInputElement | null) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const PhoneMask: React.FC<TextMaskCustomProps> = props => {
-  const { inputRef, mask, ...rest } = props;
+  const { inputRef, mask, onChange, ...rest } = props;
 
   return (
     <MaskedInput
-      mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+      showMask
+      guide={false}
+      placeholderChar={'\u2000'}
+      mask={['(', /\d/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
       {...rest}
       ref={(ref: any) => {
         inputRef(ref ? ref.inputElement : null);
       }}
-      placeholderChar={'\u2000'}
-      showMask
+      onChange={event => {
+        // Note: when the guide prop is enabled for some reason the mask value is still present when we clear the
+        // input, so we need to manually reset the input value here
+        if (event.target.value === '(   )    -    ') event.target.value = '';
+        if (onChange) onChange(event);
+      }}
     />
   );
 };
 
 export const InputPhone = ({ className, ...props }: InputProps) => {
   props.InputProps = { ...props.InputProps, inputComponent: PhoneMask as any };
-  return <InputBase type="text" className={classNames('lc-input-phone', className)} {...props} />;
+  return (
+    <InputBase
+      placeholder="(   )    -    "
+      type="text"
+      className={classNames('lc-input-phone', className)}
+      {...props}
+    />
+  );
 };
