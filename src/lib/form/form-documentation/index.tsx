@@ -13,7 +13,7 @@ export const FormExample1 = () => {
         enableReinitialize
         initialValues={values}
         onSubmit={setValues}
-        unsavedChanges
+        confirmUnsavedChanges
         unsavedChangesConfig={{ modalProps: { ariaHideApp: false } }}
         validationSchema={Yup.object().shape({
           input: Yup.string().required(`Please enter an input value.`)

@@ -13,33 +13,7 @@ import { Form } from '../..';
     parameters={{
       docs: {
         source: {
-          code: dedent`
-    <div className="input-form-story">
-      <ButtonOutlinePrimary className="lc-mb-16" onClick={() => window.alert('form was left unsaved and reset')}>
-        Try clicking me when the input has an unsaved value
-      </ButtonOutlinePrimary>
-      <Form
-        enableReinitialize
-        initialValues={values}
-        onSubmit={setValues}
-        unsavedChanges
-        unsavedChangesConfig={{ modalProps: { ariaHideApp: false } }}
-        validationSchema={Yup.object().shape({
-          input: Yup.string().required(\`Please enter an input value.\`)
-        })}
-      >
-        {formikProps => (
-          <>
-            <InputText autoComplete="off" label="Text Input" name="input" formikProps={formikProps} />
-            {formikProps.dirty ? (
-              <ButtonPrimary type="submit">Save</ButtonPrimary>
-            ) : (
-              <ButtonPrimary>Saved</ButtonPrimary>
-            )}
-          </>
-        )}
-      </Form>
-    </div>`
+          code: dedent``
         }
       }
     }}
@@ -51,33 +25,7 @@ import { Form } from '../..';
     parameters={{
       docs: {
         source: {
-          code: dedent`
-    <div className="input-form-story">
-      <ButtonOutlinePrimary className="lc-mb-16" onClick={() => window.alert('form was left unsaved and reset')}>
-        Try clicking me when the input has an unsaved value
-      </ButtonOutlinePrimary>
-      <Form
-        enableReinitialize
-        initialValues={values}
-        onSubmit={setValues}
-        unsavedChanges
-        unsavedChangesConfig={{ modalProps: { ariaHideApp: false } }}
-        validationSchema={Yup.object().shape({
-          input: Yup.string().required(\`Please enter an input value.\`)
-        })}
-      >
-        {formikProps => (
-          <>
-            <InputText autoComplete="off" label="Text Input" name="input" formikProps={formikProps} />
-            {formikProps.dirty ? (
-              <ButtonPrimary type="submit">Save</ButtonPrimary>
-            ) : (
-              <ButtonPrimary>Saved</ButtonPrimary>
-            )}
-          </>
-        )}
-      </Form>
-    </div>`
+          code: dedent``
         }
       }
     }}
