@@ -13,7 +13,7 @@ export interface InputConfig {
   labelPlacement?: 'inset' | 'above';
   safeName?: boolean;
   inputBorderWhite?: boolean;
-  shrinkLabel: boolean;
+  shrinkLabel?: boolean;
 }
 
 export type InputProps = Omit<OutlinedTextFieldProps, 'variant'> & {
