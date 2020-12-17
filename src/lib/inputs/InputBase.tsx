@@ -96,7 +96,7 @@ export const InputBase: React.FC<InputProps> = ({
         onChange={handleChange}
         onBlur={handleBlur}
         variant={variant}
-        InputLabelProps={{ shrink: config.shrinkLabel }}
+        InputLabelProps={{ shrink: config.shrinkLabel, ...props.InputLabelProps }}
       />
       {inputConfig?.safeName && <input type="hidden" name={name} value={formikProps?.values[name]} />}
     </div>
