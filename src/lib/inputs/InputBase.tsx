@@ -13,6 +13,7 @@ export interface InputConfig {
   labelPlacement?: 'inset' | 'above';
   safeName?: boolean;
   inputBorderWhite?: boolean;
+  shrinkLabel: boolean;
 }
 
 export type InputProps = Omit<OutlinedTextFieldProps, 'variant'> & {
@@ -95,6 +96,7 @@ export const InputBase: React.FC<InputProps> = ({
         onChange={handleChange}
         onBlur={handleBlur}
         variant={variant}
+        InputLabelProps={{ shrink: config.shrinkLabel }}
       />
       {inputConfig?.safeName && <input type="hidden" name={name} value={formikProps?.values[name]} />}
     </div>
