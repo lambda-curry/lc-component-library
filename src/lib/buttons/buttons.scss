@@ -137,6 +137,12 @@ $button-text-colors: (
         border-color: map-get($button-bg-colors-dark, $button-type);
       }
 
+      &:active:not([disabled]) {
+        transform: scale(0.98);
+        color: map-get($button-text-colors, $button-type);
+        border-color: map-get($button-bg-colors-dark, $button-type);
+      }
+
       @if $button-type == outline {
         border-color: $outline-button-border-color;
 
