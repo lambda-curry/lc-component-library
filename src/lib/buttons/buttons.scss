@@ -1,61 +1,89 @@
 @use "sass:map";
 
-$default-button-height: 48px;
-$default-button-text-color: theme('colors.gray.dark');
-$default-button-text-color-darker: theme('colors.gray.darker');
+.lc-button {
+  --default-button-height: 48px;
+  --default-button-text-color: theme('colors.gray.dark');
+  --default-button-text-color-darker: theme('colors.gray.darker');
 
-$default-button-bg-color: theme('colors.gray.lighter');
-$default-button-bg-color-darker: theme('colors.gray.light');
-$default-button-font-size: 14px;
-$default-button-border-radius: 6px;
-$default-button-font-weight: bold;
-$default-button-padding: 14px 20px;
+  --default-button-bg-color: theme('colors.gray.lighter');
+  --default-button-bg-color-darker: theme('colors.gray.light');
+  --default-button-font-size: 14px;
+  --default-button-border-radius: theme('borderRadius.default');
+  --default-button-font-weight: bold;
+  --default-button-padding: 14px 20px;
 
-$primary-button-bg-color: theme('colors.primary.default');
-$primary-button-bg-color-dark: theme('colors.primary.dark');
-$primary-button-text-color: theme('colors.primary.text');
-$accent-button-bg-color: theme('colors.accent.default');
-$accent-button-bg-color-dark: theme('colors.accent.dark');
-$accent-button-text-color: theme('colors.accent.text');
-$success-button-bg-color: theme('colors.success.default');
-$success-button-bg-color-dark: theme('colors.success.dark');
-$success-button-text-color: theme('colors.success.text');
-$warn-button-bg-color: theme('colors.warn.default');
-$warn-button-bg-color-dark: theme('colors.warn.dark');
-$warn-button-text-color: theme('colors.warn.text');
-$danger-button-bg-color: theme('colors.danger.default');
-$danger-button-bg-color-dark: theme('colors.danger.dark');
-$danger-button-text-color: theme('colors.danger.text');
-$outline-button-bg-color: transparent;
-$outline-button-bg-color-dark: theme('colors.gray.lighter');
-$outline-button-text-color: $default-button-text-color;
-$outline-button-border-color: theme('colors.gray.lighter');
-$outline-button-border-color-darker: theme('colors.gray.light');
+  --primary-button-bg-color: theme('colors.primary.default');
+  --primary-button-bg-color-dark: theme('colors.primary.dark');
+  --primary-button-border-color: theme('colors.primary.default');
+  --primary-button-border-color-dark: theme('colors.primary.dark');
+  --primary-button-text-color: theme('colors.primary.text');
+  --accent-button-bg-color: theme('colors.accent.default');
+  --accent-button-bg-color-dark: theme('colors.accent.dark');
+  --accent-button-border-color: theme('colors.accent.default');
+  --accent-button-border-color-dark: theme('colors.accent.dark');
+  --accent-button-text-color: theme('colors.accent.text');
+  --success-button-bg-color: theme('colors.success.default');
+  --success-button-bg-color-dark: theme('colors.success.dark');
+  --success-button-border-color: theme('colors.success.default');
+  --success-button-border-color-dark: theme('colors.success.dark');
+  --success-button-text-color: theme('colors.success.text');
+  --warn-button-bg-color: theme('colors.warn.default');
+  --warn-button-bg-color-dark: theme('colors.warn.dark');
+  --warn-button-border-color: theme('colors.warn.default');
+  --warn-button-border-color-dark: theme('colors.warn.dark');
+  --warn-button-text-color: theme('colors.warn.text');
+  --danger-button-bg-color: theme('colors.danger.default');
+  --danger-button-bg-color-dark: theme('colors.danger.dark');
+  --danger-button-border-color: theme('colors.danger.default');
+  --danger-button-border-color-dark: theme('colors.danger.dark');
+  --danger-button-text-color: theme('colors.danger.text');
+  --outline-button-bg-color: transparent;
+  --outline-button-bg-color-dark: theme('colors.gray.lighter');
+  --outline-button-text-color: var(default-button-text-color);
+  --outline-button-border-color: theme('colors.gray.lighter');
+  --outline-button-border-color-darker: theme('colors.gray.light');
+}
 
 $button-types: 'primary', 'accent', 'success', 'warn', 'danger', 'outline';
 $button-bg-colors: (
-  'primary': $primary-button-bg-color,
-  'accent': $accent-button-bg-color,
-  'success': $success-button-bg-color,
-  'warn': $warn-button-bg-color,
-  'danger': $danger-button-bg-color,
-  'outline': $outline-button-bg-color
+  'primary': var(--primary-button-bg-color),
+  'accent': var(--accent-button-bg-color),
+  'success': var(--success-button-bg-color),
+  'warn': var(--warn-button-bg-color),
+  'danger': var(--danger-button-bg-color),
+  'outline': var(--outline-button-bg-color)
 );
 $button-bg-colors-dark: (
-  'primary': $primary-button-bg-color-dark,
-  'accent': $accent-button-bg-color-dark,
-  'success': $success-button-bg-color-dark,
-  'warn': $warn-button-bg-color-dark,
-  'danger': $danger-button-bg-color-dark,
-  'outline': $outline-button-bg-color-dark
+  'primary': var(--primary-button-bg-color-dark),
+  'accent': var(--accent-button-bg-color-dark),
+  'success': var(--success-button-bg-color-dark),
+  'warn': var(--warn-button-bg-color-dark),
+  'danger': var(--danger-button-bg-color-dark),
+  'outline': var(--outline-button-bg-color-dark)
+);
+$button-border-colors: (
+  'primary': var(--primary-button-border-color),
+  'accent': var(--accent-button-border-color),
+  'success': var(--success-button-border-color),
+  'warn': var(--warn-button-border-color),
+  'danger': var(--danger-button-border-color),
+  'outline': var(--outline-button-border-color)
+);
+$button-border-colors-dark: (
+  'primary': var(--primary-button-border-color-dark),
+  'accent': var(--accent-button-border-color-dark),
+  'success': var(--success-button-border-color-dark),
+  'warn': var(--warn-button-border-color-dark),
+  'danger': var(--danger-button-border-color-dark),
+  'outline': var(--outline-button-border-color-dark)
 );
 $button-text-colors: (
-  'primary': $primary-button-text-color,
-  'accent': $accent-button-text-color,
-  'success': $success-button-text-color,
-  'warn': $warn-button-text-color,
-  'danger': $danger-button-text-color,
-  'outline': $outline-button-text-color
+  'primary': var(--primary-button-text-color),
+  'accent': var(--accent-button-text-color),
+  'success': var(--success-button-text-color),
+  'warn': var(--warn-button-text-color),
+  'danger': var(--danger-button-text-color),
+  'outline': var(--outline-button-text-color)
 );
 
 .lc-button {
@@ -73,27 +101,27 @@ $button-text-colors: (
   // can run long and have ellipses (...)
   line-height: 1;
 
-  height: $default-button-height;
-  color: $default-button-text-color;
-  background-color: $default-button-bg-color;
-  font-size: $default-button-font-size;
-  font-weight: $default-button-font-weight;
-  border-radius: $default-button-border-radius;
-  border: 1px solid $default-button-bg-color;
-  padding: $default-button-padding;
+  height: var(--default-button-height);
+  color: var(--default-button-text-color);
+  background-color: var(--default-button-bg-color);
+  font-size: var(--default-button-font-size);
+  font-weight: var(--default-button-font-weight);
+  border-radius: var(--default-button-border-radius);
+  border: 1px solid var(--default-button-bg-color);
+  padding: var(--default-button-padding);
 
   // Default Button Hover State
   &:hover:not([disabled]) {
-    background-color: $default-button-bg-color-darker;
-    color: $default-button-text-color-darker;
-    border-color: $default-button-bg-color-darker;
+    background-color: var(--default-button-bg-color-darker);
+    color: var(--default-button-text-color-darker);
+    border-color: var(--default-button-bg-color-darker);
     box-shadow: none !important;
   }
 
   &:active:not([disabled]) {
     transform: scale(0.98);
-    color: $default-button-text-color-darker;
-    border-color: $default-button-bg-color-darker;
+    color: var(--default-button-text-color-darker);
+    border-color: var(--default-button-bg-color-darker);
   }
 
   &[disabled] {
@@ -103,30 +131,31 @@ $button-text-colors: (
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px #ffffff, 0 0 2px 3px $default-button-text-color;
-    border-color: $default-button-bg-color;
-    background-color: $default-button-bg-color;
-    color: $default-button-text-color;
+    box-shadow: 0 0 0 2px #ffffff, 0 0 2px 3px var(--default-button-text-color);
+    border-color: var(--default-button-bg-color);
+    background-color: var(--default-button-bg-color);
+    color: var(--default-button-text-color);
   }
 
   @each $button-type in $button-types {
     $background-color: map-get($button-bg-colors, $button-type);
+    $border-color: map-get($button-border-colors, $button-type);
 
     &-#{$button-type} {
       color: map-get($button-text-colors, $button-type);
       background-color: $background-color;
-      border-color: $background-color;
+      border-color: $border-color;
 
       &:hover:not([disabled]) {
         background-color: map-get($button-bg-colors-dark, $button-type);
         color: map-get($button-text-colors, $button-type);
-        border-color: map-get($button-bg-colors-dark, $button-type);
+        border-color: map-get($button-border-colors-dark, $button-type);
       }
 
       &:focus {
         outline: none;
         box-shadow: 0 0 0 2px #ffffff, 0 0 2px 3px $background-color;
-        border-color: $background-color;
+        border-color: $border-color;
         background-color: $background-color;
         color: map-get($button-text-colors, $button-type);
       }
@@ -134,54 +163,54 @@ $button-text-colors: (
       &:active {
         background-color: map-get($button-bg-colors-dark, $button-type);
         color: map-get($button-text-colors, $button-type);
-        border-color: map-get($button-bg-colors-dark, $button-type);
+        border-color: map-get($button-border-colors-dark, $button-type);
       }
 
       &:active:not([disabled]) {
         transform: scale(0.98);
         color: map-get($button-text-colors, $button-type);
-        border-color: map-get($button-bg-colors-dark, $button-type);
+        border-color: map-get($button-border-colors-dark, $button-type);
       }
 
       @if $button-type == outline {
-        border-color: $outline-button-border-color;
+        border-color: var(--outline-button-border-color);
 
         &:hover:not([disabled]) {
-          background-color: $outline-button-bg-color-dark;
-          color: $default-button-text-color-darker;
-          border-color: $outline-button-border-color-darker;
+          background-color: var(--outline-button-bg-color-dark);
+          color: var(--default-button-text-color-darker);
+          border-color: var(--outline-button-border-color-darker);
         }
 
         &:focus {
           outline: none;
-          box-shadow: 0 0 0 2px #ffffff, 0 0 2px 3px $default-button-text-color;
-          background-color: $outline-button-bg-color-dark;
-          color: $default-button-text-color;
+          box-shadow: 0 0 0 2px #ffffff, 0 0 2px 3px var(--default-button-text-color);
+          background-color: var(--outline-button-bg-color-dark);
+          color: var(--default-button-text-color);
         }
 
         &:active {
-          background-color: $outline-button-bg-color-dark;
+          background-color: var(--outline-button-bg-color-dark);
           color: map-get($button-text-colors, $button-type);
-          border-color: map-get($button-bg-colors-dark, $button-type);
+          border-color: map-get($button-border-colors-dark, $button-type);
         }
       }
     }
 
     &-outline-#{$button-type} {
       background-color: transparent;
-      border-color: $background-color;
+      border-color: $border-color;
       color: $background-color;
 
       &:hover:not([disabled]) {
         background-color: $background-color;
         color: map-get($button-text-colors, $button-type);
-        border-color: map-get($button-bg-colors-dark, $button-type);
+        border-color: map-get($button-border-colors-dark, $button-type);
       }
 
       &:focus {
         outline: none;
         box-shadow: 0 0 0 2px #ffffff, 0 0 2px 3px $background-color;
-        border-color: $background-color;
+        border-color: $border-color;
         background-color: $background-color;
         color: map-get($button-text-colors, $button-type);
       }
@@ -189,7 +218,7 @@ $button-text-colors: (
       &:active {
         background-color: map-get($button-bg-colors-dark, $button-type);
         color: map-get($button-text-colors, $button-type);
-        border-color: map-get($button-bg-colors-dark, $button-type);
+        border-color: map-get($button-border-colors-dark, $button-type);
       }
     }
   }
