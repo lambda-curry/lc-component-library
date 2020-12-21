@@ -1,38 +1,6 @@
 @use "sass:map";
 
-// $default-button-height: 48px;
-// $default-button-text-color: theme('colors.gray.dark');
-// $default-button-text-color-darker: theme('colors.gray.darker');
-
-// $default-button-bg-color: theme('colors.gray.lighter');
-// $default-button-bg-color-darker: theme('colors.gray.light');
-// $default-button-font-size: 14px;
-// $default-button-border-radius: theme('borderRadius.default');
-// $default-button-font-weight: bold;
-// $default-button-padding: 14px 20px;
-
-// $primary-button-bg-color: theme('colors.primary.default');
-// $primary-button-bg-color-dark: theme('colors.primary.dark');
-// $primary-button-text-color: theme('colors.primary.text');
-// $accent-button-bg-color: theme('colors.accent.default');
-// $accent-button-bg-color-dark: theme('colors.accent.dark');
-// $accent-button-text-color: theme('colors.accent.text');
-// $success-button-bg-color: theme('colors.success.default');
-// $success-button-bg-color-dark: theme('colors.success.dark');
-// $success-button-text-color: theme('colors.success.text');
-// $warn-button-bg-color: theme('colors.warn.default');
-// $warn-button-bg-color-dark: theme('colors.warn.dark');
-// $warn-button-text-color: theme('colors.warn.text');
-// $danger-button-bg-color: theme('colors.danger.default');
-// $danger-button-bg-color-dark: theme('colors.danger.dark');
-// $danger-button-text-color: theme('colors.danger.text');
-// $outline-button-bg-color: transparent;
-// $outline-button-bg-color-dark: theme('colors.gray.lighter');
-// $outline-button-text-color: $default-button-text-color;
-// $outline-button-border-color: theme('colors.gray.lighter');
-// $outline-button-border-color-darker: theme('colors.gray.light');
-
-:root {
+.lc-button {
   --default-button-height: 48px;
   --default-button-text-color: theme('colors.gray.dark');
   --default-button-text-color-darker: theme('colors.gray.darker');
