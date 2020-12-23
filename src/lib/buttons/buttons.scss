@@ -120,6 +120,11 @@ $button-text-colors: (
     box-shadow: none !important;
   }
 
+  &.active:not([disabled]) {
+    background-color: var(--default-button-bg-color-darker);
+    border-color: var(--default-button-bg-color-darker);
+  }
+
   &:active:not([disabled]) {
     transform: scale(0.98);
     color: var(--default-button-text-color-darker);
@@ -162,14 +167,15 @@ $button-text-colors: (
         color: map-get($button-text-colors, $button-type);
       }
 
-      &:active {
+      &.active:not([disabled]) {
         background-color: map-get($button-bg-colors-dark, $button-type);
-        color: map-get($button-text-colors, $button-type);
         border-color: map-get($button-border-colors-dark, $button-type);
+        color: map-get($button-text-colors, $button-type);
       }
 
       &:active:not([disabled]) {
         transform: scale(0.98);
+        background-color: map-get($button-bg-colors-dark, $button-type);
         color: map-get($button-text-colors, $button-type);
         border-color: map-get($button-border-colors-dark, $button-type);
       }
