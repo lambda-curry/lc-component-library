@@ -40,6 +40,7 @@ import { ReactComponent as navigation } from '../assets/icons/navigation.svg';
 import { ReactComponent as paintBrush } from '../assets/icons/paintBrush.svg';
 import { ReactComponent as pencil } from '../assets/icons/pencil.svg';
 import { ReactComponent as phone } from '../assets/icons/phone.svg';
+import { ReactComponent as phoneRing } from '../assets/icons/phoneRing.svg';
 import { ReactComponent as plus } from '../assets/icons/plus.svg';
 import { ReactComponent as profile } from '../assets/icons/profile.svg';
 import { ReactComponent as radio } from '../assets/icons/radio.svg';
@@ -93,6 +94,7 @@ export const defaultIcons = {
   paintBrush,
   pencil,
   phone,
+  phoneRing,
   plus,
   profile,
   radio,
@@ -113,7 +115,8 @@ const aliasMap = {
   confirmationEmail: 'successMessage',
   notifications: 'bellRing',
   pdf: 'filePDF',
-  excel: 'fileExcel'
+  excel: 'fileExcel',
+  ringVolume: 'phoneRing'
 };
 
 export type DefaultIconNames = keyof typeof defaultIcons;
@@ -122,7 +125,7 @@ export type IconNames = DefaultIconNames & AliasIconNames;
 
 export interface IconProps {
   className?: string;
-  name: DefaultIconNames | string;
+  name: IconNames | string;
   viewBox?: string;
 }
 
