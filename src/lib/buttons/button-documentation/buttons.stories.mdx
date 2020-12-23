@@ -15,6 +15,13 @@ import {
   ColorIcon,
   Icon
 } from '../..';
+import {
+  ButtonExamples1,
+  ButtonExamples2,
+  ButtonExamples3,
+  ButtonExamples4,
+  ButtonExamples5
+} from './buttons.examples.tsx';
 import dedent from 'string-dedent';
 import './button-story.scss';
 
@@ -29,38 +36,13 @@ import './button-story.scss';
       docs: {
         source: {
           code: dedent`
-            <Button>Default Button</Button>
-            <ButtonPrimary>Primary Button</ButtonPrimary>
-            <ButtonAccent>Accent Button</ButtonAccent>
-            <ButtonSuccess>Success Button</ButtonSuccess>
-            <ButtonWarn>Warn Button</ButtonWarn>
-            <ButtonDanger>Danger Button</ButtonDanger>
-            <br />
-            <ButtonOutline>Outline Button</ButtonOutline>
-            <ButtonOutlinePrimary>Primary Outline Button</ButtonOutlinePrimary>
-            <ButtonOutlineAccent>Accent Outline Button</ButtonOutlineAccent>
-            <ButtonOutlineSuccess>Success Outline Button</ButtonOutlineSuccess>
-            <ButtonOutlineWarn>Success Outline Button</ButtonOutlineSuccess>
-            <ButtonOutlineDanger>Danger Outline Button</ButtonOutlineDanger>`
+          <Button>Default Button</Button>
+          <ButtonPrimary>Primary Button</ButtonPrimary>`
         }
       }
     }}
   >
-    <div className="button-story">
-      <Button>Default Button</Button>
-      <ButtonPrimary>Primary Button</ButtonPrimary>
-      <ButtonAccent>Accent Button</ButtonAccent>
-      <ButtonSuccess>Success Button</ButtonSuccess>
-      <ButtonWarn>Warn Button</ButtonWarn>
-      <ButtonDanger>Danger Button</ButtonDanger>
-      <br />
-      <ButtonOutline>Outline Button</ButtonOutline>
-      <ButtonOutlinePrimary>Primary Outline Button</ButtonOutlinePrimary>
-      <ButtonOutlineAccent>Accent Outline Button</ButtonOutlineAccent>
-      <ButtonOutlineSuccess>Success Outline Button</ButtonOutlineSuccess>
-      <ButtonOutlineWarn>Warn Outline Button</ButtonOutlineWarn>
-      <ButtonOutlineDanger>Danger Outline Button</ButtonOutlineDanger>
-    </div>
+    {ButtonExamples1.bind({})}
   </Story>
   <Story
     name="Disabled Buttons"
@@ -68,67 +50,37 @@ import './button-story.scss';
       docs: {
         source: {
           code: dedent`
-            <Button disabled={true}>Default Button</Button>
-            <ButtonPrimary disabled={true}>Primary Button</ButtonPrimary>
-            <ButtonAccent disabled={true}>Accent Button</ButtonAccent>
-            <ButtonSuccess disabled={true}>Success Button</ButtonSuccess>
-            <ButtonWarn disabled={true}>Warn Button</ButtonWarn>
-            <ButtonDanger disabled={true}>Danger Button</ButtonDanger>
-            <br />
-            <ButtonOutline disabled={true}>Outline Button</ButtonOutline>
-            <ButtonOutlinePrimary disabled={true}>Primary Outline Button</ButtonOutlinePrimary>
-            <ButtonOutlineAccent disabled={true}>Accent Outline Button</ButtonOutlineAccent>
-            <ButtonOutlineSuccess disabled={true}>Success Outline Button</ButtonOutlineSuccess>
-            <ButtonOutlineWarn disabled={true}>Warn Outline Button</ButtonOutlineWarn>
-            <ButtonOutlineDanger disabled={true}>Danger Outline Button</ButtonOutlineDanger>`
+          <Button disabled>Default Button</Button>
+          <ButtonPrimary disabled={true}>Primary Button</ButtonPrimary>`
         }
       }
     }}
   >
-    <div className="button-story">
-      <Button disabled={true}>Default Button</Button>
-      <ButtonPrimary disabled={true}>Primary Button</ButtonPrimary>
-      <ButtonAccent disabled={true}>Accent Button</ButtonAccent>
-      <ButtonSuccess disabled={true}>Success Button</ButtonSuccess>
-      <ButtonWarn disabled={true}>Warn Button</ButtonWarn>
-      <ButtonDanger disabled={true}>Danger Button</ButtonDanger>
-      <br />
-      <ButtonOutline disabled={true}>Outline Button</ButtonOutline>
-      <ButtonOutlinePrimary disabled={true}>Primary Outline Button</ButtonOutlinePrimary>
-      <ButtonOutlineAccent disabled={true}>Accent Outline Button</ButtonOutlineAccent>
-      <ButtonOutlineSuccess disabled={true}>Success Outline Button</ButtonOutlineSuccess>
-      <ButtonOutlineWarn disabled={true}>Warn Outline Button</ButtonOutlineWarn>
-      <ButtonOutlineDanger disabled={true}>Danger Outline Button</ButtonOutlineDanger>
-    </div>
+    {ButtonExamples2.bind({})}
   </Story>
+  <ArgsTable of={Button} />
+</Canvas>
+
+## Other button types
+
+<Canvas>
   <Story
     name="Buttons with Icons"
     parameters={{
       docs: {
         source: {
           code: dedent`
-            <Button>
-              <ColorIcon name="googleCalendar" /> Default Button
-            </Button>
-            <ButtonOutline>
-              Outline Button <Icon name="settings" />
-            </ButtonOutline>`
+          <Button>
+            <ColorIcon name="googleCalendar" /> Default Button
+          </Button>
+          <ButtonOutline>
+            Outline Button <Icon name="settings" />
+          </ButtonOutline>`
         }
       }
     }}
   >
-    <div className="button-story">
-      <p>
-        Unfortunately, forwarding refs to render components is difficult, so icons are currently only supported in
-        standard buttons right now.
-      </p>
-      <Button>
-        <ColorIcon name="googleCalendar" /> Default Button
-      </Button>
-      <ButtonOutline>
-        Outline Button <Icon name="settings" />
-      </ButtonOutline>
-    </div>
+    {ButtonExamples3.bind({})}
   </Story>
   <Story
     name="Buttons as another component"
@@ -141,9 +93,44 @@ import './button-story.scss';
       }
     }}
   >
-    <div className="button-story">
-      <Button as={buttonProps => <a {...buttonProps} />}>Anchor Tag Button</Button>
-    </div>
+    {ButtonExamples4.bind({})}
   </Story>
-  <ArgsTable of={Button} />
+</Canvas>
+
+## Button Groups
+
+<Canvas>
+  <Story
+    name="Buttons Groups"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+    const [state, toggle] = useReducer<(state: { [x: string]: boolean }, action: string) => { [x: string]: boolean }>(
+      (state, action) => {
+        const newState = { ...state };
+        newState[action] = !state[action];
+        return newState;
+      },
+      {}
+    );
+    return (
+    <p>{JSON.stringify(state)}</p>
+    <ButtonGroup>
+      <ButtonPrimary className={classNames({ active: state.left })} onClick={() => toggle('left')}>
+        Left
+      </ButtonPrimary>
+      <ButtonPrimary className={classNames({ active: state.middle })} onClick={() => toggle('middle')}>
+        Middle
+      </ButtonPrimary>
+      <ButtonPrimary className={classNames({ active: state.right })} onClick={() => toggle('right')}>
+        Right
+      </ButtonPrimary>
+    </ButtonGroup>)`
+        }
+      }
+    }}
+  >
+    {ButtonExamples5.bind({})}
+  </Story>
 </Canvas>
