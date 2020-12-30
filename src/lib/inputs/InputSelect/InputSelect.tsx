@@ -16,7 +16,7 @@ export type AutoCompleteChange = (
 ) => void;
 
 export type InputSelectProps = Omit<InputProps, 'onChange'> & {
-  value?: { [x: string]: any };
+  value?: any;
   options: any[];
   optionLabelKey?: string;
   optionValueKey?: string;

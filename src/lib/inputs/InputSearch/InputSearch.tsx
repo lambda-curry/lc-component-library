@@ -74,7 +74,7 @@ export const InputSearch: React.FC<InputSearchProps> = ({
   useAsyncEffect(search, undefined, [url, searchTerm]);
 
   const handleChange: AutoCompleteChange = (event, value, reason, details) => {
-    if (props.formikProps) props.formikProps.setFieldValue(name, value);
+    if (props.formikProps) props.formikProps.setFieldValue(props.name, value);
     if (typeof props.onChange === 'function')
       props.onChange(event as React.ChangeEvent<HTMLInputElement>, value, reason, details);
   };
