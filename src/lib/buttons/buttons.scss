@@ -109,7 +109,7 @@ $button-text-colors: (
   font-size: var(--default-button-font-size);
   font-weight: var(--default-button-font-weight);
   border-radius: var(--default-button-border-radius);
-  border: var(--default-button-border-width) var(--default-button-border-style) var(--default-button-bg-color);
+  border: var(--default-button-border-width) var(--default-button-border-style) var(--default-button-border-color);
   padding: var(--default-button-padding);
 
   // Default Button Hover State
