@@ -1,4 +1,4 @@
-import React, { Ref, useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ClipboardJS from 'clipboard';
 
 type CopyStates = 'copyable' | 'copied' | 'error';
@@ -30,7 +30,7 @@ export function useCopyToClipboard(
     return () => {
       if (clipboard) clipboard.destroy();
     };
-  }, []);
+  }, [copyText]);
 
   useEffect(() => {
     if (clipboard) {
