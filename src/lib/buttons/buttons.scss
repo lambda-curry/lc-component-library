@@ -109,26 +109,26 @@ $button-text-colors: (
   font-size: var(--default-button-font-size);
   font-weight: var(--default-button-font-weight);
   border-radius: var(--default-button-border-radius);
-  border: var(--default-button-border-width) var(--default-button-border-style) var(--default-button-bg-color);
+  border: var(--default-button-border-width) var(--default-button-border-style) var(--default-button-border-color);
   padding: var(--default-button-padding);
 
   // Default Button Hover State
   &:hover:not([disabled]) {
     background-color: var(--default-button-bg-color-darker);
     color: var(--default-button-text-color-darker);
-    border-color: var(--default-button-bg-color-darker);
+    border-color: var(--default-button-border-color-darker);
     box-shadow: none !important;
   }
 
   &.active:not([disabled]) {
     background-color: var(--default-button-bg-color-darker);
-    border-color: var(--default-button-bg-color-darker);
+    border-color: var(--default-button-border-color-darker);
   }
 
   &:active:not([disabled]) {
     transform: scale(0.98);
     color: var(--default-button-text-color-darker);
-    border-color: var(--default-button-bg-color-darker);
+    border-color: var(--default-button-border-color-darker);
   }
 
   &[disabled] {
@@ -139,7 +139,7 @@ $button-text-colors: (
   &:focus {
     outline: none;
     box-shadow: 0 0 0 2px #ffffff, 0 0 2px 3px var(--default-button-text-color);
-    border-color: var(--default-button-bg-color);
+    border-color: var(--default-button-border-color);
     background-color: var(--default-button-bg-color);
     color: var(--default-button-text-color);
   }
