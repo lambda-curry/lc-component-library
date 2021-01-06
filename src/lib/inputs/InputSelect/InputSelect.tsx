@@ -41,7 +41,6 @@ export const InputSelect: React.FC<InputSelectProps> = ({
   className,
   autocompleteConfig,
   onChange,
-  onBlur,
   allowCreateOption,
   ...props
 }) => {
