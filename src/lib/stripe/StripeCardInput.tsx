@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import * as Stripe from '@stripe/stripe-js';
 import { CardElement } from '@stripe/react-stripe-js';
 import { ErrorMessage, useField } from 'formik';
+import './stripe-card-input.scss';
 
 // Custom styling can be passed to options when creating an Element.
 const CARD_ELEMENT_OPTIONS = {
@@ -40,12 +41,12 @@ export const StripeCardInput = ({ name }: { name: string }) => {
   const handleBlur = () => onBlur({ target: { name, value } });
 
   return (
-    <div className="form-field">
+    <div className="lc-stripe-card-input">
       <CardElement options={CARD_ELEMENT_OPTIONS} onBlur={handleBlur} onChange={handleChange} />
       {cardDetails?.error?.message ? (
-        <div className="form-input-error">{cardDetails.error.message}</div>
+        <div className="lc-stripe-card-input-error">{cardDetails.error.message}</div>
       ) : (
-        <ErrorMessage className="form-input-error" name={name} component="div" />
+        <ErrorMessage className="lc-stripe-card-input-error" name={name} component="div" />
       )}
     </div>
   );
