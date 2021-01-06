@@ -21,8 +21,8 @@ export type AutoCompleteChange = (
   details?: AutocompleteChangeDetails<any> | undefined
 ) => void;
 
-export type InputSelectProps = InputProps & {
-  value?: { [x: string]: any };
+export type InputSelectProps = Omit<InputProps, 'onChange'> & {
+  value?: any;
   options: any[];
   optionLabelKey?: string;
   optionValueKey?: string;

@@ -1,0 +1,35 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { StripeCardInput } from '..';
+import { StripeExample1 } from '.';
+
+import dedent from 'string-dedent';
+
+<Meta title="Stripe" component={StripeCardInput} />
+
+# Stripe
+
+<Canvas>
+  <Story
+    name="Stripe Card Input"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+          <StripeFormWrapper STRIPE_KEY={process.env.STORYBOOK_STRIPE_KEY}>
+            <Form initialValues={{ 'stripe-input': undefined }} onSubmit={() => {}}>
+              {formikProps => (
+                <div className="stripe-story">
+                  <p>Values: {JSON.stringify(formikProps.values)}</p>
+                  <StripeCardInput name="stripe-input" />
+                </div>
+              )}
+            </Form>
+          </StripeFormWrapper>`
+        }
+      }
+    }}
+  >
+    {StripeExample1.bind({})}
+  </Story>
+  <ArgsTable of={StripeCardInput} />
+</Canvas>
