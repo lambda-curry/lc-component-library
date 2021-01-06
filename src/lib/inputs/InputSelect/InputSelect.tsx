@@ -31,8 +31,6 @@ export type InputSelectProps = InputProps & {
   onChange?: AutoCompleteChange;
 };
 
-// const lowercaseString = (value: number | string) => `${value}`.toLowerCase();
-
 const filter = createFilterOptions();
 
 export const InputSelect: React.FC<InputSelectProps> = ({
@@ -93,6 +91,8 @@ export const InputSelect: React.FC<InputSelectProps> = ({
 
   const [value, setValue] = useState(controlledValue);
 
+  // Note: We had to use a `useEffect` here to handle cases where the form is reset or manipulated outside of the input
+  // For some reason setting the initialInputValue in the initial useState did not reset the input on a form reset
   useEffect(() => {
     setValue(controlledValue);
   }, [controlledValue]);
