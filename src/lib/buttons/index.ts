@@ -12,3 +12,4 @@ export { ButtonOutlineWarn } from './ButtonOutlineWarn';
 export { ButtonOutlineDanger } from './ButtonOutlineDanger';
 export { ButtonUnstyled } from './ButtonUnstyled';
 export { ButtonLink } from './ButtonLink';
+export { ButtonGroup } from './ButtonGroup/ButtonGroup';

@@ -8,7 +8,9 @@
   --default-button-bg-color: theme('colors.gray.lighter');
   --default-button-bg-color-darker: theme('colors.gray.light');
   --default-button-font-size: 14px;
-  --default-button-border-radius: theme('borderRadius.default');
+  --default-button-border-width: 1px;
+  --default-button-border-style: solid;
+  --default-button-border-radius: 6px;
   --default-button-font-weight: bold;
   --default-button-padding: 14px 20px;
 
@@ -107,21 +109,26 @@ $button-text-colors: (
   font-size: var(--default-button-font-size);
   font-weight: var(--default-button-font-weight);
   border-radius: var(--default-button-border-radius);
-  border: 1px solid var(--default-button-bg-color);
+  border: var(--default-button-border-width) var(--default-button-border-style) var(--default-button-border-color);
   padding: var(--default-button-padding);
 
   // Default Button Hover State
   &:hover:not([disabled]) {
     background-color: var(--default-button-bg-color-darker);
     color: var(--default-button-text-color-darker);
-    border-color: var(--default-button-bg-color-darker);
+    border-color: var(--default-button-border-color-darker);
     box-shadow: none !important;
+  }
+
+  &.active:not([disabled]) {
+    background-color: var(--default-button-bg-color-darker);
+    border-color: var(--default-button-border-color-darker);
   }
 
   &:active:not([disabled]) {
     transform: scale(0.98);
     color: var(--default-button-text-color-darker);
-    border-color: var(--default-button-bg-color-darker);
+    border-color: var(--default-button-border-color-darker);
   }
 
   &[disabled] {
@@ -132,7 +139,7 @@ $button-text-colors: (
   &:focus {
     outline: none;
     box-shadow: 0 0 0 2px #ffffff, 0 0 2px 3px var(--default-button-text-color);
-    border-color: var(--default-button-bg-color);
+    border-color: var(--default-button-border-color);
     background-color: var(--default-button-bg-color);
     color: var(--default-button-text-color);
   }
@@ -160,14 +167,15 @@ $button-text-colors: (
         color: map-get($button-text-colors, $button-type);
       }
 
-      &:active {
+      &.active:not([disabled]) {
         background-color: map-get($button-bg-colors-dark, $button-type);
-        color: map-get($button-text-colors, $button-type);
         border-color: map-get($button-border-colors-dark, $button-type);
+        color: map-get($button-text-colors, $button-type);
       }
 
       &:active:not([disabled]) {
         transform: scale(0.98);
+        background-color: map-get($button-bg-colors-dark, $button-type);
         color: map-get($button-text-colors, $button-type);
         border-color: map-get($button-border-colors-dark, $button-type);
       }
