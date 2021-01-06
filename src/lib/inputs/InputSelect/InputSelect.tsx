@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { Autocomplete, AutocompleteChangeDetails, AutocompleteChangeReason, AutocompleteProps } from '@material-ui/lab';
+import {
+  Autocomplete,
+  AutocompleteChangeDetails,
+  AutocompleteChangeReason,
+  AutocompleteProps,
+  createFilterOptions
+} from '@material-ui/lab';
 import { Paper } from '@material-ui/core';
 import classNames from 'classnames';
 import { InputText, Icon } from '../..';
 import { InputProps } from '../InputBase';
-import { isEqual, get } from 'lodash';
+import { isEqual as _isEqual, get as _get, set as _set } from 'lodash';
 
 import './input-select.scss';
 
@@ -21,8 +27,11 @@ export type InputSelectProps = Omit<InputProps, 'onChange'> & {
   optionLabelKey?: string;
   optionValueKey?: string;
   autocompleteConfig?: Partial<AutocompleteProps<any, boolean, boolean, boolean>>;
+  allowCreateOption?: boolean;
   onChange?: AutoCompleteChange;
 };
+
+const filter = createFilterOptions();
 
 export const InputSelect: React.FC<InputSelectProps> = ({
   options,
@@ -32,60 +41,74 @@ export const InputSelect: React.FC<InputSelectProps> = ({
   className,
   autocompleteConfig,
   onChange,
+  allowCreateOption,
   ...props
 }) => {
+  const allowCustomValue = autocompleteConfig?.freeSolo || allowCreateOption;
+
   const getOptionSelected = (option: any, value: any) => {
     // Note: Sometimes we pass in the value as true value and sometimes value is the selected option.
     const selected = optionValueKey
-      ? option[optionValueKey] === value || isEqual(option, value)
-      : isEqual(option, value);
+      ? _get(option, optionValueKey) === value || _isEqual(option, value)
+      : _isEqual(option, value);
+
     return selected;
   };
 
-  const initialValue = props.formikProps ? get(props.formikProps?.values, name) : props.value;
-  // Note: If no value is passed initialValue should be initialized as null instead of undefined to help with uncontrolled component warning
-  // https://github.com/mui-org/material-ui/issues/18173#issuecomment-552420187
+  const getControlledValue = () => {
+    const valueFromProps = props.formikProps ? _get(props.formikProps?.values, name) : props.value;
+    const selectedOption = options.find(option => getOptionSelected(option, valueFromProps));
 
-  const matchedOptionValue = options.find(option => getOptionSelected(option, initialValue));
-  const initialInputValue = matchedOptionValue || initialValue || null;
-  const [inputValue, setInputValue] = useState(initialInputValue);
+    if (!selectedOption && allowCustomValue) {
+      return valueFromProps || null;
+    }
+
+    return selectedOption || null;
+  };
+
+  const getNormalizedValue = (newValue: any) => {
+    let isCustomValue = false;
+    let normalizedValue = newValue;
+
+    if (typeof newValue === 'string') {
+      isCustomValue = true;
+      normalizedValue = _set({}, optionLabelKey, newValue);
+    } else if (newValue && newValue.inputValue) {
+      isCustomValue = true;
+      // Create a new value from the user input
+      normalizedValue = _set({}, optionLabelKey, newValue.inputValue);
+    }
+
+    if (isCustomValue && optionValueKey) {
+      normalizedValue = _set(normalizedValue, optionValueKey, newValue.inputValue);
+    }
+
+    return optionValueKey && normalizedValue ? _get(normalizedValue, optionValueKey) : normalizedValue;
+  };
+
+  const controlledValue = getControlledValue();
+
+  const [value, setValue] = useState(controlledValue);
 
   // Note: We had to use a `useEffect` here to handle cases where the form is reset or manipulated outside of the input
   // For some reason setting the initialInputValue in the initial useState did not reset the input on a form reset
   useEffect(() => {
-    setInputValue(initialInputValue);
-  }, [initialInputValue]);
+    setValue(controlledValue);
+  }, [controlledValue]);
 
-  // Note: This uses the filterOptions to add the initial option for fields who have selected a custom input option
-  if (initialInputValue && !matchedOptionValue && autocompleteConfig?.filterOptions && inputValue)
-    options = autocompleteConfig.filterOptions(options, {
-      inputValue,
-      getOptionLabel: autocompleteConfig.getOptionLabel as (option: any) => string
-    });
-
-  // Set default values for autocompleteConfig
-  const autocompleteConfigAttributes: Partial<AutocompleteProps<any, boolean, boolean, boolean>> = {
-    disableClearable: true,
-    autoHighlight: true,
-    ...autocompleteConfig
-  };
-
-  const handleChange: (
-    event: React.ChangeEvent<{}>,
-    value: any,
-    reason: AutocompleteChangeReason,
-    details?: AutocompleteChangeDetails<any> | undefined
-  ) => void = (event, value, reason, details) => {
-    setInputValue(value);
-    const fieldValue = optionValueKey && value ? value[optionValueKey] : value;
-    if (props.formikProps) props.formikProps.setFieldValue(name, fieldValue);
-    if (typeof onChange === 'function') onChange(event, fieldValue, reason, details);
-  };
-
-  const autocompleteProps: AutocompleteProps<any, boolean, boolean, boolean> = {
+  const autocompleteDefaultProps: AutocompleteProps<any, boolean, boolean, boolean> = {
     options,
+    value,
     multiple: false,
-    value: inputValue,
+    onChange: (event, newValue, reason, details) => {
+      const normalizedValue = getNormalizedValue(newValue);
+
+      setValue(normalizedValue);
+
+      if (props.formikProps?.handleChange) props.formikProps.handleChange(event);
+      if (props.formikProps?.setFieldValue) props.formikProps.setFieldValue(name, normalizedValue);
+      if (typeof onChange === 'function') onChange(event, newValue, reason, details);
+    },
     openOnFocus: true,
     closeIcon: <Icon className="lc-input-select-icon-close" name="close" />,
     popupIcon: <Icon className="lc-input-select-icon-popup" name="chevronDown" />,
@@ -94,26 +117,80 @@ export const InputSelect: React.FC<InputSelectProps> = ({
       return (
         <>
           {!optionValueKey || props.formikProps ? (
-            <InputText name={name} {...params} {...props} inputProps={{ ...params.inputProps, ...props.inputProps }} />
+            <InputText
+              name={name}
+              {...params}
+              {...props}
+              // Prevent InputBase from calling `formikProps.handleChange`
+              // Because it is overriding our change event and preventing
+              // the creation of custom options
+              formikProps={{ ...props.formikProps, handleChange: undefined }}
+            />
           ) : (
             <>
-              <input name={name} type="hidden" value={props.value ? props.value[optionValueKey] : null} />
-              <InputText
-                name={`_${name}`}
-                {...params}
-                {...props}
-                inputProps={{ ...params.inputProps, ...props.inputProps }}
+              <input
+                name={name}
+                type="hidden"
+                value={props.value && optionValueKey ? _get(props.value, optionValueKey) : props.value}
               />
+              <InputText name={`_${name}`} {...params} {...props} />
             </>
           )}
         </>
       );
     },
     PaperComponent: props => <Paper className="lc-input-select-paper" {...props} />,
+    getOptionLabel: (option: { [key: string]: any }) => _get(option, optionLabelKey) || '',
     getOptionSelected,
-    getOptionLabel: (option: { [key: string]: any }) => get(option, optionLabelKey) || '',
-    onChange: handleChange,
-    ...autocompleteConfigAttributes
+    disableClearable: true,
+    autoHighlight: true,
+    autoSelect: true,
+    autoComplete: true
+  };
+
+  const autocompleteFreeSoloProps = {
+    disableClearable: false,
+    autoHighlight: false,
+    autoSelect: false,
+    getOptionLabel: (option: any) => {
+      // Value selected with enter, right from the input
+      if (typeof option === 'string' || typeof option === 'number') {
+        return option;
+      }
+
+      // Add "xxx" option created dynamically
+      if (option.inputValue) {
+        return option.inputValue;
+      }
+
+      // Regular option
+      return _get(option, optionLabelKey);
+    }
+  };
+
+  const autocompleteCreateOptionProps = {
+    ...autocompleteFreeSoloProps,
+    filterOptions: (options: any, params: any) => {
+      const filteredOptions = filter(options, params);
+
+      // Suggest the creation of a new value
+      if (params.inputValue !== '') {
+        filteredOptions.unshift(_set({ inputValue: params.inputValue }, optionLabelKey, `Use "${params.inputValue}"`));
+      }
+
+      return filteredOptions;
+    },
+    selectOnFocus: true,
+    clearOnBlur: true,
+    handleHomeEndKeys: true,
+    renderOption: (option: any) => _get(option, optionLabelKey)
+  };
+
+  const autocompleteProps = {
+    ...autocompleteDefaultProps,
+    ...(autocompleteConfig?.freeSolo ? autocompleteFreeSoloProps : {}),
+    ...(allowCreateOption ? autocompleteCreateOptionProps : {}),
+    ...autocompleteConfig
   };
 
   return <Autocomplete className={classNames('lc-input-select', className)} {...autocompleteProps} />;
