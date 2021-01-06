@@ -44,7 +44,7 @@ export const InputSelect: React.FC<InputSelectProps> = ({
   allowCreateOption,
   ...props
 }) => {
-  const allowCustomOption = autocompleteConfig?.freeSolo || allowCreateOption;
+  const allowCustomValue = autocompleteConfig?.freeSolo || allowCreateOption;
 
   const getOptionSelected = (option: any, value: any) => {
     // Note: Sometimes we pass in the value as true value and sometimes value is the selected option.
@@ -59,7 +59,7 @@ export const InputSelect: React.FC<InputSelectProps> = ({
     const valueFromProps = props.formikProps ? _get(props.formikProps?.values, name) : props.value;
     const selectedOption = options.find(option => getOptionSelected(option, valueFromProps));
 
-    if (!selectedOption && allowCustomOption) {
+    if (!selectedOption && allowCustomValue) {
       return valueFromProps || null;
     }
 
