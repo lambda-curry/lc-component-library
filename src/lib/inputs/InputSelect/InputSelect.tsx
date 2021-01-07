@@ -4,7 +4,8 @@ import {
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
   AutocompleteProps,
-  createFilterOptions
+  createFilterOptions,
+  FilterOptionsState
 } from '@material-ui/lab';
 import { Paper } from '@material-ui/core';
 import classNames from 'classnames';
@@ -13,6 +14,7 @@ import { InputProps } from '../InputBase';
 import { isEqual as _isEqual, get as _get, set as _set } from 'lodash';
 
 import './input-select.scss';
+import { lowercaseString } from '../../util/js-helpers';
 
 export type AutoCompleteChange = (
   event: React.ChangeEvent<{}>,
@@ -28,10 +30,9 @@ export type InputSelectProps = Omit<InputProps, 'onChange'> & {
   optionValueKey?: string;
   autocompleteConfig?: Partial<AutocompleteProps<any, boolean, boolean, boolean>>;
   allowCreateOption?: boolean;
+  disableFilterOptionsByValue?: boolean;
   onChange?: AutoCompleteChange;
 };
-
-const filter = createFilterOptions();
 
 export const InputSelect: React.FC<InputSelectProps> = ({
   options,
@@ -42,6 +43,7 @@ export const InputSelect: React.FC<InputSelectProps> = ({
   autocompleteConfig,
   onChange,
   allowCreateOption,
+  disableFilterOptionsByValue,
   ...props
 }) => {
   const allowCustomValue = autocompleteConfig?.freeSolo || allowCreateOption;
@@ -56,7 +58,7 @@ export const InputSelect: React.FC<InputSelectProps> = ({
   };
 
   const getControlledValue = () => {
-    const valueFromProps = props.formikProps ? _get(props.formikProps?.values, name) : props.value;
+    const valueFromProps = props.formikProps ? _get(props.formikProps.values, name) : props.value;
     const selectedOption = options.find(option => getOptionSelected(option, valueFromProps));
 
     if (!selectedOption && allowCustomValue) {
@@ -85,6 +87,22 @@ export const InputSelect: React.FC<InputSelectProps> = ({
 
     return optionValueKey && normalizedValue ? _get(normalizedValue, optionValueKey) : normalizedValue;
   };
+
+  const filterOptions = (options: any[], params: FilterOptionsState<any>) =>
+    options.filter(option => {
+      const optionLabel = _get(option, optionLabelKey) || '';
+      const optionValue = option && optionValueKey ? _get(option, optionValueKey) : option;
+      const inputValue = lowercaseString(params.inputValue);
+
+      let valueMatch = false;
+      let labelMatch = lowercaseString(optionLabel).includes(inputValue);
+
+      if (!disableFilterOptionsByValue && (typeof optionValue === 'string' || typeof optionValue === 'number')) {
+        valueMatch = lowercaseString(optionValue).includes(inputValue);
+      }
+
+      return valueMatch || labelMatch;
+    });
 
   const controlledValue = getControlledValue();
 
@@ -141,6 +159,7 @@ export const InputSelect: React.FC<InputSelectProps> = ({
     },
     PaperComponent: props => <Paper className="lc-input-select-paper" {...props} />,
     getOptionLabel: (option: { [key: string]: any }) => _get(option, optionLabelKey) || '',
+    filterOptions,
     getOptionSelected,
     disableClearable: true,
     autoHighlight: true,
@@ -170,8 +189,8 @@ export const InputSelect: React.FC<InputSelectProps> = ({
 
   const autocompleteCreateOptionProps = {
     ...autocompleteFreeSoloProps,
-    filterOptions: (options: any, params: any) => {
-      const filteredOptions = filter(options, params);
+    filterOptions: (options: any[], params: FilterOptionsState<any>) => {
+      const filteredOptions = filterOptions(options, params);
 
       // Suggest the creation of a new value
       if (params.inputValue !== '') {

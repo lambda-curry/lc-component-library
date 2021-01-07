@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs/blocks';
 import { InputSelect, Form, ButtonOutline } from '../../..';
+import { usStates } from '../../../util/usStates';
 import dedent from 'string-dedent';
 import './input-select-story.scss';
 
@@ -214,6 +215,59 @@ import './input-select-story.scss';
                     ]}
                     formikProps={formikProps}
                     allowCreateOption={true}
+                  />
+                </>
+              );
+            }}
+          </Form>
+        </div>
+      );
+    }}
+  </Story>
+  <Story
+    name="US State Select"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+          <Form enableReinitialize={true} initialValues={{ state: undefined }} onSubmit={() => {}}>
+            {formikProps => {
+              return (
+                <>
+                  <ButtonOutline onClick={() => formikProps.resetForm()}>Reset</ButtonOutline>
+                  <p className="lc-my-8">Value: {\`\${formikProps.values.state}\`}</p>
+                  <InputSelect
+                    label="State"
+                    name="state"
+                    optionLabelKey="name"
+                    optionValueKey="code"
+                    options={usStates}
+                    formikProps={formikProps}
+                  />
+                </>
+              );
+            }}
+          </Form>`
+        }
+      }
+    }}
+  >
+    {() => {
+      return (
+        <div className="input-form-story">
+          <Form enableReinitialize={true} initialValues={{ state: undefined }} onSubmit={() => {}}>
+            {formikProps => {
+              return (
+                <>
+                  <ButtonOutline onClick={() => formikProps.resetForm()}>Reset</ButtonOutline>
+                  <p className="lc-my-8">Value: {`${formikProps.values.state}`}</p>
+                  <InputSelect
+                    label="State"
+                    name="state"
+                    optionLabelKey="name"
+                    optionValueKey="code"
+                    options={usStates}
+                    formikProps={formikProps}
                   />
                 </>
               );
