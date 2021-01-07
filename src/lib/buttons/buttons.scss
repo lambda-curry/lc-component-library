@@ -69,7 +69,7 @@ $button-border-colors: (
   'success': var(--success-button-border-color),
   'warn': var(--warn-button-border-color),
   'danger': var(--danger-button-border-color),
-  'outline': var(--outline-button-border-color)
+  'outline': var(--outline-button-border-color, --outline-button-text-color)
 );
 $button-border-colors-dark: (
   'primary': var(--primary-button-border-color-dark),
@@ -109,7 +109,8 @@ $button-text-colors: (
   font-size: var(--default-button-font-size);
   font-weight: var(--default-button-font-weight);
   border-radius: var(--default-button-border-radius);
-  border: var(--default-button-border-width) var(--default-button-border-style) var(--default-button-border-color);
+  border-width: var(--default-button-border-width);
+  border-style: var(--default-button-border-style);
   padding: var(--default-button-padding);
 
   // Default Button Hover State
@@ -181,7 +182,7 @@ $button-text-colors: (
       }
 
       @if $button-type == outline {
-        border-color: var(--outline-button-border-color);
+        border-color: var(--outline-button-border-color-darker);
 
         &:hover:not([disabled]) {
           background-color: var(--outline-button-bg-color-dark);
@@ -206,7 +207,8 @@ $button-text-colors: (
 
     &-outline-#{$button-type} {
       background-color: transparent;
-      border-color: $border-color;
+      border-color: map-get($button-border-colors, $button-type);
+
       color: $background-color;
 
       &:hover:not([disabled]) {

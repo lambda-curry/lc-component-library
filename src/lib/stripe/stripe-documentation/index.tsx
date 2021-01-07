@@ -7,7 +7,7 @@ export const StripeExample1 = () => (
       {formikProps => (
         <div className="stripe-story">
           <p>Values: {JSON.stringify(formikProps.values)}</p>
-          <StripeCardInput name="stripe-input" />
+          <StripeCardInput label="Stripe Input" name="stripe-input" />
         </div>
       )}
     </Form>

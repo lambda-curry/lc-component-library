@@ -12,7 +12,8 @@ const CARD_ELEMENT_OPTIONS = {
       fontFamily: '"gilroy", sans-serif',
       fontSize: '18px',
       '::placeholder': {
-        color: 'black'
+        color: '#a0a5ba',
+        fontSize: '16px'
       },
       iconColor: '#0068ff'
     },
@@ -23,7 +24,7 @@ const CARD_ELEMENT_OPTIONS = {
   }
 };
 
-export const StripeCardInput = ({ name }: { name: string }) => {
+export const StripeCardInput = ({ name, label }: { name: string; label?: string }) => {
   const [cardDetails, setCardDetails] = useState<Stripe.StripeCardElementChangeEvent>();
   const [field, , helpers] = useField({ name });
   const { onBlur, onChange, value } = field;
@@ -42,7 +43,12 @@ export const StripeCardInput = ({ name }: { name: string }) => {
 
   return (
     <div className="lc-stripe-card-input">
-      <CardElement options={CARD_ELEMENT_OPTIONS} onBlur={handleBlur} onChange={handleChange} />
+      {label && (
+        <label className="lc-stripe-card-input-label" htmlFor={label}>
+          {label}
+        </label>
+      )}
+      <CardElement id={label} options={CARD_ELEMENT_OPTIONS} onBlur={handleBlur} onChange={handleChange} />
       {cardDetails?.error?.message ? (
         <div className="lc-stripe-card-input-error">{cardDetails.error.message}</div>
       ) : (

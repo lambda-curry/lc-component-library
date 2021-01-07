@@ -20,7 +20,7 @@ export type InputProps = Omit<OutlinedTextFieldProps, 'variant'> & {
   name: string;
   prefix?: React.ReactNode;
   suffix?: React.ReactNode;
-  formikProps?: FormikProps<any>;
+  formikProps?: Partial<FormikProps<any>>;
   labelPlacement?: LabelPlacements;
   variant?: 'outlined'; // Don't remove any typing because this breaks the build. - Jake
   inputConfig?: InputConfig;
@@ -56,15 +56,15 @@ export const InputBase: React.FC<InputProps> = ({
   };
 
   // Note: check to see if InputProps are passed to determine if the parent element is an InputSelect
-  if (props.InputProps && props.inputProps?.onChange) InputProps.onChange = props.inputProps.onChange; // passing inputProps.onChange in here allows for custom input values to be made
+  // if (props.InputProps && props.onChange) InputProps.onChange = props.onChange; // passing inputProps.onChange in here allows for custom input values to be made
 
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    if (formikProps) formikProps.handleChange(event);
+    if (formikProps?.handleChange) formikProps.handleChange(event);
     if (typeof props.onChange === 'function') props.onChange(event);
   };
 
   const handleBlur = (event: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    if (formikProps) formikProps.handleBlur(event);
+    if (formikProps?.handleBlur) formikProps.handleBlur(event);
     if (typeof props.onBlur === 'function') props.onBlur(event);
   };
 
