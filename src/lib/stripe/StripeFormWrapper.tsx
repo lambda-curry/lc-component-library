@@ -6,7 +6,6 @@ import { FormikConfig, FormikHelpers, FormikProps } from 'formik';
 
 type StripeFormWrapperProps = FormikConfig<any> & {
   className?: string;
-  validationSchema: any;
   onError?: (reason: string) => void;
   children: (formikProps: FormikProps<any>) => ReactElement;
 };
