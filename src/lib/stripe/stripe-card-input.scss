@@ -7,7 +7,7 @@
     background-color: white;
     color: theme('colors.gray.darker');
     width: 100%;
-    padding: 14px;
+    padding: 12px 14px;
 
     // Copied from MUI
     line-height: 1.1876em;
@@ -19,7 +19,7 @@
 
     &--focus {
       border: 1px solid theme('colors.primary.default');
-      box-shadow: 0px 0px 0px 1px theme('colors.primary.default');
+      box-shadow: 0px 0px 0px 1px theme('colors.primary.default') inset;
     }
 
     &--invalid {
