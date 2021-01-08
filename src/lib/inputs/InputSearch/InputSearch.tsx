@@ -16,6 +16,11 @@ export interface InputSearchReducerState {
   inputSearchValue: string;
 }
 
+export interface InputSearchOptions {
+  ingoreFalseyInputValues: boolean;
+  debounceTime: number;
+}
+
 export type ServerRequestStatus = 'waiting' | 'sending' | 'sent' | 'error';
 
 export interface InputSearchReducerAction {
@@ -40,6 +45,7 @@ export const inputSearchReducer = (state: InputSearchReducerState, action: Input
 type InputSearchProps = InputProps & {
   url: string;
   searchParam?: string;
+  searchOptions?: InputSearchOptions;
   getOptions: (data: any) => any;
   optionLabelKey?: string;
   autocompleteConfig?: Partial<AutocompleteProps<any, boolean, boolean, boolean>>;
@@ -50,17 +56,25 @@ export const InputSearch: React.FC<InputSearchProps> = ({
   className,
   url,
   searchParam,
+  searchOptions,
   getOptions = options => options,
   ...props
 }) => {
+  const options = {
+    ingoreFalseyInputValues: true,
+    debounceTime: 200,
+    ...searchOptions
+  };
+
   const [state, dispatch] = useReducer<Reducer<InputSearchReducerState, InputSearchReducerAction>>(inputSearchReducer, {
     status: 'waiting',
     options: [],
     inputSearchValue: ''
   });
 
-  const searchTerm = useDebounce(state.inputSearchValue, 200);
+  const searchTerm = useDebounce(state.inputSearchValue, options.debounceTime);
   const search = async () => {
+    if (options.ingoreFalseyInputValues && !state.inputSearchValue) return;
     const [base, params] = url.split('?');
     const searchParams = new URLSearchParams(params);
     if (searchParam) searchParams.set(searchParam, searchTerm);

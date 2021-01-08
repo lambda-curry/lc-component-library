@@ -26,12 +26,13 @@ import './input-search-story.scss';
                 <InputSearch
                   label="Search Option"
                   name="search"
-                  url="https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=samplekey"
+                  url="https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=WymYNTjhumX7gEql9RMCAk9nopWwQVKG"
                   searchParam="q"
                   optionLabelKey="headline.main"
                   getOptions={response => response?.response?.docs || []}
                   autocompleteConfig={{
-                    loadingText: \`Please try again in a minute, NYT Rate Limits their APIs to 10 requests per minute.\`
+                    noOptionsText: \`Please try again in a minute, NYT Rate Limits their APIs to 10 requests per minute.\`,
+                    loadingText: \`Type to search...\`
                   }}
                   formikProps={formikProps}
                 />
@@ -60,7 +61,8 @@ import './input-search-story.scss';
               optionLabelKey="headline.main"
               getOptions={response => response?.response?.docs || []}
               autocompleteConfig={{
-                loadingText: `Please try again in a minute, NYT Rate Limits their APIs to 10 requests per minute.`
+                noOptionsText: `Please try again in a minute, NYT Rate Limits their APIs to 10 requests per minute.`,
+                loadingText: `Type to search...`
               }}
               formikProps={formikProps}
             />
