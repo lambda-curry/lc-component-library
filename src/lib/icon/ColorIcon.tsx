@@ -5,10 +5,22 @@ import './icon.scss';
 
 import { ReactComponent as googleCalendar } from '../assets/color-icons/GoogleCalendar.svg';
 import { ReactComponent as outlook } from '../assets/color-icons/Outlook.svg';
+import { ReactComponent as americanExpress } from '../assets/color-icons/AmericanExpress.svg';
+import { ReactComponent as dinersClub } from '../assets/color-icons/DinersClub.svg';
+import { ReactComponent as discover } from '../assets/color-icons/Discover.svg';
+import { ReactComponent as jcb } from '../assets/color-icons/JCB.svg';
+import { ReactComponent as visa } from '../assets/color-icons/Visa.svg';
+import { ReactComponent as masterCard } from '../assets/color-icons/MasterCard.svg';
 
 export const defaultColorIcons = {
   googleCalendar,
-  outlook
+  outlook,
+  americanExpress,
+  dinersClub,
+  discover,
+  masterCard,
+  jcb,
+  visa
 };
 
 export type DefaultColorIconNames = keyof typeof defaultColorIcons;
