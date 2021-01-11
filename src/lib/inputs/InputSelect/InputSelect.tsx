@@ -7,7 +7,7 @@ import {
   createFilterOptions,
   FilterOptionsState
 } from '@material-ui/lab';
-import { Paper, OutlinedInputProps } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
 import classNames from 'classnames';
 import { InputText, Icon } from '../..';
 import { InputProps } from '../InputBase';

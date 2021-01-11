@@ -37,7 +37,6 @@ export const InputBase: React.FC<InputProps> = ({
   labelPlacement = 'inset',
   variant = 'outlined',
   inputConfig,
-  inputProps,
   ...props
 }) => {
   const config: InputConfig = {
@@ -97,7 +96,6 @@ export const InputBase: React.FC<InputProps> = ({
         onChange={handleChange}
         onBlur={handleBlur}
         variant={variant}
-        inputProps={inputProps}
         InputLabelProps={{ shrink: config.shrinkLabel, ...props.InputLabelProps }}
       />
       {inputConfig?.safeName && <input type="hidden" name={name} value={formikProps?.values[name]} />}
