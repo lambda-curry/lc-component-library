@@ -68,7 +68,7 @@ export function Form<T>({
   ...rest
 }: FormProps<T>) {
   unsavedChangesConfig = {
-    targetQuerySelector: 'a, button, .navbar-back',
+    targetQuerySelector: 'a:not([href="#"]), button, .navbar-back',
     ...unsavedChangesConfig
   };
 
