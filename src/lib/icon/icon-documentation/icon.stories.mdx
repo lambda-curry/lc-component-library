@@ -1,5 +1,5 @@
 import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs/blocks';
-import { Icon, defaultIcons, DecorativeIcon, ColorIcon, defaultColorIcons } from '..';
+import { Icon, defaultIcons, DecorativeIcon, ColorIcon, defaultColorIcons, CreditCardBrands, CreditCardIcon } from '..';
 import dedent from 'string-dedent';
 
 import './icon-story.scss';
@@ -156,4 +156,39 @@ Once the above code is implemented correctly, you should be able to use the Icon
     )}
   </Story>
   <ArgsTable of={Icon} />
+</Canvas>
+
+# CreditCard Icons
+
+<Canvas>
+  <Story
+    name="CreditCard Icons"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+         {['visa', 'mastercard', 'discover', 'jcb', 'dinersclub', 'unknown'].map(brand => (
+          <li key={brand}>
+            <CreditCardIcon brand={brand} />
+            <br />
+            {brand}
+          </li>
+        ))}`
+        }
+      }
+    }}
+  >
+    <div className="icon-story">
+      <ul className="icon-story-grid">
+        {['visa', 'mastercard', 'discover', 'jcb', 'dinersclub', 'unknown'].map(brand => (
+          <li key={brand}>
+            <CreditCardIcon brand={brand} />
+            <br />
+            {brand}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </Story>
+  <ArgsTable of={CreditCardIcon} />
 </Canvas>
