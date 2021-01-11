@@ -123,7 +123,6 @@ export const InputSelect: React.FC<InputSelectProps> = ({
 
       setValue(normalizedValue);
 
-      if (props.formikProps?.handleChange) props.formikProps.handleChange(event);
       if (props.formikProps?.setFieldValue) props.formikProps.setFieldValue(name, normalizedValue);
       if (typeof onChange === 'function') onChange(event, newValue, reason, details);
     },
