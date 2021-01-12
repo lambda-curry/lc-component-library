@@ -8,7 +8,6 @@ import {
   AutocompleteInputChangeReason,
   AutocompleteProps
 } from '@material-ui/lab';
-import { InputProps } from '../InputBase';
 
 export interface InputSearchReducerState {
   status?: ServerRequestStatus;
@@ -19,6 +18,7 @@ export interface InputSearchReducerState {
 export interface InputSearchOptions {
   ingoreFalseyInputValues?: boolean;
   debounceTime?: number;
+  initialSearchValue?: string;
 }
 
 export type ServerRequestStatus = 'waiting' | 'sending' | 'sent' | 'error';
@@ -69,9 +69,14 @@ export const InputSearch: React.FC<InputSearchProps> = ({
     inputSearchValue: ''
   });
 
+  // Run an initial search
+  useEffect(() => {
+    if (options.initialSearchValue) dispatch({ name: 'setInputSearchValue', payload: options.initialSearchValue });
+  }, [options.initialSearchValue]);
+
   const searchTerm = useDebounce(state.inputSearchValue, options.debounceTime);
   const search = async () => {
-    if (options.ingoreFalseyInputValues && !state.inputSearchValue) return;
+    if (!options.initialSearchValue && options.ingoreFalseyInputValues && !state.inputSearchValue) return;
     const [base, params] = url.split('?');
     const searchParams = new URLSearchParams(params);
     if (searchParam) searchParams.set(searchParam, searchTerm);
