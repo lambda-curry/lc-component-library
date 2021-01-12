@@ -46,7 +46,7 @@ type InputSearchProps = InputProps & {
   url: string;
   searchParam?: string;
   searchOptions?: InputSearchOptions;
-  getOptions: (data: any) => any;
+  getOptions?: (data: any) => any;
   optionLabelKey?: string;
   autocompleteConfig?: Partial<AutocompleteProps<any, boolean, boolean, boolean>>;
   onChange?: AutoCompleteChange;
