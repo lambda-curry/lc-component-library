@@ -8,7 +8,7 @@ export const InputTextExample = () => (
     <Form
       initialValues={{
         sampleInput1: '',
-        shrunkenLabelInput: 'This is a test',
+        shrunkenLabelInput: '',
         sampleInput2: '',
         sampleInput3: '',
         sampleInput4: '',
@@ -25,8 +25,6 @@ export const InputTextExample = () => (
             name="shrunkenLabelInput"
             label="Text Input"
             inputConfig={{ shrinkLabel: true }}
-            inputProps={{ readOnly: true }}
-            disabled={true}
             formikProps={formikProps}
           />
           <InputText name="sampleInput2" label="Text Input" value="Example" formikProps={formikProps} />
