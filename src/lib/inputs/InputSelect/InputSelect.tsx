@@ -123,7 +123,6 @@ export const InputSelect: React.FC<InputSelectProps> = ({
 
       setValue(normalizedValue);
 
-      if (props.formikProps?.handleChange) props.formikProps.handleChange(event);
       if (props.formikProps?.setFieldValue) props.formikProps.setFieldValue(name, normalizedValue);
       if (typeof onChange === 'function') onChange(event, newValue, reason, details);
     },
@@ -132,6 +131,11 @@ export const InputSelect: React.FC<InputSelectProps> = ({
     popupIcon: <Icon className="lc-input-select-icon-popup" name="chevronDown" />,
     ChipProps: { deleteIcon: <Icon name="close" /> },
     renderInput: params => {
+      const inputProps = {
+        ...params.inputProps,
+        ...props.inputProps
+      };
+
       return (
         <>
           {!optionValueKey || props.formikProps ? (
@@ -139,6 +143,7 @@ export const InputSelect: React.FC<InputSelectProps> = ({
               name={name}
               {...params}
               {...props}
+              inputProps={inputProps}
               // Prevent InputBase from calling `formikProps.handleChange`
               // Because it is overriding our change event and preventing
               // the creation of custom options
@@ -151,7 +156,7 @@ export const InputSelect: React.FC<InputSelectProps> = ({
                 type="hidden"
                 value={props.value && optionValueKey ? _get(props.value, optionValueKey) : props.value}
               />
-              <InputText name={`_${name}`} {...params} {...props} />
+              <InputText name={`_${name}`} {...params} {...props} inputProps={inputProps} />
             </>
           )}
         </>
@@ -159,8 +164,9 @@ export const InputSelect: React.FC<InputSelectProps> = ({
     },
     PaperComponent: props => <Paper className="lc-input-select-paper" {...props} />,
     getOptionLabel: (option: { [key: string]: any }) => _get(option, optionLabelKey) || '',
-    filterOptions,
+    getOptionDisabled: option => option.isDisabled,
     getOptionSelected,
+    filterOptions,
     disableClearable: true,
     autoHighlight: true,
     autoSelect: true,
