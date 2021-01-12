@@ -42,7 +42,7 @@ export const inputSearchReducer = (state: InputSearchReducerState, action: Input
   return nextState;
 };
 
-type InputSearchProps = InputSelectProps & {
+type InputSearchProps = Omit<InputSelectProps, 'options'> & {
   url: string;
   searchParam?: string;
   searchOptions?: InputSearchOptions;
