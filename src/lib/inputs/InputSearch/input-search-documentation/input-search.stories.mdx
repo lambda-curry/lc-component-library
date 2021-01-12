@@ -45,17 +45,20 @@ import './input-search-story.scss';
   >
     <div className="input-search-story">
       <Form
+        formConfig={{ safeName: true }}
         initialValues={{
-          search: undefined
+          'search[test]': undefined
         }}
         onSubmit={() => {}}
       >
         {formikProps => (
           <>
-            <p className="lc-mb-8">Selected Abstract: {`${JSON.stringify(formikProps.values.search?.abstract)}`}</p>
+            <p className="lc-mb-8">
+              Selected Abstract: {`${JSON.stringify(formikProps.values['search[test]']?.abstract)}`}
+            </p>
             <InputSearch
               label="Search Option"
-              name="search"
+              name="search[test]"
               url="https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=WymYNTjhumX7gEql9RMCAk9nopWwQVKG"
               searchParam="q"
               optionLabelKey="headline.main"
