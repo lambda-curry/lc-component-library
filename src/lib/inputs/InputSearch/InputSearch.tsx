@@ -17,8 +17,8 @@ export interface InputSearchReducerState {
 }
 
 export interface InputSearchOptions {
-  ingoreFalseyInputValues: boolean;
-  debounceTime: number;
+  ingoreFalseyInputValues?: boolean;
+  debounceTime?: number;
 }
 
 export type ServerRequestStatus = 'waiting' | 'sending' | 'sent' | 'error';
