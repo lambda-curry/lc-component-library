@@ -42,14 +42,11 @@ export const inputSearchReducer = (state: InputSearchReducerState, action: Input
   return nextState;
 };
 
-type InputSearchProps = InputProps & {
+type InputSearchProps = InputSelectProps & {
   url: string;
   searchParam?: string;
   searchOptions?: InputSearchOptions;
   getOptions?: (data: any) => any;
-  optionLabelKey?: string;
-  autocompleteConfig?: Partial<AutocompleteProps<any, boolean, boolean, boolean>>;
-  onChange?: AutoCompleteChange;
 };
 
 export const InputSearch: React.FC<InputSearchProps> = ({
