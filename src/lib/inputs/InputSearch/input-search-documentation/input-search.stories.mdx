@@ -16,7 +16,7 @@ import './input-search-story.scss';
           code: dedent`
           <Form
             initialValues={{
-              search: undefined
+              search: {"abstract":"Lance Bass of ’N Sync fame buys an apartment at the Chelsea Mercantile.","web_url":"https://www.nytimes.com/2010/05/09/realestate/09deal3.html","snippet":"Lance Bass of ’N Sync fame buys an apartment at the Chelsea Mercantile.","lead_paragraph":"WHO remembers that catchy ’N Sync song “Bye, Bye, Bye?” Turns out a former band member, Lance Bass, has decided to buy, buy, buy a condo at the Chelsea Mercantile.","print_section":"RE","print_page":"2","source":"The New York Times","multimedia":[{"rank":0,"subtype":"popup","caption":null,"credit":null,"type":"image","url":"images/2010/05/09/realestate/09deal3_CA0/09deal3_CA0-popup.jpg","height":500,"width":400,"legacy":{},"subType":"popup","crop_name":"popup"},{"rank":0,"subtype":"articleInline","caption":null,"credit":null,"type":"image","url":"images/2010/05/09/realestate/09deal3_CA0/09deal3_CA0-articleInline.jpg","height":235,"width":190,"legacy":{},"subType":"articleInline","crop_name":"articleInline"},{"rank":0,"subtype":"thumbnail","caption":null,"credit":null,"type":"image","url":"images/2010/05/09/realestate/09deal3_CA0/09deal3_CA0-thumbStandard.jpg","height":75,"width":75,"legacy":{"thumbnail":"images/2010/05/09/realestate/09deal3_CA0/09deal3_CA0-thumbStandard.jpg","thumbnailwidth":75,"thumbnailheight":75},"subType":"thumbnail","crop_name":"thumbStandard"}],"headline":{"main":"’N Sync Member Says Hi, Hi, Hi to New Condo","kicker":"Big Deal","content_kicker":null,"print_headline":"Hi, Hi, Hi for a New Neighbor","name":null,"seo":null,"sub":null},"keywords":[{"name":"persons","value":"Bass, Lance","rank":1,"major":"N"},{"name":"subject","value":"Housing and Real Estate","rank":2,"major":"N"}],"pub_date":"2010-05-07T19:03:03+0000","news_desk":"RealEstate","section_name":"Real Estate","byline":{"original":"By Elizabeth A. Harris","person":[{"firstname":"Elizabeth","middlename":"A.","lastname":"Harris","qualifier":null,"title":null,"role":"reported","organization":"","rank":1}],"organization":null},"_id":"nyt://article/ead1fd2a-3be7-52df-b21d-eb8f0a25a005","word_count":151,"uri":"nyt://article/ead1fd2a-3be7-52df-b21d-eb8f0a25a005"}
             }}
             onSubmit={() => {}}
           >
@@ -47,7 +47,96 @@ import './input-search-story.scss';
       <Form
         formConfig={{ safeName: true }}
         initialValues={{
-          'search[test]': undefined
+          'search[test]': {
+            abstract: 'Lance Bass of ’N Sync fame buys an apartment at the Chelsea Mercantile.',
+            web_url: 'https://www.nytimes.com/2010/05/09/realestate/09deal3.html',
+            snippet: 'Lance Bass of ’N Sync fame buys an apartment at the Chelsea Mercantile.',
+            lead_paragraph:
+              'WHO remembers that catchy ’N Sync song “Bye, Bye, Bye?” Turns out a former band member, Lance Bass, has decided to buy, buy, buy a condo at the Chelsea Mercantile.',
+            print_section: 'RE',
+            print_page: '2',
+            source: 'The New York Times',
+            multimedia: [
+              {
+                rank: 0,
+                subtype: 'popup',
+                caption: null,
+                credit: null,
+                type: 'image',
+                url: 'images/2010/05/09/realestate/09deal3_CA0/09deal3_CA0-popup.jpg',
+                height: 500,
+                width: 400,
+                legacy: {},
+                subType: 'popup',
+                crop_name: 'popup'
+              },
+              {
+                rank: 0,
+                subtype: 'articleInline',
+                caption: null,
+                credit: null,
+                type: 'image',
+                url: 'images/2010/05/09/realestate/09deal3_CA0/09deal3_CA0-articleInline.jpg',
+                height: 235,
+                width: 190,
+                legacy: {},
+                subType: 'articleInline',
+                crop_name: 'articleInline'
+              },
+              {
+                rank: 0,
+                subtype: 'thumbnail',
+                caption: null,
+                credit: null,
+                type: 'image',
+                url: 'images/2010/05/09/realestate/09deal3_CA0/09deal3_CA0-thumbStandard.jpg',
+                height: 75,
+                width: 75,
+                legacy: {
+                  thumbnail: 'images/2010/05/09/realestate/09deal3_CA0/09deal3_CA0-thumbStandard.jpg',
+                  thumbnailwidth: 75,
+                  thumbnailheight: 75
+                },
+                subType: 'thumbnail',
+                crop_name: 'thumbStandard'
+              }
+            ],
+            headline: {
+              main: '’N Sync Member Says Hi, Hi, Hi to New Condo',
+              kicker: 'Big Deal',
+              content_kicker: null,
+              print_headline: 'Hi, Hi, Hi for a New Neighbor',
+              name: null,
+              seo: null,
+              sub: null
+            },
+            keywords: [
+              { name: 'persons', value: 'Bass, Lance', rank: 1, major: 'N' },
+              { name: 'subject', value: 'Housing and Real Estate', rank: 2, major: 'N' }
+            ],
+            pub_date: '2010-05-07T19:03:03+0000',
+            news_desk: 'RealEstate',
+            section_name: 'Real Estate',
+            byline: {
+              original: 'By Elizabeth A. Harris',
+              person: [
+                {
+                  firstname: 'Elizabeth',
+                  middlename: 'A.',
+                  lastname: 'Harris',
+                  qualifier: null,
+                  title: null,
+                  role: 'reported',
+                  organization: '',
+                  rank: 1
+                }
+              ],
+              organization: null
+            },
+            _id: 'nyt://article/ead1fd2a-3be7-52df-b21d-eb8f0a25a005',
+            word_count: 151,
+            uri: 'nyt://article/ead1fd2a-3be7-52df-b21d-eb8f0a25a005'
+          }
         }}
         onSubmit={() => {}}
       >

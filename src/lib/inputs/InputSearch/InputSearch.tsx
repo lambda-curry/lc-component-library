@@ -2,12 +2,8 @@ import React, { Reducer, useEffect, useReducer } from 'react';
 import classNames from 'classnames';
 import { AutoCompleteChange, InputSelect, InputSelectProps } from '../InputSelect/InputSelect';
 import { useAsyncEffect, useDebounce } from '../../hooks';
-import {
-  AutocompleteChangeDetails,
-  AutocompleteChangeReason,
-  AutocompleteInputChangeReason,
-  AutocompleteProps
-} from '@material-ui/lab';
+import { AutocompleteInputChangeReason } from '@material-ui/lab';
+import { get as _get } from 'lodash';
 
 export interface InputSearchReducerState {
   status?: ServerRequestStatus;
@@ -55,6 +51,7 @@ export const InputSearch: React.FC<InputSearchProps> = ({
   searchParam,
   searchOptions,
   getOptions = options => options,
+  placeholder = 'Type to search...',
   ...props
 }) => {
   const options = {
@@ -63,9 +60,11 @@ export const InputSearch: React.FC<InputSearchProps> = ({
     ...searchOptions
   };
 
+  const selectedValue = _get(props.formikProps?.values, props.name);
+
   const [state, dispatch] = useReducer<Reducer<InputSearchReducerState, InputSearchReducerAction>>(inputSearchReducer, {
     status: 'waiting',
-    options: [],
+    options: selectedValue ? [selectedValue] : [],
     inputSearchValue: ''
   });
 
@@ -107,10 +106,12 @@ export const InputSearch: React.FC<InputSearchProps> = ({
   return (
     <InputSelect
       className={classNames('lc-input-search', className)}
+      placeholder={placeholder}
       {...props}
       options={state.options}
       onChange={handleChange}
       autocompleteConfig={{
+        disableClearable: false,
         loading: state.options.length < 1,
         onInputChange: handleInputChange,
         ...props.autocompleteConfig
