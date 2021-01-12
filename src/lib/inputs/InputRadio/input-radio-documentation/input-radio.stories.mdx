@@ -1,0 +1,57 @@
+import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs/blocks';
+import { InputRadio, Form, Button } from '../../..';
+import dedent from 'string-dedent';
+
+<Meta title="Input Radio" component={InputRadio} />
+
+# Input Radio
+
+<Canvas>
+  <Story
+    name="Input Radio"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+          <h4>Default</h4>
+          <Form enableReinitialize={true} initialValues={{ radioDefault: '' }} onSubmit={() => {}}>
+            {formikProps => (
+              <>
+                <p>Value: {\`\${formikProps.values.radioDefault}\`}</p>
+                <InputRadio name="radioDefault" label="Default radio" formikProps={formikProps} />
+                <Button
+                  onClick={() => {
+                    formikProps.resetForm();
+                  }}
+                >
+                  Reset
+                </Button>
+              </>
+            )}
+          </Form>`
+        }
+      }
+    }}
+  >
+    <div className="input-radio-story">
+      <h4>Default</h4>
+      <Form enableReinitialize={true} initialValues={{ radioDefault: '' }} onSubmit={() => {}}>
+        {formikProps => (
+          <>
+            <p>Value: {`${formikProps.values.radioDefault}`}</p>
+            <InputRadio name="radioDefault" value="test-1" label="Default radio" formikProps={formikProps} />
+            <InputRadio name="radioDefault" value="test-2" label="Default radio" formikProps={formikProps} />
+            <Button
+              onClick={() => {
+                formikProps.resetForm();
+              }}
+            >
+              Reset
+            </Button>
+          </>
+        )}
+      </Form>
+    </div>
+  </Story>
+  <ArgsTable of={InputRadio} />
+</Canvas>

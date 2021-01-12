@@ -55,6 +55,7 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
     "@babel/plugin-proposal-private-methods": "^7.12.1",
     "@babel/preset-typescript": "^7.10.4",
+    "@babel/helper-call-delegate": "7.12.1",
     "@material-ui/types": "^5.1.0",
     "@rollup/plugin-commonjs": "^15.0.0",
     "@rollup/plugin-node-resolve": "^9.0.0",
