@@ -40,7 +40,13 @@ import dedent from 'string-dedent';
           <>
             <p>Value: {`${formikProps.values.radioDefault}`}</p>
             <InputRadio name="radioDefault" value="test-1" label="Default radio" formikProps={formikProps} />
-            <InputRadio name="radioDefault" value="test-2" label="Default radio" formikProps={formikProps} />
+            <InputRadio
+              name="radioDefault"
+              color="secondary"
+              value="test-2"
+              label="Default radio"
+              formikProps={formikProps}
+            />
             <Button
               onClick={() => {
                 formikProps.resetForm();

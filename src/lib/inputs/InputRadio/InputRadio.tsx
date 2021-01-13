@@ -6,15 +6,16 @@ import {
   FormControlLabelProps
 } from '@material-ui/core';
 import classNames from 'classnames';
-import { FormikProps } from 'formik';
+import { FormikProps, FormikValues } from 'formik';
+import './input-radio.scss';
 
-export type InputRadioProps<T> = {
+export type InputRadioProps = {
   label: string;
   labelPlacement?: FormControlLabelProps['labelPlacement'];
-  formikProps?: FormikProps<T>;
+  formikProps?: FormikProps<FormikValues>;
 } & RadioProps;
 
-export const InputRadio = ({
+export const InputRadio: React.FC<InputRadioProps> = ({
   className,
   color = 'primary',
   formikProps,
@@ -23,10 +24,11 @@ export const InputRadio = ({
   onChange,
   value,
   ...props
-}: InputRadioProps<any>) => {
+}) => {
   const fieldProps = formikProps?.getFieldProps(props.name);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (onChange) onChange;
     if (fieldProps?.onChange) fieldProps.onChange(event);
   };
 
@@ -35,7 +37,15 @@ export const InputRadio = ({
       className={classNames('lc-input lc-input-radio', className)}
       label={label}
       labelPlacement={labelPlacement}
-      control={<MuiRadio {...props} checked={fieldProps?.value == value} onChange={handleChange} value={value} />}
+      control={
+        <MuiRadio
+          {...props}
+          color={color}
+          checked={fieldProps ? fieldProps?.value === value : props.checked}
+          onChange={handleChange}
+          value={value}
+        />
+      }
     />
   );
 };
