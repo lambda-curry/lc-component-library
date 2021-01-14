@@ -1,4 +1,5 @@
-import React from 'react';
+import classNames from 'classnames';
+import React, { FC } from 'react';
 import { Icon } from '.';
 import { ColorIcon } from './ColorIcon';
 
@@ -11,9 +12,18 @@ export enum CreditCardBrands {
   Visa = 'visa'
 }
 
-export const CreditCardIcon: React.FC<{ brand?: string }> = ({ brand }) => {
+export interface CreditCardIconProps {
+  brand: string;
+  className?: string;
+}
+
+export const CreditCardIcon: FC<CreditCardIconProps> = ({ brand, className }) => {
   const creditCardBrand = Object.values(CreditCardBrands).find(
     creditCardBrand => creditCardBrand.toLowerCase() === brand?.toLowerCase()
   );
-  return creditCardBrand ? <ColorIcon name={creditCardBrand} /> : <Icon name="creditCard" />;
+
+  const iconName = creditCardBrand ? creditCardBrand : 'creditCard';
+  const T = creditCardBrand ? ColorIcon : Icon;
+
+  return <T name={iconName} className={classNames('credit-card-icon', className)} />;
 };
