@@ -59,10 +59,10 @@ export const StripeExampleAcceptedBrands = () => {
             <StripeCardInput
               label="Stripe Input"
               name="stripe-input"
+              acceptedBrands={acceptedBrands as StripeCardBrand[]}
               acceptedBrandsErrorMessage={brand =>
                 `Sorry, we do not accept ${brand}. Try one of these instead: ${acceptedBrands.join(', ')}.`
               }
-              acceptedBrands={acceptedBrands as StripeCardBrand[]}
             />
           </div>
         );
