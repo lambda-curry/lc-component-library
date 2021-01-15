@@ -63,7 +63,7 @@ export const StripeCardInput: FC<StripeCardInput> = ({
 
     return `We do not accept ${cardBrandNamesMap[brand]}. Please try ${arrayToListString(
       acceptedBrands?.map(brand => cardBrandNamesMap[brand]) || [],
-      'or'
+      ' or '
     )}.`;
   };
 
@@ -72,7 +72,7 @@ export const StripeCardInput: FC<StripeCardInput> = ({
 
     return `We do not accept ${arrayToListString(
       rejectedBrands?.map(brand => cardBrandNamesMap[brand]) || [],
-      'or'
+      ' or '
     )}. Please try a different card.`;
   };
 
