@@ -27,7 +27,7 @@ const CARD_ELEMENT_OPTIONS = {
 
 export type StripeCardBrand = Exclude<Stripe.StripeCardElementChangeEvent['brand'], 'unknown'>;
 
-export interface StripeCardInput {
+export interface StripeCardInputProps {
   name: string;
   label?: string;
   acceptedBrands?: StripeCardBrand[];
@@ -46,7 +46,7 @@ const cardBrandNamesMap = {
   unionpay: 'UnionPay'
 };
 
-export const StripeCardInput: FC<StripeCardInput> = ({
+export const StripeCardInput: FC<StripeCardInputProps> = ({
   name,
   label,
   acceptedBrands,
