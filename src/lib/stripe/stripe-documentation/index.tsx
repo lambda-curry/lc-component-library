@@ -1,10 +1,10 @@
 import React from 'react';
-import { StripeCardInput, StripeFormWrapper, StripeCardBrand, InputText } from '../..';
-import { ButtonOutline, ButtonPrimary } from '../../buttons';
+import { StripeCardInput, StripeFormWrapper, StripeCardBrand } from '../..';
+import { ButtonPrimary } from '../../buttons';
 
 export const StripeExample1 = () => (
   <StripeFormWrapper
-    initialValues={{ email: '', 'stripe-input': undefined }}
+    initialValues={{ 'stripe-input': undefined }}
     STRIPE_KEY={process.env.STORYBOOK_STRIPE_KEY}
     onSubmit={() => {}}
   >
@@ -13,10 +13,6 @@ export const StripeExample1 = () => (
         <div className="stripe-story">
           <p className="lc-mb-16">Values: {JSON.stringify(formikProps.values)}</p>
           <StripeCardInput label="Stripe Input" name="stripe-input" />
-          <InputText label="Email" name="email" formikProps={formikProps} />
-          <ButtonOutline onClick={() => formikProps.setFieldError('email', 'Please enter your email.')}>
-            Set Email Value
-          </ButtonOutline>
           <ButtonPrimary type="submit">Submit</ButtonPrimary>
         </div>
       );

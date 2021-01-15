@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import * as Stripe from '@stripe/stripe-js';
 import { CardElement } from '@stripe/react-stripe-js';
 import { ErrorMessage, useField } from 'formik';
@@ -56,6 +56,8 @@ export const StripeCardInput: FC<StripeCardInputProps> = ({
   rejectedBrands,
   rejectedBrandsErrorMessage
 }) => {
+  const [cardDetails, setCardDetails] = useState<Stripe.StripeCardElementChangeEvent>();
+
   const getAcceptedBrandsErrorMessage = (brand: StripeCardBrand) => {
     const propsMessage = acceptedBrandsErrorMessage;
 
@@ -78,13 +80,13 @@ export const StripeCardInput: FC<StripeCardInputProps> = ({
     )}. Please try a different card.`;
   };
 
-  const validate = (value: Stripe.StripeCardElementChangeEvent) => {
-    if (!value || value.empty) return `Please enter your credit card information.`;
+  const validate = (value: any) => {
+    if (!cardDetails || cardDetails.empty) return `Please enter your credit card information.`;
 
-    const { brand } = value;
+    const { error, brand } = cardDetails;
 
     // Stripe errors take priority.
-    if (value.error) return value.error.message;
+    if (error) return error.message;
 
     // Don't check rejected or accepted brands if the brand is "unknown".
     if (brand === 'unknown') return;
@@ -101,7 +103,8 @@ export const StripeCardInput: FC<StripeCardInputProps> = ({
   const { setValue, setTouched } = helpers;
 
   const handleChange = (event: Stripe.StripeCardElementChangeEvent) => {
-    setValue(event, true);
+    setCardDetails(event);
+    setValue(event.complete, true);
     setTouched(true);
   };
 
