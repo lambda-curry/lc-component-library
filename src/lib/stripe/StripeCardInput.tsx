@@ -79,8 +79,6 @@ export const StripeCardInput: FC<StripeCardInputProps> = ({
   };
 
   const validate = (value: Stripe.StripeCardElementChangeEvent) => {
-    console.log(value);
-
     if (!value || value.empty) return `Please enter your credit card information.`;
 
     const { brand } = value;
