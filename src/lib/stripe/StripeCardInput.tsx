@@ -3,7 +3,7 @@ import * as Stripe from '@stripe/stripe-js';
 import { CardElement } from '@stripe/react-stripe-js';
 import { ErrorMessage, useField } from 'formik';
 import './stripe-card-input.scss';
-import { arrayToList } from '../util/formatters';
+import { arrayToListString } from '../util/formatters';
 
 // Custom styling can be passed to options when creating an Element.
 const CARD_ELEMENT_OPTIONS = {
@@ -61,7 +61,7 @@ export const StripeCardInput: FC<StripeCardInput> = ({
   const getAcceptedBrandsErrorMessage = (brand: StripeCardBrand) => {
     if (acceptedBrandsErrorMessage) return acceptedBrandsErrorMessage(brand);
 
-    return `We do not accept ${cardBrandNamesMap[brand]}. Please try ${arrayToList(
+    return `We do not accept ${cardBrandNamesMap[brand]}. Please try ${arrayToListString(
       acceptedBrands?.map(brand => cardBrandNamesMap[brand]) || [],
       'or'
     )}.`;
@@ -70,7 +70,7 @@ export const StripeCardInput: FC<StripeCardInput> = ({
   const getRejectedBrandsErrorMessage = (brand: StripeCardBrand) => {
     if (rejectedBrandsErrorMessage) return rejectedBrandsErrorMessage(brand);
 
-    return `We do not accept ${arrayToList(
+    return `We do not accept ${arrayToListString(
       rejectedBrands?.map(brand => cardBrandNamesMap[brand]) || [],
       'or'
     )}. Please try a different card.`;
