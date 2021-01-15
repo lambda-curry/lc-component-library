@@ -1,5 +1,6 @@
 import React from 'react';
 import { StripeCardInput, StripeFormWrapper, StripeCardBrand } from '../..';
+import { ButtonPrimary } from '../../buttons';
 
 export const StripeExample1 = () => (
   <StripeFormWrapper
@@ -12,6 +13,7 @@ export const StripeExample1 = () => (
         <div className="stripe-story">
           <p className="lc-mb-16">Values: {JSON.stringify(formikProps.values)}</p>
           <StripeCardInput label="Stripe Input" name="stripe-input" />
+          <ButtonPrimary type="submit">Submit</ButtonPrimary>
         </div>
       );
     }}
@@ -36,6 +38,7 @@ export const StripeExampleRejectedBrands = () => {
               name="stripe-input"
               rejectedBrands={rejectedBrands as StripeCardBrand[]}
             />
+            <ButtonPrimary type="submit">Submit</ButtonPrimary>
           </div>
         );
       }}
@@ -64,6 +67,7 @@ export const StripeExampleAcceptedBrands = () => {
                 `Sorry, we do not accept ${brand}. Try one of these instead: ${acceptedBrands.join(', ')}.`
               }
             />
+            <ButtonPrimary type="submit">Submit</ButtonPrimary>
           </div>
         );
       }}

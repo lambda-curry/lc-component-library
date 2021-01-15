@@ -1,5 +1,6 @@
 .lc-stripe-card-input {
   width: 100%;
+  margin-bottom: theme('spacing.24');
 
   .StripeElement {
     font-size: 16px;
@@ -37,6 +38,12 @@
     display: block;
     font-size: 12px;
     margin-bottom: theme('spacing.8');
+  }
+
+  &-invalid {
+    .StripeElement {
+      border-color: theme('colors.danger.default');
+    }
   }
 
   &-error {
