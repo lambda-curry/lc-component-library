@@ -39,6 +39,12 @@
     margin-bottom: theme('spacing.8');
   }
 
+  &-invalid {
+    .StripeElement {
+      border-color: theme('colors.danger.default');
+    }
+  }
+
   &-error {
     color: theme('colors.danger.default');
     font-size: 0.8em;

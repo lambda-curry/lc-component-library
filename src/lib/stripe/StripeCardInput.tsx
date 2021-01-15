@@ -4,6 +4,19 @@ import { CardElement } from '@stripe/react-stripe-js';
 import { ErrorMessage, useField } from 'formik';
 import './stripe-card-input.scss';
 import { arrayToListString } from '../util/formatters';
+import classNames from 'classnames';
+
+export type StripeCardBrand = Exclude<Stripe.StripeCardElementChangeEvent['brand'], 'unknown'>;
+
+export type StripeCardBrandErrorMessage = string | ((brand: StripeCardBrand) => string);
+export interface StripeCardInputProps {
+  name: string;
+  label?: string;
+  acceptedBrands?: StripeCardBrand[];
+  rejectedBrands?: StripeCardBrand[];
+  acceptedBrandsErrorMessage?: StripeCardBrandErrorMessage;
+  rejectedBrandsErrorMessage?: StripeCardBrandErrorMessage;
+}
 
 // Custom styling can be passed to options when creating an Element.
 const CARD_ELEMENT_OPTIONS = {
@@ -25,17 +38,6 @@ const CARD_ELEMENT_OPTIONS = {
   }
 };
 
-export type StripeCardBrand = Exclude<Stripe.StripeCardElementChangeEvent['brand'], 'unknown'>;
-
-export interface StripeCardInputProps {
-  name: string;
-  label?: string;
-  acceptedBrands?: StripeCardBrand[];
-  rejectedBrands?: StripeCardBrand[];
-  acceptedBrandsErrorMessage?: (brand: StripeCardBrand) => string;
-  rejectedBrandsErrorMessage?: (brand: StripeCardBrand) => string;
-}
-
 const cardBrandNamesMap = {
   visa: 'Visa',
   mastercard: 'Mastercard',
@@ -54,12 +56,10 @@ export const StripeCardInput: FC<StripeCardInputProps> = ({
   rejectedBrands,
   rejectedBrandsErrorMessage
 }) => {
-  const [field, , helpers] = useField({ name });
-  const { onChange } = field;
-  const { setError, setValue, setTouched } = helpers;
-
   const getAcceptedBrandsErrorMessage = (brand: StripeCardBrand) => {
-    if (acceptedBrandsErrorMessage) return acceptedBrandsErrorMessage(brand);
+    const propsMessage = acceptedBrandsErrorMessage;
+
+    if (propsMessage) return typeof propsMessage === 'function' ? propsMessage(brand) : propsMessage;
 
     return `We do not accept ${cardBrandNamesMap[brand]}. Please try ${arrayToListString(
       acceptedBrands?.map(brand => cardBrandNamesMap[brand]) || [],
@@ -68,7 +68,9 @@ export const StripeCardInput: FC<StripeCardInputProps> = ({
   };
 
   const getRejectedBrandsErrorMessage = (brand: StripeCardBrand) => {
-    if (rejectedBrandsErrorMessage) return rejectedBrandsErrorMessage(brand);
+    const propsMessage = rejectedBrandsErrorMessage;
+
+    if (propsMessage) return typeof propsMessage === 'function' ? propsMessage(brand) : propsMessage;
 
     return `We do not accept ${arrayToListString(
       rejectedBrands?.map(brand => cardBrandNamesMap[brand]) || [],
@@ -76,39 +78,49 @@ export const StripeCardInput: FC<StripeCardInputProps> = ({
     )}. Please try a different card.`;
   };
 
-  const handleChange = (event: Stripe.StripeCardElementChangeEvent) => {
-    const { brand } = event;
+  const validate = (value: Stripe.StripeCardElementChangeEvent) => {
+    console.log(value);
 
-    onChange(name);
-    setValue(event.complete, false);
-    setTouched(true, false);
+    if (!value || value.empty) return `Please enter your credit card information.`;
 
-    // Clear previous errors.
-    setError(undefined);
+    const { brand } = value;
 
     // Stripe errors take priority.
-    if (event.error) return setError(event.error.message);
+    if (value.error) return value.error.message;
 
     // Don't check rejected or accepted brands if the brand is "unknown".
     if (brand === 'unknown') return;
 
     // Display rejected brands error.
-    if (rejectedBrands && rejectedBrands.includes(brand)) return setError(getRejectedBrandsErrorMessage(brand));
+    if (rejectedBrands && rejectedBrands.includes(brand)) return getRejectedBrandsErrorMessage(brand);
 
     // Display accepted brands error.
-    if (acceptedBrands && !acceptedBrands.includes(brand)) {
-      return setError(getAcceptedBrandsErrorMessage(brand));
-    }
+    if (acceptedBrands && !acceptedBrands.includes(brand)) return getAcceptedBrandsErrorMessage(brand);
   };
 
+  const [, meta, helpers] = useField({ name, validate });
+  const { error } = meta;
+  const { setValue, setTouched } = helpers;
+
+  const handleChange = (event: Stripe.StripeCardElementChangeEvent) => {
+    setValue(event, true);
+    setTouched(true);
+  };
+
+  const handleBlur = () => setTouched(true);
+
   return (
-    <div className="lc-stripe-card-input">
+    <div
+      className={classNames('lc-stripe-card-input', {
+        'lc-stripe-card-input-invalid': error
+      })}
+    >
       {label && (
         <label className="lc-stripe-card-input-label" htmlFor={label}>
           {label}
         </label>
       )}
-      <CardElement id={label} options={CARD_ELEMENT_OPTIONS} onChange={handleChange} />
+      <CardElement id={label} options={CARD_ELEMENT_OPTIONS} onChange={handleChange} onBlur={handleBlur} />
       <ErrorMessage className="lc-stripe-card-input-error" name={name} component="div" />
     </div>
   );
