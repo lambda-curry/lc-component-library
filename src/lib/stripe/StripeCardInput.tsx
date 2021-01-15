@@ -9,6 +9,7 @@ import classNames from 'classnames';
 export type StripeCardBrand = Exclude<Stripe.StripeCardElementChangeEvent['brand'], 'unknown'>;
 
 export type StripeCardBrandErrorMessage = string | ((brand: StripeCardBrand) => string);
+
 export interface StripeCardInputProps {
   name: string;
   label?: string;
