@@ -48,11 +48,11 @@ const cardBrandNamesMap = {
 
 export const StripeCardInput: FC<StripeCardInput> = ({
   name,
+  label,
   acceptedBrands,
   acceptedBrandsErrorMessage,
   rejectedBrands,
-  rejectedBrandsErrorMessage,
-  label
+  rejectedBrandsErrorMessage
 }) => {
   const [field, , helpers] = useField({ name });
   const { onChange } = field;
