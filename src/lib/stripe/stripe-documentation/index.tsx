@@ -1,5 +1,5 @@
 import React from 'react';
-import { StripeCardInput, StripeFormWrapper, StripeCardBrands } from '../..';
+import { StripeCardInput, StripeFormWrapper, StripeCardBrand } from '../..';
 
 export const StripeExample1 = () => (
   <StripeFormWrapper
@@ -34,7 +34,7 @@ export const StripeExampleRejectedBrands = () => {
             <StripeCardInput
               label="Stripe Input"
               name="stripe-input"
-              rejectedBrands={rejectedBrands as StripeCardBrands[]}
+              rejectedBrands={rejectedBrands as StripeCardBrand[]}
             />
           </div>
         );
@@ -62,7 +62,7 @@ export const StripeExampleAcceptedBrands = () => {
               acceptedBrandsErrorMessage={brand =>
                 `Sorry, we do not accept ${brand}. Try one of these instead: ${acceptedBrands.join(', ')}.`
               }
-              acceptedBrands={acceptedBrands as StripeCardBrands[]}
+              acceptedBrands={acceptedBrands as StripeCardBrand[]}
             />
           </div>
         );
