@@ -134,7 +134,6 @@ export const InputSelect: React.FC<InputSelectProps> = ({
   const autocompleteDefaultProps: AutocompleteProps<any, boolean, boolean, boolean> = {
     options,
     value,
-    multiple: false,
     onChange: (event, newValue, reason, details) => {
       const normalizedValue = getNormalizedValue(newValue);
 
@@ -173,8 +172,8 @@ export const InputSelect: React.FC<InputSelectProps> = ({
     getOptionSelected,
     filterOptions,
     disableClearable: true,
-    autoHighlight: true,
-    autoSelect: true,
+    autoHighlight: !isMultiselect,
+    autoSelect: !isMultiselect,
     autoComplete: true,
     renderTags: (valueArray: any[], getTagProps: AutocompleteGetTagProps) => (
       <>
