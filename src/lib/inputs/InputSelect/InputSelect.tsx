@@ -123,8 +123,9 @@ export const InputSelect: React.FC<InputSelectProps> = ({
 
       setValue(normalizedValue);
 
-      if (props.formikProps?.handleChange) props.formikProps.handleChange(event);
-      if (props.formikProps?.setFieldValue) props.formikProps.setFieldValue(name, normalizedValue);
+      const hasSafeName = props.formikProps?.status?.formConfig?.safeName || props.inputConfig?.safeName;
+      if (props.formikProps?.setFieldValue)
+        props.formikProps.setFieldValue(hasSafeName ? `['${name}']` : name, normalizedValue);
       if (typeof onChange === 'function') onChange(event, newValue, reason, details);
     },
     openOnFocus: true,
@@ -138,29 +139,16 @@ export const InputSelect: React.FC<InputSelectProps> = ({
       };
 
       return (
-        <>
-          {!optionValueKey || props.formikProps ? (
-            <InputText
-              name={name}
-              {...params}
-              {...props}
-              inputProps={inputProps}
-              // Prevent InputBase from calling `formikProps.handleChange`
-              // Because it is overriding our change event and preventing
-              // the creation of custom options
-              formikProps={{ ...props.formikProps, handleChange: undefined }}
-            />
-          ) : (
-            <>
-              <input
-                name={name}
-                type="hidden"
-                value={props.value && optionValueKey ? _get(props.value, optionValueKey) : props.value}
-              />
-              <InputText name={`_${name}`} {...params} {...props} inputProps={inputProps} />
-            </>
-          )}
-        </>
+        <InputText
+          name={name}
+          {...params}
+          {...props}
+          inputProps={inputProps}
+          // Prevent InputBase from calling `formikProps.handleChange`
+          // Because it is overriding our change event and preventing
+          // the creation of custom options
+          formikProps={{ ...props.formikProps, handleChange: undefined }}
+        />
       );
     },
     PaperComponent: props => <Paper className="lc-input-select-paper" {...props} />,

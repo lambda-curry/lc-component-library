@@ -2,13 +2,8 @@ import React, { Reducer, useEffect, useReducer } from 'react';
 import classNames from 'classnames';
 import { AutoCompleteChange, InputSelect, InputSelectProps } from '../InputSelect/InputSelect';
 import { useAsyncEffect, useDebounce } from '../../hooks';
-import {
-  AutocompleteChangeDetails,
-  AutocompleteChangeReason,
-  AutocompleteInputChangeReason,
-  AutocompleteProps
-} from '@material-ui/lab';
-import { InputProps } from '../InputBase';
+import { AutocompleteInputChangeReason } from '@material-ui/lab';
+import { get as _get } from 'lodash';
 
 export interface InputSearchReducerState {
   status?: ServerRequestStatus;
@@ -17,8 +12,9 @@ export interface InputSearchReducerState {
 }
 
 export interface InputSearchOptions {
-  ingoreFalseyInputValues: boolean;
-  debounceTime: number;
+  ingoreFalseyInputValues?: boolean;
+  debounceTime?: number;
+  initialSearchValue?: string;
 }
 
 export type ServerRequestStatus = 'waiting' | 'sending' | 'sent' | 'error';
@@ -42,14 +38,11 @@ export const inputSearchReducer = (state: InputSearchReducerState, action: Input
   return nextState;
 };
 
-type InputSearchProps = InputProps & {
+type InputSearchProps = Omit<InputSelectProps, 'options'> & {
   url: string;
   searchParam?: string;
   searchOptions?: InputSearchOptions;
-  getOptions: (data: any) => any;
-  optionLabelKey?: string;
-  autocompleteConfig?: Partial<AutocompleteProps<any, boolean, boolean, boolean>>;
-  onChange?: AutoCompleteChange;
+  getOptions?: (data: any) => any[];
 };
 
 export const InputSearch: React.FC<InputSearchProps> = ({
@@ -57,7 +50,9 @@ export const InputSearch: React.FC<InputSearchProps> = ({
   url,
   searchParam,
   searchOptions,
-  getOptions = options => options,
+  optionLabelKey = 'label',
+  getOptions = (options: any[]) => options,
+  placeholder = 'Type to search...',
   ...props
 }) => {
   const options = {
@@ -66,23 +61,41 @@ export const InputSearch: React.FC<InputSearchProps> = ({
     ...searchOptions
   };
 
+  const selectedValue = _get(props.formikProps?.values, props.name);
+
   const [state, dispatch] = useReducer<Reducer<InputSearchReducerState, InputSearchReducerAction>>(inputSearchReducer, {
     status: 'waiting',
-    options: [],
+    options: selectedValue ? [selectedValue] : [],
     inputSearchValue: ''
   });
 
+  // Run an initial search
+  useEffect(() => {
+    if (options.initialSearchValue) dispatch({ name: 'setInputSearchValue', payload: options.initialSearchValue });
+  }, [options.initialSearchValue]);
+
   const searchTerm = useDebounce(state.inputSearchValue, options.debounceTime);
   const search = async () => {
-    if (options.ingoreFalseyInputValues && !state.inputSearchValue) return;
+    if (!options.initialSearchValue && options.ingoreFalseyInputValues && !state.inputSearchValue) return;
     const [base, params] = url.split('?');
     const searchParams = new URLSearchParams(params);
     if (searchParam) searchParams.set(searchParam, searchTerm);
     const searchUrl = `${base}?${searchParams.toString()}`;
     const response = await fetch(searchUrl);
     const jsonData = await response.json();
+    const selectOptions = getOptions(jsonData);
 
-    dispatch({ name: 'setOptions', payload: getOptions(jsonData) });
+    // Add Selected value as the first option if an initial search term is provided to always provide the search value
+    if (
+      selectedValue &&
+      options.initialSearchValue &&
+      !selectOptions.some(
+        (selectOption: any) => _get(selectedValue, optionLabelKey) === _get(selectOption, optionLabelKey)
+      )
+    )
+      selectOptions.unshift(selectedValue);
+
+    dispatch({ name: 'setOptions', payload: selectOptions });
   };
 
   useAsyncEffect(search, undefined, [url, searchTerm]);
@@ -105,10 +118,13 @@ export const InputSearch: React.FC<InputSearchProps> = ({
   return (
     <InputSelect
       className={classNames('lc-input-search', className)}
+      placeholder={placeholder}
+      optionLabelKey={optionLabelKey}
       {...props}
       options={state.options}
       onChange={handleChange}
       autocompleteConfig={{
+        disableClearable: false,
         loading: state.options.length < 1,
         onInputChange: handleInputChange,
         ...props.autocompleteConfig

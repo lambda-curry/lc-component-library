@@ -47,7 +47,9 @@ export const StripeFormWrapper: React.FC<{ STRIPE_KEY?: string } & StripeFormWra
   ...props
 }) => {
   if (!STRIPE_KEY) throw new Error('STRIPE_KEY is required for StripeFormWrapper');
+
   const stripePromise = Stripe.loadStripe(STRIPE_KEY);
+
   return (
     <Elements stripe={stripePromise}>
       <StripeFormWrapperContent {...props} />
