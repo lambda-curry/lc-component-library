@@ -4,7 +4,6 @@ import { InputSelect, Form, ButtonOutline } from '../../..';
 import { usStates } from '../../../util/usStates';
 import dedent from 'string-dedent';
 import './input-select-story.scss';
-import * as Yup from 'yup';
 
 <Meta title="Input Select" component={InputSelect} />
 
@@ -208,7 +207,6 @@ import * as Yup from 'yup';
                   <InputSelect
                     label="Select Custom Value"
                     name="customValue"
-                    optionValueKey="value"
                     options={[
                       { label: 'Option 1', value: '1' },
                       { label: 'Option 2', value: '2' },
@@ -256,18 +254,8 @@ import * as Yup from 'yup';
     {() => {
       return (
         <div className="input-form-story">
-          <Form
-            enableReinitialize={true}
-            initialValues={{ state: undefined }}
-            onSubmit={() => {}}
-            validationSchema={() =>
-              Yup.object({
-                state: Yup.string().nullable().required('Please select a state.')
-              })
-            }
-          >
+          <Form enableReinitialize={true} initialValues={{ state: null }} onSubmit={() => {}}>
             {formikProps => {
-              console.log(formikProps.values);
               return (
                 <>
                   <ButtonOutline onClick={() => formikProps.resetForm()}>Reset</ButtonOutline>
@@ -280,6 +268,69 @@ import * as Yup from 'yup';
                     options={usStates}
                     formikProps={formikProps}
                     autocompleteConfig={{ disableClearable: false }}
+                  />
+                </>
+              );
+            }}
+          </Form>
+        </div>
+      );
+    }}
+  </Story>
+  <Story
+    name="Multiselect"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+          <Form enableReinitialize={true} initialValues={{ multiselect: [] }} onSubmit={() => {}}>
+            {formikProps => {
+              return (
+                <>
+                  <ButtonOutline onClick={() => formikProps.resetForm()}>Reset</ButtonOutline>
+                  <p className="lc-my-8">Value: {\`\${formikProps.values.multiselect}\`}</p>
+                  <InputSelect
+                    label="Multiselect input"
+                    name="multiselect"
+                    options={[
+                      { label: 'Option 1', value: 1 },
+                      { label: 'Option 2', value: 2 },
+                      { label: 'Option 3', value: 3 }
+                      { label: 'Option 4', value: 4 }
+                      { label: 'Option 5', value: 5 }
+                    ]}
+                    formikProps={formikProps}
+                    autocompleteConfig={{ multiple: true }}
+                  />
+                </>
+              );
+            }}
+          </Form>`
+        }
+      }
+    }}
+  >
+    {() => {
+      return (
+        <div className="input-form-story">
+          <Form enableReinitialize={true} initialValues={{ multiselect: [] }} onSubmit={() => {}}>
+            {formikProps => {
+              return (
+                <>
+                  <ButtonOutline onClick={() => formikProps.resetForm()}>Reset</ButtonOutline>
+                  <p className="lc-my-8">Value: {`${formikProps.values.multiselect}`}</p>
+                  <InputSelect
+                    label="Multiselect input"
+                    name="multiselect"
+                    options={[
+                      { label: 'Option 1', value: 1 },
+                      { label: 'Option 2', value: 2 },
+                      { label: 'Option 3', value: 3 },
+                      { label: 'Option 4', value: 4 },
+                      { label: 'Option 5', value: 5 }
+                    ]}
+                    formikProps={formikProps}
+                    autocompleteConfig={{ multiple: true }}
                   />
                 </>
               );

@@ -24,7 +24,8 @@
     height: 32px;
     font-size: 12px;
     border-radius: 4px;
-    background-color: var(--lighter-gray);
+    background-color: theme('colors.gray.lighter');
+    font-family: theme('fontFamily.sans');
 
     .MuiChip-label {
       padding-left: 12px;
@@ -32,7 +33,7 @@
     }
 
     .MuiChip-deleteIcon {
-      color: var(--dark-gray);
+      color: theme('colors.gray.dark');
       width: 12px;
       height: 12px;
       margin-left: -4px;
@@ -48,6 +49,7 @@
 // Fixes times when rem font-size is way off for autocomplete paper.
 body .MuiAutocomplete-paper {
   font-size: inherit;
+  font-family: theme('fontFamily.sans');
 }
 
 // Fixes when material UI popovers are within a modal.

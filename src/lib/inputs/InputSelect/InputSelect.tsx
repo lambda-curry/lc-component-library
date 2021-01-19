@@ -3,11 +3,12 @@ import {
   Autocomplete,
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
+  AutocompleteGetTagProps,
   AutocompleteProps,
   createFilterOptions,
   FilterOptionsState
 } from '@material-ui/lab';
-import { Paper } from '@material-ui/core';
+import { Paper, Chip } from '@material-ui/core';
 import classNames from 'classnames';
 import { InputText, Icon } from '../..';
 import { InputProps } from '../InputBase';
@@ -47,30 +48,40 @@ export const InputSelect: React.FC<InputSelectProps> = ({
   ...props
 }) => {
   const allowCustomValue = autocompleteConfig?.freeSolo || allowCreateOption;
+  const isMultiselect = autocompleteConfig?.multiple;
+
+  const optionAndValueAreEqual = (option: any, value: any) => {
+    // Note: Sometimes we pass in the value as true value and sometimes value is the selected option.
+    return optionValueKey ? _get(option, optionValueKey) === value || _isEqual(option, value) : _isEqual(option, value);
+  };
 
   const getOptionSelected = (option: any, value: any) => {
-    // Note: Sometimes we pass in the value as true value and sometimes value is the selected option.
-    const selected = optionValueKey
-      ? _get(option, optionValueKey) === value || _isEqual(option, value)
-      : _isEqual(option, value);
-
-    return selected;
+    return optionAndValueAreEqual(option, value);
   };
 
   const getControlledValue = () => {
     const valueFromProps = props.formikProps ? _get(props.formikProps.values, name) : props.value;
     const selectedOption = options.find(option => getOptionSelected(option, valueFromProps));
 
-    if (!selectedOption && allowCustomValue) {
-      return valueFromProps || null;
+    const defaultValue = isMultiselect ? [] : null;
+
+    if (isMultiselect || (!selectedOption && allowCustomValue)) {
+      return valueFromProps || defaultValue;
     }
 
-    return selectedOption || null;
+    return selectedOption || defaultValue;
   };
 
-  const getNormalizedValue = (newValue: any) => {
+  const getNormalizedValueSingle = (newValue: any) => {
     let isCustomValue = false;
     let normalizedValue = newValue;
+
+    const selectedOption = options.find(option => getOptionSelected(option, newValue));
+
+    // Check to see if we have a matching option.
+    if (selectedOption) {
+      return optionValueKey ? _get(selectedOption, optionValueKey) : selectedOption;
+    }
 
     if (typeof newValue === 'string') {
       isCustomValue = true;
@@ -81,12 +92,18 @@ export const InputSelect: React.FC<InputSelectProps> = ({
       normalizedValue = _set({}, optionLabelKey, newValue.inputValue);
     }
 
-    if (isCustomValue && optionValueKey) {
-      normalizedValue = _set(normalizedValue, optionValueKey, newValue.inputValue);
+    if (isCustomValue) {
+      normalizedValue = _set(normalizedValue, optionValueKey || 'value', newValue.inputValue || newValue);
     }
 
     return optionValueKey && normalizedValue ? _get(normalizedValue, optionValueKey) : normalizedValue;
   };
+
+  const getNormalizedValueMultiple = (newValues: any[]) =>
+    newValues.map(newValue => getNormalizedValueSingle(newValue));
+
+  const getNormalizedValue = (newValue: any) =>
+    isMultiselect ? getNormalizedValueMultiple(newValue) : getNormalizedValueSingle(newValue);
 
   const filterOptions = (options: any[], params: FilterOptionsState<any>) =>
     options.filter(option => {
@@ -112,12 +129,11 @@ export const InputSelect: React.FC<InputSelectProps> = ({
   // For some reason setting the initialInputValue in the initial useState did not reset the input on a form reset
   useEffect(() => {
     setValue(controlledValue);
-  }, [controlledValue]);
+  }, [props.value, props.formikProps?.values]);
 
   const autocompleteDefaultProps: AutocompleteProps<any, boolean, boolean, boolean> = {
     options,
     value,
-    multiple: false,
     onChange: (event, newValue, reason, details) => {
       const normalizedValue = getNormalizedValue(newValue);
 
@@ -131,7 +147,6 @@ export const InputSelect: React.FC<InputSelectProps> = ({
     openOnFocus: true,
     closeIcon: <Icon className="lc-input-select-icon-close" name="close" />,
     popupIcon: <Icon className="lc-input-select-icon-popup" name="chevronDown" />,
-    ChipProps: { deleteIcon: <Icon name="close" /> },
     renderInput: params => {
       const inputProps = {
         ...params.inputProps,
@@ -157,9 +172,20 @@ export const InputSelect: React.FC<InputSelectProps> = ({
     getOptionSelected,
     filterOptions,
     disableClearable: true,
-    autoHighlight: true,
-    autoSelect: true,
-    autoComplete: true
+    autoHighlight: !isMultiselect,
+    autoSelect: !isMultiselect,
+    autoComplete: true,
+    renderTags: (valueArray: any[], getTagProps: AutocompleteGetTagProps) => (
+      <>
+        {valueArray.map((valueArrayItem, index) => {
+          const selectedOption = options.find(option => getOptionSelected(option, valueArrayItem));
+          const label = selectedOption
+            ? _get(selectedOption, optionLabelKey)
+            : _get(valueArrayItem, optionLabelKey) || valueArrayItem;
+          return <Chip {...getTagProps({ index })} deleteIcon={<Icon name="close" />} label={label} />;
+        })}
+      </>
+    )
   };
 
   const autocompleteFreeSoloProps = {
