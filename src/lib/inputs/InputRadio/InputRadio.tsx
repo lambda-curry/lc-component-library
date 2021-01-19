@@ -28,7 +28,7 @@ export const InputRadio: React.FC<InputRadioProps> = ({
   const fieldProps = formikProps?.getFieldProps(props.name);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (onChange) onChange;
+    if (onChange) onChange(event, event.target.checked);
     if (fieldProps?.onChange) fieldProps.onChange(event);
   };
 

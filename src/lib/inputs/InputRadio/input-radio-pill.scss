@@ -1,0 +1,61 @@
+.lc-input-radio-pill {
+  box-sizing: border-box;
+  display: inline-flex;
+  position: relative;
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+  }
+
+  &--label {
+    border: 1px solid #cecece;
+    border-radius: 8px;
+    color: #a7a7a7;
+    padding: 8px;
+    transition: 0.3s all;
+    z-index: 1;
+
+    &:hover {
+      background-color: #f3f3f3;
+      border-color: #595959;
+      color: #282d30;
+      z-index: 2;
+    }
+  }
+
+  &--input:not(:first-of-type) {
+    .lc-input-radio-pill--label {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      margin-left: -1px;
+    }
+  }
+
+  &--input:not(:last-of-type) {
+    .lc-input-radio-pill--label {
+      border-right-color: rgba(0, 0, 0, 0);
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &.active + .lc-input-radio-pill--input,
+    &:hover + .lc-input-radio-pill--input {
+      .lc-input-radio-pill--label {
+        border-left-color: #595959;
+      }
+    }
+  }
+
+  input {
+    display: none;
+
+    &:checked + .lc-input-radio-pill--label {
+      background-color: #f3f3f3;
+      border-color: #595959;
+      color: #282d30;
+      z-index: 2;
+    }
+  }
+}

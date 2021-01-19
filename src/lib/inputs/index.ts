@@ -8,3 +8,4 @@ export { InputDate } from './InputDate/InputDate';
 export { InputPhone } from './InputPhone/InputPhone';
 export { InputSearch } from './InputSearch/InputSearch';
 export { InputRadio } from './InputRadio/InputRadio';
+export { InputRadioPill } from './InputRadio/InputRadioPill';
