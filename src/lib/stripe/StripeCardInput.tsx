@@ -1,10 +1,11 @@
 import React, { FC, useState } from 'react';
 import * as Stripe from '@stripe/stripe-js';
 import { CardElement } from '@stripe/react-stripe-js';
-import { ErrorMessage, useField } from 'formik';
+import { useField, useFormikContext } from 'formik';
 import './stripe-card-input.scss';
 import { arrayToListString } from '../util/formatters';
 import classNames from 'classnames';
+import { get as _get, set as _set } from 'lodash';
 
 export type StripeCardBrand = Exclude<Stripe.StripeCardElementChangeEvent['brand'], 'unknown'>;
 
@@ -99,11 +100,24 @@ export const StripeCardInput: FC<StripeCardInputProps> = ({
     if (acceptedBrands && !acceptedBrands.includes(brand)) return getAcceptedBrandsErrorMessage(brand);
   };
 
+  // Use the Formik Context.
+  const { status, setStatus } = useFormikContext();
+  const serverError =
+    status.serverErrors && name && _get(status.serverErrors, name) ? _get(status.serverErrors, name) : '';
+
+  // Use the Formik Field.
   const [, meta, helpers] = useField({ name, validate });
   const { error } = meta;
   const { setValue, setTouched } = helpers;
 
+  // Set errors.
+  const hasError = !!error || !!serverError;
+  const errorText = error || serverError;
+
   const handleChange = (event: Stripe.StripeCardElementChangeEvent) => {
+    // Remove server errors.
+    if (status.serverErrors) setStatus({ ...status, serverErrors: { ..._set(status.serverErrors, name, '') } });
+
     setCardDetails(event);
     setValue(event.complete, true);
     setTouched(true);
@@ -114,7 +128,7 @@ export const StripeCardInput: FC<StripeCardInputProps> = ({
   return (
     <div
       className={classNames('lc-stripe-card-input', {
-        'lc-stripe-card-input-invalid': error
+        'lc-stripe-card-input-invalid': hasError
       })}
     >
       {label && (
@@ -123,7 +137,7 @@ export const StripeCardInput: FC<StripeCardInputProps> = ({
         </label>
       )}
       <CardElement id={label} options={CARD_ELEMENT_OPTIONS} onChange={handleChange} onBlur={handleBlur} />
-      <ErrorMessage className="lc-stripe-card-input-error" name={name} component="div" />
+      {hasError && <div className="lc-stripe-card-input-error">{errorText}</div>}
     </div>
   );
 };
