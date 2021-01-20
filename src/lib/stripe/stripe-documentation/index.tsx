@@ -51,6 +51,7 @@ export const StripeExampleAcceptedBrands = () => {
 
   return (
     <StripeFormWrapper
+      initialStatus={{ serverErrors: { 'stripe-input': 'This card is wrong...' } }}
       initialValues={{ 'stripe-input': undefined }}
       STRIPE_KEY={process.env.STORYBOOK_STRIPE_KEY}
       onSubmit={() => {}}

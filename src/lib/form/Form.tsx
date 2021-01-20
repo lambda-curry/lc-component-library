@@ -65,7 +65,7 @@ export function Form<T>({
   confirmUnsavedChanges,
   unsavedChangesConfig = {},
   formConfig,
-  ...rest
+  ...props
 }: FormProps<T>) {
   unsavedChangesConfig = {
     targetQuerySelector: 'a:not([href="#"]), button, .navbar-back',
@@ -121,7 +121,7 @@ export function Form<T>({
   };
 
   return (
-    <Formik {...rest} initialStatus={{ formConfig }}>
+    <Formik {...props} initialStatus={{ ...props.initialStatus, formConfig }}>
       {(formikProps: FormikProps<T>) => (
         <FormContent
           className={className}
