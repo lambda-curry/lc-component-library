@@ -61,9 +61,6 @@ export const InputBase: React.FC<InputProps> = ({
     ...props.InputProps // Note: don't remove these, passing `InputProps` in here allows InputSelect to work correctly
   };
 
-  // Note: check to see if InputProps are passed to determine if the parent element is an InputSelect
-  // if (props.InputProps && props.onChange) InputProps.onChange = props.onChange; // passing inputProps.onChange in here allows for custom input values to be made
-
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     // Remove server errors.
     if (formikProps?.setStatus && formikProps.status.serverErrors)
