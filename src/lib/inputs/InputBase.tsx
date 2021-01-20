@@ -2,7 +2,7 @@ import React, { ChangeEvent, FocusEvent } from 'react';
 import TextField, { OutlinedTextFieldProps } from '@material-ui/core/TextField';
 import { FormikProps } from 'formik';
 import classNames from 'classnames';
-import { get as _get } from 'lodash';
+import { get as _get, set as _set } from 'lodash';
 
 import './input.scss';
 import { InputAdornment } from '@material-ui/core';
@@ -45,9 +45,15 @@ export const InputBase: React.FC<InputProps> = ({
     ...inputConfig
   };
 
+  const fieldValue = formikProps ? _get(formikProps?.values, name) : props.value;
   const fieldError =
     formikProps?.errors && name && _get(formikProps.touched, name) ? _get(formikProps.errors, name) : '';
-  const fieldValue = formikProps ? _get(formikProps?.values, name) : props.value;
+  const serverError =
+    formikProps?.status.serverErrors && name && _get(formikProps?.status.serverErrors, name)
+      ? _get(formikProps?.status.serverErrors, name)
+      : '';
+  const hasError = !!fieldError || !!serverError || props.error;
+  const helperText = fieldError || serverError || props.helperText;
 
   const InputProps: any = {
     startAdornment: prefix ? <InputAdornment position="start">{prefix}</InputAdornment> : false,
@@ -55,10 +61,13 @@ export const InputBase: React.FC<InputProps> = ({
     ...props.InputProps // Note: don't remove these, passing `InputProps` in here allows InputSelect to work correctly
   };
 
-  // Note: check to see if InputProps are passed to determine if the parent element is an InputSelect
-  // if (props.InputProps && props.onChange) InputProps.onChange = props.onChange; // passing inputProps.onChange in here allows for custom input values to be made
-
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    // Remove server errors.
+    if (formikProps?.setStatus && formikProps.status.serverErrors)
+      formikProps.setStatus({
+        ...formikProps?.status,
+        serverErrors: { ..._set(formikProps.status.serverErrors, name, '') }
+      });
     if (formikProps?.handleChange) formikProps.handleChange(event);
     if (typeof props.onChange === 'function') props.onChange(event);
   };
@@ -89,8 +98,8 @@ export const InputBase: React.FC<InputProps> = ({
         size="small"
         {...props}
         InputProps={InputProps}
-        error={!!fieldError || props.error}
-        helperText={fieldError || props.helperText}
+        error={hasError}
+        helperText={helperText}
         className={classNames(className, 'lc-input')}
         value={fieldValue}
         onChange={handleChange}
