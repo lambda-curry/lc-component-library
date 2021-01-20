@@ -103,7 +103,7 @@ export const StripeCardInput: FC<StripeCardInputProps> = ({
   // Use the Formik Context.
   const { status, setStatus } = useFormikContext();
   const serverError =
-    status.serverErrors && name && _get(status.serverErrors, name) ? _get(status.serverErrors, name) : '';
+    status?.serverErrors && name && _get(status.serverErrors, name) ? _get(status.serverErrors, name) : '';
 
   // Use the Formik Field.
   const [, meta, helpers] = useField({ name, validate });
@@ -116,7 +116,7 @@ export const StripeCardInput: FC<StripeCardInputProps> = ({
 
   const handleChange = (event: Stripe.StripeCardElementChangeEvent) => {
     // Remove server errors.
-    if (status.serverErrors) setStatus({ ...status, serverErrors: { ..._set(status.serverErrors, name, '') } });
+    if (status?.serverErrors) setStatus({ ...status, serverErrors: { ..._set(status.serverErrors, name, '') } });
 
     setCardDetails(event);
     setValue(event.complete, true);

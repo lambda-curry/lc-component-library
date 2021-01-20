@@ -49,8 +49,8 @@ export const InputBase: React.FC<InputProps> = ({
   const fieldError =
     formikProps?.errors && name && _get(formikProps.touched, name) ? _get(formikProps.errors, name) : '';
   const serverError =
-    formikProps?.status.serverErrors && name && _get(formikProps?.status.serverErrors, name)
-      ? _get(formikProps?.status.serverErrors, name)
+    formikProps?.status?.serverErrors && name && _get(formikProps.status.serverErrors, name)
+      ? _get(formikProps.status.serverErrors, name)
       : '';
   const hasError = !!fieldError || !!serverError || props.error;
   const helperText = fieldError || serverError || props.helperText;
@@ -63,11 +63,12 @@ export const InputBase: React.FC<InputProps> = ({
 
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     // Remove server errors.
-    if (formikProps?.setStatus && formikProps.status.serverErrors)
+    if (formikProps?.setStatus && formikProps?.status?.serverErrors)
       formikProps.setStatus({
         ...formikProps?.status,
         serverErrors: { ..._set(formikProps.status.serverErrors, name, '') }
       });
+
     if (formikProps?.handleChange) formikProps.handleChange(event);
     if (typeof props.onChange === 'function') props.onChange(event);
   };
