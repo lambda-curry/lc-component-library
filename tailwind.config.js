@@ -24,6 +24,9 @@ module.exports = {
   purge: ['./src/**/*.tsx'],
   prefix: 'lc-',
   theme: {
+    // borderRadius: {
+    //   default: '4px',
+    // },
     colors: {
       black: '#000',
       white: '#fff',

@@ -38,8 +38,8 @@ export const InputColor: FC<InputColorProps> = ({
   onPickerChange,
   ...props
 }) => {
-  const fieldProps = props.formikProps?.getFieldProps(props.name);
-  const fieldHelpers = props.formikProps?.getFieldHelpers(props.name);
+  const fieldProps = props.formikProps?.getFieldProps ? props.formikProps.getFieldProps(props.name) : null;
+  const fieldHelpers = props.formikProps?.getFieldHelpers ? props.formikProps.getFieldHelpers(props.name) : null;
   const fieldValue = fieldProps?.value || props.value;
   const isValidColor = isHexColor(fieldValue);
 

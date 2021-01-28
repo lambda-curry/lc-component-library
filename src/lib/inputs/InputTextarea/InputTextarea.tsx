@@ -10,7 +10,7 @@ export interface InputTextareaProps extends InputProps {
 }
 
 export const InputTextarea = ({ className, rows = 3, characterLimit = 0, onChange, ...props }: InputTextareaProps) => {
-  const fieldProps = props.formikProps?.getFieldProps(props.name);
+  const fieldProps = props.formikProps?.getFieldProps ? props.formikProps?.getFieldProps(props.name) : null;
   const fieldValue = fieldProps?.value || props.value;
 
   return (
@@ -26,7 +26,7 @@ export const InputTextarea = ({ className, rows = 3, characterLimit = 0, onChang
             newValue = previousValue;
           }
 
-          if (props.formikProps) props.formikProps.setFieldValue(props.name, newValue);
+          if (props.formikProps?.setFieldValue) props.formikProps.setFieldValue(props.name, newValue);
 
           if (onChange) onChange(event);
         };

@@ -43,7 +43,7 @@ export const InputDate: React.FC<InputDateProps> = ({
 
   const handleChange = (updatedDate: DateTime | null, keyboardInputValue?: string | undefined) => {
     const updatedValue = fromDateTime(updatedDate, valueFormat);
-    if (formikProps) formikProps.setFieldValue(props.name, updatedValue);
+    if (formikProps?.setFieldValue) formikProps.setFieldValue(props.name, updatedValue);
     if (typeof onChange === 'function') onChange(updatedValue);
   };
 
