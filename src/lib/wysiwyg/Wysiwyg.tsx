@@ -9,7 +9,7 @@ import './wysiwyg.scss';
 
 interface WysiwygProps extends ReactQuillProps {
   name: string;
-  formikProps: FormikProps<{}>;
+  formikProps: FormikProps<any>;
   templateVariables?: string[];
   characterLimit?: number;
 }

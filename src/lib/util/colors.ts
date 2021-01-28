@@ -27,11 +27,7 @@ export function getHexColor(colorStr: string) {
     : '';
 }
 
-export function pickTextColorBasedOnBgColorSimple(
-  bgColor: string,
-  lightColor: string = '#ffffff',
-  darkColor: string = '#000000'
-) {
+export function pickTextColorBasedOnBgColorSimple(bgColor: string, lightColor = '#ffffff', darkColor = '#000000') {
   const color = bgColor.charAt(0) === '#' ? bgColor.substring(1, 7) : bgColor;
   const r = parseInt(color.substring(0, 2), 16); // hexToR
   const g = parseInt(color.substring(2, 4), 16); // hexToG
@@ -40,7 +36,7 @@ export function pickTextColorBasedOnBgColorSimple(
 }
 
 // Src: https://www.sitepoint.com/javascript-generate-lighter-darker-color/
-export function lightenDarkenColor(hex: string, lum: number = -0.2) {
+export function lightenDarkenColor(hex: string, lum = -0.2) {
   // validate hex string
   hex = String(hex).replace(/[^0-9a-f]/gi, '');
   if (hex.length < 6) {

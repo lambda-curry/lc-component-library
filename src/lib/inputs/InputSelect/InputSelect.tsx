@@ -5,7 +5,6 @@ import {
   AutocompleteChangeReason,
   AutocompleteGetTagProps,
   AutocompleteProps,
-  createFilterOptions,
   FilterOptionsState
 } from '@material-ui/lab';
 import { Paper, Chip } from '@material-ui/core';
@@ -18,7 +17,7 @@ import './input-select.scss';
 import { lowercaseString } from '../../util/js-helpers';
 
 export type AutoCompleteChange = (
-  event: React.ChangeEvent<{}>,
+  event: React.ChangeEvent<any>,
   value: any,
   reason: AutocompleteChangeReason,
   details?: AutocompleteChangeDetails<any> | undefined
@@ -112,7 +111,7 @@ export const InputSelect: React.FC<InputSelectProps> = ({
       const inputValue = lowercaseString(params.inputValue);
 
       let valueMatch = false;
-      let labelMatch = lowercaseString(optionLabel).includes(inputValue);
+      const labelMatch = lowercaseString(optionLabel).includes(inputValue);
 
       if (!disableFilterOptionsByValue && (typeof optionValue === 'string' || typeof optionValue === 'number')) {
         valueMatch = lowercaseString(optionValue).includes(inputValue);

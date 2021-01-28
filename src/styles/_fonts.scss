@@ -10,7 +10,7 @@ $font-weights: (
   'semibold': 600,
   'bold': 700,
   'extrabold': 800,
-  'heavy': 900,
+  'heavy': 900
 );
 
 @each $name, $weight in $font-weights {

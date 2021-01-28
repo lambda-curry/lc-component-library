@@ -6,6 +6,7 @@ export const StripeExample1 = () => (
   <StripeFormWrapper
     initialValues={{ 'stripe-input': undefined }}
     STRIPE_KEY={process.env.STORYBOOK_STRIPE_KEY}
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     onSubmit={() => {}}
   >
     {formikProps => {
@@ -27,6 +28,7 @@ export const StripeExampleRejectedBrands = () => {
     <StripeFormWrapper
       initialValues={{ 'stripe-input': undefined }}
       STRIPE_KEY={process.env.STORYBOOK_STRIPE_KEY}
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
       onSubmit={() => {}}
     >
       {formikProps => {
@@ -53,6 +55,7 @@ export const StripeExampleAcceptedBrands = () => {
     <StripeFormWrapper
       initialValues={{ 'stripe-input': undefined }}
       STRIPE_KEY={process.env.STORYBOOK_STRIPE_KEY}
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
       onSubmit={() => {}}
     >
       {formikProps => {

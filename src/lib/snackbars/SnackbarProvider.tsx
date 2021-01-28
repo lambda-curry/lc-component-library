@@ -8,7 +8,7 @@ export const SnackbarProvider: FC<{ children: ReactNode }> = props => {
   // Add default action to all snackbars
   const snackbarProviderRef = React.createRef<MuiSnackbarProvider>();
   const onClickDismiss = (key: string) => {
-    snackbarProviderRef?.current?.closeSnackbar(key);
+    if (snackbarProviderRef?.current) snackbarProviderRef.current.closeSnackbar(key);
   };
 
   return (

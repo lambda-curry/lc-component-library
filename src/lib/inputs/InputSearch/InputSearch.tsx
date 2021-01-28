@@ -107,7 +107,7 @@ export const InputSearch: React.FC<InputSearchProps> = ({
   };
 
   const handleInputChange: (
-    event: React.ChangeEvent<{}>,
+    event: React.ChangeEvent<any>,
     value: string,
     reason: AutocompleteInputChangeReason
   ) => void = (event, value, reason) => {

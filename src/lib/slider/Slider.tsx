@@ -1,11 +1,5 @@
-import React, { ChangeEvent, FocusEvent } from 'react';
-import {
-  Mark,
-  Slider as MuiSlider,
-  SliderProps as MuiSliderProps,
-  SliderTypeMap,
-  ValueLabelProps
-} from '@material-ui/core';
+import React from 'react';
+import { Mark, Slider as MuiSlider, ValueLabelProps } from '@material-ui/core';
 import classNames from 'classnames';
 import { FormikProps } from 'formik';
 import './slider.scss';
@@ -28,9 +22,9 @@ export type SliderProps = {
   marks?: boolean | Mark[];
   max?: number;
   min?: number;
-  onChange?: (event: React.ChangeEvent<{}>, value: number | number[]) => void;
+  onChange?: (event: React.ChangeEvent<any>, value: number | number[]) => void;
   onBlur?: (event: React.FocusEvent) => void;
-  onChangeCommitted?: (event: React.ChangeEvent<{}>, value: number | number[]) => void;
+  onChangeCommitted?: (event: React.ChangeEvent<any>, value: number | number[]) => void;
   orientation?: 'horizontal' | 'vertical';
   step?: number | null;
   scale?: (value: number) => number;
@@ -54,7 +48,7 @@ export const Slider: React.FC<SliderProps> = ({
   value,
   ...sliderProps
 }) => {
-  const handleChange: (event: ChangeEvent<any>, value: any) => void = (event, newValue) => {
+  const handleChange: (event: React.ChangeEvent<any>, value: any) => void = (event, newValue) => {
     if (typeof onChange === 'function') onChange(event, newValue);
     if (formikProps) formikProps.setFieldValue(name, newValue);
   };

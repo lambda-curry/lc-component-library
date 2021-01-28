@@ -25,7 +25,7 @@ export const useCharacterLimit = ({ value, limit }: CharacterLimitEffect) => {
   const [previousValue, setPreviousValue] = useState(value);
 
   const handleValueChanged = (value: string) => {
-    let newValue = value;
+    const newValue = value;
     const strippedNewValue = stripTags(newValue || '');
 
     setCharacterCount(strippedNewValue.length);
