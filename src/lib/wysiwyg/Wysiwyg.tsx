@@ -1,4 +1,4 @@
-import React, { useEffect, FunctionComponent, useState } from 'react';
+import React, { useEffect, FunctionComponent } from 'react';
 import ReactQuill, { ReactQuillProps, QuillOptions } from 'react-quill';
 import { FormikProps } from 'formik';
 import { get as _get } from 'lodash';

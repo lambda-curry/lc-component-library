@@ -20,7 +20,7 @@ export interface CharacterLimitHelpers {
   charactersRemaining: number;
 }
 
-export const useCharacterLimit = ({ value, limit }: CharacterLimitEffect) => {
+export const useCharacterLimit = ({ value, limit }: CharacterLimitEffect): CharacterLimitHelpers => {
   const [characterCount, setCharacterCount] = useState(0);
   const [previousValue, setPreviousValue] = useState(value);
 

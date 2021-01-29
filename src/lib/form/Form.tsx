@@ -1,4 +1,4 @@
-import React, { Reducer, useReducer } from 'react';
+import React, { FC, Reducer, useReducer } from 'react';
 import { Formik, FormikConfig, FormikProps, Form as FormikForm, useFormikContext } from 'formik';
 import classNames from 'classnames';
 import { useOnClickOutside } from '../hooks';
@@ -58,7 +58,7 @@ const FormContent: React.FC<{
   );
 };
 
-export function Form<T>({
+export const Form: FC<FormProps<any>> = ({
   className,
   children,
   withoutFormElement,
@@ -66,7 +66,7 @@ export function Form<T>({
   unsavedChangesConfig = {},
   formConfig,
   ...props
-}: FormProps<T>) {
+}) => {
   unsavedChangesConfig = {
     targetQuerySelector: 'a:not([href="#"]), button, .navbar-back',
     ...unsavedChangesConfig
@@ -152,4 +152,4 @@ export function Form<T>({
       )}
     </Formik>
   );
-}
+};

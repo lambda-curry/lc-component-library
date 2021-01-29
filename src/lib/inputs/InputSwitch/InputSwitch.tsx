@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { FormikProps } from 'formik';
 import classNames from 'classnames';
 
 import './input-switch.scss';
 
-export interface InputSwitchProps<T> {
+export interface InputSwitchProps {
   id?: string;
   name?: string;
   label?: string;
@@ -13,13 +13,13 @@ export interface InputSwitchProps<T> {
   labelOn?: string;
   labelOff?: string;
   labelPlacement?: 'end' | 'start';
-  formikProps?: FormikProps<T>;
+  formikProps?: FormikProps<any>;
   className?: string;
   onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
 }
 
-export const InputSwitch = ({
+export const InputSwitch: FC<InputSwitchProps> = ({
   id,
   name,
   disabled,
@@ -30,7 +30,7 @@ export const InputSwitch = ({
   className,
   onChange,
   ...props
-}: InputSwitchProps<any>) => {
+}) => {
   const fieldProps = formikProps?.getFieldProps(name);
   const fieldValue = !!fieldProps?.value || !!props.checked;
   const [label, setLabel] = useState(props.label);

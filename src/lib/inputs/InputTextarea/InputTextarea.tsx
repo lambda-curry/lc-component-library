@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import classNames from 'classnames';
 import { InputBase, InputProps } from '../InputBase';
 import { MultilineInput } from '../..';
@@ -9,7 +9,13 @@ export interface InputTextareaProps extends InputProps {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const InputTextarea = ({ className, rows = 3, characterLimit = 0, onChange, ...props }: InputTextareaProps) => {
+export const InputTextarea: FC<InputTextareaProps> = ({
+  className,
+  rows = 3,
+  characterLimit = 0,
+  onChange,
+  ...props
+}) => {
   const fieldProps = props.formikProps?.getFieldProps ? props.formikProps?.getFieldProps(props.name) : null;
   const fieldValue = fieldProps?.value || props.value;
 

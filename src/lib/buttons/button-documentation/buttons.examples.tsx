@@ -1,5 +1,6 @@
+import React, { FC, useReducer } from 'react';
+
 import classNames from 'classnames';
-import React, { useReducer } from 'react';
 import {
   Button,
   ButtonAccent,
@@ -18,7 +19,7 @@ import {
   Icon
 } from '../..';
 
-export const ButtonExamples1 = () => (
+export const ButtonExamples1: FC = () => (
   <div className="button-story">
     <Button>Default Button</Button>
     <ButtonPrimary>Primary Button</ButtonPrimary>
@@ -36,7 +37,7 @@ export const ButtonExamples1 = () => (
   </div>
 );
 
-export const ButtonExamples2 = () => (
+export const ButtonExamples2: FC = () => (
   <div className="button-story">
     <Button disabled>Default Button</Button>
     <ButtonPrimary disabled>Primary Button</ButtonPrimary>
@@ -54,7 +55,7 @@ export const ButtonExamples2 = () => (
   </div>
 );
 
-export const ButtonExamples3 = () => (
+export const ButtonExamples3: FC = () => (
   <div className="button-story">
     <Button>
       <ColorIcon name="googleCalendar" /> Default Button
@@ -69,13 +70,14 @@ export const ButtonExamples3 = () => (
   </div>
 );
 
-export const ButtonExamples4 = () => (
+export const ButtonExamples4: FC = () => (
   <div className="button-story">
+    {/* eslint-disable-next-line jsx-a11y/anchor-has-content */}
     <Button as={buttonProps => <a {...buttonProps} />}>Anchor Tag Button</Button>
   </div>
 );
 
-export const ButtonExamples5 = () => {
+export const ButtonExamples5: FC = () => {
   const [state, toggle] = useReducer<(state: { [x: string]: boolean }, action: string) => { [x: string]: boolean }>(
     (state, action) => {
       const newState = { ...state };

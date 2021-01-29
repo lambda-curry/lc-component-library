@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import classNames from 'classnames';
 import MaskedInput from 'react-text-mask';
 import { InputBase, InputProps } from '../InputBase';
@@ -11,7 +11,7 @@ interface TextMaskCustomProps {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const PhoneMask: React.FC<TextMaskCustomProps> = props => {
+const PhoneMask: FC<TextMaskCustomProps> = props => {
   const { inputRef, mask, onChange, ...rest } = props;
 
   return (
@@ -34,7 +34,7 @@ const PhoneMask: React.FC<TextMaskCustomProps> = props => {
   );
 };
 
-export const InputPhone = ({ className, ...props }: InputProps) => {
+export const InputPhone: FC<InputProps> = ({ className, ...props }) => {
   props.InputProps = { ...props.InputProps, inputComponent: PhoneMask as any };
   return (
     <InputBase

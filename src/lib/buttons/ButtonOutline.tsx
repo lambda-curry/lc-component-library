@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { FC } from 'react';
 import classNames from 'classnames';
 import { Button } from '.';
 import { ButtonProps } from './Button';
 
-export const ButtonOutline = ({ className, ...rest }: ButtonProps) => (
+export const ButtonOutline: FC<ButtonProps> = ({ className, ...rest }) => (
   <Button {...rest} className={classNames('lc-button-outline', className)} />
 );

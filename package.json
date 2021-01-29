@@ -8,7 +8,7 @@
   "author": "Lambda Curry",
   "license": "ISC",
   "scripts": {
-    "start": "concurrently \"yarn watch:tailwind\" \"tsdx watch\"",
+    "start": "concurrently \"yarn watch:tailwind\" \"tsdx watch\" \"yarn watch:lint\"",
     "build": "tsdx build",
     "test": "tsdx test --passWithNoTests",
     "lint": "tsdx lint",
@@ -17,7 +17,7 @@
     "analyze": "size-limit --why",
     "clean": "rm -rf ./node_modules && yarn",
     "sb": "yarn storybook",
-    "storybook": "concurrently \"yarn watch:tailwind\" \"start-storybook -p 6007\"",
+    "storybook": "concurrently \"yarn watch:tailwind\" \"yarn watch:lint\" \"start-storybook -p 6007\"",
     "prestart": "yarn build:tailwind",
     "prebuild": "yarn build:tailwind",
     "prebuild:library": "yarn build:tailwind && rm -rf ./dist",
@@ -27,6 +27,7 @@
     "build:storybook": "build-storybook -o docs",
     "build:tailwind": "postcss src/styles/index.scss -o src/styles/tailwind.scss",
     "watch:tailwind": "chokidar 'src/**/*.css' 'src/**/*.scss' --ignore src/styles/tailwind.scss -c 'yarn build:tailwind'",
+    "watch:lint": "chokidar 'src/**/**' -c 'yarn lint'",
     "build:library": "tsdx build",
     "format": "prettier --write \"(src|tests|.storybook|types)/**/*.{js,jsx,ts,tsx,scss}\""
   },

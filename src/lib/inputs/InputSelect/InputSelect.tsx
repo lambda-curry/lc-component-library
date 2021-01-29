@@ -128,7 +128,7 @@ export const InputSelect: React.FC<InputSelectProps> = ({
   // For some reason setting the initialInputValue in the initial useState did not reset the input on a form reset
   useEffect(() => {
     setValue(controlledValue);
-  }, [props.value, props.formikProps?.values]);
+  }, [controlledValue]);
 
   const autocompleteDefaultProps: AutocompleteProps<any, boolean, boolean, boolean> = {
     options,
