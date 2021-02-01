@@ -4,6 +4,9 @@ module.exports = {
     'react',
     'react-dom',
 
+    // Formik has breaking changes that we need to resolve before upgrading.
+    'formik',
+
     // Not all our packages currently support PostCSS v8, so we need to wait for them to add support.
     'autoprefixer',
     'postcss',
