@@ -1,6 +1,6 @@
 {
   "name": "@lambdacurry/component-library",
-  "version": "0.7.25-beta.4",
+  "version": "0.7.25-beta.5",
   "main": "dist/index.js",
   "module": "dist/component-library.esm.js",
   "types": "dist/index.d.ts",
@@ -122,7 +122,8 @@
     "node": ">=10"
   },
   "peerDependencies": {
-    "react": ">=16"
+    "react": ">=16",
+    "formik": ">=2.2.6"
   },
   "husky": {
     "hooks": {
