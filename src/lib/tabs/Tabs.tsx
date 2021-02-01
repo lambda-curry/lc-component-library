@@ -1,5 +1,5 @@
-import React from 'react';
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import React, { FC, ReactNode, useState, ChangeEvent } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import { Tabs as MuiTabs, Tab } from '@material-ui/core';
 
@@ -8,7 +8,7 @@ interface TabPanelProps {
   value: any;
 }
 
-const TabPanel: React.FC<TabPanelProps> = props => {
+const TabPanel: FC<TabPanelProps> = props => {
   const { children, value, index, ...other } = props;
 
   return (
@@ -25,7 +25,7 @@ function a11yProps(index: any) {
   };
 }
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles(() => ({
   appBar: {
     backgroundColor: 'rgba(0,0,0,0)',
     boxShadow: 'none',
@@ -53,15 +53,15 @@ const useStyles = makeStyles((theme: Theme) => ({
   }
 }));
 
-export const Tabs: React.FC<{
+export const Tabs: FC<{
   ariaLabel?: string;
-  tabs: { label: string; render: React.ReactNode }[];
+  tabs: { label: string; render: ReactNode }[];
   variant?: 'scrollable' | 'standard' | 'fullWidth';
 }> = ({ tabs, variant = 'fullWidth', ariaLabel }) => {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
 
-  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+  const handleChange = (event: ChangeEvent<any>, newValue: number) => {
     setValue(newValue);
   };
 

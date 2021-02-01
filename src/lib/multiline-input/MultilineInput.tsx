@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
-import { CharacterLimit, Icon, useCharacterLimit, CharacterLimitHelpers } from '..';
+import { CharacterLimit, useCharacterLimit, CharacterLimitHelpers } from '../character-limit';
+import { Icon } from '../icon';
 
 import './multiline-input.scss';
 

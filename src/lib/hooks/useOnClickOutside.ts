@@ -1,5 +1,5 @@
 // Based on https://usehooks.com/useOnClickOutside/
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 // Hook
 export function useOnClickOutside(
@@ -7,7 +7,7 @@ export function useOnClickOutside(
   querySelectorAll?: string,
   targetQuerySelector?: string,
   allowTarget?: string
-) {
+): void {
   useEffect(
     () => {
       // Do nothing if no querySelectorAll is passed, sometimes it might be not be defined in the parent component
@@ -57,6 +57,6 @@ export function useOnClickOutside(
     // ... callback/cleanup to run every render. It's not a big deal ...
     // ... but to optimize you can wrap handler in useCallback before ...
     // ... passing it into this hook.
-    [handler, querySelectorAll]
+    [handler, querySelectorAll, allowTarget, targetQuerySelector]
   );
 }

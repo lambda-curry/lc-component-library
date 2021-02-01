@@ -79,7 +79,7 @@ module.exports = {
               require.resolve('babel-plugin-react-docgen')
             ]
           }
-        },
+        }
       ]
     });
     config.resolve.extensions.push('.ts', '.tsx');

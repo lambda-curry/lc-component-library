@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import classNames from 'classnames';
 import { InputAdornment } from '@material-ui/core';
 import MaskedInput from 'react-text-mask';
-import { InputText } from '..';
+import { InputText } from '../InputText/InputText';
 import { InputProps } from '../InputBase';
 import { isHexColor, hexColorRegex } from '../../util/colors';
 
@@ -38,8 +38,8 @@ export const InputColor: FC<InputColorProps> = ({
   onPickerChange,
   ...props
 }) => {
-  const fieldProps = props.formikProps?.getFieldProps(props.name);
-  const fieldHelpers = props.formikProps?.getFieldHelpers(props.name);
+  const fieldProps = props.formikProps?.getFieldProps ? props.formikProps.getFieldProps(props.name) : null;
+  const fieldHelpers = props.formikProps?.getFieldHelpers ? props.formikProps.getFieldHelpers(props.name) : null;
   const fieldValue = fieldProps?.value || props.value;
   const isValidColor = isHexColor(fieldValue);
 

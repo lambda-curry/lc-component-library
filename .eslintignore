@@ -1,0 +1,11 @@
+node_modules
+dist
+
+__mocks__
+__tests__
+__spec__
+
+jest.setup.ts
+tsdx.config.js
+postcss.config.js
+tailwind.config.js

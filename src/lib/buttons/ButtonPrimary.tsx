@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { FC } from 'react';
 import classNames from 'classnames';
-import { Button } from '.';
-import { ButtonProps } from './Button';
+import { Button, ButtonProps } from './Button';
 
-export const ButtonPrimary = ({ className, ...rest }: ButtonProps) => (
+export const ButtonPrimary: FC<ButtonProps> = ({ className, ...rest }) => (
   <Button {...rest} className={classNames('lc-button-primary', className)} />
 );

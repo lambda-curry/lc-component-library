@@ -6,6 +6,4 @@ export const RegisteredIconContext = createContext<{
 
 export const IconRegistry: FC<{
   icons: { [x: string]: FC<SVGProps<SVGSVGElement>> };
-}> = ({ icons, ...props }) => (
-  <RegisteredIconContext.Provider value={icons} {...props} />
-);
+}> = ({ icons, ...props }) => <RegisteredIconContext.Provider value={icons} {...props} />;

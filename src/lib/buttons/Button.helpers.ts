@@ -13,7 +13,7 @@ const buttonReducers = {
   setRightIcon: (state: ButtonReducerState, rightIcon: boolean) => ({ ...state, rightIcon })
 };
 
-export const buttonReducer = (state: ButtonReducerState, action: ButtonReducerAction) => {
+export const buttonReducer = (state: ButtonReducerState, action: ButtonReducerAction): ButtonReducerState => {
   if (!buttonReducers[action.name]) {
     throw new Error(`reducer ${action.name} not defined`);
   }

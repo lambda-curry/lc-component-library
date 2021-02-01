@@ -1,15 +1,15 @@
-import React, { useEffect, FunctionComponent, useState } from 'react';
+import React, { useEffect, FunctionComponent } from 'react';
 import ReactQuill, { ReactQuillProps, QuillOptions } from 'react-quill';
 import { FormikProps } from 'formik';
 import { get as _get } from 'lodash';
-import { MultilineInput } from '..';
+import { MultilineInput } from '../multiline-input';
 
 import 'react-quill/dist/quill.snow.css';
 import './wysiwyg.scss';
 
-interface WysiwygProps extends ReactQuillProps {
+export interface WysiwygProps extends ReactQuillProps {
   name: string;
-  formikProps: FormikProps<{}>;
+  formikProps: FormikProps<any>;
   templateVariables?: string[];
   characterLimit?: number;
 }
