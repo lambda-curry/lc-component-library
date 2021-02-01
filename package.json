@@ -18,10 +18,8 @@
     "clean": "rm -rf ./node_modules && yarn",
     "sb": "yarn storybook",
     "storybook": "concurrently \"yarn watch:lint\" \"start-storybook -p 6007\"",
-    "postbuild:library": "cpy '**/*' '!**/{*.ts*,*.scss,*.mdx}' ../../dist --cwd=src/lib --no-overwrite --parents",
     "build:storybook": "build-storybook -o docs",
     "watch:lint": "chokidar 'src/**/**' -c 'yarn lint'",
-    "build:library": "tsdx build",
     "format": "prettier --write \"(src|tests|.storybook|types)/**/*.{js,jsx,ts,tsx,scss}\""
   },
   "dependencies": {

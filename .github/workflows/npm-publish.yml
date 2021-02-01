@@ -22,7 +22,7 @@ jobs:
           node-version: 12
       - name: Install & Build
         if: steps.check.outputs.changed == 'true'
-        run: yarn install && yarn build:library
+        run: yarn install && yarn build
       - name: Publish
         if: steps.check.outputs.changed == 'true'
         id: publish
