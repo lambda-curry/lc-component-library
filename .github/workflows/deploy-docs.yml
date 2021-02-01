@@ -14,7 +14,7 @@ jobs:
           ref: docs
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 14
       - name: Build docs
         run: yarn install && yarn build:storybook
       - name: Push to docs branch
