@@ -9,7 +9,8 @@ import {
 } from '@material-ui/lab';
 import { Paper, Chip } from '@material-ui/core';
 import classNames from 'classnames';
-import { InputText, Icon } from '../..';
+import { InputText } from '../InputText/InputText';
+import { Icon } from '../../icon/Icon';
 import { InputProps } from '../InputBase';
 import { isEqual as _isEqual, get as _get, set as _set } from 'lodash';
 

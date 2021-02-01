@@ -1,0 +1,12 @@
+// https://babeljs.io/blog/2020/01/11/7.8.0
+{
+  "presets": [
+    [
+      "@babel/env",
+      {
+        "targets": ["last 2 versions"]
+      }
+    ],
+    "@babel/typescript"
+  ]
+}

@@ -1,4 +1,4 @@
-export { Button } from './Button';
+export * from './Button';
 export { ButtonPrimary } from './ButtonPrimary';
 export { ButtonAccent } from './ButtonAccent';
 export { ButtonSuccess } from './ButtonSuccess';

@@ -8,7 +8,7 @@
   "author": "Lambda Curry",
   "license": "ISC",
   "scripts": {
-    "start": "concurrently \"yarn watch:tailwind\" \"tsdx watch\" \"yarn watch:lint\"",
+    "start": "concurrently \"tsdx watch\" \"yarn watch:lint\"",
     "build": "tsdx build",
     "test": "tsdx test --passWithNoTests",
     "lint": "tsdx lint",
@@ -17,16 +17,9 @@
     "analyze": "size-limit --why",
     "clean": "rm -rf ./node_modules && yarn",
     "sb": "yarn storybook",
-    "storybook": "concurrently \"yarn watch:tailwind\" \"yarn watch:lint\" \"start-storybook -p 6007\"",
-    "prestart": "yarn build:tailwind",
-    "prebuild": "yarn build:tailwind",
-    "prebuild:library": "yarn build:tailwind && rm -rf ./dist",
+    "storybook": "concurrently \"yarn watch:lint\" \"start-storybook -p 6007\"",
     "postbuild:library": "cpy '**/*' '!**/{*.ts*,*.scss,*.mdx}' ../../dist --cwd=src/lib --no-overwrite --parents",
-    "prestorybook": "yarn build:tailwind",
-    "prebuild:storybook": "yarn build:tailwind",
     "build:storybook": "build-storybook -o docs",
-    "build:tailwind": "postcss src/styles/index.scss -o src/styles/tailwind.scss",
-    "watch:tailwind": "chokidar 'src/**/*.css' 'src/**/*.scss' --ignore src/styles/tailwind.scss -c 'yarn build:tailwind'",
     "watch:lint": "chokidar 'src/**/**' -c 'yarn lint'",
     "build:library": "tsdx build",
     "format": "prettier --write \"(src|tests|.storybook|types)/**/*.{js,jsx,ts,tsx,scss}\""
@@ -138,13 +131,6 @@
       "pre-commit": "tsdx lint"
     }
   },
-  "prettier": {
-    "printWidth": 120,
-    "trailingComma": "none",
-    "singleQuote": true,
-    "arrowParens": "avoid",
-    "tabWidth": 2
-  },
   "size-limit": [
     {
       "path": "dist/lc-component-library-tsdx.cjs.production.min.js",
@@ -157,11 +143,11 @@
   ],
   "jest": {
     "moduleNameMapper": {
-      "\\.svg": "<rootDir>/tests/__mocks__/svgrMock.ts",
+      "\\.svg": "<rootDir>/src/__mocks__/svgrMock.ts",
       "\\.(css|less|scss|sss|styl)$": "<rootDir>/node_modules/jest-css-modules"
     },
     "setupFilesAfterEnv": [
-      "<rootDir>/tests/setupTests.ts"
+      "<rootDir>/jest.setup.ts"
     ]
   },
   "browserslist": {

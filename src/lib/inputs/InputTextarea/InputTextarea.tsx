@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import classNames from 'classnames';
 import { InputBase, InputProps } from '../InputBase';
-import { MultilineInput } from '../..';
+import { MultilineInput } from '../../multiline-input';
 
 export interface InputTextareaProps extends InputProps {
   rows?: number;

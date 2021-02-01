@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import classNames from 'classnames';
-import { ButtonUnstyled } from '.';
+import { ButtonUnstyled } from './ButtonUnstyled';
 import { ButtonProps } from './Button';
 
 export const ButtonLink: FC<ButtonProps> = ({ className, ...rest }) => (

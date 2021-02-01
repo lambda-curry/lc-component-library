@@ -1,4 +1,5 @@
 {
+  "scss.lint.unknownAtRules": "ignore",
   "cSpell.words": [
     "tsdx",
     "notistack",
@@ -13,6 +14,18 @@
     "storyshots",
     "storysource",
     "formik",
-    "luxon"
+    "luxon",
+    "tsconfigs",
+    "duplicative",
+    "lambdacurry",
+    "styl",
+    "browserslist",
+    "Multiselect",
+    "gilroy",
+    "truetype",
+    "semibold",
+    "parens",
+    "sbdocs",
+    "multiline"
   ]
 }

@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import classNames from 'classnames';
 import { InputAdornment } from '@material-ui/core';
 import MaskedInput from 'react-text-mask';
-import { InputText } from '..';
+import { InputText } from '../InputText/InputText';
 import { InputProps } from '../InputBase';
 import { isHexColor, hexColorRegex } from '../../util/colors';
 

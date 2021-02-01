@@ -13,7 +13,7 @@ export interface InputSearchReducerState {
 
 export interface InputSearchOptions {
   ingoreFalseyInputValues?: boolean;
-  debounceTime?: number;
+  debounceTime: number;
   initialSearchValue?: string;
 }
 
@@ -58,7 +58,7 @@ export const InputSearch: FC<InputSearchProps> = ({
   placeholder = 'Type to search...',
   ...props
 }) => {
-  const options = {
+  const options: InputSearchOptions = {
     ingoreFalseyInputValues: true,
     debounceTime: 200,
     ...searchOptions

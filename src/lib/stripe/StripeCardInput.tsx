@@ -98,6 +98,8 @@ export const StripeCardInput: FC<StripeCardInputProps> = ({
 
     // Display accepted brands error.
     if (acceptedBrands && !acceptedBrands.includes(brand)) return getAcceptedBrandsErrorMessage(brand);
+
+    return;
   };
 
   // Use the Formik Context.

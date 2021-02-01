@@ -12,6 +12,7 @@ export * from './slider';
 export * from './wysiwyg';
 export * from './tabs';
 export * from './tooltips';
+export * from './theme-base';
 export * from './stripe';
 
 // Hooks
