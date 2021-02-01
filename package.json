@@ -122,7 +122,8 @@
     "node": ">=10"
   },
   "peerDependencies": {
-    "react": ">=16"
+    "react": ">=16",
+    "formik": ">=2.2.6"
   },
   "husky": {
     "hooks": {
