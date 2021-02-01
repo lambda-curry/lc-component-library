@@ -2,7 +2,7 @@
 
 .lc-button {
   --default-button-height: 48px;
-  --default-button-text-color: theme('colors.gray.dark');
+  --default-button-text-color: theme('colors.gray.darker');
   --default-button-text-color-darker: theme('colors.gray.darker');
 
   --default-button-bg-color: theme('colors.gray.lighter');
@@ -10,6 +10,8 @@
   --default-button-font-size: 14px;
   --default-button-border-width: 1px;
   --default-button-border-style: solid;
+  --default-button-border-color: theme('colors.gray.lighter');
+  --default-button-border-color-darker: theme('colors.gray.light');
   --default-button-border-radius: 6px;
   --default-button-font-weight: bold;
   --default-button-padding: 14px 20px;
@@ -111,6 +113,7 @@ $button-text-colors: (
   border-radius: var(--default-button-border-radius);
   border-width: var(--default-button-border-width);
   border-style: var(--default-button-border-style);
+  border-color: var(--default-button-border-color);
   padding: var(--default-button-padding);
 
   // Default Button Hover State
