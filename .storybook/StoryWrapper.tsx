@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeBase, IconRegistry } from '../src/lib';
+import { IconRegistry } from '../src/lib';
 
 // @ts-ignore
 import { ReactComponent as peaceSymbol } from './assets/hand-peace-light.svg';
@@ -7,11 +7,9 @@ import { ReactComponent as peaceSymbol } from './assets/hand-peace-light.svg';
 import './storybook-preview.scss';
 
 export const StoryWrapper = ({ children }) => (
-  <ThemeBase>
-    <IconRegistry icons={{ peaceSymbol }}>
-      <div className="storybook-wrapper">{children}</div>
-    </IconRegistry>
-  </ThemeBase>
+  <IconRegistry icons={{ peaceSymbol }}>
+    <div className="storybook-wrapper">{children}</div>
+  </IconRegistry>
 );
 
 export default StoryWrapper;
