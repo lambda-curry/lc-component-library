@@ -1,1 +1,2 @@
+// Components
 export * from './lib';
