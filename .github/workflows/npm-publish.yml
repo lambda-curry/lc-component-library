@@ -19,11 +19,11 @@ jobs:
       - uses: actions/setup-node@v1
         if: steps.check.outputs.changed == 'true'
         with:
-          node-version: 12
-      - name: Install & Build
+          node-version: 14
+      - name: Install Dependencies
         if: steps.check.outputs.changed == 'true'
-        run: yarn install && yarn build
-      - name: Publish
+        run: yarn install
+      - name: Prepare & Publish
         if: steps.check.outputs.changed == 'true'
         id: publish
         uses: JS-DevTools/npm-publish@v1
