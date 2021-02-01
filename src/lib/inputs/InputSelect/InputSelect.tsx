@@ -5,12 +5,12 @@ import {
   AutocompleteChangeReason,
   AutocompleteGetTagProps,
   AutocompleteProps,
-  createFilterOptions,
   FilterOptionsState
 } from '@material-ui/lab';
 import { Paper, Chip } from '@material-ui/core';
 import classNames from 'classnames';
-import { InputText, Icon } from '../..';
+import { InputText } from '../InputText/InputText';
+import { Icon } from '../../icon/Icon';
 import { InputProps } from '../InputBase';
 import { isEqual as _isEqual, get as _get, set as _set } from 'lodash';
 
@@ -18,7 +18,7 @@ import './input-select.scss';
 import { lowercaseString } from '../../util/js-helpers';
 
 export type AutoCompleteChange = (
-  event: React.ChangeEvent<{}>,
+  event: React.ChangeEvent<any>,
   value: any,
   reason: AutocompleteChangeReason,
   details?: AutocompleteChangeDetails<any> | undefined
@@ -112,7 +112,7 @@ export const InputSelect: React.FC<InputSelectProps> = ({
       const inputValue = lowercaseString(params.inputValue);
 
       let valueMatch = false;
-      let labelMatch = lowercaseString(optionLabel).includes(inputValue);
+      const labelMatch = lowercaseString(optionLabel).includes(inputValue);
 
       if (!disableFilterOptionsByValue && (typeof optionValue === 'string' || typeof optionValue === 'number')) {
         valueMatch = lowercaseString(optionValue).includes(inputValue);
@@ -129,7 +129,7 @@ export const InputSelect: React.FC<InputSelectProps> = ({
   // For some reason setting the initialInputValue in the initial useState did not reset the input on a form reset
   useEffect(() => {
     setValue(controlledValue);
-  }, [props.value, props.formikProps?.values]);
+  }, [controlledValue]);
 
   const autocompleteDefaultProps: AutocompleteProps<any, boolean, boolean, boolean> = {
     options,

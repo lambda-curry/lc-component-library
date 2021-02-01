@@ -1,10 +1,11 @@
 import React, { FunctionComponent, useState, useEffect } from 'react';
 import ReactModal from 'react-modal';
 import classNames from 'classnames';
-import { IconButton } from '..';
+import { IconButton } from '../icon-button';
 import { Card, CardContent } from '@material-ui/core';
-import './modal.scss';
 import { motion, AnimatePresence } from 'framer-motion';
+
+import './modal.scss';
 
 export const Modal: FunctionComponent<ReactModal.Props & { closeButton?: boolean }> = ({
   isOpen = false,

@@ -1,4 +1,4 @@
-import React, { Reducer, useEffect, useReducer } from 'react';
+import React, { FC, Reducer, useEffect, useReducer, ChangeEvent } from 'react';
 import classNames from 'classnames';
 import { AutoCompleteChange, InputSelect, InputSelectProps } from '../InputSelect/InputSelect';
 import { useAsyncEffect, useDebounce } from '../../hooks';
@@ -13,7 +13,7 @@ export interface InputSearchReducerState {
 
 export interface InputSearchOptions {
   ingoreFalseyInputValues?: boolean;
-  debounceTime?: number;
+  debounceTime: number;
   initialSearchValue?: string;
 }
 
@@ -30,7 +30,10 @@ const inputSearchReducers = {
   setInputSearchValue: (state: InputSearchReducerState, inputSearchValue: string) => ({ ...state, inputSearchValue })
 };
 
-export const inputSearchReducer = (state: InputSearchReducerState, action: InputSearchReducerAction) => {
+export const inputSearchReducer = (
+  state: InputSearchReducerState,
+  action: InputSearchReducerAction
+): InputSearchReducerState => {
   if (!inputSearchReducers[action.name]) {
     throw new Error(`reducer ${action.name} not defined`);
   }
@@ -45,7 +48,7 @@ type InputSearchProps = Omit<InputSelectProps, 'options'> & {
   getOptions?: (data: any) => any[];
 };
 
-export const InputSearch: React.FC<InputSearchProps> = ({
+export const InputSearch: FC<InputSearchProps> = ({
   className,
   url,
   searchParam,
@@ -55,7 +58,7 @@ export const InputSearch: React.FC<InputSearchProps> = ({
   placeholder = 'Type to search...',
   ...props
 }) => {
-  const options = {
+  const options: InputSearchOptions = {
     ingoreFalseyInputValues: true,
     debounceTime: 200,
     ...searchOptions
@@ -103,14 +106,14 @@ export const InputSearch: React.FC<InputSearchProps> = ({
   const handleChange: AutoCompleteChange = (event, value, reason, details) => {
     if (props.formikProps?.setFieldValue) props.formikProps.setFieldValue(props.name, value);
     if (typeof props.onChange === 'function')
-      props.onChange(event as React.ChangeEvent<HTMLInputElement>, value, reason, details);
+      props.onChange(event as ChangeEvent<HTMLInputElement>, value, reason, details);
   };
 
-  const handleInputChange: (
-    event: React.ChangeEvent<{}>,
-    value: string,
-    reason: AutocompleteInputChangeReason
-  ) => void = (event, value, reason) => {
+  const handleInputChange: (event: ChangeEvent<any>, value: string, reason: AutocompleteInputChangeReason) => void = (
+    event,
+    value,
+    reason
+  ) => {
     if (reason !== 'input' || value === '') return;
     dispatch({ name: 'setInputSearchValue', payload: value });
   };

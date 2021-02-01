@@ -1,6 +1,31 @@
 {
+  "scss.lint.unknownAtRules": "ignore",
   "cSpell.words": [
+    "tsdx",
     "notistack",
-    "snackbars"
+    "snackbars",
+    "prestart",
+    "prebuild",
+    "postbuild",
+    "prestorybook",
+    "tailwindcss",
+    "svgr",
+    "compat",
+    "storyshots",
+    "storysource",
+    "formik",
+    "luxon",
+    "tsconfigs",
+    "duplicative",
+    "lambdacurry",
+    "styl",
+    "browserslist",
+    "Multiselect",
+    "gilroy",
+    "truetype",
+    "semibold",
+    "parens",
+    "sbdocs",
+    "multiline"
   ]
 }

@@ -1,6 +1,6 @@
 @use 'sass:map';
 
-$fonts-path: '../lib/assets/fonts/';
+$fonts-path: '../assets/fonts/';
 $font-weights: (
   'thin': 100,
   'ultralight': 200,
@@ -10,7 +10,7 @@ $font-weights: (
   'semibold': 600,
   'bold': 700,
   'extrabold': 800,
-  'heavy': 900,
+  'heavy': 900
 );
 
 @each $name, $weight in $font-weights {

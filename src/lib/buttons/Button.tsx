@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes, Reducer, useEffect, useReducer, useRef } from 'react';
+import React, { FC, ButtonHTMLAttributes, Reducer, useEffect, useReducer, useRef } from 'react';
 import classNames from 'classnames';
 import './buttons.scss';
 import { buttonReducer, ButtonReducerState, ButtonReducerAction } from './Button.helpers';
@@ -36,7 +36,8 @@ export const Button: React.FC<ButtonProps> = ({ className, as, type = 'button', 
 };
 
 // Now we can simply pass in any element to use as a button
-export const AnchorButton = (props: ButtonProps) => <Button as={renderProps => <a {...renderProps} {...props} />} />;
+// eslint-disable-next-line jsx-a11y/anchor-has-content
+export const AnchorButton: FC<ButtonProps> = props => <Button as={renderProps => <a {...renderProps} {...props} />} />;
 
 function containsSVG(el: Element | null) {
   return el?.querySelector && !!el?.querySelector('svg');

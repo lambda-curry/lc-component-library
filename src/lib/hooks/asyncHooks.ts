@@ -11,7 +11,11 @@ export const handlePromise: <T = any>(promise: Promise<any>) => Promise<[T | nul
 // Most helpful when you only want to load data once in functional components (since you don't have access to the
 // lifecycle hooks).
 // Adapted from https://github.com/facebook/react/issues/14326
-export const useAsyncEffect = (effect: () => Promise<any>, onDestroy?: (arg: any) => void, inputs: any[] = []) => {
+export const useAsyncEffect = (
+  effect: () => Promise<any>,
+  onDestroy?: (arg: any) => void,
+  inputs: any[] = []
+): void => {
   let stillAround = true;
   let result: any;
 
@@ -37,7 +41,8 @@ export const useAsyncEffect = (effect: () => Promise<any>, onDestroy?: (arg: any
 };
 
 // Src: https://usehooks.com/useDebounce/
-export const useDebounce = (value: any, delay: number) => {
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export const useDebounce = (value: any, delay: number): any => {
   // State and setters for debounced value
   const [debouncedValue, setDebouncedValue] = useState(value);
 

@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { StripeCardInput, StripeFormWrapper, StripeCardBrand } from '../..';
 import { ButtonPrimary } from '../../buttons';
 
-export const StripeExample1 = () => (
+export const StripeExample1: FC = () => (
   <StripeFormWrapper
     initialValues={{ 'stripe-input': undefined }}
     STRIPE_KEY={process.env.STORYBOOK_STRIPE_KEY}
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     onSubmit={() => {}}
   >
     {formikProps => {
@@ -20,13 +21,14 @@ export const StripeExample1 = () => (
   </StripeFormWrapper>
 );
 
-export const StripeExampleRejectedBrands = () => {
+export const StripeExampleRejectedBrands: FC = () => {
   const rejectedBrands = ['discover', 'diners', 'jcb', 'unionpay'];
 
   return (
     <StripeFormWrapper
       initialValues={{ 'stripe-input': undefined }}
       STRIPE_KEY={process.env.STORYBOOK_STRIPE_KEY}
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
       onSubmit={() => {}}
     >
       {formikProps => {
@@ -46,13 +48,14 @@ export const StripeExampleRejectedBrands = () => {
   );
 };
 
-export const StripeExampleAcceptedBrands = () => {
+export const StripeExampleAcceptedBrands: FC = () => {
   const acceptedBrands = ['visa', 'mastercard', 'amex'];
 
   return (
     <StripeFormWrapper
       initialValues={{ 'stripe-input': undefined }}
       STRIPE_KEY={process.env.STORYBOOK_STRIPE_KEY}
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
       onSubmit={() => {}}
     >
       {formikProps => {

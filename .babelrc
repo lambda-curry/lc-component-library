@@ -1,9 +1,12 @@
-// https://github.com/babel/babel/issues/11622#issuecomment-638609015 to fix build
+// https://babeljs.io/blog/2020/01/11/7.8.0
 {
-  "presets": [["react-app", { "absoluteRuntime": false }], "@babel/typescript"],
-  "plugins": [
-    "@babel/proposal-object-rest-spread",
-    "@babel/plugin-proposal-class-properties",
-    "@babel/plugin-proposal-private-methods"
+  "presets": [
+    [
+      "@babel/env",
+      {
+        "targets": ["last 2 versions"]
+      }
+    ],
+    "@babel/typescript"
   ]
 }

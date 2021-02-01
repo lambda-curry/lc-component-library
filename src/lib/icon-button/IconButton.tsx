@@ -1,8 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Button, Icon } from '..';
-import { DefaultIconNames } from '../icon/Icon';
-import { ButtonProps } from '../buttons/Button';
+import { Icon, DefaultIconNames } from '../icon/Icon';
+import { Button, ButtonProps } from '../buttons/Button';
 
 import './icon-button.scss';
 

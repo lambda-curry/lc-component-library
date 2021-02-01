@@ -1,18 +1,18 @@
 export const hexColorRegexString = '[a-fA-F0-9]';
 export const hexColorRegex = new RegExp(hexColorRegexString);
 
-export function getCssVar(cssVar: string, computedStyle?: CSSStyleDeclaration) {
+export function getCssVar(cssVar: string, computedStyle?: CSSStyleDeclaration): string {
   const styles = computedStyle ? computedStyle : getComputedStyle(document.documentElement);
   return styles.getPropertyValue(`--${cssVar}`).replace(' ', '');
 }
 
-export function isColor(color: string) {
+export function isColor(color: string): boolean {
   const s = new Option().style;
   s.color = color;
   return s.color !== '';
 }
 
-export function getHexColor(colorStr: string) {
+export function getHexColor(colorStr: string): string {
   const a = document.createElement('div');
   a.style.color = colorStr;
   const colorArray = window.getComputedStyle(document.body.appendChild(a)).color?.match(/\d+/g);
@@ -29,9 +29,9 @@ export function getHexColor(colorStr: string) {
 
 export function pickTextColorBasedOnBgColorSimple(
   bgColor: string,
-  lightColor: string = '#ffffff',
-  darkColor: string = '#000000'
-) {
+  lightColor = '#ffffff',
+  darkColor = '#000000'
+): string {
   const color = bgColor.charAt(0) === '#' ? bgColor.substring(1, 7) : bgColor;
   const r = parseInt(color.substring(0, 2), 16); // hexToR
   const g = parseInt(color.substring(2, 4), 16); // hexToG
@@ -40,7 +40,7 @@ export function pickTextColorBasedOnBgColorSimple(
 }
 
 // Src: https://www.sitepoint.com/javascript-generate-lighter-darker-color/
-export function lightenDarkenColor(hex: string, lum: number = -0.2) {
+export function lightenDarkenColor(hex: string, lum = -0.2): string {
   // validate hex string
   hex = String(hex).replace(/[^0-9a-f]/gi, '');
   if (hex.length < 6) {
@@ -62,7 +62,7 @@ export function lightenDarkenColor(hex: string, lum: number = -0.2) {
   return rgb;
 }
 
-export function isHexColor(value: string) {
+export function isHexColor(value: string): boolean {
   const newValue = value ? value.replace(/\s+/g, '') : value;
   return new RegExp(`^#${hexColorRegexString}{6}$`, 'i').test(newValue);
 }

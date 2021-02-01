@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import * as Yup from 'yup';
 import { ButtonOutlinePrimary, ButtonPrimary, Form, InputText } from '../..';
 
-export const FormExample1 = () => {
+export const FormExample1: FC = () => {
   const [values, setValues] = useState({ input: '' });
   return (
     <div className="input-form-story">
@@ -34,7 +34,7 @@ export const FormExample1 = () => {
   );
 };
 
-export const FormExample2 = () => {
+export const FormExample2: FC = () => {
   const [values, setValues] = useState({ input: '' });
   return (
     <div className="input-form-story lc-mt-32">

@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React, { FC } from 'react';
-import { Icon } from '.';
+import { Icon } from './Icon';
 import { ColorIcon } from './ColorIcon';
 
 export enum CreditCardBrands {

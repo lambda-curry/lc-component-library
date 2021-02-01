@@ -7,7 +7,7 @@ export function useCopyToClipboard(
   copyText: string,
   copyTarget: string,
   config?: { copied?: string; copyable?: string; error?: string }
-) {
+): [string, CopyStates] {
   const [copyState, setCopyState] = useState<CopyStates>('copyable');
   const [clipboard, setClipboard] = useState<ClipboardJS>();
 
@@ -30,7 +30,7 @@ export function useCopyToClipboard(
     return () => {
       if (clipboard) clipboard.destroy();
     };
-  }, [copyText]);
+  }, [copyText, clipboard, copyTarget]);
 
   useEffect(() => {
     if (clipboard) {

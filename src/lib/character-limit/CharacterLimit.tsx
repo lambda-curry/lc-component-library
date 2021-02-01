@@ -20,12 +20,12 @@ export interface CharacterLimitHelpers {
   charactersRemaining: number;
 }
 
-export const useCharacterLimit = ({ value, limit }: CharacterLimitEffect) => {
+export const useCharacterLimit = ({ value, limit }: CharacterLimitEffect): CharacterLimitHelpers => {
   const [characterCount, setCharacterCount] = useState(0);
   const [previousValue, setPreviousValue] = useState(value);
 
   const handleValueChanged = (value: string) => {
-    let newValue = value;
+    const newValue = value;
     const strippedNewValue = stripTags(newValue || '');
 
     setCharacterCount(strippedNewValue.length);

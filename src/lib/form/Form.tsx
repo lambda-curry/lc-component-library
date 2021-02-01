@@ -1,8 +1,9 @@
-import React, { Reducer, useReducer } from 'react';
+import React, { FC, Reducer, useReducer, ReactElement, Dispatch } from 'react';
 import { Formik, FormikConfig, FormikProps, Form as FormikForm, useFormikContext } from 'formik';
 import classNames from 'classnames';
 import { useOnClickOutside } from '../hooks';
-import { Modal, ModalHeader, ModalActions, Button, ButtonPrimary } from '..';
+import { Modal, ModalHeader, ModalActions } from '../modal';
+import { Button, ButtonPrimary } from '../buttons';
 import { formReducer, FormReducerAction, FormReducerState } from './Form.helpers';
 import { InputConfig } from '../inputs/InputBase';
 import './form.scss';
@@ -21,13 +22,13 @@ export type FormProps<T> = FormikConfig<T> & {
   unsavedChangesConfig?: UnsavedChangesConfig;
   withoutFormElement?: boolean;
   formConfig?: FormConfig;
-  children: (formikProps: FormikProps<T>) => React.ReactNode;
+  children: (formikProps: FormikProps<T>) => ReactElement;
 };
 
-const FormContent: React.FC<{
+const FormContent: FC<{
   className?: string;
   state: FormReducerState;
-  dispatch: React.Dispatch<FormReducerAction>;
+  dispatch: Dispatch<FormReducerAction>;
   withoutFormElement?: boolean;
   confirmUnsavedChanges?: boolean;
   unsavedChangesConfig: UnsavedChangesConfig;
@@ -66,7 +67,7 @@ export function Form<T>({
   unsavedChangesConfig = {},
   formConfig,
   ...props
-}: FormProps<T>) {
+}: FormProps<T>): ReactElement {
   unsavedChangesConfig = {
     targetQuerySelector: 'a:not([href="#"]), button, .navbar-back',
     ...unsavedChangesConfig
@@ -75,7 +76,7 @@ export function Form<T>({
   const containerQuerySelectorItems = ['form', '.snackbar', '[role=dialog]'];
   // Note: If containerQuerySelectorAll is passed in, it will replace the form as a selector so you can target
   // specific parts of the form if desired
-  if (unsavedChangesConfig.containerQuerySelectorAll)
+  if (unsavedChangesConfig?.containerQuerySelectorAll)
     containerQuerySelectorItems[0] = unsavedChangesConfig.containerQuerySelectorAll;
   unsavedChangesConfig.containerQuerySelectorAll = containerQuerySelectorItems.join(', ');
 

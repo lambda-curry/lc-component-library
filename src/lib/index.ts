@@ -11,6 +11,7 @@ export * from './snackbars';
 export * from './slider';
 export * from './wysiwyg';
 export * from './tabs';
+export * from './theme';
 export * from './tooltips';
 export * from './stripe';
 

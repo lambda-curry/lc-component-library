@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import {
   Checkbox as MuiCheckbox,
   CheckboxProps,
@@ -7,15 +7,17 @@ import {
 } from '@material-ui/core';
 import classNames from 'classnames';
 import { FormikProps } from 'formik';
-import { Icon } from '../..';
+import { Icon } from '../../icon/Icon';
 
-export type InputCheckboxProps<T> = {
+import './input-checkbox.scss';
+
+export type InputCheckboxProps = {
   label: string;
   labelPlacement?: FormControlLabelProps['labelPlacement'];
-  formikProps?: FormikProps<T>;
+  formikProps?: FormikProps<any>;
 } & CheckboxProps;
 
-export const InputCheckbox = ({
+export const InputCheckbox: FC<InputCheckboxProps> = ({
   label,
   className,
   onChange,
@@ -23,7 +25,7 @@ export const InputCheckbox = ({
   color = 'primary',
   formikProps,
   ...props
-}: InputCheckboxProps<any>) => {
+}) => {
   const fieldProps = formikProps?.getFieldProps(props.name);
   const fieldValue = !!fieldProps?.value || !!props.checked;
 

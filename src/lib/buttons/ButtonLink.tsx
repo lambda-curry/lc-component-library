@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { FC } from 'react';
 import classNames from 'classnames';
-import { ButtonUnstyled } from '.';
+import { ButtonUnstyled } from './ButtonUnstyled';
 import { ButtonProps } from './Button';
 
-export const ButtonLink = ({ className, ...rest }: ButtonProps) => (
+export const ButtonLink: FC<ButtonProps> = ({ className, ...rest }) => (
   <ButtonUnstyled {...rest} className={classNames('lc-button-link', className)} />
 );

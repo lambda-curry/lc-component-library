@@ -25,7 +25,7 @@ const formReducers = {
   })
 };
 
-export const formReducer = (state: FormReducerState, action: FormReducerAction) => {
+export const formReducer = (state: FormReducerState, action: FormReducerAction): FormReducerState => {
   if (!formReducers[action.name]) {
     throw new Error(`reducer ${action.name} not defined`);
   }

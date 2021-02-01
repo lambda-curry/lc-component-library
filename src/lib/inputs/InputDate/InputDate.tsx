@@ -16,12 +16,13 @@ export type InputDateProps = InputProps & {
   className?: string;
 };
 
-const toDateTime = (value: string | Date, format?: string) => {
+const toDateTime = (value: string | Date, format?: string): DateTime | null => {
   if (format && typeof value === 'string') return DateTime.fromFormat(value, format);
   if (value instanceof Date) return DateTime.fromJSDate(value);
+  return null;
 };
 
-const fromDateTime = (dt: DateTime | null, format?: string) => {
+const fromDateTime = (dt: DateTime | null, format?: string): Date | string | null => {
   if (!dt) return null;
   if (format) return dt.toFormat(format);
   return dt.toJSDate();
@@ -41,9 +42,9 @@ export const InputDate: React.FC<InputDateProps> = ({
   const initialFieldValue = formikProps ? _get(formikProps?.values, props.name, '') : value;
   const fieldValue = initialFieldValue ? toDateTime(initialFieldValue, valueFormat) : null;
 
-  const handleChange = (updatedDate: DateTime | null, keyboardInputValue?: string | undefined) => {
+  const handleChange = (updatedDate: DateTime | null) => {
     const updatedValue = fromDateTime(updatedDate, valueFormat);
-    if (formikProps) formikProps.setFieldValue(props.name, updatedValue);
+    if (formikProps?.setFieldValue) formikProps.setFieldValue(props.name, updatedValue);
     if (typeof onChange === 'function') onChange(updatedValue);
   };
 
