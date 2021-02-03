@@ -4,8 +4,7 @@ import { FormikProps } from 'formik';
 import { get as _get } from 'lodash';
 import { MultilineInput } from '../multiline-input';
 
-import 'react-quill/dist/quill.snow.css';
-import './wysiwyg.scss';
+import './wysiwyg.css';
 
 export interface WysiwygProps extends ReactQuillProps {
   name: string;

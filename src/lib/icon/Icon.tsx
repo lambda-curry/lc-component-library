@@ -1,7 +1,7 @@
 import React, { FC, SVGProps, useContext } from 'react';
 import classNames from 'classnames';
 import { RegisteredIconContext } from './IconRegistry';
-import './icon.scss';
+import './icon.css';
 
 import { ReactComponent as addUser } from '../../assets/icons/addUser.svg';
 import { ReactComponent as analytics } from '../../assets/icons/analytics.svg';

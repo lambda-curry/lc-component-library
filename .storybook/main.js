@@ -8,6 +8,7 @@ module.exports = {
     '@storybook/addon-links',
     '@storybook/addon-a11y',
     '@storybook/addon-viewport/register',
+    '@storybook/addon-postcss',
     {
       name: '@storybook/addon-docs',
       options: {
@@ -55,9 +56,33 @@ module.exports = {
     ];
 
     // Add SASS support
+    // config.module.rules.push({
+    //   test: /\.css$/,
+    //   use: ['style-loader', 'css-loader', 'postcss-loader'],
+    //   include: [path.resolve(__dirname, '../src'), __dirname]
+    // });
+
+    // https://lifesaver.codes/answer/a-working-example-with-postcss-for-storybook-v5
+    // https://blog.jakoblind.no/postcss-webpack/
+
+    // Remove the existing css rule
+    config.module.rules = config.module.rules.filter(
+      f => f.test.toString() !== '/\\.css$/'
+    );
+
+    // Make whatever fine-grained changes you need
     config.module.rules.push({
-      test: /\.scss$/,
-      use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+      test: /\.(css|scss)$/,
+      loaders: [
+        'style-loader',
+        {
+          loader: 'css-loader',
+          options: {
+            importLoaders: 1
+          }
+        },
+        'postcss-loader'
+      ],
       include: [path.resolve(__dirname, '../src'), __dirname]
     });
 

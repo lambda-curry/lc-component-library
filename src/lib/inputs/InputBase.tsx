@@ -4,7 +4,7 @@ import { FormikProps } from 'formik';
 import classNames from 'classnames';
 import { get as _get, set as _set } from 'lodash';
 
-import './input.scss';
+import './input.css';
 import { InputAdornment } from '@material-ui/core';
 
 type LabelPlacements = 'inset' | 'above';

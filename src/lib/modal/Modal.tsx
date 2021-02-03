@@ -5,7 +5,7 @@ import { IconButton } from '../icon-button';
 import { Card, CardContent } from '@material-ui/core';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import './modal.scss';
+import './modal.css';
 
 export const Modal: FunctionComponent<ReactModal.Props & { closeButton?: boolean }> = ({
   isOpen = false,

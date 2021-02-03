@@ -9,7 +9,7 @@ import classNames from 'classnames';
 import { FormikProps } from 'formik';
 import { Icon } from '../../icon/Icon';
 
-import './input-checkbox.scss';
+import './input-checkbox.css';
 
 export type InputCheckboxProps = {
   label: string;

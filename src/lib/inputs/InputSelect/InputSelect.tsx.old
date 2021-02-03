@@ -6,7 +6,7 @@ import { InputText, Icon } from '../..';
 import { InputProps } from '../InputBase';
 import { isEqual, get } from 'lodash';
 
-import './input-select.scss';
+import './input-select.css';
 
 export type AutoCompleteChange = (
   event: React.ChangeEvent<{}>,

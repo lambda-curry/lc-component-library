@@ -2,7 +2,7 @@ import React, { FC, ReactNode } from 'react';
 import { SnackbarProvider as MuiSnackbarProvider } from 'notistack';
 import { SnackbarAction } from './SnackbarAction';
 
-import './snackbars.scss';
+import './snackbars.css';
 
 export const SnackbarProvider: FC<{ children: ReactNode }> = props => {
   // Add default action to all snackbars

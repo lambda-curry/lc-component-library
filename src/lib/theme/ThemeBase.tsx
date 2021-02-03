@@ -1,7 +1,7 @@
 import React, { FC, ReactNode } from 'react';
 import classNames from 'classnames';
 
-import '../../styles/index.scss';
+import '../../styles/index.css';
 
 export interface ThemeBaseProps {
   as?: keyof JSX.IntrinsicElements;

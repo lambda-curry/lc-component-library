@@ -48,7 +48,6 @@
   --outline-button-border-color-darker: theme('colors.gray.light');
 }
 
-$button-types: 'primary', 'accent', 'success', 'warn', 'danger', 'outline';
 $button-bg-colors: (
   'primary': var(--primary-button-bg-color),
   'accent': var(--accent-button-bg-color),
@@ -148,11 +147,11 @@ $button-text-colors: (
     color: var(--default-button-text-color);
   }
 
-  @each $button-type in $button-types {
+  @each $button-type in (primary, accent, success, warn, danger, outline) {
     $background-color: map-get($button-bg-colors, $button-type);
     $border-color: map-get($button-border-colors, $button-type);
 
-    &-#{$button-type} {
+    &-$(button-type) {
       color: map-get($button-text-colors, $button-type);
       background-color: $background-color;
       border-color: $border-color;
@@ -208,7 +207,7 @@ $button-text-colors: (
       }
     }
 
-    &-outline-#{$button-type} {
+    &-outline-$(button-type) {
       background-color: transparent;
       border-color: map-get($button-border-colors, $button-type);
 

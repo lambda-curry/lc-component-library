@@ -1,7 +1,7 @@
 import React, { FC, SVGProps, useContext } from 'react';
 import classNames from 'classnames';
 import { RegisteredIconContext } from './IconRegistry';
-import './icon.scss';
+import './icon.css';
 
 import { ReactComponent as googleCalendar } from '../../assets/color-icons/GoogleCalendar.svg';
 import { ReactComponent as outlook } from '../../assets/color-icons/Outlook.svg';

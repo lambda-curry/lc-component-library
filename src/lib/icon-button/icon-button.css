@@ -1,6 +1,6 @@
 .lc-icon-button {
   // TODO: No need to have this `.button` specificity once we remove the old Bootstrap styles
-  // and import `buttons.scss` into the `Button` component
+  // and import `buttons.css` into the `Button` component
   &.lc-button {
     display: inline-flex;
     min-height: auto;

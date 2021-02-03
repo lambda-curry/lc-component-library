@@ -6,7 +6,7 @@ import { Modal, ModalHeader, ModalActions } from '../modal';
 import { Button, ButtonPrimary } from '../buttons';
 import { formReducer, FormReducerAction, FormReducerState } from './Form.helpers';
 import { InputConfig } from '../inputs/InputBase';
-import './form.scss';
+import './form.css';
 
 interface FormConfig extends InputConfig {}
 

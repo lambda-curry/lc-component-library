@@ -6,7 +6,7 @@ import { InputText } from '../InputText/InputText';
 import { InputProps } from '../InputBase';
 import { isHexColor, hexColorRegex } from '../../util/colors';
 
-import './input-color.scss';
+import './input-color.css';
 
 interface TextMaskCustomProps {
   mask?: (string | RegExp)[];

@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { Icon, DefaultIconNames } from '../icon/Icon';
 import { Button, ButtonProps } from '../buttons/Button';
 
-import './icon-button.scss';
+import './icon-button.css';
 
 export interface IconButtonProps extends ButtonProps {
   icon: DefaultIconNames | string;
