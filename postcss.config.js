@@ -21,6 +21,7 @@ module.exports = {
     require('postcss-strip-inline-comments'),
     require('postcss-each'),
     require('precss'),
+    // TODO: Fix this for development/Storybook
     require("postcss-url")({
       url: 'copy',
       maxSize: 10 * 1024, // inline files < 10k, copy files > 10k
