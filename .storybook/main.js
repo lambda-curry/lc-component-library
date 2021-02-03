@@ -59,7 +59,7 @@ module.exports = {
       f => f.test.toString() !== '/\\.css$/'
     );
 
-    // Make whatever fine-grained changes you need
+    // Add our new css/scss rule
     config.module.rules.push({
       test: /\.(css|scss)$/,
       loaders: [
