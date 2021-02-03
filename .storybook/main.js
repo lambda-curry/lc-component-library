@@ -1,6 +1,12 @@
+/**
+ * For info about getting PostCSS to work with Storybook:
+ * https://storybook.js.org/addons/@storybook/addon-postcss
+ * https://lifesaver.codes/answer/a-working-example-with-postcss-for-storybook-v5
+ * https://blog.jakoblind.no/postcss-webpack/
+ */
+
 const path = require('path');
 
-// Gatsby Storybook documentation: https://www.gatsbyjs.org/docs/visual-testing-with-storybook/
 module.exports = {
   stories: ['../src/**/*.stories.@(js|tsx|mdx)'],
   addons: [
@@ -26,9 +32,6 @@ module.exports = {
     '@storybook/addon-controls'
   ],
   webpackFinal: async config => {
-    // Transpile Gatsby module because Gatsby includes un-transpiled ES6 code.
-    // config.module.rules[0].exclude = [/node_modules\/(?!(gatsby)\/)/];
-
     // use installed babel-loader which is v8.0-beta (which is meant to work with @babel/core@7)
     config.module.rules[0].use[0].loader = require.resolve('babel-loader');
 
@@ -39,10 +42,6 @@ module.exports = {
     ];
 
     config.module.rules[0].use[0].options.plugins = [
-      // // use @babel/plugin-proposal-class-properties for class arrow functions
-      // require.resolve('@babel/plugin-proposal-class-properties'),
-      // // use babel-plugin-remove-graphql-queries to remove static queries from components when rendering in storybook
-      // require.resolve('babel-plugin-remove-graphql-queries'),
       [
         require.resolve('babel-plugin-named-asset-import'),
         {
@@ -54,16 +53,6 @@ module.exports = {
         }
       ]
     ];
-
-    // Add SASS support
-    // config.module.rules.push({
-    //   test: /\.css$/,
-    //   use: ['style-loader', 'css-loader', 'postcss-loader'],
-    //   include: [path.resolve(__dirname, '../src'), __dirname]
-    // });
-
-    // https://lifesaver.codes/answer/a-working-example-with-postcss-for-storybook-v5
-    // https://blog.jakoblind.no/postcss-webpack/
 
     // Remove the existing css rule
     config.module.rules = config.module.rules.filter(
