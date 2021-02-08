@@ -55,13 +55,10 @@ const generateVariantThemeColors = (colorName) => themeColorsConfig[colorName].r
   return acc;
 }, {});
 
-const generateThemeColors = () => {
-  const themeColors = Object.keys(themeColorsConfig).reduce((acc, colorName) => {
-    acc[colorName] = generateVariantThemeColors(colorName);
-    return acc;
-  }, {});
-  return themeColors;
-};
+const generateThemeColors = () => Object.keys(themeColorsConfig).reduce((acc, colorName) => {
+  acc[colorName] = generateVariantThemeColors(colorName);
+  return acc;
+}, {});
 
 const themeColors = generateThemeColors();
 
