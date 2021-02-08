@@ -10,8 +10,8 @@ const colorWithOpactiy = (color) => ({ opacityVariable, opacityValue }) => {
 const baseColors = {
   transparent: 'transparent',
   current: 'currentColor',
-  black: colorWithOpactiy('#000'),
-  white: colorWithOpactiy('#fff'),
+  black: colorWithOpactiy('black'),
+  white: colorWithOpactiy('white'),
 };
 
 const themeColorsConfig = {
