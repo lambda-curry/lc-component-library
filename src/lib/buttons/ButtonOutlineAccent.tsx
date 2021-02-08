@@ -9,9 +9,9 @@ export const ButtonOutlineAccent: FC<ButtonProps> = ({ className, ...props }) =>
     className={classNames(
       [
         `lc-button-outline-accent`,
-        `hover:lc-text-white`,
         `lc-text-accent`,
         `lc-border-accent`,
+        `hover:lc-text-white`,
         `hover:lc-bg-accent`,
         `focus:lc-ring-accent`
       ],

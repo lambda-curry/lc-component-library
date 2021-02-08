@@ -5,9 +5,6 @@ import { ButtonBase, ButtonProps } from './ButtonBase';
 export const ButtonUnstyled: FC<ButtonProps> = ({ className, ...props }) => (
   <ButtonBase
     {...props}
-    className={classNames(
-      [`lc-button-unstyled`, `lc-appearance-none`, `lc-bg-transparent`, `focus:lc-outline-black`],
-      className
-    )}
+    className={classNames([`lc-button-unstyled`, `lc-bg-transparent`, `focus:lc-outline-black`], className)}
   />
 );

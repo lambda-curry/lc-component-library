@@ -9,9 +9,9 @@ export const ButtonOutlinePrimary: FC<ButtonProps> = ({ className, ...props }) =
     className={classNames(
       [
         `lc-button-outline-primary`,
-        `hover:lc-text-white`,
         `lc-text-primary`,
         `lc-border-primary`,
+        `hover:lc-text-white`,
         `hover:lc-bg-primary`,
         `focus:lc-ring-primary`
       ],
