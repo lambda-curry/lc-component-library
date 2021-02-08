@@ -2,7 +2,6 @@
 
 Checkout the `docs` branch. Merge in the latest code you would like to deploy. Run `yarn build:storybook` and push up the build to the `docs` branch. Github will automatically deploy static build to https://lambda-curry.github.io/lc-component-library.
 
-
 # TSDX React w/ Storybook User Guide
 
 Congrats! You just saved yourself hours of work by bootstrapping this project with TSDX. Let’s get you oriented with what’s here and how to use it.
