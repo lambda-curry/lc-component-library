@@ -123,11 +123,11 @@ const aliasMap = {
 
 export type DefaultIconNames = keyof typeof defaultIcons;
 export type AliasIconNames = keyof typeof aliasMap;
-export type IconNames = DefaultIconNames & AliasIconNames;
+export type IconNames = DefaultIconNames | AliasIconNames | string;
 
 export interface IconProps {
   className?: string;
-  name: IconNames | string;
+  name: IconNames;
   viewBox?: string;
 }
 
