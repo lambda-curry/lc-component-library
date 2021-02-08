@@ -60,7 +60,6 @@ const generateThemeColors = () => {
     acc[colorName] = generateVariantThemeColors(colorName);
     return acc;
   }, {});
-
   return themeColors;
 };
 
