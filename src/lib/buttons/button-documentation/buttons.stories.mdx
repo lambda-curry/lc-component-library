@@ -88,7 +88,8 @@ import './button-story.css';
       docs: {
         source: {
           code: dedent`
-            <Button as={buttonProps => <a {...buttonProps} />}>Anchor Tag Button</Button>`
+          <ButtonLink as={buttonProps => <a {...buttonProps} href="https://google.com" />}> Anchor Tag Button</ButtonLink>
+          <ButtonUnstyled>Unstyled Button</ButtonUnstyled>`
         }
       }
     }}

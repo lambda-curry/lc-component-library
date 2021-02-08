@@ -1,5 +1,8 @@
 {
   "scss.lint.unknownAtRules": "ignore",
+  "files.associations": {
+    "*.css": "scss"
+  },
   "cSpell.words": [
     "tsdx",
     "notistack",

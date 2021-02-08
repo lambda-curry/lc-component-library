@@ -7,6 +7,6 @@
         "targets": ["last 2 versions"]
       }
     ],
-    "@babel/typescript"
+    "@babel/preset-typescript"
   ]
 }

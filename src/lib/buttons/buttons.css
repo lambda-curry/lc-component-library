@@ -16,37 +16,90 @@
   --default-button-font-weight: bold;
   --default-button-padding: 14px 20px;
 
-  --primary-button-bg-color: theme('colors.primary.default');
+  --primary-button-bg-color: theme('colors.primary.DEFAULT');
   --primary-button-bg-color-dark: theme('colors.primary.dark');
-  --primary-button-border-color: theme('colors.primary.default');
+  --primary-button-border-color: theme('colors.primary.DEFAULT');
   --primary-button-border-color-dark: theme('colors.primary.dark');
-  --primary-button-text-color: theme('colors.primary.text');
-  --accent-button-bg-color: theme('colors.accent.default');
+  --primary-button-text-color: theme('colors.white');
+
+  --accent-button-bg-color: theme('colors.accent.DEFAULT');
   --accent-button-bg-color-dark: theme('colors.accent.dark');
-  --accent-button-border-color: theme('colors.accent.default');
+  --accent-button-border-color: theme('colors.accent.DEFAULT');
   --accent-button-border-color-dark: theme('colors.accent.dark');
   --accent-button-text-color: theme('colors.accent.text');
-  --success-button-bg-color: theme('colors.success.default');
+
+  --success-button-bg-color: theme('colors.success.DEFAULT');
   --success-button-bg-color-dark: theme('colors.success.dark');
-  --success-button-border-color: theme('colors.success.default');
+  --success-button-border-color: theme('colors.success.DEFAULT');
   --success-button-border-color-dark: theme('colors.success.dark');
-  --success-button-text-color: theme('colors.success.text');
-  --warn-button-bg-color: theme('colors.warn.default');
+  --success-button-text-color: theme('colors.white');
+
+  --warn-button-bg-color: theme('colors.warn.DEFAULT');
   --warn-button-bg-color-dark: theme('colors.warn.dark');
-  --warn-button-border-color: theme('colors.warn.default');
+  --warn-button-border-color: theme('colors.warn.DEFAULT');
   --warn-button-border-color-dark: theme('colors.warn.dark');
-  --warn-button-text-color: theme('colors.warn.text');
-  --danger-button-bg-color: theme('colors.danger.default');
+  --warn-button-text-color: theme('colors.white');
+
+  --danger-button-bg-color: theme('colors.danger.DEFAULT');
   --danger-button-bg-color-dark: theme('colors.danger.dark');
-  --danger-button-border-color: theme('colors.danger.default');
+  --danger-button-border-color: theme('colors.danger.DEFAULT');
   --danger-button-border-color-dark: theme('colors.danger.dark');
-  --danger-button-text-color: theme('colors.danger.text');
+  --danger-button-text-color: theme('colors.white');
+
   --outline-button-bg-color: transparent;
   --outline-button-bg-color-dark: theme('colors.gray.lighter');
-  --outline-button-text-color: var(default-button-text-color);
+  --outline-button-text-color: var(--default-button-text-color);
   --outline-button-border-color: theme('colors.gray.lighter');
-  --outline-button-border-color-darker: theme('colors.gray.light');
+  --outline-button-border-color-dark: theme('colors.gray.light');
 }
+
+$button-colors-primary: (
+  'bg': var(--primary-button-bg-color),
+  'bg-dark': var(--primary-button-bg-color-dark),
+  'border': var(--primary-button-border-color),
+  'border-dark': var(--primary-button-border-color-dark),
+  'text': var(--primary-button-text-color)
+);
+
+$button-colors-accent: (
+  'bg': var(--accent-button-bg-color),
+  'bg-dark': var(--accent-button-bg-color-dark),
+  'border': var(--accent-button-border-color),
+  'border-dark': var(--accent-button-border-color-dark),
+  'text': var(--accent-button-text-color)
+);
+
+$button-colors-success: (
+  'bg': var(--success-button-bg-color),
+  'bg-dark': var(--success-button-bg-color-dark),
+  'border': var(--success-button-border-color),
+  'border-dark': var(--success-button-border-color-dark),
+  'text': var(--success-button-text-color)
+);
+
+$button-colors-warn: (
+  'bg': var(--warn-button-bg-color),
+  'bg-dark': var(--warn-button-bg-color-dark),
+  'border': var(--warn-button-border-color),
+  'border-dark': var(--warn-button-border-color-dark),
+  'text': var(--warn-button-text-color)
+);
+
+$button-colors-danger: (
+  'bg': var(--danger-button-bg-color),
+  'bg-dark': var(--danger-button-bg-color-dark),
+  'border': var(--danger-button-border-color),
+  'border-dark': var(--danger-button-border-color-dark),
+  'text': var(--danger-button-text-color)
+);
+
+$button-colors-outline: (
+  'bg': var(--outline-button-bg-color),
+  'bg-dark': var(--outline-button-bg-color-dark),
+  'border': var(--outline-button-border-color),
+  'border-dark': var(--outline-button-border-color-dark),
+  'text': var(--outline-button-text-color)
+);
 
 $button-bg-colors: (
   'primary': var(--primary-button-bg-color),
@@ -117,34 +170,35 @@ $button-text-colors: (
 
   // Default Button Hover State
   &:hover:not([disabled]) {
-    background-color: var(--default-button-bg-color-darker);
+    /* background-color: var(--default-button-bg-color-darker);
     color: var(--default-button-text-color-darker);
-    border-color: var(--default-button-border-color-darker);
+    border-color: var(--default-button-border-color-darker); */
     box-shadow: none !important;
   }
 
   &.active:not([disabled]) {
-    background-color: var(--default-button-bg-color-darker);
-    border-color: var(--default-button-border-color-darker);
+    /* background-color: var(--default-button-bg-color-darker);
+    border-color: var(--default-button-border-color-darker); */
   }
 
   &:active:not([disabled]) {
     transform: scale(0.98);
-    color: var(--default-button-text-color-darker);
-    border-color: var(--default-button-border-color-darker);
+    /* color: var(--default-button-text-color-darker);
+    border-color: var(--default-button-border-color-darker); */
   }
 
   &[disabled] {
     cursor: not-allowed;
     opacity: 0.6;
+    pointer-events: none;
   }
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 2px #ffffff, 0 0 2px 3px var(--default-button-text-color);
-    border-color: var(--default-button-border-color);
-    background-color: var(--default-button-bg-color);
-    color: var(--default-button-text-color);
+    /* box-shadow: 0 0 0 2px #ffffff, 0 0 2px 3px var(--default-button-text-color); */
+    /* border-color: var(--default-button-border-color);
+    background-color: var(--default-button-bg-color); */
+    /* color: var(--default-button-text-color); */
   }
 
   @each $button-type in (primary, accent, success, warn, danger, outline) {
@@ -184,12 +238,12 @@ $button-text-colors: (
       }
 
       @if $button-type == outline {
-        border-color: var(--outline-button-border-color-darker);
+        border-color: var(--outline-button-border-color-dark);
 
         &:hover:not([disabled]) {
           background-color: var(--outline-button-bg-color-dark);
           color: var(--default-button-text-color-darker);
-          border-color: var(--outline-button-border-color-darker);
+          border-color: var(--outline-button-border-color-dark);
         }
 
         &:focus {
@@ -210,7 +264,6 @@ $button-text-colors: (
     &-outline-$(button-type) {
       background-color: transparent;
       border-color: map-get($button-border-colors, $button-type);
-
       color: $background-color;
 
       &:hover:not([disabled]) {
@@ -270,7 +323,7 @@ $button-text-colors: (
   &:focus {
     outline: 1px dotted #212121;
     outline: 5px auto -webkit-focus-ring-color;
-    outline: 5px auto theme('colors.primary.default');
+    outline: 5px auto theme('colors.primary.DEFAULT');
     box-shadow: none;
     background-color: transparent;
     color: inherit;

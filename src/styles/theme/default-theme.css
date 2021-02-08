@@ -1,0 +1,33 @@
+/*
+We use the `postcss-functions` plugin to allow us to write functions in JS and then execute them in our CSS files.
+*/
+:root {
+  --lc-color-transparent: transparent;
+  --lc-color-current: currentColor;
+  --lc-color-black: hexToRGB(#000);
+  --lc-color-white: hexToRGB(#fff);
+
+  --lc-color-gray-lightest: hexToRGB(#f5f6fa);
+  --lc-color-gray-lighter: hexToRGB(#e2e2e2);
+  --lc-color-gray-light: hexToRGB(#bdbdbd);
+  --lc-color-gray: hexToRGB(#a0a5ba);
+  --lc-color-gray-dark: hexToRGB(#707070);
+  --lc-color-gray-darker: hexToRGB(#404040);
+
+  --lc-color-primary: hexToRGB(#3182ce);
+  --lc-color-primary-dark: hexToRGB(#2c5282);
+
+  --lc-color-accent: hexToRGB(#ed64a6);
+  --lc-color-accent-dark: hexToRGB(#b83280);
+
+  --lc-color-success: hexToRGB(#48bb78);
+  --lc-color-success-dark: hexToRGB(#2f855a);
+
+  --lc-color-warn: hexToRGB(#ed8936);
+  --lc-color-warn-dark: hexToRGB(#dd6b20);
+
+  --lc-color-danger: hexToRGB(#e53e3e);
+  --lc-color-danger-dark: hexToRGB(#c53030);
+
+  --lc-color-active: hexToRGB(#5bd067);
+}

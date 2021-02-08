@@ -19,12 +19,12 @@ $snackbars-min-width: 280px;
   }
 
   &-primary {
-    color: theme('colors.black');
+    @apply lc-text-black;
     background-color: #fff;
 
     &:hover:not([disabled]),
     &:focus:not([disabled]) {
-      color: theme('colors.black');
+      @apply lc-text-black;
       background-color: rgba(255, 255, 255, 0.85);
     }
   }
@@ -32,48 +32,48 @@ $snackbars-min-width: 280px;
 
 .snackbar {
   .MuiSnackbarContent-root {
+    @apply lc-text-white;
+    @apply lc-bg-gray-darker;
     padding: 8px 16px;
     min-width: $snackbars-min-width;
-    color: theme('colors.white');
     font-size: inherit;
     line-height: inherit;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
     border-radius: 6px;
-    background-color: theme('colors.gray.darker');
 
     &[class*='variantSuccess'] {
-      color: theme('colors.success.text');
-      background-color: theme('colors.success.default');
+      @apply lc-text-white;
+      @apply lc-bg-success;
 
       .snackbar-action-primary {
-        color: theme('colors.success.default');
+        @apply lc-text-success;
       }
     }
 
     &[class*='variantWarning'] {
-      color: theme('colors.warn.text');
-      background-color: theme('colors.warn.default');
+      @apply lc-text-white;
+      @apply lc-bg-warn;
 
       .snackbar-action-primary {
-        color: theme('colors.warn.default');
+        @apply lc-text-warn;
       }
     }
 
     &[class*='variantError'] {
-      color: theme('colors.danger.text');
-      background-color: theme('colors.danger.default');
+      @apply lc-text-white;
+      @apply lc-bg-danger;
 
       .snackbar-action-primary {
-        color: theme('colors.danger.default');
+        @apply lc-text-danger;
       }
     }
 
     &[class*='variantInfo'] {
-      color: theme('colors.primary.text');
-      background-color: theme('colors.primary.default');
+      @apply lc-text-white;
+      @apply lc-bg-primary;
 
       .snackbar-action-primary {
-        color: theme('colors.primary.default');
+        @apply lc-text-primary;
       }
     }
   }

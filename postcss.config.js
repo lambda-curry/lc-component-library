@@ -13,6 +13,8 @@
  * - https://epsi-rns.gitlab.io/frontend/2019/10/10/postcss-configuration/
  */
 
+const { hexToRGB } = require('./util');
+
 module.exports = {
   inject: false,
   syntax: 'postcss-scss',
@@ -21,14 +23,17 @@ module.exports = {
     require('postcss-strip-inline-comments'),
     require('postcss-each'),
     require('precss'),
+    require('postcss-functions')({
+      functions: { hexToRGB }
+    }),
     // TODO: Fix this for development/Storybook
-    require("postcss-url")({
+    require("postcss-url")(process.env.NODE_ENV === 'production' ? {
       url: 'copy',
       maxSize: 10 * 1024, // inline files < 10k, copy files > 10k
       fallback: 'copy',
       optimizeSvgEncode: true,
-      assetsPath: './dist/assets',
-    }),
+      assetsPath: 'dist/assets',
+    } : { url: 'rebase' }),
     require('tailwindcss'),
     require('autoprefixer'),
     require('cssnano')({

@@ -1,8 +1,8 @@
 // TODO: include documentation for updating all color types that are required for the theme
 // so far these color types are just default, dark, and text, but there should be more
 .alternate-theme {
-  --primary-default-color: red;
-  --accent-default-color: orange;
+  --lc-color-primary: 255, 0, 0;
+  --lc-color-accent: 255, 165, 0;
 }
 
 .theme-story {

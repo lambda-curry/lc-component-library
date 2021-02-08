@@ -16,8 +16,10 @@ import {
   ButtonWarn,
   ButtonGroup,
   ColorIcon,
-  Icon
+  Icon,
+  ButtonUnstyled
 } from '../..';
+import { ButtonLink } from '../ButtonLink';
 
 export const ButtonExamples1: FC = () => (
   <div className="button-story">
@@ -57,11 +59,9 @@ export const ButtonExamples2: FC = () => (
 
 export const ButtonExamples3: FC = () => (
   <div className="button-story">
-    <Button>
-      <ColorIcon name="googleCalendar" /> Default Button
-    </Button>
-    <ButtonOutline>
-      Outline Button <Icon name="settings" />
+    <Button icon={<ColorIcon name="googleCalendar" />}>Default Button</Button>
+    <ButtonOutline icon={<Icon name="settings" />} iconPlacement="end">
+      Outline Button
     </ButtonOutline>
     <p>
       Note: Unfortunately, forwarding refs to render components is difficult, so icons are currently only supported in
@@ -72,8 +72,14 @@ export const ButtonExamples3: FC = () => (
 
 export const ButtonExamples4: FC = () => (
   <div className="button-story">
-    {/* eslint-disable-next-line jsx-a11y/anchor-has-content */}
-    <Button as={buttonProps => <a {...buttonProps} />}>Anchor Tag Button</Button>
+    <ButtonLink
+      icon={<ColorIcon name="googleCalendar" />}
+      // eslint-disable-next-line jsx-a11y/anchor-has-content
+      as={buttonProps => <a {...buttonProps} href="https://google.com" />}
+    >
+      Anchor Tag Button
+    </ButtonLink>
+    <ButtonUnstyled>Unstyled Button</ButtonUnstyled>
   </div>
 );
 
@@ -97,13 +103,13 @@ export const ButtonExamples5: FC = () => {
       <br />
       <p>{JSON.stringify(state)}</p>
       <ButtonGroup>
-        <ButtonPrimary className={classNames({ active: state.left })} onClick={() => toggle('left')}>
+        <ButtonPrimary className={classNames({ 'lc-bg-primary-dark': state.left })} onClick={() => toggle('left')}>
           Left
         </ButtonPrimary>
-        <ButtonPrimary className={classNames({ active: state.middle })} onClick={() => toggle('middle')}>
+        <ButtonPrimary className={classNames({ 'lc-bg-primary-dark': state.middle })} onClick={() => toggle('middle')}>
           Middle
         </ButtonPrimary>
-        <ButtonPrimary className={classNames({ active: state.right })} onClick={() => toggle('right')}>
+        <ButtonPrimary className={classNames({ 'lc-bg-primary-dark': state.right })} onClick={() => toggle('right')}>
           Right
         </ButtonPrimary>
       </ButtonGroup>
