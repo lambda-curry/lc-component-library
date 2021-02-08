@@ -73,7 +73,6 @@ export const ButtonExamples3: FC = () => (
 export const ButtonExamples4: FC = () => (
   <div className="button-story">
     <ButtonLink
-      icon={<ColorIcon name="googleCalendar" />}
       // eslint-disable-next-line jsx-a11y/anchor-has-content
       as={buttonProps => <a {...buttonProps} href="https://google.com" />}
     >
