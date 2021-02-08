@@ -1,6 +1,5 @@
 import React, { FC, ReactNode, ButtonHTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { ButtonIcon } from './ButtonIcon';
 
 export type ButtonProps = ButtonHTMLAttributes<any> & {
   as?: keyof JSX.IntrinsicElements | ((props: ButtonHTMLAttributes<{ children: ReactNode }>) => JSX.Element);
@@ -36,11 +35,11 @@ export const ButtonBase: FC<ButtonProps> = React.forwardRef(
       )}
     >
       {icon && (
-        <ButtonIcon
+        <span
           className={classNames(`lc-button-icon`, iconPlacement === 'end' ? `lc-ml-8 lc--mr-8` : `lc--ml-8 lc-mr-8`)}
         >
           {icon}
-        </ButtonIcon>
+        </span>
       )}
       <span className="lc-button-content">{children}</span>
     </T>
