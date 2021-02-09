@@ -13,7 +13,7 @@ export const ButtonOutlineDanger: FC<ButtonProps> = ({ className, ...props }) =>
         `lc-border-danger`,
         `hover:lc-text-white`,
         `hover:lc-bg-danger`,
-        `focus:lc-ring-danger`
+        `focus-visible:lc-ring-danger`
       ],
       className
     )}

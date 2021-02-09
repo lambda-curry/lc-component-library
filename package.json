@@ -36,6 +36,7 @@
     "lodash": "^4.17.20",
     "luxon": "^1.25.0",
     "notistack": "^1.0.3",
+    "postcss-focus-visible": "^5.0.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-input-mask": "^2.0.4",
