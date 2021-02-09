@@ -2,16 +2,16 @@
   margin: 12px 0;
 
   .MuiSlider-thumb {
+    @apply lc-border-4 lc-border-solid lc-border-primary;
     width: 16px;
     height: 16px;
-    border: solid 4px theme('colors.primary.default');
     background-color: #fff;
   }
 
   .MuiSlider-rail,
   .MuiSlider-track {
+    @apply lc-bg-primary;
     height: 6px;
-    background-color: theme('colors.primary.default');
   }
 
   .MuiSlider-rail {
@@ -39,8 +39,8 @@
       white-space: nowrap;
 
       & > span {
+        @apply lc-text-gray-darker;
         display: block;
-        color: theme('colors.gray.darker');
         transform: none;
         text-align: center;
       }

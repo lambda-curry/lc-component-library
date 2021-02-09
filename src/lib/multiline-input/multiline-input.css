@@ -2,16 +2,17 @@
   position: relative;
 
   &-character-limit {
+    @apply lc-text-gray;
     z-index: 2;
     position: absolute;
     right: 44px;
     bottom: 16px;
     font-size: 10px;
-    color: theme('colors.gray.default');
     pointer-events: none;
   }
 
   &-resize {
+    @apply lc-text-gray;
     position: absolute;
     display: flex;
     align-items: center;
@@ -23,6 +24,5 @@
     background: #fff;
     pointer-events: none;
     border-radius: 7px;
-    color: theme('colors.gray.default');
   }
 }

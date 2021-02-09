@@ -1,7 +1,14 @@
 import React, { FC } from 'react';
 import classNames from 'classnames';
-import { Button, ButtonProps } from './Button';
+import { ButtonProps } from './ButtonBase';
+import { ButtonStyled } from './ButtonStyled';
 
-export const ButtonOutline: FC<ButtonProps> = ({ className, ...rest }) => (
-  <Button {...rest} className={classNames('lc-button-outline', className)} />
+export const ButtonOutline: FC<ButtonProps> = ({ className, ...props }) => (
+  <ButtonStyled
+    {...props}
+    className={classNames(
+      [`lc-button-outline`, `lc-border-gray-light`, `hover:lc-bg-gray-lighter`, `focus:lc-ring-gray-lighter`],
+      className
+    )}
+  />
 );

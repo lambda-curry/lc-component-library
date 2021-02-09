@@ -1,52 +1,27 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
+const { baseColors, themeColors } = require('./tailwind/colors');
 
-const defaultColors = {
-  primary: { text: 'white', light: '#5e9bd5', default: '#3182ce', dark: '#2c5282' },
-  accent: { text: 'white', default: '#ed64a6', dark: '#b83280' },
-  success: { text: 'white', default: '#48bb78', dark: '#2f855a' },
-  warn: { text: 'white', default: '#ed8936', dark: '#dd6b20' },
-  danger: { text: 'white', default: '#e53e3e', dark: '#c53030' },
-  active: { default: '#5bd067' }
-};
-
-const buildThemeColorTypes = themeColor =>
-  Object.keys(defaultColors[themeColor]).reduce((acc, curr) => {
-    acc[curr] = `var(--${themeColor}-${curr}-color, ${defaultColors[themeColor][curr]})`;
-    return acc;
-  }, {});
-
-const themeColors = Object.keys(defaultColors).reduce((acc, curr) => {
-  acc[curr] = buildThemeColorTypes(curr);
-  return acc;
-}, {});
 
 module.exports = {
   purge: ['./src/**/*.tsx'],
   prefix: 'lc-',
   theme: {
+    ...defaultTheme,
     colors: {
-      black: '#000',
-      white: '#fff',
-
-      blue: '#28a7db',
-      active: {
-        default: `var(--active-default-color, ${defaultColors.active.default})`
-      },
-      warn: '#f8ba44',
-      gray: {
-        darker: '#404040',
-        dark: '#707070',
-        default: '#a0a5ba',
-        light: '#bdbdbd',
-        lighter: '#e2e2e2',
-        lightest: '#f5f6fa'
-      },
+      ...baseColors,
       ...themeColors
     },
     spacing: {
       '0': '0',
+      '1': '1px',
+      '2': '2px',
+      '3': '3px',
+      '4': '4px',
       '8': '8px',
+      '12': '12px',
+      '14': '14px',
       '16': '16px',
+      '20': '20px',
       '24': '24px',
       '32': '32px',
       '40': '40px',
@@ -86,8 +61,29 @@ module.exports = {
       '2': '2px',
       '4': '4px',
       '8': '8px'
+    },
+    borderRadius: {
+      none: 'none',
+      xs: '2px',
+      sm: '4px',
+      DEFAULT: '6px',
+      md: '6px',
+      lg: '8px',
+      xl: '12px',
+    },
+    scale: {
+      ...defaultTheme.scale,
+      '98': '.98',
     }
   },
-  variants: {},
+  variants: {
+    extend: {
+      opacity: ['disabled', 'active'],
+      pointerEvents: ['disabled'],
+      cursor: ['disabled', 'hover'],
+      transform: ['active'],
+      scale: ['active']
+    }
+  },
   plugins: []
 };

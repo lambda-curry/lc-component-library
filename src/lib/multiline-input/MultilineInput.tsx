@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { CharacterLimit, useCharacterLimit, CharacterLimitHelpers } from '../character-limit';
 import { Icon } from '../icon';
 
-import './multiline-input.scss';
+import './multiline-input.css';
 
 export interface MultilineInputProps {
   value: string;

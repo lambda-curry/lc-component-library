@@ -22,11 +22,11 @@
   }
 
   .MuiAutocomplete-tag.MuiChip-root {
+    @apply lc-bg-gray-lighter;
+    @apply lc-font-sans;
     height: 32px;
     font-size: 12px;
     border-radius: 4px;
-    background-color: theme('colors.gray.lighter');
-    font-family: theme('fontFamily.sans');
 
     .MuiChip-label {
       padding-left: 12px;
@@ -34,7 +34,7 @@
     }
 
     .MuiChip-deleteIcon {
-      color: theme('colors.gray.dark');
+      @apply lc-text-gray-dark;
       width: 12px;
       height: 12px;
       margin-left: -4px;

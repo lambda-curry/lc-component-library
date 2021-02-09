@@ -1,17 +1,20 @@
+@import 'react-quill/dist/quill.snow.css';
+
 .wysiwyg {
   position: relative;
 
   &-character-limit {
+    @apply lc-text-gray;
     z-index: 2;
     position: absolute;
     right: 44px;
     bottom: 16px;
     font-size: 10px;
-    color: theme('colors.gray.default');
     pointer-events: none;
   }
 
   &-resize {
+    @apply lc-text-gray;
     position: absolute;
     display: flex;
     align-items: center;
@@ -23,16 +26,14 @@
     background: #fff;
     pointer-events: none;
     border-radius: 7px;
-    color: theme('colors.gray.default');
   }
 
   &-editor {
     .ql-toolbar {
+      @apply lc-bg-gray-lightest;
+      @apply lc-border-gray-lighter;
+      @apply lc-rounded-t-lg;
       padding: 4px;
-      background: theme('colors.gray.lightest');
-      border-top-left-radius: theme('spacing.8');
-      border-top-right-radius: theme('spacing.8');
-      border-color: theme('colors.gray.lighter');
 
       .ql-formats {
         margin-right: 4px;
@@ -44,9 +45,8 @@
     }
 
     .ql-container {
-      border-bottom-right-radius: theme('spacing.8');
-      border-bottom-left-radius: theme('spacing.8');
-      border-color: theme('colors.gray.lighter');
+      @apply lc-border-gray-lighter;
+      @apply lc-rounded-b-lg;
       padding: 16px;
     }
 

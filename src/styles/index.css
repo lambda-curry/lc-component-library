@@ -1,0 +1,9 @@
+@import './theme/default-theme';
+
+@import 'tailwindcss/base';
+
+@import './fonts';
+@import './base';
+
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
