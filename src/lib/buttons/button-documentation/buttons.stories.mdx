@@ -70,11 +70,9 @@ import './button-story.css';
       docs: {
         source: {
           code: dedent`
-          <Button>
-            <ColorIcon name="googleCalendar" /> Default Button
-          </Button>
-          <ButtonOutline>
-            Outline Button <Icon name="settings" />
+          <Button icon={<ColorIcon name="googleCalendar" />}>Default Button</Button>
+          <ButtonOutline icon={<Icon name="settings" />} iconPlacement="end">
+            Outline Button
           </ButtonOutline>`
         }
       }
