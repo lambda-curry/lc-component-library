@@ -18,7 +18,7 @@
     "clean": "rm -rf ./node_modules && yarn",
     "sb": "yarn storybook",
     "storybook": "concurrently \"yarn watch:lint\" \"start-storybook -p 6007\"",
-    "build:storybook": "build-storybook -o docs",
+    "build:storybook": "STORYBOOK_ENV=production build-storybook -o docs",
     "watch:lint": "chokidar 'src/**/**' -c 'yarn lint'",
     "format": "prettier --write \"(src|tests|.storybook|types)/**/*.{js,jsx,ts,tsx,scss}\""
   },

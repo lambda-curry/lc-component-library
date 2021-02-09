@@ -26,6 +26,20 @@ module.exports = {
     require('postcss-functions')({
       functions: { hexToRGB }
     }),
+    // Only include the `postcss-url` plugin for our TSDX builds,
+    // because Storybook uses webpack to process and bundle assets,
+    // and this breaks the Storybook build.
+    (process.env.STORYBOOK_ENV !== 'production'
+      ? require("postcss-url")(process.env.NODE_ENV === 'production'
+        ? {
+          url: 'copy',
+          maxSize: 10 * 1024, // inline files < 10k, copy files > 10k
+          fallback: 'copy',
+          optimizeSvgEncode: true,
+          assetsPath: 'dist/assets',
+        } : { url: 'rebase' })
+      : null
+    ),
     require('tailwindcss'),
     require('autoprefixer'),
     require('cssnano')({
