@@ -26,7 +26,6 @@ module.exports = {
     require('postcss-functions')({
       functions: { hexToRGB }
     }),
-    // TODO: Fix this for development/Storybook
     require('tailwindcss'),
     require('autoprefixer'),
     require('cssnano')({
