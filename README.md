@@ -4,7 +4,7 @@ The component library uses CSS custom properties to handle theming. To make this
 
 ```css
 .my-theme-root {
-  --lc-color-black: 40, 45, 48; // This is equivalent to the hex value #282D30
+  --lc-color-black: 40, 45, 48; /* This is equivalent to the hex value #282D30 */
 }
 ```
 
