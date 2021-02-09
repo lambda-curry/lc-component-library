@@ -3,8 +3,8 @@ import TextField, { OutlinedTextFieldProps } from '@material-ui/core/TextField';
 import { FormikProps } from 'formik';
 import classNames from 'classnames';
 import { get as _get, set as _set } from 'lodash';
-import './input.scss';
 import { InputAdornment } from '@material-ui/core';
+import './input.css';
 
 type LabelPlacements = 'inset' | 'above';
 

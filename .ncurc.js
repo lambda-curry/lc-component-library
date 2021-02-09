@@ -6,9 +6,17 @@ module.exports = {
 
     // Not all our packages currently support PostCSS v8, so we need to wait for them to add support.
     'autoprefixer',
-    'postcss',
-    'postcss-cli',
-    'postcss-scss',
-    'rollup-plugin-postcss',
+    "postcss",
+    "postcss-cli",
+    "postcss-comment",
+    "postcss-each",
+    "postcss-import",
+    "postcss-nested",
+    "postcss-scss",
+    "postcss-simple-vars",
+    "postcss-strip-inline-comments",
+    "postcss-url",
+    "precss",
+    'rollup-plugin-postcss'
   ]
 }

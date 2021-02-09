@@ -1,8 +1,8 @@
-.input-phone-story {
+.input-text-story {
   &-dark {
+    @apply lc-bg-gray-dark;
     margin: 16px 0;
     padding: 16px;
-    background-color: theme('colors.gray.dark');
 
     .lc-input-label {
       color: white;

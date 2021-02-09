@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { FC } from 'react';
 import classNames from 'classnames';
-import './button-group.scss';
+import './button-group.css';
 
-export const ButtonGroup: React.FC<{ className?: string }> = ({ className, ...rest }) => (
-  <div {...rest} className={classNames('lc-button-group', className)} />
+export const ButtonGroup: FC<{ className?: string }> = ({ className, ...props }) => (
+  <div {...props} className={classNames('lc-button-group', className)} />
 );

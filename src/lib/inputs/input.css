@@ -45,13 +45,13 @@
   }
 
   .MuiOutlinedInput-notchedOutline {
-    border-color: theme('colors.gray.lighter');
+    @apply lc-border-gray-lighter;
   }
 
   // Override for Marcus to center the input label
   .MuiInputLabel-outlined.MuiInputLabel-marginDense {
+    @apply lc-text-black;
     top: -1px;
-    color: theme('colors.black');
     opacity: 0.64;
 
     &:not(.MuiInputLabel-shrink) {
@@ -62,12 +62,12 @@
 
   .MuiInputLabel-outlined.MuiInputLabel-marginDense.Mui-disabled,
   .MuiOutlinedInput-root.Mui-disabled {
-    color: theme('colors.black');
+    @apply lc-text-black;
     opacity: 0.35;
     pointer-events: none;
 
     input {
-      background-color: theme('colors.gray.lightest');
+      @apply lc-bg-gray-lightest;
     }
   }
 
@@ -78,7 +78,7 @@
 
   .MuiInputAdornment-positionEnd,
   .MuiInputAdornment-positionStart {
-    color: var(--gray);
+    @apply lc-text-gray;
   }
 
   .MuiFormHelperText-root {
@@ -110,10 +110,10 @@
     top: -6px;
   }
   .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-    border-color: theme('colors.primary.default');
+    @apply lc-border-primary;
   }
   .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
-    border-color: theme('colors.primary.default');
+    @apply lc-border-primary;
   }
 }
 

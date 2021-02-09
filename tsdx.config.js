@@ -1,6 +1,13 @@
-// See: https://github.com/formium/tsdx/pull/183
+/**
+ * TODO: Consider moving these notes to our README.md.
+ *
+ * For a size comparison with the most popular UI libraries see:
+ * https://blog.logrocket.com/comparing-popular-react-component-libraries/
+ *
+ * For a helpful configuration example see:
+ * https://github.com/formium/tsdx/pull/183
+ */
 
-const scss = require('rollup-plugin-scss');
 const url = require('rollup-plugin-url');
 const svgr = require('@svgr/rollup').default;
 const postcss = require('rollup-plugin-postcss');
@@ -12,8 +19,10 @@ module.exports = {
     config.plugins = [
       url(),
       svgr(),
-      scss(),
-      postcss({ extract: false }),
+      postcss({
+        // only write out CSS for the first bundle (avoids pointless extra files):
+        extract: !!options.writeMeta,
+      }),
       terser(),
       nodeResolve({ browser: true }),
       ...config.plugins

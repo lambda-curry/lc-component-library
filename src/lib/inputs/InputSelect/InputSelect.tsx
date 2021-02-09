@@ -14,7 +14,7 @@ import { Icon } from '../../icon/Icon';
 import { InputProps } from '../InputBase';
 import { isEqual as _isEqual, get as _get, set as _set } from 'lodash';
 
-import './input-select.scss';
+import './input-select.css';
 import { lowercaseString } from '../../util/js-helpers';
 
 export type AutoCompleteChange = (

@@ -1,7 +1,8 @@
 .lc-icon-button {
   // TODO: No need to have this `.button` specificity once we remove the old Bootstrap styles
-  // and import `buttons.scss` into the `Button` component
+  // and import `buttons.css` into the `Button` component
   &.lc-button {
+    @apply lc-text-gray-dark;
     display: inline-flex;
     min-height: auto;
     background-color: transparent;
@@ -13,11 +14,9 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    // TODO: Figure out CSS Variables with Tailwind
-    color: theme('colors.gray.dark');
 
     &:hover {
-      background-color: theme('colors.gray.lighter');
+      @apply lc-bg-gray-lighter;
     }
   }
 }

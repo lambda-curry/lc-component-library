@@ -1,7 +1,7 @@
 import React, { FC, SVGProps, useContext } from 'react';
 import classNames from 'classnames';
 import { RegisteredIconContext } from './IconRegistry';
-import './icon.scss';
+import './icon.css';
 
 import { ReactComponent as addUser } from '../../assets/icons/addUser.svg';
 import { ReactComponent as analytics } from '../../assets/icons/analytics.svg';
@@ -123,11 +123,11 @@ const aliasMap = {
 
 export type DefaultIconNames = keyof typeof defaultIcons;
 export type AliasIconNames = keyof typeof aliasMap;
-export type IconNames = DefaultIconNames & AliasIconNames;
+export type IconNames = DefaultIconNames | AliasIconNames | string;
 
 export interface IconProps {
   className?: string;
-  name: IconNames | string;
+  name: IconNames;
   viewBox?: string;
 }
 

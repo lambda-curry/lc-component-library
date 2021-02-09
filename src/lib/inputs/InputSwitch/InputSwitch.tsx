@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect } from 'react';
 import { FormikProps } from 'formik';
 import classNames from 'classnames';
 
-import './input-switch.scss';
+import './input-switch.css';
 
 export interface InputSwitchProps {
   id?: string;
