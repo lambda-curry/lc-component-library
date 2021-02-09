@@ -13,7 +13,7 @@
     align-items: center;
 
     div {
-      border-radius: theme('borderRadius.md');
+      @apply lc-rounded;
       @apply lc-h-96;
       @apply lc-w-96;
     }

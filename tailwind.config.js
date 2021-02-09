@@ -61,6 +61,9 @@ module.exports = {
       '112': '112px',
       '120': '120px'
     },
+    borderRadius: {
+      DEFAULT: 'var(--border-radius-default, 6px)'
+    },
     fontFamily: {
       sans: ['lc-gilroy', 'sans-serif']
     },
