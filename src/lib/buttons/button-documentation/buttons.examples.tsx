@@ -74,7 +74,7 @@ export const ButtonExamples4: FC = () => (
   <div className="button-story">
     <ButtonLink
       // eslint-disable-next-line jsx-a11y/anchor-has-content
-      as={buttonProps => <a {...buttonProps} href="https://google.com" />}
+      as={buttonProps => <a {...buttonProps} href="#test" />}
     >
       Anchor Tag Button
     </ButtonLink>

@@ -26,14 +26,6 @@ module.exports = {
     require('postcss-functions')({
       functions: { hexToRGB }
     }),
-    // TODO: Fix this for development/Storybook
-    require("postcss-url")(process.env.NODE_ENV === 'production' ? {
-      url: 'copy',
-      maxSize: 10 * 1024, // inline files < 10k, copy files > 10k
-      fallback: 'copy',
-      optimizeSvgEncode: true,
-      assetsPath: 'dist/assets',
-    } : { url: 'rebase' }),
     require('tailwindcss'),
     require('autoprefixer'),
     require('cssnano')({
