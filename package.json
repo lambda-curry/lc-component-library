@@ -9,9 +9,9 @@
   "license": "ISC",
   "scripts": {
     "start": "concurrently \"tsdx watch\" \"yarn watch:lint\"",
-    "build": "tsdx build",
+    "build": "NODE_ENV=production tsdx build",
     "test": "tsdx test --passWithNoTests",
-    "lint": "tsdx lint",
+    "lint": "tsdx lint src",
     "prepare": "tsdx build",
     "size": "size-limit",
     "analyze": "size-limit --why",
@@ -35,7 +35,6 @@
     "framer-motion": "^3.2.1",
     "lodash": "^4.17.20",
     "luxon": "^1.25.0",
-    "node-sass": "^5.0.0",
     "notistack": "^1.0.3",
     "react": "16.13.1",
     "react-dom": "16.13.1",
@@ -52,6 +51,7 @@
     "@babel/plugin-proposal-private-methods": "^7.12.1",
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-react": "^7.12.10",
+    "@babel/preset-typescript": "^7.12.13",
     "@size-limit/preset-small-lib": "^4.9.2",
     "@storybook/addon-a11y": "^6.1.15",
     "@storybook/addon-actions": "^6.1.15",
@@ -60,6 +60,7 @@
     "@storybook/addon-essentials": "^6.1.15",
     "@storybook/addon-info": "^5.3.21",
     "@storybook/addon-links": "^6.1.15",
+    "@storybook/addon-postcss": "^2.0.0",
     "@storybook/addon-storyshots": "^6.1.15",
     "@storybook/addon-storyshots-puppeteer": "^6.1.15",
     "@storybook/addon-storysource": "^6.1.15",
@@ -92,6 +93,8 @@
     "chokidar-cli": "^2.1.0",
     "concurrently": "^5.3.0",
     "cpy-cli": "^3.1.1",
+    "css-color-converter": "^2.0.0",
+    "cssnano": "^4.1.10",
     "eslint-config-airbnb-typescript": "^12.0.0",
     "eslint-config-react-app": "^6.0.0",
     "eslint-plugin-mdx": "^1.8.2",
@@ -100,11 +103,19 @@
     "jest-css-modules": "^2.1.0",
     "postcss": "^7",
     "postcss-cli": "^7.1.1",
+    "postcss-comment": "^2.0.0",
+    "postcss-each": "^0.10.0",
+    "postcss-functions": "3.0.0",
+    "postcss-import": "12.0.0",
+    "postcss-nested": "^4.2.3",
     "postcss-scss": "^2.1.1",
+    "postcss-simple-vars": "5.0.2",
+    "postcss-strip-inline-comments": "^0.1.5",
+    "postcss-url": "8.0.0",
+    "precss": "^4.0.0",
     "prettier": "^2.2.1",
     "react-is": "^17.0.1",
     "rollup-plugin-postcss": "^3.1.8",
-    "rollup-plugin-scss": "^2.6.1",
     "rollup-plugin-url": "^3.0.1",
     "sass-loader": "^10.1.1",
     "size-limit": "^4.9.2",
@@ -122,33 +133,24 @@
     "node": ">=10"
   },
   "peerDependencies": {
-    "react": ">=16",
-    "formik": ">=2.2.6"
+    "formik": ">=2.2.6",
+    "react": ">=16"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "tsdx lint"
+      "pre-commit": "tsdx lint src"
     }
   },
   "size-limit": [
     {
       "path": "dist/component-library.cjs.production.min.js",
-      "limit": "10 KB"
+      "limit": "400 KB"
     },
     {
       "path": "dist/component-library.esm.js",
-      "limit": "10 KB"
+      "limit": "400 KB"
     }
   ],
-  "jest": {
-    "moduleNameMapper": {
-      "\\.svg": "<rootDir>/src/__mocks__/svgrMock.ts",
-      "\\.(css|less|scss|sss|styl)$": "<rootDir>/node_modules/jest-css-modules"
-    },
-    "setupFilesAfterEnv": [
-      "<rootDir>/jest.setup.ts"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.3%",

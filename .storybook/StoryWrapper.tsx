@@ -4,7 +4,7 @@ import { IconRegistry, ThemeBase } from '../src/lib';
 // @ts-ignore
 import { ReactComponent as peaceSymbol } from './assets/hand-peace-light.svg';
 
-import './storybook-preview.scss';
+import './storybook-preview.css';
 
 export const StoryWrapper = ({ children }) => (
   <ThemeBase>

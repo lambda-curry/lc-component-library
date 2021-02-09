@@ -1,7 +1,49 @@
+# Theming
+
+The component library uses CSS custom properties to handle theming. To make this work with Tailwind's `opacity` utilities, the values of your theme variables must be in RGB format. Our configuration handles wrapping the values in the `rgba()` function, so you only need to provide the comma-separate RGB values. For example to override the `black` color variable, you would do it like this:
+
+```css
+.my-theme-root {
+  --lc-color-black: 40, 45, 48; /* This is equivalent to the hex value #282D30 */
+}
+```
+
+Here is the full list of CSS custom properties that we currently provide for theming (along with their default values):
+
+```css
+:root {
+  --lc-color-black: 0, 0, 0;
+  --lc-color-white: 255, 255, 255;
+
+  --lc-color-gray-lightest: 245, 246, 250;
+  --lc-color-gray-lighter: 226, 226, 226;
+  --lc-color-gray-light: 189, 189, 189;
+  --lc-color-gray: 160, 165, 186;
+  --lc-color-gray-dark: 112, 112, 112;
+  --lc-color-gray-darker: 64, 64, 64;
+
+  --lc-color-primary: 49, 130, 206;
+  --lc-color-primary-dark: 44, 82, 130;
+
+  --lc-color-accent: 237, 100, 166;
+  --lc-color-accent-dark: 184, 50, 128;
+
+  --lc-color-success: 72, 187, 120;
+  --lc-color-success-dark: 47, 133, 90;
+
+  --lc-color-warn: 237, 137, 54;
+  --lc-color-warn-dark: 221, 107, 32;
+
+  --lc-color-danger: 229, 62, 62;
+  --lc-color-danger-dark: 197, 48, 48;
+
+  --lc-color-active: 91, 208, 103;
+}
+```
+
 # How to deploy to Github.io
 
 Checkout the `docs` branch. Merge in the latest code you would like to deploy. Run `yarn build:storybook` and push up the build to the `docs` branch. Github will automatically deploy static build to https://lambda-curry.github.io/lc-component-library.
-
 
 # TSDX React w/ Storybook User Guide
 

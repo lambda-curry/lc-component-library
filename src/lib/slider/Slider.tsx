@@ -2,7 +2,7 @@ import React from 'react';
 import { Mark, Slider as MuiSlider, ValueLabelProps } from '@material-ui/core';
 import classNames from 'classnames';
 import { FormikProps } from 'formik';
-import './slider.scss';
+import './slider.css';
 import { isNullOrUndefined } from '../util/js-helpers';
 
 export type SliderProps = {

@@ -5,7 +5,7 @@
 
     .MuiCheckbox {
       &-colorPrimary.Mui-checked {
-        color: theme('colors.primary.default');
+        @apply lc-text-primary;
       }
     }
 

@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import * as Stripe from '@stripe/stripe-js';
 import { CardElement } from '@stripe/react-stripe-js';
 import { useField, useFormikContext } from 'formik';
-import './stripe-card-input.scss';
+import './stripe-card-input.css';
 import { arrayToListString } from '../util/formatters';
 import classNames from 'classnames';
 import { get as _get, set as _set } from 'lodash';

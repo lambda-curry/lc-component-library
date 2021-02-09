@@ -1,0 +1,12 @@
+$fonts-path: ../assets/fonts/;
+
+@each $name, $weight in (thin, ultralight, light, regular, medium, semibold, bold, extrabold, heavy),
+  (100, 200, 300, 400, 500, 600, 700, 800, 900)
+{
+  @font-face {
+    font-family: 'lc-gilroy';
+    src: url('$(fonts-path)gilroy-$(name).woff2') format('woff2'),
+      url('$(fonts-path)gilroy-$(name).woff') format('woff'), url('$(fonts-path)gilroy-$(name).ttf') format('truetype');
+    font-weight: $weight;
+  }
+}
