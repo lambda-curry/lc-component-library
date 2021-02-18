@@ -75,5 +75,28 @@ import dedent from 'string-dedent';
       />
     </div>
   </Story>
+  <Story
+    name="Paragraph with Span as Tab Label"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+            <Tabs
+              tabs={[
+                { label: <p>Test 1 <span style={{color: 'green'}}>Check it out</span></p>, render: '1' }
+              ]}
+            />`
+        }
+      }
+    }}
+  >
+    <div className="tabs-story">
+      <Tabs
+        tabs={[
+          { label: <p>Test 1 <span style={{color: 'green'}}>Check it out</span></p>, render: '1' }
+        ]}
+      />
+    </div>
+  </Story>
   <ArgsTable of={Tabs} />
 </Canvas>
