@@ -55,7 +55,7 @@ const useStyles = makeStyles(() => ({
 
 export const Tabs: FC<{
   ariaLabel?: string;
-  tabs: { label: string; render: ReactNode }[];
+  tabs: { label: string | ReactNode; render: ReactNode }[];
   variant?: 'scrollable' | 'standard' | 'fullWidth';
 }> = ({ tabs, variant = 'fullWidth', ariaLabel }) => {
   const classes = useStyles();
