@@ -55,9 +55,10 @@ const useStyles = makeStyles(() => ({
 
 export const Tabs: FC<{
   ariaLabel?: string;
-  tabs: { label: string; render: ReactNode }[];
+  tabs: { label: string | ReactNode; render: ReactNode; value: string }[];
   variant?: 'scrollable' | 'standard' | 'fullWidth';
-}> = ({ tabs, variant = 'fullWidth', ariaLabel }) => {
+  initialValue?: string;
+}> = ({ tabs, variant = 'fullWidth', ariaLabel, initialValue }) => {
   const classes = useStyles();
   const [value, setValue] = useState(0);
 
@@ -73,10 +74,10 @@ export const Tabs: FC<{
           aria-label={ariaLabel}
           classes={{ indicator: classes.indicator }}
           onChange={handleChange}
-          value={value}
+          value={initialValue ?? value}
         >
           {tabs.map((tab, index) => (
-            <Tab className={classes.tab} label={tab.label} {...a11yProps(index)} />
+            <Tab className={classes.tab} value={tab.value} label={tab.label} {...a11yProps(index)} />
           ))}
         </MuiTabs>
       </AppBar>

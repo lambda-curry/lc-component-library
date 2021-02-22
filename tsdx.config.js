@@ -13,6 +13,8 @@ const svgr = require('@svgr/rollup').default;
 const postcss = require('rollup-plugin-postcss');
 const { terser } = require('rollup-plugin-terser');
 const nodeResolve = require('@rollup/plugin-node-resolve').default;
+const postCSSConfig = require('./postcss.config');
+
 
 module.exports = {
   rollup(config, options) {
@@ -20,8 +22,9 @@ module.exports = {
       url(),
       svgr(),
       postcss({
+        inject: true,
         // only write out CSS for the first bundle (avoids pointless extra files):
-        extract: !!options.writeMeta,
+        extract: !!options.writeMeta
       }),
       terser(),
       nodeResolve({ browser: true }),
