@@ -57,10 +57,10 @@ export const Tabs: FC<{
   ariaLabel?: string;
   tabs: { label: string | ReactNode; render: ReactNode; value?: string }[];
   variant?: 'scrollable' | 'standard' | 'fullWidth';
-  initialValue?: string;
-}> = ({ tabs, variant = 'fullWidth', ariaLabel, initialValue }) => {
+  initialValue?: number;
+}> = ({ tabs, variant = 'fullWidth', ariaLabel, initialValue = 0 }) => {
   const classes = useStyles();
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(initialValue);
 
   const handleChange = (event: ChangeEvent<any>, newValue: number) => {
     setValue(newValue);
@@ -74,7 +74,7 @@ export const Tabs: FC<{
           aria-label={ariaLabel}
           classes={{ indicator: classes.indicator }}
           onChange={handleChange}
-          value={initialValue ?? value}
+          value={value}
         >
           {tabs.map((tab, index) => (
             <Tab className={classes.tab} value={tab.value} label={tab.label} {...a11yProps(index)} />
