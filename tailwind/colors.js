@@ -1,5 +1,7 @@
+const { cssVar } = require('./helpers');
+
 const colorWithOpactiy = (color) => ({ opacityVariable, opacityValue }) => {
-  const cssVariable = `var(--lc-color-${color})`;
+  const cssVariable = cssVar(`color-${color}`);
 
   if (opacityValue !== undefined) return `rgba(${cssVariable}, ${opacityValue})`;
   if (opacityVariable !== undefined) return `rgba(${cssVariable}, var(${opacityVariable}, 1))`;
