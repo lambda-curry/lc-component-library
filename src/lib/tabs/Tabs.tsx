@@ -1,7 +1,8 @@
-import React, { FC, ReactNode, useState, ChangeEvent } from 'react';
+import React, { FC, ReactNode, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
-import { Tabs as MuiTabs, Tab } from '@material-ui/core';
+import { Tabs as MuiTabs, Tab, TabsProps } from '@material-ui/core';
+import classNames from 'classnames';
 
 interface TabPanelProps {
   index: any;
@@ -53,31 +54,34 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-export const Tabs: FC<{
-  ariaLabel?: string;
-  tabs: { label: string | ReactNode; render: ReactNode; value?: string }[];
-  variant?: 'scrollable' | 'standard' | 'fullWidth';
-  initialValue?: number;
-}> = ({ tabs, variant = 'fullWidth', ariaLabel, initialValue = 0 }) => {
+export const Tabs: FC<
+  {
+    className?: string;
+    ariaLabel?: string;
+    tabs: { label: string | ReactNode; render: ReactNode; value: string }[];
+    variant?: 'scrollable' | 'standard' | 'fullWidth';
+  } & TabsProps
+> = ({ className, tabs, variant = 'fullWidth', ariaLabel, onChange, value: initialValue = 0, ...rest }) => {
   const classes = useStyles();
+
   const [value, setValue] = useState(initialValue);
 
-  const handleChange = (event: ChangeEvent<any>, newValue: number) => {
-    setValue(newValue);
-  };
-
   return (
-    <div className={classes.root}>
+    <div className={classNames(classes.root, className)}>
       <AppBar className={classes.appBar} color="default" position="static">
         <MuiTabs
           variant={variant}
           aria-label={ariaLabel}
           classes={{ indicator: classes.indicator }}
-          onChange={handleChange}
+          {...rest}
+          onChange={(event, value) => {
+            setValue(value);
+            if (onChange) onChange(event, value);
+          }}
           value={value}
         >
           {tabs.map((tab, index) => (
-            <Tab className={classes.tab} value={tab.value} label={tab.label} {...a11yProps(index)} />
+            <Tab className={classes.tab} value={index} label={tab.label} {...a11yProps(index)} />
           ))}
         </MuiTabs>
       </AppBar>
