@@ -1,5 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
 import { Drawer } from '../..';
+import { DrawerProvider } from '../DrawerProvider.tsx';
 import { DrawerExample1 } from './drawer.examples.tsx';
 import dedent from 'string-dedent';
 
@@ -13,7 +14,23 @@ import dedent from 'string-dedent';
     parameters={{
       docs: {
         source: {
-          code: dedent``
+          code: dedent`
+            <DrawerProvider>
+              <ButtonPrimary onClick={() => toggleDrawer({ name: 'ExampleDrawer', data: { content: 'Hello World' } })}>
+                Open Drawer
+              </ButtonPrimary>
+              <Drawer name="ExampleDrawer">
+                <p>{content}</p>
+                <br />
+                <InputText
+                  name="content"
+                  label="Type to update the drawer content"
+                  value={content}
+                  onChange={event => setDrawerData({ name: 'ExampleDrawer', data: { content: event.target.value } })}
+                />
+              </Drawer>
+            </DrawerProvider>
+          `
         }
       }
     }}

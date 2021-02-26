@@ -1,28 +1,38 @@
 import { Drawer as MuiDrawer } from '@material-ui/core';
 import React, { Dispatch } from 'react';
 import './drawer.css';
+import { useDrawer } from './DrawerProvider';
 
 export interface DrawerType {
-  id: string;
-  data: any;
+  name: string;
+  data?: any;
 }
 
 export interface DrawerReducerState {
-  activeDrawer?: DrawerType;
+  active?: string;
+  data: { [x: string]: any };
 }
 
 export const DrawerReducers = {
   toggleDrawer: (state: DrawerReducerState, drawer: DrawerType) => {
-    if (!state.activeDrawer) {
-      return { ...state, drawer };
-    }
-
-    if (state.activeDrawer.id === drawer.id) {
-      delete state.activeDrawer;
+    if (state.active === drawer.name) {
+      delete state.active;
       return { ...state };
     }
 
-    return { ...state, activeDrawer: drawer };
+    if (drawer.data) {
+      state.data[drawer.name] = Object.assign(state.data[drawer.name] || {}, drawer.data);
+    }
+
+    return { ...state, active: drawer.name };
+  },
+  setDrawerData: (state: DrawerReducerState, drawer: DrawerType) => {
+    state.data[drawer.name] = Object.assign(state.data[drawer.name] || {}, drawer.data);
+    return { ...state };
+  },
+  clearDrawerData: (state: DrawerReducerState, drawer: DrawerType) => {
+    delete state.data[drawer.name];
+    return { ...state };
   }
 };
 
@@ -42,40 +52,64 @@ export const DrawerReducer = (state: DrawerReducerState, action: DrawerReducerAc
   return nextState;
 };
 
-export const DrawerActions = (state: DrawerReducerState, dispatch: DrawerDispatch<any>) => ({
-  toggleDrawer: (payload: DrawerType) => dispatch({ name: 'toggleDrawer', payload })
+export interface DrawerActions {
+  toggleDrawer: (payload: DrawerType) => void;
+  setDrawerData: (payload: DrawerType) => void;
+  clearDrawerData: (payload: DrawerType) => void;
+  getDrawerData: <T>(name?: string) => T;
+}
+
+export const drawerActions: (state: DrawerReducerState, dispatch: DrawerDispatch<any>) => DrawerActions = (
+  state,
+  dispatch
+) => ({
+  toggleDrawer: (payload: DrawerType) => dispatch({ name: 'toggleDrawer', payload }),
+  setDrawerData: (payload: DrawerType) => dispatch({ name: 'setDrawerData', payload }),
+  clearDrawerData: (payload: DrawerType) => dispatch({ name: 'clearDrawerData', payload }),
+  getDrawerData: (name?: string) => {
+    if (name) return state.data[name] ?? {};
+    return state.data;
+  }
 });
 
 export const toggleDrawer: (
-  open: boolean,
-  setOpen: (open: boolean) => void
-) => (event: React.KeyboardEvent | React.MouseEvent) => void = (open, setOpen) => event => {
+  name: string,
+  toggleFunction: (drawer: DrawerType) => void
+) => (event: React.KeyboardEvent | React.MouseEvent) => void = (name, toggleFunction) => event => {
   if (
     event.type === 'keydown' &&
     ((event as React.KeyboardEvent).key === 'Tab' || (event as React.KeyboardEvent).key === 'Shift')
   )
     return;
 
-  setOpen(!open);
+  toggleFunction({ name });
 };
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
 export interface DrawerProps {
-  open?: boolean;
-  setOpen: (open: boolean) => void;
+  name: string;
   options?: { anchor?: Anchor; minWidth: number };
 }
 
-export const Drawer: React.FC<DrawerProps> = ({ open = false, setOpen, children, options: overrides }) => {
+export const Drawer: React.FC<DrawerProps> = ({ name, children, options: overrides }) => {
   const options = {
     anchor: 'right' as Anchor,
     minWidth: 300,
     ...overrides
   };
 
+  const { drawerActions, drawerState } = useDrawer();
+
+  const isOpen = drawerState.active === name;
+
   return (
-    <MuiDrawer className="lc-drawer" anchor={options.anchor} open={open} onClose={toggleDrawer(open, setOpen)}>
+    <MuiDrawer
+      className="lc-drawer"
+      anchor={options.anchor}
+      open={isOpen}
+      onClose={toggleDrawer(name, drawerActions.toggleDrawer)}
+    >
       <div className="lc-drawer-content" style={{ minWidth: `${options.minWidth}px` }}>
         {children}
       </div>
