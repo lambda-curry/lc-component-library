@@ -1,7 +1,7 @@
-import React, { FC, ReactNode, ButtonHTMLAttributes } from 'react';
+import React, { FC, ReactNode, ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react';
 import classNames from 'classnames';
 
-export type ButtonProps = ButtonHTMLAttributes<any> & {
+export type ButtonProps = (ButtonHTMLAttributes<any> | AnchorHTMLAttributes<any>) & {
   as?:
     | keyof Pick<JSX.IntrinsicElements, 'a' | 'button'>
     | ((props: ButtonHTMLAttributes<{ children: ReactNode }>) => JSX.Element);
