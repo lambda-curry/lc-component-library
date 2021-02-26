@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import classNames from 'classnames';
 import { Icon, DefaultIconNames } from './Icon';
-import { getCssVar } from '../util/colors';
+import { getCssVar, isRgbColor, stripRgb } from '../util/colors';
 
 export interface DecorativeIconProps {
   className?: string;
@@ -12,12 +12,12 @@ export interface DecorativeIconProps {
 export const DecorativeIcon: FC<DecorativeIconProps> = ({ className, color, name, ...props }) => {
   const isDefaultCssVar = getCssVar(`lc-color-${color}`);
   const customColor = !isDefaultCssVar ? getCssVar(color) || color : '';
-  const style = customColor ? { backgroundColor: customColor } : undefined;
+  const backgroundColor = customColor && isRgbColor(customColor) ? `rgba(${stripRgb(customColor)})` : customColor;
 
   return (
     <div
       className={classNames('lc-icon-decorative', { [`lc-bg-${color}`]: isDefaultCssVar }, className)}
-      style={style}
+      style={customColor ? { backgroundColor } : undefined}
       {...props}
     >
       <Icon name={name} />
