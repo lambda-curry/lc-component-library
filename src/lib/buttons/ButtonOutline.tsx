@@ -7,7 +7,14 @@ export const ButtonOutline: FC<ButtonProps> = ({ className, ...props }) => (
   <ButtonStyled
     {...props}
     className={classNames(
-      [`lc-button-outline`, `lc-border-gray-light`, `hover:lc-bg-gray-lighter`, `focus:lc-ring-gray-lighter`],
+      [
+        `lc-button-outline`,
+        `lc-text-gray-darker`,
+        `lc-border-gray-light`,
+        `hover:lc-text-black`,
+        `hover:lc-bg-gray-light`,
+        `focus-visible:lc-ring-gray-lighter`
+      ],
       className
     )}
   />

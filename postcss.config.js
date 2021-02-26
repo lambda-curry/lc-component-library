@@ -41,6 +41,7 @@ module.exports = {
       : null
     ),
     require('tailwindcss'),
+    require('postcss-focus-visible'),
     require('autoprefixer'),
     require('cssnano')({
       preset: ['default', {

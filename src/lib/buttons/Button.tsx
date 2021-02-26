@@ -12,9 +12,10 @@ export const Button: FC<ButtonProps> = ({ className, ...props }) => (
         `lc-text-gray-darker`,
         `lc-bg-gray-lighter`,
         `lc-border-gray-lighter`,
+        `hover:lc-text-black`,
         `hover:lc-bg-gray-light`,
         `hover:lc-border-gray-light`,
-        `focus:lc-ring-gray-lighter`
+        `focus-visible:lc-ring-gray-lighter`
       ],
       className
     )}

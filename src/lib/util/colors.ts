@@ -62,7 +62,46 @@ export function lightenDarkenColor(hex: string, lum = -0.2): string {
   return rgb;
 }
 
-export function isHexColor(value: string): boolean {
-  const newValue = value ? value.replace(/\s+/g, '') : value;
-  return new RegExp(`^#${hexColorRegexString}{6}$`, 'i').test(newValue);
+export function isHexColor(color: string): boolean {
+  return new RegExp(`^[#]*(${hexColorRegexString}{6}|${hexColorRegexString}{3})$`, 'i').test(color);
+}
+
+export function isRgbColor(color: string): boolean {
+  return new RegExp(['rgb', 'rgba', ','].join('|')).test(color);
+}
+
+export function stripRgb(color: string): string {
+  return color.replace(/[^\d,.]/g, '');
+}
+
+export function rgbToHex(color: string) {
+  if (isHexColor(color) || !isRgbColor(color)) return color;
+
+  color = stripRgb(color);
+  const colorArray = color.split(', ');
+  const colors = colorArray.map(c => parseInt(c, 10));
+
+  return '#' + ((1 << 24) + (colors[0] << 16) + (colors[1] << 8) + colors[2]).toString(16).slice(1);
+}
+
+export function hexToRgb(color: string) {
+  if (isRgbColor(color) || !isHexColor(color)) return color;
+
+  let r = `0`;
+  let g = `0`;
+  let b = `0`;
+
+  if (color.length == 4) {
+    // 3 digits
+    r = `0x${color[1]}${color[1]}`;
+    g = `0x${color[2]}${color[2]}`;
+    b = `0x${color[3]}${color[3]}`;
+  } else if (color.length == 7) {
+    // 6 digits
+    r = `0x${color[1]}${color[2]}`;
+    g = `0x${color[3]}${color[4]}`;
+    b = `0x${color[5]}${color[6]}`;
+  }
+
+  return `${+r}, ${+g}, ${+b}`;
 }

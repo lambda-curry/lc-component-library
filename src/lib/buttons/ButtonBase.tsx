@@ -28,7 +28,10 @@ export const ButtonBase: FC<ButtonProps> = ({
         `lc-button`,
         `lc-inline-flex`,
         `lc-items-center`,
+        `lc-justify-center`,
+        `lc-text-center`,
         `lc-font-sans`,
+        `lc-text-sm`,
         `lc-appearance-none`,
         `lc-no-underline`,
         `lc-transform`,
@@ -37,6 +40,7 @@ export const ButtonBase: FC<ButtonProps> = ({
         `disabled:lc-scale-1`,
         `disabled:lc-opacity-50`,
         `disabled:lc-cursor-not-allowed`,
+        `focus:lc-ring-transparent`,
         iconPlacement && iconPlacement === 'end' ? `lc-flex-row-reverse` : ''
       ],
       className

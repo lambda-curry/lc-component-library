@@ -13,7 +13,7 @@ export const ButtonOutlineAccent: FC<ButtonProps> = ({ className, ...props }) =>
         `lc-border-accent`,
         `hover:lc-text-white`,
         `hover:lc-bg-accent`,
-        `focus:lc-ring-accent`
+        `focus-visible:lc-ring-accent`
       ],
       className
     )}

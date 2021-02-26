@@ -12,9 +12,10 @@ export const ButtonDanger: FC<ButtonProps> = ({ className, ...props }) => (
         `lc-text-white`,
         `lc-bg-danger`,
         `lc-border-danger`,
+        `hover:lc-text-white`,
         `hover:lc-bg-danger-dark`,
         `hover:lc-border-danger-dark`,
-        `focus:lc-ring-danger`
+        `focus-visible:lc-ring-danger`
       ],
       className
     )}
