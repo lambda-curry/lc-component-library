@@ -95,7 +95,7 @@ export interface DrawerProps {
 export const Drawer: React.FC<DrawerProps> = ({ name, children, options: overrides }) => {
   const options = {
     anchor: 'right' as Anchor,
-    minWidth: 300,
+    width: 300,
     ...overrides
   };
 
@@ -110,7 +110,7 @@ export const Drawer: React.FC<DrawerProps> = ({ name, children, options: overrid
       open={isOpen}
       onClose={toggleDrawer(name, drawerActions.toggleDrawer)}
     >
-      <div className="lc-drawer-content" style={{ minWidth: `${options.minWidth}px` }}>
+      <div className="lc-drawer-content" style={{ width: `${options.width}px` }}>
         {children}
       </div>
     </MuiDrawer>
