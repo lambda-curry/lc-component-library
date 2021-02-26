@@ -12,6 +12,7 @@ export const ButtonPrimary: FC<ButtonProps> = ({ className, ...props }) => (
         `lc-text-white`,
         `lc-bg-primary`,
         `lc-border-primary`,
+        `hover:lc-text-white`,
         `hover:lc-bg-primary-dark`,
         `hover:lc-border-primary-dark`,
         `focus-visible:lc-ring-primary`

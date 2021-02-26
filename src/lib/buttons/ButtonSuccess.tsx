@@ -12,6 +12,7 @@ export const ButtonSuccess: FC<ButtonProps> = ({ className, ...props }) => (
         `lc-text-white`,
         `lc-bg-success`,
         `lc-border-success`,
+        `hover:lc-text-white`,
         `hover:lc-bg-success-dark`,
         `hover:lc-border-success-dark`,
         `focus-visible:lc-ring-success`
