@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useState } from 'react';
+import React, { ChangeEvent, FC, ReactNode, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import { Tabs as MuiTabs, Tab, TabsProps } from '@material-ui/core';
@@ -56,9 +56,10 @@ const useStyles = makeStyles(() => ({
 
 export const Tabs: FC<
   {
-    className?: string;
     ariaLabel?: string;
-    tabs: { label: string | ReactNode; render: ReactNode; value: string }[];
+    className?: string;
+    onChange?: (event: ChangeEvent<{}>, index: any) => void;
+    tabs: { label: string | ReactNode; render: ReactNode }[];
     variant?: 'scrollable' | 'standard' | 'fullWidth';
   } & TabsProps
 > = ({ className, tabs, variant = 'fullWidth', ariaLabel, onChange, value: initialValue = 0, ...rest }) => {
