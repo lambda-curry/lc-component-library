@@ -5,9 +5,10 @@ import { Button, ButtonProps } from '../buttons';
 
 import './icon-button.css';
 
-export interface IconButtonProps extends ButtonProps {
+export type IconButtonProps = ButtonProps & {
   icon: IconNames;
-}
+};
+
 export const IconButton: React.FC<IconButtonProps> = ({ className, icon, ...rest }) => (
   <Button {...rest} className={classNames('lc-icon-button', className)}>
     <Icon name={icon} />
