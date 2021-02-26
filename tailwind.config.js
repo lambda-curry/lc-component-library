@@ -86,7 +86,9 @@ module.exports = {
       pointerEvents: ['disabled'],
       cursor: ['disabled', 'hover'],
       transform: ['active'],
-      scale: ['active']
+      scale: ['active'],
+      ringColor: ['focus-visible'],
+      outline: ['focus-visible']
     }
   },
   plugins: []

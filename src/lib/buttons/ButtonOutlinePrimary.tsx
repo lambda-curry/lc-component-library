@@ -13,7 +13,7 @@ export const ButtonOutlinePrimary: FC<ButtonProps> = ({ className, ...props }) =
         `lc-border-primary`,
         `hover:lc-text-white`,
         `hover:lc-bg-primary`,
-        `focus:lc-ring-primary`
+        `focus-visible:lc-ring-primary`
       ],
       className
     )}

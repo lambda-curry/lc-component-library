@@ -40,6 +40,7 @@ export const ButtonBase: FC<ButtonProps> = ({
         `disabled:lc-scale-1`,
         `disabled:lc-opacity-50`,
         `disabled:lc-cursor-not-allowed`,
+        `focus:lc-ring-transparent`,
         iconPlacement && iconPlacement === 'end' ? `lc-flex-row-reverse` : ''
       ],
       className

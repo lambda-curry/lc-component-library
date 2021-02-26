@@ -13,7 +13,7 @@ export const ButtonOutlineWarn: FC<ButtonProps> = ({ className, ...props }) => (
         `lc-border-warn`,
         `hover:lc-text-white`,
         `hover:lc-bg-warn`,
-        `focus:lc-ring-warn`
+        `focus-visible:lc-ring-warn`
       ],
       className
     )}
