@@ -14,7 +14,7 @@ export const ButtonAccent: FC<ButtonProps> = ({ className, ...props }) => (
         `lc-border-accent`,
         `hover:lc-bg-accent-dark`,
         `hover:lc-border-accent-dark`,
-        `focus:lc-ring-accent`
+        `focus-visible:lc-ring-accent`
       ],
       className
     )}

@@ -13,7 +13,7 @@ export const ButtonOutlineSuccess: FC<ButtonProps> = ({ className, ...props }) =
         `lc-border-success`,
         `hover:lc-text-white`,
         `hover:lc-bg-success`,
-        `focus:lc-ring-success`
+        `focus-visible:lc-ring-success`
       ],
       className
     )}

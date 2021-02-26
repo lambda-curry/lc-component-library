@@ -12853,6 +12853,13 @@ postcss-focus-visible@^4.0.0:
   dependencies:
     postcss "^7.0.2"
 
+postcss-focus-visible@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/postcss-focus-visible/-/postcss-focus-visible-5.0.0.tgz#61e0909244cd15b9075bd40a4f176aa4e2446dbc"
+  integrity sha512-KWMjuX+6Mbt7BvD7L9YETXXx8pmNSlT881Zdebbi5zLKdRIM0FIlwG87i/RXiwTf5nGJdaHA1KKsE6gW+O719A==
+  dependencies:
+    postcss "^7.0.27"
+
 postcss-focus-within@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/postcss-focus-within/-/postcss-focus-within-3.0.0.tgz#763b8788596cee9b874c999201cdde80659ef680"
