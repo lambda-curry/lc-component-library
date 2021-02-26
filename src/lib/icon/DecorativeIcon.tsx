@@ -9,15 +9,18 @@ export interface DecorativeIconProps {
   name: DefaultIconNames | string;
 }
 
-export const DecorativeIcon: FC<DecorativeIconProps> = ({ className, color, ...props }) => {
-  const cssVar = getCssVar(color);
-  const style = {
-    backgroundColor: cssVar || color
-  };
+export const DecorativeIcon: FC<DecorativeIconProps> = ({ className, color, name, ...props }) => {
+  const isDefaultCssVar = getCssVar(`lc-color-${color}`);
+  const customColor = !isDefaultCssVar ? getCssVar(color) || color : '';
+  const style = customColor ? { backgroundColor: customColor } : undefined;
 
   return (
-    <div className={classNames(className, 'lc-icon-decorative')} style={style}>
-      <Icon {...props} />
+    <div
+      className={classNames('lc-icon-decorative', { [`lc-bg-${color}`]: isDefaultCssVar }, className)}
+      style={style}
+      {...props}
+    >
+      <Icon name={name} />
     </div>
   );
 };

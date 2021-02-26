@@ -2,6 +2,8 @@ export const hexColorRegexString = '[a-fA-F0-9]';
 export const hexColorRegex = new RegExp(hexColorRegexString);
 
 export function getCssVar(cssVar: string, computedStyle?: CSSStyleDeclaration): string {
+  console.log(cssVar);
+
   const styles = computedStyle ? computedStyle : getComputedStyle(document.documentElement);
   return styles.getPropertyValue(`--${cssVar}`).replace(' ', '');
 }
@@ -65,4 +67,35 @@ export function lightenDarkenColor(hex: string, lum = -0.2): string {
 export function isHexColor(value: string): boolean {
   const newValue = value ? value.replace(/\s+/g, '') : value;
   return new RegExp(`^#${hexColorRegexString}{6}$`, 'i').test(newValue);
+}
+
+export function rgbToHex(color: string) {
+  if (isHexColor(color)) return color;
+
+  const colorArray = color.split(', ');
+  const colors = colorArray.map(c => parseInt(c, 10));
+
+  return '#' + ((1 << 24) + (colors[0] << 16) + (colors[1] << 8) + colors[2]).toString(16).slice(1);
+}
+
+export function hexToRgb(hex: string) {
+  if (!isHexColor(hex)) return hex;
+
+  let r = `0`;
+  let g = `0`;
+  let b = `0`;
+
+  if (hex.length == 4) {
+    // 3 digits
+    r = `0x${hex[1]}${hex[1]}`;
+    g = `0x${hex[2]}${hex[2]}`;
+    b = `0x${hex[3]}${hex[3]}`;
+  } else if (hex.length == 7) {
+    // 6 digits
+    r = `0x${hex[1]}${hex[2]}`;
+    g = `0x${hex[3]}${hex[4]}`;
+    b = `0x${hex[5]}${hex[6]}`;
+  }
+
+  return `${+r}, ${+g}, ${+b}`;
 }
