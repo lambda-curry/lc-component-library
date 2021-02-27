@@ -1,11 +1,12 @@
-import React, { FC } from 'react';
+import React, { FC, forwardRef } from 'react';
 import classNames from 'classnames';
 import { ButtonProps } from './ButtonBase';
 import { ButtonStyled } from './ButtonStyled';
 
-export const ButtonAccent: FC<ButtonProps> = ({ className, ...props }) => (
+export const ButtonAccent: FC<ButtonProps> = forwardRef(({ className, ...props }, ref) => (
   <ButtonStyled
     {...props}
+    ref={ref}
     className={classNames(
       [
         `lc-button-accent`,
@@ -20,4 +21,4 @@ export const ButtonAccent: FC<ButtonProps> = ({ className, ...props }) => (
       className
     )}
   />
-);
+));
