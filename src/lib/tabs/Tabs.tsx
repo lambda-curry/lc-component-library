@@ -54,15 +54,22 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-export const Tabs: FC<
-  {
-    ariaLabel?: string;
-    className?: string;
-    onChange?: (event: ChangeEvent<{}>, index: any) => void;
-    tabs: { label: string | ReactNode; render: ReactNode }[];
-    variant?: 'scrollable' | 'standard' | 'fullWidth';
-  } & TabsProps
-> = ({ className, tabs, variant = 'fullWidth', ariaLabel, onChange, value: initialValue = 0, ...rest }) => {
+interface TabsPropsFixed extends Omit<TabsProps, 'onChange'> {
+  ariaLabel?: string;
+  className?: string;
+  onChange?: (event: ChangeEvent, value: any) => void;
+  tabs: { label: string | ReactNode; render: ReactNode }[];
+}
+
+export const Tabs: FC<TabsPropsFixed> = ({
+  ariaLabel,
+  className,
+  tabs,
+  variant = 'fullWidth',
+  onChange,
+  value: initialValue = 0,
+  ...rest
+}) => {
   const classes = useStyles();
 
   const [value, setValue] = useState(initialValue);
