@@ -58,7 +58,7 @@ export const Tabs: FC<
   {
     ariaLabel?: string;
     className?: string;
-    onChange?: (event: ChangeEvent<{}>, index: any) => void;
+    onChange?: (event: ChangeEvent<any>, index: any) => void;
     tabs: { label: string | ReactNode; render: ReactNode }[];
     variant?: 'scrollable' | 'standard' | 'fullWidth';
   } & TabsProps
