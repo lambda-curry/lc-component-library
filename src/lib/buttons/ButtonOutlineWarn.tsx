@@ -1,11 +1,12 @@
-import React, { FC } from 'react';
+import React, { FC, forwardRef } from 'react';
 import classNames from 'classnames';
 import { ButtonProps } from './ButtonBase';
 import { ButtonStyled } from './ButtonStyled';
 
-export const ButtonOutlineWarn: FC<ButtonProps> = ({ className, ...props }) => (
+export const ButtonOutlineWarn: FC<ButtonProps> = forwardRef(({ className, ...props }, ref) => (
   <ButtonStyled
     {...props}
+    ref={ref}
     className={classNames(
       [
         `lc-button-outline-warn`,
@@ -18,4 +19,4 @@ export const ButtonOutlineWarn: FC<ButtonProps> = ({ className, ...props }) => (
       className
     )}
   />
-);
+));
