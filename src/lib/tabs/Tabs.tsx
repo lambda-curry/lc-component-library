@@ -57,7 +57,7 @@ const useStyles = makeStyles(() => ({
 interface TabsPropsFixed extends Omit<TabsProps, 'onChange'> {
   ariaLabel?: string;
   className?: string;
-  onChange?: (event: React.ChangeEvent<{}>, value: any) => void;
+  onChange?: (event: React.ChangeEvent<any>, value: any) => void;
   tabs: { label: string | ReactNode; render: ReactNode }[];
 }
 
