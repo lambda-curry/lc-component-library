@@ -1,6 +1,6 @@
 {
   "name": "@lambdacurry/component-library",
-  "version": "0.7.25-beta.22",
+  "version": "0.7.25-beta.23",
   "main": "dist/index.js",
   "module": "dist/component-library.esm.js",
   "types": "dist/index.d.ts",
