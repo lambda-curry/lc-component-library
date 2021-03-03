@@ -2,7 +2,6 @@
   // TODO: No need to have this `.button` specificity once we remove the old Bootstrap styles
   // and import `buttons.css` into the `Button` component
   &.lc-button {
-    @apply lc-text-gray-dark;
     display: inline-flex;
     min-height: auto;
     background-color: transparent;
@@ -14,9 +13,5 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-
-    &:hover {
-      @apply lc-bg-gray-lighter;
-    }
   }
 }

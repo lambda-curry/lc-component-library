@@ -88,7 +88,9 @@ module.exports = {
       transform: ['active'],
       scale: ['active'],
       ringColor: ['focus-visible'],
-      outline: ['focus-visible']
+      outline: ['focus-visible'],
+      backgroundColor: ['focus-visible'],
+      borderColor: ['focus-visible']
     }
   },
   plugins: []

@@ -11,6 +11,7 @@ export * from './ButtonOutlineAccent';
 export * from './ButtonOutlineSuccess';
 export * from './ButtonOutlineWarn';
 export * from './ButtonOutlineDanger';
+export * from './ButtonStyled';
 export * from './ButtonUnstyled';
 export * from './ButtonLink';
 export * from './ButtonGroup/ButtonGroup';
