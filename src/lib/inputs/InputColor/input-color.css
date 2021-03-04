@@ -24,12 +24,16 @@ $color-input-border-radius: 2px;
     border-radius: $color-input-border-radius;
 
     &-input {
-      @apply lc-border-1 lc-border-solid lc-border-gray-lighter;
       @include color-picker-swatch();
+      @apply lc-border-1;
+      @apply lc-border-solid;
+      @apply lc-border-gray-lighter;
       margin: 0;
+      outline: none;
 
       &:focus {
-        @apply lc-ring-2 lc-ring-primary;
+        @apply lc-ring-2;
+        @apply lc-ring-primary;
       }
 
       &::-webkit-color-swatch {
