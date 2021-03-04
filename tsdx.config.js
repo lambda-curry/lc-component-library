@@ -21,9 +21,23 @@ module.exports = {
       url(),
       svgr(),
       postcss({
-        inject: true,
+        ...postCSSConfig,
         // only write out CSS for the first bundle (avoids pointless extra files):
-        extract: !!options.writeMeta
+        extract: !!options.writeMeta,
+        inject: true,
+        plugins: [
+          ...postCSSConfig.plugins,
+          // Only include the `postcss-url` plugin for our TSDX builds,
+          // because Storybook uses webpack to process and bundle assets,
+          // and this breaks the Storybook build.
+          require("postcss-url")(process.env.NODE_ENV === 'production' ? {
+            url: 'copy',
+            maxSize: 10 * 1024, // inline files < 10k, copy files > 10k
+            fallback: 'copy',
+            optimizeSvgEncode: true,
+            assetsPath: 'dist/assets',
+          } : { url: 'rebase' }),
+        ]
       }),
       terser(),
       nodeResolve({ browser: true }),
