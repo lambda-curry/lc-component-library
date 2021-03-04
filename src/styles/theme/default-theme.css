@@ -23,8 +23,8 @@ We use the `postcss-functions` plugin to allow us to write functions in JS and t
   --lc-color-success: hexToRGB(#48bb78);
   --lc-color-success-dark: hexToRGB(#2f855a);
 
-  --lc-color-warn: hexToRGB(#ed8936);
-  --lc-color-warn-dark: hexToRGB(#dd6b20);
+  --lc-color-warning: hexToRGB(#ed8936);
+  --lc-color-warning-dark: hexToRGB(#dd6b20);
 
   --lc-color-danger: hexToRGB(#e53e3e);
   --lc-color-danger-dark: hexToRGB(#c53030);

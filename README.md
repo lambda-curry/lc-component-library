@@ -31,8 +31,8 @@ Here is the full list of CSS custom properties that we currently provide for the
   --lc-color-success: 72, 187, 120;
   --lc-color-success-dark: 47, 133, 90;
 
-  --lc-color-warn: 237, 137, 54;
-  --lc-color-warn-dark: 221, 107, 32;
+  --lc-color-warning: 237, 137, 54;
+  --lc-color-warning-dark: 221, 107, 32;
 
   --lc-color-danger: 229, 62, 62;
   --lc-color-danger-dark: 197, 48, 48;

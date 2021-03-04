@@ -38,7 +38,7 @@ const themeColorsConfig = {
     'DEFAULT',
     'dark'
   ],
-  warn: [
+  warning: [
     'DEFAULT',
     'dark'
   ],

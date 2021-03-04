@@ -52,10 +52,10 @@ $snackbars-min-width: 280px;
 
     &[class*='variantWarning'] {
       @apply lc-text-white;
-      @apply lc-bg-warn;
+      @apply lc-bg-warning;
 
       .snackbar-action-primary {
-        @apply lc-text-warn;
+        @apply lc-text-warning;
       }
     }
 
