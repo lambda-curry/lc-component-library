@@ -23,12 +23,17 @@ We use the `postcss-functions` plugin to allow us to write functions in JS and t
   --lc-color-success: hexToRGB(#48bb78);
   --lc-color-success-dark: hexToRGB(#2f855a);
 
-  --lc-color-warn: hexToRGB(#ed8936);
-  --lc-color-warn-dark: hexToRGB(#dd6b20);
+  --lc-color-warning: hexToRGB(#ed8936);
+  --lc-color-warning-dark: hexToRGB(#dd6b20);
 
   --lc-color-danger: hexToRGB(#e53e3e);
   --lc-color-danger-dark: hexToRGB(#c53030);
 
   // TODO: We need to find a better variable name for this. Since it is only used for the switch currently, perhaps `switch-active` would be better?
   --lc-color-active: hexToRGB(#5bd067);
+
+  --lc-font-family-sans: 'lc-gilroy', sans-serif;
+  --lc-font-family-code: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+
+  --lc-border-radius: 6px;
 }

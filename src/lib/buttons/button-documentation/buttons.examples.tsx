@@ -10,10 +10,10 @@ import {
   ButtonOutlineDanger,
   ButtonOutlinePrimary,
   ButtonOutlineSuccess,
-  ButtonOutlineWarn,
+  ButtonOutlineWarning,
   ButtonPrimary,
   ButtonSuccess,
-  ButtonWarn,
+  ButtonWarning,
   ButtonGroup,
   ColorIcon,
   Icon,
@@ -27,14 +27,14 @@ export const ButtonExamples1: FC = () => (
     <ButtonPrimary>Primary Button</ButtonPrimary>
     <ButtonAccent>Accent Button</ButtonAccent>
     <ButtonSuccess>Success Button</ButtonSuccess>
-    <ButtonWarn>Warn Button</ButtonWarn>
+    <ButtonWarning>Warning Button</ButtonWarning>
     <ButtonDanger>Danger Button</ButtonDanger>
     <br />
     <ButtonOutline>Outline Button</ButtonOutline>
     <ButtonOutlinePrimary>Primary Outline Button</ButtonOutlinePrimary>
     <ButtonOutlineAccent>Accent Outline Button</ButtonOutlineAccent>
     <ButtonOutlineSuccess>Success Outline Button</ButtonOutlineSuccess>
-    <ButtonOutlineWarn>Warn Outline Button</ButtonOutlineWarn>
+    <ButtonOutlineWarning>Warning Outline Button</ButtonOutlineWarning>
     <ButtonOutlineDanger>Danger Outline Button</ButtonOutlineDanger>
   </div>
 );
@@ -45,14 +45,14 @@ export const ButtonExamples2: FC = () => (
     <ButtonPrimary disabled>Primary Button</ButtonPrimary>
     <ButtonAccent disabled>Accent Button</ButtonAccent>
     <ButtonSuccess disabled>Success Button</ButtonSuccess>
-    <ButtonWarn disabled>Warn Button</ButtonWarn>
+    <ButtonWarning disabled>Warning Button</ButtonWarning>
     <ButtonDanger disabled>Danger Button</ButtonDanger>
     <br />
     <ButtonOutline disabled>Outline Button</ButtonOutline>
     <ButtonOutlinePrimary disabled>Primary Outline Button</ButtonOutlinePrimary>
     <ButtonOutlineAccent disabled>Accent Outline Button</ButtonOutlineAccent>
     <ButtonOutlineSuccess disabled>Success Outline Button</ButtonOutlineSuccess>
-    <ButtonOutlineWarn disabled>Warn Outline Button</ButtonOutlineWarn>
+    <ButtonOutlineWarning disabled>Warning Outline Button</ButtonOutlineWarning>
     <ButtonOutlineDanger disabled>Danger Outline Button</ButtonOutlineDanger>
   </div>
 );

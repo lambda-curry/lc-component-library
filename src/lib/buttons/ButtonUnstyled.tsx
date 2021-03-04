@@ -1,10 +1,14 @@
-import React, { FC } from 'react';
+import React, { FC, forwardRef } from 'react';
 import classNames from 'classnames';
 import { ButtonBase, ButtonProps } from './ButtonBase';
 
-export const ButtonUnstyled: FC<ButtonProps> = ({ className, ...props }) => (
+export const ButtonUnstyled: FC<ButtonProps> = forwardRef(({ className, ...props }, ref) => (
   <ButtonBase
     {...props}
-    className={classNames([`lc-button-unstyled`, `lc-bg-transparent`, `focus:lc-outline-black`], className)}
+    ref={ref}
+    className={classNames(
+      [`lc-button-unstyled`, `lc-bg-transparent`, `focus:lc-outline-none`, `focus-visible:lc-outline-black`],
+      className
+    )}
   />
-);
+));

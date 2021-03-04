@@ -1,0 +1,54 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { Drawer } from '../..';
+import { DrawerProvider } from '../DrawerProvider.tsx';
+import { DrawerExample1 } from './drawer.examples.tsx';
+import dedent from 'string-dedent';
+
+<Meta title="Drawer" component={Drawer} />
+
+# Drawer
+
+<Canvas>
+  <Story
+    name="Drawer"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+            export const DrawerExample1: React.FC<any> = () => (
+              <DrawerProvider>
+                <DrawerExample1Content />
+              </DrawerProvider>
+            );
+            
+            const DrawerExample1Content: React.FC<any> = () => {
+              const {
+                drawerActions: { toggleDrawer, getDrawerData, setDrawerData }
+              } = useDrawer();
+              const content = getDrawerData<{ content: string }>('ExampleDrawer').content;
+              return (
+                <>
+                  <ButtonPrimary onClick={() => toggleDrawer({ name: 'ExampleDrawer', data: { content: 'Hello World' } })}>
+                    Open Drawer
+                  </ButtonPrimary>
+                  <Drawer name="ExampleDrawer">
+                    <p>{content}</p>
+                    <br />
+                    <InputText
+                      name="content"
+                      label="Type to update the drawer content"
+                      value={content}
+                      onChange={event => setDrawerData({ name: 'ExampleDrawer', data: { content: event.target.value } })}
+                    />
+                  </Drawer>
+                </>
+              );
+            };`
+        }
+      }
+    }}
+  >
+    {DrawerExample1.bind({})}
+  </Story>
+  <ArgsTable of={Drawer} />
+</Canvas>

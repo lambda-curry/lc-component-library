@@ -1,10 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, forwardRef } from 'react';
 import classNames from 'classnames';
 import { ButtonProps, ButtonBase } from './ButtonBase';
 
-export const ButtonStyled: FC<ButtonProps> = ({ className, ...props }) => (
+export const ButtonStyled: FC<ButtonProps> = forwardRef(({ className, ...props }, ref) => (
   <ButtonBase
     {...props}
+    ref={ref}
     className={classNames(
       [
         `lc-button-styled`,
@@ -23,4 +24,4 @@ export const ButtonStyled: FC<ButtonProps> = ({ className, ...props }) => (
       className
     )}
   />
-);
+));

@@ -1,6 +1,6 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
+const { cssVar } = require('./tailwind/helpers');
 const { baseColors, themeColors } = require('./tailwind/colors');
-
 
 module.exports = {
   purge: ['./src/**/*.tsx'],
@@ -36,8 +36,12 @@ module.exports = {
       '112': '112px',
       '120': '120px'
     },
+    borderRadius: {
+      DEFAULT: cssVar('border-radius')
+    },
     fontFamily: {
-      sans: ['lc-gilroy', 'sans-serif']
+      sans: cssVar('font-family-sans'),
+      code: cssVar('font-family-code'),
     },
     fontWeight: {
       ...defaultTheme.fontWeight,
@@ -82,7 +86,11 @@ module.exports = {
       pointerEvents: ['disabled'],
       cursor: ['disabled', 'hover'],
       transform: ['active'],
-      scale: ['active']
+      scale: ['active'],
+      ringColor: ['focus-visible'],
+      outline: ['focus-visible'],
+      backgroundColor: ['focus-visible'],
+      borderColor: ['focus-visible']
     }
   },
   plugins: []

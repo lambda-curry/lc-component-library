@@ -3,18 +3,18 @@ import classNames from 'classnames';
 import { ButtonProps } from './ButtonBase';
 import { ButtonStyled } from './ButtonStyled';
 
-export const ButtonOutlineDanger: FC<ButtonProps> = forwardRef(({ className, ...props }, ref) => (
+export const ButtonOutlineWarning: FC<ButtonProps> = forwardRef(({ className, ...props }, ref) => (
   <ButtonStyled
     {...props}
     ref={ref}
     className={classNames(
       [
-        `lc-button-outline-danger`,
-        `lc-text-danger`,
-        `lc-border-danger`,
+        `lc-button-outline-warning`,
+        `lc-text-warning`,
+        `lc-border-warning`,
         `hover:lc-text-white`,
-        `hover:lc-bg-danger`,
-        `focus-visible:lc-ring-danger`
+        `hover:lc-bg-warning`,
+        `focus-visible:lc-ring-warning`
       ],
       className
     )}
