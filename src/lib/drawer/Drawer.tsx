@@ -72,7 +72,7 @@ export const drawerActions: (state: DrawerReducerState, dispatch: DrawerDispatch
   }
 });
 
-export const toggleDrawer: (
+const toggleDrawer: (
   name: string,
   toggleFunction: (drawer: DrawerType) => void
 ) => (event: React.KeyboardEvent | React.MouseEvent) => void = (name, toggleFunction) => event => {
