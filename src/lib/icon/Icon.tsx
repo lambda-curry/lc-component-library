@@ -26,6 +26,7 @@ import { ReactComponent as download } from '../../assets/icons/download.svg';
 import { ReactComponent as drag } from '../../assets/icons/drag.svg';
 import { ReactComponent as error } from '../../assets/icons/error.svg';
 import { ReactComponent as expand } from '../../assets/icons/expand.svg';
+import { ReactComponent as eye } from '../../assets/icons/eye.svg';
 import { ReactComponent as filePDF } from '../../assets/icons/filePDF.svg';
 import { ReactComponent as fileExcel } from '../../assets/icons/fileExcel.svg';
 import { ReactComponent as filter } from '../../assets/icons/filter.svg';
@@ -52,6 +53,7 @@ import { ReactComponent as search } from '../../assets/icons/search.svg';
 import { ReactComponent as settings } from '../../assets/icons/settings.svg';
 import { ReactComponent as sms } from '../../assets/icons/sms.svg';
 import { ReactComponent as successMessage } from '../../assets/icons/successMessage.svg';
+import { ReactComponent as touch } from '../../assets/icons/touch.svg';
 import { ReactComponent as trash } from '../../assets/icons/trash.svg';
 import { ReactComponent as user } from '../../assets/icons/user.svg';
 import { ReactComponent as users } from '../../assets/icons/users.svg';
@@ -81,6 +83,7 @@ export const defaultIcons = {
   drag,
   error,
   expand,
+  eye,
   fileExcel,
   filePDF,
   filter,
@@ -107,6 +110,7 @@ export const defaultIcons = {
   settings,
   sms,
   successMessage,
+  touch,
   trash,
   user,
   users,
@@ -118,7 +122,8 @@ const aliasMap = {
   notifications: 'bellRing',
   pdf: 'filePDF',
   excel: 'fileExcel',
-  ringVolume: 'phoneRing'
+  ringVolume: 'phoneRing',
+  visibility: 'eye'
 };
 
 export type DefaultIconNames = keyof typeof defaultIcons;
