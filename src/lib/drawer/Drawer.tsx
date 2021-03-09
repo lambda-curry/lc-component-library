@@ -1,4 +1,5 @@
 import { Drawer as MuiDrawer } from '@material-ui/core';
+import classNames from 'classnames';
 import React, { Dispatch } from 'react';
 import './drawer.css';
 import { useDrawer } from './DrawerProvider';
@@ -89,10 +90,11 @@ type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
 export interface DrawerProps {
   name: string;
+  className?: string;
   options?: { anchor?: Anchor; minWidth: number };
 }
 
-export const Drawer: React.FC<DrawerProps> = ({ name, children, options: overrides }) => {
+export const Drawer: React.FC<DrawerProps> = ({ name, className, children, options: overrides }) => {
   const options = {
     anchor: 'right' as Anchor,
     width: 300,
@@ -105,11 +107,12 @@ export const Drawer: React.FC<DrawerProps> = ({ name, children, options: overrid
 
   return (
     <MuiDrawer
-      className="lc-drawer"
+      className={classNames('lc-drawer', className)}
       anchor={options.anchor}
       open={isOpen}
       onClose={toggleDrawer(name, drawerActions.toggleDrawer)}
     >
+      {/* TODO: Remove `px` from width to allow setting width with other units.  */}
       <div className="lc-drawer-content" style={{ width: `${options.width}px` }}>
         {children}
       </div>
