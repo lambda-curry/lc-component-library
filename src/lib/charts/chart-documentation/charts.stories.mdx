@@ -1,0 +1,24 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import { PieChart } from '..';
+import { PieChartExample1 } from './charts.examples.tsx';
+import dedent from 'string-dedent';
+
+<Meta title="Charts" component={PieChart} />
+
+# Charts
+
+<Canvas>
+  <Story
+    name="Pie Chart"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent``
+        }
+      }
+    }}
+  >
+    {PieChartExample1.bind({})}
+  </Story>
+  <ArgsTable of={PieChart} />
+</Canvas>
