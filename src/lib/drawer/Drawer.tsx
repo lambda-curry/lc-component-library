@@ -91,19 +91,18 @@ type Anchor = 'top' | 'left' | 'bottom' | 'right';
 export interface DrawerProps {
   name: string;
   className?: string;
-  options?: { anchor?: Anchor; minWidth: number };
+  options?: { anchor?: Anchor; width?: number };
 }
 
-export const Drawer: React.FC<DrawerProps> = ({ name, className, children, options: overrides }) => {
+export const Drawer: React.FC<DrawerProps> = ({ name, className, options: overrides, ...props }) => {
+  const { drawerActions, drawerState } = useDrawer();
+  const isOpen = drawerState.active === name;
+
   const options = {
     anchor: 'right' as Anchor,
-    width: 300,
+    width: 320,
     ...overrides
   };
-
-  const { drawerActions, drawerState } = useDrawer();
-
-  const isOpen = drawerState.active === name;
 
   return (
     <MuiDrawer
@@ -111,11 +110,8 @@ export const Drawer: React.FC<DrawerProps> = ({ name, className, children, optio
       anchor={options.anchor}
       open={isOpen}
       onClose={toggleDrawer(name, drawerActions.toggleDrawer)}
-    >
-      {/* TODO: Remove `px` from width to allow setting width with other units.  */}
-      <div className="lc-drawer-content" style={{ width: `${options.width}px` }}>
-        {children}
-      </div>
-    </MuiDrawer>
+      PaperProps={{ className: 'lc-drawer-content', style: { width: `${options.width}px` } }}
+      {...props}
+    />
   );
 };
