@@ -7,6 +7,7 @@ export interface BarChartProps {
   chartJSData: ChartData<Chart.ChartData>;
   options?: ChartOptions;
 }
+
 export const BarChart: FC<BarChartProps> = props => {
   const defaultOptions: ChartOptions = {
     legend: { display: false },
