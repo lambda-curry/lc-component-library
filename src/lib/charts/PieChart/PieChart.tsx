@@ -1,10 +1,14 @@
-import { ChartOptions } from 'chart.js';
+import { ChartColor, ChartOptions } from 'chart.js';
 import { merge } from 'lodash';
 import React from 'react';
 import { Pie, ChartData } from 'react-chartjs-2';
 
 export const PieChart: React.FC<{
-  data?: [{ label: string; value: number; color: string }];
+  data?: {
+    label: string;
+    value: number;
+    color?: ChartColor;
+  }[];
   chartJSData?: ChartData<Chart.ChartData>;
   options?: ChartOptions;
 }> = props => {
@@ -19,12 +23,14 @@ export const PieChart: React.FC<{
 
   const options = merge(defaultOptions, props.options);
 
-  const chartJSData: ChartData<Chart.ChartData> = props.chartJSData || {
-    labels: props.data?.map(dataset => dataset.label),
-    datasets: [
-      { data: props.data?.map(dataset => dataset.value), backgroundColor: props.data?.map(dataset => dataset.color) }
-    ]
-  };
+  const chartJSData: ChartData<Chart.ChartData> =
+    props.chartJSData ||
+    ({
+      labels: props.data?.map(dataset => dataset.label),
+      datasets: [
+        { data: props.data?.map(dataset => dataset.value), backgroundColor: props.data?.map(dataset => dataset.color) }
+      ]
+    } as ChartData<Chart.ChartData>);
 
   return <Pie data={chartJSData} options={options} />;
 };

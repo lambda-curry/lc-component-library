@@ -1,6 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
-import { PieChart } from '..';
-import { PieChartExample1 } from './charts.examples.tsx';
+import { PieChart, BarChart } from '..';
+import { PieChartExample1, BarChartExample1 } from './charts.examples.tsx';
 import dedent from 'string-dedent';
 
 <Meta title="Charts" component={PieChart} />
@@ -13,7 +13,15 @@ import dedent from 'string-dedent';
     parameters={{
       docs: {
         source: {
-          code: dedent``
+          code: dedent`
+            <PieChart
+              data={[
+                { label: 'Label 1', value: 1, color: 'red' },
+                { label: 'Label 2', value: 2, color: 'blue' },
+                { label: 'Label 3', value: 3, color: 'green' },
+                { label: 'Label 4', value: 4, color: 'yellow' }
+              ]}
+            />`
         }
       }
     }}
@@ -21,4 +29,39 @@ import dedent from 'string-dedent';
     {PieChartExample1.bind({})}
   </Story>
   <ArgsTable of={PieChart} />
+</Canvas>
+
+<Canvas>
+  <Story
+    name="Bar Chart"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+            <BarChart
+              chartJSData={{
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [
+                  {
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                  },
+                  {
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                  }
+                ]
+              }}
+            />`
+        }
+      }
+    }}
+  >
+    {BarChartExample1.bind({})}
+  </Story>
+  <ArgsTable of={BarChart} />
 </Canvas>
