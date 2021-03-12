@@ -1,0 +1,16 @@
+.lc-chart-tooltip {
+  position: absolute;
+  padding: 24px;
+  border-radius: 6px;
+  @apply lc-bg-primary;
+  pointer-events: none;
+  transform: translate(-50%, -100%);
+  transition: all 0.3s ease-in-out;
+
+  padding: 0.3em;
+  text-align: center;
+  transform: translate(-50%, -100%);
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 10px 20px #00000030, 0 6px 6px rgba(0, 0, 0, 0.23);
+}
