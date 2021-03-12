@@ -1,8 +1,8 @@
 import React, { useRef, FC } from 'react';
-import { ChartOptions } from 'chart.js';
 import { merge } from 'lodash';
 import { Pie, ChartData, ChartDataFunction } from 'react-chartjs-2';
-import { createCustomTooltip } from '../chart.helpers';
+import { ChartOptions } from 'chart.js';
+import { customTooltip } from '../chart.helpers';
 
 export interface PieChartProps {
   type?: 'pie' | 'doughnut';
@@ -17,7 +17,7 @@ export interface PieChartProps {
 
 export const PieChart: FC<PieChartProps> = props => {
   const type = props.type || 'pie';
-  const chartRef = useRef(null);
+  const chartRef = useRef<Pie>(null);
 
   const defaultOptions: ChartOptions = {
     cutoutPercentage: 55,
@@ -29,7 +29,7 @@ export const PieChart: FC<PieChartProps> = props => {
     },
     tooltips: {
       enabled: false,
-      custom: tooltip => createCustomTooltip(tooltip, chartRef)
+      custom: tooltipModel => customTooltip(tooltipModel, chartRef)
     },
     plugins: {
       datalabels: {
@@ -71,5 +71,5 @@ export const PieChart: FC<PieChartProps> = props => {
     } as ChartData<Chart.ChartData>;
   };
 
-  return <Pie ref={chartRef} type={type} data={chartJSData} options={options} />;
+  return <Pie type={type} ref={chartRef} data={chartJSData} options={options} />;
 };
