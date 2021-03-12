@@ -68,7 +68,7 @@ module.exports = {
   baseColors,
   themeColors,
   themeColorsConfig,
-  colorWithOpactiy: colorWithOpacity,
+  colorWithOpacity,
   generateVariantThemeColors,
   generateThemeColors,
 };
