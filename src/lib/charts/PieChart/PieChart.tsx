@@ -1,10 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useRef, FC } from 'react';
 import { ChartOptions } from 'chart.js';
 import { merge } from 'lodash';
 import { Pie, ChartData, ChartDataFunction } from 'react-chartjs-2';
-import { createCustomTooltip } from '..';
+import { createCustomTooltip } from '../chart.helpers';
 
-export const PieChart: React.FC<{
+export interface PieChartProps {
   type?: 'pie' | 'doughnut';
   data?: {
     label: string;
@@ -13,10 +13,12 @@ export const PieChart: React.FC<{
   }[];
   chartJSData?: ChartData<Chart.ChartData>;
   options?: ChartOptions;
-}> = props => {
-  const chartRef = useRef<Pie>(null);
+}
 
+export const PieChart: FC<PieChartProps> = props => {
   const type = props.type || 'pie';
+  const chartRef = useRef(null);
+
   const defaultOptions: ChartOptions = {
     cutoutPercentage: 55,
     legend: {
@@ -42,7 +44,7 @@ export const PieChart: React.FC<{
             }
           }
         },
-        formatter: function (value, context) {
+        formatter: function (value: any, context: any) {
           if (!props.data) return value;
           const total = props.data.reduce((acc, curr) => acc + curr.value, 0);
           const percentage = Math.round((value / total) * 100);
