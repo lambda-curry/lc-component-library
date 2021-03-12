@@ -8,7 +8,9 @@ export const BarChart: React.FC<{
   options?: ChartOptions;
 }> = props => {
   const defaultOptions: ChartOptions = {
-    legend: { display: false },
+    legend: {
+      align: 'start'
+    },
     scales: {
       yAxes: [
         {
@@ -17,6 +19,11 @@ export const BarChart: React.FC<{
           }
         }
       ]
+    },
+    plugins: {
+      datalabels: {
+        display: false
+      }
     }
   };
   const options = merge(defaultOptions, props.options);

@@ -1,0 +1,10 @@
+#chartjs-tooltip {
+  line-height: normal;
+  opacity: 1;
+  padding: 0.3em;
+  pointer-events: none;
+  position: fixed;
+  text-align: center;
+  transform: translate(-50%, 0);
+  transition: all 0.1s ease;
+}
