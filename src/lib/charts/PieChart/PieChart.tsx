@@ -1,10 +1,10 @@
+import React, { FC } from 'react';
 import { ChartColor, ChartOptions, ChartTooltipModel } from 'chart.js';
 import { merge } from 'lodash';
-import React from 'react';
 import { Pie, ChartData } from 'react-chartjs-2';
 import { ChartTooltip } from '../ChartTooltip/ChartTooltip';
 
-export const PieChart: React.FC<{
+export interface PieChartProps {
   data?: {
     label: string;
     value: number;
@@ -12,7 +12,9 @@ export const PieChart: React.FC<{
   }[];
   chartJSData?: ChartData<Chart.ChartData>;
   options?: ChartOptions;
-}> = props => {
+}
+
+export const PieChart: FC<PieChartProps> = props => {
   const chartRef = React.useRef<any>();
   const [tooltipModel, setTooltipModel] = React.useState<ChartTooltipModel | undefined>();
 

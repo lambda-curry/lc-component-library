@@ -1,13 +1,15 @@
-import Chart, { ChartOptions, ChartTooltipModel } from 'chart.js';
+import React, { FC, useState } from 'react';
+import { ChartOptions, ChartTooltipModel } from 'chart.js';
 import { merge } from 'lodash';
-import React, { useState } from 'react';
 import { Bar, ChartData } from 'react-chartjs-2';
 import { ChartTooltip } from '../ChartTooltip/ChartTooltip';
 
-export const BarChart: React.FC<{
+export interface BarChartProps {
   chartJSData: ChartData<Chart.ChartData>;
   options?: ChartOptions;
-}> = props => {
+}
+
+export const BarChart: FC<BarChartProps> = props => {
   const chartRef = React.useRef<any>();
   const [tooltipModel, setTooltipModel] = useState<ChartTooltipModel | undefined>();
 
