@@ -3,14 +3,15 @@ import { merge } from 'lodash';
 import { ChartOptions } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import './charts.css';
+import { RefObject } from 'react';
 
-const customTooltip = (tooltip: any) => {
-  // tooltip will be false if tooltip is not visible or should be hidden
-  if (!tooltip) {
-    return;
-  }
+export const createCustomTooltip = (tooltip: any, chartRef: RefObject<any>) => {
+  const chart = chartRef.current;
 
-  // Otherwise, tooltip will be an object with all tooltip properties like:
+  if (!tooltip || !chart) return;
+
+  console.log('>>>', { chart, tooltip });
+
   tooltip.backgroundColor = '#FFF';
   tooltip.mode = 'index';
   tooltip.intersect = true;
@@ -49,35 +50,24 @@ const customTooltip = (tooltip: any) => {
 
   // Set custom tooltip
   if (tooltip.body) {
-    const titleLines = tooltip.title || [];
     const bodyLines = tooltip.body.map(getBody);
     const tooltipData = bodyLines[0][0];
 
-    // Custom tooltip requires an id for proper positioning
-    if (!tooltipData.id) {
-      return;
-    }
-
     // Create inner html
     let innerHtml = '<thead>';
-    const picture = tooltipData.pictureUrl;
-    const tooltipTitle = `<td class="tooltip-title">${tooltipData.label ? tooltipData.label : titleLines[0]}</td>`;
-    const tooltipValue = `<td class="tooltip-value">${tooltipData.value}${tooltipData.percent ? '%' : ''}</td>`;
-    if (picture) {
-      innerHtml += `<tr><th colspan="2"><img class='tooltip-img img-responsive' src="${picture}" /></th></tr>`;
-      innerHtml += '</thead><tbody><tr>';
-      innerHtml += tooltipValue + tooltipTitle;
-    } else {
-      innerHtml += tooltipTitle;
-      innerHtml += '</thead><tbody><tr>';
-      innerHtml += tooltipValue;
-    }
+    // const tooltipTitle = `<td class="tooltip-title">${tooltipData.label ? tooltipData.label : titleLines[0]}</td>`;
+    const tooltipValue = `<td class="tooltip-value">${tooltipData}</td>`;
+
+    // innerHtml += tooltipTitle;
+    innerHtml += '</thead><tbody><tr>';
+    innerHtml += tooltipValue;
+
     innerHtml += '</tr></tbody>';
 
     // Set inner html to tooltip
     const tableRoot = tooltipEl.querySelector('table') as HTMLTableElement;
     tableRoot.innerHTML = innerHtml;
-    const chartElement = (document.getElementById(tooltipData.id) as HTMLElement).getBoundingClientRect();
+    const chartElement = chart.chartInstance.canvas.getBoundingClientRect();
     // Calculate position
     const positionY = chartElement.top + tooltip.yPadding;
     const positionX = chartElement.left + tooltip.xPadding;
@@ -92,9 +82,6 @@ const chartDefaultOverrides: ChartOptions = {
   responsive: true,
   maintainAspectRatio: true,
   legend: { position: 'bottom' },
-  tooltips: {
-    custom: customTooltip
-  },
   plugins: [ChartDataLabels]
 };
 merge(defaults, {
