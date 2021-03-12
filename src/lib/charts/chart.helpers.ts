@@ -2,26 +2,11 @@ import { RefObject } from 'react';
 
 export type ChartLabels = (string | number | string[] | number[] | Date | Date[] | moment.Moment | moment.Moment[])[];
 
+// Note: Abstracted from https://github.com/reactchartjs/react-chartjs-2/issues/151#issuecomment-316939204
 export const createCustomTooltip = (tooltip: any, chartRef: RefObject<any>) => {
   const chart = chartRef.current;
-
   if (!tooltip || !chart) return;
 
-  console.log('>>>', { chart, tooltip });
-
-  tooltip.backgroundColor = '#FFF';
-  tooltip.mode = 'index';
-  tooltip.intersect = true;
-  tooltip.yPadding = 10;
-  tooltip.xPadding = 10;
-  tooltip.caretSize = 4;
-  tooltip.bodyFontColor = '#5A5A5A';
-  tooltip.borderColor = '#CECED0';
-  tooltip.borderWidth = 0.05;
-  tooltip.cornerRadius = 0;
-  tooltip.displayColors = false;
-
-  // Tooltip Element
   let tooltipEl = document.getElementById('chartjs-tooltip');
 
   if (!tooltipEl) {
@@ -31,18 +16,14 @@ export const createCustomTooltip = (tooltip: any, chartRef: RefObject<any>) => {
     document.body.appendChild(tooltipEl);
   }
 
-  // Hide if no tooltip
+  // Note: setting the opacity here is needed to hide the tooltip when the user is not hovering over the chart
   if (tooltip.opacity === 0) {
     tooltipEl.style.opacity = '0';
     return;
   }
-  // Set caret Position
-  tooltipEl.classList.remove('above', 'below', 'no-transform');
-  if (tooltip.yAlign) {
-    tooltipEl.classList.add(tooltip.yAlign);
-  } else {
-    tooltipEl.classList.add('no-transform');
-  }
+
+  console.log('>>>', { tooltip });
+
   const getBody = (bodyItem: any) => bodyItem.lines;
 
   // Set custom tooltip
@@ -66,8 +47,8 @@ export const createCustomTooltip = (tooltip: any, chartRef: RefObject<any>) => {
     tableRoot.innerHTML = innerHtml;
     const chartElement = chart.chartInstance.canvas.getBoundingClientRect();
     // Calculate position
-    const positionY = chartElement.top + tooltip.yPadding;
-    const positionX = chartElement.left + tooltip.xPadding;
+    const positionY = chartElement.top - tableRoot.clientHeight - 32;
+    const positionX = chartElement.left;
     // Display, position, and set styles for font
     tooltipEl.style.opacity = '1';
     tooltipEl.style.left = positionX + tooltip.caretX + 'px';
