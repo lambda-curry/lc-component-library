@@ -1,12 +1,14 @@
+import React, { FC } from 'react';
 import { ChartOptions } from 'chart.js';
 import { merge } from 'lodash';
-import React from 'react';
 import { Bar, ChartData } from 'react-chartjs-2';
 
-export const BarChart: React.FC<{
+export interface BarChartProps {
   chartJSData: ChartData<Chart.ChartData>;
   options?: ChartOptions;
-}> = props => {
+}
+
+export const BarChart: FC<BarChartProps> = props => {
   const defaultOptions: ChartOptions = {
     legend: { display: false },
     scales: {
