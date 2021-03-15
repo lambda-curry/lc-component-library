@@ -1,8 +1,9 @@
-import React, { useRef, FC } from 'react';
+import React, { FC } from 'react';
 import { merge } from 'lodash';
 import { Pie, ChartData, ChartDataFunction } from 'react-chartjs-2';
 import { ChartOptions } from 'chart.js';
-import { customTooltip } from '../chart.helpers';
+import { ChartBase } from '../ChartBase';
+import classNames from 'classnames';
 
 export interface PieChartProps {
   type?: 'pie' | 'doughnut';
@@ -13,11 +14,11 @@ export interface PieChartProps {
   }[];
   chartJSData?: ChartData<Chart.ChartData>;
   options?: ChartOptions;
+  className?: string;
 }
 
-export const PieChart: FC<PieChartProps> = props => {
-  const type = props.type || 'pie';
-  const chartRef = useRef<Pie>(null);
+export const PieChart: FC<PieChartProps> = ({ className, options, ...props }) => {
+  // const type = props.type || 'pie';
 
   const defaultOptions: ChartOptions = {
     cutoutPercentage: 55,
@@ -26,10 +27,6 @@ export const PieChart: FC<PieChartProps> = props => {
         // The default behavior is to toggle data points when the legend item is clicked, but since this is a pie chart
         // we don't really need that behavior.
       }
-    },
-    tooltips: {
-      enabled: false,
-      custom: tooltipModel => customTooltip(tooltipModel, chartRef)
     },
     plugins: {
       datalabels: {
@@ -55,7 +52,7 @@ export const PieChart: FC<PieChartProps> = props => {
     }
   };
 
-  const options = merge(defaultOptions, props.options);
+  // const options = merge(defaultOptions, props.options);
 
   const chartJSData: ChartDataFunction<any> = (canvas: HTMLElement) => {
     if (props.chartJSData) return props.chartJSData;
@@ -71,5 +68,12 @@ export const PieChart: FC<PieChartProps> = props => {
     } as ChartData<Chart.ChartData>;
   };
 
-  return <Pie type={type} ref={chartRef} data={chartJSData} options={options} />;
+  return (
+    <ChartBase
+      data={chartJSData}
+      options={merge(defaultOptions, options)}
+      className={classNames('lc-chart-pie', className)}
+      type="pie"
+    />
+  );
 };
