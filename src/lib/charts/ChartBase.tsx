@@ -14,13 +14,13 @@ export interface ChartBaseProps {
   type: ChartType;
 }
 
-export const ChartBase: FC<ChartBaseProps> = ({ options, chartJSData: data, className, ...props }) => {
+export const ChartBase: FC<ChartBaseProps> = ({ options, chartJSData: data, className, tooltip, ...props }) => {
   const chartRef = React.createRef<ChartRefComponent>();
 
   const baseOptions: ChartOptions = {
     tooltips: {
       enabled: false,
-      custom: (tooltipModel: ChartTooltipModel) => renderChartTooltip(tooltipModel, chartRef)
+      custom: (tooltipModel: ChartTooltipModel) => renderChartTooltip(tooltipModel, chartRef, tooltip)
     }
   };
 
