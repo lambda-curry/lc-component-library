@@ -1,14 +1,14 @@
 import { ChartTooltipModel } from 'chart.js';
 import React, { FC, HTMLAttributes, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { ChartRefObject } from '../chart.helpers';
+import { ChartRefObject, ChartTooltipComponent } from '../chart.helpers';
 
 import './chart-tooltip.css';
 
 export interface ChartTooltipProps extends HTMLAttributes<HTMLDivElement> {
   model: ChartTooltipModel;
   chartRef: ChartRefObject;
-  component?: (tooltip: ChartTooltipModel, chartRef: ChartRefObject) => React.ReactNode;
+  component?: ChartTooltipComponent;
 }
 
 export const ChartTooltip: FC<ChartTooltipProps> = ({ model: tooltipModel, chartRef, component, ...props }) => {
@@ -45,7 +45,7 @@ export const ChartTooltip: FC<ChartTooltipProps> = ({ model: tooltipModel, chart
 export const renderChartTooltip = (
   tooltipModel: ChartTooltipModel,
   chartRef: ChartRefObject,
-  tooltipComponent?: (tooltip: ChartTooltipModel, chartRef: ChartRefObject) => React.ReactNode
+  tooltipComponent?: ChartTooltipComponent
 ) => {
   let tooltipEl = document.getElementById('lc-chart-tooltip-wrapper');
   if (!tooltipEl) {

@@ -1,4 +1,5 @@
-import { RefObject } from 'react';
+import { ChartTooltipModel } from 'chart.js';
+import { ReactNode, RefObject } from 'react';
 import ChartComponent, { ChartComponentProps } from 'react-chartjs-2';
 
 export type ChartLabels = (string | number | string[] | number[] | Date | Date[] | moment.Moment | moment.Moment[])[];
@@ -6,3 +7,5 @@ export type ChartLabels = (string | number | string[] | number[] | Date | Date[]
 export type ChartRefComponent = ChartComponent<ChartComponentProps>;
 
 export type ChartRefObject = RefObject<ChartRefComponent>;
+
+export type ChartTooltipComponent = (tooltip: ChartTooltipModel, chartRef: ChartRefObject) => ReactNode;
