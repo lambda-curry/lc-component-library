@@ -1,9 +1,9 @@
 import React, { useContext, useReducer } from 'react';
 import { drawerActions, DrawerActions, DrawerReducer } from './Drawer';
 
-const DrawerStateContext: React.Context<any> = React.createContext({});
+export const DrawerStateContext: React.Context<any> = React.createContext({});
 
-const DrawerActionContext: React.Context<DrawerActions> = React.createContext({} as DrawerActions);
+export const DrawerActionContext: React.Context<DrawerActions> = React.createContext({} as DrawerActions);
 
 export const useDrawer = () => {
   const drawerState = useContext(DrawerStateContext);
