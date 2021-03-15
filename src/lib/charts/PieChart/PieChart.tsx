@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
 import { merge } from 'lodash';
-import { ChartData, ChartDataFunction } from 'react-chartjs-2';
+import classNames from 'classnames';
+import { ChartDataFunction } from 'react-chartjs-2';
 import { ChartOptions } from 'chart.js';
 import { ChartBase, ChartBaseProps } from '../ChartBase';
-import classNames from 'classnames';
+import { ChartJSData } from '../chart.helpers';
 
 export interface PieChartProps extends ChartBaseProps {
   data?: {
@@ -46,7 +47,7 @@ export const PieChart: FC<PieChartProps> = ({ className, options, type = 'pie', 
     }
   };
 
-  const computedChartJSData: ChartDataFunction<any> = (canvas: HTMLElement) => {
+  const computedChartJSData: ChartDataFunction<any> = (canvas: HTMLElement): ChartJSData => {
     if (chartJSData) return chartJSData;
 
     return {
@@ -57,7 +58,7 @@ export const PieChart: FC<PieChartProps> = ({ className, options, type = 'pie', 
           backgroundColor: data?.map(dataset => dataset.color)
         }
       ]
-    } as ChartData<Chart.ChartData>;
+    };
   };
 
   return (

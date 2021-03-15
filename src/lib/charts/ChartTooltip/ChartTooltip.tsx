@@ -1,6 +1,6 @@
-import { ChartTooltipModel } from 'chart.js';
 import React, { FC, HTMLAttributes, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
+import { ChartTooltipModel } from 'chart.js';
 import { ChartRefObject, ChartTooltipComponent } from '../chart.helpers';
 
 import './chart-tooltip.css';

@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
 import { ChartOptions, ChartTooltipModel, ChartType } from 'chart.js';
 import classNames from 'classnames';
-import ChartComponent, { ChartData } from 'react-chartjs-2';
+import ChartComponent from 'react-chartjs-2';
 import { renderChartTooltip } from './ChartTooltip/ChartTooltip';
 import { merge } from 'lodash';
-import { ChartRefComponent, ChartTooltipComponent } from './chart.helpers';
+import { ChartJSData, ChartRefComponent, ChartTooltipComponent } from './chart.helpers';
 
 export interface ChartBaseProps {
-  chartJSData: ChartData<Chart.ChartData>;
+  chartJSData: ChartJSData;
   className?: string;
   options: ChartOptions;
   tooltip?: ChartTooltipComponent;
