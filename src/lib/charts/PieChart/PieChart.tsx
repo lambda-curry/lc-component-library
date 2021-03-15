@@ -17,9 +17,7 @@ export interface PieChartProps {
   className?: string;
 }
 
-export const PieChart: FC<PieChartProps> = ({ className, options, ...props }) => {
-  // const type = props.type || 'pie';
-
+export const PieChart: FC<PieChartProps> = ({ className, options, type = 'pie', ...props }) => {
   const defaultOptions: ChartOptions = {
     cutoutPercentage: 55,
     legend: {
@@ -52,8 +50,6 @@ export const PieChart: FC<PieChartProps> = ({ className, options, ...props }) =>
     }
   };
 
-  // const options = merge(defaultOptions, props.options);
-
   const chartJSData: ChartDataFunction<any> = (canvas: HTMLElement) => {
     if (props.chartJSData) return props.chartJSData;
 
@@ -73,7 +69,7 @@ export const PieChart: FC<PieChartProps> = ({ className, options, ...props }) =>
       data={chartJSData}
       options={merge(defaultOptions, options)}
       className={classNames('lc-chart-pie', className)}
-      type="pie"
+      type={type}
     />
   );
 };
