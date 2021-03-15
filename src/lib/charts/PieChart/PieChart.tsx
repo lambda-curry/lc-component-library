@@ -6,7 +6,7 @@ import { ChartOptions } from 'chart.js';
 import { ChartBase, ChartBaseProps } from '../ChartBase';
 import { ChartJSData } from '../chart.helpers';
 
-export interface PieChartProps extends ChartBaseProps {
+export interface PieChartProps extends Partial<ChartBaseProps> {
   data?: {
     label: string;
     value: number;

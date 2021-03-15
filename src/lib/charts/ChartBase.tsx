@@ -9,9 +9,9 @@ import { ChartJSData, ChartRefComponent, ChartTooltipComponent } from './chart.h
 export interface ChartBaseProps {
   chartJSData: ChartJSData;
   className?: string;
-  options: ChartOptions;
+  options?: ChartOptions;
   tooltip?: ChartTooltipComponent;
-  type: ChartType;
+  type?: ChartType;
 }
 
 export const ChartBase: FC<ChartBaseProps> = ({ options, chartJSData: data, className, tooltip, ...props }) => {
