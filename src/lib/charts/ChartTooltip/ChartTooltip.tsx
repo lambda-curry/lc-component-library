@@ -1,13 +1,14 @@
-import { ChartTooltipModel } from 'chart.js';
 import React, { FC, HTMLAttributes, useEffect, useState } from 'react';
-import { ChartRef } from '../chart.helpers';
+import ReactDOM from 'react-dom';
+import { ChartTooltipModel } from 'chart.js';
+import { ChartRefObject, ChartTooltipComponent } from '../chart.helpers';
 
 import './chart-tooltip.css';
 
 export interface ChartTooltipProps extends HTMLAttributes<HTMLDivElement> {
   model: ChartTooltipModel;
-  chartRef: ChartRef;
-  component?: (tooltip: ChartTooltipModel, chartRef: ChartRef) => React.ReactNode;
+  chartRef: ChartRefObject;
+  component?: ChartTooltipComponent;
 }
 
 export const ChartTooltip: FC<ChartTooltipProps> = ({ model: tooltipModel, chartRef, component, ...props }) => {
@@ -38,4 +39,20 @@ export const ChartTooltip: FC<ChartTooltipProps> = ({ model: tooltipModel, chart
       {component ? component(tooltipModel, chartRef) : label}
     </div>
   );
+};
+
+// Note: Abstracted from https://github.com/reactchartjs/react-chartjs-2/issues/151#issuecomment-470282163
+export const renderChartTooltip = (
+  tooltipModel: ChartTooltipModel,
+  chartRef: ChartRefObject,
+  tooltipComponent?: ChartTooltipComponent
+) => {
+  let tooltipEl = document.getElementById('lc-chart-tooltip-wrapper');
+  if (!tooltipEl) {
+    tooltipEl = document.createElement('div');
+    tooltipEl.id = 'lc-chart-tooltip-wrapper';
+    document.body.appendChild(tooltipEl);
+  }
+
+  ReactDOM.render(<ChartTooltip model={tooltipModel} chartRef={chartRef} component={tooltipComponent} />, tooltipEl);
 };

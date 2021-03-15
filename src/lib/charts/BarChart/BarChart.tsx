@@ -1,23 +1,14 @@
 import React, { FC } from 'react';
 import { ChartOptions } from 'chart.js';
 import { merge } from 'lodash';
-import { Bar, ChartData } from 'react-chartjs-2';
-import { customTooltip } from '../chart.helpers';
+import { ChartBase, ChartBaseProps } from '../ChartBase';
+import classNames from 'classnames';
 
-export interface BarChartProps {
-  chartJSData: ChartData<Chart.ChartData>;
-  options?: ChartOptions;
-}
+export interface BarChartProps extends ChartBaseProps {}
 
-export const BarChart: FC<BarChartProps> = props => {
-  const chartRef = React.useRef<Bar>(null);
-
+export const BarChart: FC<BarChartProps> = ({ className, options, type = 'bar', ...props }) => {
   const defaultOptions: ChartOptions = {
     legend: { display: false },
-    tooltips: {
-      enabled: false,
-      custom: tooltipModel => customTooltip(tooltipModel, chartRef)
-    },
     scales: {
       gridLines: {
         drawBorder: false
@@ -48,7 +39,13 @@ export const BarChart: FC<BarChartProps> = props => {
       }
     }
   };
-  const options = merge(defaultOptions, props.options);
 
-  return <Bar ref={chartRef} data={props.chartJSData} options={options} />;
+  return (
+    <ChartBase
+      className={classNames('lc-chart-bar', className)}
+      options={merge(defaultOptions, options)}
+      type={type}
+      {...props}
+    />
+  );
 };
