@@ -1,17 +1,12 @@
 import React, { FC } from 'react';
 import { ChartOptions } from 'chart.js';
 import { merge } from 'lodash';
-import { ChartData } from 'react-chartjs-2';
-import { ChartBase } from '../ChartBase';
+import { ChartBase, ChartBaseProps } from '../ChartBase';
 import classNames from 'classnames';
 
-export interface BarChartProps {
-  chartJSData: ChartData<Chart.ChartData>;
-  options?: ChartOptions;
-  className?: string;
-}
+export interface BarChartProps extends ChartBaseProps {}
 
-export const BarChart: FC<BarChartProps> = ({ className, options, ...props }) => {
+export const BarChart: FC<BarChartProps> = ({ className, options, type = 'bar', ...props }) => {
   const defaultOptions: ChartOptions = {
     legend: { display: false },
     scales: {
@@ -48,9 +43,9 @@ export const BarChart: FC<BarChartProps> = ({ className, options, ...props }) =>
   return (
     <ChartBase
       className={classNames('lc-chart-bar', className)}
-      data={props.chartJSData}
       options={merge(defaultOptions, options)}
-      type="bar"
+      type={type}
+      {...props}
     />
   );
 };

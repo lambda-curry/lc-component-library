@@ -2,22 +2,18 @@ import React, { FC } from 'react';
 import { merge } from 'lodash';
 import { ChartData, ChartDataFunction } from 'react-chartjs-2';
 import { ChartOptions } from 'chart.js';
-import { ChartBase } from '../ChartBase';
+import { ChartBase, ChartBaseProps } from '../ChartBase';
 import classNames from 'classnames';
 
-export interface PieChartProps {
-  type?: 'pie' | 'doughnut';
+export interface PieChartProps extends ChartBaseProps {
   data?: {
     label: string;
     value: number;
     color: string;
   }[];
-  chartJSData?: ChartData<Chart.ChartData>;
-  options?: ChartOptions;
-  className?: string;
 }
 
-export const PieChart: FC<PieChartProps> = ({ className, options, type = 'pie', ...props }) => {
+export const PieChart: FC<PieChartProps> = ({ className, options, type = 'pie', chartJSData, data, ...props }) => {
   const defaultOptions: ChartOptions = {
     cutoutPercentage: 55,
     legend: {
@@ -40,8 +36,8 @@ export const PieChart: FC<PieChartProps> = ({ className, options, type = 'pie', 
           }
         },
         formatter: function (value: any, context: any) {
-          if (!props.data) return value;
-          const total = props.data.reduce((acc, curr) => acc + curr.value, 0);
+          if (!data) return value;
+          const total = data.reduce((acc, curr) => acc + curr.value, 0);
           const percentage = Math.round((value / total) * 100);
           if (percentage < 10) return null;
           return `${percentage}%`;
@@ -50,15 +46,15 @@ export const PieChart: FC<PieChartProps> = ({ className, options, type = 'pie', 
     }
   };
 
-  const chartJSData: ChartDataFunction<any> = (canvas: HTMLElement) => {
-    if (props.chartJSData) return props.chartJSData;
+  const computedChartJSData: ChartDataFunction<any> = (canvas: HTMLElement) => {
+    if (chartJSData) return chartJSData;
 
     return {
-      labels: props.data?.map(dataset => dataset.label),
+      labels: data?.map(dataset => dataset.label),
       datasets: [
         {
-          data: props.data?.map(dataset => dataset.value),
-          backgroundColor: props.data?.map(dataset => dataset.color)
+          data: data?.map(dataset => dataset.value),
+          backgroundColor: data?.map(dataset => dataset.color)
         }
       ]
     } as ChartData<Chart.ChartData>;
@@ -66,10 +62,11 @@ export const PieChart: FC<PieChartProps> = ({ className, options, type = 'pie', 
 
   return (
     <ChartBase
-      data={chartJSData}
+      chartJSData={computedChartJSData}
       options={merge(defaultOptions, options)}
       className={classNames('lc-chart-pie', className)}
       type={type}
+      {...props}
     />
   );
 };
