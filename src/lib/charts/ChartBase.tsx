@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, createRef } from 'react';
 import { ChartOptions, ChartTooltipModel, ChartType } from 'chart.js';
 import classNames from 'classnames';
 import ChartComponent from 'react-chartjs-2';
@@ -15,7 +15,7 @@ export interface ChartBaseProps {
 }
 
 export const ChartBase: FC<ChartBaseProps> = ({ options, chartJSData: data, className, tooltip, ...props }) => {
-  const chartRef = React.createRef<ChartRefComponent>();
+  const chartRef = createRef<ChartRefComponent>();
 
   const baseOptions: ChartOptions = {
     tooltips: {
