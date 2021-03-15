@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { merge } from 'lodash';
-import { Pie, ChartData, ChartDataFunction } from 'react-chartjs-2';
+import { ChartData, ChartDataFunction } from 'react-chartjs-2';
 import { ChartOptions } from 'chart.js';
 import { ChartBase } from '../ChartBase';
 import classNames from 'classnames';

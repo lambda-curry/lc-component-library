@@ -1,23 +1,24 @@
 import React, { FC, RefObject } from 'react';
-import { ChartOptions, ChartTooltipModel } from 'chart.js';
+import { ChartOptions, ChartTooltipModel, ChartType } from 'chart.js';
 import classNames from 'classnames';
-import { Bar, Pie, ChartData } from 'react-chartjs-2';
+import ChartComponent, { ChartComponentProps, ChartData } from 'react-chartjs-2';
 import ReactDOM from 'react-dom';
 import { ChartTooltip } from './ChartTooltip/ChartTooltip';
 import { merge } from 'lodash';
 
-export type ChartRef = Pie | Bar;
+export type ChartRef = ChartComponent<ChartComponentProps>;
 
 export interface ChartBaseProps {
   data: ChartData<Chart.ChartData>;
   options: ChartOptions;
   className?: string;
-  type: 'pie' | 'bar' | 'doughnut';
+  type: ChartType;
 }
 
-export const ChartBase: FC<ChartBaseProps> = ({ data, options, className, type, ...props }) => {
+export const ChartBase: FC<ChartBaseProps> = ({ options, className, ...props }) => {
   const chartRef = React.createRef<ChartRef>();
 
+  // Note: Abstracted from https://github.com/reactchartjs/react-chartjs-2/issues/151#issuecomment-470282163
   const customTooltip = (tooltipModel: ChartTooltipModel, chartRef: RefObject<ChartRef>) => {
     let tooltipEl = document.getElementById('lc-chart-tooltip-wrapper');
     if (!tooltipEl) {
@@ -36,17 +37,9 @@ export const ChartBase: FC<ChartBaseProps> = ({ data, options, className, type, 
     }
   };
 
-  const chartTypes = {
-    pie: Pie,
-    bar: Bar,
-    doughnut: Pie
-  };
-
-  const ChartComponent = chartTypes[type];
-
   return (
     <div className={classNames('lc-chart', className)}>
-      <ChartComponent ref={chartRef} type={type} data={data} options={merge(baseOptions, options)} {...props} />
+      <ChartComponent ref={chartRef} options={merge(baseOptions, options)} {...props} />
     </div>
   );
 };

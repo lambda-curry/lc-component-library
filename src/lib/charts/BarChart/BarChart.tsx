@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { ChartOptions } from 'chart.js';
 import { merge } from 'lodash';
-import { Bar, ChartData } from 'react-chartjs-2';
+import { ChartData } from 'react-chartjs-2';
 import { ChartBase } from '../ChartBase';
 import classNames from 'classnames';
 
