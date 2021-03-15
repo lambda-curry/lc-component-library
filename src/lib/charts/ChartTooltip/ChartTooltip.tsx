@@ -1,5 +1,5 @@
 import { ChartTooltipModel } from 'chart.js';
-import React, { FC, HTMLAttributes, useEffect, useRef, useState } from 'react';
+import React, { FC, HTMLAttributes, useEffect, useState } from 'react';
 
 import './chart-tooltip.css';
 
