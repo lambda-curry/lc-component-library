@@ -1,33 +1,77 @@
 import React from 'react';
 import { PieChart, BarChart } from '..';
+import { getCssVar } from '../../util/colors';
 
-export const PieChartExample1 = () => (
-  <PieChart
-    data={[
-      { label: 'Label 1', value: 1, color: 'red' },
-      { label: 'Label 2', value: 2, color: 'blue' },
-      { label: 'Label 3', value: 3, color: 'green' },
-      { label: 'Label 4', value: 4, color: 'yellow' }
-    ]}
-  />
-);
+export const PieChartExample1 = () => {
+  return (
+    <PieChart
+      type="doughnut"
+      tooltip={() => <div>Hello World</div>}
+      data={[
+        { label: 'Label 1', value: 1, color: `rgb(${getCssVar('lc-color-primary')})` },
+        { label: 'Label 2', value: 4, color: `rgb(${getCssVar('lc-color-accent')})` },
+        { label: 'Label 3', value: 6, color: `rgb(${getCssVar('lc-color-primary-dark')})` },
+        { label: 'Label 4', value: 8, color: `rgb(${getCssVar('lc-color-accent-dark')})` }
+      ]}
+    />
+  );
+};
 
 export const BarChartExample1 = () => (
   <BarChart
     chartJSData={{
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      labels: [
+        'Red',
+        'Blue',
+        'Yellow',
+        'Green',
+        'Purple',
+        'Orange',
+        'Red',
+        'Blue',
+        'Yellow',
+        'Green',
+        'Purple',
+        'Orange',
+        'Red',
+        'Blue',
+        'Yellow',
+        'Green',
+        'Purple',
+        'Orange',
+        'Red',
+        'Blue',
+        'Yellow',
+        'Green',
+        'Purple',
+        'Orange',
+        'Red',
+        'Blue',
+        'Yellow',
+        'Green',
+        'Purple',
+        'Orange'
+      ],
       datasets: [
         {
-          data: [12, 19, 3, 5, 2, 3],
-          backgroundColor: 'rgba(255, 99, 132, 0.2)',
-          borderColor: 'rgba(255, 99, 132, 1)',
-          borderWidth: 1
+          label: 'Dataset 1',
+          data: [12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3],
+          backgroundColor: `rgb(${getCssVar('lc-color-primary')})`
         },
         {
-          data: [12, 19, 3, 5, 2, 3],
-          backgroundColor: 'rgba(54, 162, 235, 0.2)',
-          borderColor: 'rgba(54, 162, 235, 1)',
-          borderWidth: 1
+          label: 'Dataset 2',
+          data: [12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3],
+          backgroundColor: `rgb(${getCssVar('lc-color-accent')})`
+        },
+        {
+          label: 'Dataset 3',
+          data: [12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3],
+          backgroundColor: `rgb(${getCssVar('lc-color-primary-dark')})`
+        },
+        {
+          label: 'Dataset 4',
+          data: [12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3],
+          backgroundColor: `rgb(${getCssVar('lc-color-accent-dark')})`
         }
       ]
     }}

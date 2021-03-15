@@ -1,6 +1,6 @@
 const { cssVar } = require('./helpers');
 
-const colorWithOpactiy = (color) => ({ opacityVariable, opacityValue }) => {
+const colorWithOpacity = (color) => ({ opacityVariable, opacityValue }) => {
   const cssVariable = cssVar(`color-${color}`);
 
   if (opacityValue !== undefined) return `rgba(${cssVariable}, ${opacityValue})`;
@@ -12,8 +12,8 @@ const colorWithOpactiy = (color) => ({ opacityVariable, opacityValue }) => {
 const baseColors = {
   transparent: 'transparent',
   current: 'currentColor',
-  black: colorWithOpactiy('black'),
-  white: colorWithOpactiy('white'),
+  black: colorWithOpacity('black'),
+  white: colorWithOpacity('white'),
 };
 
 const themeColorsConfig = {
@@ -53,7 +53,7 @@ const themeColorsConfig = {
 
 const generateVariantThemeColors = (colorName) => themeColorsConfig[colorName].reduce((acc, variantColorName) => {
   const color = `${colorName}${variantColorName !== 'DEFAULT' ? `-${variantColorName}` : ''}`
-  acc[variantColorName] = colorWithOpactiy(color);
+  acc[variantColorName] = colorWithOpacity(color);
   return acc;
 }, {});
 
@@ -68,7 +68,7 @@ module.exports = {
   baseColors,
   themeColors,
   themeColorsConfig,
-  colorWithOpactiy,
+  colorWithOpacity,
   generateVariantThemeColors,
   generateThemeColors,
 };

@@ -1,5 +1,5 @@
 import React, { useContext, useReducer } from 'react';
-import { drawerActions, DrawerActions, DrawerReducer } from './Drawer';
+import { drawerActions, DrawerActions, DrawerReducer } from './drawer.helpers';
 
 const DrawerStateContext: React.Context<any> = React.createContext({});
 
