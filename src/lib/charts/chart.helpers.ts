@@ -10,4 +10,6 @@ export type ChartRefObject = RefObject<ChartRefComponent>;
 
 export type ChartTooltipComponent = (tooltip: ChartTooltipModel, chartRef: ChartRefObject) => ReactNode;
 
+export type ChartLegendComponent = (chartRef: ChartRefObject) => ReactNode;
+
 export type ChartJSData = ChartData<Chart.ChartData>;
