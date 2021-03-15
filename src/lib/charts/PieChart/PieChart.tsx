@@ -1,7 +1,7 @@
 import React, { useRef, FC } from 'react';
 import { merge } from 'lodash';
 import { Pie, ChartData, ChartDataFunction } from 'react-chartjs-2';
-import { ChartOptions } from 'chart.js';
+import { ChartOptions, ChartTooltipModel } from 'chart.js';
 import { customTooltip } from '../chart.helpers';
 
 export interface PieChartProps {
@@ -13,6 +13,7 @@ export interface PieChartProps {
   }[];
   chartJSData?: ChartData<Chart.ChartData>;
   options?: ChartOptions;
+  tooltip?: (tooltip: ChartTooltipModel, chartRef: React.RefObject<Pie>) => React.ReactNode;
 }
 
 export const PieChart: FC<PieChartProps> = props => {
@@ -29,7 +30,7 @@ export const PieChart: FC<PieChartProps> = props => {
     },
     tooltips: {
       enabled: false,
-      custom: tooltipModel => customTooltip(tooltipModel, chartRef)
+      custom: tooltipModel => customTooltip(tooltipModel, chartRef, props.tooltip)
     },
     plugins: {
       datalabels: {

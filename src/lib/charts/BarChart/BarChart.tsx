@@ -10,7 +10,7 @@ export interface BarChartProps {
 }
 
 export const BarChart: FC<BarChartProps> = props => {
-  const chartRef = React.useRef<Bar>();
+  const chartRef = React.useRef<Bar>(null);
 
   const defaultOptions: ChartOptions = {
     legend: { display: false },

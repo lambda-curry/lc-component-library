@@ -3,11 +3,10 @@ import { PieChart, BarChart } from '..';
 import { getCssVar } from '../../util/colors';
 
 export const PieChartExample1 = () => {
-  console.log('>>>', getCssVar('lc-color-primary'));
-
   return (
     <PieChart
       type="doughnut"
+      tooltip={() => <div>Hello World</div>}
       data={[
         { label: 'Label 1', value: 1, color: `rgb(${getCssVar('lc-color-primary')})` },
         { label: 'Label 2', value: 4, color: `rgb(${getCssVar('lc-color-accent')})` },
