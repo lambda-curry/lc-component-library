@@ -48,7 +48,9 @@ export const PieChart: FC<PieChartProps> = ({ className, options, type = 'pie', 
   };
 
   const computedChartJSData: ChartDataFunction<any> = (canvas: HTMLElement): ChartJSData => {
-    if (chartJSData) return chartJSData;
+    console.log('>>> this canvas is defined', canvas);
+
+    if (chartJSData) return chartJSData as ChartJSData;
 
     return {
       labels: data?.map(dataset => dataset.label),
