@@ -1,20 +1,17 @@
 import React, { FC } from 'react';
 import { merge } from 'lodash';
 import classNames from 'classnames';
-import { ChartDataFunction } from 'react-chartjs-2';
 import { ChartOptions } from 'chart.js';
 import { ChartBase, ChartBaseProps } from '../ChartBase';
-import { ChartJSData } from '../chart.helpers';
+import { getComputedPieChartJSData, getPieChartPercentage, PieChartData } from '../chart.helpers';
 
 export interface PieChartProps extends Partial<ChartBaseProps> {
-  data?: {
-    label: string;
-    value: number;
-    color: string;
-  }[];
+  data?: PieChartData;
 }
 
 export const PieChart: FC<PieChartProps> = ({ className, options, type = 'pie', chartJSData, data, ...props }) => {
+  const computedChartJSData = getComputedPieChartJSData(chartJSData, data);
+
   const defaultOptions: ChartOptions = {
     cutoutPercentage: 55,
     legend: {
@@ -33,29 +30,9 @@ export const PieChart: FC<PieChartProps> = ({ className, options, type = 'pie', 
             }
           }
         },
-        formatter: function (value: any, context: any) {
-          if (!data) return value;
-          const total = data.reduce((acc, curr) => acc + curr.value, 0);
-          const percentage = Math.round((value / total) * 100);
-          if (percentage < 10) return null;
-          return `${percentage}%`;
-        }
+        formatter: (value: number, context: any) => getPieChartPercentage(value, computedChartJSData, 10)
       }
     }
-  };
-
-  const computedChartJSData: ChartDataFunction<any> = (canvas: HTMLElement): ChartJSData => {
-    if (chartJSData) return chartJSData as ChartJSData;
-
-    return {
-      labels: data?.map(dataset => dataset.label),
-      datasets: [
-        {
-          data: data?.map(dataset => dataset.value),
-          backgroundColor: data?.map(dataset => dataset.color)
-        }
-      ]
-    };
   };
 
   return (

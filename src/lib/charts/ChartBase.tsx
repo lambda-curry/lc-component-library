@@ -38,7 +38,7 @@ export const ChartBase: FC<ChartBaseProps> = ({ options, chartJSData: data, clas
   return (
     <div className={classNames('lc-chart', className)}>
       <ChartComponent ref={chartRef} data={data} options={merge(baseOptions, options)} {...props} />
-      <ChartLegend chartRef={chartRef} data={data} component={legend} />
+      <ChartLegend type={props.type} chartRef={chartRef} data={data} component={legend} />
     </div>
   );
 };

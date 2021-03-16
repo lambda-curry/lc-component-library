@@ -1,7 +1,7 @@
 import React from 'react';
 import { PieChart, BarChart } from '..';
 import { getCssVar } from '../../util/colors';
-import { ChartJSData } from '../chart.helpers';
+// import { ChartJSData } from '../chart.helpers';
 
 export const PieChartExample1 = () => {
   return (
