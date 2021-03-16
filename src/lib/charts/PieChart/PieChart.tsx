@@ -18,10 +18,7 @@ export const PieChart: FC<PieChartProps> = ({ className, options, type = 'pie', 
   const defaultOptions: ChartOptions = {
     cutoutPercentage: 55,
     legend: {
-      onClick: () => {
-        // The default behavior is to toggle data points when the legend item is clicked, but since this is a pie chart
-        // we don't really need that behavior.
-      }
+      display: false
     },
     plugins: {
       datalabels: {
@@ -48,8 +45,6 @@ export const PieChart: FC<PieChartProps> = ({ className, options, type = 'pie', 
   };
 
   const computedChartJSData: ChartDataFunction<any> = (canvas: HTMLElement): ChartJSData => {
-    console.log('>>> this canvas is defined', canvas);
-
     if (chartJSData) return chartJSData as ChartJSData;
 
     return {

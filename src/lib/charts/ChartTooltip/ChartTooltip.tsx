@@ -4,6 +4,7 @@ import { ChartTooltipModel } from 'chart.js';
 import { ChartRefObject, ChartTooltipComponent } from '../chart.helpers';
 
 import './chart-tooltip.css';
+import classNames from 'classnames';
 
 export interface ChartTooltipProps extends HTMLAttributes<HTMLDivElement> {
   model: ChartTooltipModel;
@@ -11,14 +12,19 @@ export interface ChartTooltipProps extends HTMLAttributes<HTMLDivElement> {
   component?: ChartTooltipComponent;
 }
 
-export const ChartTooltip: FC<ChartTooltipProps> = ({ model: tooltipModel, chartRef, component, ...props }) => {
+export const ChartTooltip: FC<ChartTooltipProps> = ({ model, chartRef, component, ...props }) => {
   // Note: setting the label in state, prevents the label from disappearing before the tooltip
+  const [tooltipModel, setTooltipModal] = useState<ChartTooltipModel>();
+
+  useEffect(() => {
+    if (model.opacity) setTooltipModal(model);
+  }, [model]);
+
+  if (!tooltipModel || !chartRef?.current) return null;
 
   const chartElement = chartRef.current?.chartInstance.canvas?.getBoundingClientRect() as DOMRect;
   const positionTop = chartElement.top + window.pageYOffset + tooltipModel.caretY - 8;
   const positionLeft = chartElement.left + window.pageXOffset + tooltipModel.caretX;
-
-  if (!tooltipModel || !chartRef?.current) return null;
 
   const getLabel = ({ body }: ChartTooltipModel) => {
     const getBody = (bodyItem: any) => bodyItem.lines;
@@ -27,13 +33,14 @@ export const ChartTooltip: FC<ChartTooltipProps> = ({ model: tooltipModel, chart
   };
 
   const getLabelColor = ({ labelColors }: ChartTooltipModel) => {
-    return labelColors[0] ? (labelColors[0] as any).backgroundColor : false;
+    if (!labelColors || !labelColors[0]) return false;
+    return (labelColors[0] as any).backgroundColor;
   };
 
   return (
     <div
-      className="lc-chart-tooltip"
-      style={{ top: positionTop, left: positionLeft, opacity: tooltipModel?.opacity || 0 }}
+      className={classNames('lc-chart-tooltip', { loaded: model?.opacity })}
+      style={{ top: positionTop, left: positionLeft }}
       {...props}
     >
       {component ? (

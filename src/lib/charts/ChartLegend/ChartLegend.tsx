@@ -9,11 +9,18 @@ export interface ChartLegendProps extends HTMLAttributes<HTMLDivElement> {
   component?: ChartLegendComponent;
 }
 
-export const ChartLegend: FC<ChartLegendProps> = ({ data, chartRef, component, ...props }) => {
+export const ChartLegend: FC<ChartLegendProps> = ({ data: chartJSData, chartRef, component, ...props }) => {
+  const data =
+    typeof chartJSData === 'function'
+      ? chartJSData(chartRef.current?.chartInstance.canvas as HTMLElement)
+      : chartJSData;
+
+  console.log('>>>', data);
+
   return (
     <div className="lc-chart-legend" {...props}>
       {component ? (
-        component(typeof data === 'function' ? data(chartRef.current?.chartInstance.canvas as HTMLElement) : data)
+        component(data)
       ) : (
         <>
           Default Legend
