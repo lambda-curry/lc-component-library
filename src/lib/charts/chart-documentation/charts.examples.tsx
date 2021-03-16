@@ -7,8 +7,8 @@ export const PieChartExample1 = () => {
   return (
     <PieChart
       type="doughnut"
-      tooltip={() => <div>Hello World</div>}
-      legend={(data: ChartJSData) => <div>Hello World, First Label: {data.labels ? data.labels[0] : ''}</div>}
+      // tooltip={() => <div>Hello World</div>}
+      // legend={(data: ChartJSData) => <div>Hello World, First Label: {data.labels ? data.labels[0] : ''}</div>}
       data={[
         { label: 'Label 1', value: 1, color: `rgb(${getCssVar('lc-color-primary')})` },
         { label: 'Label 2', value: 4, color: `rgb(${getCssVar('lc-color-accent')})` },
