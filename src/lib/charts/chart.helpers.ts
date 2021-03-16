@@ -1,6 +1,6 @@
 import { ReactNode, RefObject } from 'react';
-import { ChartTooltipModel } from 'chart.js';
-import ChartComponent, { ChartData, ChartComponentProps, LinearComponentProps } from 'react-chartjs-2';
+import { ChartDataSets, ChartTooltipModel } from 'chart.js';
+import ChartComponent, { ChartComponentProps, ChartDataFunction, LinearComponentProps } from 'react-chartjs-2';
 
 export type ChartLabels = (string | number | string[] | number[] | Date | Date[] | moment.Moment | moment.Moment[])[];
 
@@ -12,4 +12,9 @@ export type ChartTooltipComponent = (tooltip: ChartTooltipModel, chartRef: Chart
 
 export type ChartLegendComponent = (data: ChartJSData) => ReactNode;
 
-export type ChartJSData = ChartData<Chart.ChartData>;
+export interface ChartJSData {
+  labels?: ChartLabels;
+  datasets?: ChartDataSets[];
+}
+
+export type ChartJSDataFunction = ChartDataFunction<ChartJSData>;

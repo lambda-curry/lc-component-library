@@ -1,18 +1,19 @@
 import React, { FC, HTMLAttributes } from 'react';
-import { ChartJSData, ChartLegendComponent } from '../chart.helpers';
+import { ChartJSData, ChartJSDataFunction, ChartLegendComponent, ChartRefObject } from '../chart.helpers';
 
 // import './chart-legend.css';
 
 export interface ChartLegendProps extends HTMLAttributes<HTMLDivElement> {
-  data: ChartJSData;
-  legend?: ChartLegendComponent;
+  data: ChartJSData | ChartJSDataFunction;
+  chartRef: ChartRefObject;
+  component?: ChartLegendComponent;
 }
 
-export const ChartLegend: FC<ChartLegendProps> = ({ data, legend, ...props }) => {
+export const ChartLegend: FC<ChartLegendProps> = ({ data, chartRef, component, ...props }) => {
   return (
     <div className="lc-chart-legend" {...props}>
-      {legend ? (
-        legend(data)
+      {component ? (
+        component(typeof data === 'function' ? data(chartRef.current?.chartInstance.canvas as HTMLElement) : data)
       ) : (
         <>
           Default Legend
