@@ -5,6 +5,7 @@ import ChartComponent from 'react-chartjs-2';
 import { renderChartTooltip } from './ChartTooltip/ChartTooltip';
 import { merge } from 'lodash';
 import { ChartJSData, ChartRefComponent, ChartTooltipComponent, ChartLegendComponent } from './chart.helpers';
+import { ChartLegend } from './ChartLegend/ChartLegend';
 
 export interface ChartBaseProps {
   chartJSData: ChartJSData;
@@ -31,7 +32,7 @@ export const ChartBase: FC<ChartBaseProps> = ({ options, chartJSData: data, clas
   return (
     <div className={classNames('lc-chart', className)}>
       <ChartComponent ref={chartRef} data={data} options={merge(baseOptions, options)} {...props} />
-      {legend && <div className="lc-chart-legend">{legend(chartRef)}</div>}
+      <ChartLegend data={data} legend={legend} />
     </div>
   );
 };
