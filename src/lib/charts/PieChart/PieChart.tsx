@@ -39,6 +39,8 @@ export const PieChart: FC<PieChartProps> = ({ className, options, chartJSData, d
   return (
     <ChartBase
       type="pie"
+      height={1}
+      width={1}
       chartJSData={computedChartJSData}
       options={merge(defaultOptions, options)}
       className={classNames('lc-chart-pie', className)}
