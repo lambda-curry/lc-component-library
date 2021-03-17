@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { merge } from 'lodash';
 import classNames from 'classnames';
-import { ChartJSData, ChartJSOptions } from '../chart.helpers';
+import { ChartJSData, ChartJSDataFunction, ChartJSOptions } from '../chart.helpers';
 import { ChartDataFunction } from 'react-chartjs-2';
 import { AxialChart, AxialChartProps } from '../AxialChart';
 
@@ -14,7 +14,7 @@ export const BarChart: FC<BarChartProps> = ({ labels, datasets, chartJSData, opt
     borderRadius: 100
   };
 
-  const getComputedData: ChartDataFunction<any> = (canvas?: HTMLElement): ChartJSData => {
+  const getComputedData: ChartDataFunction<any> = (canvas?: HTMLElement): ChartJSData | ChartJSDataFunction => {
     if (chartJSData) return chartJSData;
 
     if (!datasets) return {} as ChartJSData;

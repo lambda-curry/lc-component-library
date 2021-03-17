@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { ChartDataFunction } from 'react-chartjs-2';
 import classNames from 'classnames';
 import { merge } from 'lodash';
-import { ChartJSData, ChartJSOptions } from '../chart.helpers';
+import { ChartJSData, ChartJSDataFunction, ChartJSOptions } from '../chart.helpers';
 import { AxialChart, AxialChartProps } from '../AxialChart';
 
 export interface LineChartProps extends Partial<AxialChartProps> {}
@@ -10,7 +10,7 @@ export interface LineChartProps extends Partial<AxialChartProps> {}
 export const LineChart: FC<LineChartProps> = ({ labels, datasets, chartJSData, options, className, ...props }) => {
   const defaultOptions: ChartJSOptions = {};
 
-  const getComputedData: ChartDataFunction<any> = (canvas?: HTMLElement): ChartJSData => {
+  const getComputedData: ChartDataFunction<any> = (canvas?: HTMLElement): ChartJSData | ChartJSDataFunction => {
     if (chartJSData) return chartJSData;
 
     if (!datasets) return {} as ChartJSData;
