@@ -1,7 +1,7 @@
+import React, { FC } from 'react';
 import { ChartDataSets } from 'chart.js';
 import classNames from 'classnames';
 import { merge } from 'lodash';
-import React, { FC } from 'react';
 import { getColorVar } from '../util/colors';
 import { ChartJSOptions, ChartLabels } from './chart.helpers';
 import { ChartBase, ChartBaseProps } from './ChartBase';
