@@ -3,7 +3,6 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { merge } from 'lodash';
 import { defaults } from 'react-chartjs-2';
 import { getCssVar } from '../util/colors';
-// import { ChartJSOptions } from './chart.helpers';
 
 export * from './PieChart/PieChart';
 export * from './BarChart/BarChart';
