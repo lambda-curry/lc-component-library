@@ -1,11 +1,12 @@
 import React, { FC, createRef } from 'react';
-import { ChartOptions, ChartTooltipModel, ChartType } from 'chart.js';
 import classNames from 'classnames';
-import ChartComponent from 'react-chartjs-2';
+import { ChartTooltipModel, ChartType } from 'chart.js';
+import ChartComponent, { ChartComponentProps } from 'react-chartjs-2';
 import { renderChartTooltip } from './ChartTooltip/ChartTooltip';
 import { merge } from 'lodash';
 import {
   ChartJSData,
+  ChartJSOptions,
   ChartRefComponent,
   ChartTooltipComponent,
   ChartLegendComponent,
@@ -13,32 +14,44 @@ import {
 } from './chart.helpers';
 import { ChartLegend } from './ChartLegend/ChartLegend';
 
-export interface ChartBaseProps {
+export interface ChartBaseProps extends Omit<ChartComponentProps, 'data'> {
   chartJSData: ChartJSData | ChartJSDataFunction;
   className?: string;
-  options?: ChartOptions;
-  tooltip?: ChartTooltipComponent;
-  legend?: ChartLegendComponent;
+  options?: ChartJSOptions;
+  tooltipComponent?: ChartTooltipComponent;
+  legendComponent?: ChartLegendComponent;
   type?: ChartType;
 }
 
-export const ChartBase: FC<ChartBaseProps> = ({ options, chartJSData: data, className, tooltip, legend, ...props }) => {
+export const ChartBase: FC<ChartBaseProps> = ({
+  options,
+  chartJSData: data,
+  className,
+  tooltipComponent,
+  legendComponent,
+  ...props
+}) => {
   const chartRef = createRef<ChartRefComponent>();
 
-  const baseOptions: ChartOptions = {
+  const baseOptions: ChartJSOptions = {
     legend: {
-      display: !legend
+      display: !!legendComponent
     },
     tooltips: {
       enabled: false,
-      custom: (tooltipModel: ChartTooltipModel) => renderChartTooltip(tooltipModel, chartRef, tooltip)
+      custom: (tooltipModel: ChartTooltipModel) => renderChartTooltip(tooltipModel, chartRef, tooltipComponent)
+    },
+    plugins: {
+      datalabels: {
+        display: false
+      }
     }
   };
 
   return (
     <div className={classNames('lc-chart', className)}>
       <ChartComponent ref={chartRef} data={data} options={merge(baseOptions, options)} {...props} />
-      <ChartLegend type={props.type} chartRef={chartRef} data={data} component={legend} />
+      <ChartLegend type={props.type} chartRef={chartRef} data={data} component={legendComponent} />
     </div>
   );
 };

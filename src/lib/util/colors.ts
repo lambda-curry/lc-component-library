@@ -6,6 +6,10 @@ export function getCssVar(cssVar: string, computedStyle?: CSSStyleDeclaration): 
   return styles.getPropertyValue(`--${cssVar}`).replace(' ', '');
 }
 
+export function getColorVar(color: string, alpha = 1) {
+  return `rgba(${getCssVar(`lc-color-${color}`)}, ${alpha})`;
+}
+
 export function isColor(color: string): boolean {
   const s = new Option().style;
   s.color = color;
