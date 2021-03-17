@@ -2,9 +2,8 @@ import React, { FC } from 'react';
 import { merge } from 'lodash';
 import classNames from 'classnames';
 import { ChartDataFunction } from 'react-chartjs-2';
-import { ChartOptions } from 'chart.js';
 import { ChartBase, ChartBaseProps } from '../ChartBase';
-import { ChartJSData } from '../chart.helpers';
+import { ChartJSData, ChartJSOptions } from '../chart.helpers';
 
 export interface PieChartProps extends Partial<ChartBaseProps> {
   data?: {
@@ -14,8 +13,8 @@ export interface PieChartProps extends Partial<ChartBaseProps> {
   }[];
 }
 
-export const PieChart: FC<PieChartProps> = ({ className, options, type = 'pie', chartJSData, data, ...props }) => {
-  const defaultOptions: ChartOptions = {
+export const PieChart: FC<PieChartProps> = ({ chartJSData, data, options, className, ...props }) => {
+  const defaultOptions: ChartJSOptions = {
     cutoutPercentage: 55,
     legend: {
       onClick: () => {
@@ -25,6 +24,7 @@ export const PieChart: FC<PieChartProps> = ({ className, options, type = 'pie', 
     },
     plugins: {
       datalabels: {
+        display: true,
         color: 'white',
         borderRadius: 6,
         padding: { left: 12, right: 10, top: 4, bottom: 4 },
@@ -63,10 +63,10 @@ export const PieChart: FC<PieChartProps> = ({ className, options, type = 'pie', 
 
   return (
     <ChartBase
+      type="pie"
       chartJSData={computedChartJSData}
       options={merge(defaultOptions, options)}
       className={classNames('lc-chart-pie', className)}
-      type={type}
       {...props}
     />
   );
