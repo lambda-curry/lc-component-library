@@ -1,50 +1,45 @@
 import React, { FC } from 'react';
-import { ChartOptions } from 'chart.js';
 import { merge } from 'lodash';
-import { ChartBase, ChartBaseProps } from '../ChartBase';
 import classNames from 'classnames';
+import { ChartJSData, ChartJSDataFunction, ChartJSOptions } from '../chart.helpers';
+import { ChartDataFunction } from 'react-chartjs-2';
+import { AxialChart, AxialChartProps } from '../AxialChart';
 
-export interface BarChartProps extends ChartBaseProps {}
+import './roundedBarCharts';
 
-export const BarChart: FC<BarChartProps> = ({ className, options, type = 'bar', ...props }) => {
-  const defaultOptions: ChartOptions = {
-    legend: { display: false },
-    scales: {
-      gridLines: {
-        drawBorder: false
-      },
-      yAxes: [
-        {
-          ticks: {
-            beginAtZero: true
-          },
-          gridLines: {
-            color: '#dedede',
-            borderDash: [2, 2],
-            drawBorder: false
-          }
-        }
-      ],
-      xAxes: [
-        {
-          gridLines: {
-            display: false
-          }
-        }
-      ]
-    },
-    plugins: {
-      datalabels: {
-        display: false
-      }
-    }
+export interface BarChartProps extends Partial<AxialChartProps> {}
+
+export const BarChart: FC<BarChartProps> = ({ labels, datasets, chartJSData, options, className, ...props }) => {
+  const defaultOptions: ChartJSOptions = {
+    borderRadius: 100
+  };
+
+  const getComputedData: ChartDataFunction<any> = (canvas?: HTMLElement): ChartJSData | ChartJSDataFunction => {
+    if (chartJSData) return chartJSData;
+
+    if (!datasets) return {} as ChartJSData;
+
+    return {
+      labels,
+      datasets: datasets?.map(({ color, ...dataset }) => {
+        return {
+          backgroundColor: color,
+          maxBarThickness: 7,
+          categoryPercentage: 0.33,
+          barPercentage: 0.5,
+          borderRadius: 100,
+          ...dataset
+        };
+      })
+    };
   };
 
   return (
-    <ChartBase
+    <AxialChart
+      type="bar"
+      chartJSData={getComputedData}
       className={classNames('lc-chart-bar', className)}
       options={merge(defaultOptions, options)}
-      type={type}
       {...props}
     />
   );
