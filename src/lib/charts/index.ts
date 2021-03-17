@@ -14,7 +14,8 @@ const chartDefaultOverrides: ChartOptions & ChartFontOptions = {
   legend: { position: 'bottom' },
   plugins: [ChartDataLabels],
   defaultFontSize: 14,
-  defaultFontFamily: getCssVar('lc-font-family-sans')
+  defaultFontFamily: getCssVar('lc-font-family-sans'),
+  maintainAspectRatio: false // suggested for responsiveness https://stackoverflow.com/questions/53594042/how-to-make-react-chartjs-2-responsive-on-mobile
 };
 merge(defaults, {
   global: chartDefaultOverrides
