@@ -4,6 +4,7 @@ import { ChartTooltipModel } from 'chart.js';
 import { ChartJSData, ChartJSDataFunction, ChartRefObject, ChartTooltipComponent } from '../chart.helpers';
 
 import './chart-tooltip.css';
+import { ChartLabel } from '../ChartLabel/ChartLabel';
 
 export interface ChartTooltipProps extends HTMLAttributes<HTMLDivElement> {
   data: ChartJSData | ChartJSDataFunction;
@@ -38,11 +39,11 @@ export const ChartTooltip: FC<ChartTooltipProps> = ({ data, model, chartRef, com
       {...props}
     >
       <div className="lc-chart-tooltip-content">
-        <span
-          className="lc-chart-tooltip-label-color"
-          // style={{ backgroundColor: model?.labelColors[0]?.backgroundColor }}
-        />
-        {component ? component({ model, chartRef }) : label}
+        {component ? (
+          component({ model, chartRef })
+        ) : (
+          <ChartLabel color={model?.labelColors[0]?.backgroundColor} label={label} />
+        )}
       </div>
     </div>
   );
