@@ -1,7 +1,7 @@
 import React from 'react';
 import { PieChart, BarChart, LineChart, TimeChart } from '..';
 import { getCssVar } from '../../util/colors';
-import { ChartJSData } from '../chart.helpers';
+import { ChartLegendComponentProps } from '../chart.helpers';
 import './chart-examples.css';
 
 export const PieChartExample1 = () => {
@@ -10,9 +10,7 @@ export const PieChartExample1 = () => {
       <PieChart
         type="doughnut"
         tooltipComponent={() => <div>Hello World</div>}
-        legendComponent={(data: ChartJSData) => (
-          <div>Hello World, First Label: {data.labels ? data.labels[0] : ''}</div>
-        )}
+        legendComponent={(props: ChartLegendComponentProps) => <div>Hello World</div>}
         data={[
           { label: 'Label 1', value: 1, color: `rgb(${getCssVar('lc-color-primary')})` },
           { label: 'Label 2', value: 4, color: `rgb(${getCssVar('lc-color-accent')})` },
