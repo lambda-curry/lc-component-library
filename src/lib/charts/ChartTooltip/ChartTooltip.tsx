@@ -1,34 +1,44 @@
 import React, { FC, HTMLAttributes, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { ChartTooltipModel } from 'chart.js';
-import { ChartJSData, ChartJSDataFunction, ChartRefObject, ChartTooltipComponent } from '../chart.helpers';
+import { ChartJSData, ChartRefObject, ChartTooltipComponent, TooltipData } from '../chart.helpers';
 import { ChartLabel } from '../ChartLabel/ChartLabel';
 
 export interface ChartTooltipProps extends HTMLAttributes<HTMLDivElement> {
-  data: ChartJSData | ChartJSDataFunction;
+  data: ChartJSData;
   model: Omit<ChartTooltipModel, 'labelColors'> & { labelColors: any[] };
   chartRef: ChartRefObject;
   component?: ChartTooltipComponent;
 }
 
-export const ChartTooltip: FC<ChartTooltipProps> = ({ data, model, chartRef, component, ...props }) => {
-  // Note: setting the label in state, prevents the label from disappearing before the tooltip
-  const [label, setLabel] = useState('');
+export const ChartTooltip: FC<ChartTooltipProps> = ({ data: chartData, model, chartRef, component, ...props }) => {
+  // Note: setting the data in state, prevents the data from disappearing before the tooltip
+  const [tooltipData, setTooltipData] = useState<TooltipData>({});
 
   const chartElement = chartRef.current?.chartInstance.canvas?.getBoundingClientRect() as DOMRect;
   const positionTop = chartElement.top + window.pageYOffset + model.caretY - 8;
   const positionLeft = chartElement.left + window.pageXOffset + model.caretX;
 
   useEffect(() => {
-    // TODO: I think we can utilize label callbacks to customize these better
-    if (model?.body) {
-      const getBody = (bodyItem: any) => bodyItem.lines;
-      const bodyLines = model?.body.map(getBody);
-      setLabel(bodyLines[0][0]);
-    }
-  }, [model]);
+    const updateTooltipData = () => {
+      if (!model || !model.dataPoints) return;
+
+      const { index, ...newTooltipData } = model.dataPoints[0];
+
+      if (typeof newTooltipData.datasetIndex !== 'number') return;
+
+      const color = (model?.labelColors && model?.labelColors[0].backgroundColor) || '';
+      const datasetLabel = chartData.datasets ? chartData.datasets[newTooltipData.datasetIndex].label : '';
+
+      setTooltipData({ ...newTooltipData, datasetLabel, color });
+    };
+
+    updateTooltipData();
+  }, [model, chartData]);
 
   if (!model || !chartRef?.current) return null;
+
+  const { label = '', color = '' } = tooltipData;
 
   return (
     <div
@@ -37,11 +47,7 @@ export const ChartTooltip: FC<ChartTooltipProps> = ({ data, model, chartRef, com
       {...props}
     >
       <div className="lc-chart-tooltip-content">
-        {component ? (
-          component({ model, chartRef })
-        ) : (
-          <ChartLabel color={model?.labelColors[0]?.backgroundColor} label={label} />
-        )}
+        {component ? component({ data: tooltipData, chartRef }) : <ChartLabel color={color} label={label} />}
       </div>
     </div>
   );

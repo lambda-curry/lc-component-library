@@ -1,8 +1,7 @@
 import React, { FC } from 'react';
 import { merge } from 'lodash';
 import classNames from 'classnames';
-import { ChartJSData, ChartJSDataFunction, ChartJSOptions } from '../chart.helpers';
-import { ChartDataFunction } from 'react-chartjs-2';
+import { ChartJSData, ChartJSOptions } from '../chart.helpers';
 import { AxialChart, AxialChartProps } from '../AxialChart';
 
 import './roundedBarCharts';
@@ -14,7 +13,7 @@ export const BarChart: FC<BarChartProps> = ({ labels, datasets, chartJSData, opt
     borderRadius: 100
   };
 
-  const getComputedData: ChartDataFunction<any> = (canvas?: HTMLElement): ChartJSData | ChartJSDataFunction => {
+  const getComputedData = (): ChartJSData => {
     if (chartJSData) return chartJSData;
 
     if (!datasets) return {} as ChartJSData;
@@ -37,7 +36,7 @@ export const BarChart: FC<BarChartProps> = ({ labels, datasets, chartJSData, opt
   return (
     <AxialChart
       type="bar"
-      chartJSData={getComputedData}
+      chartJSData={getComputedData()}
       className={classNames('lc-chart-bar', className)}
       options={merge(defaultOptions, options)}
       {...props}
