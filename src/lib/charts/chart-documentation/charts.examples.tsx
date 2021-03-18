@@ -139,8 +139,7 @@ export const TimeChartExample1 = () => {
             { x: '2018/07/05', y: 13 },
             { x: '2020/11/07', y: 19 }
           ],
-          color: `rgb(${getCssVar('lc-color-warning')})`,
-          hidden: true
+          color: `rgb(${getCssVar('lc-color-warning')})`
         },
         {
           label: 'Dataset 5',
@@ -150,8 +149,7 @@ export const TimeChartExample1 = () => {
             { x: '2018/07/05', y: 4 },
             { x: '2020/11/07', y: 7 }
           ],
-          color: `rgb(${getCssVar('lc-color-danger')})`,
-          hidden: true
+          color: `rgb(${getCssVar('lc-color-danger')})`
         }
       ]}
       // Note: You can set custom time options without affecting the other defaults
