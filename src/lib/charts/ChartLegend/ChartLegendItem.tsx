@@ -2,17 +2,13 @@ import classNames from 'classnames';
 import React, { FC } from 'react';
 import { ButtonUnstyled } from '../../buttons';
 import { ChartLabel } from '../ChartLabel/ChartLabel';
-
-export type ChartLegendItemType = {
+export interface ChartLegendItemProps {
   index: number;
   color: string;
   label?: string;
   value?: string | number;
   active: boolean;
   interactive?: boolean;
-};
-
-export interface ChartLegendItemProps extends ChartLegendItemType {
   onClick?: (event: React.MouseEvent<any, MouseEvent>, index: number) => void;
 }
 
