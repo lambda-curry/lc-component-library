@@ -6,7 +6,9 @@
   "cSpell.words": [
     "Multiselect",
     "browserslist",
+    "chartjs",
     "compat",
+    "datalabels",
     "duplicative",
     "formik",
     "gilroy",
@@ -30,6 +32,7 @@
     "tailwindcss",
     "truetype",
     "tsconfigs",
-    "tsdx"
+    "tsdx",
+    "unstyled"
   ]
 }

@@ -1,5 +1,6 @@
 .lc-drawer {
   &-content {
-    padding: 16px;
+    padding: theme('padding.24');
+    max-width: 100%;
   }
 }
