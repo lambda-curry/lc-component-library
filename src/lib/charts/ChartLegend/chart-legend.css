@@ -1,0 +1,42 @@
+.lc-chart-legend {
+  @apply lc-text-sm;
+  padding: 32px 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &-label {
+    &-name {
+      &::after {
+        content: ':';
+      }
+    }
+
+    &-percentage {
+      &::before {
+        content: '(';
+      }
+      &::after {
+        content: ')';
+      }
+    }
+  }
+
+  &-item {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 24px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &-color {
+    display: inline-block;
+    border-radius: 10px;
+    height: 11px;
+    width: 11px;
+    margin-right: 8px;
+  }
+}

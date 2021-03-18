@@ -50,8 +50,10 @@ export const ChartBase: FC<ChartBaseProps> = ({
 
   return (
     <div className={classNames('lc-chart', className)}>
-      <ChartComponent ref={chartRef} data={data} options={merge(baseOptions, options)} {...props} />
-      <ChartLegend chartRef={chartRef} data={data} component={legendComponent} />
+      <div className="lc-chart-canvas-wrapper" style={{ position: 'relative' }}>
+        <ChartComponent ref={chartRef} data={data} options={merge(baseOptions, options)} {...props} />
+      </div>
+      <ChartLegend type={props.type} chartRef={chartRef} data={data} component={legendComponent} />
     </div>
   );
 };

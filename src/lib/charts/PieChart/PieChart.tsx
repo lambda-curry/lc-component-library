@@ -1,26 +1,21 @@
 import React, { FC } from 'react';
 import { merge } from 'lodash';
 import classNames from 'classnames';
-import { ChartDataFunction } from 'react-chartjs-2';
 import { ChartBase, ChartBaseProps } from '../ChartBase';
-import { ChartJSData, ChartJSOptions } from '../chart.helpers';
+import { getComputedPieChartJSData, getPieChartPercentage, PieChartData } from '../chart.helpers';
+import { ChartOptions } from 'chart.js';
 
 export interface PieChartProps extends Partial<ChartBaseProps> {
-  data?: {
-    label: string;
-    value: number;
-    color: string;
-  }[];
+  data?: PieChartData;
 }
 
-export const PieChart: FC<PieChartProps> = ({ chartJSData, data, options, className, ...props }) => {
-  const defaultOptions: ChartJSOptions = {
+export const PieChart: FC<PieChartProps> = ({ className, options, chartJSData, data, ...props }) => {
+  const computedChartJSData = getComputedPieChartJSData(chartJSData, data);
+
+  const defaultOptions: ChartOptions = {
     cutoutPercentage: 55,
     legend: {
-      onClick: () => {
-        // The default behavior is to toggle data points when the legend item is clicked, but since this is a pie chart
-        // we don't really need that behavior.
-      }
+      display: false
     },
     plugins: {
       datalabels: {
@@ -36,36 +31,16 @@ export const PieChart: FC<PieChartProps> = ({ chartJSData, data, options, classN
             }
           }
         },
-        formatter: function (value: any, context: any) {
-          if (!data) return value;
-          const total = data.reduce((acc, curr) => acc + curr.value, 0);
-          const percentage = Math.round((value / total) * 100);
-          if (percentage < 10) return null;
-          return `${percentage}%`;
-        }
+        formatter: (value: number, context: any) => getPieChartPercentage(value, computedChartJSData, 10)
       }
     }
-  };
-
-  const computedChartJSData: ChartDataFunction<any> = (canvas: HTMLElement): ChartJSData => {
-    console.log('>>> this canvas is defined', canvas);
-
-    if (chartJSData) return chartJSData as ChartJSData;
-
-    return {
-      labels: data?.map(dataset => dataset.label),
-      datasets: [
-        {
-          data: data?.map(dataset => dataset.value),
-          backgroundColor: data?.map(dataset => dataset.color)
-        }
-      ]
-    };
   };
 
   return (
     <ChartBase
       type="pie"
+      height={1}
+      width={1}
       chartJSData={computedChartJSData}
       options={merge(defaultOptions, options)}
       className={classNames('lc-chart-pie', className)}
