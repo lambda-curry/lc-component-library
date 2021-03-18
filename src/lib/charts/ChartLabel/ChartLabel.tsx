@@ -5,7 +5,7 @@ export interface ChartLabelProps {
   color?: string;
   label?: string | number;
   className?: string;
-  value?: any;
+  value?: string | number;
 }
 
 export const ChartLabel: FC<ChartLabelProps> = ({ color, label, value, className, ...props }) => (
