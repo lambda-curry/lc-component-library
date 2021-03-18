@@ -8,6 +8,8 @@ export const ChartLegend: FC<ChartLegendComponentProps> = ({ data, interactive, 
 
   const { datasets } = data as ChartJSData;
 
+  if (!datasets) return null;
+
   return (
     <ul className={classNames('lc-chart-legend', { 'lc-chart-legend-interactive': interactive })}>
       {datasets &&

@@ -3,6 +3,7 @@ import { ChartJSData, ChartJSDataFunction, ChartLegendComponent, ChartRefObject 
 import { ChartLegend } from './ChartLegend';
 
 export interface ChartLegendWrapperProps extends HTMLAttributes<HTMLDivElement> {
+  type?: string;
   data: ChartJSData | ChartJSDataFunction;
   chartRef: ChartRefObject;
   component?: ChartLegendComponent;

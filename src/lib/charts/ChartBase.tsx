@@ -26,6 +26,7 @@ export interface ChartBaseProps extends Omit<ChartComponentProps, 'data'> {
 }
 
 export const ChartBase: FC<ChartBaseProps> = ({
+  type,
   options,
   chartJSData: data,
   className,
@@ -53,8 +54,10 @@ export const ChartBase: FC<ChartBaseProps> = ({
 
   return (
     <div className={classNames('lc-chart', className)}>
-      <ChartComponent ref={chartRef} data={data} options={merge(baseOptions, options)} {...props} />
-      <ChartLegendWrapper chartRef={chartRef} data={data} component={legendComponent} />
+      <div className="lc-chart-canvas-wrapper" style={{ position: 'relative' }}>
+        <ChartComponent type={type} ref={chartRef} data={data} options={merge(baseOptions, options)} {...props} />
+      </div>
+      <ChartLegendWrapper type={type} chartRef={chartRef} data={data} component={legendComponent} />
     </div>
   );
 };

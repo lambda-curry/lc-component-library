@@ -1,8 +1,8 @@
 import React, { FC, HTMLAttributes, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
+import classNames from 'classnames';
 import { ChartTooltipModel } from 'chart.js';
 import { ChartJSData, ChartJSDataFunction, ChartRefObject, ChartTooltipComponent } from '../chart.helpers';
-import { ChartLabel } from '../ChartLabel/ChartLabel';
 
 export interface ChartTooltipProps extends HTMLAttributes<HTMLDivElement> {
   data: ChartJSData | ChartJSDataFunction;
@@ -11,38 +11,45 @@ export interface ChartTooltipProps extends HTMLAttributes<HTMLDivElement> {
   component?: ChartTooltipComponent;
 }
 
-export const ChartTooltip: FC<ChartTooltipProps> = ({ data, model, chartRef, component, ...props }) => {
+export const ChartTooltip: FC<ChartTooltipProps> = ({ model, chartRef, component, ...props }) => {
   // Note: setting the label in state, prevents the label from disappearing before the tooltip
-  const [label, setLabel] = useState('');
+  const [tooltipModel, setTooltipModel] = useState<ChartTooltipModel>();
+
+  useEffect(() => {
+    if (model.opacity) setTooltipModel(model);
+  }, [model]);
+
+  if (!tooltipModel || !chartRef?.current) return null;
 
   const chartElement = chartRef.current?.chartInstance.canvas?.getBoundingClientRect() as DOMRect;
   const positionTop = chartElement.top + window.pageYOffset + model.caretY - 8;
   const positionLeft = chartElement.left + window.pageXOffset + model.caretX;
 
-  useEffect(() => {
-    // TODO: I think we can utilize label callbacks to customize these better
-    if (model?.body) {
-      const getBody = (bodyItem: any) => bodyItem.lines;
-      const bodyLines = model?.body.map(getBody);
-      setLabel(bodyLines[0][0]);
-    }
-  }, [model]);
+  const getLabel = ({ body }: ChartTooltipModel) => {
+    const getBody = (bodyItem: any) => bodyItem.lines;
+    const bodyLines = body.map(getBody);
+    return bodyLines[0][0];
+  };
 
-  if (!model || !chartRef?.current) return null;
+  const getLabelColor = ({ labelColors }: ChartTooltipModel) => {
+    if (!labelColors || !labelColors[0]) return false;
+    return (labelColors[0] as any).backgroundColor;
+  };
 
   return (
     <div
-      className="lc-chart-tooltip"
-      style={{ top: positionTop, left: positionLeft, opacity: model?.opacity || 0 }}
+      className={classNames('lc-chart-tooltip', { 'lc-chart-tooltip-loaded': model?.opacity })}
+      style={{ top: positionTop, left: positionLeft }}
       {...props}
     >
-      <div className="lc-chart-tooltip-content">
-        {component ? (
-          component({ model, chartRef })
-        ) : (
-          <ChartLabel color={model?.labelColors[0]?.backgroundColor} label={label} />
-        )}
-      </div>
+      {component ? (
+        component({ model: tooltipModel, chartRef })
+      ) : (
+        <div className="lc-chart-tooltip-content">
+          <div className="lc-chart-tooltip-color" style={{ backgroundColor: getLabelColor(tooltipModel) }}></div>
+          {getLabelColor(tooltipModel) && <div className="lc-chart-tooltip-label">{getLabel(tooltipModel)}</div>}
+        </div>
+      )}
     </div>
   );
 };
