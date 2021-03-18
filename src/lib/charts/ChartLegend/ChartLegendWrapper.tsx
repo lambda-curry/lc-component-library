@@ -15,13 +15,7 @@ export const ChartLegendWrapper: FC<ChartLegendWrapperProps> = ({ data, chartRef
 
   return (
     <div className="lc-chart-legend-wrapper" {...props}>
-      {component ? (
-        component(legendProps)
-      ) : (
-        <>
-          <ChartLegend {...legendProps} />
-        </>
-      )}
+      {component ? component(legendProps) : <ChartLegend {...legendProps} />}
     </div>
   );
 };
