@@ -1,8 +1,7 @@
 import React, { FC } from 'react';
-import { ChartDataFunction } from 'react-chartjs-2';
 import classNames from 'classnames';
 import { merge } from 'lodash';
-import { ChartJSData, ChartJSDataFunction, ChartJSOptions } from '../chart.helpers';
+import { ChartJSData, ChartJSOptions } from '../chart.helpers';
 import { AxialChart, AxialChartProps } from '../AxialChart';
 
 export interface LineChartProps extends Partial<AxialChartProps> {}
@@ -10,7 +9,7 @@ export interface LineChartProps extends Partial<AxialChartProps> {}
 export const LineChart: FC<LineChartProps> = ({ labels, datasets, chartJSData, options, className, ...props }) => {
   const defaultOptions: ChartJSOptions = {};
 
-  const getComputedData: ChartDataFunction<any> = (canvas?: HTMLElement): ChartJSData | ChartJSDataFunction => {
+  const getComputedData = (): ChartJSData => {
     if (chartJSData) return chartJSData;
 
     if (!datasets) return {} as ChartJSData;
@@ -38,7 +37,7 @@ export const LineChart: FC<LineChartProps> = ({ labels, datasets, chartJSData, o
   return (
     <AxialChart
       type="line"
-      chartJSData={getComputedData}
+      chartJSData={getComputedData()}
       className={classNames('lc-chart-line', className)}
       options={merge(defaultOptions, options)}
       {...props}

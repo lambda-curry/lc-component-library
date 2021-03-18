@@ -1,5 +1,5 @@
 import { ReactNode, RefObject } from 'react';
-import { ChartDataSets, ChartOptions, ChartTooltipModel } from 'chart.js';
+import { ChartDataSets, ChartOptions } from 'chart.js';
 import ChartComponent, { ChartComponentProps, LinearComponentProps, ChartDataFunction } from 'react-chartjs-2';
 
 export type ChartLabels = Chart.ChartData['labels'];
@@ -8,7 +8,7 @@ export type ChartRefComponent = ChartComponent<ChartComponentProps | LinearCompo
 
 export type ChartRefObject = RefObject<ChartRefComponent>;
 
-export type ChartTooltipComponent = (props: { model: ChartTooltipModel; chartRef: ChartRefObject }) => ReactNode;
+export type ChartTooltipComponent = (props: { data: ChartTooltipData; chartRef: ChartRefObject }) => ReactNode;
 
 export type ChartLegendComponentProps = {
   data: ChartJSData | ChartJSDataFunction;
@@ -29,6 +29,18 @@ export interface ChartJSData {
 }
 
 export type ChartJSDataFunction = ChartDataFunction<ChartJSData>;
+
+export type ChartTooltipData = {
+  datasetIndex?: number;
+  datasetLabel?: string | number;
+  label?: string;
+  value?: string;
+  xLabel?: string | number;
+  yLabel?: string | number;
+  x?: number;
+  y?: number;
+  color?: string;
+};
 
 export type PieChartData = {
   label: string;

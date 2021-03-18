@@ -9,15 +9,14 @@ import {
   ChartJSOptions,
   ChartRefComponent,
   ChartTooltipComponent,
-  ChartLegendComponent,
-  ChartJSDataFunction
+  ChartLegendComponent
 } from './chart.helpers';
 import { ChartLegendWrapper } from './ChartLegend/ChartLegendWrapper';
 
 import './chart.css';
 
 export interface ChartBaseProps extends Omit<ChartComponentProps, 'data'> {
-  chartJSData: ChartJSData | ChartJSDataFunction;
+  chartJSData: ChartJSData;
   className?: string;
   options?: ChartJSOptions;
   tooltipComponent?: ChartTooltipComponent;
