@@ -50,7 +50,7 @@ export const PieChart: FC<PieChartProps> = ({ chartJSData, data, options, classN
   const computedChartJSData: ChartDataFunction<any> = (canvas: HTMLElement): ChartJSData => {
     if (chartJSData) return chartJSData as ChartJSData;
 
-    const computedData = {
+    return {
       labels: data?.map(dataset => dataset.label),
       datasets: [
         {
@@ -59,17 +59,11 @@ export const PieChart: FC<PieChartProps> = ({ chartJSData, data, options, classN
         }
       ]
     };
-
-    console.log(computedData);
-
-    return computedData;
   };
 
   return (
     <ChartBase
       type="pie"
-      height={1}
-      width={1}
       chartJSData={computedChartJSData}
       options={merge(defaultOptions, options)}
       className={classNames('lc-chart-pie', className)}
