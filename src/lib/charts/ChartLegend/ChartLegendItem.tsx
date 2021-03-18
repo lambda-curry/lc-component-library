@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import React, { FC } from 'react';
 import { ButtonUnstyled } from '../../buttons';
 import { ChartLabel } from '../ChartLabel/ChartLabel';
+
 export interface ChartLegendItemProps {
   index: number;
   color: string;
