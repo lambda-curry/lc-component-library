@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { PieChart, BarChart, LineChart, TimeChart } from '..';
 import { getCssVar } from '../../util/colors';
 import { ChartJSData } from '../chart.helpers';
@@ -8,7 +8,10 @@ export const PieChartExample1 = () => {
     <PieChart
       type="doughnut"
       tooltipComponent={() => <div>Hello World</div>}
-      legendComponent={(data: ChartJSData) => <div>Hello World, First Label: {data.labels ? data.labels[0] : ''}</div>}
+      legendComponent={({ data }) => {
+        const chartData = data as ChartJSData;
+        return <div>Hello World, First Label: {chartData.labels ? chartData.labels[0] : ''}</div>;
+      }}
       data={[
         { label: 'Label 1', value: 1, color: `rgb(${getCssVar('lc-color-primary')})` },
         { label: 'Label 2', value: 4, color: `rgb(${getCssVar('lc-color-accent')})` },
@@ -136,7 +139,8 @@ export const TimeChartExample1 = () => {
             { x: '2018/07/05', y: 13 },
             { x: '2020/11/07', y: 19 }
           ],
-          color: `rgb(${getCssVar('lc-color-warning')})`
+          color: `rgb(${getCssVar('lc-color-warning')})`,
+          hidden: true
         },
         {
           label: 'Dataset 5',
@@ -146,7 +150,8 @@ export const TimeChartExample1 = () => {
             { x: '2018/07/05', y: 4 },
             { x: '2020/11/07', y: 7 }
           ],
-          color: `rgb(${getCssVar('lc-color-danger')})`
+          color: `rgb(${getCssVar('lc-color-danger')})`,
+          hidden: true
         }
       ]}
       // Note: You can set custom time options without affecting the other defaults

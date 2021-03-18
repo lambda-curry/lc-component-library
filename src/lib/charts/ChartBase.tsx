@@ -12,7 +12,9 @@ import {
   ChartLegendComponent,
   ChartJSDataFunction
 } from './chart.helpers';
-import { ChartLegend } from './ChartLegend/ChartLegend';
+import { ChartLegendWrapper } from './ChartLegend/ChartLegendWrapper';
+
+import './chart.css';
 
 export interface ChartBaseProps extends Omit<ChartComponentProps, 'data'> {
   chartJSData: ChartJSData | ChartJSDataFunction;
@@ -35,11 +37,12 @@ export const ChartBase: FC<ChartBaseProps> = ({
 
   const baseOptions: ChartJSOptions = {
     legend: {
-      display: !!legendComponent
+      display: false
     },
     tooltips: {
       enabled: false,
-      custom: (tooltipModel: ChartTooltipModel) => renderChartTooltip(tooltipModel, chartRef, tooltipComponent)
+      custom: (tooltipModel: ChartTooltipModel) =>
+        renderChartTooltip({ data, model: tooltipModel, chartRef, component: tooltipComponent })
     },
     plugins: {
       datalabels: {
@@ -51,7 +54,7 @@ export const ChartBase: FC<ChartBaseProps> = ({
   return (
     <div className={classNames('lc-chart', className)}>
       <ChartComponent ref={chartRef} data={data} options={merge(baseOptions, options)} {...props} />
-      <ChartLegend chartRef={chartRef} data={data} component={legendComponent} />
+      <ChartLegendWrapper chartRef={chartRef} data={data} component={legendComponent} />
     </div>
   );
 };

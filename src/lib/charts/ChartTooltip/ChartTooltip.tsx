@@ -1,52 +1,57 @@
 import React, { FC, HTMLAttributes, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { ChartTooltipModel } from 'chart.js';
-import { ChartRefObject, ChartTooltipComponent } from '../chart.helpers';
+import { ChartJSData, ChartJSDataFunction, ChartRefObject, ChartTooltipComponent } from '../chart.helpers';
 
 import './chart-tooltip.css';
 
 export interface ChartTooltipProps extends HTMLAttributes<HTMLDivElement> {
-  model: ChartTooltipModel;
+  data: ChartJSData | ChartJSDataFunction;
+  model: Omit<ChartTooltipModel, 'labelColors'> & { labelColors: any[] };
   chartRef: ChartRefObject;
   component?: ChartTooltipComponent;
 }
 
-export const ChartTooltip: FC<ChartTooltipProps> = ({ model: tooltipModel, chartRef, component, ...props }) => {
+export const ChartTooltip: FC<ChartTooltipProps> = ({ data, model, chartRef, component, ...props }) => {
   // Note: setting the label in state, prevents the label from disappearing before the tooltip
   const [label, setLabel] = useState('');
 
   const chartElement = chartRef.current?.chartInstance.canvas?.getBoundingClientRect() as DOMRect;
-  const positionTop = chartElement.top + window.pageYOffset + tooltipModel.caretY - 8;
-  const positionLeft = chartElement.left + window.pageXOffset + tooltipModel.caretX;
+  const positionTop = chartElement.top + window.pageYOffset + model.caretY - 8;
+  const positionLeft = chartElement.left + window.pageXOffset + model.caretX;
 
   useEffect(() => {
     // TODO: I think we can utilize label callbacks to customize these better
-    if (tooltipModel?.body) {
+    if (model?.body) {
       const getBody = (bodyItem: any) => bodyItem.lines;
-      const bodyLines = tooltipModel?.body.map(getBody);
+      const bodyLines = model?.body.map(getBody);
       setLabel(bodyLines[0][0]);
     }
-  }, [tooltipModel]);
+  }, [model]);
 
-  if (!tooltipModel || !chartRef?.current) return null;
+  if (!model || !chartRef?.current) return null;
 
   return (
     <div
       className="lc-chart-tooltip"
-      style={{ top: positionTop, left: positionLeft, opacity: tooltipModel?.opacity || 0 }}
+      style={{ top: positionTop, left: positionLeft, opacity: model?.opacity || 0 }}
       {...props}
     >
-      {component ? component(tooltipModel, chartRef) : label}
+      <div className="lc-chart-tooltip-content">
+        <span
+          className="lc-chart-tooltip-label-color"
+          // style={{ backgroundColor: model?.labelColors[0]?.backgroundColor }}
+        />
+        {component ? component({ model, chartRef }) : label}
+      </div>
     </div>
   );
 };
 
+export type RenderChartTooltipProps = (props: ChartTooltipProps) => void;
+
 // Note: Abstracted from https://github.com/reactchartjs/react-chartjs-2/issues/151#issuecomment-470282163
-export const renderChartTooltip = (
-  tooltipModel: ChartTooltipModel,
-  chartRef: ChartRefObject,
-  tooltipComponent?: ChartTooltipComponent
-) => {
+export const renderChartTooltip: RenderChartTooltipProps = props => {
   let tooltipEl = document.getElementById('lc-chart-tooltip-wrapper');
   if (!tooltipEl) {
     tooltipEl = document.createElement('div');
@@ -54,5 +59,5 @@ export const renderChartTooltip = (
     document.body.appendChild(tooltipEl);
   }
 
-  ReactDOM.render(<ChartTooltip model={tooltipModel} chartRef={chartRef} component={tooltipComponent} />, tooltipEl);
+  ReactDOM.render(<ChartTooltip {...props} />, tooltipEl);
 };

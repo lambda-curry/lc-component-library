@@ -1,25 +1,29 @@
-import React, { FC, HTMLAttributes } from 'react';
-import { ChartJSData, ChartJSDataFunction, ChartLegendComponent, ChartRefObject } from '../chart.helpers';
+import classNames from 'classnames';
+import React, { FC } from 'react';
+import { ChartJSData, ChartLegendComponentProps } from '../chart.helpers';
+import { ChartLegendItem } from './ChartLegendItem';
 
-// import './chart-legend.css';
+export const ChartLegend: FC<ChartLegendComponentProps> = ({ data, interactive, onItemClick }) => {
+  const { datasets } = data as ChartJSData;
 
-export interface ChartLegendProps extends HTMLAttributes<HTMLDivElement> {
-  data: ChartJSData | ChartJSDataFunction;
-  chartRef: ChartRefObject;
-  component?: ChartLegendComponent;
-}
-
-export const ChartLegend: FC<ChartLegendProps> = ({ data, chartRef, component, ...props }) => {
   return (
-    <div className="lc-chart-legend" {...props}>
-      {component ? (
-        component(typeof data === 'function' ? data(chartRef.current?.chartInstance.canvas as HTMLElement) : data)
-      ) : (
-        <>
-          Default Legend
-          {/* TODO: build out the default legend */}
-        </>
-      )}
-    </div>
+    <ul className={classNames('lc-chart-legend', { 'lc-chart-legend-interactive': interactive })}>
+      {datasets &&
+        datasets.map(({ label, borderColor, backgroundColor, pointBackgroundColor, hidden }, index) => {
+          const color = backgroundColor || pointBackgroundColor || borderColor;
+
+          return (
+            <ChartLegendItem
+              key={index}
+              index={index}
+              color={color as string}
+              label={label}
+              onClick={onItemClick}
+              active={!hidden}
+              interactive={interactive}
+            />
+          );
+        })}
+    </ul>
   );
 };
