@@ -2,8 +2,6 @@ import React, { FC, HTMLAttributes } from 'react';
 import { ChartJSData, ChartJSDataFunction, ChartLegendComponent, ChartRefObject } from '../chart.helpers';
 import { ChartLegend } from './ChartLegend';
 
-// import './chart-legend.css';
-
 export interface ChartLegendWrapperProps extends HTMLAttributes<HTMLDivElement> {
   data: ChartJSData | ChartJSDataFunction;
   chartRef: ChartRefObject;
