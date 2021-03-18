@@ -6,7 +6,7 @@
     @apply lc-text-sm;
     @apply lc-text-black;
 
-    &-content {
+    &-name {
       @apply lc-font-bold;
     }
 

@@ -11,7 +11,7 @@ export interface ChartLabelProps {
 export const ChartLabel: FC<ChartLabelProps> = ({ color, label, value, className, ...props }) => (
   <span className={classNames('lc-chart-label', className)} {...props}>
     {color && <span className="lc-chart-label-color" style={{ backgroundColor: color }} />}
-    {label && <span className="lc-chart-label-content">{label}</span>}
+    {label && <span className="lc-chart-label-name">{label}</span>}
     {value && <span className="lc-chart-label-value">{value}</span>}
   </span>
 );
