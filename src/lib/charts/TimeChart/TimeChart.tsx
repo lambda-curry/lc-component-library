@@ -47,8 +47,6 @@ export const TimeChart: FC<TimeChartProps> = ({ options, datasets, className, ..
     }
   };
 
-  console.log(visibleDatasets);
-
   return (
     <LineChart
       datasets={visibleDatasets}
