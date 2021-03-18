@@ -36,14 +36,14 @@ const PieChartLegendContent: FC<{ data: ChartJSData }> = ({ data }) => {
         const pieChartPercentage = getPieChartPercentage(value, data);
 
         return (
-          <div key={index} className="lc-chart-legend-item">
+          <li key={index} className="lc-chart-legend-item">
             <div className="lc-chart-legend-color" style={{ backgroundColor: backgroundColor }}></div>
             <div className="lc-chart-legend-label">
               <span className="lc-chart-legend-label-name">{label}</span>{' '}
               <span className="lc-chart-legend-label-value">{value}</span>{' '}
               {pieChartPercentage && <span className="lc-chart-legend-label-percentage">{pieChartPercentage}</span>}
             </div>
-          </div>
+          </li>
         );
       })}
     </ul>
