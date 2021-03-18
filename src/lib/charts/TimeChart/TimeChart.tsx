@@ -1,9 +1,13 @@
 import React, { FC, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { merge } from 'lodash';
-import { ChartJSOptions } from '../chart.helpers';
+import { ChartJSOptions, ChartTooltipComponent } from '../chart.helpers';
 import { LineChart, LineChartProps } from '../LineChart/LineChart';
 import { ChartLegend } from '../ChartLegend/ChartLegend';
+import { ChartLabel } from '../ChartLabel/ChartLabel';
+import moment from 'moment';
+
+import './time-chart.css';
 
 export interface TimeChartProps extends LineChartProps {}
 
@@ -52,10 +56,22 @@ export const TimeChart: FC<TimeChartProps> = ({ options, datasets, className, ..
       datasets={visibleDatasets}
       className={classNames('lc-chart-time', className)}
       options={merge(defaultOptions, options)}
+      tooltipComponent={TimeChartTooltip}
       legendComponent={legendProps => (
         <ChartLegend {...legendProps} interactive={true} onItemClick={(event, index) => handleItemClick(index)} />
       )}
       {...props}
     />
+  );
+};
+
+const TimeChartTooltip: ChartTooltipComponent = ({ data }) => {
+  const { color = '', datasetLabel = '', xLabel = '' } = data;
+
+  return (
+    <div className="lc-chart-time-tooltip">
+      <ChartLabel className="lc-chart-time-tooltip-label" color={color} label={datasetLabel} />
+      {xLabel && <div className="lc-chart-time-tooltip-date">{moment(xLabel).format('ll')}</div>}
+    </div>
   );
 };

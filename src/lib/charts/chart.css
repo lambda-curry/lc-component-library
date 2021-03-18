@@ -1,9 +1,9 @@
 .lc-chart {
   &-label {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     @apply lc-text-sm;
-    @apply lc-text-gray;
+    @apply lc-text-black;
     @apply lc-font-bold;
 
     &-color {
@@ -83,7 +83,8 @@
     &-content {
       @apply lc-bg-white;
       @apply lc-text-sm;
-      @apply lc-p-20;
+      @apply lc-py-16;
+      @apply lc-px-20;
       @apply lc-rounded-lg;
       @apply lc-border-1;
       @apply lc-border-gray-lighter;

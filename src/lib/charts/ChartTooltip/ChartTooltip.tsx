@@ -2,39 +2,42 @@ import React, { FC, HTMLAttributes, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { ChartTooltipModel } from 'chart.js';
-import { ChartJSData, ChartJSDataFunction, ChartRefObject, ChartTooltipComponent } from '../chart.helpers';
+import { ChartJSData, ChartRefObject, ChartTooltipComponent, ChartTooltipData } from '../chart.helpers';
+import { ChartLabel } from '../ChartLabel/ChartLabel';
 
 export interface ChartTooltipProps extends HTMLAttributes<HTMLDivElement> {
-  data: ChartJSData | ChartJSDataFunction;
+  data: ChartJSData;
   model: Omit<ChartTooltipModel, 'labelColors'> & { labelColors: any[] };
   chartRef: ChartRefObject;
   component?: ChartTooltipComponent;
 }
 
-export const ChartTooltip: FC<ChartTooltipProps> = ({ model, chartRef, component, ...props }) => {
-  // Note: setting the label in state, prevents the label from disappearing before the tooltip
-  const [tooltipModel, setTooltipModel] = useState<ChartTooltipModel>();
-
-  useEffect(() => {
-    if (model.opacity) setTooltipModel(model);
-  }, [model]);
-
-  if (!tooltipModel || !chartRef?.current) return null;
+export const ChartTooltip: FC<ChartTooltipProps> = ({ data: chartData, model, chartRef, component, ...props }) => {
+  // Note: setting the data in state, prevents the data from disappearing before the tooltip
+  const [tooltipData, setTooltipData] = useState<ChartTooltipData>({});
 
   const chartElement = chartRef.current?.chartInstance.canvas?.getBoundingClientRect() as DOMRect;
   const positionTop = chartElement.top + window.pageYOffset + model.caretY - 8;
   const positionLeft = chartElement.left + window.pageXOffset + model.caretX;
 
-  const getLabel = ({ body }: ChartTooltipModel) => {
-    const getBody = (bodyItem: any) => bodyItem.lines;
-    const bodyLines = body.map(getBody);
-    return bodyLines[0][0];
-  };
+  useEffect(() => {
+    const updateTooltipData = () => {
+      if (!model || !model.dataPoints) return;
 
-  const getLabelColor = ({ labelColors }: ChartTooltipModel) => {
-    if (!labelColors || !labelColors[0]) return false;
-    return (labelColors[0] as any).backgroundColor;
-  };
+      const { index, ...newTooltipData } = model.dataPoints[0];
+
+      if (typeof newTooltipData.datasetIndex !== 'number') return;
+
+      const color = (model?.labelColors && model?.labelColors[0].backgroundColor) || '';
+      const datasetLabel = chartData.datasets ? chartData.datasets[newTooltipData.datasetIndex].label : '';
+
+      setTooltipData({ ...newTooltipData, datasetLabel, color });
+    };
+
+    updateTooltipData();
+  }, [model, chartData]);
+
+  const { label = '', color = '' } = tooltipData;
 
   return (
     <div
@@ -42,14 +45,9 @@ export const ChartTooltip: FC<ChartTooltipProps> = ({ model, chartRef, component
       style={{ top: positionTop, left: positionLeft }}
       {...props}
     >
-      {component ? (
-        component({ model: tooltipModel, chartRef })
-      ) : (
-        <div className="lc-chart-tooltip-content">
-          <div className="lc-chart-tooltip-color" style={{ backgroundColor: getLabelColor(tooltipModel) }}></div>
-          {getLabelColor(tooltipModel) && <div className="lc-chart-tooltip-label">{getLabel(tooltipModel)}</div>}
-        </div>
-      )}
+      <div className="lc-chart-tooltip-content">
+        {component ? component({ data: tooltipData, chartRef }) : <ChartLabel color={color} label={label} />}
+      </div>
     </div>
   );
 };
