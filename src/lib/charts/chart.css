@@ -12,10 +12,10 @@
 
     &-color {
       display: inline-block;
-      width: theme('spacing.8');
-      height: theme('spacing.8');
+      width: 11px;
+      height: 11px;
       margin-right: theme('spacing.12');
-      border-radius: theme('borderRadius.sm');
+      border-radius: 100%;
     }
 
     &-value {
