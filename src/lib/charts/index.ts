@@ -11,8 +11,6 @@ export * from './TimeChart/TimeChart';
 
 // Note: this overrides the default global chart.js options
 const chartDefaultOverrides: ChartOptions & ChartFontOptions = {
-  responsive: true,
-  maintainAspectRatio: true,
   legend: { position: 'bottom' },
   plugins: [ChartDataLabels],
   defaultFontSize: 14,

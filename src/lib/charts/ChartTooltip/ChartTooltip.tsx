@@ -1,5 +1,6 @@
 import React, { FC, HTMLAttributes, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
+import classNames from 'classnames';
 import { ChartTooltipModel } from 'chart.js';
 import { ChartJSData, ChartRefObject, ChartTooltipComponent, TooltipData } from '../chart.helpers';
 import { ChartLabel } from '../ChartLabel/ChartLabel';
@@ -36,14 +37,12 @@ export const ChartTooltip: FC<ChartTooltipProps> = ({ data: chartData, model, ch
     updateTooltipData();
   }, [model, chartData]);
 
-  if (!model || !chartRef?.current) return null;
-
   const { label = '', color = '' } = tooltipData;
 
   return (
     <div
-      className="lc-chart-tooltip"
-      style={{ top: positionTop, left: positionLeft, opacity: model?.opacity || 0 }}
+      className={classNames('lc-chart-tooltip', { 'lc-chart-tooltip-loaded': model?.opacity })}
+      style={{ top: positionTop, left: positionLeft }}
       {...props}
     >
       <div className="lc-chart-tooltip-content">

@@ -1,26 +1,23 @@
 import React, { FC } from 'react';
 import { merge } from 'lodash';
 import classNames from 'classnames';
-import { ChartDataFunction } from 'react-chartjs-2';
 import { ChartBase, ChartBaseProps } from '../ChartBase';
-import { ChartJSData, ChartJSOptions } from '../chart.helpers';
+import { ChartJSData, getComputedPieChartJSData, getPieChartPercentage, PieChartData } from '../chart.helpers';
+import { ChartOptions } from 'chart.js';
+
+import './pie-chart-legend.css';
 
 export interface PieChartProps extends Partial<ChartBaseProps> {
-  data?: {
-    label: string;
-    value: number;
-    color: string;
-  }[];
+  data?: PieChartData;
 }
 
-export const PieChart: FC<PieChartProps> = ({ chartJSData, data, options, className, ...props }) => {
-  const defaultOptions: ChartJSOptions = {
+export const PieChart: FC<PieChartProps> = ({ className, options, chartJSData, data, ...props }) => {
+  const computedChartJSData = getComputedPieChartJSData(chartJSData, data);
+
+  const defaultOptions: ChartOptions = {
     cutoutPercentage: 55,
     legend: {
-      onClick: () => {
-        // The default behavior is to toggle data points when the legend item is clicked, but since this is a pie chart
-        // we don't really need that behavior.
-      }
+      display: false
     },
     plugins: {
       datalabels: {
@@ -36,38 +33,58 @@ export const PieChart: FC<PieChartProps> = ({ chartJSData, data, options, classN
             }
           }
         },
-        formatter: function (value: any, context: any) {
-          if (!data) return value;
-          const total = data.reduce((acc, curr) => acc + curr.value, 0);
-          const percentage = Math.round((value / total) * 100);
-          if (percentage < 10) return null;
-          return `${percentage}%`;
-        }
+        formatter: (value: number, context: any) => getPieChartPercentage(value, computedChartJSData, 10)
       }
     }
-  };
-
-  const computedChartJSData: ChartDataFunction<any> = (canvas: HTMLElement): ChartJSData => {
-    if (chartJSData) return chartJSData as ChartJSData;
-
-    return {
-      labels: data?.map(dataset => dataset.label),
-      datasets: [
-        {
-          data: data?.map(dataset => dataset.value),
-          backgroundColor: data?.map(dataset => dataset.color)
-        }
-      ]
-    };
   };
 
   return (
     <ChartBase
       type="pie"
+      height={1}
+      width={1}
       chartJSData={computedChartJSData}
       options={merge(defaultOptions, options)}
       className={classNames('lc-chart-pie', className)}
+      legendComponent={PieChartLegend}
       {...props}
     />
+  );
+};
+
+const PieChartLegend: FC<{ data: ChartJSData }> = ({ data }) => {
+  if (!data.datasets || !data.datasets[0].data || !data.labels) return null;
+
+  const dataset = data.datasets[0];
+
+  // Note: I'm reversing the data here so that we can have the farthest left item align with the furthest left item on
+  // the chart, which seems to make the most sense. - Jake 03/16/2021
+  const reversedData = [...(dataset.data as number[])].reverse();
+  const reversedLabels = [...(data.labels as string[])].reverse();
+  const reversedBackgroundColors = [...(dataset.backgroundColor as string[])].reverse();
+
+  return (
+    <div className="lc-pie-chart-legend">
+      <ul className="lc-pie-chart-legend-list">
+        {reversedData.map((value, index) => {
+          const label = reversedLabels[index];
+          const backgroundColor = reversedBackgroundColors[index];
+          const pieChartPercentage = getPieChartPercentage(value, data);
+
+          return (
+            <li key={index} className="lc-pie-chart-legend-item">
+              <div className="lc-pie-chart-legend-color" style={{ backgroundColor: backgroundColor }}></div>
+              <div className="lc-pie-chart-legend-label">
+                <span className="lc-pie-chart-legend-label-name">{label}</span>{' '}
+                <span className="lc-pie-chart-legend-label-value">{value}</span>{' '}
+                {pieChartPercentage && (
+                  <span className="lc-pie-chart-legend-label-percentage">{pieChartPercentage}</span>
+                )}
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 };

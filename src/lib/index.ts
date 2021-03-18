@@ -1,6 +1,7 @@
 // Components
 export * from './buttons';
 export * from './character-limit';
+export * from './charts';
 export * from './drawer';
 export * from './icon';
 export * from './icon-button';
