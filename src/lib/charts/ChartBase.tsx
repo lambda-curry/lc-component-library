@@ -21,7 +21,7 @@ export interface ChartBaseProps extends Omit<ChartComponentProps, 'data'> {
   options?: ChartJSOptions;
   tooltipComponent?: ChartTooltipComponent;
   legendComponent?: ChartLegendComponent;
-  type?: ChartType;
+  type: ChartType;
 }
 
 export const ChartBase: FC<ChartBaseProps> = ({
@@ -42,7 +42,7 @@ export const ChartBase: FC<ChartBaseProps> = ({
     tooltips: {
       enabled: false,
       custom: (tooltipModel: ChartTooltipModel) =>
-        renderChartTooltip({ data, model: tooltipModel, chartRef, component: tooltipComponent })
+        renderChartTooltip({ type, data, model: tooltipModel, chartRef, component: tooltipComponent })
     },
     plugins: {
       datalabels: {
