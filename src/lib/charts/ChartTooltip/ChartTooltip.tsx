@@ -2,7 +2,7 @@ import React, { FC, HTMLAttributes, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { ChartTooltipModel } from 'chart.js';
-import { ChartJSData, ChartRefObject, ChartTooltipComponent, TooltipData } from '../chart.helpers';
+import { ChartJSData, ChartRefObject, ChartTooltipComponent, ChartTooltipData } from '../chart.helpers';
 import { ChartLabel } from '../ChartLabel/ChartLabel';
 
 export interface ChartTooltipProps extends HTMLAttributes<HTMLDivElement> {
@@ -14,7 +14,7 @@ export interface ChartTooltipProps extends HTMLAttributes<HTMLDivElement> {
 
 export const ChartTooltip: FC<ChartTooltipProps> = ({ data: chartData, model, chartRef, component, ...props }) => {
   // Note: setting the data in state, prevents the data from disappearing before the tooltip
-  const [tooltipData, setTooltipData] = useState<TooltipData>({});
+  const [tooltipData, setTooltipData] = useState<ChartTooltipData>({});
 
   const chartElement = chartRef.current?.chartInstance.canvas?.getBoundingClientRect() as DOMRect;
   const positionTop = chartElement.top + window.pageYOffset + model.caretY - 8;

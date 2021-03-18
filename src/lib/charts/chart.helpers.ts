@@ -8,7 +8,7 @@ export type ChartRefComponent = ChartComponent<ChartComponentProps | LinearCompo
 
 export type ChartRefObject = RefObject<ChartRefComponent>;
 
-export type ChartTooltipComponent = (props: { data: TooltipData; chartRef: ChartRefObject }) => ReactNode;
+export type ChartTooltipComponent = (props: { data: ChartTooltipData; chartRef: ChartRefObject }) => ReactNode;
 
 export type ChartLegendComponentProps = {
   data: ChartJSData | ChartJSDataFunction;
@@ -30,7 +30,7 @@ export interface ChartJSData {
 
 export type ChartJSDataFunction = ChartDataFunction<ChartJSData>;
 
-export type TooltipData = {
+export type ChartTooltipData = {
   datasetIndex?: number;
   datasetLabel?: string | number;
   label?: string;
