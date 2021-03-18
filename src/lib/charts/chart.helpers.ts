@@ -35,7 +35,7 @@ export const getPieChartPercentage = (value: number, data: ChartJSData, hideUnde
   const dataset = data.datasets[0];
   const total = (dataset.data as number[]).reduce((acc, curr) => acc + curr, 0);
   const percentage = Math.round((value / total) * 100);
-  if (hideUnderPercentage && percentage < hideUnderPercentage) return null;
+  if (isNaN(percentage) || (hideUnderPercentage && percentage < hideUnderPercentage)) return null;
   return `${percentage}%`;
 };
 

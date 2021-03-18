@@ -33,6 +33,7 @@ const PieChartLegendContent: FC<{ data: ChartJSData }> = ({ data }) => {
       {reversedData.map((value, index) => {
         const label = reversedLabels[index];
         const backgroundColor = reversedBackgroundColors[index];
+        const pieChartPercentage = getPieChartPercentage(value, data);
 
         return (
           <div key={index} className="lc-chart-legend-item">
@@ -40,7 +41,7 @@ const PieChartLegendContent: FC<{ data: ChartJSData }> = ({ data }) => {
             <div className="lc-chart-legend-label">
               <span className="lc-chart-legend-label-name">{label}</span>{' '}
               <span className="lc-chart-legend-label-value">{value}</span>{' '}
-              <span className="lc-chart-legend-label-percentage">({getPieChartPercentage(value, data)})</span>
+              {pieChartPercentage && <span className="lc-chart-legend-label-percentage">{pieChartPercentage}</span>}
             </div>
           </div>
         );

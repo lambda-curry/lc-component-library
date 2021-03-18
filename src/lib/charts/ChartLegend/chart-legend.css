@@ -12,6 +12,15 @@
         content: ':';
       }
     }
+
+    &-percentage {
+      &::before {
+        content: '(';
+      }
+      &::after {
+        content: ')';
+      }
+    }
   }
 
   &-item {
