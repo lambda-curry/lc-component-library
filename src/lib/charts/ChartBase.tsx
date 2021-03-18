@@ -21,7 +21,7 @@ export interface ChartBaseProps extends Omit<ChartComponentProps, 'data'> {
   options?: ChartJSOptions;
   tooltipComponent?: ChartTooltipComponent;
   legendComponent?: ChartLegendComponent;
-  type?: ChartType;
+  type: ChartType;
 }
 
 export const ChartBase: FC<ChartBaseProps> = ({
