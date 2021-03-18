@@ -56,19 +56,16 @@ const PieChartLegend: FC<{ data: ChartJSData }> = ({ data }) => {
   if (!data.datasets || !data.datasets[0].data || !data.labels) return null;
 
   const dataset = data.datasets[0];
-
-  // Note: I'm reversing the data here so that we can have the farthest left item align with the furthest left item on
-  // the chart, which seems to make the most sense. - Jake 03/16/2021
-  const reversedData = [...(dataset.data as number[])].reverse();
-  const reversedLabels = [...(data.labels as string[])].reverse();
-  const reversedBackgroundColors = [...(dataset.backgroundColor as string[])].reverse();
+  const datasetData = dataset.data as number[];
+  const dataLabels = data.labels as string[];
+  const backgroundColors = dataset.backgroundColor as string[];
 
   return (
     <div className="lc-pie-chart-legend">
       <ul className="lc-pie-chart-legend-list">
-        {reversedData.map((value, index) => {
-          const label = reversedLabels[index];
-          const backgroundColor = reversedBackgroundColors[index];
+        {datasetData.map((value, index) => {
+          const label = dataLabels[index];
+          const backgroundColor = backgroundColors[index];
           const pieChartPercentage = getPieChartPercentage(value, data);
 
           return (
