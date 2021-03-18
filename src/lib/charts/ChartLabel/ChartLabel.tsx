@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 
 export interface ChartLabelProps {
   color: string;
-  label: string;
+  label: string | number;
   className?: string;
 }
 

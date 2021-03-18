@@ -1,0 +1,9 @@
+.lc-chart-time {
+  &-tooltip {
+    &-date {
+      @apply lc-text-xs;
+      @apply lc-mt-4;
+      @apply lc-text-gray;
+    }
+  }
+}
