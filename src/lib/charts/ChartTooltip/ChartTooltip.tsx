@@ -21,8 +21,6 @@ export const ChartTooltip: FC<ChartTooltipProps> = ({
   component,
   ...props
 }) => {
-  console.log('>>>', type);
-
   // Note: setting the data in state, prevents the data from disappearing before the tooltip
   const [tooltipData, setTooltipData] = useState<ChartTooltipData>({});
 
@@ -35,8 +33,6 @@ export const ChartTooltip: FC<ChartTooltipProps> = ({
     if (!chartData.datasets[0].data) return;
 
     const { index = -1, ...newTooltipData } = model.dataPoints[0];
-
-    console.log('>>>', model.dataPoints[0]);
 
     const color = (model?.labelColors && model?.labelColors[0].backgroundColor) || '';
     const datasetLabel = chartData.labels[index] as string;
