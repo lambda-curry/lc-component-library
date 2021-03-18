@@ -4,6 +4,8 @@ import { ChartJSData, ChartLegendComponentProps } from '../chart.helpers';
 import { ChartLegendItem } from './ChartLegendItem';
 
 export const ChartLegend: FC<ChartLegendComponentProps> = ({ data, interactive, onItemClick }) => {
+  // TODO: Add support for pie charts
+
   const { datasets } = data as ChartJSData;
 
   return (
