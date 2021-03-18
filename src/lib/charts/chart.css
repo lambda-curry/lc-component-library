@@ -2,9 +2,13 @@
   &-label {
     display: flex;
     align-items: center;
+    white-space: nowrap;
     @apply lc-text-sm;
     @apply lc-text-black;
-    @apply lc-font-bold;
+
+    &-content {
+      @apply lc-font-bold;
+    }
 
     &-color {
       display: inline-block;
@@ -12,6 +16,12 @@
       height: theme('spacing.8');
       margin-right: theme('spacing.12');
       border-radius: theme('borderRadius.sm');
+    }
+
+    &-value {
+      &::before {
+        content: ': ';
+      }
     }
   }
 

@@ -1,18 +1,28 @@
 import React, { FC, HTMLAttributes, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
-import { ChartTooltipModel } from 'chart.js';
+import { ChartTooltipModel, ChartType } from 'chart.js';
 import { ChartJSData, ChartRefObject, ChartTooltipComponent, ChartTooltipData } from '../chart.helpers';
 import { ChartLabel } from '../ChartLabel/ChartLabel';
 
 export interface ChartTooltipProps extends HTMLAttributes<HTMLDivElement> {
+  type: ChartType;
   data: ChartJSData;
   model: Omit<ChartTooltipModel, 'labelColors'> & { labelColors: any[] };
   chartRef: ChartRefObject;
   component?: ChartTooltipComponent;
 }
 
-export const ChartTooltip: FC<ChartTooltipProps> = ({ data: chartData, model, chartRef, component, ...props }) => {
+export const ChartTooltip: FC<ChartTooltipProps> = ({
+  type,
+  data: chartData,
+  model,
+  chartRef,
+  component,
+  ...props
+}) => {
+  console.log('>>>', type);
+
   // Note: setting the data in state, prevents the data from disappearing before the tooltip
   const [tooltipData, setTooltipData] = useState<ChartTooltipData>({});
 
@@ -20,24 +30,41 @@ export const ChartTooltip: FC<ChartTooltipProps> = ({ data: chartData, model, ch
   const positionTop = chartElement.top + window.pageYOffset + model.caretY - 8;
   const positionLeft = chartElement.left + window.pageXOffset + model.caretX;
 
+  const updateTooltipDataForPieCharts = () => {
+    if (!model || !model.dataPoints || !chartData.labels || !chartData.datasets) return;
+    if (!chartData.datasets[0].data) return;
+
+    const { index = -1, ...newTooltipData } = model.dataPoints[0];
+
+    console.log('>>>', model.dataPoints[0]);
+
+    const color = (model?.labelColors && model?.labelColors[0].backgroundColor) || '';
+    const datasetLabel = chartData.labels[index] as string;
+    const value = chartData.datasets[0].data[index] as number;
+
+    setTooltipData({ ...newTooltipData, datasetLabel, color, value });
+  };
+
+  const updateTooltipData = () => {
+    if (!model || !model.dataPoints) return;
+
+    const { index, ...newTooltipData } = model.dataPoints[0];
+
+    if (typeof newTooltipData.datasetIndex !== 'number') return;
+
+    const color = (model?.labelColors && model?.labelColors[0].backgroundColor) || '';
+    const datasetLabel = chartData.datasets ? chartData.datasets[newTooltipData.datasetIndex].label : '';
+
+    setTooltipData({ ...newTooltipData, datasetLabel, color });
+  };
+
   useEffect(() => {
-    const updateTooltipData = () => {
-      if (!model || !model.dataPoints) return;
-
-      const { index, ...newTooltipData } = model.dataPoints[0];
-
-      if (typeof newTooltipData.datasetIndex !== 'number') return;
-
-      const color = (model?.labelColors && model?.labelColors[0].backgroundColor) || '';
-      const datasetLabel = chartData.datasets ? chartData.datasets[newTooltipData.datasetIndex].label : '';
-
-      setTooltipData({ ...newTooltipData, datasetLabel, color });
-    };
-
-    updateTooltipData();
+    if (['pie', 'doughnut'].includes(type)) updateTooltipDataForPieCharts();
+    else updateTooltipData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [model, chartData]);
 
-  const { label = '', color = '' } = tooltipData;
+  const { datasetLabel, color, value } = tooltipData;
 
   return (
     <div
@@ -46,7 +73,11 @@ export const ChartTooltip: FC<ChartTooltipProps> = ({ data: chartData, model, ch
       {...props}
     >
       <div className="lc-chart-tooltip-content">
-        {component ? component({ data: tooltipData, chartRef }) : <ChartLabel color={color} label={label} />}
+        {component ? (
+          component({ data: tooltipData, chartRef })
+        ) : (
+          <ChartLabel color={color} label={datasetLabel} value={value} />
+        )}
       </div>
     </div>
   );

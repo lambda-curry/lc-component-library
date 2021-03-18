@@ -42,7 +42,7 @@ export const ChartBase: FC<ChartBaseProps> = ({
     tooltips: {
       enabled: false,
       custom: (tooltipModel: ChartTooltipModel) =>
-        renderChartTooltip({ data, model: tooltipModel, chartRef, component: tooltipComponent })
+        renderChartTooltip({ type, data, model: tooltipModel, chartRef, component: tooltipComponent })
     },
     plugins: {
       datalabels: {

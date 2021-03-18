@@ -66,11 +66,11 @@ export const TimeChart: FC<TimeChartProps> = ({ options, datasets, className, ..
 };
 
 const TimeChartTooltip: ChartTooltipComponent = ({ data }) => {
-  const { color = '', datasetLabel = '', xLabel = '' } = data;
+  const { color, datasetLabel, xLabel = '', value } = data;
 
   return (
     <div className="lc-chart-time-tooltip">
-      <ChartLabel className="lc-chart-time-tooltip-label" color={color} label={datasetLabel} />
+      <ChartLabel className="lc-chart-time-tooltip-label" color={color} label={datasetLabel} value={value} />
       {xLabel && <div className="lc-chart-time-tooltip-date">{moment(xLabel).format('ll')}</div>}
     </div>
   );

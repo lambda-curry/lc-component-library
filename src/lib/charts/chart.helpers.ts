@@ -34,7 +34,7 @@ export type ChartTooltipData = {
   datasetIndex?: number;
   datasetLabel?: string | number;
   label?: string;
-  value?: string;
+  value?: any;
   xLabel?: string | number;
   yLabel?: string | number;
   x?: number;
