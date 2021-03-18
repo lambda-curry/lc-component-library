@@ -2,16 +2,26 @@
   &-label {
     display: flex;
     align-items: center;
+    white-space: nowrap;
     @apply lc-text-sm;
     @apply lc-text-black;
-    @apply lc-font-bold;
+
+    &-name {
+      @apply lc-font-bold;
+    }
 
     &-color {
       display: inline-block;
-      width: theme('spacing.8');
-      height: theme('spacing.8');
+      width: 11px;
+      height: 11px;
       margin-right: theme('spacing.12');
-      border-radius: theme('borderRadius.sm');
+      border-radius: 100%;
+    }
+
+    &-value {
+      &::before {
+        content: ': ';
+      }
     }
   }
 
@@ -79,6 +89,7 @@
     pointer-events: none;
     transform: translate(-50%, -100%);
     transition: all 0.3s ease-in-out;
+    opacity: 0;
 
     &-content {
       @apply lc-bg-white;

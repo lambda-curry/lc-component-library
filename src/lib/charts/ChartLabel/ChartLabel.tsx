@@ -2,14 +2,16 @@ import classNames from 'classnames';
 import React, { FC } from 'react';
 
 export interface ChartLabelProps {
-  color: string;
-  label: string | number;
+  color?: string;
+  label?: string | number;
   className?: string;
+  value?: string | number;
 }
 
-export const ChartLabel: FC<ChartLabelProps> = ({ color, label, className, ...props }) => (
+export const ChartLabel: FC<ChartLabelProps> = ({ color, label, value, className, ...props }) => (
   <span className={classNames('lc-chart-label', className)} {...props}>
-    <span className="lc-chart-label-color" style={{ backgroundColor: color }} />
-    {label}
+    {color && <span className="lc-chart-label-color" style={{ backgroundColor: color }} />}
+    {label && <span className="lc-chart-label-name">{label}</span>}
+    {value && <span className="lc-chart-label-value">{value}</span>}
   </span>
 );
