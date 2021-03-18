@@ -8,7 +8,7 @@ export interface ChartLegendItemProps {
   color: string;
   label?: string;
   value?: string | number;
-  active: boolean;
+  active?: boolean;
   interactive?: boolean;
   onClick?: (event: React.MouseEvent<any, MouseEvent>, index: number) => void;
 }
