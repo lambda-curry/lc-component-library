@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { PieChart, BarChart, LineChart, TimeChart } from '..';
 import { getCssVar } from '../../util/colors';
 import { ChartJSData } from '../chart.helpers';
