@@ -44,29 +44,31 @@
       }
 
       &-button {
-        padding: theme('spacing.8') theme('spacing.16');
-        border-radius: 100px;
-        @apply lc-border-1;
-        @apply lc-border-gray-lightest;
-        @apply lc-text-gray-light;
-        @apply lc-bg-gray-lightest;
+        &.lc-button {
+          padding: theme('spacing.8') theme('spacing.16');
+          border-radius: 100px;
+          @apply lc-border-1;
+          @apply lc-text-gray-light;
+          @apply lc-bg-gray-lightest;
+          @apply lc-border-gray-lightest;
 
-        .lc-chart-label {
-          color: inherit;
-        }
+          .lc-chart-label {
+            color: inherit;
+          }
 
-        .lc-button-content {
-          display: flex;
-          align-items: center;
-        }
+          .lc-button-content {
+            display: flex;
+            align-items: center;
+          }
 
-        &:hover {
-          @apply lc-text-gray;
-          @apply lc-border-gray-lighter;
+          &:hover {
+            @apply lc-text-gray;
+            @apply lc-border-gray-lighter;
+          }
         }
       }
 
-      &-active &-button {
+      &-active &-button.lc-button {
         @apply lc-text-gray-dark;
         @apply lc-bg-transparent;
         @apply lc-border-gray-lighter;

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import classNames from 'classnames';
 import { merge } from 'lodash';
 import { ChartJSOptions, ChartTooltipComponent } from '../chart.helpers';
@@ -12,30 +12,43 @@ import './time-chart.css';
 export interface TimeChartProps extends LineChartProps {}
 
 export const TimeChart: FC<TimeChartProps> = ({ options, datasets, className, ...props }) => {
-  const { datasetDisplayLimit = 3 } = options || {};
-
-  const [activeIndexes, setActiveIndexes] = useState(
-    datasets?.slice(0, datasetDisplayLimit).map((dataset, index) => index)
-  );
   const [visibleDatasets, setVisibleDatasets] = useState<LineChartProps['datasets']>(datasets);
 
-  useEffect(() => {
-    if (datasets && activeIndexes)
+  // TODO: Possibly remove this, since we are now going with a toggle solution
+  // const { datasetDisplayLimit = 3 } = options || {};
+
+  // const [activeIndexes, setActiveIndexes] = useState(
+  //   datasets?.slice(0, datasetDisplayLimit).map((dataset, index) => index)
+  // );
+  // const [visibleDatasets, setVisibleDatasets] = useState<LineChartProps['datasets']>(datasets);
+
+  // useEffect(() => {
+  //   if (datasets && activeIndexes)
+  //     setVisibleDatasets(
+  //       datasets.map((dataset: any, index) => ({
+  //         ...dataset,
+  //         hidden: !activeIndexes.includes(index)
+  //       }))
+  //     );
+  // }, [activeIndexes, datasets]);
+
+  // const activateDataset = (index: number) => {
+  //   if (index < 0 || !activeIndexes) return;
+  //   if (activeIndexes.includes(index)) return;
+  //   setActiveIndexes([...activeIndexes.slice(1), index]);
+  // };
+
+  // const handleItemClick = (index: number) => activateDataset(index);
+
+  const toggleDatasetVisibility = (index: number) => {
+    if (visibleDatasets)
       setVisibleDatasets(
-        datasets.map((dataset: any, index) => ({
+        visibleDatasets.map((dataset: any, datasetIndex) => ({
           ...dataset,
-          hidden: !activeIndexes.includes(index)
+          hidden: datasetIndex === index ? !dataset.hidden : dataset.hidden
         }))
       );
-  }, [activeIndexes, datasets]);
-
-  const activateDataset = (index: number) => {
-    if (index < 0 || !activeIndexes) return;
-    if (activeIndexes.includes(index)) return;
-    setActiveIndexes([...activeIndexes.slice(1), index]);
   };
-
-  const handleItemClick = (index: number) => activateDataset(index);
 
   const defaultOptions: ChartJSOptions = {
     scales: {
@@ -58,7 +71,11 @@ export const TimeChart: FC<TimeChartProps> = ({ options, datasets, className, ..
       options={merge(defaultOptions, options)}
       tooltipComponent={TimeChartTooltip}
       legendComponent={legendProps => (
-        <ChartLegend {...legendProps} interactive={true} onItemClick={(event, index) => handleItemClick(index)} />
+        <ChartLegend
+          {...legendProps}
+          interactive={true}
+          onItemClick={(event, index) => toggleDatasetVisibility(index)}
+        />
       )}
       {...props}
     />
