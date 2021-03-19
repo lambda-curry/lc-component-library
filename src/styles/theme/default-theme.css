@@ -16,6 +16,7 @@ We use the `postcss-functions` plugin to allow us to write functions in JS and t
 
   --lc-color-primary: hexToRGB(#3182ce);
   --lc-color-primary-dark: hexToRGB(#2c5282);
+  --lc-color-primary-light: hexToRGB(#5e9bd5);
 
   --lc-color-accent: hexToRGB(#ed64a6);
   --lc-color-accent-dark: hexToRGB(#b83280);
