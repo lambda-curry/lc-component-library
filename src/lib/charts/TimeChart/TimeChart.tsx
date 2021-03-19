@@ -11,13 +11,12 @@ import './time-chart.css';
 
 export interface TimeChartProps extends LineChartProps {}
 
-export const TimeChart: FC<TimeChartProps> = ({ options, datasets, className, ...props }) => {
-  const { datasetDisplayLimit = 3 } = options || {};
-
-  const [activeIndexes, setActiveIndexes] = useState(
-    datasets?.slice(0, datasetDisplayLimit).map((dataset, index) => index)
-  );
+export const TimeChart: FC<TimeChartProps> = ({ options, datasets = [], className, ...props }) => {
+  const { datasetDisplayLimit = datasets.length } = options || {};
   const [visibleDatasets, setVisibleDatasets] = useState<LineChartProps['datasets']>(datasets);
+  const [activeIndexes, setActiveIndexes] = useState(
+    datasets.slice(0, datasetDisplayLimit).map((dataset, index) => index)
+  );
 
   useEffect(() => {
     if (datasets && activeIndexes)
@@ -29,13 +28,16 @@ export const TimeChart: FC<TimeChartProps> = ({ options, datasets, className, ..
       );
   }, [activeIndexes, datasets]);
 
-  const activateDataset = (index: number) => {
-    if (index < 0 || !activeIndexes) return;
-    if (activeIndexes.includes(index)) return;
-    setActiveIndexes([...activeIndexes.slice(1), index]);
+  const toggleDatasetVisibility = (index: number) => {
+    if (index < 0) return;
+
+    if (!activeIndexes.includes(index) && activeIndexes.length < datasetDisplayLimit)
+      return setActiveIndexes([...activeIndexes, index]);
+
+    setActiveIndexes([...activeIndexes.filter(activeIndex => activeIndex !== index)]);
   };
 
-  const handleItemClick = (index: number) => activateDataset(index);
+  const handleItemClick = (index: number) => toggleDatasetVisibility(index);
 
   const defaultOptions: ChartJSOptions = {
     scales: {
