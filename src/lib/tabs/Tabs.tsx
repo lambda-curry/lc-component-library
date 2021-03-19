@@ -33,7 +33,7 @@ const useStyles = makeStyles(() => ({
     color: 'inherit'
   },
   indicator: {
-    backgroundColor: 'var(rgba(--lc-color-primary), #3182ce)'
+    backgroundColor: 'rgba(var(--lc-color-primary)), #3182ce)'
   },
   root: {
     flexGrow: 1,
@@ -41,7 +41,7 @@ const useStyles = makeStyles(() => ({
   },
   tab: {
     textTransform: 'none',
-    borderBottom: '2px solid var(rgba(--lc-color-primary-light), #5e9bd5)',
+    borderBottom: '2px solid rgba(var(--lc-color-primary-light)), #5e9bd5)',
     color: 'black',
     fontFamily: 'inherit',
     maxWidth: 'none',
