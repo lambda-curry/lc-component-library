@@ -11,7 +11,7 @@
     @apply lc-my-24;
   }
 
-  &-disclaimer {
+  &-footnote {
     @apply lc-text-sm;
     @apply lc-text-gray-dark;
     @apply lc-border-solid;

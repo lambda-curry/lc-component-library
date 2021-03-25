@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Table } from '..';
 
 export const TableExample: FC = () => (
-  <Table disclaimer="This is some disclaimer text about the table above.">
+  <Table footnote="This is some footnote text about the table above.">
     <thead>
       <th>Header - Column 1</th>
       <th>Header - Column 2</th>
