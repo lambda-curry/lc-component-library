@@ -27,13 +27,9 @@
   tfoot {
     th,
     td {
-      @apply lc-text-center;
+      @apply lc-text-left;
       @apply lc-px-20;
       @apply lc-py-16;
-
-      &:first-child {
-        @apply lc-text-left;
-      }
 
       &:last-child:not(:first-child) {
         @apply lc-text-right;
