@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import './table.css';
 
 export interface TableProps extends TableHTMLAttributes<HTMLTableElement> {
+  className?: string;
   disclaimer?: ReactNode;
 }
 
