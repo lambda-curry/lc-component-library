@@ -25,11 +25,18 @@
     }
   }
 
+  .MuiTypography-body1,
   .MuiInputBase-root,
   .MuiInputLabel-root,
-  .MuiFormHelperText-root {
+  .MuiFormHelperText-root,
+  .MuiInputAdornment-root {
     font-size: inherit;
-    font-family: 'gilroy', sans-serif;
+    @apply lc-font-sans;
+    @apply lc-text-black;
+  }
+
+  .MuiInputAdornment-root * {
+    @apply lc-text-gray;
   }
 
   .MuiOutlinedInput-multiline {
@@ -82,6 +89,8 @@
   }
 
   .MuiFormHelperText-root {
+    @apply lc-text-gray-dark;
+
     font-size: 0.8em;
     line-height: 1.25;
     font-family: inherit;
