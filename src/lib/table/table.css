@@ -28,6 +28,8 @@
     th,
     td {
       @apply lc-text-center;
+      @apply lc-px-20;
+      @apply lc-py-16;
 
       &:first-child {
         @apply lc-text-left;
@@ -35,6 +37,11 @@
 
       &:last-child:not(:first-child) {
         @apply lc-text-right;
+      }
+
+      @media screen and (min-width: theme('screens.md')) {
+        @apply lc-px-24;
+        @apply lc-py-20;
       }
     }
   }
@@ -45,13 +52,6 @@
     td {
       @apply lc-text-gray-dark;
       @apply lc-font-normal;
-      @apply lc-px-20;
-      @apply lc-py-16;
-
-      @media screen and (min-width: theme('screens.md')) {
-        @apply lc-px-24;
-        @apply lc-py-20;
-      }
     }
   }
 
@@ -63,17 +63,6 @@
   }
 
   tbody {
-    th,
-    td {
-      @apply lc-px-20;
-      @apply lc-py-16;
-
-      @media screen and (min-width: theme('screens.md')) {
-        @apply lc-px-24;
-        @apply lc-py-20;
-      }
-    }
-
     tr:nth-child(odd) {
       td,
       th {
