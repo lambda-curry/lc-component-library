@@ -1,0 +1,28 @@
+import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs/blocks';
+import { InputGroup } from '..';
+import { InputGroupExample } from './input-group.examples.tsx';
+import dedent from 'string-dedent';
+
+<Meta title="Input Group" component={InputGroup} />
+
+# Input Group
+
+<Canvas>
+  <Story
+    name="Input Group"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+            <InputGroup>
+              <InputText name="sampleInput" label="Sample Input" />
+              <ButtonPrimary>Save</ButtonPrimary>
+            </InputGroup>`
+        }
+      }
+    }}
+  >
+    {InputGroupExample.bind({})}
+  </Story>
+  <ArgsTable of={InputGroup} />
+</Canvas>
