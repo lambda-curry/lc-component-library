@@ -1,13 +1,11 @@
-$fonts-path: 'https://lambda-curry.github.io/lc-component-library/fonts/';
-
 @each $name, $weight in (thin, ultralight, light, regular, medium, semibold, bold, extrabold, heavy),
   (100, 200, 300, 400, 500, 600, 700, 800, 900)
 {
   @font-face {
     font-family: 'lc-gilroy';
-    src: url('unquote($(fonts-path))gilroy-$(name).woff2') format('woff2'),
-      url('unquote($(fonts-path))gilroy-$(name).woff') format('woff'),
-      url('unquote($(fonts-path))gilroy-$(name).ttf') format('truetype');
+    src: url('https://lambda-curry.github.io/lc-component-library/fonts/gilroy-$(name).woff2') format('woff2'),
+      url('https://lambda-curry.github.io/lc-component-library/fonts/gilroy-$(name).woff') format('woff'),
+      url('https://lambda-curry.github.io/lc-component-library/fonts/gilroy-$(name).ttf') format('truetype');
     font-weight: $weight;
   }
 }
