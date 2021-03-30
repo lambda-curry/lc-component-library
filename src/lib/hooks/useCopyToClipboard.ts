@@ -30,7 +30,8 @@ export function useCopyToClipboard(
     return () => {
       if (clipboard) clipboard.destroy();
     };
-  }, [copyText, clipboard, copyTarget]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [copyText, copyTarget]);
 
   useEffect(() => {
     if (clipboard) {

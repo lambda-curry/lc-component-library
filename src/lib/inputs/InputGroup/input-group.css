@@ -1,0 +1,25 @@
+.lc-input-group {
+  @apply lc-flex;
+  @apply lc-flex-row;
+  @apply lc-flex-nowrap;
+  @apply lc-items-start;
+  @apply lc--m-12;
+  @apply lc-mb-12;
+
+  .lc-input-wrapper,
+  .lc-button {
+    @apply lc-m-12;
+  }
+
+  .lc-input-wrapper {
+    @apply lc-flex-auto;
+  }
+
+  .lc-input {
+    @apply lc-m-0;
+  }
+
+  .lc-button {
+    @apply lc-flex-none;
+  }
+}
