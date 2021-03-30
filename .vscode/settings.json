@@ -8,6 +8,7 @@
     "browserslist",
     "chartjs",
     "compat",
+    "concat",
     "datalabels",
     "duplicative",
     "formik",
