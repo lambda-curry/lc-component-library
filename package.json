@@ -17,8 +17,8 @@
     "analyze": "size-limit --why",
     "clean": "rm -rf ./node_modules && yarn",
     "sb": "yarn storybook",
-    "storybook": "concurrently \"yarn watch:lint\" \"start-storybook -p 6007\"",
-    "build:storybook": "STORYBOOK_ENV=production build-storybook -o docs",
+    "storybook": "concurrently \"yarn watch:lint\" \"start-storybook -s ./static -p 6007\"",
+    "build:storybook": "STORYBOOK_ENV=production build-storybook -s static -o docs",
     "watch:lint": "chokidar 'src/**/**' -c 'yarn lint'",
     "format": "prettier --write \"(src|tests|.storybook|types)/**/*.{js,jsx,ts,tsx,scss}\""
   },
