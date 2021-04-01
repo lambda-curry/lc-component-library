@@ -10,6 +10,7 @@ import { ReactComponent as archive } from '../../assets/icons/archive.svg';
 import { ReactComponent as arrowLeft } from '../../assets/icons/arrowLeft.svg';
 import { ReactComponent as bell } from '../../assets/icons/bell.svg';
 import { ReactComponent as bellRing } from '../../assets/icons/bellRing.svg';
+import { ReactComponent as block } from '../../assets/icons/block.svg';
 import { ReactComponent as chat } from '../../assets/icons/chat.svg';
 import { ReactComponent as check } from '../../assets/icons/check.svg';
 import { ReactComponent as checkbox } from '../../assets/icons/checkbox.svg';
@@ -68,6 +69,7 @@ export const defaultIcons = {
   arrowLeft,
   bell,
   bellRing,
+  block,
   chat,
   check,
   checkbox,
