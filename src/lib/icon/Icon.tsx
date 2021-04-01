@@ -11,6 +11,7 @@ import { ReactComponent as arrowLeft } from '../../assets/icons/arrowLeft.svg';
 import { ReactComponent as bell } from '../../assets/icons/bell.svg';
 import { ReactComponent as bellRing } from '../../assets/icons/bellRing.svg';
 import { ReactComponent as chat } from '../../assets/icons/chat.svg';
+import { ReactComponent as check } from '../../assets/icons/check.svg';
 import { ReactComponent as checkbox } from '../../assets/icons/checkbox.svg';
 import { ReactComponent as checkboxFilled } from '../../assets/icons/checkboxFilled.svg';
 import { ReactComponent as chevronDown } from '../../assets/icons/chevronDown.svg';
@@ -68,6 +69,7 @@ export const defaultIcons = {
   bell,
   bellRing,
   chat,
+  check,
   checkbox,
   checkboxFilled,
   chevronDown,

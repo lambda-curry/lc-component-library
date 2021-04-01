@@ -82,7 +82,7 @@ export function rgbToHex(color: string) {
   if (isHexColor(color) || !isRgbColor(color)) return color;
 
   color = stripRgb(color);
-  const colorArray = color.split(', ');
+  const colorArray = color.replace(' ', '').split(',');
   const colors = colorArray.map(c => parseInt(c, 10));
 
   return '#' + ((1 << 24) + (colors[0] << 16) + (colors[1] << 8) + colors[2]).toString(16).slice(1);
