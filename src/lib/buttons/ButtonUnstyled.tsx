@@ -7,7 +7,13 @@ export const ButtonUnstyled: FC<ButtonProps> = forwardRef(({ className, ...props
     {...props}
     ref={ref}
     className={classNames(
-      [`lc-button-unstyled`, `lc-bg-transparent`, `focus:lc-outline-none`, `focus-visible:lc-outline-black`],
+      [
+        `lc-button-unstyled`,
+        `lc-bg-transparent`,
+        `lc-border-none`,
+        `focus:lc-outline-none`,
+        `focus-visible:lc-outline-black`
+      ],
       className
     )}
   />
