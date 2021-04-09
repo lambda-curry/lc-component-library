@@ -28,6 +28,7 @@
   &-legend {
     display: flex;
     flex-flow: row wrap;
+    list-style: none;
     padding: theme('spacing.16') 0;
     margin: -theme('spacing.4') -theme('spacing.16');
 
@@ -48,6 +49,7 @@
           padding: theme('spacing.8') theme('spacing.16');
           border-radius: 100px;
           @apply lc-border-1;
+          @apply lc-border-solid;
           @apply lc-text-gray-light;
           @apply lc-bg-gray-lightest;
           @apply lc-border-gray-lightest;
