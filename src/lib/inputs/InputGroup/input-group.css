@@ -11,8 +11,9 @@
     @apply lc-m-12;
   }
 
-  .lc-input-wrapper {
-    @apply lc-flex-auto;
+  .lc-input-wrapper,
+  .lc-input-select {
+    @apply lc-flex-1;
   }
 
   .lc-input {
