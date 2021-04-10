@@ -117,6 +117,10 @@
   // Fix for hover style outline
   .MuiOutlinedInput-notchedOutline {
     top: -6px;
+
+    // Note: we need to apply these classes because there is a clash with classNames that are being obfuscated in the production build
+    // between the snackbars and the Material UI components. It seems like it might have to something to do with the `makeStyles` object/classNames.
+    position: absolute !important;
   }
   .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
     @apply lc-border-primary;
