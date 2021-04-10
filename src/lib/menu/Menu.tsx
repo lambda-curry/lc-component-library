@@ -10,10 +10,12 @@ import {
 } from '@szhsin/react-menu';
 import './menu.css';
 
-type MenuItems = (MenuItemProps | MenuDividerProps | SubMenuProps | CustomMenuItemProps)[];
+type MenuItems = (MenuItemProps | MenuDividerProps | SubMenuProps)[];
 
 interface MenuItemProps extends RCMenuItemProps {
   name: 'menu-item';
+  startIcon?: React.ReactElement;
+  endIcon?: React.ReactElement;
 }
 
 interface MenuDividerProps {
@@ -29,10 +31,6 @@ interface SubMenuProps extends RSSubMenuProps {
   children?: undefined;
 }
 
-interface CustomMenuItemProps {
-  name?: undefined;
-  children: React.ReactElement;
-}
 interface MenuProps extends RCMenuProps {
   menuButton: React.ReactElement;
   menuItems: MenuItems;
@@ -50,7 +48,14 @@ const mapMenuItems = (menuItems: MenuItems) =>
     }
 
     if (name === 'menu-item') {
-      return <MenuItem key={i} {...(menuItem as MenuItemProps)} />;
+      const { startIcon, endIcon, children, ...menuItemProps } = menuItem as MenuItemProps;
+      return (
+        <MenuItem key={i} {...menuItemProps}>
+          {startIcon}
+          <span className="rc-menu__item__children">{children}</span>
+          {endIcon}
+        </MenuItem>
+      );
     }
 
     if (name === 'divider') {

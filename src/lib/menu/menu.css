@@ -2,6 +2,8 @@
 
 .lc-menu {
   .rc-menu__item {
+    display: flex;
+    justify-content: space-between;
     padding: 12px 16px 12px 12px;
     font-family: var(--lc-font-family-sans);
 
@@ -18,7 +20,18 @@
     }
 
     &--active {
+      color: inherit;
       background-color: rgb(var(--lc-color-gray-lighter));
+    }
+
+    .lc-icon:first-child {
+      position: relative;
+      right: 4px;
+    }
+
+    .lc-icon:last-child {
+      position: relative;
+      left: 4px;
     }
   }
 }

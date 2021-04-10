@@ -1,6 +1,5 @@
 import React from 'react';
-import { Menu } from '../..';
-import { ButtonPrimary } from '../../buttons';
+import { Menu, Icon, ButtonPrimary } from '../..';
 
 export const MenuExample1 = () => {
   return (
@@ -12,7 +11,16 @@ export const MenuExample1 = () => {
           { name: 'divider' },
           { name: 'sub-menu', label: 'Sub Menu', menuItems: [{ name: 'menu-item', children: 'Testing' }] },
           { name: 'divider' },
-          { name: 'menu-item', children: <ButtonPrimary>Test</ButtonPrimary> }
+          {
+            name: 'menu-item',
+            endIcon: <Icon name="trash" />,
+            children: 'Delete'
+          },
+          {
+            name: 'menu-item',
+            startIcon: <Icon name="trash" />,
+            children: 'Delete'
+          }
         ]}
       />
     </div>
