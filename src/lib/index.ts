@@ -7,6 +7,7 @@ export * from './icon';
 export * from './icon-button';
 export * from './inputs';
 export * from './form';
+export * from './menu';
 export * from './modal';
 export * from './multiline-input';
 export * from './snackbars';

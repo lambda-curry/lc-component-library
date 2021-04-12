@@ -55,7 +55,7 @@ module.exports = {
     ];
 
     // Remove the existing css rule
-    config.module.rules = config.module.rules.filter(
+    config.module.rules = config.module.rules.filter(f => !!f.test).filter(
       f => f.test.toString() !== '/\\.css$/'
     );
 
