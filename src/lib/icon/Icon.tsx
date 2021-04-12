@@ -42,6 +42,7 @@ import { ReactComponent as location } from '../../assets/icons/location.svg';
 import { ReactComponent as menu } from '../../assets/icons/menu.svg';
 import { ReactComponent as navigation } from '../../assets/icons/navigation.svg';
 import { ReactComponent as paintBrush } from '../../assets/icons/paintBrush.svg';
+import { ReactComponent as partner } from '../../assets/icons/partner.svg';
 import { ReactComponent as pencil } from '../../assets/icons/pencil.svg';
 import { ReactComponent as phone } from '../../assets/icons/phone.svg';
 import { ReactComponent as phoneRing } from '../../assets/icons/phoneRing.svg';
@@ -101,6 +102,7 @@ export const defaultIcons = {
   menu,
   navigation,
   paintBrush,
+  partner,
   pencil,
   phone,
   phoneRing,
