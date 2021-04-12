@@ -10,7 +10,7 @@ import {
 } from '@szhsin/react-menu';
 import './menu.css';
 
-type MenuItems = (MenuItemProps | MenuDividerProps | SubMenuProps)[];
+export type MenuItems = (MenuItemProps | MenuDividerProps | SubMenuProps)[];
 
 interface MenuItemProps extends RCMenuItemProps {
   name: 'menu-item';
@@ -31,7 +31,7 @@ interface SubMenuProps extends RSSubMenuProps {
   children?: undefined;
 }
 
-interface MenuProps extends RCMenuProps {
+export interface MenuProps extends RCMenuProps {
   menuButton: React.ReactElement;
   menuItems: MenuItems;
 }
