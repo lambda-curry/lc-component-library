@@ -58,6 +58,7 @@ import { ReactComponent as sms } from '../../assets/icons/sms.svg';
 import { ReactComponent as successMessage } from '../../assets/icons/successMessage.svg';
 import { ReactComponent as touch } from '../../assets/icons/touch.svg';
 import { ReactComponent as trash } from '../../assets/icons/trash.svg';
+import { ReactComponent as unfold } from '../../assets/icons/unfold.svg';
 import { ReactComponent as user } from '../../assets/icons/user.svg';
 import { ReactComponent as users } from '../../assets/icons/users.svg';
 import { ReactComponent as video } from '../../assets/icons/video.svg';
@@ -118,6 +119,7 @@ export const defaultIcons = {
   successMessage,
   touch,
   trash,
+  unfold,
   user,
   users,
   video
