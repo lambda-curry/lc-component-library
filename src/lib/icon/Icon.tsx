@@ -38,6 +38,7 @@ import { ReactComponent as help } from '../../assets/icons/help.svg';
 import { ReactComponent as home } from '../../assets/icons/home.svg';
 import { ReactComponent as income } from '../../assets/icons/income.svg';
 import { ReactComponent as laptop } from '../../assets/icons/laptop.svg';
+import { ReactComponent as lifeRing } from '../../assets/icons/lifeRing.svg';
 import { ReactComponent as location } from '../../assets/icons/location.svg';
 import { ReactComponent as menu } from '../../assets/icons/menu.svg';
 import { ReactComponent as navigation } from '../../assets/icons/navigation.svg';
@@ -99,6 +100,7 @@ export const defaultIcons = {
   home,
   income,
   laptop,
+  lifeRing,
   location,
   menu,
   navigation,
@@ -127,9 +129,10 @@ export const defaultIcons = {
 
 const aliasMap = {
   confirmationEmail: 'successMessage',
+  excel: 'fileExcel',
+  support: 'lifeRing',
   notifications: 'bellRing',
   pdf: 'filePDF',
-  excel: 'fileExcel',
   ringVolume: 'phoneRing',
   visibility: 'eye'
 };
