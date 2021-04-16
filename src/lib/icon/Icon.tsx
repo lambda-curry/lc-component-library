@@ -38,10 +38,12 @@ import { ReactComponent as help } from '../../assets/icons/help.svg';
 import { ReactComponent as home } from '../../assets/icons/home.svg';
 import { ReactComponent as income } from '../../assets/icons/income.svg';
 import { ReactComponent as laptop } from '../../assets/icons/laptop.svg';
+import { ReactComponent as lifeRing } from '../../assets/icons/lifeRing.svg';
 import { ReactComponent as location } from '../../assets/icons/location.svg';
 import { ReactComponent as menu } from '../../assets/icons/menu.svg';
 import { ReactComponent as navigation } from '../../assets/icons/navigation.svg';
 import { ReactComponent as paintBrush } from '../../assets/icons/paintBrush.svg';
+import { ReactComponent as partner } from '../../assets/icons/partner.svg';
 import { ReactComponent as pencil } from '../../assets/icons/pencil.svg';
 import { ReactComponent as phone } from '../../assets/icons/phone.svg';
 import { ReactComponent as phoneRing } from '../../assets/icons/phoneRing.svg';
@@ -57,6 +59,7 @@ import { ReactComponent as sms } from '../../assets/icons/sms.svg';
 import { ReactComponent as successMessage } from '../../assets/icons/successMessage.svg';
 import { ReactComponent as touch } from '../../assets/icons/touch.svg';
 import { ReactComponent as trash } from '../../assets/icons/trash.svg';
+import { ReactComponent as unfold } from '../../assets/icons/unfold.svg';
 import { ReactComponent as user } from '../../assets/icons/user.svg';
 import { ReactComponent as users } from '../../assets/icons/users.svg';
 import { ReactComponent as video } from '../../assets/icons/video.svg';
@@ -97,10 +100,12 @@ export const defaultIcons = {
   home,
   income,
   laptop,
+  lifeRing,
   location,
   menu,
   navigation,
   paintBrush,
+  partner,
   pencil,
   phone,
   phoneRing,
@@ -116,6 +121,7 @@ export const defaultIcons = {
   successMessage,
   touch,
   trash,
+  unfold,
   user,
   users,
   video
@@ -123,9 +129,10 @@ export const defaultIcons = {
 
 const aliasMap = {
   confirmationEmail: 'successMessage',
+  excel: 'fileExcel',
+  support: 'lifeRing',
   notifications: 'bellRing',
   pdf: 'filePDF',
-  excel: 'fileExcel',
   ringVolume: 'phoneRing',
   visibility: 'eye'
 };

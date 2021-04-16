@@ -10,7 +10,7 @@ import {
 } from '@szhsin/react-menu';
 import './menu.css';
 
-type MenuItems = (MenuItemProps | MenuDividerProps | SubMenuProps)[];
+export type MenuItems = (MenuItemProps | MenuDividerProps | SubMenuProps)[];
 
 interface MenuItemProps extends RCMenuItemProps {
   name: 'menu-item';
@@ -31,7 +31,7 @@ interface SubMenuProps extends RSSubMenuProps {
   children?: undefined;
 }
 
-interface MenuProps extends RCMenuProps {
+export interface MenuProps extends RCMenuProps {
   menuButton: React.ReactElement;
   menuItems: MenuItems;
 }
@@ -65,9 +65,9 @@ const mapMenuItems = (menuItems: MenuItems) =>
     return null;
   });
 
-export const Menu: React.FC<MenuProps> = ({ menuButton, menuItems }) => {
+export const Menu: React.FC<MenuProps> = ({ menuButton, menuItems, ...menuProps }) => {
   return (
-    <RCMenu className="lc-menu" menuButton={menuButton}>
+    <RCMenu className="lc-menu" menuButton={menuButton} {...menuProps}>
       {mapMenuItems(menuItems)}
     </RCMenu>
   );

@@ -27,7 +27,7 @@ However, You can add or replace icons by wrapping your App with the Icon Registr
           code: dedent`
           {Object.keys(defaultIcons).map(iconName => (
             <li key={iconName}>
-              <Icon name={iconName} {...args} />
+              <Icon name={iconName} />
               <br />
               {iconName}
             </li>
@@ -36,19 +36,20 @@ However, You can add or replace icons by wrapping your App with the Icon Registr
       }
     }}
   >
-    {args => (
-      <div className="icon-story">
-        <ul className="icon-story-grid">
-          {Object.keys(defaultIcons).map(iconName => (
+    <div className="icon-story">
+      <ul className="icon-story-grid">
+        {Object.keys(defaultIcons).map(iconName => {
+          console.log(iconName);
+          return (
             <li key={iconName}>
-              <Icon name={iconName} {...args} />
+              <Icon name={iconName} />
               <br />
               {iconName}
             </li>
-          ))}
-        </ul>
-      </div>
-    )}
+          );
+        })}
+      </ul>
+    </div>
   </Story>
   <ArgsTable of={Icon} />
 </Canvas>
@@ -132,7 +133,7 @@ Once the above code is implemented correctly, you should be able to use the Icon
           code: dedent`
           {Object.keys(defaultColorIcons).map(iconName => (
             <li key={iconName}>
-              <ColorIcon name={iconName} {...args} />
+              <ColorIcon name={iconName} />
               <br />
               {iconName}
             </li>
@@ -141,19 +142,17 @@ Once the above code is implemented correctly, you should be able to use the Icon
       }
     }}
   >
-    {args => (
-      <div className="icon-story">
-        <ul className="icon-story-grid">
-          {Object.keys(defaultColorIcons).map(iconName => (
-            <li key={iconName}>
-              <ColorIcon name={iconName} {...args} />
-              <br />
-              {iconName}
-            </li>
-          ))}
-        </ul>
-      </div>
-    )}
+    <div className="icon-story">
+      <ul className="icon-story-grid">
+        {Object.keys(defaultColorIcons).map(iconName => (
+          <li key={iconName}>
+            <ColorIcon name={iconName} />
+            <br />
+            {iconName}
+          </li>
+        ))}
+      </ul>
+    </div>
   </Story>
   <ArgsTable of={Icon} />
 </Canvas>
