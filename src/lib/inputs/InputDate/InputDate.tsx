@@ -1,5 +1,5 @@
 import React from 'react';
-import { DatePicker, LocalizationProvider } from '@material-ui/pickers';
+import { DatePicker, DatePickerProps, LocalizationProvider } from '@material-ui/pickers';
 import { InputText } from '../InputText/InputText';
 import { InputProps } from '../InputBase';
 import LuxonUtils from '@date-io/luxon';
@@ -14,6 +14,7 @@ export type InputDateProps = InputProps & {
   valueFormat?: string;
   disablePast?: boolean;
   className?: string;
+  datePickerProps: DatePickerProps;
 };
 
 const toDateTime = (value: string | Date, format?: string): DateTime | null => {
@@ -37,25 +38,28 @@ export const InputDate: React.FC<InputDateProps> = ({
   disablePast = false,
   valueFormat,
   className,
+  datePickerProps = {} as DatePickerProps,
   ...props
 }) => {
-  const initialFieldValue = formikProps ? _get(formikProps?.values, props.name, '') : value;
-  const fieldValue = initialFieldValue ? toDateTime(initialFieldValue, valueFormat) : null;
+  datePickerProps.label = label;
 
-  const handleChange = (updatedDate: DateTime | null) => {
-    const updatedValue = fromDateTime(updatedDate, valueFormat);
+  const initialFieldValue = formikProps ? _get(formikProps?.values, props.name, '') : value;
+  datePickerProps.value = initialFieldValue ? toDateTime(initialFieldValue, valueFormat) : null;
+
+  datePickerProps.onChange = (updatedDate: unknown, keyboardInputValue?: string | undefined) => {
+    const updatedValue = fromDateTime(updatedDate as DateTime | null, valueFormat);
     if (formikProps?.setFieldValue) formikProps.setFieldValue(props.name, updatedValue);
     if (typeof onChange === 'function') onChange(updatedValue);
   };
 
+  datePickerProps.inputFormat = valueFormat || inputFormat;
+
+  datePickerProps.disablePast = disablePast;
+
   return (
     <LocalizationProvider dateAdapter={LuxonUtils}>
       <DatePicker
-        label={label}
-        value={fieldValue}
-        onChange={handleChange}
-        inputFormat={valueFormat || inputFormat}
-        disablePast={disablePast}
+        {...datePickerProps}
         renderInput={renderProps => (
           <InputText
             {...(renderProps as InputProps)}
