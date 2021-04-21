@@ -14,7 +14,7 @@ export type InputDateProps = InputProps & {
   valueFormat?: string;
   disablePast?: boolean;
   className?: string;
-  datePickerProps: DatePickerProps;
+  datePickerProps?: DatePickerProps;
 };
 
 const toDateTime = (value: string | Date, format?: string): DateTime | null => {
