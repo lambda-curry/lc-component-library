@@ -14,7 +14,7 @@ export type InputDateProps = InputProps & {
   valueFormat?: string;
   disablePast?: boolean;
   className?: string;
-  datePickerProps?: DatePickerProps;
+  datePickerProps?: Partial<DatePickerProps>;
 };
 
 const toDateTime = (value: string | Date, format?: string): DateTime | null => {
@@ -38,28 +38,24 @@ export const InputDate: React.FC<InputDateProps> = ({
   disablePast = false,
   valueFormat,
   className,
-  datePickerProps = {} as DatePickerProps,
+  datePickerProps = {},
   ...props
 }) => {
-  datePickerProps.label = label;
-
   const initialFieldValue = formikProps ? _get(formikProps?.values, props.name, '') : value;
-  datePickerProps.value = initialFieldValue ? toDateTime(initialFieldValue, valueFormat) : null;
-
-  datePickerProps.onChange = (updatedDate: unknown, keyboardInputValue?: string | undefined) => {
-    const updatedValue = fromDateTime(updatedDate as DateTime | null, valueFormat);
-    if (formikProps?.setFieldValue) formikProps.setFieldValue(props.name, updatedValue);
-    if (typeof onChange === 'function') onChange(updatedValue);
-  };
-
-  datePickerProps.inputFormat = valueFormat || inputFormat;
-
-  datePickerProps.disablePast = disablePast;
 
   return (
     <LocalizationProvider dateAdapter={LuxonUtils}>
       <DatePicker
         {...datePickerProps}
+        label={label}
+        value={initialFieldValue ? toDateTime(initialFieldValue, valueFormat) : null}
+        onChange={(updatedDate: unknown, keyboardInputValue?: string | undefined) => {
+          const updatedValue = fromDateTime(updatedDate as DateTime | null, valueFormat);
+          if (formikProps?.setFieldValue) formikProps.setFieldValue(props.name, updatedValue);
+          if (typeof onChange === 'function') onChange(updatedValue);
+        }}
+        inputFormat={valueFormat || inputFormat}
+        disablePast={disablePast}
         renderInput={renderProps => (
           <InputText
             {...(renderProps as InputProps)}
