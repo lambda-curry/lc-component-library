@@ -29,7 +29,7 @@ export const useTooltip = () => {
     setTooltipOpen(false);
     if (typeof callback === 'function') callback();
   };
-  useOnClickOutside(handleTooltipClose, '.MuiTooltip-popper');
+  useOnClickOutside(handleTooltipClose, '.lc-tooltip-wrapper, .MuiTooltip-popper');
 
   return { tooltipOpen, handleTooltipOpen, handleTooltipClose };
 };
@@ -55,7 +55,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
       disableTouchListener={openOnClick}
       {...props}
     >
-      <span className="tooltip-wrapper">{children}</span>
+      <span className="lc-tooltip-wrapper">{children}</span>
     </MuiTooltip>
   );
 };
