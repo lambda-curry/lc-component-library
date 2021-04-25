@@ -1,5 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
-import { IconButton, Tooltip } from '../..';
+import { Tooltip } from '../..';
+import { TooltipExample1, TooltipExample2 } from './tooltip.examples';
 import dedent from 'string-dedent';
 
 <Meta title="Tooltip" component={Tooltip} />
@@ -20,11 +21,32 @@ import dedent from 'string-dedent';
       }
     }}
   >
-    <div className="icon-button-story">
-      <Tooltip title="Sample Edit Tooltip">
-        <IconButton icon="pencil" />
-      </Tooltip>
-    </div>
+    {TooltipExample1.bind({})}
+  </Story>
+  <Story
+    name="Tooltip Click"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+          const { tooltipOpen, handleTooltipOpen, handleTooltipClose } = useTooltip();
+          return (
+            <div className="icon-button-story">
+              <Tooltip
+                title="Open on click only"
+                open={tooltipOpen}
+                onClose={handleTooltipClose}
+                options={{ openOnClick: true }}
+              >
+                <IconButton icon="question" onClick={handleTooltipOpen} />
+              </Tooltip>
+            </div>
+          );`
+        }
+      }
+    }}
+  >
+    {TooltipExample2.bind({})}
   </Story>
   <ArgsTable of={Tooltip} />
 </Canvas>
