@@ -112,7 +112,6 @@ export const defaultIcons = {
   phoneRing,
   plus,
   profile,
-  questionCircleSolid,
   radio,
   radioFilled,
   resize,
@@ -137,7 +136,7 @@ const aliasMap = {
   pdf: 'filePDF',
   ringVolume: 'phoneRing',
   visibility: 'eye',
-  question: 'questionCircleSolid'
+  question: 'help'
 };
 
 export type DefaultIconNames = keyof typeof defaultIcons;
