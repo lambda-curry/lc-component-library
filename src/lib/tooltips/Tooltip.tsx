@@ -8,7 +8,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: theme.palette.common.black
   },
   tooltip: {
-    backgroundColor: theme.palette.common.black
+    fontFamily: 'var(--lc-font-family-sans)',
+    backgroundColor: theme.palette.common.black,
+    padding: '10px 12px 12px',
+    fontSize: '13px'
   }
 }));
 
