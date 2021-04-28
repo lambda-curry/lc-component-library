@@ -12,7 +12,7 @@ export interface InputSearchReducerState {
 }
 
 export interface InputSearchOptions {
-  ingoreFalseyInputValues?: boolean;
+  ignoreFalseyInputValues?: boolean;
   debounceTime: number;
   initialSearchValue?: string;
 }
@@ -59,7 +59,7 @@ export const InputSearch: FC<InputSearchProps> = ({
   ...props
 }) => {
   const options: InputSearchOptions = {
-    ingoreFalseyInputValues: true,
+    ignoreFalseyInputValues: true,
     debounceTime: 200,
     ...searchOptions
   };
@@ -79,7 +79,7 @@ export const InputSearch: FC<InputSearchProps> = ({
 
   const searchTerm = useDebounce(state.inputSearchValue, options.debounceTime);
   const search = async () => {
-    if (!options.initialSearchValue && options.ingoreFalseyInputValues && !state.inputSearchValue) return;
+    if (!options.initialSearchValue && options.ignoreFalseyInputValues && !state.inputSearchValue) return;
     const [base, params] = url.split('?');
     const searchParams = new URLSearchParams(params);
     if (searchParam) searchParams.set(searchParam, searchTerm);
