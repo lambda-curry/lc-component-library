@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, ReactNode, useState } from 'react';
+import React, { FC, ReactNode, useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import { Tabs as MuiTabs, Tab, TabsProps } from '@material-ui/core';
@@ -73,6 +73,10 @@ export const Tabs: FC<TabsPropsFixed> = ({
   const classes = useStyles();
 
   const [value, setValue] = useState(initialValue);
+
+  useEffect(() => {
+    setValue(initialValue);
+  }, [initialValue]);
 
   return (
     <div className={classNames(classes.root, className)}>
