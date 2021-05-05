@@ -69,10 +69,10 @@ export const InputSearch: FC<InputSearchProps> = ({
   const [state, dispatch] = useReducer<Reducer<InputSearchReducerState, InputSearchReducerAction>>(inputSearchReducer, {
     status: 'waiting',
     options: selectedValue ? [selectedValue] : [],
-    inputSearchValue: ''
+    inputSearchValue: selectedValue
   });
 
-  // Run an initial search
+  // Run an initial search if an initialSearchValue is given
   useEffect(() => {
     if (config.initialSearchValue) dispatch({ name: 'setInputSearchValue', payload: config.initialSearchValue });
   }, [config.initialSearchValue]);
@@ -114,7 +114,7 @@ export const InputSearch: FC<InputSearchProps> = ({
     value,
     reason
   ) => {
-    if (reason !== 'input' || value === '') return;
+    if (reason !== 'clear' && reason !== 'input') return;
     dispatch({ name: 'setInputSearchValue', payload: value });
   };
 
@@ -127,6 +127,7 @@ export const InputSearch: FC<InputSearchProps> = ({
       options={state.options}
       onChange={handleChange}
       autocompleteConfig={{
+        inputValue: state.inputSearchValue,
         disableClearable: false,
         loading: config.loading ? config.loading(state.options) : state.options.length < 1,
         onInputChange: handleInputChange,
