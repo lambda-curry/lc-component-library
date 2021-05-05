@@ -13,8 +13,9 @@ export interface InputSearchReducerState {
 
 export interface InputSearchOptions {
   ignoreFalseyInputValues?: boolean;
-  debounceTime: number;
+  debounceTime?: number;
   initialSearchValue?: string;
+  loading?: (response: any) => boolean;
 }
 
 export type ServerRequestStatus = 'waiting' | 'sending' | 'sent' | 'error';
@@ -58,9 +59,8 @@ export const InputSearch: FC<InputSearchProps> = ({
   placeholder = 'Type to search...',
   ...props
 }) => {
-  const options: InputSearchOptions = {
+  const config: InputSearchOptions = {
     ignoreFalseyInputValues: true,
-    debounceTime: 200,
     ...searchOptions
   };
 
@@ -74,12 +74,12 @@ export const InputSearch: FC<InputSearchProps> = ({
 
   // Run an initial search
   useEffect(() => {
-    if (options.initialSearchValue) dispatch({ name: 'setInputSearchValue', payload: options.initialSearchValue });
-  }, [options.initialSearchValue]);
+    if (config.initialSearchValue) dispatch({ name: 'setInputSearchValue', payload: config.initialSearchValue });
+  }, [config.initialSearchValue]);
 
-  const searchTerm = useDebounce(state.inputSearchValue, options.debounceTime);
+  const searchTerm = useDebounce(state.inputSearchValue, config.debounceTime || 200);
   const search = async () => {
-    if (!options.initialSearchValue && options.ignoreFalseyInputValues && !state.inputSearchValue) return;
+    if (!config.initialSearchValue && config.ignoreFalseyInputValues && !state.inputSearchValue) return;
     const [base, params] = url.split('?');
     const searchParams = new URLSearchParams(params);
     if (searchParam) searchParams.set(searchParam, searchTerm);
@@ -91,7 +91,7 @@ export const InputSearch: FC<InputSearchProps> = ({
     // Add Selected value as the first option if an initial search term is provided to always provide the search value
     if (
       selectedValue &&
-      options.initialSearchValue &&
+      config.initialSearchValue &&
       !selectOptions.some(
         (selectOption: any) => _get(selectedValue, optionLabelKey) === _get(selectOption, optionLabelKey)
       )
@@ -128,7 +128,7 @@ export const InputSearch: FC<InputSearchProps> = ({
       onChange={handleChange}
       autocompleteConfig={{
         disableClearable: false,
-        loading: state.options.length < 1,
+        loading: config.loading ? config.loading(state.options) : state.options.length < 1,
         onInputChange: handleInputChange,
         ...props.autocompleteConfig
       }}
