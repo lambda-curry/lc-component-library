@@ -65,11 +65,16 @@ export const InputSearch: FC<InputSearchProps> = ({
   };
 
   const selectedValue = _get(props.formikProps?.values, props.name);
+  const getValueLabel = (value: any) => {
+    const valueLabel = typeof selectedValue === 'string' ? value : _get(value, optionLabelKey);
+    return typeof valueLabel === 'string' ? valueLabel : '';
+  };
+  const initialSearchInputValue = getValueLabel(selectedValue);
 
   const [state, dispatch] = useReducer<Reducer<InputSearchReducerState, InputSearchReducerAction>>(inputSearchReducer, {
     status: 'waiting',
     options: selectedValue ? [selectedValue] : [],
-    inputSearchValue: selectedValue
+    inputSearchValue: initialSearchInputValue
   });
 
   // Run an initial search if an initialSearchValue is given
@@ -79,6 +84,8 @@ export const InputSearch: FC<InputSearchProps> = ({
 
   const searchTerm = useDebounce(state.inputSearchValue, config.debounceTime || 200);
   const search = async () => {
+    // If the input value equals, we probably do not need to run another search - Jake 05/06/2021
+    if (searchTerm === getValueLabel(selectedValue)) return;
     if (!config.initialSearchValue && config.ignoreFalseyInputValues && !state.inputSearchValue) return;
     const [base, params] = url.split('?');
     const searchParams = new URLSearchParams(params);
@@ -107,15 +114,18 @@ export const InputSearch: FC<InputSearchProps> = ({
     if (props.formikProps?.setFieldValue) props.formikProps.setFieldValue(props.name, value);
     if (typeof props.onChange === 'function')
       props.onChange(event as ChangeEvent<HTMLInputElement>, value, reason, details);
+
+    const valueLabel = getValueLabel(value);
+    if (valueLabel) dispatch({ name: 'setInputSearchValue', payload: valueLabel });
   };
 
-  const handleInputChange: (event: ChangeEvent<any>, value: string, reason: AutocompleteInputChangeReason) => void = (
-    event,
-    value,
-    reason
-  ) => {
+  const handleInputChange: (
+    event: ChangeEvent<any>,
+    inputValue: string,
+    reason: AutocompleteInputChangeReason
+  ) => void = (event, inputValue, reason) => {
     if (reason !== 'clear' && reason !== 'input') return;
-    dispatch({ name: 'setInputSearchValue', payload: value });
+    dispatch({ name: 'setInputSearchValue', payload: inputValue });
   };
 
   return (

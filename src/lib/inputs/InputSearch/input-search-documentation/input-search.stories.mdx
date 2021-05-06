@@ -102,7 +102,7 @@ import './input-search-story.css';
               }
             ],
             headline: {
-              main: '’N Sync Member Says Hi, Hi, Hi to New Condo',
+              main: '',
               kicker: 'Big Deal',
               content_kicker: null,
               print_headline: 'Hi, Hi, Hi for a New Neighbor',
@@ -162,10 +162,11 @@ import './input-search-story.css';
               searchParam="q"
               optionLabelKey="headline.main"
               getOptions={response => response?.response?.docs || []}
-              searchOptions={{ initialSearchValue: 'hi' }}
+              searchOptions={{ initialSearchValue: 'test' }}
               autocompleteConfig={{
                 noOptionsText: `Please try again in a minute, NYT Rate Limits their APIs to 10 requests per minute.`,
-                loadingText: `Type to search...`
+                loadingText: `Type to search...`,
+                filterOptions: x => x
               }}
               formikProps={formikProps}
             />
