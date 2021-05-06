@@ -12,9 +12,10 @@ export interface InputSearchReducerState {
 }
 
 export interface InputSearchOptions {
-  ingoreFalseyInputValues?: boolean;
-  debounceTime: number;
+  ignoreFalseyInputValues?: boolean;
+  debounceTime?: number;
   initialSearchValue?: string;
+  loading?: (response: any) => boolean;
 }
 
 export type ServerRequestStatus = 'waiting' | 'sending' | 'sent' | 'error';
@@ -58,28 +59,34 @@ export const InputSearch: FC<InputSearchProps> = ({
   placeholder = 'Type to search...',
   ...props
 }) => {
-  const options: InputSearchOptions = {
-    ingoreFalseyInputValues: true,
-    debounceTime: 200,
+  const config: InputSearchOptions = {
+    ignoreFalseyInputValues: true,
     ...searchOptions
   };
 
   const selectedValue = _get(props.formikProps?.values, props.name);
+  const getValueLabel = (value: any) => {
+    const valueLabel = typeof selectedValue === 'string' ? value : _get(value, optionLabelKey);
+    return typeof valueLabel === 'string' ? valueLabel : '';
+  };
+  const initialSearchInputValue = getValueLabel(selectedValue);
 
   const [state, dispatch] = useReducer<Reducer<InputSearchReducerState, InputSearchReducerAction>>(inputSearchReducer, {
     status: 'waiting',
     options: selectedValue ? [selectedValue] : [],
-    inputSearchValue: ''
+    inputSearchValue: initialSearchInputValue
   });
 
-  // Run an initial search
+  // Run an initial search if an initialSearchValue is given
   useEffect(() => {
-    if (options.initialSearchValue) dispatch({ name: 'setInputSearchValue', payload: options.initialSearchValue });
-  }, [options.initialSearchValue]);
+    if (config.initialSearchValue) dispatch({ name: 'setInputSearchValue', payload: config.initialSearchValue });
+  }, [config.initialSearchValue]);
 
-  const searchTerm = useDebounce(state.inputSearchValue, options.debounceTime);
+  const searchTerm = useDebounce(state.inputSearchValue, config.debounceTime || 200);
   const search = async () => {
-    if (!options.initialSearchValue && options.ingoreFalseyInputValues && !state.inputSearchValue) return;
+    // If the input value equals, we probably do not need to run another search - Jake 05/06/2021
+    if (searchTerm === getValueLabel(selectedValue)) return;
+    if (!config.initialSearchValue && config.ignoreFalseyInputValues && !state.inputSearchValue) return;
     const [base, params] = url.split('?');
     const searchParams = new URLSearchParams(params);
     if (searchParam) searchParams.set(searchParam, searchTerm);
@@ -91,7 +98,7 @@ export const InputSearch: FC<InputSearchProps> = ({
     // Add Selected value as the first option if an initial search term is provided to always provide the search value
     if (
       selectedValue &&
-      options.initialSearchValue &&
+      config.initialSearchValue &&
       !selectOptions.some(
         (selectOption: any) => _get(selectedValue, optionLabelKey) === _get(selectOption, optionLabelKey)
       )
@@ -107,15 +114,18 @@ export const InputSearch: FC<InputSearchProps> = ({
     if (props.formikProps?.setFieldValue) props.formikProps.setFieldValue(props.name, value);
     if (typeof props.onChange === 'function')
       props.onChange(event as ChangeEvent<HTMLInputElement>, value, reason, details);
+
+    const valueLabel = getValueLabel(value);
+    if (valueLabel) dispatch({ name: 'setInputSearchValue', payload: valueLabel });
   };
 
-  const handleInputChange: (event: ChangeEvent<any>, value: string, reason: AutocompleteInputChangeReason) => void = (
-    event,
-    value,
-    reason
-  ) => {
-    if (reason !== 'input' || value === '') return;
-    dispatch({ name: 'setInputSearchValue', payload: value });
+  const handleInputChange: (
+    event: ChangeEvent<any>,
+    inputValue: string,
+    reason: AutocompleteInputChangeReason
+  ) => void = (event, inputValue, reason) => {
+    if (reason !== 'clear' && reason !== 'input') return;
+    dispatch({ name: 'setInputSearchValue', payload: inputValue });
   };
 
   return (
@@ -127,8 +137,9 @@ export const InputSearch: FC<InputSearchProps> = ({
       options={state.options}
       onChange={handleChange}
       autocompleteConfig={{
+        inputValue: state.inputSearchValue,
         disableClearable: false,
-        loading: state.options.length < 1,
+        loading: config.loading ? config.loading(state.options) : state.options.length < 1,
         onInputChange: handleInputChange,
         ...props.autocompleteConfig
       }}

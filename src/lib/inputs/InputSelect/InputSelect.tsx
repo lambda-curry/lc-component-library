@@ -142,7 +142,7 @@ export const InputSelect: React.FC<InputSelectProps> = ({
       const hasSafeName = props.formikProps?.status?.formConfig?.safeName || props.inputConfig?.safeName;
       if (props.formikProps?.setFieldValue)
         props.formikProps.setFieldValue(hasSafeName ? `['${name}']` : name, normalizedValue);
-      if (typeof onChange === 'function') onChange(event, newValue, reason, details);
+      if (typeof onChange === 'function') onChange(event, normalizedValue, reason, details);
     },
     openOnFocus: true,
     closeIcon: <Icon className="lc-input-select-icon-close" name="close" />,

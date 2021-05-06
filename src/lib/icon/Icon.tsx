@@ -49,7 +49,6 @@ import { ReactComponent as phone } from '../../assets/icons/phone.svg';
 import { ReactComponent as phoneRing } from '../../assets/icons/phoneRing.svg';
 import { ReactComponent as plus } from '../../assets/icons/plus.svg';
 import { ReactComponent as profile } from '../../assets/icons/profile.svg';
-import { ReactComponent as questionCircleSolid } from '../../assets/icons/questionCircleSolid.svg';
 import { ReactComponent as radio } from '../../assets/icons/radio.svg';
 import { ReactComponent as radioFilled } from '../../assets/icons/radioFilled.svg';
 import { ReactComponent as resize } from '../../assets/icons/resize.svg';
@@ -112,7 +111,6 @@ export const defaultIcons = {
   phoneRing,
   plus,
   profile,
-  questionCircleSolid,
   radio,
   radioFilled,
   resize,
@@ -137,7 +135,7 @@ const aliasMap = {
   pdf: 'filePDF',
   ringVolume: 'phoneRing',
   visibility: 'eye',
-  question: 'questionCircleSolid'
+  question: 'help'
 };
 
 export type DefaultIconNames = keyof typeof defaultIcons;
