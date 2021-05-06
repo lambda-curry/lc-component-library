@@ -5,6 +5,8 @@ import './icon.css';
 
 import { ReactComponent as addUser } from '../../assets/icons/addUser.svg';
 import { ReactComponent as analytics } from '../../assets/icons/analytics.svg';
+import { ReactComponent as android } from '../../assets/icons/android.svg';
+import { ReactComponent as apple } from '../../assets/icons/apple.svg';
 import { ReactComponent as apps } from '../../assets/icons/apps.svg';
 import { ReactComponent as archive } from '../../assets/icons/archive.svg';
 import { ReactComponent as arrowLeft } from '../../assets/icons/arrowLeft.svg';
@@ -46,6 +48,7 @@ import { ReactComponent as paintBrush } from '../../assets/icons/paintBrush.svg'
 import { ReactComponent as partner } from '../../assets/icons/partner.svg';
 import { ReactComponent as pencil } from '../../assets/icons/pencil.svg';
 import { ReactComponent as phone } from '../../assets/icons/phone.svg';
+import { ReactComponent as phoneCheck } from '../../assets/icons/phoneCheck.svg';
 import { ReactComponent as phoneRing } from '../../assets/icons/phoneRing.svg';
 import { ReactComponent as plus } from '../../assets/icons/plus.svg';
 import { ReactComponent as profile } from '../../assets/icons/profile.svg';
@@ -67,7 +70,9 @@ import { ReactComponent as video } from '../../assets/icons/video.svg';
 export const defaultIcons = {
   addUser,
   analytics,
+  android,
   apps,
+  apple,
   archive,
   arrowLeft,
   bell,
@@ -108,6 +113,7 @@ export const defaultIcons = {
   partner,
   pencil,
   phone,
+  phoneCheck,
   phoneRing,
   plus,
   profile,
