@@ -124,7 +124,7 @@ export const InputSearch: FC<InputSearchProps> = ({
     inputValue: string,
     reason: AutocompleteInputChangeReason
   ) => void = (event, inputValue, reason) => {
-    if (reason !== 'clear' && reason !== 'input') return;
+    if (!event && reason !== 'clear' && reason !== 'input') return;
     dispatch({ name: 'setInputSearchValue', payload: inputValue });
   };
 
