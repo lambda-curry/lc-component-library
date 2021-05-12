@@ -79,14 +79,23 @@ export const InputSearch: FC<InputSearchProps> = ({
 
   // Run an initial search if an initialSearchValue is given
   useEffect(() => {
-    if (config.initialSearchValue) dispatch({ name: 'setInputSearchValue', payload: config.initialSearchValue });
+    if (config.initialSearchValue !== undefined)
+      dispatch({ name: 'setInputSearchValue', payload: config.initialSearchValue });
   }, [config.initialSearchValue]);
 
   const searchTerm = useDebounce(state.inputSearchValue, config.debounceTime || 200);
   const search = async () => {
+    console.log('>>> 1', typeof searchTerm, config.ignoreFalseyInputValues);
     // If the input value equals, we probably do not need to run another search - Jake 05/06/2021
-    if (searchTerm === getValueLabel(selectedValue)) return;
-    if (!config.initialSearchValue && config.ignoreFalseyInputValues && !state.inputSearchValue) return;
+    if (!!searchTerm && searchTerm === getValueLabel(selectedValue)) return;
+    if (
+      config.ignoreFalseyInputValues &&
+      (config.initialSearchValue === undefined || config.initialSearchValue === null) &&
+      (state.inputSearchValue === undefined || state.inputSearchValue === null)
+    )
+      return;
+
+    console.log('>>> 2', searchTerm);
     const [base, params] = url.split('?');
     const searchParams = new URLSearchParams(params);
     if (searchParam) searchParams.set(searchParam, searchTerm);
@@ -124,7 +133,7 @@ export const InputSearch: FC<InputSearchProps> = ({
     inputValue: string,
     reason: AutocompleteInputChangeReason
   ) => void = (event, inputValue, reason) => {
-    if (reason !== 'clear' && reason !== 'input') return;
+    if (!event && reason !== 'clear' && reason !== 'input') return;
     dispatch({ name: 'setInputSearchValue', payload: inputValue });
   };
 
