@@ -162,8 +162,9 @@ import './input-search-story.css';
               searchParam="q"
               optionLabelKey="headline.main"
               getOptions={response => response?.response?.docs || []}
-              searchOptions={{ initialSearchValue: 'test' }}
+              searchOptions={{ initialSearchValue: '', ignoreFalseyInputValues: false }}
               autocompleteConfig={{
+                autoHighlight: false,
                 noOptionsText: `Please try again in a minute, NYT Rate Limits their APIs to 10 requests per minute.`,
                 loadingText: `Type to search...`,
                 filterOptions: x => x
