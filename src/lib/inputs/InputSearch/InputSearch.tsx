@@ -79,7 +79,8 @@ export const InputSearch: FC<InputSearchProps> = ({
 
   // Run an initial search if an initialSearchValue is given
   useEffect(() => {
-    if (config.initialSearchValue) dispatch({ name: 'setInputSearchValue', payload: config.initialSearchValue });
+    if (config.initialSearchValue !== undefined)
+      dispatch({ name: 'setInputSearchValue', payload: config.initialSearchValue });
   }, [config.initialSearchValue]);
 
   const searchTerm = useDebounce(state.inputSearchValue, config.debounceTime || 200);
