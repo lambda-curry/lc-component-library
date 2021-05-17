@@ -59,23 +59,31 @@ export const InputSearch: FC<InputSearchProps> = ({
   placeholder = 'Type to search...',
   ...props
 }) => {
+  const selectedValue = _get(props.formikProps?.values, props.name);
+  const getValueLabel: (value: any, options: any[]) => string = (value, options) => {
+    if (!options) return '';
+
+    if (props.optionValueKey && options.length) {
+      const foundOption = options.find(option => option[props.optionValueKey as string] === value);
+      return foundOption ? foundOption[optionLabelKey] : '';
+    }
+
+    const valueLabel = typeof selectedValue === 'string' ? value : _get(value, optionLabelKey);
+    return typeof valueLabel === 'string' ? valueLabel : '';
+  };
+
+  const [state, dispatch] = useReducer<Reducer<InputSearchReducerState, InputSearchReducerAction>>(inputSearchReducer, {
+    status: 'waiting',
+    options: selectedValue ? [selectedValue] : [],
+    inputSearchValue: getValueLabel(selectedValue, selectedValue ? [selectedValue] : [])
+  });
+
   const config: InputSearchOptions = {
     ignoreFalseyInputValues: true,
     ...searchOptions
   };
 
-  const selectedValue = _get(props.formikProps?.values, props.name);
-  const getValueLabel = (value: any) => {
-    const valueLabel = typeof selectedValue === 'string' ? value : _get(value, optionLabelKey);
-    return typeof valueLabel === 'string' ? valueLabel : '';
-  };
-  const initialSearchInputValue = getValueLabel(selectedValue);
-
-  const [state, dispatch] = useReducer<Reducer<InputSearchReducerState, InputSearchReducerAction>>(inputSearchReducer, {
-    status: 'waiting',
-    options: selectedValue ? [selectedValue] : [],
-    inputSearchValue: initialSearchInputValue
-  });
+  const initialSearchInputValue = getValueLabel(selectedValue, state.options);
 
   // Run an initial search if an initialSearchValue is given
   useEffect(() => {
@@ -83,10 +91,15 @@ export const InputSearch: FC<InputSearchProps> = ({
       dispatch({ name: 'setInputSearchValue', payload: config.initialSearchValue });
   }, [config.initialSearchValue]);
 
+  // Trigger input value change if formik value is changed from outside the input
+  useEffect(() => {
+    if (initialSearchInputValue === '') dispatch({ name: 'setInputSearchValue', payload: initialSearchInputValue });
+  }, [initialSearchInputValue]);
+
   const searchTerm = useDebounce(state.inputSearchValue, config.debounceTime || 200);
   const search = async () => {
     // If the input value equals, we probably do not need to run another search - Jake 05/06/2021
-    if (!!searchTerm && searchTerm === getValueLabel(selectedValue)) return;
+    if (!!searchTerm && searchTerm === getValueLabel(selectedValue, state.options)) return;
     if (
       config.ignoreFalseyInputValues &&
       (config.initialSearchValue === undefined || config.initialSearchValue === null) &&
@@ -118,11 +131,12 @@ export const InputSearch: FC<InputSearchProps> = ({
   useAsyncEffect(search, undefined, [url, searchTerm]);
 
   const handleChange: AutoCompleteChange = (event, value, reason, details) => {
-    if (props.formikProps?.setFieldValue) props.formikProps.setFieldValue(props.name, value);
+    if (props.formikProps?.handleChange) props.formikProps.handleChange(event);
     if (typeof props.onChange === 'function')
       props.onChange(event as ChangeEvent<HTMLInputElement>, value, reason, details);
 
-    dispatch({ name: 'setInputSearchValue', payload: getValueLabel(value) });
+    const valueLabel = getValueLabel(value, state.options);
+    if (valueLabel) dispatch({ name: 'setInputSearchValue', payload: valueLabel });
   };
 
   const handleInputChange: (
