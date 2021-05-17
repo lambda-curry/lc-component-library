@@ -122,8 +122,7 @@ export const InputSearch: FC<InputSearchProps> = ({
     if (typeof props.onChange === 'function')
       props.onChange(event as ChangeEvent<HTMLInputElement>, value, reason, details);
 
-    const valueLabel = getValueLabel(value);
-    if (valueLabel) dispatch({ name: 'setInputSearchValue', payload: valueLabel });
+    dispatch({ name: 'setInputSearchValue', payload: getValueLabel(value) });
   };
 
   const handleInputChange: (
