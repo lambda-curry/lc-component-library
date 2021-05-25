@@ -10,13 +10,12 @@ export interface DecorativeIconProps {
 }
 
 export const DecorativeIcon: FC<DecorativeIconProps> = ({ className, color, name, ...props }) => {
-  const isDefaultCssVar = getCssVar(`lc-color-${color}`);
-  const customColor = !isDefaultCssVar ? getCssVar(color) || color : '';
+  const customColor = getCssVar(color) || color || '';
   const backgroundColor = customColor && isRgbColor(customColor) ? `rgba(${stripRgb(customColor)})` : customColor;
 
   return (
     <div
-      className={classNames('lc-icon-decorative', { [`lc-bg-${color}`]: isDefaultCssVar }, className)}
+      className={classNames('lc-icon-decorative', className)}
       style={customColor ? { backgroundColor } : undefined}
       {...props}
     >
