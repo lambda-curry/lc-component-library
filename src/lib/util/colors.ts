@@ -7,7 +7,10 @@ export function getCssVar(cssVar: string, computedStyle?: CSSStyleDeclaration): 
 }
 
 export function getColorVar(color: string, alpha = 1) {
-  return `rgba(${getCssVar(`lc-color-${color}`)}, ${alpha})`;
+  const cssVar = `lc-color-${color}`;
+
+  if (!getCssVar(cssVar)) return '';
+  return `rgba(${getCssVar(cssVar)}, ${alpha})`;
 }
 
 export function isColor(color: string): boolean {
