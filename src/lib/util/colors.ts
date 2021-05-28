@@ -1,7 +1,11 @@
+import { isBrowser } from './js-helpers';
+
 export const hexColorRegexString = '[a-fA-F0-9]';
 export const hexColorRegex = new RegExp(hexColorRegexString);
 
 export function getCssVar(cssVar: string, computedStyle?: CSSStyleDeclaration): string {
+  if (!isBrowser()) return '';
+
   const styles = computedStyle ? computedStyle : window.getComputedStyle(document.documentElement);
   return styles.getPropertyValue(`--${cssVar}`).replace(' ', '');
 }
@@ -20,6 +24,8 @@ export function isColor(color: string): boolean {
 }
 
 export function getHexColor(colorStr: string): string {
+  if (!isBrowser()) return '';
+
   const a = document.createElement('div');
   a.style.color = colorStr;
   const colorArray = window.getComputedStyle(document.body.appendChild(a)).color?.match(/\d+/g);
