@@ -2,7 +2,7 @@ export const hexColorRegexString = '[a-fA-F0-9]';
 export const hexColorRegex = new RegExp(hexColorRegexString);
 
 export function getCssVar(cssVar: string, computedStyle?: CSSStyleDeclaration): string {
-  const styles = computedStyle ? computedStyle : getComputedStyle(document.documentElement);
+  const styles = computedStyle ? computedStyle : window.getComputedStyle(document.documentElement);
   return styles.getPropertyValue(`--${cssVar}`).replace(' ', '');
 }
 
