@@ -83,7 +83,7 @@ export const InputSearch: FC<InputSearchProps> = ({
     ...searchOptions
   };
 
-  const initialSearchInputValue = getValueLabel(selectedValue, state.options);
+  const initialSearchInputValue = config.initialSearchValue ?? getValueLabel(selectedValue, state.options);
 
   // Run an initial search if an initialSearchValue is given
   useEffect(() => {
@@ -144,6 +144,8 @@ export const InputSearch: FC<InputSearchProps> = ({
     inputValue: string,
     reason: AutocompleteInputChangeReason
   ) => void = (event, inputValue, reason) => {
+    // Note: we don't want to reset the input to empty if there is an input value in place
+    if (state.inputSearchValue && inputValue === '' && reason === 'reset') return;
     if (!event && reason !== 'clear' && reason !== 'input') return;
     dispatch({ name: 'setInputSearchValue', payload: inputValue });
   };
