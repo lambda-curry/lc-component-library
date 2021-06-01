@@ -11,29 +11,19 @@ export interface InputRadioProps extends RadioProps {
 
 export const InputRadio: FC<InputRadioProps> = ({
   className,
-  checked = false,
   color = 'primary',
-  formikProps,
   label,
   labelPlacement,
-  onChange,
   value,
   ...props
 }) => {
-  const fieldProps = formikProps?.getFieldProps(props.name);
-  const fieldValue = fieldProps?.value === value;
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (onChange) onChange(event, event.target.checked);
-    if (fieldProps?.onChange) fieldProps.onChange(event);
-  };
-
   return (
     <FormControlLabel
-      control={<Radio {...props} color={color} checked={fieldValue || checked} onChange={handleChange} value={value} />}
+      control={<Radio {...props} color={color} />}
       className={classNames('lc-input lc-input-radio')}
       label={label}
       labelPlacement={labelPlacement}
+      value={value}
     />
   );
 };

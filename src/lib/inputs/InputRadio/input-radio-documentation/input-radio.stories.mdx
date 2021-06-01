@@ -1,9 +1,9 @@
 import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs/blocks';
-import { InputRadio, Form } from '../../..';
+import { InputRadioGroup, Form } from '../../..';
 import dedent from 'string-dedent';
-import { inputRadioExample1 } from './input-radio.examples.tsx';
+import { inputRadioExample1, inputRadioExample2 } from './input-radio.examples.tsx';
 
-<Meta title="Input Radio" component={InputRadio} />
+<Meta title="Input Radio Group" component={InputRadioGroup} />
 
 # Radio Input
 
@@ -34,5 +34,41 @@ import { inputRadioExample1 } from './input-radio.examples.tsx';
   >
     {inputRadioExample1.bind({})}
   </Story>
-  <ArgsTable of={InputRadio} />
+  <Story
+    name="Input Radio - Horizontal"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+            <Form
+              initialValues={{
+                sampleRadio: 'Yes'
+              }}
+              onSubmit={() => undefined}
+            >
+              {formikProps => (
+                <>
+                  Radio buttons aligned horizontally
+                  <br />
+                  Value: {formikProps.values.sampleRadio}
+                  <InputRadioGroup
+                    formikProps={formikProps}
+                    legend="Sample Radio"
+                    name="sampleRadio"
+                    row
+                    value={formikProps.values.sampleRadio}
+                  >
+                    <InputRadio id="sampleRadio.yes" label="Yes" value="Yes" />
+                    <InputRadio id="sampleRadio.no" label="No" value="No" />
+                  </InputRadioGroup>
+                </>
+              )}
+            </Form>`
+        }
+      }
+    }}
+  >
+    {inputRadioExample2.bind({})}
+  </Story>
+  <ArgsTable of={InputRadioGroup} />
 </Canvas>
