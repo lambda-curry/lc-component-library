@@ -1,0 +1,38 @@
+import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs/blocks';
+import { InputRadio, Form } from '../../..';
+import dedent from 'string-dedent';
+import { inputRadioExample1 } from './input-radio.examples.tsx';
+
+<Meta title="Input Radio" component={InputRadio} />
+
+# Radio Input
+
+<Canvas>
+  <Story
+    name="Input Radio"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+            <Form
+              initialValues={{
+                sampleRadio: 'Yes'
+              }}
+              onSubmit={() => undefined}
+            >
+              {formikProps => (
+                <>
+                  Value: {formikProps.values.sampleRadio}
+                  <InputRadio label="Yes" name="sampleRadio" value="Yes" formikProps={formikProps} />
+                  <InputRadio label="No" name="sampleRadio" value="No" formikProps={formikProps} />
+                </>
+              )}
+            </Form>`
+        }
+      }
+    }}
+  >
+    {inputRadioExample1.bind({})}
+  </Story>
+  <ArgsTable of={InputRadio} />
+</Canvas>
