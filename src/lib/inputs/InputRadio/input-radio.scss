@@ -1,0 +1,12 @@
+.lc-input-radio {
+  &-group {
+    .MuiFormLabel-root {
+      color: inherit;
+      font-family: inherit;
+
+      &.Mui-focused {
+        color: inherit;
+      }
+    }
+  }
+}

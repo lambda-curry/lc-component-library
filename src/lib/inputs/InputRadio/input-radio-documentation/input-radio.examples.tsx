@@ -13,7 +13,7 @@ export const inputRadioExample1: React.FC<any> = () => (
     {formikProps => (
       <>
         Value: {formikProps.values.sampleRadio}
-        <InputRadioGroup formikProps={formikProps} legend="Sample Radio" name="sampleRadio">
+        <InputRadioGroup formikProps={formikProps} name="sampleRadio">
           <InputRadio id="sampleRadio.yes" label="Yes" value="Yes" />
           <InputRadio id="sampleRadio.no" label="No" value="No" />
         </InputRadioGroup>
@@ -34,7 +34,7 @@ export const inputRadioExample2: React.FC<any> = () => (
         Radio buttons aligned horizontally
         <br />
         Value: {formikProps.values.sampleRadio}
-        <InputRadioGroup formikProps={formikProps} legend="Sample Radio" name="sampleRadio" row>
+        <InputRadioGroup formikProps={formikProps} label="Sample Radio" name="sampleRadio" row>
           <InputRadio id="sampleRadio.yes" label="Yes" value="Yes" />
           <InputRadio id="sampleRadio.no" label="No" value="No" />
         </InputRadioGroup>
