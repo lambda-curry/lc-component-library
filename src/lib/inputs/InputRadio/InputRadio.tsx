@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import classNames from 'classnames';
 import { FormikProps } from 'formik';
 import { FormControlLabel, FormControlLabelProps, Radio, RadioProps } from '@material-ui/core';
+import './input-radio.scss';
 
 export interface InputRadioProps extends RadioProps {
   label?: string;
