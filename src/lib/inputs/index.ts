@@ -3,6 +3,8 @@ export { InputColor } from './InputColor/InputColor';
 export { InputDate } from './InputDate/InputDate';
 export * from './InputGroup';
 export { InputPhone } from './InputPhone/InputPhone';
+export { InputRadio } from './InputRadio/InputRadio';
+export { InputRadioGroup } from './InputRadio/InputRadioGroup';
 export { InputSearch } from './InputSearch/InputSearch';
 export { InputSelect } from './InputSelect/InputSelect';
 export { InputSwitch } from './InputSwitch/InputSwitch';

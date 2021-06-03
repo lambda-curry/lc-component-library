@@ -66,6 +66,7 @@ import { ReactComponent as unfold } from '../../assets/icons/unfold.svg';
 import { ReactComponent as user } from '../../assets/icons/user.svg';
 import { ReactComponent as users } from '../../assets/icons/users.svg';
 import { ReactComponent as video } from '../../assets/icons/video.svg';
+import { ReactComponent as warning } from '../../assets/icons/warning.svg';
 
 export const defaultIcons = {
   addUser,
@@ -130,7 +131,8 @@ export const defaultIcons = {
   unfold,
   user,
   users,
-  video
+  video,
+  warning
 };
 
 const aliasMap = {
