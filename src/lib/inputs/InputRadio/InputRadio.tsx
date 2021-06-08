@@ -21,7 +21,7 @@ export const InputRadio: FC<InputRadioProps> = ({
   return (
     <FormControlLabel
       control={<Radio {...props} color={color} />}
-      className={classNames('lc-input lc-input-radio')}
+      className={(classNames('lc-input lc-input-radio'), className)}
       label={label}
       labelPlacement={labelPlacement}
       value={value}
