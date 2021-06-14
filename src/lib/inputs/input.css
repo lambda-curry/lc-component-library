@@ -55,6 +55,10 @@
     @apply lc-border-gray-lighter;
   }
 
+  .MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
+    @apply lc-border-danger;
+  }
+
   // Override for Marcus to center the input label
   .MuiInputLabel-outlined.MuiInputLabel-marginDense {
     @apply lc-text-black;
@@ -96,6 +100,10 @@
     font-family: inherit;
     margin-top: 8px;
     letter-spacing: 0;
+
+    &.Mui-error {
+      @apply lc-text-danger;
+    }
   }
 }
 

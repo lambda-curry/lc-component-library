@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FocusEvent } from 'react';
+import React, { ChangeEvent, FocusEvent, ReactNode, FC } from 'react';
 import TextField, { OutlinedTextFieldProps } from '@material-ui/core/TextField';
 import { FormikProps } from 'formik';
 import classNames from 'classnames';
@@ -15,17 +15,17 @@ export interface InputConfig {
   shrinkLabel?: boolean;
 }
 
-export type InputProps = Omit<OutlinedTextFieldProps, 'variant'> & {
+export type InputProps = Omit<OutlinedTextFieldProps, 'variant' | 'prefix'> & {
   name: string;
-  prefix?: React.ReactNode;
-  suffix?: React.ReactNode;
+  prefix?: ReactNode;
+  suffix?: ReactNode;
   formikProps?: Partial<FormikProps<any>>;
   labelPlacement?: LabelPlacements;
   variant?: 'outlined'; // Don't remove any typing because this breaks the build. - Jake
   inputConfig?: InputConfig;
 };
 
-export const InputBase: React.FC<InputProps> = ({
+export const InputBase: FC<InputProps> = ({
   name,
   id,
   className,
