@@ -93,13 +93,23 @@ export const Tabs: FC<TabsPropsFixed> = ({
           value={value}
         >
           {tabs.map((tab, index) => (
-            <Tab className={classes.tab} value={index} label={tab.label} {...a11yProps(index)} />
+            <Tab
+              key={`${typeof tab.label === 'string' ? tab.label.replace(' ', '') : ''}_tab_${index}`}
+              className={classes.tab}
+              value={index}
+              label={tab.label}
+              {...a11yProps(index)}
+            />
           ))}
         </MuiTabs>
       </AppBar>
 
       {tabs.map((tab, index) => (
-        <TabPanel value={value} index={index}>
+        <TabPanel
+          key={`${typeof tab.label === 'string' ? tab.label.replace(' ', '') : ''}_panel_${index}`}
+          value={value}
+          index={index}
+        >
           {tab.render}
         </TabPanel>
       ))}
