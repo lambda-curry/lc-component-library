@@ -31,6 +31,7 @@ import { ReactComponent as drag } from '../../assets/icons/drag.svg';
 import { ReactComponent as error } from '../../assets/icons/error.svg';
 import { ReactComponent as expand } from '../../assets/icons/expand.svg';
 import { ReactComponent as eye } from '../../assets/icons/eye.svg';
+import { ReactComponent as facebook } from '../../assets/icons/facebook.svg';
 import { ReactComponent as filePDF } from '../../assets/icons/filePDF.svg';
 import { ReactComponent as fileExcel } from '../../assets/icons/fileExcel.svg';
 import { ReactComponent as filter } from '../../assets/icons/filter.svg';
@@ -42,6 +43,7 @@ import { ReactComponent as income } from '../../assets/icons/income.svg';
 import { ReactComponent as laptop } from '../../assets/icons/laptop.svg';
 import { ReactComponent as lifeRing } from '../../assets/icons/lifeRing.svg';
 import { ReactComponent as location } from '../../assets/icons/location.svg';
+import { ReactComponent as mailOutline } from '../../assets/icons/mailOutline.svg';
 import { ReactComponent as menu } from '../../assets/icons/menu.svg';
 import { ReactComponent as navigation } from '../../assets/icons/navigation.svg';
 import { ReactComponent as paintBrush } from '../../assets/icons/paintBrush.svg';
@@ -62,6 +64,7 @@ import { ReactComponent as sms } from '../../assets/icons/sms.svg';
 import { ReactComponent as successMessage } from '../../assets/icons/successMessage.svg';
 import { ReactComponent as touch } from '../../assets/icons/touch.svg';
 import { ReactComponent as trash } from '../../assets/icons/trash.svg';
+import { ReactComponent as twitter } from '../../assets/icons/twitter.svg';
 import { ReactComponent as unfold } from '../../assets/icons/unfold.svg';
 import { ReactComponent as user } from '../../assets/icons/user.svg';
 import { ReactComponent as users } from '../../assets/icons/users.svg';
@@ -97,6 +100,7 @@ export const defaultIcons = {
   error,
   expand,
   eye,
+  facebook,
   fileExcel,
   filePDF,
   filter,
@@ -108,6 +112,7 @@ export const defaultIcons = {
   laptop,
   lifeRing,
   location,
+  mailOutline,
   menu,
   navigation,
   paintBrush,
@@ -128,6 +133,7 @@ export const defaultIcons = {
   successMessage,
   touch,
   trash,
+  twitter,
   unfold,
   user,
   users,

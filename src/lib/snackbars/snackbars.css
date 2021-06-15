@@ -32,54 +32,61 @@ $snackbars-min-width: 280px;
 }
 
 .snackbar {
-  .MuiSnackbarContent-root {
+  [class*='contentRoot'] {
+    @apply lc-font-sans;
+    @apply lc-text-sm;
     @apply lc-text-white;
     @apply lc-bg-gray-darker;
     padding: 8px 16px;
     min-width: $snackbars-min-width;
-    font-size: inherit;
-    line-height: inherit;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
     border-radius: 6px;
+  }
 
-    &[class*='variantSuccess'] {
-      @apply lc-text-white;
-      @apply lc-bg-success;
+  /*
+  Note: Because of an unresolved Tailwind issue when using the `theme()` function with custom colors
+  like we have them and because the `notistack` package sets `!important` on the `background-color` property
+  for variants, we need to simply use our custom css theme variables for now.
 
-      .snackbar-action-primary {
-        @apply lc-text-success;
-      }
-    }
+  See: https://github.com/tailwindlabs/tailwindcss/discussions/2927
+  */
+  [class*='variantSuccess'] {
+    @apply lc-text-white;
+    background-color: rgb(var(--lc-color-success)) !important;
 
-    &[class*='variantWarning'] {
-      @apply lc-text-white;
-      @apply lc-bg-warning;
-
-      .snackbar-action-primary {
-        @apply lc-text-warning;
-      }
-    }
-
-    &[class*='variantError'] {
-      @apply lc-text-white;
-      @apply lc-bg-danger;
-
-      .snackbar-action-primary {
-        @apply lc-text-danger;
-      }
-    }
-
-    &[class*='variantInfo'] {
-      @apply lc-text-white;
-      @apply lc-bg-primary;
-
-      .snackbar-action-primary {
-        @apply lc-text-primary;
-      }
+    .snackbar-action-primary {
+      @apply lc-text-success;
     }
   }
 
-  .MuiSnackbarContent-message {
+  [class*='variantWarning'] {
+    @apply lc-text-white;
+    background-color: rgb(var(--lc-color-warning)) !important;
+
+    .snackbar-action-primary {
+      @apply lc-text-warning;
+    }
+  }
+
+  [class*='variantError'] {
+    @apply lc-text-white;
+    background-color: rgb(var(--lc-color-danger)) !important;
+
+    .snackbar-action-primary {
+      @apply lc-text-danger;
+    }
+  }
+
+  [class*='variantInfo'] {
+    @apply lc-text-white;
+    background-color: rgb(var(--lc-color-primary)) !important;
+
+    .snackbar-action-primary {
+      @apply lc-text-primary;
+    }
+  }
+
+  .SnackbarItem-message {
     padding: 10px 0 8px;
   }
 }
