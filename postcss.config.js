@@ -21,11 +21,23 @@ module.exports = {
   plugins: [
     require('postcss-import'),
     require('postcss-strip-inline-comments'),
-    require('postcss-each'),
-    require('precss'),
+    require('postcss-each'), // NOTE: This ships with `postcss-simple-vars`, so including it separately results in a conflict.
+    require('postcss-map-get'),
     require('postcss-functions')({
       functions: { hexToRGB }
     }),
+
+    // NOTE:
+    // * These plugins replace the `precss` plugin, which hasn't been updated in 4 years.
+    // * Disabling `postcss-advanced-variables` because it is conflicting with `postcss-each`.
+    //
+    // require('postcss-advanced-variables'),
+    require('postcss-extend-rule'),
+    require('postcss-preset-env'),
+    require('postcss-atroot'),
+    require('postcss-property-lookup'),
+    require('postcss-nested'),
+
     // Only include the `postcss-url` plugin for our TSDX builds,
     // because Storybook uses webpack to process and bundle assets,
     // and this breaks the Storybook build.

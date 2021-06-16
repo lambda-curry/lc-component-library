@@ -60,6 +60,8 @@ module.exports = {
     );
 
     // Add our new css/scss rule
+    // See: https://lifesaver.codes/answer/a-working-example-with-postcss-for-storybook-v5
+    // See: https://webpack.js.org/loaders/postcss-loader/
     config.module.rules.push({
       test: /\.(css|scss)$/,
       loaders: [
