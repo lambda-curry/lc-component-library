@@ -25,8 +25,8 @@ export const ChartTooltip: FC<ChartTooltipProps> = ({
   const [tooltipData, setTooltipData] = useState<ChartTooltipData>({});
 
   const chartElement = chartRef.current?.chartInstance.canvas?.getBoundingClientRect() as DOMRect;
-  const positionTop = chartElement.top + window.pageYOffset + model.caretY - 8;
-  const positionLeft = chartElement.left + window.pageXOffset + model.caretX;
+  const positionTop = chartElement?.top + window.pageYOffset + model.caretY - 8;
+  const positionLeft = chartElement?.left + window.pageXOffset + model.caretX;
 
   const updateTooltipDataForPieCharts = () => {
     if (!model || !model.dataPoints || !chartData.labels || !chartData.datasets) return;
