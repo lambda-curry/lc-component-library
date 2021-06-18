@@ -14,8 +14,6 @@ export const DecorativeIcon: FC<DecorativeIconProps> = ({ className, color, name
 
   const backgroundColor = customColor && isRgbColor(customColor) ? `${customColor}` : customColor;
 
-  console.log('>>>', { cssVar: getColorVar(color) || getCssVar(color), customColor, backgroundColor });
-
   return (
     <div
       className={classNames('lc-icon-decorative', className)}
