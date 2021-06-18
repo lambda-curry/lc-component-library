@@ -4,7 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import { Tabs as MuiTabs, Tab, TabsProps } from '@material-ui/core';
 import classNames from 'classnames';
 
-interface TabPanelProps {
+export interface TabPanelProps {
   index: any;
   value: any;
 }
@@ -54,7 +54,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-interface TabsPropsFixed extends Omit<TabsProps, 'onChange'> {
+export interface TabsPropsFixed extends Omit<TabsProps, 'onChange'> {
   ariaLabel?: string;
   className?: string;
   onChange?: (event: React.ChangeEvent<any>, value: any) => void;

@@ -1,3 +1,3 @@
-export { Modal } from './Modal';
-export { ModalActions } from './ModalActions';
-export { ModalHeader } from './ModalHeader';
+export * from './Modal';
+export * from './ModalActions';
+export * from './ModalHeader';

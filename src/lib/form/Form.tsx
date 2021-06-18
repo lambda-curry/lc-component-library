@@ -8,7 +8,7 @@ import { formReducer, FormReducerAction, FormReducerState } from './Form.helpers
 import { InputConfig } from '../inputs/InputBase';
 import './form.css';
 
-interface FormConfig extends InputConfig {}
+export interface FormConfig extends InputConfig {}
 
 export interface UnsavedChangesConfig {
   containerQuerySelectorAll?: string;
@@ -16,14 +16,14 @@ export interface UnsavedChangesConfig {
   modalProps?: Partial<ReactModal.Props>;
 }
 
-export type FormProps<T> = FormikConfig<T> & {
+export interface FormProps<T> extends FormikConfig<T> {
   className?: string;
   confirmUnsavedChanges?: boolean;
   unsavedChangesConfig?: UnsavedChangesConfig;
   withoutFormElement?: boolean;
   formConfig?: FormConfig;
   children: (formikProps: FormikProps<T>) => ReactElement;
-};
+}
 
 const FormContent: FC<{
   className?: string;

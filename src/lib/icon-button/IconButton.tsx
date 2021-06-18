@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { FC } from 'react';
 import classNames from 'classnames';
 import { Icon, IconNames } from '../icon/Icon';
 import { ButtonStyled, ButtonProps } from '../buttons';
 
 import './icon-button.css';
 
-export type IconButtonProps = ButtonProps & {
+export interface IconButtonProps extends ButtonProps {
   icon: IconNames;
-};
+}
 
-export const IconButton: React.FC<IconButtonProps> = ({ className, icon, ...props }) => (
+export const IconButton: FC<IconButtonProps> = ({ className, icon, ...props }) => (
   <ButtonStyled
     {...props}
     className={classNames(
