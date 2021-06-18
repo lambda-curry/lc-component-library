@@ -1,9 +1,9 @@
-import React, { useContext, useReducer } from 'react';
+import React, { FC, createContext, Context, useContext, useReducer } from 'react';
 import { drawerActions, DrawerActions, DrawerReducer } from './drawer.helpers';
 
-export const DrawerStateContext: React.Context<any> = React.createContext({});
+export const DrawerStateContext: Context<any> = createContext({});
 
-export const DrawerActionContext: React.Context<DrawerActions> = React.createContext({} as DrawerActions);
+export const DrawerActionContext: Context<DrawerActions> = createContext({} as DrawerActions);
 
 export const useDrawer = () => {
   const drawerState = useContext(DrawerStateContext);
@@ -12,7 +12,7 @@ export const useDrawer = () => {
   return { drawerState, drawerActions };
 };
 
-export const DrawerProvider: React.FC<any> = ({ children }) => {
+export const DrawerProvider: FC<any> = ({ children }) => {
   const [state, dispatch] = useReducer(DrawerReducer, { data: {} });
 
   return (

@@ -3,6 +3,13 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 import { Tooltip as MuiTooltip, TooltipProps as MuiTooltipProps } from '@material-ui/core';
 import { useOnClickOutside } from '../hooks';
 
+export interface TooltipOptions {
+  openOnClick?: boolean;
+}
+export interface TooltipProps extends MuiTooltipProps {
+  options?: TooltipOptions;
+}
+
 const useStyles = makeStyles((theme: Theme) => ({
   arrow: {
     color: theme.palette.common.black
@@ -14,13 +21,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontSize: '13px'
   }
 }));
-
-interface TooltipOptions {
-  openOnClick?: boolean;
-}
-interface TooltipProps extends MuiTooltipProps {
-  options?: TooltipOptions;
-}
 
 export const useTooltip = () => {
   const [tooltipOpen, setTooltipOpen] = useState(false);

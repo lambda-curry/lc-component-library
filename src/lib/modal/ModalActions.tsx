@@ -1,7 +1,9 @@
-import React, { FunctionComponent } from 'react';
+import React, { FC } from 'react';
 import classNames from 'classnames';
-import { CardActions } from '@material-ui/core';
+import { CardActions, CardActionsProps } from '@material-ui/core';
 
-export const ModalActions: FunctionComponent<any> = ({ className, ...props }) => (
+export interface ModalActionsProps extends CardActionsProps {}
+
+export const ModalActions: FC<ModalActionsProps> = ({ className, ...props }) => (
   <CardActions className={classNames('lc-modal-actions', className)} {...props} />
 );

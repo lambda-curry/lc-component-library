@@ -1,4 +1,4 @@
-import React, { FC, SVGProps, useContext } from 'react';
+import React, { FC, useContext } from 'react';
 import classNames from 'classnames';
 import { RegisteredIconContext } from './IconRegistry';
 import './icon.css';
@@ -11,6 +11,7 @@ import { ReactComponent as discover } from '../../assets/color-icons/Discover.sv
 import { ReactComponent as jcb } from '../../assets/color-icons/JCB.svg';
 import { ReactComponent as visa } from '../../assets/color-icons/Visa.svg';
 import { ReactComponent as masterCard } from '../../assets/color-icons/MasterCard.svg';
+import { IconsMap } from './Icon';
 
 export const defaultColorIcons = {
   googleCalendar,
@@ -34,7 +35,7 @@ export interface ColorIconProps {
 export const ColorIcon: FC<ColorIconProps> = ({ className, name, viewBox = '0 0 24 24', ...props }) => {
   const registeredIcons = useContext(RegisteredIconContext);
 
-  const icons: { [x: string]: FC<SVGProps<SVGSVGElement>> } = {
+  const icons: IconsMap = {
     ...defaultColorIcons,
     ...registeredIcons
   };

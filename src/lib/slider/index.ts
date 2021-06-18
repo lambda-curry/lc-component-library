@@ -1,2 +1,2 @@
-export { Slider } from './Slider';
-export { TimeRangeSlider } from './TimeRangeSlider';
+export * from './Slider';
+export * from './TimeRangeSlider';

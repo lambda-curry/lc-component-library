@@ -38,16 +38,13 @@ However, You can add or replace icons by wrapping your App with the Icon Registr
   >
     <div className="icon-story">
       <ul className="icon-story-grid">
-        {Object.keys(defaultIcons).map(iconName => {
-          console.log(iconName);
-          return (
-            <li key={iconName}>
-              <Icon name={iconName} />
-              <br />
-              {iconName}
-            </li>
-          );
-        })}
+        {Object.keys(defaultIcons).map(iconName => (
+          <li key={iconName}>
+            <Icon name={iconName} />
+            <br />
+            {iconName}
+          </li>
+        ))}
       </ul>
     </div>
   </Story>

@@ -1,6 +1,6 @@
 import React, { FormEvent } from 'react';
 import { Slider, SliderProps } from './Slider';
-import { DateTime, Interval } from 'luxon';
+import { DateTime, Interval, LocaleOptions } from 'luxon';
 import classNames from 'classnames';
 import { isNullOrUndefined } from '../util/js-helpers';
 
@@ -16,8 +16,12 @@ const timeRangeFromRangeValue: (rangeValue: number[], data: { minTime: string; m
   rangeValue,
   { minTime, min }
 ) => {
-  const localeStartTimeString = DateTime.fromSeconds(rangeValue[0] * 60).toLocaleString(DateTime.TIME_24_SIMPLE);
-  const localeEndTimeString = DateTime.fromSeconds(rangeValue[1] * 60).toLocaleString(DateTime.TIME_24_SIMPLE);
+  const localeStartTimeString = DateTime.fromSeconds(rangeValue[0] * 60).toLocaleString(
+    DateTime.TIME_24_SIMPLE as LocaleOptions & Intl.DateTimeFormatOptions
+  );
+  const localeEndTimeString = DateTime.fromSeconds(rangeValue[1] * 60).toLocaleString(
+    DateTime.TIME_24_SIMPLE as LocaleOptions & Intl.DateTimeFormatOptions
+  );
   const [minTimeHours] = minTime.split(':');
   const [startTimeHours, startTimeMinutes] = localeStartTimeString.split(':');
   const [endTimeHours, endTimeMinutes] = localeEndTimeString.split(':');
@@ -32,16 +36,16 @@ const timeRangeFromRangeValue: (rangeValue: number[], data: { minTime: string; m
 };
 const labelFromRangeMinutes = (rangeMinutes: number) => {
   const dateTime = DateTime.fromSeconds(rangeMinutes * 60);
-  return dateTime.toLocaleString(DateTime.TIME_SIMPLE);
+  return dateTime.toLocaleString(DateTime.TIME_SIMPLE as LocaleOptions & Intl.DateTimeFormatOptions);
 };
 
-type TimeRangeSliderProps = SliderProps & {
+export interface TimeRangeSliderProps extends Omit<SliderProps, 'value' | 'onChange'> {
   value?: TimeRange;
   onChange?: (event: FormEvent<any>, value: TimeRange) => void;
   minuteInterval?: number;
   minTime?: string;
   maxTime?: string;
-};
+}
 
 export const TimeRangeSlider: React.FC<TimeRangeSliderProps> = ({
   className,

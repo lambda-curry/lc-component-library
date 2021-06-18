@@ -4,7 +4,11 @@ import { SnackbarAction } from './SnackbarAction';
 
 import './snackbars.css';
 
-export const SnackbarProvider: FC<{ children: ReactNode }> = props => {
+export interface SnackbarProviderProps {
+  children: ReactNode;
+}
+
+export const SnackbarProvider: FC<SnackbarProviderProps> = props => {
   // Add default action to all snackbars
   const snackbarProviderRef = React.createRef<MuiSnackbarProvider>();
   const onClickDismiss = (key: string) => {
