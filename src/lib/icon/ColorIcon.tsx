@@ -1,4 +1,4 @@
-import React, { FC, SVGProps, useContext } from 'react';
+import React, { FC, useContext } from 'react';
 import classNames from 'classnames';
 import { RegisteredIconContext } from './IconRegistry';
 import './icon.css';
