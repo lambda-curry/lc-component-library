@@ -150,7 +150,8 @@ export const InputSelect: React.FC<InputSelectProps> = ({
     renderInput: params => {
       const inputProps = {
         ...params.inputProps,
-        ...props.inputProps
+        ...props.inputProps,
+        disabled: props.disabled
       };
 
       return (
