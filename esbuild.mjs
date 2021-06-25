@@ -1,6 +1,7 @@
 import glob from 'glob';
 import { build } from 'esbuild';
 import postCssPlugin from "./esbuild.postcss.js";
+import svgimport from "./esbuild.svgimport.js";
 import svgr from 'esbuild-plugin-svgr';
 import syntax from 'postcss-scss';
 import cssImport from 'postcss-import';
@@ -33,8 +34,8 @@ const options = {
   logLevel: 'info',
   minify: true,
   sourcemap: true,
-  // bundle: true,
   plugins: [
+    svgimport(),
     postCssPlugin({
       inject: false,
       syntax,
@@ -62,7 +63,6 @@ const options = {
       ]
     }),
     svgr({
-      ext: 'svg',
       template: (
         { template },
         opts,
