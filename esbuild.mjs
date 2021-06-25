@@ -62,6 +62,7 @@ const options = {
       ]
     }),
     svgr({
+      ext: 'svg',
       template: (
         { template },
         opts,
