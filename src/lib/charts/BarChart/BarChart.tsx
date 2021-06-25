@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { ChartJSData, ChartJSOptions } from '../chart.helpers';
 import { AxialChart, AxialChartProps } from '../AxialChart';
 
-import './roundedBarCharts';
+import './roundedBarCharts.ts';
 
 export interface BarChartProps extends Partial<AxialChartProps> {}
 
