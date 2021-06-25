@@ -16,7 +16,7 @@ import cssnano from 'cssnano';
 import purgecss from '@fullhuman/postcss-purgecss';
 
 
-const entryPoints = glob.sync('./src/**/!(*documentation)/**/*[!*.d].{ts,tsx,css}');
+const entryPoints = ['./src/index.ts', ...glob.sync('./src/**/!(*documentation)/**/*[!*.d].{ts,tsx,css}')];
 
 const options = {
   entryPoints,
