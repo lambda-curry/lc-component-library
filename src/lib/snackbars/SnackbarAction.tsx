@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import classNames from 'classnames';
-import { ButtonProps, ButtonUnstyled } from '../buttons';
+import { ButtonProps } from '../buttons/ButtonBase';
+import { ButtonUnstyled } from '../buttons/ButtonUnstyled';
 
 export interface SnackbarActionProps extends ButtonProps {}
 
