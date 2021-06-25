@@ -16,7 +16,7 @@ import cssnano from 'cssnano';
 import purgecss from '@fullhuman/postcss-purgecss';
 
 
-const entryPoints = [...glob.sync('./src/**/index.ts'), ...glob.sync('./src/**/!(*documentation|.d.ts)/*+(!d.ts|.*[!d].ts|.tsx|.css)'), ...];
+const entryPoints = [...glob.sync('./src/**/index.ts'), ...glob.sync('./src/**/!(*documentation|.d.ts)/*+(!d.ts|.*[!d].ts|.tsx|.css)')];
 
 // Note: this will currently not match if the following component since the second section ends in d
 // but this seems trivial enough. Who knew blobs would be so confusing. :-P - Jake 06/25/2021
