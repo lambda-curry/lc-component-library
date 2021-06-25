@@ -133,7 +133,7 @@
     "src"
   ],
   "engines": {
-    "node": ">=14"
+    "node": ">=12"
   },
   "peerDependencies": {
     "@date-io/luxon": "^2.10.8",
