@@ -17,7 +17,7 @@ import purgecss from '@fullhuman/postcss-purgecss';
 
 
 
-const allSrcFiles = glob.sync('./src/**/*+(.ts|.tsx|.css)');
+const allSrcFiles = glob.sync('./src/**/*+(.ts|.tsx|.css|.svg)');
 const documentationFiles = glob.sync('./src/**/*documentation*/*');
 const typeDefinitionFiles = glob.sync('./src/**/*+(.d.ts)');
 const excludeFiles = [...documentationFiles, ...typeDefinitionFiles];
