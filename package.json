@@ -11,7 +11,7 @@
   "author": "Lambda Curry",
   "license": "ISC",
   "scripts": {
-    "esbuild": "rm -rf dist && node ./esbuild.mjs && tsc --emitDeclarationOnly --outDir dist",
+    "esbuild": "rm -rf dist && NODE_ENV=production node ./esbuild.mjs && tsc --emitDeclarationOnly --outDir dist",
     "build": "NODE_ENV=production yarn esbulid",
     "prepare": "yarn esbuild",
     "size": "size-limit",

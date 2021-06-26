@@ -12,9 +12,10 @@ import cssUtil from './util/index.js';
 import cssUrl from 'postcss-url';
 import cssFocusVisible from 'postcss-focus-visible';
 import tailwindcss from 'tailwindcss';
+import tailwindConfig from './tailwind.config.js';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
-import purgecss from '@fullhuman/postcss-purgecss';
+
 
 
 
@@ -39,7 +40,11 @@ const options = {
     postCssPlugin({
       inject: false,
       syntax,
-      plugins: [cssImport, cssStripComments, precss, cssFunctions({ functions: { hexToRgb: cssUtil.hexToRGB } }),
+      plugins: [
+        cssImport,
+        cssStripComments,
+        precss,
+        cssFunctions({ functions: cssUtil }),
         cssUrl({
           url: 'copy',
           maxSize: 10 * 1024, // inline files < 10k, copy files > 10k
@@ -48,7 +53,7 @@ const options = {
           assetsPath: 'dist/assets',
         }),
         cssFocusVisible,
-        tailwindcss,
+        tailwindcss(tailwindConfig),
         autoprefixer,
         cssnano({
           preset: ['default', {
@@ -56,9 +61,6 @@ const options = {
               removeAll: true,
             },
           }]
-        }),
-        purgecss({
-          content: ['./src/**/*+(.ts|.tsx)']
         })
       ]
     }),

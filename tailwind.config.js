@@ -3,7 +3,13 @@ const { cssVar } = require('./tailwind/helpers');
 const { baseColors, themeColors } = require('./tailwind/colors');
 
 module.exports = {
-  purge: ['./src/**/*.tsx'],
+  purge: {
+    mode: 'all',
+    content: ['./src/**/*.tsx'],
+    options: {
+      keyframes: true,
+    }
+  },
   prefix: 'lc-',
   theme: {
     ...defaultTheme,
