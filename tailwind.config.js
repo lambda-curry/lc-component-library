@@ -4,7 +4,6 @@ const { baseColors, themeColors } = require('./tailwind/colors');
 
 module.exports = {
   purge: {
-    mode: 'all',
     content: ['./src/**/*.tsx'],
     options: {
       keyframes: true,
