@@ -58,7 +58,7 @@ const options = {
           }]
         }),
         purgecss({
-          content: ['./src/**/!(*documentation)/**/*[!*.d].{ts,tsx}']
+          content: ['./src/**/*+(.ts|.tsx)']
         })
       ]
     }),
