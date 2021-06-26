@@ -35,6 +35,10 @@ const options = {
   logLevel: 'info',
   minify: true,
   sourcemap: true,
+  target: [
+    'esnext',
+    'node12.22.0',
+  ],
   plugins: [
     svgimport(),
     postCssPlugin({

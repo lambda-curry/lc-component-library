@@ -8,8 +8,6 @@ const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
 const ensureDir = util.promisify(fs.ensureDir);
 
-
-
 module.exports = (options = { plugins: [] }) => ({
   name: "postcss",
   setup: function (build) {
