@@ -33,7 +33,7 @@ const options = {
   format: 'esm',
   tsconfig: 'tsconfig.json',
   logLevel: 'info',
-  minify: true,
+  // minify: true,
   sourcemap: true,
   target: [
     'esnext',
