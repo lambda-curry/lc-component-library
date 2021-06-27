@@ -1,9 +1,9 @@
 @import './buttons/index.css';
-@import './charts/charts.css';
+@import './charts/chart.css';
 @import './drawer/drawer.css';
 @import './form/form.css';
 @import './icon/icon.css';
-@import './icon/icon-button.css';
+@import './icon-button/icon-button.css';
 @import './inputs/index.css';
 @import './menu/menu.css';
 @import './modal/modal.css';

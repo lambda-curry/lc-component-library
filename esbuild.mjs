@@ -6,6 +6,8 @@ import svgr from 'esbuild-plugin-svgr';
 import syntax from 'postcss-scss';
 import cssImport from 'postcss-import';
 import cssNested from 'postcss-nested';
+import cssSimpleVars from 'postcss-simple-vars';
+import cssMixins from 'postcss-mixins';
 import cssStripComments from 'postcss-strip-inline-comments';
 import cssFunctions from 'postcss-functions';
 import cssUtil from './util/index.js';
@@ -48,6 +50,8 @@ const options = {
         cssImport(),
         cssStripComments,
         cssNested,
+        cssSimpleVars,
+        cssMixins,
         cssFunctions({ functions: cssUtil }),
         cssUrl({
           url: 'copy',

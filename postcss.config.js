@@ -30,6 +30,8 @@ module.exports = (api) => {
       'postcss-import',
       'postcss-strip-inline-comments',
       'postcss-nested',
+      'postcss-simple-vars',
+      'postcss-mixins',
       ['postcss-functions', { functions: { hexToRGB } }],
       ['postcss-url', {
         url: 'copy',
