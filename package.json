@@ -113,6 +113,7 @@
     "postcss-functions": "^4.0.2",
     "postcss-import": "^14.0.2",
     "postcss-loader": "^6.1.0",
+    "postcss-nested": "^5.0.5",
     "postcss-scss": "^4.0.0",
     "postcss-strip-inline-comments": "^0.1.5",
     "postcss-url": "^10.1.3",

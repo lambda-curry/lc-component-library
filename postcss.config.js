@@ -29,7 +29,7 @@ module.exports = (api) => {
     plugins: [
       'postcss-import',
       'postcss-strip-inline-comments',
-      'precss',
+      'postcss-nested',
       ['postcss-functions', { functions: { hexToRGB } }],
       ['postcss-url', {
         url: 'copy',

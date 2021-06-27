@@ -5,6 +5,7 @@ import svgimport from "./esbuild.svgimport.js";
 import svgr from 'esbuild-plugin-svgr';
 import syntax from 'postcss-scss';
 import cssImport from 'postcss-import';
+import cssNested from 'postcss-nested';
 import cssStripComments from 'postcss-strip-inline-comments';
 import cssFunctions from 'postcss-functions';
 import cssUtil from './util/index.js';
@@ -46,6 +47,7 @@ const options = {
       plugins: [
         cssImport(),
         cssStripComments,
+        cssNested,
         cssFunctions({ functions: cssUtil }),
         cssUrl({
           url: 'copy',
