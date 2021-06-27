@@ -1,7 +1,7 @@
 @import './input.css';
 @import './InputCheckbox/input-checkbox.css';
-@import './InputCheckbox/input-color.css';
-@import './InputCheckbox/input-group.css';
-@import './InputCheckbox/input-radio.css';
-@import './InputCheckbox/input-select.css';
-@import './InputCheckbox/input-switch.css';
+@import './InputColor/input-color.css';
+@import './InputGroup/input-group.css';
+@import './InputRadio/input-radio.css';
+@import './InputSelect/input-select.css';
+@import './InputSwitch/input-switch.css';
