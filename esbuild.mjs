@@ -33,7 +33,7 @@ const options = {
   format: 'esm',
   tsconfig: 'tsconfig.json',
   logLevel: 'info',
-  // minify: true,
+  minify: true,
   sourcemap: true,
   target: [
     'esnext',
@@ -45,7 +45,7 @@ const options = {
       inject: false,
       syntax,
       plugins: [
-        cssImport,
+        cssImport(),
         cssStripComments,
         precss,
         cssFunctions({ functions: cssUtil }),
