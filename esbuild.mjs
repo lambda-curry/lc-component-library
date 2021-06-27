@@ -6,7 +6,6 @@ import svgr from 'esbuild-plugin-svgr';
 import syntax from 'postcss-scss';
 import cssImport from 'postcss-import';
 import cssStripComments from 'postcss-strip-inline-comments';
-import precss from 'precss';
 import cssFunctions from 'postcss-functions';
 import cssUtil from './util/index.js';
 import cssUrl from 'postcss-url';
@@ -47,7 +46,6 @@ const options = {
       plugins: [
         cssImport(),
         cssStripComments,
-        precss,
         cssFunctions({ functions: cssUtil }),
         cssUrl({
           url: 'copy',
