@@ -1,6 +1,6 @@
 {
   "name": "@lambdacurry/component-library",
-  "version": "1.14.2-beta.29",
+  "version": "1.14.2-beta.30",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
