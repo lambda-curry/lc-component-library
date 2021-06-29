@@ -2,7 +2,6 @@
 .lc-button.lc-icon-button {
   display: inline-flex;
   min-height: auto;
-  background-color: transparent;
   padding: 0;
   border: none;
   height: 36px;
@@ -11,4 +10,8 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
+}
+
+.lc-icon-button {
+  background-color: transparent;
 }
