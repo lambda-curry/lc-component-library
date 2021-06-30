@@ -152,6 +152,7 @@ const aliasMap = {
   question: 'help'
 };
 
+export type IconsMap = { [x: string]: FC<SVGProps<SVGSVGElement>> };
 export type DefaultIconNames = keyof typeof defaultIcons;
 export type AliasIconNames = keyof typeof aliasMap;
 export type IconNames = DefaultIconNames | AliasIconNames | string;
@@ -165,7 +166,7 @@ export interface IconProps {
 export const Icon: FC<IconProps> = ({ className, name, viewBox = '0 0 24 24', ...props }) => {
   const registeredIcons = useContext(RegisteredIconContext);
 
-  const icons: { [x: string]: FC<SVGProps<SVGSVGElement>> } = {
+  const icons: IconsMap = {
     ...defaultIcons,
     ...registeredIcons
   };

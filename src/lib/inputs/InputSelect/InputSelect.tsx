@@ -150,7 +150,8 @@ export const InputSelect: React.FC<InputSelectProps> = ({
     renderInput: params => {
       const inputProps = {
         ...params.inputProps,
-        ...props.inputProps
+        ...props.inputProps,
+        disabled: props.disabled
       };
 
       return (
@@ -172,8 +173,8 @@ export const InputSelect: React.FC<InputSelectProps> = ({
     getOptionSelected,
     filterOptions,
     disableClearable: true,
-    autoHighlight: !isMultiselect,
-    autoSelect: !isMultiselect,
+    autoHighlight: false,
+    autoSelect: false,
     autoComplete: true,
     renderTags: (valueArray: any[], getTagProps: AutocompleteGetTagProps) => (
       <>

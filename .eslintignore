@@ -11,6 +11,9 @@ __mocks__
 __test__
 __spec__
 
+esbuild.svgr.js
+esbuild.postcss.js
+esbuild.mjs
 jest.config.js
 jest.setup.js
 postcss.config.js

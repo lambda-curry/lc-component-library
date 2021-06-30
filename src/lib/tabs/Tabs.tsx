@@ -1,10 +1,10 @@
 import React, { FC, ReactNode, useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
-import { Tabs as MuiTabs, Tab, TabsProps } from '@material-ui/core';
+import { Tabs as MuiTabs, Tab, TabsProps as MuiTabsProps } from '@material-ui/core';
 import classNames from 'classnames';
 
-interface TabPanelProps {
+export interface TabPanelProps {
   index: any;
   value: any;
 }
@@ -54,14 +54,14 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-interface TabsPropsFixed extends Omit<TabsProps, 'onChange'> {
+export interface TabsProps extends Omit<MuiTabsProps, 'onChange'> {
   ariaLabel?: string;
   className?: string;
   onChange?: (event: React.ChangeEvent<any>, value: any) => void;
   tabs: { label: string | ReactNode; render: ReactNode }[];
 }
 
-export const Tabs: FC<TabsPropsFixed> = ({
+export const Tabs: FC<TabsProps> = ({
   ariaLabel,
   className,
   tabs,

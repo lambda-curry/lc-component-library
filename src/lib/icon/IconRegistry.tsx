@@ -1,9 +1,13 @@
-import React, { FC, SVGProps, createContext } from 'react';
+import React, { FC, createContext } from 'react';
+import { IconsMap } from './Icon';
+import './icon.css';
 
-export const RegisteredIconContext = createContext<{
-  [x: string]: FC<SVGProps<SVGSVGElement>>;
-}>({});
+export const RegisteredIconContext = createContext<IconsMap>({});
 
-export const IconRegistry: FC<{
-  icons: { [x: string]: FC<SVGProps<SVGSVGElement>> };
-}> = ({ icons, ...props }) => <RegisteredIconContext.Provider value={icons} {...props} />;
+export interface IconRegistryProps {
+  icons: IconsMap;
+}
+
+export const IconRegistry: FC<IconRegistryProps> = ({ icons, ...props }) => (
+  <RegisteredIconContext.Provider value={icons} {...props} />
+);

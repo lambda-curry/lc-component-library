@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { FC, ChangeEvent, FocusEvent, ElementType, HTMLAttributes, ReactNode } from 'react';
 import { Mark, Slider as MuiSlider, ValueLabelProps } from '@material-ui/core';
 import classNames from 'classnames';
 import { FormikProps } from 'formik';
 import './slider.css';
 import { isNullOrUndefined } from '../util/js-helpers';
 
-export type SliderProps = {
+export interface SliderProps {
   id?: string;
   className?: string;
   name: string;
@@ -22,21 +22,21 @@ export type SliderProps = {
   marks?: boolean | Mark[];
   max?: number;
   min?: number;
-  onChange?: (event: React.ChangeEvent<any>, value: number | number[]) => void;
-  onBlur?: (event: React.FocusEvent) => void;
-  onChangeCommitted?: (event: React.ChangeEvent<any>, value: number | number[]) => void;
+  onChange?: (event: ChangeEvent<any>, value: number | number[]) => void;
+  onBlur?: (event: FocusEvent) => void;
+  onChangeCommitted?: (event: ChangeEvent<any>, value: number | number[]) => void;
   orientation?: 'horizontal' | 'vertical';
   step?: number | null;
   scale?: (value: number) => number;
-  ThumbComponent?: React.ElementType<React.HTMLAttributes<HTMLSpanElement>>;
+  ThumbComponent?: ElementType<HTMLAttributes<HTMLSpanElement>>;
   track?: 'normal' | false | 'inverted';
   value?: number | number[];
-  ValueLabelComponent?: React.ElementType<ValueLabelProps>;
+  ValueLabelComponent?: ElementType<ValueLabelProps>;
   valueLabelDisplay?: 'on' | 'auto' | 'off';
-  valueLabelFormat?: string | ((value: number, index: number) => React.ReactNode);
-};
+  valueLabelFormat?: string | ((value: number, index: number) => ReactNode);
+}
 
-export const Slider: React.FC<SliderProps> = ({
+export const Slider: FC<SliderProps> = ({
   id,
   name,
   valueLabelDisplay = 'auto',
@@ -48,12 +48,12 @@ export const Slider: React.FC<SliderProps> = ({
   value,
   ...sliderProps
 }) => {
-  const handleChange: (event: React.ChangeEvent<any>, value: any) => void = (event, newValue) => {
+  const handleChange: (event: ChangeEvent<any>, value: any) => void = (event, newValue) => {
     if (typeof onChange === 'function') onChange(event, newValue);
     if (formikProps) formikProps.setFieldValue(name, newValue);
   };
 
-  const handleBlur: (event: React.FocusEvent<HTMLSpanElement>) => void = event => {
+  const handleBlur: (event: FocusEvent<HTMLSpanElement>) => void = event => {
     // Note: we need to set the id here, because the Mui slider is not a normal input
     event.target.id = name;
     if (typeof onBlur === 'function') onBlur(event);

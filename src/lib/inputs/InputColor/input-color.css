@@ -1,7 +1,7 @@
 $color-input-size: 24px;
 $color-input-border-radius: 2px;
 
-@mixin color-picker-swatch {
+@define-mixin color-picker-swatch {
   width: $color-input-size;
   height: $color-input-size;
   margin: -4px -2px;
@@ -24,7 +24,7 @@ $color-input-border-radius: 2px;
     border-radius: $color-input-border-radius;
 
     &-input {
-      @include color-picker-swatch();
+      @mixin color-picker-swatch;
       @apply lc-border-1;
       @apply lc-border-solid;
       @apply lc-border-gray-lighter;
@@ -37,10 +37,10 @@ $color-input-border-radius: 2px;
       }
 
       &::-webkit-color-swatch {
-        @include color-picker-swatch();
+        @mixin color-picker-swatch;
       }
       &::-moz-color-swatch {
-        @include color-picker-swatch();
+        @mixin color-picker-swatch;
       }
     }
   }

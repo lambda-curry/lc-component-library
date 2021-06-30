@@ -1,7 +1,6 @@
 import React, { FC, forwardRef } from 'react';
 import classNames from 'classnames';
-import { ButtonProps } from './ButtonBase';
-import { ButtonStyled } from './ButtonStyled';
+import { ButtonProps, ButtonStyled } from '../buttons';
 
 export const Button: FC<ButtonProps> = forwardRef(({ className, ...props }, ref) => (
   <ButtonStyled

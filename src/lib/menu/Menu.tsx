@@ -67,7 +67,7 @@ const mapMenuItems = (menuItems: MenuItems) =>
 
 export const Menu: React.FC<MenuProps> = ({ menuButton, menuItems, ...menuProps }) => {
   return (
-    <RCMenu className="lc-menu" menuButton={menuButton} {...menuProps}>
+    <RCMenu className="lc-menu" menuButton={menuButton} position="initial" {...menuProps}>
       {mapMenuItems(menuItems)}
     </RCMenu>
   );

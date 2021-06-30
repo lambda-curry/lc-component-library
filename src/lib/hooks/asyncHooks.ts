@@ -25,7 +25,6 @@ export const useAsyncEffect = (
         // eslint-disable-next-line react-hooks/exhaustive-deps
         .then(value => (result = value))
         .catch(err => {
-          console.log('useAsyncEffect error:', err);
           throw new Error(err);
         });
     }
