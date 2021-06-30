@@ -82,7 +82,7 @@ This loads the stories from `./stories`.
 
 > NOTE: Stories should reference the components as if using the library, similar to the example playground. This means importing from the root project directory. This has been aliased in the tsconfig and the storybook webpack config as a helper.
 
-### building
+## Building
 
 To do a one-off build, use `npm run build` or `yarn build`.
 
@@ -95,36 +95,7 @@ Code quality is set up for you with `prettier`, `husky`, and `lint-staged`. Adju
 
 ### Jest
 
-Jest tests are set up to run with `npm test` or `yarn test`.
-
-#### Setup Files
-
-This is the folder structure we set up for you:
-
-```txt
-/example
-  index.html
-  index.tsx       # test your component here in a demo app
-  package.json
-  tsconfig.json
-/src
-  index.tsx       # EDIT THIS
-/test
-  blah.test.tsx   # EDIT THIS
-/stories
-  Thing.stories.tsx # EDIT THIS
-/.storybook
-  main.js
-  preview.js
-.gitignore
-package.json
-README.md         # EDIT THIS
-tsconfig.json
-```
-
-#### React Testing Library
-
-We do not set up `react-testing-library` for you yet, we welcome contributions and documentation on this.
+Jest tests are set up to run with `npm test` or `yarn test`. (not currently set up)
 
 ### TypeScript
 
