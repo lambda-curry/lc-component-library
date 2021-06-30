@@ -15,40 +15,41 @@
 
 const { hexToRGB } = require('./util');
 
-module.exports = {
-  inject: false,
-  syntax: 'postcss-scss',
-  plugins: [
-    require('postcss-import'),
-    require('postcss-strip-inline-comments'),
-    require('postcss-each'),
-    require('precss'),
-    require('postcss-functions')({
-      functions: { hexToRGB }
-    }),
-    // Only include the `postcss-url` plugin for our TSDX builds,
-    // because Storybook uses webpack to process and bundle assets,
-    // and this breaks the Storybook build.
-    (process.env.STORYBOOK_ENV !== 'production'
-      ? require("postcss-url")(process.env.NODE_ENV === 'production'
-        ? {
-          url: 'copy',
-          maxSize: 10 * 1024, // inline files < 10k, copy files > 10k
-          fallback: 'copy',
-          optimizeSvgEncode: true,
-          assetsPath: 'dist/assets',
-        } : { url: 'rebase' })
-      : null
-    ),
-    require('tailwindcss'),
-    require('postcss-focus-visible'),
-    require('autoprefixer'),
-    require('cssnano')({
-      preset: ['default', {
-        discardComments: {
-          removeAll: true,
-        },
+module.exports = (api) => {
+  // `api.file` - path to the file
+  // `api.mode` - `mode` value of webpack, please read https://webpack.js.org/configuration/mode/
+  // `api.webpackLoaderContext` - loader context for complex use cases
+  // `api.env` - alias `api.mode` for compatibility with `postcss-cli`
+  // `api.options` - the `postcssOptions` options
+
+  return {
+    // You can specify any options from https://postcss.org/api/#processoptions here
+    inject: false,
+    syntax: 'postcss-scss',
+    plugins: [
+      'postcss-import',
+      'postcss-strip-inline-comments',
+      'postcss-nested',
+      'postcss-simple-vars',
+      'postcss-mixins',
+      ['postcss-functions', { functions: { hexToRGB } }],
+      ['postcss-url', {
+        url: 'copy',
+        maxSize: 10 * 1024, // inline files < 10k, copy files > 10k
+        fallback: 'copy',
+        optimizeSvgEncode: true,
+        assetsPath: 'dist/assets',
+      }],
+      'postcss-focus-visible',
+      'tailwindcss',
+      'autoprefixer'
+      ['cssnano', {
+        preset: ['default', {
+          discardComments: {
+            removeAll: true,
+          },
+        }]
       }]
-    })
-  ],
+    ],
+  };
 };

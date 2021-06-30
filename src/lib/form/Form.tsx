@@ -3,10 +3,11 @@ import { Formik, FormikConfig, FormikProps, Form as FormikForm, useFormikContext
 import classNames from 'classnames';
 import { useOnClickOutside } from '../hooks';
 import { Modal, ModalHeader, ModalActions } from '../modal';
-import { Button, ButtonPrimary } from '../buttons';
 import { formReducer, FormReducerAction, FormReducerState } from './Form.helpers';
 import { InputConfig } from '../inputs/InputBase';
 import './form.css';
+import { Button } from '../buttons/Button';
+import { ButtonPrimary } from '../buttons/ButtonPrimary';
 
 export interface FormConfig extends InputConfig {}
 
