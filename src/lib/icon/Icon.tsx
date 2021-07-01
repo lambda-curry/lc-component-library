@@ -39,6 +39,7 @@ import { ReactComponent as flame } from '../../assets/icons/flame.svg';
 import { ReactComponent as hamburger } from '../../assets/icons/hamburger.svg';
 import { ReactComponent as help } from '../../assets/icons/help.svg';
 import { ReactComponent as home } from '../../assets/icons/home.svg';
+import { ReactComponent as inbox } from '../../assets/icons/inbox.svg';
 import { ReactComponent as income } from '../../assets/icons/income.svg';
 import { ReactComponent as laptop } from '../../assets/icons/laptop.svg';
 import { ReactComponent as lifeRing } from '../../assets/icons/lifeRing.svg';
@@ -108,6 +109,7 @@ export const defaultIcons = {
   hamburger,
   help,
   home,
+  inbox,
   income,
   laptop,
   lifeRing,
