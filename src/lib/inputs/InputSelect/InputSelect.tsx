@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState, ChangeEvent } from 'react';
 import {
   Autocomplete,
   AutocompleteChangeDetails,
@@ -18,7 +18,7 @@ import './input-select.css';
 import { lowercaseString } from '../../util/js-helpers';
 
 export type AutoCompleteChange = (
-  event: React.ChangeEvent<any>,
+  event: ChangeEvent<any>,
   value: any,
   reason: AutocompleteChangeReason,
   details?: AutocompleteChangeDetails<any> | undefined
@@ -35,7 +35,7 @@ export type InputSelectProps = Omit<InputProps, 'onChange'> & {
   onChange?: AutoCompleteChange;
 };
 
-export const InputSelect: React.FC<InputSelectProps> = ({
+export const InputSelect: FC<InputSelectProps> = ({
   options,
   optionLabelKey = 'label',
   optionValueKey,

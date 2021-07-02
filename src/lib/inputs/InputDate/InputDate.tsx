@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { DatePicker, DatePickerProps, LocalizationProvider } from '@material-ui/pickers';
 import { InputText } from '../InputText/InputText';
 import { InputProps } from '../InputBase';
@@ -29,7 +29,7 @@ const fromDateTime = (dt: DateTime | null, format?: string): Date | string | nul
   return dt.toJSDate();
 };
 
-export const InputDate: React.FC<InputDateProps> = ({
+export const InputDate: FC<InputDateProps> = ({
   label = 'Select Date',
   value,
   onChange,

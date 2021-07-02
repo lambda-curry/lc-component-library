@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, ChangeEvent } from 'react';
 import classNames from 'classnames';
 import { FormikProps } from 'formik';
 import { FormControl, FormLabel, RadioGroup, RadioGroupProps } from '@material-ui/core';
@@ -14,7 +14,7 @@ export const InputRadioGroup: FC<InputRadioGroupProps> = ({ className, formikPro
   const fieldProps = formikProps?.getFieldProps(props.name);
   const value = props.value ?? fieldProps?.value;
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (onChange) onChange(event, event.target.value);
     if (fieldProps?.onChange) fieldProps.onChange(event);
   };

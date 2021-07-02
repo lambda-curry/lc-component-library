@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC, ReactElement } from 'react';
 import {
   Menu as RCMenu,
   MenuItem,
@@ -14,8 +14,8 @@ export type MenuItems = (MenuItemProps | MenuDividerProps | SubMenuProps)[];
 
 interface MenuItemProps extends RCMenuItemProps {
   name: 'menu-item';
-  startIcon?: React.ReactElement;
-  endIcon?: React.ReactElement;
+  startIcon?: ReactElement;
+  endIcon?: ReactElement;
 }
 
 interface MenuDividerProps {
@@ -32,7 +32,7 @@ interface SubMenuProps extends RSSubMenuProps {
 }
 
 export interface MenuProps extends RCMenuProps {
-  menuButton: React.ReactElement;
+  menuButton: ReactElement;
   menuItems: MenuItems;
 }
 
@@ -65,7 +65,7 @@ const mapMenuItems = (menuItems: MenuItems) =>
     return null;
   });
 
-export const Menu: React.FC<MenuProps> = ({ menuButton, menuItems, ...menuProps }) => {
+export const Menu: FC<MenuProps> = ({ menuButton, menuItems, ...menuProps }) => {
   return (
     <RCMenu className="lc-menu" menuButton={menuButton} position="initial" {...menuProps}>
       {mapMenuItems(menuItems)}

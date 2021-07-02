@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect, ChangeEvent } from 'react';
 import { FormikProps } from 'formik';
 import classNames from 'classnames';
 
@@ -16,7 +16,7 @@ export interface InputSwitchProps {
   formikProps?: FormikProps<any>;
   className?: string;
   onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
+  onChange?: (event: ChangeEvent<HTMLInputElement>, checked: boolean) => void;
 }
 
 export const InputSwitch: FC<InputSwitchProps> = ({
@@ -40,7 +40,7 @@ export const InputSwitch: FC<InputSwitchProps> = ({
     if (!fieldValue && labelOff) setLabel(labelOff);
   }, [fieldValue, labelOn, labelOff]);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (onChange) onChange(event, event.target.checked);
     if (fieldProps?.onChange) fieldProps.onChange(event);
   };
