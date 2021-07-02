@@ -2,7 +2,6 @@ import glob from 'glob';
 import { build } from 'esbuild';
 import postCssPlugin from "./esbuild.postcss.js";
 import fileImport from "./esbuild.fileImport.js";
-import svgimport from "./esbuild.svgimport.js";
 import svgr from 'esbuild-plugin-svgr';
 import syntax from 'postcss-scss';
 import cssImport from 'postcss-import';
@@ -19,7 +18,7 @@ import tailwindConfig from './tailwind.config.js';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
 
-const allSrcFiles = glob.sync('./src/**/*+(.ts|.tsx|.css|.svg|.png)');
+const allSrcFiles = glob.sync('./src/**/*+(.ts|.tsx|.css|.svg|.png|.jpg|.jpeg|.gif)');
 const documentationFiles = glob.sync('./src/**/*documentation*/*');
 const typeDefinitionFiles = glob.sync('./src/**/*+(.d.ts)');
 const excludeFiles = [...documentationFiles, ...typeDefinitionFiles];
