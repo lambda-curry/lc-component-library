@@ -43,5 +43,5 @@ jobs:
       - name: Helm Update
         uses: WyriHaximus/github-action-helm3@v2
         with:
-          exec: helm repo add lambdacurry https://charts.lambdacurry.dev --username lambdacurry --password ${{ secrets.LAMBDACURRY_CHART_PASSWORD }} && helm upgrade component-library-docs --set images.nginx.tag=${{ github.sha }} --set images.nginx.repository=lambdacurry/component-library-docs lambdacurry/static-site -n component-library
+          exec: helm repo add lambdacurry https://charts.lambdacurry.dev --username lambdacurry --password ${{ secrets.LAMBDACURRY_CHART_PASSWORD }} && helm upgrade component-library-docs --reuse-values --set images.nginx.tag=${{ github.sha }} --set images.nginx.repository=lambdacurry/component-library-docs lambdacurry/static-site -n component-library
           kubeconfig: '${{ secrets.KUBECONFIG }}'
