@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, ChangeEvent } from 'react';
 import {
   Checkbox as MuiCheckbox,
   CheckboxProps,
@@ -29,7 +29,7 @@ export const InputCheckbox: FC<InputCheckboxProps> = ({
   const fieldProps = formikProps?.getFieldProps(props.name);
   const fieldValue = !!fieldProps?.value || !!props.checked;
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (typeof onChange === 'function') onChange(event, event.target.checked);
     if (fieldProps?.onChange) fieldProps.onChange(event);
   };

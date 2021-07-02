@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useEffect, useState } from 'react';
+import React, { FC, ReactNode, useEffect, useState, ChangeEvent } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import { Tabs as MuiTabs, Tab, TabsProps as MuiTabsProps } from '@material-ui/core';
@@ -57,7 +57,7 @@ const useStyles = makeStyles(() => ({
 export interface TabsProps extends Omit<MuiTabsProps, 'onChange'> {
   ariaLabel?: string;
   className?: string;
-  onChange?: (event: React.ChangeEvent<any>, value: any) => void;
+  onChange?: (event: ChangeEvent<any>, value: any) => void;
   tabs: { label: string | ReactNode; render: ReactNode }[];
 }
 

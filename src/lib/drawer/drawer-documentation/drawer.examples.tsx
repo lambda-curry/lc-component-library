@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { ButtonPrimary } from '../..';
 import { InputText } from '../../inputs';
 import { Drawer } from '../Drawer';
 import { DrawerProvider, useDrawer } from '../DrawerProvider';
 
-export const DrawerExample1: React.FC<any> = () => (
+export const DrawerExample1: FC<any> = () => (
   <DrawerProvider>
     <DrawerExample1Content />
   </DrawerProvider>
 );
 
-const DrawerExample1Content: React.FC<any> = () => {
+const DrawerExample1Content: FC<any> = () => {
   const {
     drawerActions: { toggleDrawer, getDrawerData, setDrawerData }
   } = useDrawer();

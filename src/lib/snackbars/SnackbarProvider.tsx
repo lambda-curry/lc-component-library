@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC, ReactNode, createRef } from 'react';
 import { SnackbarProvider as MuiSnackbarProvider } from 'notistack';
 import { SnackbarAction } from './SnackbarAction';
 
@@ -10,7 +10,7 @@ export interface SnackbarProviderProps {
 
 export const SnackbarProvider: FC<SnackbarProviderProps> = props => {
   // Add default action to all snackbars
-  const snackbarProviderRef = React.createRef<MuiSnackbarProvider>();
+  const snackbarProviderRef = createRef<MuiSnackbarProvider>();
   const onClickDismiss = (key: string) => {
     if (snackbarProviderRef?.current) snackbarProviderRef.current.closeSnackbar(key);
   };

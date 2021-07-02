@@ -1,7 +1,7 @@
 import glob from 'glob';
 import { build } from 'esbuild';
 import postCssPlugin from "./esbuild.postcss.js";
-import svgimport from "./esbuild.svgimport.js";
+import fileImport from "./esbuild.fileImport.js";
 import svgr from 'esbuild-plugin-svgr';
 import syntax from 'postcss-scss';
 import cssImport from 'postcss-import';
@@ -18,15 +18,11 @@ import tailwindConfig from './tailwind.config.js';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
 
-
-
-
-const allSrcFiles = glob.sync('./src/**/*+(.ts|.tsx|.css|.svg)');
+const allSrcFiles = glob.sync('./src/**/*+(.ts|.tsx|.css|.svg|.png|.jpg|.jpeg|.gif)');
 const documentationFiles = glob.sync('./src/**/*documentation*/*');
 const typeDefinitionFiles = glob.sync('./src/**/*+(.d.ts)');
 const excludeFiles = [...documentationFiles, ...typeDefinitionFiles];
 const entryPoints = allSrcFiles.filter(item => !excludeFiles.includes(item));
-
 
 const options = {
   entryPoints,
@@ -41,8 +37,9 @@ const options = {
     'esnext',
     'node12.22.0',
   ],
+  loader: { '.png': 'dataurl' },
   plugins: [
-    svgimport(),
+    fileImport(),
     postCssPlugin({
       inject: false,
       syntax,

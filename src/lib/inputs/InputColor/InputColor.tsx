@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, ChangeEvent } from 'react';
 import classNames from 'classnames';
 import { InputAdornment } from '@material-ui/core';
 import MaskedInput from 'react-text-mask';
@@ -14,10 +14,10 @@ interface TextMaskCustomProps {
 }
 
 export interface InputColorProps extends InputProps {
-  onPickerChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onPickerChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const InputColorMask: React.FC<TextMaskCustomProps> = props => {
+const InputColorMask: FC<TextMaskCustomProps> = props => {
   const { inputRef, mask, ...rest } = props;
 
   return (
@@ -43,7 +43,7 @@ export const InputColor: FC<InputColorProps> = ({
   const fieldValue = fieldProps?.value || props.value;
   const isValidColor = isHexColor(fieldValue);
 
-  const handlePickerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePickerChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (fieldHelpers) fieldHelpers.setValue(event.target.value);
     if (onPickerChange) onPickerChange(event);
   };

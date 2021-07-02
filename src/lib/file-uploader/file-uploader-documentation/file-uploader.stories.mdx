@@ -1,0 +1,32 @@
+import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs';
+import dedent from 'string-dedent';
+
+import { Form } from '../../form/Form';
+import { FileUploader } from '../FileUploader';
+import { FileUploaderWithImageCropper } from '../FileUploaderWithImageCropper';
+
+<Meta title="File Uploader" component={FileUploader} />
+
+# File Uploader
+
+<Canvas>
+  <Story name="File Uploader">
+    <Form initialValues={{ fileUploaderExample: [] }} onSubmit={() => {}}>
+      {formikProps => <FileUploader name="fileUploaderExample" formikProps={formikProps} />}
+    </Form>
+  </Story>
+  <ArgsTable of={FileUploader} />
+</Canvas>
+
+## File Uploader with Image Cropper
+
+<Canvas>
+  <Story name="File Uploader with Image Cropper">
+    <Form initialValues={{ fileUploaderWithImageCropperExample: [] }} onSubmit={() => {}}>
+      {formikProps => (
+        <FileUploaderWithImageCropper name="fileUploaderWithImageCropperExample" formikProps={formikProps} />
+      )}
+    </Form>
+  </Story>
+  <ArgsTable of={FileUploaderWithImageCropper} />
+</Canvas>

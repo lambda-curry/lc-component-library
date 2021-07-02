@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { InputRadio } from '../../..';
 import { Form } from '../../../form';
 import { InputRadioGroup } from '../InputRadioGroup';
 
-export const inputRadioExample1: React.FC<any> = () => (
+export const inputRadioExample1: FC<any> = () => (
   <Form
     initialValues={{
       sampleRadio: 'Yes'
@@ -22,7 +22,7 @@ export const inputRadioExample1: React.FC<any> = () => (
   </Form>
 );
 
-export const inputRadioExample2: React.FC<any> = () => (
+export const inputRadioExample2: FC<any> = () => (
   <Form
     initialValues={{
       sampleRadio: 'Yes'
