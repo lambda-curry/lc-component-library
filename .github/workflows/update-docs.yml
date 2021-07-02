@@ -1,7 +1,7 @@
 name: Build and Deploy Gatsby Builder
 on:
   push:
-    branches: [docs-builder]
+    branches: [master]
 
 jobs:
   docker:
