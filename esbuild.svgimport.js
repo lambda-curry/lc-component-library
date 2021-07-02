@@ -4,7 +4,6 @@ module.exports = () => ({
     const fs = require('fs');
 
     build.onLoad({ filter: /\.tsx$/ }, async (args) => {
-
       const file = await fs.promises.readFile(args.path, 'utf8');
       const svgImports = /(import\s?{\sReactComponent\sas\s.*}\s?from\s['"].*)\.svg(['"])/gm;
       const contents = file.replace(svgImports, "$1.js$2");
