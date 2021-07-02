@@ -1,0 +1,47 @@
+name: Build and Deploy Gatsby Builder
+on:
+  push:
+    branches: [docs-builder]
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      # Check out code
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Build docs
+        run: yarn install && yarn build:storybook
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_PASS }}
+      # And make it available for the builds
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          file: deploy/Dockerfile
+          tags: lambdacurry/component-library-docs:${{ github.sha }}
+      - name: Helm Update
+        uses: WyriHaximus/github-action-helm3@v2
+        with:
+          exec: helm repo add lambdacurry https://charts.lambdacurry.dev --username lambdacurry --password ${{ secrets.LAMBDACURRY_CHART_PASSWORD }} && helm upgrade component-library-docs --set images.nginx.tag=${{ github.sha }} --set images.nginx.repository=lambdacurry/component-library-docs lambdacurry/static-site -n component-library
+          kubeconfig: '${{ secrets.KUBECONFIG }}'
