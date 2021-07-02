@@ -4,7 +4,6 @@ module.exports = () => ({
     const fs = require('fs');
 
     build.onLoad({ filter: /\.tsx$/ }, async (args) => {
-      console.log('svgimport');
 
       const file = await fs.promises.readFile(args.path, 'utf8');
       const svgImports = /(import\s?{\sReactComponent\sas\s.*}\s?from\s['"].*)\.svg(['"])/gm;
