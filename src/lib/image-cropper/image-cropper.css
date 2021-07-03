@@ -1,12 +1,13 @@
-.image-cropper {
+.lc-image-cropper {
   &-modal {
     @apply lc-relative;
 
     .MuiCard-root {
       @apply lc-overflow-y-scroll;
-      @apply lc-max-h-screen;
-      @apply lc-max-w-max;
       @apply lc-overflow-auto;
+
+      max-height: calc(100vh - 40px);
+      max-width: calc(100vw - 40px);
     }
 
     .MuiCardContent-root {

@@ -1,4 +1,3 @@
-import { Http2ServerRequest } from 'http2';
 import React, { useEffect, useState } from 'react';
 import { ButtonUnstyled } from '../../buttons/ButtonUnstyled';
 import { FileUpload } from '../../file-uploader/FileUploader.types';
@@ -35,7 +34,7 @@ export const ImageCropperExample = () => {
     if (newCroppedImage) setCroppedImage(newCroppedImage);
   };
 
-  if (!file) return <>Loading...</>;
+  if (!file) return <>Loading image...</>;
 
   return (
     <>

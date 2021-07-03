@@ -1,5 +1,5 @@
-.file-uploader {
-  @apply lc-text-gray;
+.lc-file-uploader {
+  @apply lc-text-gray-dark;
   @apply lc-mb-24;
 
   &-disabled {
@@ -12,11 +12,13 @@
     @apply lc-block;
     @apply lc-p-32;
     @apply lc-text-center;
-    @apply lc-border-gray-lighter;
     @apply lc-border-solid;
     @apply lc-border-1;
     @apply lc-transition-all;
     @apply lc-rounded-sm;
+
+    border-color: rgb(var(--lc-color-gray-lighter));
+    background-color: transparent;
 
     &:hover {
       @apply lc-cursor-pointer;
@@ -24,10 +26,6 @@
       @apply lc-border-primary;
       @apply lc-bg-primary;
       @apply lc-bg-opacity-5;
-
-      // color: rgb(var(--lc-color-primary));
-      // border-color: rgb(var(--lc-color-primary));
-      // background-color: rgb(var(--lc-color-primary), 0.05);
     }
 
     &-active {
@@ -35,32 +33,20 @@
     }
 
     &-accept {
-      @apply lc-text-primary;
-      @apply lc-bg-primary;
-      @apply lc-bg-primary;
-      @apply lc-bg-opacity-5;
-
-      // color: rgb(var(--lc-color-primary)) !important;
-      // border-color: rgb(var(--lc-color-primary)) !important;
-      // background-color: rgb(var(--lc-color-primary), 0.05) !important;
+      color: rgb(var(--lc-color-primary)) !important;
+      border-color: rgb(var(--lc-color-primary)) !important;
+      background-color: rgb(var(--lc-color-primary), 0.05) !important;
     }
 
     &-reject {
-      @apply lc-text-danger;
-      @apply lc-bg-danger;
-      @apply lc-bg-danger;
-      @apply lc-bg-opacity-5;
-
-      // color: rgb(var(--lc-color-danger)) !important;
-      // border-color: rgb(var(--lc-color-danger)) !important;
-      // background-color: rgba(var(--lc-color-danger), 0.05) !important;
+      color: rgb(var(--lc-color-danger)) !important;
+      border-color: rgb(var(--lc-color-danger)) !important;
+      background-color: rgba(var(--lc-color-danger), 0.05) !important;
     }
 
     &-placeholder {
       @apply lc-inline-block;
       @apply lc-w-64;
-
-      // width: 68px;
     }
 
     &-text {
@@ -130,7 +116,7 @@
           @apply lc-bg-black;
           @apply lc-bg-opacity-40;
 
-          .file-uploader-dropzone-file:hover & {
+          .lc-file-uploader-dropzone-file:hover & {
             @apply lc-opacity-100;
           }
         }

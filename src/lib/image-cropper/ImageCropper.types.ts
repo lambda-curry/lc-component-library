@@ -9,6 +9,7 @@ export interface CroppedImage {
 }
 
 export interface ImageCropperProps extends Partial<ReactCropProps> {
+  modalTitle?: string;
   file?: FileUpload | null;
   src?: string;
   mimeType?: string;
