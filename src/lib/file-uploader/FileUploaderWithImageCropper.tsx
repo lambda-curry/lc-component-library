@@ -38,6 +38,10 @@ export const FileUploaderWithImageCropper: FC<FileUploaderWithImageCropperProps>
     if (onCropSave) onCropSave(newCroppedImage);
   };
 
+  const handleCropCancel = () => {
+    if (formikProps?.setFieldValue) formikProps.setFieldValue(name, []);
+  };
+
   return (
     <>
       <FileUploader
@@ -54,6 +58,7 @@ export const FileUploaderWithImageCropper: FC<FileUploaderWithImageCropperProps>
         fileName={crop.file?.name}
         onAfterClose={() => setCrop(initialCropState)}
         onSave={handleCropSave}
+        onCancel={handleCropCancel}
         {...restImageCropperProps}
       />
     </>

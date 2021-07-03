@@ -1,32 +1,71 @@
 import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs';
 import dedent from 'string-dedent';
 
-import { Form } from '../../form/Form';
 import { FileUploader } from '../FileUploader';
 import { FileUploaderWithImageCropper } from '../FileUploaderWithImageCropper';
+import {
+  FileUploaderExample,
+  FileUploaderExampleString,
+  FileUploaderMultipleExample,
+  FileUploaderMultipleExampleString,
+  FileUploaderWithImageCropperExample,
+  FileUploaderWithImageCropperExampleString
+} from './file-uploader.examples.tsx';
 
 <Meta title="File Uploader" component={FileUploader} />
 
 # File Uploader
 
+## Single File
+
 <Canvas>
-  <Story name="File Uploader">
-    <Form initialValues={{ fileUploaderExample: [] }} onSubmit={() => {}}>
-      {formikProps => <FileUploader name="fileUploaderExample" formikProps={formikProps} />}
-    </Form>
+  <Story
+    name="Single File"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent(FileUploaderExampleString)
+        }
+      }
+    }}
+  >
+    {FileUploaderExample.bind({})}
   </Story>
   <ArgsTable of={FileUploader} />
 </Canvas>
 
-## File Uploader with Image Cropper
+## Multiple Files
 
 <Canvas>
-  <Story name="File Uploader with Image Cropper">
-    <Form initialValues={{ fileUploaderWithImageCropperExample: [] }} onSubmit={() => {}}>
-      {formikProps => (
-        <FileUploaderWithImageCropper name="fileUploaderWithImageCropperExample" formikProps={formikProps} />
-      )}
-    </Form>
+  <Story
+    name="Multiple Files"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent(FileUploaderMultipleExampleString)
+        }
+      }
+    }}
+  >
+    {FileUploaderMultipleExample.bind({})}
+  </Story>
+  <ArgsTable of={FileUploader} />
+</Canvas>
+
+## With Image Cropper
+
+<Canvas>
+  <Story
+    name="File Uploader with Image Cropper"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent(FileUploaderWithImageCropperExampleString)
+        }
+      }
+    }}
+  >
+    {FileUploaderWithImageCropperExample.bind({})}
   </Story>
   <ArgsTable of={FileUploaderWithImageCropper} />
 </Canvas>

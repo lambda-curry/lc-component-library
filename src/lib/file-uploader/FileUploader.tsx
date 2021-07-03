@@ -1,5 +1,5 @@
 // Vendors
-import React, { FC, useEffect, useCallback } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useDropzone, FileRejection, DropEvent, DropzoneOptions } from 'react-dropzone';
 import { get as _get } from 'lodash';
 import classNames from 'classnames';
@@ -69,7 +69,7 @@ export const FileUploader: FC<FileUploaderProps> = ({
     return uniqueNewFiles;
   };
 
-  const handleDrop = useCallback((acceptedFiles: File[], rejectedFiles: FileRejection[], event: DropEvent) => {
+  const handleDrop = (acceptedFiles: File[], rejectedFiles: FileRejection[], event: DropEvent) => {
     const newFiles = processMultipleFiles(acceptedFiles);
 
     if (formikProps?.setFieldValue) formikProps.setFieldValue(name, newFiles);
@@ -80,7 +80,7 @@ export const FileUploader: FC<FileUploaderProps> = ({
     if (onDropAccepted) onDropAccepted(newFiles, event);
 
     if (onDropRejected) onDropRejected(rejectedFiles, event);
-  }, []);
+  };
 
   const clearAll = () => {
     if (formikProps?.setFieldValue) formikProps.setFieldValue(name, []);
@@ -124,39 +124,42 @@ export const FileUploader: FC<FileUploaderProps> = ({
     );
   };
 
-  const dropzoneClassName = classNames('file-uploader-dropzone', {
-    'file-uploader-dropzone-active': isDragActive,
-    'file-uploader-dropzone-accept': isDragAccept,
-    'file-uploader-dropzone-reject': isDragReject
+  const dropzoneClassName = classNames('lc-file-uploader-dropzone', {
+    'lc-file-uploader-dropzone-active': isDragActive,
+    'lc-file-uploader-dropzone-accept': isDragAccept,
+    'lc-file-uploader-dropzone-reject': isDragReject
   });
 
   return (
     <>
       <div
-        className={classNames('file-uploader', className, {
-          'file-uploader-disabled': disabled
+        className={classNames('lc-file-uploader', className, {
+          'lc-file-uploader-disabled': disabled
         })}
       >
         <div {...getRootProps({ className: dropzoneClassName })}>
           <input name={name} {...getInputProps()} />
 
           {files && files.length > 0 && (
-            <ul className="file-uploader-dropzone-files">
+            <ul className="lc-file-uploader-dropzone-files">
               {files.map((file: FileUpload, index: number) => (
                 <li key={index}>
-                  <ButtonUnstyled className="file-uploader-dropzone-file" onClick={event => removeFile(event, index)}>
-                    <div className="file-uploader-dropzone-file-thumb">
+                  <ButtonUnstyled
+                    className="lc-file-uploader-dropzone-file"
+                    onClick={event => removeFile(event, index)}
+                  >
+                    <div className="lc-file-uploader-dropzone-file-thumb">
                       <img
                         src={file.preview}
                         alt="File upload preview"
-                        className="file-uploader-dropzone-file-thumb-image"
+                        className="lc-file-uploader-dropzone-file-thumb-image"
                       />
-                      <div className="file-uploader-dropzone-file-thumb-overlay">
-                        <Icon name="trash" className="file-uploader-dropzone-file-remove-icon" />
+                      <div className="lc-file-uploader-dropzone-file-thumb-overlay">
+                        <Icon name="trash" className="lc-file-uploader-dropzone-file-remove-icon" />
                       </div>
                     </div>
 
-                    {multiple && file.name && <div className="file-uploader-dropzone-file-name">{file.name}</div>}
+                    {multiple && file.name && <div className="lc-file-uploader-dropzone-file-name">{file.name}</div>}
                   </ButtonUnstyled>
                 </li>
               ))}
@@ -168,15 +171,15 @@ export const FileUploader: FC<FileUploaderProps> = ({
               <img
                 alt="File upload placeholder"
                 src={placeholderImage}
-                className="file-uploader-dropzone-placeholder"
+                className="lc-file-uploader-dropzone-placeholder"
               />
-              <div className="file-uploader-dropzone-text">{getDropzoneText()}</div>
+              <div className="lc-file-uploader-dropzone-text">{getDropzoneText()}</div>
             </>
           )}
         </div>
 
-        <div className="file-uploader-footer">
-          <div className="file-uploader-actions">
+        <div className="lc-file-uploader-footer">
+          <div className="lc-file-uploader-actions">
             <ButtonAccent onClick={open}>Choose File{multiple && 's'}</ButtonAccent>
             {((files && files.length > 0) || error) && (
               <ButtonLink onClick={clearAll} style={{ marginLeft: '12px' }}>
@@ -187,7 +190,7 @@ export const FileUploader: FC<FileUploaderProps> = ({
 
           <div className="lc-flex-1" />
 
-          <div className="file-uploader-restrictions">
+          <div className="lc-file-uploader-restrictions">
             {accept && <>{formatMimeTypesForDisplay(accept)}. </>}
             {maxSize && <>Max size of {formatBytes(maxSize)}. </>}
             {minSize && <>Min size of {formatBytes(minSize)}.</>}

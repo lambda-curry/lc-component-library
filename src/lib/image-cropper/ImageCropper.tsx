@@ -18,6 +18,7 @@ import './image-cropper.css';
 
 // Types
 import { ImageCropperProps, CroppedImage } from './ImageCropper.types';
+import classNames from 'classnames';
 
 export const ImageCropper: FC<ImageCropperProps> = ({
   src,
@@ -31,6 +32,8 @@ export const ImageCropper: FC<ImageCropperProps> = ({
   onAfterOpen,
   onAfterClose,
   ruleOfThirds = true,
+  modalTitle = 'Crop your image',
+  className,
   ...props
 }) => {
   const initialCrop = {
@@ -146,15 +149,15 @@ export const ImageCropper: FC<ImageCropperProps> = ({
 
   return (
     <Modal
-      className="image-cropper-modal"
+      className={classNames('lc-image-cropper-modal', className)}
       isOpen={open}
       onAfterOpen={handleAfterOpen}
       onAfterClose={handleAfterClose}
       closeButton={false}
     >
-      <ModalHeader className="image-cropper-header" style={{ position: '-webkit-sticky' }} title="Crop your image" />
+      <ModalHeader className="lc-image-cropper-header" title={modalTitle} />
 
-      <div className="image-cropper-cropper">
+      <div className="lc-image-cropper-cropper">
         <ReactCrop
           {...props}
           src={cropSrc}
@@ -167,13 +170,13 @@ export const ImageCropper: FC<ImageCropperProps> = ({
         />
       </div>
 
-      <div className="image-cropper-footer">
+      <div className="lc-image-cropper-footer">
         {croppedImage && croppedImage.preview && (
-          <div className="image-cropper-preview">
-            <div className="image-cropper-preview-image">
+          <div className="lc-image-cropper-preview">
+            <div className="lc-image-cropper-preview-image">
               <img src={croppedImage.preview} alt="crop preview" />
             </div>
-            <div className="image-cropper-preview-info">
+            <div className="lc-image-cropper-preview-info">
               <strong>Preview</strong>
               <br />
               {croppedImage.width} x {croppedImage.height} ({formatBytes(croppedImage.file.size)})
@@ -183,7 +186,7 @@ export const ImageCropper: FC<ImageCropperProps> = ({
 
         <div className="lc-flex-1" />
 
-        <div className="image-cropper-actions">
+        <div className="lc-image-cropper-actions">
           <Button onClick={handleCancel} disabled={cropping}>
             Cancel
           </Button>
