@@ -62,11 +62,12 @@ export const FileUploader: FC<FileUploaderProps> = ({
     const newFiles = [...(multiple ? files : []), ...acceptedFiles.map((file: any) => processFile(file))];
 
     // Remove duplicate files
-    const uniqueNewFiles = Array.from(new Set(newFiles.map(a => a.path))).map(path =>
-      newFiles.find(a => a.path === path)
-    );
+    const uniqueNewFiles = newFiles.reduce((acc, curr) => {
+      acc[curr.path] = curr;
+      return acc;
+    }, {});
 
-    return uniqueNewFiles;
+    return Object.values(uniqueNewFiles);
   };
 
   const handleDrop = (acceptedFiles: File[], rejectedFiles: FileRejection[], event: DropEvent) => {
