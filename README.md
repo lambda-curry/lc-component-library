@@ -9,8 +9,26 @@ yarn add @lambdacurry/component-library
 ### Notes about installation and usage
 
 - If using TypeScript, you'll want to install the `@types` listed in our peer-dependencies.
-- To get the necessary base styles you'll want to import the CSS file at `node_modules/@lambdacurry/component-library/dist/styles/index.css`
-- Some SSR (Gatsby) sites do not load the component styles for some reason, so you'll want to use the CSS file at `node_modules/@lambdacurry/component-library/dist/all.css` instead of the index.css file.
+
+- To get the necessary base styles you'll want to import the `index.css` file:
+
+  ```js
+  import '@lambdacurry/component-library/dist/styles/index.css';
+  ```
+
+  ```css
+  @import '~@lambdacurry/component-library/dist/styles/index.css';
+  ```
+
+- Some SSR (Gatsby) sites do not load the component styles for some reason, so you'll want to use the CSS `all.css` file (instead of the `index.css` file):
+
+  ```js
+  import '@lambdacurry/component-library/dist/all.css';
+  ```
+
+  ```css
+  @import '~@lambdacurry/component-library/dist/all.css';
+  ```
 
 ## Theming
 
