@@ -1,5 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs';
 import { Tabs } from '../..';
+import { SimpleTabs, ScrollableTabs, TabsWithCustomLabel, TabsWithDefaultActive } from './tabs.examples.tsx';
 import dedent from 'string-dedent';
 
 <Meta title="Tabs" component={Tabs} />
@@ -26,14 +27,7 @@ import dedent from 'string-dedent';
     }}
   >
     <div className="tabs-story">
-      <Tabs
-        tabs={[
-          { label: 'Test 1', render: '1' },
-          { label: 'Test 2', render: '2' },
-          { label: 'Test 3', render: '3' },
-          { label: 'Test 4', render: '4' }
-        ]}
-      />
+      <SimpleTabs />
     </div>
   </Story>
   <Story
@@ -60,23 +54,11 @@ import dedent from 'string-dedent';
     }}
   >
     <div className="tabs-story">
-      <Tabs
-        tabs={[
-          { label: 'Test 1', render: '1' },
-          { label: 'Test 2', render: '2' },
-          { label: 'Test 3', render: '3' },
-          { label: 'Test 4', render: '4' },
-          { label: 'Test 5', render: '5' },
-          { label: 'Test 6', render: '6' },
-          { label: 'Test 7', render: '7' },
-          { label: 'Test 8', render: '8' }
-        ]}
-        variant="scrollable"
-      />
+      <ScrollableTabs />
     </div>
   </Story>
   <Story
-    name="Paragraph with Span as Tab Label"
+    name="Custom Label"
     parameters={{
       docs: {
         source: {
@@ -91,18 +73,7 @@ import dedent from 'string-dedent';
     }}
   >
     <div className="tabs-story">
-      <Tabs
-        tabs={[
-          {
-            label: (
-              <p>
-                Test 1 <span style={{ color: 'green' }}>Check it out</span>
-              </p>
-            ),
-            render: '1'
-          }
-        ]}
-      />
+      <TabsWithCustomLabel />
     </div>
   </Story>
   <Story
@@ -112,6 +83,7 @@ import dedent from 'string-dedent';
         source: {
           code: dedent`
             <Tabs
+              value={3}
               tabs={[
                 { label: <p>Test 1</p>, render: '1' },
                 { label: <p>Test 2</p>, render: '2' },
@@ -124,15 +96,7 @@ import dedent from 'string-dedent';
     }}
   >
     <div className="tabs-story">
-      <Tabs
-        value={3}
-        tabs={[
-          { label: <p>Test 1</p>, render: '1' },
-          { label: <p>Test 2</p>, render: '2' },
-          { label: <p>Test 3</p>, render: '3' },
-          { label: <p>Test 4</p>, render: '4' }
-        ]}
-      />
+      <TabsWithDefaultActive />
     </div>
   </Story>
   <ArgsTable of={Tabs} />

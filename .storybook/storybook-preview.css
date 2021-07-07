@@ -1,6 +1,11 @@
 // Allows for full-width previews when the content is not wide enough
+.sb-show-main {
+  font-family: var(--lc-font-family-sans);
+}
+
 .sbdocs-preview {
   font-family: var(--lc-font-family-sans);
+
   .innerZoomElementWrapper > div {
     width: 100%;
   }
