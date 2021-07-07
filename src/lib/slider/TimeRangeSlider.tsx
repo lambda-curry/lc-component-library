@@ -1,4 +1,4 @@
-import React, { FormEvent } from 'react';
+import React, { FC, FormEvent, FocusEvent } from 'react';
 import { Slider, SliderProps } from './Slider';
 import { DateTime, Interval, LocaleOptions } from 'luxon';
 import classNames from 'classnames';
@@ -47,7 +47,7 @@ export interface TimeRangeSliderProps extends Omit<SliderProps, 'value' | 'onCha
   maxTime?: string;
 }
 
-export const TimeRangeSlider: React.FC<TimeRangeSliderProps> = ({
+export const TimeRangeSlider: FC<TimeRangeSliderProps> = ({
   className,
   name,
   value,
@@ -92,7 +92,7 @@ export const TimeRangeSlider: React.FC<TimeRangeSliderProps> = ({
     if (formikProps) formikProps.setFieldValue(name, timeRange);
   };
 
-  const handleBlur: (event: React.FocusEvent<Element>) => void = event => {
+  const handleBlur: (event: FocusEvent<Element>) => void = event => {
     // Note: we need to set the id here, because the Mui slider is not a normal input
     event.target.id = name;
     if (typeof onBlur === 'function') onBlur(event);
@@ -110,8 +110,8 @@ export const TimeRangeSlider: React.FC<TimeRangeSliderProps> = ({
       step={minuteInterval}
       valueLabelDisplay={valueLabelDisplay}
       valueLabelFormat={minutes => labelFromRangeMinutes(minutes)}
-      // Note: Mui types were expecting onChange?: (((event: React.ChangeEvent<{}>, value: number | number[]) => void) & ((event: React.FormEvent<HTMLSpanElement>) => void)) | undefined
-      // but ((event: React.FormEvent<HTMLSpanElement>) => void)) is coming from an extended value and I'm not sure what to do about that. - Jake 10/05/2020
+      // Note: Mui types were expecting onChange?: (((event: ChangeEvent<{}>, value: number | number[]) => void) & ((event: FormEvent<HTMLSpanElement>) => void)) | undefined
+      // but ((event: FormEvent<HTMLSpanElement>) => void)) is coming from an extended value and I'm not sure what to do about that. - Jake 10/05/2020
       onChange={handleChange}
       onBlur={handleBlur}
     />

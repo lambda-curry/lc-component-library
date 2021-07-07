@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, ChangeEvent } from 'react';
 import classNames from 'classnames';
 import { InputBase, InputProps } from '../InputBase';
 import { MultilineInput } from '../../multiline-input';
@@ -6,7 +6,7 @@ import { MultilineInput } from '../../multiline-input';
 export interface InputTextareaProps extends InputProps {
   rows?: number;
   characterLimit?: number;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const InputTextarea: FC<InputTextareaProps> = ({
@@ -22,7 +22,7 @@ export const InputTextarea: FC<InputTextareaProps> = ({
   return (
     <MultilineInput value={fieldValue} characterLimit={characterLimit}>
       {({ previousValue, characterCount }) => {
-        const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
           let newValue = event.target.value;
           const newValueLength = newValue?.length || 0;
           const previousValueLength = previousValue?.length || 0;

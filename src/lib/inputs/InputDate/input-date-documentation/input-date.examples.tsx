@@ -1,8 +1,8 @@
+import React, { FC } from 'react';
 import { FormikProps, useFormik } from 'formik';
-import React from 'react';
 import { InputDate, Form } from '../../..';
 
-export const inputDateExample1: React.FC<any> = () => {
+export const inputDateExample1: FC<any> = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const formikProps: FormikProps<any> = useFormik({
     initialValues: {
@@ -22,7 +22,7 @@ export const inputDateExample1: React.FC<any> = () => {
   );
 };
 
-export const inputDateExample2: React.FC<any> = () => (
+export const inputDateExample2: FC<any> = () => (
   <Form
     initialValues={{
       sampleDate: new Date(),

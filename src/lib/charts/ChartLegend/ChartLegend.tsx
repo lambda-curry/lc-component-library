@@ -1,5 +1,6 @@
-import classNames from 'classnames';
 import React, { FC } from 'react';
+import classNames from 'classnames';
+
 import { ChartJSData, ChartLegendComponentProps } from '../chart.helpers';
 import { ChartLegendItem } from './ChartLegendItem';
 

@@ -1,7 +1,7 @@
-import classNames from 'classnames';
 import React, { FC } from 'react';
-import { ButtonUnstyled } from '../../buttons/ButtonUnstyled';
+import classNames from 'classnames';
 
+import { ButtonUnstyled } from '../../buttons/ButtonUnstyled';
 import { ChartLabel } from '../ChartLabel/ChartLabel';
 
 export interface ChartLegendItemProps {
