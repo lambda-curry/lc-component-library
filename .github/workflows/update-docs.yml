@@ -1,4 +1,4 @@
-name: Build and Deploy Gatsby Builder
+name: Build and Deploy Component Library Docs
 on:
   push:
     branches: [master]
