@@ -2,10 +2,15 @@
 
 ## Installing the Component Library
 
-- `yarn install @lambdacurry/component-library`
-- If using typescript, you'll want to install the @types listed in our peer-dependencies.
-- To get the necessary base styles you'll want to import the css file at `node_modules/@lambdacurry/component-library/dist/styles/index.css`
-- Some SSR (Gatsby) sites do not load the component styles for some reason, so you'll want to use the css file at `node_modules/@lambdacurry/component-library/dist/all.css` instead of the index.css file.
+```sh
+yarn add @lambdacurry/component-library
+```
+
+### Notes about installation and usage
+
+- If using TypeScript, you'll want to install the `@types` listed in our peer-dependencies.
+- To get the necessary base styles you'll want to import the CSS file at `node_modules/@lambdacurry/component-library/dist/styles/index.css`
+- Some SSR (Gatsby) sites do not load the component styles for some reason, so you'll want to use the CSS file at `node_modules/@lambdacurry/component-library/dist/all.css` instead of the index.css file.
 
 ## Theming
 
@@ -61,10 +66,15 @@ For internal Lambda Curry organization people, there is a document on this [here
 ## ESbuild
 
 We're utilizing esbuild for the builds: https://esbuild.github.io/
+
 A few things to note:
 
-- Currently the postcss.config.js is using a new format (utilized by storybook), so we are replicating the config within esbuild.msj. Updates for postcss should be done in both places for now.
-- I copied the source code for the esbuild postcss and svgr plugins and using them within our project (`esbuild.postcss.js` and `esbuild.svgr.js`). In order to get SVGs working, we convert them all to javascript files with SVGR, but the imports in the compiled javascript files were still expecting `.svg`, so `esbuild.svgimport.js` is a custom plugin that rewrites those imports to their expected `.js` file.
+- Currently the `postcss.config.js` is using a new format (utilized by storybook), so we are replicating the config within `esbuild.msj`. Updates for PostCSS should be done in both places for now.
+- We copied the source code for the esbuild PostCSS and SVGR plugins. We are using them within our project (`esbuild.postcss.js` and `esbuild.fileImport.js`). In order to get SVGs (and other image assets) working, we convert them all to javascript files with SVGR, but the imports in the compiled JavaScript files were still expecting `.svg`, so `esbuild.fileImport.js` is a custom plugin that rewrites those imports to their expected `.js` file.
+
+## TypeScript
+
+The `tsconfig.json` is set up to interpret `dom` and `esnext` types, as well as `react` for `jsx`. Adjust according to your needs.
 
 ## Storybook
 
@@ -91,20 +101,16 @@ Code quality is set up for you with `prettier`, `husky`, and `lint-staged`. Adju
 
 ## Building
 
-To do a one-off build, use `npm run build` or `yarn build`.
+To do a one-off build, use `yarn build`.
 
 ## Testing
 
-To run tests, use `npm test` or `yarn test`. (tests are a good idea, we should add them sometime)
+To run tests, use `yarn test`. (Tests are a good idea, we should add them sometime.)
 
 ### Jest
 
-Jest tests are set up to run with `npm test` or `yarn test`.
+Jest tests are set up to run with `yarn test`.
 
 ### React Testing Library
 
 We do not set up `react-testing-library` for you yet, we welcome contributions and documentation on this.
-
-## TypeScript
-
-The `tsconfig.json` is set up to interpret `dom` and `esnext` types, as well as `react` for `jsx`. Adjust according to your needs.
