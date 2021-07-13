@@ -15,7 +15,7 @@
 
 const { hexToRGB } = require('./util');
 
-module.exports = (api) => {
+module.exports = api => {
   // `api.file` - path to the file
   // `api.mode` - `mode` value of webpack, please read https://webpack.js.org/configuration/mode/
   // `api.webpackLoaderContext` - loader context for complex use cases
@@ -33,23 +33,19 @@ module.exports = (api) => {
       'postcss-simple-vars',
       'postcss-mixins',
       ['postcss-functions', { functions: { hexToRGB } }],
-      ['postcss-url', {
-        url: 'copy',
-        maxSize: 10 * 1024, // inline files < 10k, copy files > 10k
-        fallback: 'copy',
-        optimizeSvgEncode: true,
-        assetsPath: 'dist/assets',
-      }],
+      [
+        'postcss-url',
+        {
+          url: 'copy',
+          maxSize: 10 * 1024, // inline files < 10k, copy files > 10k
+          fallback: 'copy',
+          optimizeSvgEncode: true,
+          assetsPath: 'dist/assets'
+        }
+      ],
       'postcss-focus-visible',
       'tailwindcss',
       'autoprefixer'
-      ['cssnano', {
-        preset: ['default', {
-          discardComments: {
-            removeAll: true,
-          },
-        }]
-      }]
-    ],
+    ]
   };
 };

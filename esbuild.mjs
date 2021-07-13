@@ -1,7 +1,7 @@
 import glob from 'glob';
 import { build } from 'esbuild';
-import postCssPlugin from "./esbuild.postcss.js";
-import fileImport from "./esbuild.fileImport.js";
+import postCssPlugin from './esbuild.postcss.js';
+import fileImport from './esbuild.fileImport.js';
 import svgr from 'esbuild-plugin-svgr';
 import syntax from 'postcss-scss';
 import cssImport from 'postcss-import';
@@ -33,10 +33,7 @@ const options = {
   logLevel: 'info',
   minify: true,
   sourcemap: true,
-  target: [
-    'esnext',
-    'node12.22.0',
-  ],
+  target: ['esnext', 'node12.22.0'],
   loader: { '.png': 'dataurl' },
   plugins: [
     fileImport(),
@@ -55,40 +52,29 @@ const options = {
           maxSize: 10 * 1024, // inline files < 10k, copy files > 10k
           fallback: 'copy',
           optimizeSvgEncode: true,
-          assetsPath: 'dist/assets',
+          assetsPath: 'dist/assets'
         }),
         cssFocusVisible,
         tailwindcss(tailwindConfig),
-        autoprefixer,
-        cssnano({
-          preset: ['default', {
-            discardComments: {
-              removeAll: true,
-            },
-          }]
-        })
+        autoprefixer
       ]
     }),
     svgr({
-      template: (
-        { template },
-        opts,
-        { imports, interfaces, componentName, props, jsx, exports },
-      ) => {
-        const plugins = ['jsx']
+      template: ({ template }, opts, { imports, interfaces, componentName, props, jsx, exports }) => {
+        const plugins = ['jsx'];
         if (opts.typescript) {
-          plugins.push('typescript')
+          plugins.push('typescript');
         }
-        const typeScriptTpl = template.smart({ plugins })
+        const typeScriptTpl = template.smart({ plugins });
         return typeScriptTpl.ast`${imports}
           ${interfaces}
           export function ReactComponent (${props}) {
             return ${jsx};
           }
-          `
+          `;
       }
-    }),
-  ],
-}
+    })
+  ]
+};
 
 build(options).catch(() => process.exit(1));
