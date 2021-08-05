@@ -63,6 +63,7 @@ import { ReactComponent as search } from '../../assets/icons/search.svg';
 import { ReactComponent as settings } from '../../assets/icons/settings.svg';
 import { ReactComponent as sms } from '../../assets/icons/sms.svg';
 import { ReactComponent as successMessage } from '../../assets/icons/successMessage.svg';
+import { ReactComponent as threeDots } from '../../assets/icons/threeDots.svg';
 import { ReactComponent as touch } from '../../assets/icons/touch.svg';
 import { ReactComponent as trash } from '../../assets/icons/trash.svg';
 import { ReactComponent as twitter } from '../../assets/icons/twitter.svg';
@@ -133,6 +134,7 @@ export const defaultIcons = {
   settings,
   sms,
   successMessage,
+  threeDots,
   touch,
   trash,
   twitter,
