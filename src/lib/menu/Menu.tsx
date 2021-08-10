@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { FC, ReactElement, useRef } from 'react';
 import {
   Menu as RCMenu,
   MenuItem,
@@ -6,7 +6,10 @@ import {
   MenuProps as RCMenuProps,
   MenuDivider,
   SubMenu,
-  SubMenuProps as RSSubMenuProps
+  SubMenuProps as RCSubMenuProps,
+  ControlledMenu,
+  useMenuState,
+  ControlledMenuProps
 } from '@szhsin/react-menu';
 import './menu.css';
 
@@ -25,14 +28,20 @@ interface MenuDividerProps {
   children?: undefined;
 }
 
-interface SubMenuProps extends RSSubMenuProps {
+interface SubMenuProps extends RCSubMenuProps {
   name: 'sub-menu';
   menuItems: MenuItems;
   children?: undefined;
 }
 
 export interface MenuProps extends RCMenuProps {
-  menuButton: ReactElement;
+  hover?: boolean;
+  menuButton: any;
+  menuItems: MenuItems;
+}
+export interface HoverMenuProps extends ControlledMenuProps {
+  hover?: boolean;
+  menuButton: any;
   menuItems: MenuItems;
 }
 
@@ -65,9 +74,35 @@ const mapMenuItems = (menuItems: MenuItems) =>
     return null;
   });
 
-export const Menu: FC<MenuProps> = ({ menuButton, menuItems, ...menuProps }) => {
+export const Menu: FC<MenuProps | HoverMenuProps> = props => {
+  const { openMenu, closeMenu, toggleMenu, ...menuStateProps } = useMenuState();
+  const ref = useRef(null);
+
+  if ('hover' in props) {
+    const { menuButton, menuItems, ...hoverMenuProps } = props;
+
+    return (
+      <div className="lc-menu" onMouseLeave={closeMenu}>
+        <div className="lc-menu-button-wrapper" ref={ref} onMouseEnter={() => openMenu()}>
+          {menuButton}
+        </div>
+        <ControlledMenu
+          position="initial"
+          {...menuStateProps}
+          {...(hoverMenuProps as HoverMenuProps)}
+          onClose={() => closeMenu()}
+          onMouseLeave={closeMenu}
+        >
+          {mapMenuItems(menuItems)}
+        </ControlledMenu>
+      </div>
+    );
+  }
+
+  const { menuItems, ...menuProps } = props;
+
   return (
-    <RCMenu className="lc-menu" menuButton={menuButton} position="initial" {...menuProps}>
+    <RCMenu className="lc-menu" position="initial" {...(menuProps as MenuProps)}>
       {mapMenuItems(menuItems)}
     </RCMenu>
   );

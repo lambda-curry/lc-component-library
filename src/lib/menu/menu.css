@@ -1,4 +1,4 @@
-@import '@szhsin/react-menu/dist/index.css';
+@import '../../../node_modules/@szhsin/react-menu/dist/index.css';
 
 .lc-menu {
   .rc-menu__item {
