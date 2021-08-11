@@ -12,6 +12,7 @@ import {
   ControlledMenuProps
 } from '@szhsin/react-menu';
 import './menu.css';
+import classNames from 'classnames';
 
 export type MenuItems = (MenuItemProps | MenuDividerProps | SubMenuProps)[];
 
@@ -79,17 +80,18 @@ export const Menu: FC<MenuProps | HoverMenuProps> = props => {
   const ref = useRef(null);
 
   if ('hover' in props) {
-    const { menuButton, menuItems, ...hoverMenuProps } = props;
+    const { menuButton, menuItems, hover, ...hoverMenuProps } = props;
 
     return (
-      <div className="lc-menu" onMouseLeave={closeMenu}>
+      <div className={classNames('lc-menu', { open: menuStateProps.isOpen })} onMouseLeave={closeMenu}>
         <div className="lc-menu-button-wrapper" ref={ref} onMouseEnter={() => openMenu()}>
           {menuButton}
         </div>
         <ControlledMenu
-          position="initial"
           {...menuStateProps}
           {...(hoverMenuProps as HoverMenuProps)}
+          anchorRef={ref}
+          align="end"
           onClose={() => closeMenu()}
           onMouseLeave={closeMenu}
         >

@@ -5,6 +5,7 @@ export const MenuExample1 = () => {
   return (
     <div className="menu-story" style={{ height: '200px' }}>
       <Menu
+        align="end"
         menuButton={(menuButtonProps: any) => (
           <ButtonPrimary {...menuButtonProps} icon={<Icon name="chevronDown" />} iconPlacement="end">
             Menu
@@ -36,9 +37,10 @@ export const MenuExample2 = () => {
     <div className="menu-story" style={{ height: '200px' }}>
       <Menu
         hover
+        align="end"
         menuButton={
           <ButtonPrimary icon={<Icon name="chevronDown" />} iconPlacement="end" onClick={() => alert('button clicked')}>
-            Click for Action
+            Click me
           </ButtonPrimary>
         }
         menuItems={[
