@@ -15,7 +15,10 @@ import './icon-button-story.css';
     parameters={{
       docs: {
         source: {
-          code: dedent`<IconButton key={iconName} icon={iconName} />`
+          code: dedent`<IconButton key={iconName} icon={iconName} />
+          <div className="lc-my-4 lc-text-primary">
+            <IconButton className="match-text-color" icon="eye" />
+          </div>`
         }
       }
     }}
@@ -24,6 +27,9 @@ import './icon-button-story.css';
       {Object.keys(defaultIcons).map(iconName => (
         <IconButton key={iconName} icon={iconName} />
       ))}
+      <div className="lc-my-4 lc-text-primary">
+        <IconButton className="match-text-color" icon="eye" />
+      </div>
     </div>
   </Story>
   <ArgsTable of={IconButton} />
