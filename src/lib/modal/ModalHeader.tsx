@@ -1,8 +1,8 @@
 import React, { FC, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
-export interface ModalHeaderProps extends HTMLAttributes<HTMLElement> {
-  title: string;
+export interface ModalHeaderProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> {
+  title: React.ReactNode;
 }
 
 export const ModalHeader: FC<ModalHeaderProps> = ({ title, className, children, ...props }) => (
