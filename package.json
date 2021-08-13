@@ -1,6 +1,10 @@
 {
   "name": "@lambdacurry/component-library",
+<<<<<<< HEAD
   "version": "2.4.5",
+=======
+  "version": "2.5.0",
+>>>>>>> 08c8193ea4b03fcc6c1d5fa8a8463aa82b65bd0c
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
