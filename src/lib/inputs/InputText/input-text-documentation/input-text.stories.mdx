@@ -1,5 +1,5 @@
 import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs';
-import { InputText, Form } from '../../..';
+import { InputText, Form, Icon } from '../../..';
 import dedent from 'string-dedent';
 import './input-text-story.css';
 
@@ -12,6 +12,7 @@ export const InputTextExample = () => (
         sampleInput2: '',
         sampleInput3: '',
         sampleInput4: '',
+        sampleInputStandard: '',
         sampleInput5: '',
         'test[safe]': ''
       }}
@@ -35,6 +36,17 @@ export const InputTextExample = () => (
               label="Label Above"
               labelPlacement="above"
               placeholder="Enter text..."
+              formikProps={formikProps}
+            />
+          </div>
+          <div className="input-text-story-dark">
+            <InputText
+              className="dark-mode"
+              variant="standard"
+              name="sampleInputStandard"
+              label="Dark Mode Standard Variant"
+              placeholder="Enter text..."
+              prefix={<Icon name="mailOutline" className="h-20 w-20" />}
               formikProps={formikProps}
             />
           </div>
