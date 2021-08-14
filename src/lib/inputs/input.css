@@ -45,7 +45,9 @@
         background-color: rbga(255, 255, 255, 0.42) !important;
       }
 
-      .MuiInputAdornment-root * {
+      .MuiInputAdornment-root *,
+      .MuiFormHelperText-root,
+      .MuiFormHelperText-root.Mui-error {
         color: white;
       }
     }
