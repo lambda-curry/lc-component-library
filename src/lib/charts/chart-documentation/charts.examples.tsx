@@ -12,19 +12,19 @@ export const PieChartExample1 = () => {
         tooltipComponent={() => <div>Hello World</div>}
         legendComponent={(props: ChartLegendComponentProps) => <div>Hello World</div>}
         data={[
-          { label: 'Label 1', value: 1, color: `rgb(${getCssVar('lc-color-primary')})` },
-          { label: 'Label 2', value: 4, color: `rgb(${getCssVar('lc-color-accent')})` },
-          { label: 'Label 3', value: 6, color: `rgb(${getCssVar('lc-color-primary-dark')})` },
-          { label: 'Label 4', value: 8, color: `rgb(${getCssVar('lc-color-accent-dark')})` }
+          { label: 'Label 1', value: 1, color: `${getCssVar('lc-color-primary')}` },
+          { label: 'Label 2', value: 4, color: `${getCssVar('lc-color-accent')}` },
+          { label: 'Label 3', value: 6, color: `${getCssVar('lc-color-primary-dark')}` },
+          { label: 'Label 4', value: 8, color: `${getCssVar('lc-color-accent-dark')}` }
         ]}
       />
       <PieChart
         type="doughnut"
         data={[
-          { label: 'Label 1', value: 1, color: `rgb(${getCssVar('lc-color-primary')})` },
-          { label: 'Label 2', value: 2, color: `rgb(${getCssVar('lc-color-accent')})` },
-          { label: 'Label 3', value: 3, color: `rgb(${getCssVar('lc-color-primary-dark')})` },
-          { label: 'Label 4', value: 4, color: `rgb(${getCssVar('lc-color-accent-dark')})` }
+          { label: 'Label 1', value: 1, color: `${getCssVar('lc-color-primary')}` },
+          { label: 'Label 2', value: 2, color: `${getCssVar('lc-color-accent')}` },
+          { label: 'Label 3', value: 3, color: `${getCssVar('lc-color-primary-dark')}` },
+          { label: 'Label 4', value: 4, color: `${getCssVar('lc-color-accent-dark')}` }
         ]}
       />
     </div>
@@ -40,27 +40,27 @@ export const BarChartExample1 = () => (
       {
         label: 'Dataset 1',
         data: [3, 7, 19, 12],
-        color: `rgb(${getCssVar('lc-color-primary')})`
+        color: `${getCssVar('lc-color-primary')}`
       },
       {
         label: 'Dataset 2',
         data: [10, 5, 17, 24],
-        color: `rgb(${getCssVar('lc-color-accent')})`
+        color: `${getCssVar('lc-color-accent')}`
       },
       {
         label: 'Dataset 3',
         data: [8, 12, 20, 4],
-        color: `rgb(${getCssVar('lc-color-success')})`
+        color: `${getCssVar('lc-color-success')}`
       },
       {
         label: 'Dataset 4',
         data: [23, 16, 13, 19],
-        color: `rgb(${getCssVar('lc-color-warning')})`
+        color: `${getCssVar('lc-color-warning')}`
       },
       {
         label: 'Dataset 5',
         data: [13, 20, 4, 7],
-        color: `rgb(${getCssVar('lc-color-danger')})`
+        color: `${getCssVar('lc-color-danger')}`
       }
     ]}
   />
@@ -77,27 +77,27 @@ export const LineChartExample1 = () => {
         {
           label: 'Dataset 1',
           data: [3, 7, 19, 12],
-          color: `rgb(${getCssVar('lc-color-primary')})`
+          color: `${getCssVar('lc-color-primary')}`
         },
         {
           label: 'Dataset 2',
           data: [10, 5, 17, 24],
-          color: `rgb(${getCssVar('lc-color-accent')})`
+          color: `${getCssVar('lc-color-accent')}`
         },
         {
           label: 'Dataset 3',
           data: [8, 12, 20, 4],
-          color: `rgb(${getCssVar('lc-color-success')})`
+          color: `${getCssVar('lc-color-success')}`
         },
         {
           label: 'Dataset 4',
           data: [23, 16, 13, 19],
-          color: `rgb(${getCssVar('lc-color-warning')})`
+          color: `${getCssVar('lc-color-warning')}`
         },
         {
           label: 'Dataset 5',
           data: [13, 20, 4, 7],
-          color: `rgb(${getCssVar('lc-color-danger')})`
+          color: `${getCssVar('lc-color-danger')}`
         }
       ]}
     />
@@ -118,7 +118,7 @@ export const TimeChartExample1 = () => {
             { x: '2018/07/05', y: 19 },
             { x: '2020/11/07', y: 12 }
           ],
-          color: `rgb(${getCssVar('lc-color-primary')})`
+          color: `${getCssVar('lc-color-primary')}`
         },
         {
           label: 'Dataset 2',
@@ -128,7 +128,7 @@ export const TimeChartExample1 = () => {
             { x: '2018/07/05', y: 17 },
             { x: '2020/11/07', y: 24 }
           ],
-          color: `rgb(${getCssVar('lc-color-accent')})`
+          color: `${getCssVar('lc-color-accent')}`
         },
         {
           label: 'Dataset 3',
@@ -138,7 +138,7 @@ export const TimeChartExample1 = () => {
             { x: '2018/07/05', y: 20 },
             { x: '2020/11/07', y: 4 }
           ],
-          color: `rgb(${getCssVar('lc-color-success')})`
+          color: `${getCssVar('lc-color-success')}`
         },
         {
           label: 'Dataset 4',
@@ -148,7 +148,7 @@ export const TimeChartExample1 = () => {
             { x: '2018/07/05', y: 13 },
             { x: '2020/11/07', y: 19 }
           ],
-          color: `rgb(${getCssVar('lc-color-warning')})`
+          color: `${getCssVar('lc-color-warning')}`
         },
         {
           label: 'Dataset 5',
@@ -158,7 +158,7 @@ export const TimeChartExample1 = () => {
             { x: '2018/07/05', y: 4 },
             { x: '2020/11/07', y: 7 }
           ],
-          color: `rgb(${getCssVar('lc-color-danger')})`
+          color: `${getCssVar('lc-color-danger')}`
         }
       ]}
       // Note: You can set custom time options without affecting the other defaults
