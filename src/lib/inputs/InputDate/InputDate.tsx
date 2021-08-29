@@ -7,7 +7,7 @@ import { DateTime } from 'luxon';
 import { get as _get } from 'lodash';
 import classNames from 'classnames';
 
-export type InputDateProps = InputProps & {
+export type InputDateProps = Omit<InputProps, 'onChange'> & {
   value?: Date | string;
   onChange?: (date: Date | string | null) => void;
   inputFormat?: string;
