@@ -9,7 +9,10 @@ import { ReactComponent as android } from '../../assets/icons/android.svg';
 import { ReactComponent as apple } from '../../assets/icons/apple.svg';
 import { ReactComponent as apps } from '../../assets/icons/apps.svg';
 import { ReactComponent as archive } from '../../assets/icons/archive.svg';
+import { ReactComponent as arrowDown } from '../../assets/icons/arrowDown.svg';
 import { ReactComponent as arrowLeft } from '../../assets/icons/arrowLeft.svg';
+import { ReactComponent as arrowRight } from '../../assets/icons/arrowRight.svg';
+import { ReactComponent as arrowUp } from '../../assets/icons/arrowUp.svg';
 import { ReactComponent as bell } from '../../assets/icons/bell.svg';
 import { ReactComponent as bellRing } from '../../assets/icons/bellRing.svg';
 import { ReactComponent as block } from '../../assets/icons/block.svg';
@@ -18,6 +21,9 @@ import { ReactComponent as check } from '../../assets/icons/check.svg';
 import { ReactComponent as checkbox } from '../../assets/icons/checkbox.svg';
 import { ReactComponent as checkboxFilled } from '../../assets/icons/checkboxFilled.svg';
 import { ReactComponent as chevronDown } from '../../assets/icons/chevronDown.svg';
+import { ReactComponent as chevronLeft } from '../../assets/icons/chevronLeft.svg';
+import { ReactComponent as chevronRight } from '../../assets/icons/chevronRight.svg';
+import { ReactComponent as chevronUp } from '../../assets/icons/chevronUp.svg';
 import { ReactComponent as clock } from '../../assets/icons/clock.svg';
 import { ReactComponent as clockFilled } from '../../assets/icons/clockFilled.svg';
 import { ReactComponent as close } from '../../assets/icons/close.svg';
@@ -80,7 +86,10 @@ export const defaultIcons = {
   apps,
   apple,
   archive,
+  arrowDown,
   arrowLeft,
+  arrowRight,
+  arrowUp,
   bell,
   bellRing,
   block,
@@ -89,6 +98,9 @@ export const defaultIcons = {
   checkbox,
   checkboxFilled,
   chevronDown,
+  chevronLeft,
+  chevronRight,
+  chevronUp,
   clock,
   clockFilled,
   close,
