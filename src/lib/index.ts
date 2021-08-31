@@ -2,7 +2,6 @@
 export * from './buttons';
 export * from './character-limit';
 export * from './charts';
-export * from './comments';
 export * from './drawer';
 export * from './icon';
 export * from './icon-button';
