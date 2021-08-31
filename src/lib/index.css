@@ -10,6 +10,7 @@
 @import './menu/menu.css';
 @import './modal/modal.css';
 @import './multiline-input/multiline-input.css';
+@import './pagination/pagination.css';
 @import './slider/slider.css';
 @import './snackbars/snackbars.css';
 @import './stripe/stripe-card-input.css';
