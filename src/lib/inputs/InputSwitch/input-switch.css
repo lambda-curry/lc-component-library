@@ -10,8 +10,8 @@
     appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
-    width: 40px;
     height: 20px;
+    width: 40px;
     border-radius: 10px;
     background-color: rgba(216, 216, 216, 0.33);
     box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.03);

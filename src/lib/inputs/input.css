@@ -23,6 +23,34 @@
         border-color: white;
       }
     }
+
+    &.dark-mode {
+      .MuiFormLabel-root {
+        color: white;
+      }
+
+      .MuiInputBase-input {
+        color: white;
+      }
+
+      .MuiInput-underline:before {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.42);
+      }
+
+      .MuiInput-underline:after {
+        border-bottom: 2px solid white;
+      }
+
+      input:-internal-autofill-selected {
+        background-color: rbga(255, 255, 255, 0.42) !important;
+      }
+
+      .MuiInputAdornment-root *,
+      .MuiFormHelperText-root,
+      .MuiFormHelperText-root.Mui-error {
+        color: white;
+      }
+    }
   }
 
   .MuiTypography-body1,

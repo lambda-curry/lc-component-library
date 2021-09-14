@@ -25,6 +25,7 @@ import { FileUpload, FileUploaderProps } from './FileUploader.types';
 export const FileUploader: FC<FileUploaderProps> = ({
   name,
   className,
+  replaceOnly,
   maxSize = 1048576, // 1 MB
   minSize,
   // TODO: Consider allowing file extensions in addition to mime-types
@@ -147,6 +148,7 @@ export const FileUploader: FC<FileUploaderProps> = ({
                 <li key={index}>
                   <ButtonUnstyled
                     className="lc-file-uploader-dropzone-file"
+                    disabled={replaceOnly}
                     onClick={event => removeFile(event, index)}
                   >
                     <div className="lc-file-uploader-dropzone-file-thumb">
@@ -182,7 +184,7 @@ export const FileUploader: FC<FileUploaderProps> = ({
         <div className="lc-file-uploader-footer">
           <div className="lc-file-uploader-actions">
             <ButtonAccent onClick={open}>Choose File{multiple && 's'}</ButtonAccent>
-            {((files && files.length > 0) || error) && (
+            {((files && files.length > 0 && !replaceOnly) || error) && (
               <ButtonLink onClick={clearAll} style={{ marginLeft: '12px' }}>
                 Clear {multiple && <>All</>}
               </ButtonLink>

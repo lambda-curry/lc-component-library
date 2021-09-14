@@ -11,7 +11,6 @@ export interface DecorativeIconProps {
 
 export const DecorativeIcon: FC<DecorativeIconProps> = ({ className, color, name, ...props }) => {
   const customColor = getColorVar(color) || getCssVar(color) || color || '';
-
   const backgroundColor = customColor && isRgbColor(customColor) ? `${customColor}` : customColor;
 
   return (

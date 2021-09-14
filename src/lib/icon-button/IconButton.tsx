@@ -10,20 +10,7 @@ export interface IconButtonProps extends ButtonProps {
 }
 
 export const IconButton: FC<IconButtonProps> = ({ className, icon, ...props }) => (
-  <ButtonStyled
-    {...props}
-    className={classNames(
-      [
-        `lc-icon-button`,
-        `lc-text-gray-dark`,
-        `hover:lc-bg-gray-lighter`,
-        // `focus-visible:lc-bg-gray-lightest`,
-        // `focus-visible:lc-border-gray-lightest`,
-        `focus-visible:lc-ring-gray-lighter`
-      ],
-      className
-    )}
-  >
+  <ButtonStyled {...props} className={classNames([`lc-icon-button`, `focus-visible:lc-ring-gray-lighter`], className)}>
     <Icon name={icon} />
   </ButtonStyled>
 );
