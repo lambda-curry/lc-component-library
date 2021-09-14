@@ -3,7 +3,6 @@ $snackbars-min-width: 280px;
 .snackbars {
   z-index: 9999999;
   min-width: $snackbars-min-width;
-  // pointer-events: auto !important;
 }
 
 .snackbar-action {
