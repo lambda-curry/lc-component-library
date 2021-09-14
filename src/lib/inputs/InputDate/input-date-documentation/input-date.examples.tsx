@@ -7,7 +7,8 @@ export const inputDateExample1: FC<any> = () => {
   const formikProps: FormikProps<any> = useFormik({
     initialValues: {
       sampleDate: new Date(),
-      formattedDate: undefined
+      formattedDate: undefined,
+      onChangeDate: new Date()
     },
     onSubmit: () => undefined
   });
@@ -18,6 +19,13 @@ export const inputDateExample1: FC<any> = () => {
       <InputDate name="sampleDate" formikProps={formikProps} />
       Value: {formikProps.values.formattedDate}
       <InputDate name="formattedDate" valueFormat={'LL/dd/yyyy'} formikProps={formikProps} />
+      Value:{' '}
+      {formikProps.values.onChangeDate instanceof Date ? formikProps.values.onChangeDate.toLocaleDateString() : ''}
+      <InputDate
+        name="onChangeDate"
+        formikProps={formikProps}
+        onChange={(date: string | Date | null) => console.log(date)}
+      />
     </>
   );
 };
@@ -26,7 +34,8 @@ export const inputDateExample2: FC<any> = () => (
   <Form
     initialValues={{
       sampleDate: new Date(),
-      formattedDate: ''
+      formattedDate: '',
+      onChangeDate: new Date()
     }}
     onSubmit={() => undefined}
   >
@@ -36,6 +45,13 @@ export const inputDateExample2: FC<any> = () => (
         <InputDate name="sampleDate" formikProps={formikProps} />
         Value: {formikProps.values.formattedDate}
         <InputDate name="formattedDate" valueFormat={'LL/dd/yyyy'} formikProps={formikProps} />
+        Value:{' '}
+        {formikProps.values.onChangeDate instanceof Date ? formikProps.values.onChangeDate.toLocaleDateString() : ''}
+        <InputDate
+          name="onChangeDate"
+          formikProps={formikProps}
+          onChange={(date: string | Date | null) => console.log(date)}
+        />
       </>
     )}
   </Form>

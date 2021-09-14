@@ -12,6 +12,7 @@ export * from './form';
 export * from './menu';
 export * from './modal';
 export * from './multiline-input';
+export * from './pagination';
 export * from './snackbars';
 export * from './slider';
 export * from './wysiwyg';

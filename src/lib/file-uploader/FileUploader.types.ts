@@ -9,6 +9,7 @@ export interface FileUpload extends File {
 export interface FileUploaderProps {
   name: string;
   className?: string;
+  replaceOnly?: boolean;
   maxSize?: number;
   minSize?: number;
   accept?: string[];

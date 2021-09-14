@@ -1,4 +1,4 @@
-@import '@szhsin/react-menu/dist/index.css';
+@import '../../../node_modules/@szhsin/react-menu/dist/index.css';
 
 .lc-menu {
   .rc-menu__item {
@@ -7,12 +7,16 @@
     padding: 12px 16px 12px 12px;
     font-family: var(--lc-font-family-sans);
 
+    &-button-wrapper {
+      display: inline-block;
+    }
+
     &--anchor {
       position: relative;
       color: inherit;
       text-decoration: none;
 
-      &::after {
+      &[target='_blank']::after {
         position: absolute;
         right: 12px;
         content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==);

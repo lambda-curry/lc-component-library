@@ -5,6 +5,7 @@
 
 .sbdocs-preview {
   font-family: var(--lc-font-family-sans);
+
   .innerZoomElementWrapper > div {
     width: 100%;
   }

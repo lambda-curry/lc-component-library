@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Crop } from 'react-image-crop';
 import { ButtonUnstyled } from '../../buttons/ButtonUnstyled';
 import { FileUpload } from '../../file-uploader/FileUploader.types';
 import { ImageCropper } from '../ImageCropper';
@@ -7,7 +8,7 @@ import { CroppedImage } from '../ImageCropper.types';
 
 export const ImageCropperExample = () => {
   const [open, setOpen] = useState(false);
-  const [file, setFile] = useState<FileUpload | undefined | null>(null);
+  const [file, setFile] = useState<FileUpload | null | undefined>(null);
   const [croppedImage, setCroppedImage] = useState<CroppedImage | null>(null);
 
   const fetchImage = async () => {
@@ -31,7 +32,7 @@ export const ImageCropperExample = () => {
   };
 
   const handleSave = (newCroppedImage: CroppedImage | null) => {
-    if (newCroppedImage) setCroppedImage(newCroppedImage);
+    setCroppedImage(newCroppedImage);
   };
 
   if (!file) return <>Loading image...</>;

@@ -26,10 +26,6 @@
       @apply lc-border-primary;
       @apply lc-bg-primary;
       @apply lc-bg-opacity-5;
-
-      // color: rgb(var(--lc-color-primary));
-      // border-color: rgb(var(--lc-color-primary));
-      // background-color: rgb(var(--lc-color-primary), 0.05);
     }
 
     &-active {
@@ -88,8 +84,6 @@
       &:hover {
         @apply lc-text-primary-dark;
         @apply lc-bg-white;
-
-        // background: rgb(var(--lc-color-white)) !important;
       }
 
       &-thumb {

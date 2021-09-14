@@ -65,7 +65,7 @@ export const ImageCropper: FC<ImageCropperProps> = ({
       // Make sure to revoke the data uris to avoid memory leaks
       if (croppedImage) URL.revokeObjectURL(croppedImage.preview);
     },
-    [croppedImage]
+    []
   );
 
   function getComputedCrop(newCrop: Crop, newPercentCrop?: Crop) {

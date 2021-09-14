@@ -9,7 +9,10 @@ import { ReactComponent as android } from '../../assets/icons/android.svg';
 import { ReactComponent as apple } from '../../assets/icons/apple.svg';
 import { ReactComponent as apps } from '../../assets/icons/apps.svg';
 import { ReactComponent as archive } from '../../assets/icons/archive.svg';
+import { ReactComponent as arrowDown } from '../../assets/icons/arrowDown.svg';
 import { ReactComponent as arrowLeft } from '../../assets/icons/arrowLeft.svg';
+import { ReactComponent as arrowRight } from '../../assets/icons/arrowRight.svg';
+import { ReactComponent as arrowUp } from '../../assets/icons/arrowUp.svg';
 import { ReactComponent as bell } from '../../assets/icons/bell.svg';
 import { ReactComponent as bellRing } from '../../assets/icons/bellRing.svg';
 import { ReactComponent as block } from '../../assets/icons/block.svg';
@@ -18,6 +21,9 @@ import { ReactComponent as check } from '../../assets/icons/check.svg';
 import { ReactComponent as checkbox } from '../../assets/icons/checkbox.svg';
 import { ReactComponent as checkboxFilled } from '../../assets/icons/checkboxFilled.svg';
 import { ReactComponent as chevronDown } from '../../assets/icons/chevronDown.svg';
+import { ReactComponent as chevronLeft } from '../../assets/icons/chevronLeft.svg';
+import { ReactComponent as chevronRight } from '../../assets/icons/chevronRight.svg';
+import { ReactComponent as chevronUp } from '../../assets/icons/chevronUp.svg';
 import { ReactComponent as clock } from '../../assets/icons/clock.svg';
 import { ReactComponent as clockFilled } from '../../assets/icons/clockFilled.svg';
 import { ReactComponent as close } from '../../assets/icons/close.svg';
@@ -63,6 +69,7 @@ import { ReactComponent as search } from '../../assets/icons/search.svg';
 import { ReactComponent as settings } from '../../assets/icons/settings.svg';
 import { ReactComponent as sms } from '../../assets/icons/sms.svg';
 import { ReactComponent as successMessage } from '../../assets/icons/successMessage.svg';
+import { ReactComponent as threeDots } from '../../assets/icons/threeDots.svg';
 import { ReactComponent as touch } from '../../assets/icons/touch.svg';
 import { ReactComponent as trash } from '../../assets/icons/trash.svg';
 import { ReactComponent as twitter } from '../../assets/icons/twitter.svg';
@@ -79,7 +86,10 @@ export const defaultIcons = {
   apps,
   apple,
   archive,
+  arrowDown,
   arrowLeft,
+  arrowRight,
+  arrowUp,
   bell,
   bellRing,
   block,
@@ -88,6 +98,9 @@ export const defaultIcons = {
   checkbox,
   checkboxFilled,
   chevronDown,
+  chevronLeft,
+  chevronRight,
+  chevronUp,
   clock,
   clockFilled,
   close,
@@ -133,6 +146,7 @@ export const defaultIcons = {
   settings,
   sms,
   successMessage,
+  threeDots,
   touch,
   trash,
   twitter,

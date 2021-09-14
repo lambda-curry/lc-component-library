@@ -1,0 +1,31 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { Pagination, PaginationPrimary, PaginationOutline, PaginationOutlinePrimary } from '../..';
+import { PaginationExamples1 } from './pagination.examples.tsx';
+import dedent from 'string-dedent';
+
+<Meta title="Components/Pagination" component={Pagination} />
+
+# Pagination
+
+<Canvas>
+  <Story
+    name="Pagination"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+            <Pagination pagesCount={10} />
+            <PaginationPrimary pagesCount={10} />
+            <PaginationAccent pagesCount={10} />
+            <PaginationOutline pagesCount={10} />
+            <PaginationOutlinePrimary pagesCount={10} />
+            <PaginationOutlineAccent pagesCount={10} />
+          `
+        }
+      }
+    }}
+  >
+    {PaginationExamples1.bind({})}
+  </Story>
+  <ArgsTable of={Pagination} />
+</Canvas>
