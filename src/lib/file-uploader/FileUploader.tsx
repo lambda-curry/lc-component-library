@@ -63,20 +63,12 @@ export const FileUploader: FC<FileUploaderProps> = ({
     const newFiles = [...(multiple ? files : []), ...acceptedFiles.map((file: any) => processFile(file))];
 
     // Remove duplicate files
-<<<<<<< HEAD
-    const uniqueNewFiles = Array.from(new Set(newFiles.map(a => a.path))).map(path =>
-      newFiles.find(a => a.path === path)
-    );
-
-    return uniqueNewFiles;
-=======
     const uniqueNewFiles = newFiles.reduce((acc, curr) => {
       acc[curr.path] = curr;
       return acc;
     }, {});
 
     return Object.values(uniqueNewFiles);
->>>>>>> master
   };
 
   const handleDrop = (acceptedFiles: File[], rejectedFiles: FileRejection[], event: DropEvent) => {
@@ -156,10 +148,7 @@ export const FileUploader: FC<FileUploaderProps> = ({
                 <li key={index}>
                   <ButtonUnstyled
                     className="lc-file-uploader-dropzone-file"
-<<<<<<< HEAD
-=======
                     disabled={replaceOnly}
->>>>>>> master
                     onClick={event => removeFile(event, index)}
                   >
                     <div className="lc-file-uploader-dropzone-file-thumb">
@@ -195,11 +184,7 @@ export const FileUploader: FC<FileUploaderProps> = ({
         <div className="lc-file-uploader-footer">
           <div className="lc-file-uploader-actions">
             <ButtonAccent onClick={open}>Choose File{multiple && 's'}</ButtonAccent>
-<<<<<<< HEAD
-            {((files && files.length > 0) || error) && (
-=======
             {((files && files.length > 0 && !replaceOnly) || error) && (
->>>>>>> master
               <ButtonLink onClick={clearAll} style={{ marginLeft: '12px' }}>
                 Clear {multiple && <>All</>}
               </ButtonLink>
