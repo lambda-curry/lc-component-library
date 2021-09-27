@@ -12,7 +12,7 @@ import ReactModal from 'react-modal';
 
 export interface FormConfig extends InputConfig {}
 
-export interface UnsavedModalProps extends Partial<ReactModal.Props> {
+export interface UnsavedChangesModalProps extends Partial<ReactModal.Props> {
   modalTitle?: string;
   modalContent?: string;
   modalPrimaryButtonText?: string;
@@ -22,7 +22,7 @@ export interface UnsavedModalProps extends Partial<ReactModal.Props> {
 export interface UnsavedChangesConfig {
   containerQuerySelectorAll?: string;
   targetQuerySelector?: string;
-  modalProps?: UnsavedModalProps;
+  modalProps?: UnsavedChangesModalProps;
 }
 
 export interface FormProps<T> extends FormikConfig<T> {
