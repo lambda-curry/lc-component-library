@@ -8,13 +8,21 @@ import { InputConfig } from '../inputs/InputBase';
 import './form.css';
 import { Button } from '../buttons/Button';
 import { ButtonPrimary } from '../buttons/ButtonPrimary';
+import ReactModal from 'react-modal';
 
 export interface FormConfig extends InputConfig {}
+
+export interface UnsavedChangesModalProps extends Partial<ReactModal.Props> {
+  modalTitle?: string;
+  modalContent?: string;
+  modalPrimaryButtonText?: string;
+  modalCloseButtonText?: string;
+}
 
 export interface UnsavedChangesConfig {
   containerQuerySelectorAll?: string;
   targetQuerySelector?: string;
-  modalProps?: Partial<ReactModal.Props>;
+  modalProps?: UnsavedChangesModalProps;
 }
 
 export interface FormProps<T> extends FormikConfig<T> {
@@ -122,6 +130,13 @@ export function Form<T>({
     }, 500);
   };
 
+  const {
+    modalCloseButtonText = 'Cancel',
+    modalContent = 'Click continue to abandon your changes and proceed.',
+    modalPrimaryButtonText = 'Continue',
+    modalTitle = 'You have unsaved changes!'
+  } = unsavedChangesConfig.modalProps || {};
+
   return (
     <Formik {...props} initialStatus={{ ...props.initialStatus, formConfig }}>
       {(formikProps: FormikProps<T>) => (
@@ -141,12 +156,14 @@ export function Form<T>({
               closeButton={false}
               {...unsavedChangesConfig?.modalProps}
             >
-              <ModalHeader title="You have unsaved changes!" />
-              <p className="text">Click continue to abandon your changes and continue on.</p>
+              <ModalHeader title={modalTitle} />
+              <p className="text">{modalContent}</p>
               <ModalActions>
                 <div className="flex-spacer" />
-                <Button onClick={handleUnsavedChangesModalClose}>Cancel</Button>
-                <ButtonPrimary onClick={() => handleUnsavedChangesModalContinue(formikProps)}>Continue</ButtonPrimary>
+                <Button onClick={handleUnsavedChangesModalClose}>{modalCloseButtonText}</Button>
+                <ButtonPrimary onClick={() => handleUnsavedChangesModalContinue(formikProps)}>
+                  {modalPrimaryButtonText}
+                </ButtonPrimary>
               </ModalActions>
             </Modal>
           </>
