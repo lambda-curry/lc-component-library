@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu, Icon, ButtonPrimary } from '../..';
+import { Menu, Icon, ButtonPrimary, IconButton } from '../..';
 
 export const MenuExample1 = () => {
   return (
@@ -43,6 +43,32 @@ export const MenuExample2 = () => {
             Click me
           </ButtonPrimary>
         }
+        menuItems={[
+          { name: 'menu-item', href: 'https://google.com', target: '_blank', children: 'Google' },
+          { name: 'divider' },
+          { name: 'sub-menu', label: 'Sub Menu', menuItems: [{ name: 'menu-item', children: 'Testing' }] },
+          { name: 'divider' },
+          {
+            name: 'menu-item',
+            endIcon: <Icon name="trash" />,
+            children: 'Delete'
+          },
+          {
+            name: 'menu-item',
+            startIcon: <Icon name="trash" />,
+            children: 'Delete'
+          }
+        ]}
+      />
+    </div>
+  );
+};
+
+export const MenuExample3 = () => {
+  return (
+    <div className="menu-story" style={{ height: '200px' }}>
+      <Menu
+        menuButton={<IconButton icon="threeDots" />}
         menuItems={[
           { name: 'menu-item', href: 'https://google.com', target: '_blank', children: 'Google' },
           { name: 'divider' },
