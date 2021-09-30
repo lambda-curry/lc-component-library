@@ -1,6 +1,6 @@
 import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
 import { Menu } from '../..';
-import { MenuExample1, MenuExample2 } from './menu.examples.tsx';
+import { MenuExample1, MenuExample2, MenuExample3 } from './menu.examples.tsx';
 import dedent from 'string-dedent';
 
 <Meta title="Components/Menu" component={Menu} />
@@ -52,6 +52,28 @@ import dedent from 'string-dedent';
     }}
   >
     {MenuExample2.bind({})}
+  </Story>
+  <Story
+    name="Menu with Icon Button"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+          <Menu
+            menuButton={<IconButton icon="threeDots" />}
+            menuItems={[
+              { name: 'menu-item', href: 'https://google.com', target: '_blank', children: 'Google' },
+              { name: 'divider' },
+              { name: 'sub-menu', label: 'Sub Menu', menuItems: [{ name: 'menu-item', children: 'Testing' }] },
+              { name: 'divider' },
+              { name: 'menu-item', children: <ButtonPrimary>Test</ButtonPrimary> }
+            ]}
+          />`
+        }
+      }
+    }}
+  >
+    {MenuExample3.bind({})}
   </Story>
   <ArgsTable of={Menu} />
 </Canvas>
