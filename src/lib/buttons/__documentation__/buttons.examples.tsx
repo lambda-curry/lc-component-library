@@ -63,16 +63,14 @@ export const ButtonExamples3: FC = () => (
     <ButtonOutline icon={<Icon name="settings" />} iconPlacement="end">
       Outline Button
     </ButtonOutline>
-    <p>
-      Note: Unfortunately, forwarding refs to render components is difficult, so icons are currently only supported in
-      standard buttons right now.
-    </p>
   </div>
 );
 
 export const ButtonExamples4: FC = () => (
   <div className="button-story">
     <ButtonLink
+      icon={<Icon name="settings" />}
+      iconPlacement="end"
       // eslint-disable-next-line jsx-a11y/anchor-has-content
       as={buttonProps => <a {...buttonProps} href="#test" />}
     >
