@@ -21,7 +21,7 @@ jobs:
         with:
           start: 'yarn sb'
           wait-on: 'http://localhost:6007/'
-          wait-on-timeout: 300
+          wait-on-timeout: 480
           install: false
           record: true
         env:
