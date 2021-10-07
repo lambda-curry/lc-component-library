@@ -17,9 +17,10 @@ jobs:
           node-version: '14'
           cache: 'yarn'
       - name: Serve Storybook
+        # 300000 = 5 minutes
         run: |
           yarn global add wait-on
-          yarn sb & wait-on http://localhost:6007/ -t 1000000
+          yarn sb & wait-on http://localhost:6007/ -t 300000 && NEXT_CMD
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
