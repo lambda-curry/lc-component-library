@@ -9,10 +9,6 @@ jobs:
   cypress-docs:
     runs-on: ubuntu-latest
     environment: tests
-    strategy:
-      fail-fast: false
-      matrix:
-        containers: [1, 2, 3, 4, 5]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -20,10 +16,10 @@ jobs:
         with:
           node-version: '14'
           cache: 'yarn'
-      - name: Serve Storybook
-        run: yarn && yarn sb
       - name: Cypress run
         uses: cypress-io/github-action@v2
+        with:
+          start: yarn && yarn sb
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           # Recommended: pass the GitHub token lets this action correctly
