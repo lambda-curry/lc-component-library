@@ -16,14 +16,14 @@ jobs:
         with:
           node-version: '14'
           cache: 'yarn'
-      - name: Serve Storybook
-        # 300000 = 5 minutes
-        run: |
-          yarn
-          yarn global add wait-on
-          yarn sb & wait-on http://localhost:6007/ -t 300000
       - name: Cypress run
         uses: cypress-io/github-action@v2
+        with:
+          start: 'yarn sb'
+          wait-on: 'http://localhost:6007/'
+          wait-on-timeout: 300
+          install: false
+          record: true
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           # Recommended: pass the GitHub token lets this action correctly
