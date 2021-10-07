@@ -2,14 +2,11 @@
   @apply lc-font-sans;
 
   height: 100%;
-  height: fill-available;
-  height: -moz-available;
-  height: -webkit-fill-available;
+  height: stretch;
   width: 100%;
-  width: fill-available;
-  width: -moz-available;
-  width: -webkit-fill-available;
+  width: stretch;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   outline: none;
