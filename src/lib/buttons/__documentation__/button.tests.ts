@@ -5,6 +5,7 @@ describe('buttons', () => {
 
   it('should render a button', () => {
     cy.get('.button-story button:first').should('contain', 'Default Button');
+    cy.screenshot();
   });
 });
 

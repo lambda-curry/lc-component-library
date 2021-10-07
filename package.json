@@ -13,7 +13,6 @@
   "scripts": {
     "esbuild": "rm -rf dist && NODE_ENV=production node ./esbuild.mjs && tsc --emitDeclarationOnly --outDir dist",
     "build": "yarn esbuild",
-    "prepare": "yarn esbuild",
     "clean": "rm -rf ./node_modules && yarn",
     "sb": "yarn storybook",
     "storybook": "start-storybook -s ./static -p 6007",
