@@ -16,13 +16,16 @@ jobs:
         with:
           node-version: '14'
           cache: 'yarn'
+      - name: Serve Storybook
+        # 300000 = 5 minutes
+        run: |
+          yarn
+          yarn build:storybook
+          npx http-server ./storybook-static -a localhost -p 6007
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
           start: 'yarn sb'
-          baseUrl: 'http://localhost:6007'
-          wait-on: 'http://localhost:6007'
-          wait-on-timeout: 300
           install: false
           record: true
         env:
