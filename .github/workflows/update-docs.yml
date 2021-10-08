@@ -8,7 +8,6 @@ on:
 jobs:
   cypress-docs:
     runs-on: ubuntu-latest
-    environment: tests
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -16,7 +15,7 @@ jobs:
         with:
           node-version: '14'
           cache: 'yarn'
-      - name: Serve Storybook
+      - name: Serve Storybooks
         run: |
           yarn
           yarn build:storybook
