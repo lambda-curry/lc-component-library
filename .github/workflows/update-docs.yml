@@ -20,8 +20,9 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           start: 'yarn sb'
-          wait-on: 'http://localhost:6007/'
-          wait-on-timeout: 480
+          baseUrl: 'http://localhost:6007'
+          wait-on: 'http://localhost:6007'
+          wait-on-timeout: 300
           install: false
           record: true
         env:
