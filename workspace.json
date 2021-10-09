@@ -86,7 +86,7 @@
         "test-docs": {
           "executor": "@nrwl/workspace:run-commands",
           "options": {
-            "command": "nx serve-docs ui-components && nx e2e ui-components-e2e"
+            "command": "nx serve-docs ui-components & npx wait-on http://localhost:6007 && nx e2e ui-components-e2e"
           }
         },
         "e2e": {
