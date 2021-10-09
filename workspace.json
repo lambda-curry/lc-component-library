@@ -61,9 +61,10 @@
           }
         },
         "serve-docs": {
-          "executor": "@nrwl/workspace:run-commands",
+          "executor": "@nrwl/web:file-server",
           "options": {
-            "command": "nx build-docs ui-components && npx http-server ./docs -a localhost -p 6007 & npx wait-on http://localhost:6007"
+            "buildTarget": "ui-components:build-docs",
+            "port": "6007"
           }
         }
       }
@@ -86,7 +87,7 @@
         "serve-docs": {
           "executor": "@nrwl/workspace:run-commands",
           "options": {
-            "command": "nx serve-docs ui-components & npx wait-on http://localhost:6007"
+            "command": "nx serve-docs ui-components"
           }
         },
         "e2e": {
