@@ -1,7 +1,15 @@
 {
-  "name": "lc-component-library",
-  "version": "0.0.0",
-  "license": "MIT",
+  "name": "@lambdacurry/component-library",
+  "version": "2.8.3",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "sideEffects": [
+    "./src/lib/charts/BarChart/roundedBarCharts.ts"
+  ],
+  "description": "A React component library created by Lambda Curry.",
+  "author": "Lambda Curry",
+  "license": "ISC",
   "scripts": {
     "clean": "find . -name \"node_modules\" -type d -prune -exec rm -rf '{}' + && yarn"
   },
