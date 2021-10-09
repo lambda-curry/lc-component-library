@@ -1,6 +1,6 @@
 {
   "name": "@lambdacurry/component-library",
-  "version": "2.8.1",
+  "version": "2.8.2-beta.0",
   "description": "A React component library created by Lambda Curry.",
   "author": "Lambda Curry",
   "license": "ISC",
