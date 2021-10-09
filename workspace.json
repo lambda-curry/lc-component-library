@@ -64,7 +64,7 @@
           "executor": "@nrwl/web:file-server",
           "options": {
             "buildTarget": "ui-components:build-docs",
-            "port": "6007"
+            "port": 6007
           }
         }
       }
