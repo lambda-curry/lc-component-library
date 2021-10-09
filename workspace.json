@@ -84,20 +84,13 @@
             "record": true
           }
         },
-        "serve-docs": {
-          "executor": "@nrwl/workspace:run-commands",
-          "options": {
-            "command": "nx serve-docs ui-components"
-          }
-        },
         "e2e": {
           "executor": "@nrwl/cypress:cypress",
           "options": {
             "cypressConfig": "packages/ui-components-e2e/cypress.json",
-            "devServerTarget": "ui-components-e2e:serve-docs",
+            "devServerTarget": "ui-components:serve-docs",
             "tsConfig": "packages/ui-components-e2e/tsconfig.json",
-            "record": true,
-            "exit": true
+            "record": true
           }
         },
         "lint": {
