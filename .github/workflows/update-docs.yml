@@ -16,7 +16,7 @@ jobs:
           node-version: '14'
           cache: 'yarn'
       - name: Test Components
-        run: yarn && npx nx test-docs ui-components-e2e
+        run: yarn && npx nx e2e ui-components-e2e
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

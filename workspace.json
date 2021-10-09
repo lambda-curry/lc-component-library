@@ -83,19 +83,20 @@
             "record": true
           }
         },
-        "test-docs": {
+        "serve-docs": {
           "executor": "@nrwl/workspace:run-commands",
           "options": {
-            "command": "nx serve-docs ui-components & npx wait-on http://localhost:6007 && nx e2e ui-components-e2e"
+            "command": "nx serve-docs ui-components & npx wait-on http://localhost:6007"
           }
         },
         "e2e": {
           "executor": "@nrwl/cypress:cypress",
           "options": {
             "cypressConfig": "packages/ui-components-e2e/cypress.json",
-            "skipServe": true,
+            "devServerTarget": "ui-components-e2e:serve-docs",
             "tsConfig": "packages/ui-components-e2e/tsconfig.json",
-            "record": true
+            "record": true,
+            "exit": true
           }
         },
         "lint": {
