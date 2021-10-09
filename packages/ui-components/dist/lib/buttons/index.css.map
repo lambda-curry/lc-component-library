@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../../../../../../../var/folders/m_/gjk6s3nj5nxgpgyp46dzdj740000gp/T/tmp-41496-cfOnht5RsQEd/ui-components/src/lib/buttons/index.css"],
-  "sourcesContent": ["/* purgecss start ignore */\n\n.lc-button-group .lc-button {\n    margin: 0;\n    border-radius: 0;\n  }\n\n.lc-button-group .lc-button:first-child {\n      border-top-left-radius: 6px;\n      border-bottom-left-radius: 6px;\n    }\n\n.lc-button-group .lc-button:last-child {\n      border-top-right-radius: 6px;\n      border-bottom-right-radius: 6px;\n    }\n\n.lc-button-group .lc-button:not(:first-child):not(:last-child) {\n      border-left-color: rgba(0, 0, 0, 0.25);\n      border-right-color: rgba(0, 0, 0, 0.25);\n    }\n\n.lc-button-group .lc-button:focus {\n      z-index: 1;\n    }\n\n/* purgecss end ignore */\n"],
-  "mappings": "AAEA,4BAFA,yBAOA,wCACM,2BACA,8BAGN,uCACM,4BACA,+BAGN,+DACM,4BACA,6BAGN,kCACM",
-  "names": []
-}

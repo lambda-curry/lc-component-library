@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/assets/icons/chevronRight.svg"],
-  "sourcesContent": ["import * as React from \"react\";\nexport function ReactComponent(props) {\n  return <svg width={24} height={24} viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" {...props}><path fillRule=\"evenodd\" clipRule=\"evenodd\" d=\"M8.43934 17.5607C7.85355 16.9749 7.85355 16.0251 8.43934 15.4393L12.3787 11.5L8.43934 7.5607C7.85355 6.9749 7.85355 6.0251 8.43934 5.4393C9.02513 4.8536 9.97487 4.8536 10.5607 5.4393L15.5607 10.4393C16.1464 11.0251 16.1464 11.9749 15.5607 12.5607L10.5607 17.5607C9.97487 18.1464 9.02513 18.1464 8.43934 17.5607Z\" fill=\"black\" /></svg>;\n}"],
-  "mappings": "yVAAA,wBACO,WAAwB,EAAO,CACpC,MAAO,iBAAC,MAAD,GAAK,MAAO,GAAI,OAAQ,GAAI,QAAQ,YAAY,KAAK,OAAO,MAAM,8BAAiC,GAAO,gBAAC,OAAD,CAAM,SAAS,UAAU,SAAS,UAAU,EAAE,0TAA0T,KAAK",
-  "names": []
-}

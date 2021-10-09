@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/lib/tooltips/index.ts"],
-  "sourcesContent": ["export * from './Tooltip';\n"],
-  "mappings": "AAAA",
-  "names": []
-}

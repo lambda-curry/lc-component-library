@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/lib/charts/index.ts"],
-  "sourcesContent": ["import { ChartFontOptions, ChartOptions } from 'chart.js';\nimport ChartDataLabels from 'chartjs-plugin-datalabels';\nimport { merge } from 'lodash';\nimport { defaults } from 'react-chartjs-2';\nimport { getCssVar } from '../util/colors';\n\nexport * from './PieChart/PieChart';\nexport * from './BarChart/BarChart';\nexport * from './LineChart/LineChart';\nexport * from './TimeChart/TimeChart';\n\n// Note: this overrides the default global chart.js options\nconst chartDefaultOverrides: ChartOptions & ChartFontOptions = {\n  legend: { position: 'bottom' },\n  plugins: [ChartDataLabels],\n  defaultFontSize: 14,\n  defaultFontFamily: getCssVar('lc-font-family-sans')\n};\nmerge(defaults, {\n  global: chartDefaultOverrides\n});\n"],
-  "mappings": "AACA,yCACA,+BACA,2CACA,2CAEA,iCACA,iCACA,mCACA,mCAGA,KAAM,GAAyD,CAC7D,OAAQ,CAAE,SAAU,UACpB,QAAS,CAAC,GACV,gBAAiB,GACjB,kBAAmB,EAAU,wBAE/B,EAAM,EAAU,CACd,OAAQ",
-  "names": []
-}

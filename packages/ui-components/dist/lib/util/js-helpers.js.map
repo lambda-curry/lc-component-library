@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/lib/util/js-helpers.ts"],
-  "sourcesContent": ["export const isNullOrUndefined: (a: any) => boolean = a => a == null;\n\nexport const lowercaseString: (value: string | number) => string = value => `${value}`.toLowerCase();\n\nexport const isBrowser = () => typeof window !== 'undefined';\n"],
-  "mappings": "AAAO,KAAM,GAAyC,GAAK,GAAK,KAEnD,EAAsD,GAAS,GAAG,IAAQ,cAE1E,EAAY,IAAM,MAAO,SAAW",
-  "names": []
-}

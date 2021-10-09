@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/lib/modal/ModalHeader.tsx"],
-  "sourcesContent": ["import React, { FC, ReactNode, HTMLAttributes } from 'react';\nimport classNames from 'classnames';\n\nexport interface ModalHeaderProps extends Omit<HTMLAttributes<HTMLElement>, 'title'> {\n  title: ReactNode;\n}\n\nexport const ModalHeader: FC<ModalHeaderProps> = ({ title, className, children, ...props }) => (\n  <header className={classNames('lc-modal-header', className)} {...props}>\n    <h2 className=\"lc-modal-title\">{title}</h2>\n    <span className=\"lc-modal-flex\" />\n    <div>{children}</div>\n  </header>\n);\n"],
-  "mappings": "2fAAA,qBACA,0BAMO,KAAM,GAAoC,AAAC,GAA0C,CAA1C,QAAE,SAAO,YAAW,YAApB,EAAiC,IAAjC,EAAiC,CAA/B,QAAO,YAAW,aACpE,uBAAC,SAAD,GAAQ,UAAW,EAAW,kBAAmB,IAAgB,GAC/D,gBAAC,KAAD,CAAI,UAAU,kBAAkB,GAChC,gBAAC,OAAD,CAAM,UAAU,kBAChB,gBAAC,MAAD,KAAM",
-  "names": []
-}

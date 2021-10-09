@@ -1,6 +1,6 @@
 {
   "extends": "@nrwl/workspace/presets/npm.json",
-  "npmScope": "testworkspace",
+  "npmScope": "lambdacurry",
   "affected": {
     "defaultBase": "master"
   },
@@ -8,14 +8,7 @@
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "build-docs",
-          "lint",
-          "test",
-          "e2e",
-          "build-storybook"
-        ]
+        "cacheableOperations": ["build", "build-docs", "lint", "test", "e2e"]
       }
     }
   },

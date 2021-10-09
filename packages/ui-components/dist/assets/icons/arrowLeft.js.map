@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/assets/icons/arrowLeft.svg"],
-  "sourcesContent": ["import * as React from \"react\";\nexport function ReactComponent(props) {\n  return <svg width={24} height={24} viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" {...props}><path d=\"M18.5825 10.5925H7.4125L12.2925 5.7125C12.6825 5.3225 12.6825 4.6825 12.2925 4.2925C11.9025 3.9025 11.2725 3.9025 10.8825 4.2925L4.2925 10.8825C3.9025 11.2725 3.9025 11.9025 4.2925 12.2925L10.8825 18.8825C11.2725 19.2725 11.9025 19.2725 12.2925 18.8825C12.6825 18.4925 12.6825 17.8625 12.2925 17.4725L7.4125 12.5925H18.5825C19.1325 12.5925 19.5825 12.1425 19.5825 11.5925C19.5825 11.0425 19.1325 10.5925 18.5825 10.5925Z\" fill=\"black\" /></svg>;\n}"],
-  "mappings": "yVAAA,wBACO,WAAwB,EAAO,CACpC,MAAO,iBAAC,MAAD,GAAK,MAAO,GAAI,OAAQ,GAAI,QAAQ,YAAY,KAAK,OAAO,MAAM,8BAAiC,GAAO,gBAAC,OAAD,CAAM,EAAE,uaAAua,KAAK",
-  "names": []
-}

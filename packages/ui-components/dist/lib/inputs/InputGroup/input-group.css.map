@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../../../../../../../../var/folders/m_/gjk6s3nj5nxgpgyp46dzdj740000gp/T/tmp-41496-cfOnht5RsQEd/ui-components/src/lib/inputs/InputGroup/input-group.css"],
-  "sourcesContent": ["/* purgecss start ignore */\n\n.lc-input-group {\n  display: flex;\n  flex-direction: row;\n  flex-wrap: nowrap;\n  align-items: flex-start;\n  margin: -12px;\n  margin-bottom: 12px;\n}\n\n.lc-input-group .lc-input-wrapper, .lc-input-group .lc-button {\n    margin: 12px;\n  }\n\n.lc-input-group .lc-input-wrapper, .lc-input-group .lc-input-select {\n    flex: 1 1 0%;\n  }\n\n.lc-input-group .lc-input {\n    margin: 0;\n  }\n\n.lc-input-group .lc-button {\n    flex: none;\n  }\n\n/* purgecss end ignore */\n"],
-  "mappings": "AAEA,gBACE,aACA,mBACA,iBACA,uBANF,wBAWA,6DAXA,YAeA,mEACI,YAGJ,0BAnBA,SAuBA,2BACI",
-  "names": []
-}

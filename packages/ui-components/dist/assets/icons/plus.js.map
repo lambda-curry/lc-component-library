@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/assets/icons/plus.svg"],
-  "sourcesContent": ["import * as React from \"react\";\nexport function ReactComponent(props) {\n  return <svg width={24} height={24} viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" {...props}><path d=\"M19.7143 13.2857H13.2857V19.7143C13.2857 20.4214 12.7071 21 12 21C11.2929 21 10.7143 20.4214 10.7143 19.7143V13.2857H4.28571C3.57857 13.2857 3 12.7071 3 12C3 11.2929 3.57857 10.7143 4.28571 10.7143H10.7143V4.28571C10.7143 3.57857 11.2929 3 12 3C12.7071 3 13.2857 3.57857 13.2857 4.28571V10.7143H19.7143C20.4214 10.7143 21 11.2929 21 12C21 12.7071 20.4214 13.2857 19.7143 13.2857Z\" fill=\"black\" /></svg>;\n}"],
-  "mappings": "yVAAA,wBACO,WAAwB,EAAO,CACpC,MAAO,iBAAC,MAAD,GAAK,MAAO,GAAI,OAAQ,GAAI,QAAQ,YAAY,KAAK,OAAO,MAAM,8BAAiC,GAAO,gBAAC,OAAD,CAAM,EAAE,8XAA8X,KAAK",
-  "names": []
-}

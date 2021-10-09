@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../../../../../../../../var/folders/m_/gjk6s3nj5nxgpgyp46dzdj740000gp/T/tmp-41496-cfOnht5RsQEd/ui-components/src/lib/charts/PieChart/pie-chart-legend.css"],
-  "sourcesContent": ["/* purgecss start ignore */\n\n.lc-pie-chart-legend {\n  font-size: 14px;\n  line-height: 1.5;\n  padding: 32px 0;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.lc-pie-chart-legend-label-name {\n      font-weight: bold;\n    }\n\n.lc-pie-chart-legend-label-name::after {\n        content: ':';\n      }\n\n.lc-pie-chart-legend-label-percentage::before {\n        content: '(';\n      }\n\n.lc-pie-chart-legend-label-percentage::after {\n        content: ')';\n      }\n\n.lc-pie-chart-legend-item {\n    display: inline-flex;\n    align-items: center;\n    margin-right: 24px;\n  }\n\n.lc-pie-chart-legend-item:last-child {\n      margin-right: 0;\n    }\n\n.lc-pie-chart-legend-color {\n    display: inline-block;\n    border-radius: 100%;\n    height: 11px;\n    width: 11px;\n    margin-right: 8px;\n  }\n\n/* purgecss end ignore */\n"],
-  "mappings": "AAEA,qBACE,eACA,gBAJF,eAME,aACA,mBACA,uBAGF,gCACM,iBAGN,sCACQ,YAGR,6CACQ,YAGR,4CACQ,YAGR,0BACI,oBACA,mBACA,kBAGJ,qCACM,eAGN,2BACI,qBAtCJ,mBAwCI,YACA,WACA",
-  "names": []
-}

@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/lib/drawer/DrawerProvider.tsx"],
-  "sourcesContent": ["import React, { FC, createContext, Context, useContext, useReducer } from 'react';\nimport { drawerActions, DrawerActions, DrawerReducer } from './drawer.helpers';\n\nexport const DrawerStateContext: Context<any> = createContext({});\n\nexport const DrawerActionContext: Context<DrawerActions> = createContext({} as DrawerActions);\n\nexport const useDrawer = () => {\n  const drawerState = useContext(DrawerStateContext);\n  const drawerActions = useContext(DrawerActionContext);\n\n  return { drawerState, drawerActions };\n};\n\nexport const DrawerProvider: FC<any> = ({ children }) => {\n  const [state, dispatch] = useReducer(DrawerReducer, { data: {} });\n\n  return (\n    <DrawerStateContext.Provider value={state}>\n      <DrawerActionContext.Provider value={drawerActions(state, dispatch)}>{children}</DrawerActionContext.Provider>\n    </DrawerStateContext.Provider>\n  );\n};\n"],
-  "mappings": "AAAA,yEACA,oEAEO,KAAM,GAAmC,EAAc,IAEjD,EAA8C,EAAc,IAE5D,EAAY,IAAM,CAC7B,KAAM,GAAc,EAAW,GACzB,EAAgB,EAAW,GAEjC,MAAO,CAAE,cAAa,kBAGX,EAA0B,CAAC,CAAE,cAAe,CACvD,KAAM,CAAC,EAAO,GAAY,EAAW,EAAe,CAAE,KAAM,KAE5D,MACE,iBAAC,EAAmB,SAApB,CAA6B,MAAO,GAClC,gBAAC,EAAoB,SAArB,CAA8B,MAAO,EAAc,EAAO,IAAY",
-  "names": []
-}

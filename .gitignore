@@ -9,12 +9,12 @@
 /coverage
 
 # production
-/build
-/dist
-/docs
-/storybook-static
-/umd
-/cjs
+build
+dist
+docs
+storybook-static
+umd
+cjs
 
 # random
 bundle.css

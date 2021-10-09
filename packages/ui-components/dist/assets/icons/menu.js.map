@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/assets/icons/menu.svg"],
-  "sourcesContent": ["import * as React from \"react\";\nexport function ReactComponent(props) {\n  return <svg width={24} height={24} viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" {...props}><path fillRule=\"evenodd\" clipRule=\"evenodd\" d=\"M2.29999 11.5C2.29999 11.1134 2.61339 10.8 2.99999 10.8H21C21.3866 10.8 21.7 11.1134 21.7 11.5C21.7 11.8866 21.3866 12.2 21 12.2H2.99999C2.61339 12.2 2.29999 11.8866 2.29999 11.5Z\" fill=\"black\" /><path fillRule=\"evenodd\" clipRule=\"evenodd\" d=\"M2.29999 5.5C2.29999 5.1134 2.61339 4.8 2.99999 4.8H21C21.3866 4.8 21.7 5.1134 21.7 5.5C21.7 5.8866 21.3866 6.2 21 6.2H2.99999C2.61339 6.2 2.29999 5.8866 2.29999 5.5Z\" fill=\"black\" /><path fillRule=\"evenodd\" clipRule=\"evenodd\" d=\"M10.3 17.5C10.3 17.1134 10.6134 16.8 11 16.8H21C21.3866 16.8 21.7 17.1134 21.7 17.5C21.7 17.8866 21.3866 18.2 21 18.2H11C10.6134 18.2 10.3 17.8866 10.3 17.5Z\" fill=\"black\" /></svg>;\n}"],
-  "mappings": "yVAAA,wBACO,WAAwB,EAAO,CACpC,MAAO,iBAAC,MAAD,GAAK,MAAO,GAAI,OAAQ,GAAI,QAAQ,YAAY,KAAK,OAAO,MAAM,8BAAiC,GAAO,gBAAC,OAAD,CAAM,SAAS,UAAU,SAAS,UAAU,EAAE,sLAAsL,KAAK,UAAU,gBAAC,OAAD,CAAM,SAAS,UAAU,SAAS,UAAU,EAAE,yKAAyK,KAAK,UAAU,gBAAC,OAAD,CAAM,SAAS,UAAU,SAAS,UAAU,EAAE,gKAAgK,KAAK",
-  "names": []
-}

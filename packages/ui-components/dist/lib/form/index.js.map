@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/lib/form/index.ts"],
-  "sourcesContent": ["export * from './Form';\n"],
-  "mappings": "AAAA",
-  "names": []
-}

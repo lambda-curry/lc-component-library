@@ -59,6 +59,13 @@
               "quiet": true
             }
           }
+        },
+        "serve-docs": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "nx build-docs ui-components && npx http-server ./docs -a localhost -p 6007 & npx wait-on http://localhost:6007",
+            "cwd": "packages/ui-components"
+          }
         }
       }
     },

@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../../../../../../../var/folders/m_/gjk6s3nj5nxgpgyp46dzdj740000gp/T/tmp-41496-cfOnht5RsQEd/ui-components/src/lib/multiline-input/multiline-input.css"],
-  "sourcesContent": ["/* purgecss start ignore */\n\n.lc-multiline-input {\n  position: relative;\n}\n\n.lc-multiline-input-character-limit {\n    --tw-text-opacity: 1;\n    color: rgba(var(--lc-color-gray), var(--tw-text-opacity));\n    z-index: 2;\n    position: absolute;\n    right: 44px;\n    bottom: 16px;\n    font-size: 10px;\n    pointer-events: none;\n  }\n\n.lc-multiline-input-resize {\n    --tw-text-opacity: 1;\n    color: rgba(var(--lc-color-gray), var(--tw-text-opacity));\n    position: absolute;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    right: 12px;\n    bottom: 12px;\n    width: 24px;\n    height: 24px;\n    background: #fff;\n    pointer-events: none;\n    border-radius: 7px;\n  }\n\n/* purgecss end ignore */\n"],
-  "mappings": "AAEA,oBACE,kBAGF,oCACI,qBACA,wDACA,UACA,kBACA,WACA,YACA,eACA,oBAGJ,2BACI,qBACA,wDACA,kBACA,aACA,mBACA,uBACA,WACA,YACA,WACA,YACA,gBACA,oBA7BJ",
-  "names": []
-}

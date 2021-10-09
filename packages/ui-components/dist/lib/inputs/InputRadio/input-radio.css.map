@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../../../../../../../../var/folders/m_/gjk6s3nj5nxgpgyp46dzdj740000gp/T/tmp-41496-cfOnht5RsQEd/ui-components/src/lib/inputs/InputRadio/input-radio.css"],
-  "sourcesContent": ["/* purgecss start ignore */\n\n.lc-input-radio-group .MuiFormLabel-root {\n      color: inherit;\n      font-family: inherit;\n    }\n\n.lc-input-radio-group .MuiFormLabel-root.Mui-focused {\n        color: inherit;\n      }\n\n.lc-input-radio .MuiRadio-colorPrimary.Mui-checked {\n    color: rgba(var(--lc-color-primary));\n  }\n\n/* purgecss end ignore */\n"],
-  "mappings": "AAEA,yCACM,cACA,oBAGN,qDACQ,cAGR,mDACI",
-  "names": []
-}

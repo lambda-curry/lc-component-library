@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/assets/icons/successMessage.svg"],
-  "sourcesContent": ["import * as React from \"react\";\nexport function ReactComponent(props) {\n  return <svg width={24} height={24} viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" {...props}><path d=\"M18.05 20.29C17.66 20.68 17.03 20.68 16.64 20.29L14.52 18.17C14.13 17.78 14.13 17.15 14.52 16.76C14.91 16.37 15.54 16.37 15.93 16.76L17.34 18.17L20.88 14.63C21.27 14.24 21.9 14.24 22.29 14.63C22.68 15.02 22.68 15.65 22.29 16.04L18.05 20.29ZM12.08 19H4C2.9 19 2 18.1 2 17V5C2 3.9 2.9 3 4 3H20C21.1 3 22 3.9 22 5V11.68C21.09 11.25 20.08 11 19 11C15.13 11 12 14.13 12 18C12 18.34 12.03 18.67 12.08 19ZM11.47 11.67C11.79 11.87 12.21 11.87 12.53 11.67L19.6 7.25C19.85 7.09 20 6.82 20 6.53C20 5.86 19.27 5.46 18.7 5.81L12 10L5.3 5.81C4.73 5.46 4 5.86 4 6.53C4 6.82 4.15 7.09 4.4 7.25L11.47 11.67Z\" fill=\"black\" /></svg>;\n}"],
-  "mappings": "yVAAA,wBACO,WAAwB,EAAO,CACpC,MAAO,iBAAC,MAAD,GAAK,MAAO,GAAI,OAAQ,GAAI,QAAQ,YAAY,KAAK,OAAO,MAAM,8BAAiC,GAAO,gBAAC,OAAD,CAAM,EAAE,ilBAAilB,KAAK",
-  "names": []
-}

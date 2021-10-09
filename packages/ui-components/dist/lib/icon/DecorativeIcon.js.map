@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/lib/icon/DecorativeIcon.tsx"],
-  "sourcesContent": ["import React, { FC } from 'react';\nimport classNames from 'classnames';\nimport { Icon, DefaultIconNames } from './Icon';\nimport { getColorVar, getCssVar, isRgbColor } from '../util/colors';\n\nexport interface DecorativeIconProps {\n  className?: string;\n  color: string;\n  name: DefaultIconNames | string;\n}\n\nexport const DecorativeIcon: FC<DecorativeIconProps> = ({ className, color, name, ...props }) => {\n  const customColor = getColorVar(color) || getCssVar(color) || color || '';\n  const backgroundColor = customColor && isRgbColor(customColor) ? `${customColor}` : customColor;\n\n  return (\n    <div\n      className={classNames('lc-icon-decorative', className)}\n      style={customColor ? { backgroundColor } : undefined}\n      {...props}\n    >\n      <Icon name={name} />\n    </div>\n  );\n};\n"],
-  "mappings": "2fAAA,qBACA,0BACA,8BACA,4EAQO,KAAM,GAA0C,AAAC,GAAyC,CAAzC,QAAE,aAAW,QAAO,QAApB,EAA6B,IAA7B,EAA6B,CAA3B,YAAW,QAAO,SAC1E,KAAM,GAAc,EAAY,IAAU,EAAU,IAAU,GAAS,GACjE,EAAkB,GAAe,EAAW,GAAe,GAAG,IAAgB,EAEpF,MACE,iBAAC,MAAD,GACE,UAAW,EAAW,qBAAsB,GAC5C,MAAO,EAAc,CAAE,mBAAoB,QACvC,GAEJ,gBAAC,EAAD,CAAM,KAAM",
-  "names": []
-}

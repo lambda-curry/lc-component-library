@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/lib/modal/index.ts"],
-  "sourcesContent": ["export * from './Modal';\nexport * from './ModalActions';\nexport * from './ModalHeader';\n"],
-  "mappings": "AAAA,qBACA,4BACA",
-  "names": []
-}

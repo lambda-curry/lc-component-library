@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/lib/buttons/ButtonUnstyled.tsx"],
-  "sourcesContent": ["import React, { FC, forwardRef } from 'react';\nimport classNames from 'classnames';\nimport { ButtonBase, ButtonProps } from './ButtonBase';\n\nexport const ButtonUnstyled: FC<ButtonProps> = forwardRef(({ className, ...props }, ref) => (\n  <ButtonBase\n    {...props}\n    ref={ref}\n    className={classNames(\n      [\n        `lc-button-unstyled`,\n        `lc-bg-transparent`,\n        `lc-border-none`,\n        `lc-padding-0`,\n        `focus:lc-outline-none`,\n        `focus-visible:lc-outline-black`,\n        `active:lc-scale-100`\n      ],\n      className\n    )}\n  />\n));\n"],
-  "mappings": "+kBAAA,sCACA,0BACA,0CAEO,KAAM,GAAkC,EAAW,CAAC,EAAyB,IAAK,CAA9B,QAAE,cAAF,EAAgB,IAAhB,EAAgB,CAAd,cAC3D,uBAAC,EAAD,OACM,GADN,CAEE,IAAK,EACL,UAAW,EACT,CACE,qBACA,oBACA,iBACA,eACA,wBACA,iCACA,uBAEF",
-  "names": []
-}

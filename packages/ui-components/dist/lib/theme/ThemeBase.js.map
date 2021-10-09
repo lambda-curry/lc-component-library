@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/lib/theme/ThemeBase.tsx"],
-  "sourcesContent": ["import React, { FC, ReactNode } from 'react';\nimport classNames from 'classnames';\n\nimport '../../styles/index.css';\n\nexport interface ThemeBaseProps {\n  as?: keyof JSX.IntrinsicElements;\n  children: ReactNode;\n  className?: string;\n}\n\nexport const ThemeBase: FC<ThemeBaseProps> = ({ as: T = 'div', className, ...props }) => (\n  <T className={classNames('lc-theme-base', className)} {...props} />\n);\n"],
-  "mappings": "2fAAA,qBACA,0BAEA,+BAQO,KAAM,GAAgC,AAAC,GAAwC,CAAxC,QAAE,IAAI,EAAI,MAAO,aAAjB,EAA+B,IAA/B,EAA+B,CAA7B,KAAe,cAC7D,uBAAC,EAAD,GAAG,UAAW,EAAW,gBAAiB,IAAgB",
-  "names": []
-}

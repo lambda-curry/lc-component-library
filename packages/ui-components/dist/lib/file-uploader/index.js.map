@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/lib/file-uploader/index.ts"],
-  "sourcesContent": ["export * from './FileUploader';\nexport * from './FileUploaderWithImageCropper';\nexport * from './FileUploader.helpers';\nexport * from './FileUploader.types';\n"],
-  "mappings": "AAAA,4BACA,4CACA,oCACA",
-  "names": []
-}

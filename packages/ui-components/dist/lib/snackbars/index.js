@@ -1,2 +1,0 @@
-import{SnackbarAction as n}from"./SnackbarAction";import{SnackbarActionPrimary as c}from"./SnackbarActionPrimary";import{SnackbarProvider as o}from"./SnackbarProvider";import{useSnackbar as e}from"notistack";const p={Action:n,ActionPrimary:c,Provider:o},d=()=>{const{enqueueSnackbar:a,closeSnackbar:r}=e();return{addSnackbar:a,removeSnackbar:r}};export{p as Snackbar,d as useSnackbar};
-//# sourceMappingURL=index.js.map

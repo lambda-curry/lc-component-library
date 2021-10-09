@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/lib/pagination/index.ts"],
-  "sourcesContent": ["export * from './Pagination';\nexport * from './PaginationPrimary';\nexport * from './PaginationAccent';\nexport * from './PaginationOutline';\nexport * from './PaginationOutlinePrimary';\nexport * from './PaginationOutlineAccent';\n"],
-  "mappings": "AAAA,0BACA,iCACA,gCACA,iCACA,wCACA",
-  "names": []
-}

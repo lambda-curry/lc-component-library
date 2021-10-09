@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/lib/buttons/Button.tsx"],
-  "sourcesContent": ["import React, { FC, forwardRef } from 'react';\nimport classNames from 'classnames';\nimport { ButtonProps, ButtonStyled } from '../buttons';\n\nexport const Button: FC<ButtonProps> = forwardRef(({ className, ...props }, ref) => (\n  <ButtonStyled\n    {...props}\n    ref={ref}\n    className={classNames(\n      [\n        `lc-button-default`,\n        `lc-text-gray-darker`,\n        `lc-bg-gray-lighter`,\n        `lc-border-gray-lighter`,\n        `hover:lc-text-black`,\n        `hover:lc-bg-gray-light`,\n        `hover:lc-border-gray-light`,\n        `focus-visible:lc-ring-gray-lighter`\n      ],\n      className\n    )}\n  />\n));\n"],
-  "mappings": "+kBAAA,sCACA,0BACA,0CAEO,KAAM,GAA0B,EAAW,CAAC,EAAyB,IAAK,CAA9B,QAAE,cAAF,EAAgB,IAAhB,EAAgB,CAAd,cACnD,uBAAC,EAAD,OACM,GADN,CAEE,IAAK,EACL,UAAW,EACT,CACE,oBACA,sBACA,qBACA,yBACA,sBACA,yBACA,6BACA,sCAEF",
-  "names": []
-}

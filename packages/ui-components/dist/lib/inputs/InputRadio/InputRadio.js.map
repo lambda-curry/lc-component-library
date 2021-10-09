@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../src/lib/inputs/InputRadio/InputRadio.tsx"],
-  "sourcesContent": ["import React, { FC } from 'react';\nimport classNames from 'classnames';\nimport { FormikProps } from 'formik';\nimport { FormControlLabel, FormControlLabelProps, Radio, RadioProps } from '@material-ui/core';\nimport './input-radio.css';\n\nexport interface InputRadioProps extends RadioProps {\n  label?: string;\n  labelPlacement?: FormControlLabelProps['labelPlacement'];\n  formikProps?: FormikProps<any>;\n}\n\nexport const InputRadio: FC<InputRadioProps> = ({\n  className,\n  color = 'primary',\n  label,\n  labelPlacement,\n  value,\n  ...props\n}) => {\n  return (\n    <FormControlLabel\n      control={<Radio {...props} color={color} />}\n      className={classNames('lc-input lc-input-radio', className)}\n      label={label}\n      labelPlacement={labelPlacement}\n      value={value}\n    />\n  );\n};\n"],
-  "mappings": "+kBAAA,qBACA,0BAEA,gEACA,0BAQO,KAAM,GAAkC,AAAC,GAO1C,CAP0C,QAC9C,aACA,QAAQ,UACR,QACA,iBACA,SAL8C,EAM3C,IAN2C,EAM3C,CALH,YACA,QACA,QACA,iBACA,UAGA,MACE,iBAAC,EAAD,CACE,QAAS,gBAAC,EAAD,OAAW,GAAX,CAAkB,MAAO,KAClC,UAAW,EAAW,0BAA2B,GACjD,MAAO,EACP,eAAgB,EAChB,MAAO",
-  "names": []
-}
