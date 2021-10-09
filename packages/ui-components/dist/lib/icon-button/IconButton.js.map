@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/lib/icon-button/IconButton.tsx"],
+  "sourcesContent": ["import React, { FC, forwardRef } from 'react';\nimport classNames from 'classnames';\nimport { Icon, IconNames } from '../icon/Icon';\nimport { ButtonProps } from '../buttons/ButtonBase';\nimport { ButtonStyled } from '../buttons/ButtonStyled';\nimport './icon-button.css';\n\nexport interface IconButtonProps extends ButtonProps {\n  icon: IconNames;\n}\n\nexport const IconButton: FC<IconButtonProps> = forwardRef(({ className, icon, ...props }, ref) => (\n  <ButtonStyled\n    {...props}\n    className={classNames([`lc-icon-button`, `focus-visible:lc-ring-gray-lighter`], className)}\n    ref={ref}\n  >\n    <Icon name={icon} />\n  </ButtonStyled>\n));\n"],
+  "mappings": "+kBAAA,sCACA,0BACA,oCAEA,uDACA,0BAMO,KAAM,GAAkC,EAAW,CAAC,EAA+B,IAAK,CAApC,QAAE,aAAW,QAAb,EAAsB,IAAtB,EAAsB,CAApB,YAAW,SACtE,uBAAC,EAAD,OACM,GADN,CAEE,UAAW,EAAW,CAAC,iBAAkB,sCAAuC,GAChF,IAAK,IAEL,gBAAC,EAAD,CAAM,KAAM",
+  "names": []
+}

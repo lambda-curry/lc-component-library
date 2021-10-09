@@ -1,141 +1,94 @@
-# The Lambda Curry Component Library
 
-## Installing the Component Library
 
-```sh
-yarn add @lambdacurry/component-library
-```
+# Testworkspace
 
-### Notes about installation and usage
+This project was generated using [Nx](https://nx.dev).
 
-- If using TypeScript, you'll want to install the `@types` listed in our peer-dependencies.
+<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
 
-- To get the necessary base styles you'll want to import the `index.css` file.
+🔎 **Smart, Extensible Build Framework**
 
-  JavaScript:
+## Adding capabilities to your workspace
 
-  ```js
-  import '@lambdacurry/component-library/dist/styles/index.css';
-  ```
+Nx supports many plugins which add capabilities for developing different types of applications and different tools.
 
-  CSS:
+These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
 
-  ```css
-  @import '~@lambdacurry/component-library/dist/styles/index.css';
-  ```
+Below are our core plugins:
 
-- Some SSR (Gatsby) sites do not load the component styles for some reason, so you'll want to use the CSS `all.css` file (instead of the `index.css` file).
-  JavaScript:
+- [React](https://reactjs.org)
+  - `npm install --save-dev @nrwl/react`
+- Web (no framework frontends)
+  - `npm install --save-dev @nrwl/web`
+- [Angular](https://angular.io)
+  - `npm install --save-dev @nrwl/angular`
+- [Nest](https://nestjs.com)
+  - `npm install --save-dev @nrwl/nest`
+- [Express](https://expressjs.com)
+  - `npm install --save-dev @nrwl/express`
+- [Node](https://nodejs.org)
+  - `npm install --save-dev @nrwl/node`
 
-  ```js
-  import '@lambdacurry/component-library/dist/all.css';
-  ```
+There are also many [community plugins](https://nx.dev/community) you could add.
 
-  CSS:
+## Generate an application
 
-  ```css
-  @import '~@lambdacurry/component-library/dist/all.css';
-  ```
+Run `nx g @nrwl/react:app my-app` to generate an application.
 
-## Theming
+> You can use any of the plugins above to generate applications as well.
 
-The component library uses CSS custom properties to handle theming. To make this work with Tailwind's `opacity` utilities, the values of your theme variables must be in RGB format. Our configuration handles wrapping the values in the `rgba()` function, so you only need to provide the comma-separate RGB values. For example to override the `black` color variable, you would do it like this:
+When using Nx, you can create multiple applications and libraries in the same workspace.
 
-```css
-.my-theme-root {
-  --lc-color-black: 40, 45, 48; /* This is equivalent to the hex value #282D30 */
-}
-```
+## Generate a library
 
-Here is the full list of CSS custom properties that we currently provide for theming (along with their default values):
+Run `nx g @nrwl/react:lib my-lib` to generate a library.
 
-```css
-:root {
-  --lc-color-black: 0, 0, 0;
-  --lc-color-white: 255, 255, 255;
+> You can also use any of the plugins above to generate libraries as well.
 
-  --lc-color-gray-lightest: 245, 246, 250;
-  --lc-color-gray-lighter: 226, 226, 226;
-  --lc-color-gray-light: 189, 189, 189;
-  --lc-color-gray: 160, 165, 186;
-  --lc-color-gray-dark: 112, 112, 112;
-  --lc-color-gray-darker: 64, 64, 64;
+Libraries are shareable across libraries and applications. They can be imported from `@testworkspace/mylib`.
 
-  --lc-color-primary: 49, 130, 206;
-  --lc-color-primary-dark: 44, 82, 130;
+## Development server
 
-  --lc-color-accent: 237, 100, 166;
-  --lc-color-accent-dark: 184, 50, 128;
+Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
 
-  --lc-color-success: 72, 187, 120;
-  --lc-color-success-dark: 47, 133, 90;
+## Code scaffolding
 
-  --lc-color-warning: 237, 137, 54;
-  --lc-color-warning-dark: 221, 107, 32;
+Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
 
-  --lc-color-danger: 229, 62, 62;
-  --lc-color-danger-dark: 197, 48, 48;
+## Build
 
-  --lc-color-active: 91, 208, 103;
-}
-```
+Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Documentation
+## Running unit tests
 
-To view the documentation for the component library go to https://component-library.lambdacurry.dev/. (The documentation automatically deploys when new updates are merged to the `master` branch.)
+Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
 
-## How to deploy a beta version
+Run `nx affected:test` to execute the unit tests affected by a change.
 
-For internal Lambda Curry organization people, there is a document on this [here](https://lambdacurry.atlassian.net/wiki/spaces/LC/pages/1006272513/Publishing+a+beta+NPM+Package).
+## Running end-to-end tests
 
-## ESbuild
+Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
 
-We're utilizing esbuild for the builds: https://esbuild.github.io/
+Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
 
-A few things to note:
+## Understand your workspace
 
-- Currently the `postcss.config.js` is using a new format (utilized by storybook), so we are replicating the config within `esbuild.msj`. Updates for PostCSS should be done in both places for now.
-- We copied the source code for the esbuild PostCSS and SVGR plugins. We are using them within our project (`esbuild.postcss.js` and `esbuild.fileImport.js`). In order to get SVGs (and other image assets) working, we convert them all to javascript files with SVGR, but the imports in the compiled JavaScript files were still expecting `.svg`, so `esbuild.fileImport.js` is a custom plugin that rewrites those imports to their expected `.js` file.
+Run `nx dep-graph` to see a diagram of the dependencies of your projects.
 
-## TypeScript
+## Further help
 
-The `tsconfig.json` is set up to interpret `dom` and `esnext` types, as well as `react` for `jsx`. Adjust according to your needs.
+Visit the [Nx Documentation](https://nx.dev) to learn more.
 
-## Storybook
 
-Run inside another terminal:
 
-```bash
-yarn storybook
-```
+## ☁ Nx Cloud
 
-or shorthand
+### Distributed Computation Caching & Distributed Task Execution
 
-```bash
-yarn sb
-```
+<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
 
-This loads the stories from `./stories`.
+Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
 
-> NOTE: Stories should reference the components as if using the library, similar to the example playground. This means importing from the root project directory. This has been aliased in the tsconfig and the storybook webpack config as a helper.
+Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
 
-## Configuration
-
-Code quality is set up for you with `prettier`, `husky`, and `lint-staged`. Adjust the respective fields in `package.json` accordingly.
-(we are currently not utilizing these, except for prettier)
-
-## Building
-
-To do a one-off build, use `yarn build`.
-
-## Testing
-
-To run tests, use `yarn test`. (Tests are a good idea, we should add them sometime.)
-
-### Jest
-
-Jest tests are set up to run with `yarn test`.
-
-### React Testing Library
-
-We do not set up `react-testing-library` for you yet, we welcome contributions and documentation on this.
+Visit [Nx Cloud](https://nx.app/) to learn more.

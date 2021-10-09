@@ -1,0 +1,59 @@
+@import '../../../node_modules/react-quill/dist/quill.snow.css';
+
+.wysiwyg {
+  position: relative;
+
+  &-character-limit {
+    @apply lc-text-gray;
+    z-index: 2;
+    position: absolute;
+    right: 44px;
+    bottom: 16px;
+    font-size: 10px;
+    pointer-events: none;
+  }
+
+  &-resize {
+    @apply lc-text-gray;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 12px;
+    bottom: 12px;
+    width: 24px;
+    height: 24px;
+    background: #fff;
+    pointer-events: none;
+    border-radius: 7px;
+  }
+
+  &-editor {
+    .ql-toolbar {
+      @apply lc-bg-gray-lightest;
+      @apply lc-border-gray-lighter;
+      @apply lc-rounded-t-lg;
+      padding: 4px;
+
+      .ql-formats {
+        margin-right: 4px;
+      }
+
+      button {
+        padding: 3px;
+      }
+    }
+
+    .ql-container {
+      @apply lc-border-gray-lighter;
+      @apply lc-rounded-b-lg;
+      padding: 16px;
+    }
+
+    .ql-editor {
+      min-height: 240px;
+      resize: vertical;
+      padding: 0;
+    }
+  }
+}

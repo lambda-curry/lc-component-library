@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/assets/icons/search.svg"],
+  "sourcesContent": ["import * as React from \"react\";\nexport function ReactComponent(props) {\n  return <svg width={24} height={24} viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" {...props}><path fillRule=\"evenodd\" clipRule=\"evenodd\" d=\"M14.7101 14H15.5001L19.7401 18.26C20.1501 18.67 20.1501 19.34 19.7401 19.75C19.3301 20.16 18.6601 20.16 18.2501 19.75L14.0001 15.5V14.71L13.7301 14.43C12.3301 15.63 10.4201 16.25 8.39014 15.91C5.61014 15.44 3.39014 13.12 3.05014 10.32C2.53014 6.09 6.09014 2.53 10.3201 3.05C13.1201 3.39 15.4401 5.61 15.9101 8.39C16.2501 10.42 15.6301 12.33 14.4301 13.73L14.7101 14ZM5.00014 9.5C5.00014 11.99 7.01014 14 9.50014 14C11.9901 14 14.0001 11.99 14.0001 9.5C14.0001 7.01 11.9901 5 9.50014 5C7.01014 5 5.00014 7.01 5.00014 9.5Z\" fill=\"black\" /></svg>;\n}"],
+  "mappings": "yVAAA,wBACO,WAAwB,EAAO,CACpC,MAAO,iBAAC,MAAD,GAAK,MAAO,GAAI,OAAQ,GAAI,QAAQ,YAAY,KAAK,OAAO,MAAM,8BAAiC,GAAO,gBAAC,OAAD,CAAM,SAAS,UAAU,SAAS,UAAU,EAAE,2gBAA2gB,KAAK",
+  "names": []
+}

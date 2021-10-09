@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/lib/hooks/index.ts"],
+  "sourcesContent": ["export * from './useOnClickOutside';\nexport * from './asyncHooks';\nexport * from './useCopyToClipboard';\nexport * from './useWindowSize';\n"],
+  "mappings": "AAAA,iCACA,0BACA,kCACA",
+  "names": []
+}

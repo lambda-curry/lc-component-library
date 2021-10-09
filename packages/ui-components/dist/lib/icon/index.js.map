@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/lib/icon/index.ts"],
+  "sourcesContent": ["export * from './Icon';\nexport * from './IconRegistry';\nexport * from './DecorativeIcon';\nexport * from './ColorIcon';\nexport * from './CreditCardIcon';\n"],
+  "mappings": "AAAA,oBACA,4BACA,8BACA,yBACA",
+  "names": []
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/assets/icons/unfold.svg"],
+  "sourcesContent": ["import * as React from \"react\";\nexport function ReactComponent(props) {\n  return <svg width={24} height={24} viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" {...props}><path fillRule=\"evenodd\" clipRule=\"evenodd\" d=\"M14.46 8.29L12 5.83L9.53001 8.29C9.14001 8.68 8.51001 8.68 8.12001 8.29C7.73001 7.9 7.73001 7.27 8.12001 6.88L11.29 3.7C11.68 3.31 12.31 3.31 12.7 3.7L15.87 6.88C16.26 7.27 16.26 7.9 15.87 8.29C15.48 8.68 14.85 8.68 14.46 8.29ZM9.54001 15.71L12 18.17L14.47 15.72C14.86 15.33 15.49 15.33 15.88 15.72C16.27 16.11 16.27 16.74 15.88 17.13L12.71 20.3C12.32 20.69 11.69 20.69 11.3 20.3L8.13001 17.12C7.74001 16.73 7.74001 16.1 8.13001 15.71C8.52001 15.32 9.15001 15.32 9.54001 15.71Z\" fill=\"black\" /></svg>;\n}"],
+  "mappings": "yVAAA,wBACO,WAAwB,EAAO,CACpC,MAAO,iBAAC,MAAD,GAAK,MAAO,GAAI,OAAQ,GAAI,QAAQ,YAAY,KAAK,OAAO,MAAM,8BAAiC,GAAO,gBAAC,OAAD,CAAM,SAAS,UAAU,SAAS,UAAU,EAAE,geAAge,KAAK",
+  "names": []
+}

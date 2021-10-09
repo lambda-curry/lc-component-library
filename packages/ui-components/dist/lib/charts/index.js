@@ -1,0 +1,2 @@
+import t from"chartjs-plugin-datalabels";import{merge as r}from"lodash";import{defaults as a}from"react-chartjs-2";import{getCssVar as o}from"../util/colors";export*from"./PieChart/PieChart";export*from"./BarChart/BarChart";export*from"./LineChart/LineChart";export*from"./TimeChart/TimeChart";const e={legend:{position:"bottom"},plugins:[t],defaultFontSize:14,defaultFontFamily:o("lc-font-family-sans")};r(a,{global:e});
+//# sourceMappingURL=index.js.map

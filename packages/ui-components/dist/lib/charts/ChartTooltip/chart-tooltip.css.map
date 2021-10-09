@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../../../../../../../../var/folders/m_/gjk6s3nj5nxgpgyp46dzdj740000gp/T/tmp-41496-cfOnht5RsQEd/ui-components/src/lib/charts/ChartTooltip/chart-tooltip.css"],
+  "sourcesContent": ["/* purgecss start ignore */\n\n.lc-chart-tooltip {\n  --tw-bg-opacity: 1;\n  background-color: rgba(var(--lc-color-white), var(--tw-bg-opacity));\n  font-size: 14px;\n  line-height: 1.5;\n  padding: 8px;\n  border-radius: 8px;\n  border-width: 1px;\n  --tw-border-opacity: 1;\n  border-color: rgba(var(--lc-color-gray-lighter), var(--tw-border-opacity));\n  opacity: 0;\n  transition: opacity 1s ease-in;\n  display: flex;\n  align-items: center;\n  position: absolute;\n  pointer-events: none;\n  text-align: center;\n  transform: translate(-50%, -100%);\n  transition: all 0.3s ease-in-out;\n  box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.1);\n}\n\n.lc-chart-tooltip-color {\n    display: inline-block;\n    border-radius: 100%;\n    height: 11px;\n    width: 11px;\n    margin-right: 8px;\n  }\n\n.lc-chart-tooltip.loaded {\n    opacity: 1;\n  }\n\n/* purgecss end ignore */\n"],
+  "mappings": "AAEA,kBACE,mBACA,kEACA,eACA,gBANF,8BASE,iBACA,uBACA,yEACA,UACA,8BACA,aACA,mBACA,kBACA,oBACA,kBACA,gCACA,+BACA,iCAGF,wBACI,qBAzBJ,mBA2BI,YACA,WACA,iBAGJ,yBACI",
+  "names": []
+}

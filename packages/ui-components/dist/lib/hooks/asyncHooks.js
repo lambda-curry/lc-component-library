@@ -1,0 +1,2 @@
+import{useEffect as a,useState as u}from"react";const i=n=>n.then(e=>[e,null]).catch(e=>[null,e]),l=(n,e,o=[])=>{let t=!0,r;a(()=>(t&&n().then(s=>r=s).catch(s=>{throw new Error(s)}),()=>{t=!1,typeof e=="function"&&e(r)}),o)},m=(n,e)=>{const[o,t]=u(n);return a(()=>{const r=setTimeout(()=>{t(n)},e);return()=>{clearTimeout(r)}},[n,e]),o};export{i as handlePromise,l as useAsyncEffect,m as useDebounce};
+//# sourceMappingURL=asyncHooks.js.map

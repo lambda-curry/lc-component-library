@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../src/lib/charts/ChartLegend/ChartLegendWrapper.tsx"],
+  "sourcesContent": ["import React, { FC, HTMLAttributes } from 'react';\nimport { ChartJSData, ChartJSDataFunction, ChartLegendComponent, ChartRefObject } from '../chart.helpers';\nimport { ChartLegend } from './ChartLegend';\n\nexport interface ChartLegendWrapperProps extends HTMLAttributes<HTMLDivElement> {\n  type?: string;\n  data: ChartJSData | ChartJSDataFunction;\n  chartRef: ChartRefObject;\n  component?: ChartLegendComponent;\n}\n\nexport const ChartLegendWrapper: FC<ChartLegendWrapperProps> = ({ data, chartRef, component, ...props }) => {\n  const legendProps = {\n    data: typeof data === 'function' ? data(chartRef.current?.chartInstance.canvas as HTMLElement) : data\n  };\n\n  return (\n    <div className=\"lc-chart-legend-wrapper\" {...props}>\n      {component ? component(legendProps) : <ChartLegend {...legendProps} />}\n    </div>\n  );\n};\n"],
+  "mappings": "2fAAA,qBAEA,4CASO,KAAM,GAAkD,AAAC,GAA4C,CAA5C,QAAE,QAAM,WAAU,aAAlB,EAAgC,IAAhC,EAAgC,CAA9B,OAAM,WAAU,cAXlF,MAYE,KAAM,GAAc,CAClB,KAAM,MAAO,IAAS,WAAa,EAAK,KAAS,UAAT,cAAkB,cAAc,QAAyB,GAGnG,MACE,iBAAC,MAAD,GAAK,UAAU,2BAA8B,GAC1C,EAAY,EAAU,GAAe,gBAAC,EAAD,KAAiB",
+  "names": []
+}

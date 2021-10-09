@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/assets/icons/deal.svg"],
+  "sourcesContent": ["import * as React from \"react\";\nexport function ReactComponent(props) {\n  return <svg width={24} height={24} viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" {...props}><path fillRule=\"evenodd\" clipRule=\"evenodd\" d=\"M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM11.5 10H15V8H13V7H11V8.051C9.86 8.283 9 9.293 9 10.5C9 11.878 10.122 13 11.5 13H12.5C12.776 13 13 13.225 13 13.5C13 13.776 12.776 14 12.5 14H9V16H11V17H13V15.95C14.14 15.718 15 14.707 15 13.5C15 12.122 13.878 11 12.5 11H11.5C11.224 11 11 10.776 11 10.5C11 10.225 11.224 10 11.5 10Z\" fill=\"black\" /></svg>;\n}"],
+  "mappings": "yVAAA,wBACO,WAAwB,EAAO,CACpC,MAAO,iBAAC,MAAD,GAAK,MAAO,GAAI,OAAQ,GAAI,QAAQ,YAAY,KAAK,OAAO,MAAM,8BAAiC,GAAO,gBAAC,OAAD,CAAM,SAAS,UAAU,SAAS,UAAU,EAAE,8YAA8Y,KAAK",
+  "names": []
+}

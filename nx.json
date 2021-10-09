@@ -1,0 +1,31 @@
+{
+  "extends": "@nrwl/workspace/presets/npm.json",
+  "npmScope": "testworkspace",
+  "affected": {
+    "defaultBase": "master"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "build-docs",
+          "lint",
+          "test",
+          "e2e",
+          "build-storybook"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "ui-components": {
+      "tags": []
+    },
+    "ui-components-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ui-components"]
+    }
+  }
+}

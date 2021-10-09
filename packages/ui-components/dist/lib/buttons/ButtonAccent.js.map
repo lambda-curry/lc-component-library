@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/lib/buttons/ButtonAccent.tsx"],
+  "sourcesContent": ["import React, { FC, forwardRef } from 'react';\nimport classNames from 'classnames';\nimport { ButtonProps } from './ButtonBase';\nimport { ButtonStyled } from './ButtonStyled';\n\nexport const ButtonAccent: FC<ButtonProps> = forwardRef(({ className, ...props }, ref) => (\n  <ButtonStyled\n    {...props}\n    ref={ref}\n    className={classNames(\n      [\n        `lc-button-accent`,\n        `lc-text-white`,\n        `lc-bg-accent`,\n        `lc-border-accent`,\n        `hover:lc-text-white`,\n        `hover:lc-bg-accent-dark`,\n        `hover:lc-border-accent-dark`,\n        `focus-visible:lc-ring-accent`\n      ],\n      className\n    )}\n  />\n));\n"],
+  "mappings": "+kBAAA,sCACA,0BAEA,8CAEO,KAAM,GAAgC,EAAW,CAAC,EAAyB,IAAK,CAA9B,QAAE,cAAF,EAAgB,IAAhB,EAAgB,CAAd,cACzD,uBAAC,EAAD,OACM,GADN,CAEE,IAAK,EACL,UAAW,EACT,CACE,mBACA,gBACA,eACA,mBACA,sBACA,0BACA,8BACA,gCAEF",
+  "names": []
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../src/__mocks__/svgrMock.ts"],
+  "sourcesContent": ["export default 'SvgrURL';\nexport const ReactComponent = 'div';\n"],
+  "mappings": "AAAA,GAAO,GAAQ,UACR,KAAM,GAAiB",
+  "names": []
+}

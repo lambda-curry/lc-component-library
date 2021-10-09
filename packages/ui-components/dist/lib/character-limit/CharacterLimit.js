@@ -1,0 +1,2 @@
+import h,{useEffect as l,useState as i}from"react";import p from"classnames";import{stripTags as C}from"../util/formatters";const b=({value:e,limit:t})=>{const[r,c]=i(0),[s,n]=i(e),m=o=>{const a=o,u=C(a||"");c(u.length),n(a)};return l(()=>{m(e)},[e]),{newValue:e,previousValue:s,characterCount:r,charactersRemaining:t-r}},d=({limit:e,characterCount:t,className:r})=>h.createElement("div",{className:p("character-limit",r)},e-t," characters remaining");export{d as CharacterLimit,b as useCharacterLimit};
+//# sourceMappingURL=CharacterLimit.js.map

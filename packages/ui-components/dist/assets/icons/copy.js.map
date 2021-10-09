@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/assets/icons/copy.svg"],
+  "sourcesContent": ["import * as React from \"react\";\nexport function ReactComponent(props) {\n  return <svg width={24} height={24} viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" {...props}><path fillRule=\"evenodd\" clipRule=\"evenodd\" d=\"M8.86667 7H19.1333C20.1643 7 21 7.69645 21 8.55556V19.4444C21 20.3036 20.1643 21 19.1333 21H8.86667C7.83574 21 7 20.3036 7 19.4444V8.55556C7 7.69645 7.83574 7 8.86667 7ZM9 19H19V9H9V19Z\" fill=\"black\" /><path d=\"M17 3H5C3.89543 3 3 3.89543 3 5V19H5V5H17V3Z\" fill=\"black\" /></svg>;\n}"],
+  "mappings": "yVAAA,wBACO,WAAwB,EAAO,CACpC,MAAO,iBAAC,MAAD,GAAK,MAAO,GAAI,OAAQ,GAAI,QAAQ,YAAY,KAAK,OAAO,MAAM,8BAAiC,GAAO,gBAAC,OAAD,CAAM,SAAS,UAAU,SAAS,UAAU,EAAE,4LAA4L,KAAK,UAAU,gBAAC,OAAD,CAAM,EAAE,+CAA+C,KAAK",
+  "names": []
+}

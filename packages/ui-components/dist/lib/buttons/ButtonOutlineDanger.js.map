@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/lib/buttons/ButtonOutlineDanger.tsx"],
+  "sourcesContent": ["import React, { FC, forwardRef } from 'react';\nimport classNames from 'classnames';\nimport { ButtonProps } from './ButtonBase';\nimport { ButtonStyled } from './ButtonStyled';\n\nexport const ButtonOutlineDanger: FC<ButtonProps> = forwardRef(({ className, ...props }, ref) => (\n  <ButtonStyled\n    {...props}\n    ref={ref}\n    className={classNames(\n      [\n        `lc-button-outline-danger`,\n        `lc-text-danger`,\n        `lc-border-danger`,\n        `hover:lc-text-white`,\n        `hover:lc-bg-danger`,\n        `focus-visible:lc-ring-danger`\n      ],\n      className\n    )}\n  />\n));\n"],
+  "mappings": "+kBAAA,sCACA,0BAEA,8CAEO,KAAM,GAAuC,EAAW,CAAC,EAAyB,IAAK,CAA9B,QAAE,cAAF,EAAgB,IAAhB,EAAgB,CAAd,cAChE,uBAAC,EAAD,OACM,GADN,CAEE,IAAK,EACL,UAAW,EACT,CACE,2BACA,iBACA,mBACA,sBACA,qBACA,gCAEF",
+  "names": []
+}

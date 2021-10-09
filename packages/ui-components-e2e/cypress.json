@@ -1,0 +1,15 @@
+{
+  "projectId": "wenh28",
+  "baseUrl": "http://localhost:6007",
+  "fileServerFolder": ".",
+  "fixturesFolder": "./src/fixtures",
+  "integrationFolder": "./src/integration",
+  "modifyObstructiveCode": false,
+  "supportFile": "./src/support/index.ts",
+  "pluginsFile": false,
+  "video": true,
+  "screenshots": true,
+  "videosFolder": "../../dist/cypress/apps/ui-components-e2e/videos",
+  "screenshotsFolder": "../../dist/cypress/apps/ui-components-e2e/screenshots",
+  "chromeWebSecurity": false
+}

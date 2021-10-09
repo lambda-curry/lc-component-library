@@ -1,0 +1,35 @@
+import { FC, ChangeEvent, FocusEvent, ElementType, HTMLAttributes, ReactNode } from 'react';
+import { Mark, ValueLabelProps } from '@material-ui/core';
+import { FormikProps } from 'formik';
+import './slider.css';
+export interface SliderProps {
+    id?: string;
+    className?: string;
+    name: string;
+    label?: string;
+    formikProps?: FormikProps<any>;
+    'aria-label'?: string;
+    'aria-labelledby'?: string;
+    'aria-valuetext'?: string;
+    color?: 'primary' | 'secondary';
+    defaultValue?: number | number[];
+    disabled?: boolean;
+    getAriaLabel?: (index: number) => string;
+    getAriaValueText?: (value: number, index: number) => string;
+    marks?: boolean | Mark[];
+    max?: number;
+    min?: number;
+    onChange?: (event: ChangeEvent<any>, value: number | number[]) => void;
+    onBlur?: (event: FocusEvent) => void;
+    onChangeCommitted?: (event: ChangeEvent<any>, value: number | number[]) => void;
+    orientation?: 'horizontal' | 'vertical';
+    step?: number | null;
+    scale?: (value: number) => number;
+    ThumbComponent?: ElementType<HTMLAttributes<HTMLSpanElement>>;
+    track?: 'normal' | false | 'inverted';
+    value?: number | number[];
+    ValueLabelComponent?: ElementType<ValueLabelProps>;
+    valueLabelDisplay?: 'on' | 'auto' | 'off';
+    valueLabelFormat?: string | ((value: number, index: number) => ReactNode);
+}
+export declare const Slider: FC<SliderProps>;
