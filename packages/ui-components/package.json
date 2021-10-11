@@ -59,7 +59,7 @@
     "@stripe/stripe-js": "*",
     "@szhsin/react-menu": "*",
     "chart.js": "2.9.4",
-    "chartjs-plugin-datalabels": "*",
+    "chartjs-plugin-datalabels": "1.0.0",
     "classnames": "*",
     "clipboard": "*",
     "core-js": "*",
