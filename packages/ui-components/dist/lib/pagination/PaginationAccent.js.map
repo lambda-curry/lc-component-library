@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/lib/pagination/PaginationAccent.tsx"],
-  "sourcesContent": ["import MuiPagination from '@material-ui/lab/Pagination';\nimport classNames from 'classnames';\nimport React, { FC, ReactElement } from 'react';\nimport { PaginationProps } from './Pagination';\nimport './pagination.css';\n\nexport const PaginationAccent: FC<PaginationProps> = ({ className, pagesCount, ...props }): ReactElement => {\n  return (\n    <MuiPagination\n      className={classNames('lc-pagination-accent', className)}\n      count={pagesCount}\n      variant=\"text\"\n      {...props}\n    />\n  );\n};\n"],
-  "mappings": "2fAAA,2CACA,0BACA,qBAEA,yBAEO,KAAM,GAAwC,AAAC,GAAsD,CAAtD,QAAE,aAAW,cAAb,EAA4B,IAA5B,EAA4B,CAA1B,YAAW,eACjE,MACE,iBAAC,EAAD,GACE,UAAW,EAAW,uBAAwB,GAC9C,MAAO,EACP,QAAQ,QACJ",
-  "names": []
-}

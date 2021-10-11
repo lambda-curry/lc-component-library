@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../src/lib/inputs/InputGroup/InputGroup.tsx"],
-  "sourcesContent": ["import classNames from 'classnames';\nimport React, { FC, HTMLAttributes } from 'react';\n\nimport './input-group.css';\n\nexport interface InputGroupProps extends HTMLAttributes<HTMLDivElement> {\n  className?: string;\n}\n\nexport const InputGroup: FC<InputGroupProps> = ({ className, ...props }) => (\n  <div className={classNames('lc-input-group', className)} {...props} />\n);\n"],
-  "mappings": "2fAAA,0BACA,qBAEA,0BAMO,KAAM,GAAkC,AAAC,GAAyB,CAAzB,QAAE,cAAF,EAAgB,IAAhB,EAAgB,CAAd,cAChD,uBAAC,MAAD,GAAK,UAAW,EAAW,iBAAkB,IAAgB",
-  "names": []
-}

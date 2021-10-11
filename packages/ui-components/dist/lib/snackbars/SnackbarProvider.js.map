@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/lib/snackbars/SnackbarProvider.tsx"],
-  "sourcesContent": ["import React, { FC, ReactNode, createRef } from 'react';\nimport { SnackbarProvider as MuiSnackbarProvider } from 'notistack';\nimport { SnackbarAction } from './SnackbarAction';\n\nimport './snackbars.css';\n\nexport interface SnackbarProviderProps {\n  children: ReactNode;\n}\n\nexport const SnackbarProvider: FC<SnackbarProviderProps> = props => {\n  // Add default action to all snackbars\n  const snackbarProviderRef = createRef<MuiSnackbarProvider>();\n  const onClickDismiss = (key: string) => {\n    if (snackbarProviderRef?.current) snackbarProviderRef.current.closeSnackbar(key);\n  };\n\n  return (\n    <MuiSnackbarProvider\n      ref={snackbarProviderRef}\n      classes={{\n        root: 'snackbar',\n        containerRoot: 'snackbars'\n      }}\n      anchorOrigin={{\n        vertical: 'bottom',\n        horizontal: 'center'\n      }}\n      action={(key: string) => <SnackbarAction onClick={() => onClickDismiss(key)}>Dismiss</SnackbarAction>}\n      {...props}\n    />\n  );\n};\n"],
-  "mappings": "yVAAA,qCACA,6CACA,kDAEA,wBAMO,KAAM,GAA8C,GAAS,CAElE,KAAM,GAAsB,IACtB,EAAiB,AAAC,GAAgB,CACtC,AAAI,kBAAqB,UAAS,EAAoB,QAAQ,cAAc,IAG9E,MACE,iBAAC,EAAD,GACE,IAAK,EACL,QAAS,CACP,KAAM,WACN,cAAe,aAEjB,aAAc,CACZ,SAAU,SACV,WAAY,UAEd,OAAQ,AAAC,GAAgB,gBAAC,EAAD,CAAgB,QAAS,IAAM,EAAe,IAAM,YACzE",
-  "names": []
-}

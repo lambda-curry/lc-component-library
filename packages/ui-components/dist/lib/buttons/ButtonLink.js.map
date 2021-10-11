@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/lib/buttons/ButtonLink.tsx"],
-  "sourcesContent": ["import React, { FC, forwardRef } from 'react';\nimport classNames from 'classnames';\nimport { ButtonProps } from './ButtonBase';\nimport { ButtonUnstyled } from './ButtonUnstyled';\n\nexport const ButtonLink: FC<ButtonProps> = forwardRef(({ className, ...props }, ref) => (\n  <ButtonUnstyled\n    {...props}\n    ref={ref}\n    className={classNames(\n      [`lc-button-link`, `lc-text-primary`, `hover:lc-text-primary-dark`, `focus:lc-text-primary-dark`],\n      className\n    )}\n  />\n));\n"],
-  "mappings": "+kBAAA,sCACA,0BAEA,kDAEO,KAAM,GAA8B,EAAW,CAAC,EAAyB,IAAK,CAA9B,QAAE,cAAF,EAAgB,IAAhB,EAAgB,CAAd,cACvD,uBAAC,EAAD,OACM,GADN,CAEE,IAAK,EACL,UAAW,EACT,CAAC,iBAAkB,kBAAmB,6BAA8B,8BACpE",
-  "names": []
-}

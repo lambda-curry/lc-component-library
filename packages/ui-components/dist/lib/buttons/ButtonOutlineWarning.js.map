@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/lib/buttons/ButtonOutlineWarning.tsx"],
-  "sourcesContent": ["import React, { FC, forwardRef } from 'react';\nimport classNames from 'classnames';\nimport { ButtonProps } from './ButtonBase';\nimport { ButtonStyled } from './ButtonStyled';\n\nexport const ButtonOutlineWarning: FC<ButtonProps> = forwardRef(({ className, ...props }, ref) => (\n  <ButtonStyled\n    {...props}\n    ref={ref}\n    className={classNames(\n      [\n        `lc-button-outline-warning`,\n        `lc-text-warning`,\n        `lc-border-warning`,\n        `hover:lc-text-white`,\n        `hover:lc-bg-warning`,\n        `focus-visible:lc-ring-warning`\n      ],\n      className\n    )}\n  />\n));\n"],
-  "mappings": "+kBAAA,sCACA,0BAEA,8CAEO,KAAM,GAAwC,EAAW,CAAC,EAAyB,IAAK,CAA9B,QAAE,cAAF,EAAgB,IAAhB,EAAgB,CAAd,cACjE,uBAAC,EAAD,OACM,GADN,CAEE,IAAK,EACL,UAAW,EACT,CACE,4BACA,kBACA,oBACA,sBACA,sBACA,iCAEF",
-  "names": []
-}

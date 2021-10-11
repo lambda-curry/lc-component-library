@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../../../../../../../var/folders/m_/gjk6s3nj5nxgpgyp46dzdj740000gp/T/tmp-48391-FGAqyRBZVyit/ui-components/src/lib/drawer/drawer.css"],
-  "sourcesContent": ["/* purgecss start ignore */\n\n.lc-drawer-content {\n    padding: 24px;\n    max-width: 100%;\n  }\n\n/* purgecss end ignore */\n"],
-  "mappings": "AAEA,mBAFA,aAII",
-  "names": []
-}

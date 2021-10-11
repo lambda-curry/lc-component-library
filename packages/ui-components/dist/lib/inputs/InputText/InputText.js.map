@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../src/lib/inputs/InputText/InputText.tsx"],
-  "sourcesContent": ["import React, { FC } from 'react';\nimport classNames from 'classnames';\nimport { InputBase, InputProps } from '../InputBase';\n\nexport const InputText: FC<InputProps> = ({ className, ...props }) => (\n  <InputBase type=\"text\" className={classNames('lc-input-text', className)} {...props} />\n);\n"],
-  "mappings": "2fAAA,qBACA,0BACA,yCAEO,KAAM,GAA4B,AAAC,GAAyB,CAAzB,QAAE,cAAF,EAAgB,IAAhB,EAAgB,CAAd,cAC1C,uBAAC,EAAD,GAAW,KAAK,OAAO,UAAW,EAAW,gBAAiB,IAAgB",
-  "names": []
-}

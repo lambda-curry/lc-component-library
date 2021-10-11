@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/lib/multiline-input/MultilineInput.tsx"],
-  "sourcesContent": ["import React, { FC } from 'react';\nimport { CharacterLimit, useCharacterLimit, CharacterLimitHelpers } from '../character-limit';\nimport { Icon } from '../icon';\n\nimport './multiline-input.css';\n\nexport interface MultilineInputProps {\n  value: string;\n  characterLimit?: number;\n  resize?: boolean;\n  children: (characterLimitHelpers: CharacterLimitHelpers) => void;\n}\n\nexport const MultilineInput: FC<MultilineInputProps> = ({ value, characterLimit = 0, resize = true, children }) => {\n  const characterLimitHelpers = useCharacterLimit({\n    value,\n    limit: characterLimit\n  });\n\n  return (\n    <div className=\"lc-multiline-input\">\n      {children(characterLimitHelpers)}\n\n      {characterLimit > 0 && (\n        <CharacterLimit\n          className=\"lc-multiline-input-character-limit\"\n          limit={characterLimit}\n          characterCount={characterLimitHelpers.characterCount || 0}\n        />\n      )}\n\n      {resize && (\n        <div className=\"lc-multiline-input-resize\">\n          <Icon name=\"resize\" />\n        </div>\n      )}\n    </div>\n  );\n};\n"],
-  "mappings": "AAAA,qBACA,2EACA,+BAEA,8BASO,KAAM,GAA0C,CAAC,CAAE,QAAO,iBAAiB,EAAG,SAAS,GAAM,cAAe,CACjH,KAAM,GAAwB,EAAkB,CAC9C,QACA,MAAO,IAGT,MACE,iBAAC,MAAD,CAAK,UAAU,sBACZ,EAAS,GAET,EAAiB,GAChB,gBAAC,EAAD,CACE,UAAU,qCACV,MAAO,EACP,eAAgB,EAAsB,gBAAkB,IAI3D,GACC,gBAAC,MAAD,CAAK,UAAU,6BACb,gBAAC,EAAD,CAAM,KAAK",
-  "names": []
-}

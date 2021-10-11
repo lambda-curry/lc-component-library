@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../src/lib/inputs/InputSwitch/index.ts"],
-  "sourcesContent": ["export { InputSwitch } from './InputSwitch';\n"],
-  "mappings": "AAAA",
-  "names": []
-}

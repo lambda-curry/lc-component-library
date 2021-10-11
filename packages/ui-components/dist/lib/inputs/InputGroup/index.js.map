@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../src/lib/inputs/InputGroup/index.ts"],
-  "sourcesContent": ["export * from './InputGroup';\n"],
-  "mappings": "AAAA",
-  "names": []
-}

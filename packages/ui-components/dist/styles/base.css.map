@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../../../../../../var/folders/m_/gjk6s3nj5nxgpgyp46dzdj740000gp/T/tmp-48391-FGAqyRBZVyit/ui-components/src/styles/base.css"],
-  "sourcesContent": ["/* purgecss start ignore */\n\nbody {\n  margin: 0;\n}\n\ncode {\n  font-family: var(--lc-font-family-code);\n}\n\n/* purgecss end ignore */\n"],
-  "mappings": "AAEA,KAFA,SAMA,KACE",
-  "names": []
-}

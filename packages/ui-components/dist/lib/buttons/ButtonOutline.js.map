@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/lib/buttons/ButtonOutline.tsx"],
-  "sourcesContent": ["import React, { FC, forwardRef } from 'react';\nimport classNames from 'classnames';\nimport { ButtonProps } from './ButtonBase';\nimport { ButtonStyled } from './ButtonStyled';\n\nexport const ButtonOutline: FC<ButtonProps> = forwardRef(({ className, ...props }, ref) => (\n  <ButtonStyled\n    {...props}\n    ref={ref}\n    className={classNames(\n      [\n        `lc-button-outline`,\n        `lc-text-gray-darker`,\n        `lc-bg-transparent`,\n        `lc-border-gray-light`,\n        `hover:lc-text-black`,\n        `hover:lc-bg-gray-light`,\n        `focus-visible:lc-ring-gray-lighter`\n      ],\n      className\n    )}\n  />\n));\n"],
-  "mappings": "+kBAAA,sCACA,0BAEA,8CAEO,KAAM,GAAiC,EAAW,CAAC,EAAyB,IAAK,CAA9B,QAAE,cAAF,EAAgB,IAAhB,EAAgB,CAAd,cAC1D,uBAAC,EAAD,OACM,GADN,CAEE,IAAK,EACL,UAAW,EACT,CACE,oBACA,sBACA,oBACA,uBACA,sBACA,yBACA,sCAEF",
-  "names": []
-}

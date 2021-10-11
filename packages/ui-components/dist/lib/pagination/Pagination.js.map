@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/lib/pagination/Pagination.tsx"],
-  "sourcesContent": ["import MuiPagination, { PaginationProps as MuiPaginationProps } from '@material-ui/lab/Pagination';\nimport classNames from 'classnames';\nimport React, { FC, ReactElement } from 'react';\nimport './pagination.css';\n\nexport interface PaginationProps extends Omit<MuiPaginationProps, 'color' | 'variant' | 'count'> {\n  className?: string;\n  pagesCount: number;\n}\n\nexport const Pagination: FC<PaginationProps> = ({ className, pagesCount, ...props }): ReactElement => {\n  return (\n    <MuiPagination className={classNames('lc-pagination', className)} count={pagesCount} variant=\"text\" {...props} />\n  );\n};\n"],
-  "mappings": "2fAAA,2CACA,0BACA,qBACA,yBAOO,KAAM,GAAkC,AAAC,GAAsD,CAAtD,QAAE,aAAW,cAAb,EAA4B,IAA5B,EAA4B,CAA1B,YAAW,eAC3D,MACE,iBAAC,EAAD,GAAe,UAAW,EAAW,gBAAiB,GAAY,MAAO,EAAY,QAAQ,QAAW",
-  "names": []
-}

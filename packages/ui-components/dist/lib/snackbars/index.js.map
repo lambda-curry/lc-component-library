@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/lib/snackbars/index.ts"],
-  "sourcesContent": ["import { SnackbarAction } from './SnackbarAction';\nimport { SnackbarActionPrimary } from './SnackbarActionPrimary';\nimport { SnackbarProvider } from './SnackbarProvider';\nimport { OptionsObject, SnackbarKey, SnackbarMessage, useSnackbar as useNotistackUseSnackbar } from 'notistack';\n\nexport const Snackbar = { Action: SnackbarAction, ActionPrimary: SnackbarActionPrimary, Provider: SnackbarProvider };\n\n// Add aliases for the useSnackbar methods\n// and allow importing side-by-side with our custom Snackbar component\nexport const useSnackbar = (): {\n  addSnackbar: (message: SnackbarMessage, options?: OptionsObject) => SnackbarKey;\n  removeSnackbar: (key?: SnackbarKey) => void;\n} => {\n  const { enqueueSnackbar, closeSnackbar } = useNotistackUseSnackbar();\n\n  return { addSnackbar: enqueueSnackbar, removeSnackbar: closeSnackbar };\n};\n"],
-  "mappings": "AAAA,kDACA,gEACA,sDACA,wCAEO,KAAM,GAAW,CAAE,OAAQ,EAAgB,cAAe,EAAuB,SAAU,GAIrF,EAAc,IAGtB,CACH,KAAM,CAAE,kBAAiB,iBAAkB,IAE3C,MAAO,CAAE,YAAa,EAAiB,eAAgB",
-  "names": []
-}

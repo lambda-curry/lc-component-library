@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/lib/util/formatters.ts"],
-  "sourcesContent": ["export const stripTags = (value: string): string => value.replace(/(<([^>]+)>)/gi, '');\n\nexport const arrayToListString = (arr: string[], finalSeparator: string): string =>\n  arr.reduce((acc, curr, index) => {\n    const primarySeparator = ', ';\n    if (index !== 0 && index === arr.length - 1) return `${acc}${finalSeparator || primarySeparator}${curr}`;\n    if (index > 0) return `${acc}${primarySeparator}${curr}`;\n    return curr;\n  }, '');\n"],
-  "mappings": "AAAO,KAAM,GAAY,AAAC,GAA0B,EAAM,QAAQ,gBAAiB,IAEtE,EAAoB,CAAC,EAAe,IAC/C,EAAI,OAAO,CAAC,EAAK,EAAM,IAAU,CAC/B,KAAM,GAAmB,KACzB,MAAI,KAAU,GAAK,IAAU,EAAI,OAAS,EAAU,GAAG,IAAM,GAAkB,IAAmB,IAC9F,EAAQ,EAAU,GAAG,IAAM,IAAmB,IAC3C,GACN",
-  "names": []
-}

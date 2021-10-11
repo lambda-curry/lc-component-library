@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/lib/buttons/Button.helpers.ts"],
-  "sourcesContent": ["export interface ButtonReducerState {\n  leftIcon: boolean;\n  rightIcon: boolean;\n}\n\nexport interface ButtonReducerAction {\n  name: keyof typeof buttonReducers;\n  payload?: any;\n}\n\nconst buttonReducers = {\n  setLeftIcon: (state: ButtonReducerState, leftIcon: boolean) => ({ ...state, leftIcon }),\n  setRightIcon: (state: ButtonReducerState, rightIcon: boolean) => ({ ...state, rightIcon })\n};\n\nexport const buttonReducer = (state: ButtonReducerState, action: ButtonReducerAction): ButtonReducerState => {\n  if (!buttonReducers[action.name]) {\n    throw new Error(`reducer ${action.name} not defined`);\n  }\n\n  const nextState: ButtonReducerState = buttonReducers[action.name](state, action.payload);\n  return nextState;\n};\n"],
-  "mappings": "6aAUA,KAAM,GAAiB,CACrB,YAAa,CAAC,EAA2B,IAAuB,OAAK,GAAL,CAAY,aAC5E,aAAc,CAAC,EAA2B,IAAwB,OAAK,GAAL,CAAY,eAGnE,EAAgB,CAAC,EAA2B,IAAoD,CAC3G,GAAI,CAAC,EAAe,EAAO,MACzB,KAAM,IAAI,OAAM,WAAW,EAAO,oBAIpC,MADsC,GAAe,EAAO,MAAM,EAAO,EAAO",
-  "names": []
-}
