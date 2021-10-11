@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - beta
 
 jobs:
   publish:
@@ -14,6 +15,7 @@ jobs:
         id: check
         uses: EndBug/version-check@v1
         with:
+          file-name: packages/ui-components/package.json
           file-url: https://unpkg.com/@lambdacurry/component-library/package.json
           static-checking: localIsNew
       - uses: actions/setup-node@v1
@@ -22,12 +24,13 @@ jobs:
           node-version: 14
       - name: Install Dependencies
         if: steps.check.outputs.changed == 'true'
-        run: yarn install
+        run: yarn && npx nx build ui-components
       - name: Prepare & Publish
         if: steps.check.outputs.changed == 'true'
         id: publish
         uses: JS-DevTools/npm-publish@v1
         with:
+          package: packages/ui-components/package.json
           token: ${{ secrets.NPM_SECRET }}
       - if: steps.publish.type != 'none'
         run: |
