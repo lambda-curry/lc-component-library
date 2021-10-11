@@ -67,7 +67,7 @@
     "framer-motion": "*",
     "lodash": "*",
     "luxon": "*",
-    "notistack": "*",
+    "notistack": "1.0.10",
     "react": "*",
     "react-chartjs-2": "2.11.1",
     "react-dom": "*",
