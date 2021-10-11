@@ -26,8 +26,8 @@
   thead,
   tbody,
   tfoot {
-    th,
-    td {
+    & th,
+    & td {
       @apply lc-text-left;
       @apply lc-px-20;
       @apply lc-py-16;
@@ -45,24 +45,24 @@
 
   thead,
   tfoot {
-    th,
-    td {
+    & th,
+    & td {
       @apply lc-text-gray-dark;
       @apply lc-font-normal;
     }
   }
 
   thead {
-    th,
-    td {
+    & th,
+    & td {
       @apply lc-pt-0;
     }
   }
 
   tbody {
     tr:nth-child(odd) {
-      td,
-      th {
+      & td,
+      & th {
         @apply lc-bg-gray-lightest;
       }
     }

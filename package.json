@@ -1,6 +1,6 @@
 {
   "name": "@lambdacurry/component-library",
-  "version": "2.8.3",
+  "version": "0.0.1",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -26,7 +26,7 @@
     "@stripe/stripe-js": "^1.18.0",
     "@szhsin/react-menu": "1.11.0",
     "chart.js": "^2.9.4",
-    "chartjs-plugin-datalabels": "^0.7.0",
+    "chartjs-plugin-datalabels": "^1.0.0",
     "classnames": "^2.3.1",
     "clipboard": "^2.0.8",
     "core-js": "^3.6.5",

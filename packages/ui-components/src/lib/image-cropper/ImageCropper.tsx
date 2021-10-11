@@ -164,7 +164,9 @@ export const ImageCropper: FC<ImageCropperProps> = ({
           crop={crop}
           onChange={handleCropChange}
           onComplete={handleCropComplete}
-          onImageLoaded={handleImageLoaded}
+          onImageLoaded={image => {
+            handleImageLoaded(image);
+          }}
           ruleOfThirds={ruleOfThirds}
           crossorigin="anonymous"
         />

@@ -56,9 +56,9 @@ export const InputDate: FC<InputDateProps> = ({
         }}
         inputFormat={valueFormat || inputFormat}
         disablePast={disablePast}
-        renderInput={renderProps => (
+        renderInput={(renderProps: any) => (
           <InputText
-            {...(renderProps as InputProps)}
+            {...renderProps}
             {...props}
             formikProps={formikProps}
             className={classNames('lc-input-date', className)}
