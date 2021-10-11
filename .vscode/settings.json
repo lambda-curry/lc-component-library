@@ -9,6 +9,7 @@
     "compat",
     "concat",
     "datalabels",
+    "dropzone",
     "duplicative",
     "formik",
     "gilroy",
