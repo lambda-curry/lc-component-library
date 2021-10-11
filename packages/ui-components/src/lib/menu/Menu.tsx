@@ -9,7 +9,7 @@ import {
   SubMenuProps as RCSubMenuProps,
   ControlledMenu,
   useMenuState,
-  ControlledMenuProps,
+  ControlledMenuProps
 } from '@szhsin/react-menu';
 import './menu.css';
 import classNames from 'classnames';
@@ -49,8 +49,7 @@ export interface HoverMenuProps extends ControlledMenuProps {
 const mapMenuItems = (menuItems: MenuItems) =>
   menuItems.map(({ name, ...menuItem }, i) => {
     if (name === 'sub-menu') {
-      const { menuItems: subMenuItems, ...menuItemProps } =
-        menuItem as SubMenuProps;
+      const { menuItems: subMenuItems, ...menuItemProps } = menuItem as SubMenuProps;
       return (
         <SubMenu key={i} {...(menuItemProps as SubMenuProps)}>
           {mapMenuItems(subMenuItems)}
@@ -59,8 +58,7 @@ const mapMenuItems = (menuItems: MenuItems) =>
     }
 
     if (name === 'menu-item') {
-      const { startIcon, endIcon, children, ...menuItemProps } =
-        menuItem as MenuItemProps;
+      const { startIcon, endIcon, children, ...menuItemProps } = menuItem as MenuItemProps;
       return (
         <MenuItem key={i} {...menuItemProps}>
           {startIcon}
@@ -77,7 +75,7 @@ const mapMenuItems = (menuItems: MenuItems) =>
     return null;
   });
 
-export const Menu: FC<MenuProps | HoverMenuProps> = (props) => {
+export const Menu: FC<MenuProps | HoverMenuProps> = props => {
   const { toggleMenu, state, ...menuStateProps } = useMenuState();
   const ref = useRef(null);
 
@@ -85,15 +83,8 @@ export const Menu: FC<MenuProps | HoverMenuProps> = (props) => {
     const { menuButton, menuItems, hover, ...hoverMenuProps } = props;
 
     return (
-      <div
-        className={classNames('lc-menu', { state })}
-        onMouseLeave={() => toggleMenu(false)}
-      >
-        <div
-          className="lc-menu-button-wrapper"
-          ref={ref}
-          onMouseEnter={() => toggleMenu(true)}
-        >
+      <div className={classNames('lc-menu', { state })} onMouseLeave={() => toggleMenu(false)}>
+        <div className="lc-menu-button-wrapper" ref={ref} onMouseEnter={() => toggleMenu(true)}>
           {menuButton}
         </div>
         <ControlledMenu
@@ -113,11 +104,7 @@ export const Menu: FC<MenuProps | HoverMenuProps> = (props) => {
   const { menuItems, ...menuProps } = props;
 
   return (
-    <RCMenu
-      className="lc-menu"
-      position="initial"
-      {...(menuProps as MenuProps)}
-    >
+    <RCMenu className="lc-menu" position="initial" {...(menuProps as MenuProps)}>
       {mapMenuItems(menuItems)}
     </RCMenu>
   );
