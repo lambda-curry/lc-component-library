@@ -21,12 +21,12 @@ bundle.css
 
 # misc
 .DS_Store
-.env.local
 *.log
 .cache
 .eslintcache
 
 # dotenv
+.env.local
 .env.development.local
 .env.test.local
 .env.production.local
