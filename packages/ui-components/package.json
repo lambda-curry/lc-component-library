@@ -51,6 +51,7 @@
     "library"
   ],
   "dependencies": {
+    "@date-io/luxon": "*",
     "@szhsin/react-menu": "*",
     "react-quill": "*",
     "tailwindcss": "*"
