@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../../../../../../../../var/folders/m_/gjk6s3nj5nxgpgyp46dzdj740000gp/T/tmp-48391-FGAqyRBZVyit/ui-components/src/lib/inputs/InputCheckbox/input-checkbox.css"],
+  "sourcesContent": ["/* purgecss start ignore */\n\n.lc-input-checkbox.MuiFormControlLabel-root {\n    margin-top: -11px;\n    margin-bottom: 8px;\n  }\n\n.lc-input-checkbox.MuiFormControlLabel-root .MuiCheckbox-colorPrimary.Mui-checked {\n        --tw-text-opacity: 1;\n        color: rgba(var(--lc-color-primary), var(--tw-text-opacity));\n      }\n\n.lc-input-checkbox.MuiFormControlLabel-root .MuiTypography-body1 {\n      font-size: inherit;\n    }\n\n.lc-input-checkbox.MuiFormControlLabel-root .MuiFormControlLabel-label {\n      font-family: inherit;\n    }\n\n/* purgecss end ignore */\n"],
+  "mappings": "AAEA,4CACI,iBACA,kBAGJ,kFACQ,qBACA,2DAGR,iEACM,kBAGN,uEACM",
+  "names": []
+}

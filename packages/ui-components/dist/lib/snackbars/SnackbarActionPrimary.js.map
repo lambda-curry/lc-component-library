@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/lib/snackbars/SnackbarActionPrimary.tsx"],
+  "sourcesContent": ["import React, { FC } from 'react';\nimport classNames from 'classnames';\nimport { SnackbarAction, SnackbarActionProps } from './SnackbarAction';\n\nexport const SnackbarActionPrimary: FC<SnackbarActionProps> = ({ className, ...props }) => (\n  <SnackbarAction className={classNames('snackbar-action-primary', className)} {...props} />\n);\n"],
+  "mappings": "2fAAA,qBACA,0BACA,kDAEO,KAAM,GAAiD,AAAC,GAAyB,CAAzB,QAAE,cAAF,EAAgB,IAAhB,EAAgB,CAAd,cAC/D,uBAAC,EAAD,GAAgB,UAAW,EAAW,0BAA2B,IAAgB",
+  "names": []
+}

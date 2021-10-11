@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/lib/table/Table.tsx"],
+  "sourcesContent": ["import React, { FC, ReactNode, TableHTMLAttributes } from 'react';\nimport classNames from 'classnames';\n\nimport './table.css';\n\nexport interface TableProps extends TableHTMLAttributes<HTMLTableElement> {\n  className?: string;\n  footnote?: ReactNode;\n}\n\nexport const Table: FC<TableProps> = ({ className, footnote, ...props }) => (\n  <>\n    <div className={classNames('lc-table-wrapper', className)}>\n      <table className=\"lc-table\" {...props} />\n    </div>\n    {footnote && <div className=\"lc-table-footnote\">{footnote}</div>}\n  </>\n);\n"],
+  "mappings": "2fAAA,qBACA,0BAEA,oBAOO,KAAM,GAAwB,AAAC,GAAmC,CAAnC,QAAE,aAAW,YAAb,EAA0B,IAA1B,EAA0B,CAAxB,YAAW,aACjD,uCACE,gBAAC,MAAD,CAAK,UAAW,EAAW,mBAAoB,IAC7C,gBAAC,QAAD,GAAO,UAAU,YAAe,KAEjC,GAAY,gBAAC,MAAD,CAAK,UAAU,qBAAqB",
+  "names": []
+}

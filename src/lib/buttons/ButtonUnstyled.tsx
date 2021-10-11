@@ -13,7 +13,8 @@ export const ButtonUnstyled: FC<ButtonProps> = forwardRef(({ className, ...props
         `lc-border-none`,
         `lc-padding-0`,
         `focus:lc-outline-none`,
-        `focus-visible:lc-outline-black`
+        `focus-visible:lc-outline-black`,
+        `active:lc-scale-100`
       ],
       className
     )}

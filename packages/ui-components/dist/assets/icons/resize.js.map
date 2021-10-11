@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/assets/icons/resize.svg"],
+  "sourcesContent": ["import * as React from \"react\";\nexport function ReactComponent(props) {\n  return <svg width={24} height={24} viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" {...props}><path d=\"M17 17H15V15H17V17V17Z\" fill=\"black\" /><path d=\"M17 13H15V11H17V13V13Z\" fill=\"black\" /><path d=\"M13 17H11V15H13V17V17Z\" fill=\"black\" /><path d=\"M13 13H11V11H13V13V13Z\" fill=\"black\" /><path d=\"M9 17H7V15H9V17V17Z\" fill=\"black\" /><path d=\"M17 9H15V7H17V9Z\" fill=\"black\" /></svg>;\n}"],
+  "mappings": "yVAAA,wBACO,WAAwB,EAAO,CACpC,MAAO,iBAAC,MAAD,GAAK,MAAO,GAAI,OAAQ,GAAI,QAAQ,YAAY,KAAK,OAAO,MAAM,8BAAiC,GAAO,gBAAC,OAAD,CAAM,EAAE,yBAAyB,KAAK,UAAU,gBAAC,OAAD,CAAM,EAAE,yBAAyB,KAAK,UAAU,gBAAC,OAAD,CAAM,EAAE,yBAAyB,KAAK,UAAU,gBAAC,OAAD,CAAM,EAAE,yBAAyB,KAAK,UAAU,gBAAC,OAAD,CAAM,EAAE,sBAAsB,KAAK,UAAU,gBAAC,OAAD,CAAM,EAAE,mBAAmB,KAAK",
+  "names": []
+}

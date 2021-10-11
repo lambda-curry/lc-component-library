@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../src/lib/charts/ChartLabel/ChartLabel.tsx"],
+  "sourcesContent": ["import classNames from 'classnames';\nimport React, { FC } from 'react';\n\nexport interface ChartLabelProps {\n  color?: string;\n  label?: string | number;\n  className?: string;\n  value?: string | number;\n}\n\nexport const ChartLabel: FC<ChartLabelProps> = ({ color, label, value, className, ...props }) => (\n  <span className={classNames('lc-chart-label', className)} {...props}>\n    {color && <span className=\"lc-chart-label-color\" style={{ backgroundColor: color }} />}\n    {label && <span className=\"lc-chart-label-name\">{label}</span>}\n    {value && <span className=\"lc-chart-label-value\">{value}</span>}\n  </span>\n);\n"],
+  "mappings": "2fAAA,0BACA,qBASO,KAAM,GAAkC,AAAC,GAA8C,CAA9C,QAAE,SAAO,QAAO,QAAO,aAAvB,EAAqC,IAArC,EAAqC,CAAnC,QAAO,QAAO,QAAO,cACrE,uBAAC,OAAD,GAAM,UAAW,EAAW,iBAAkB,IAAgB,GAC3D,GAAS,gBAAC,OAAD,CAAM,UAAU,uBAAuB,MAAO,CAAE,gBAAiB,KAC1E,GAAS,gBAAC,OAAD,CAAM,UAAU,uBAAuB,GAChD,GAAS,gBAAC,OAAD,CAAM,UAAU,wBAAwB",
+  "names": []
+}

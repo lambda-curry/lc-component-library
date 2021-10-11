@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/lib/icon/IconRegistry.tsx"],
+  "sourcesContent": ["import React, { FC, createContext } from 'react';\nimport { IconsMap } from './Icon';\nimport './icon.css';\n\nexport const RegisteredIconContext = createContext<IconsMap>({});\n\nexport interface IconRegistryProps {\n  icons: IconsMap;\n}\n\nexport const IconRegistry: FC<IconRegistryProps> = ({ icons, ...props }) => (\n  <RegisteredIconContext.Provider value={icons} {...props} />\n);\n"],
+  "mappings": "2fAAA,yCAEA,mBAEO,KAAM,GAAwB,EAAwB,IAMhD,EAAsC,AAAC,GAAqB,CAArB,QAAE,UAAF,EAAY,IAAZ,EAAY,CAAV,UACpD,uBAAC,EAAsB,SAAvB,GAAgC,MAAO,GAAW",
+  "names": []
+}

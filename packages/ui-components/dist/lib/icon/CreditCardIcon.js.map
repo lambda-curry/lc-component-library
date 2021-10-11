@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/lib/icon/CreditCardIcon.tsx"],
+  "sourcesContent": ["import classNames from 'classnames';\nimport React, { FC } from 'react';\nimport { Icon } from './Icon';\nimport { ColorIcon } from './ColorIcon';\n\nexport enum CreditCardBrands {\n  AmericanExpress = 'americanExpress',\n  DinersClub = 'dinersClub',\n  Discover = 'discover',\n  JCB = 'jcb',\n  MasterCard = 'masterCard',\n  Visa = 'visa'\n}\n\nexport interface CreditCardIconProps {\n  brand: string;\n  className?: string;\n}\n\nexport const CreditCardIcon: FC<CreditCardIconProps> = ({ brand, className }) => {\n  const creditCardBrand = Object.values(CreditCardBrands).find(\n    creditCardBrand => creditCardBrand.toLowerCase() === brand?.toLowerCase()\n  );\n\n  const iconName = creditCardBrand ? creditCardBrand : 'creditCard';\n  const T = creditCardBrand ? ColorIcon : Icon;\n\n  return <T name={iconName} className={classNames('credit-card-icon', className)} />;\n};\n"],
+  "mappings": "AAAA,0BACA,qBACA,8BACA,wCAEO,GAAK,GAAL,UAAK,EAAL,CACL,kBAAkB,kBAClB,aAAa,aACb,WAAW,WACX,MAAM,MACN,aAAa,aACb,OAAO,SANG,WAcL,KAAM,GAA0C,CAAC,CAAE,QAAO,eAAgB,CAC/E,KAAM,GAAkB,OAAO,OAAO,GAAkB,KACtD,GAAmB,EAAgB,gBAAkB,kBAAO,gBAM9D,MAAO,iBAFG,EAAkB,EAAY,EAEjC,CAAG,KAHO,GAAoC,aAG3B,UAAW,EAAW,mBAAoB",
+  "names": []
+}

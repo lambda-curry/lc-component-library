@@ -1,7 +1,7 @@
 {
   // see https://www.typescriptlang.org/tsconfig to better understand tsconfigs
   "include": ["src", "types"],
-  "exclude": ["__mocks__", "*.documentation.ts"],
+  "exclude": ["__mocks__"],
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
@@ -35,5 +35,6 @@
     "noEmit": false,
     // https://esbuild.github.io/content-types/#isolated-modules
     "isolatedModules": true,
+    "types": ["cypress", "node"]
   }
 }

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../../../../../../../var/folders/m_/gjk6s3nj5nxgpgyp46dzdj740000gp/T/tmp-48391-FGAqyRBZVyit/ui-components/src/lib/icon/icon.css"],
+  "sourcesContent": ["/* purgecss start ignore */\n\n.lc-icon {\n  width: 24px;\n  height: 24px;\n}\n\n.lc-icon,\n  .lc-icon-decorative {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    box-sizing: border-box;\n    vertical-align: middle;\n  }\n\n.lc-icon svg {\n    width: 100%;\n    height: 100%;\n    color: inherit;\n  }\n\n.lc-icon:not(.lc-icon-color) svg,\n  .lc-icon:not(.lc-icon-color) path {\n    fill: currentColor;\n  }\n\n.lc-icon-decorative {\n    width: 32px;\n    height: 32px;\n    border-radius: 4px;\n  }\n\n.lc-icon-decorative .lc-icon {\n      width: 20px;\n      height: 20px;\n    }\n\n.lc-icon-decorative:not(.lc-icon-color) svg,\n    .lc-icon-decorative:not(.lc-icon-color) path {\n      fill: white;\n    }\n\n/* purgecss end ignore */\n"],
+  "mappings": "AAEA,SACE,WACA,YAGF,6BAEI,oBACA,mBACA,uBACA,sBACA,sBAGJ,aACI,WACA,YACA,cAGJ,mEAEI,kBAGJ,oBACI,WACA,YA7BJ,kBAiCA,6BACM,WACA,YAGN,yFAEM",
+  "names": []
+}

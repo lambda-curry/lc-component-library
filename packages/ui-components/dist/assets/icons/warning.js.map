@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/assets/icons/warning.svg"],
+  "sourcesContent": ["import * as React from \"react\";\nexport function ReactComponent(props) {\n  return <svg width={24} height={24} viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" {...props}><path d=\"M4.45336 20H19.5134C21.0534 20 22.0134 18.33 21.2434 17L13.7134 3.99C12.9434 2.66 11.0234 2.66 10.2534 3.99L2.72336 17C1.95336 18.33 2.91336 20 4.45336 20ZM11.9834 13C11.4334 13 10.9834 12.55 10.9834 12V10C10.9834 9.45 11.4334 9 11.9834 9C12.5334 9 12.9834 9.45 12.9834 10V12C12.9834 12.55 12.5334 13 11.9834 13ZM12.9834 17H10.9834V15H12.9834V17Z\" fill=\"black\" /></svg>;\n}"],
+  "mappings": "yVAAA,wBACO,WAAwB,EAAO,CACpC,MAAO,iBAAC,MAAD,GAAK,MAAO,GAAI,OAAQ,GAAI,QAAQ,YAAY,KAAK,OAAO,MAAM,8BAAiC,GAAO,gBAAC,OAAD,CAAM,EAAE,6VAA6V,KAAK",
+  "names": []
+}

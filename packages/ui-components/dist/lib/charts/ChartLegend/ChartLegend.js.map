@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../src/lib/charts/ChartLegend/ChartLegend.tsx"],
+  "sourcesContent": ["import React, { FC } from 'react';\nimport classNames from 'classnames';\n\nimport { ChartJSData, ChartLegendComponentProps } from '../chart.helpers';\nimport { ChartLegendItem } from './ChartLegendItem';\n\nexport const ChartLegend: FC<ChartLegendComponentProps> = ({ data, interactive, onItemClick }) => {\n  // TODO: Add support for pie charts\n\n  const { datasets } = data as ChartJSData;\n\n  if (!datasets) return null;\n\n  return (\n    <ul className={classNames('lc-chart-legend', { 'lc-chart-legend-interactive': interactive })}>\n      {datasets &&\n        datasets.map(({ label, borderColor, backgroundColor, pointBackgroundColor, hidden }, index) => {\n          const color = backgroundColor || pointBackgroundColor || borderColor;\n\n          return (\n            <ChartLegendItem\n              key={index}\n              index={index}\n              color={color as string}\n              label={label}\n              onClick={onItemClick}\n              active={!hidden}\n              interactive={interactive}\n            />\n          );\n        })}\n    </ul>\n  );\n};\n"],
+  "mappings": "AAAA,qBACA,0BAGA,oDAEO,KAAM,GAA6C,CAAC,CAAE,OAAM,cAAa,iBAAkB,CAGhG,KAAM,CAAE,YAAa,EAErB,MAAK,GAGH,gBAAC,KAAD,CAAI,UAAW,EAAW,kBAAmB,CAAE,8BAA+B,KAC3E,GACC,EAAS,IAAI,CAAC,CAAE,QAAO,cAAa,kBAAiB,uBAAsB,UAAU,IAIjF,gBAAC,EAAD,CACE,IAAK,EACL,MAAO,EACP,MANU,GAAmB,GAAwB,EAOrD,MAAO,EACP,QAAS,EACT,OAAQ,CAAC,EACT,YAAa,MAhBH",
+  "names": []
+}

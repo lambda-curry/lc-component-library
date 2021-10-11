@@ -1,0 +1,2 @@
+const g=(a,t,e)=>{if(!t.datasets)return null;const n=t.datasets[0].data.reduce((o,s)=>o+s,0),r=Math.round(a/n*100);return isNaN(r)||e&&r<e?null:`${r}%`},y=(a,t)=>a||{labels:t==null?void 0:t.map(e=>e.label),datasets:[{data:t==null?void 0:t.map(e=>e.value),backgroundColor:t==null?void 0:t.map(e=>e.color)}]};export{y as getComputedPieChartJSData,g as getPieChartPercentage};
+//# sourceMappingURL=chart.helpers.js.map

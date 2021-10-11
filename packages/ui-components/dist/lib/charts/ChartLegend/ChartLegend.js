@@ -1,0 +1,2 @@
+import a from"react";import h from"classnames";import{ChartLegendItem as p}from"./ChartLegendItem";const D=({data:o,interactive:e,onItemClick:n})=>{const{datasets:r}=o;return r?a.createElement("ul",{className:h("lc-chart-legend",{"lc-chart-legend-interactive":e})},r&&r.map(({label:s,borderColor:l,backgroundColor:c,pointBackgroundColor:m,hidden:C},t)=>a.createElement(p,{key:t,index:t,color:c||m||l,label:s,onClick:n,active:!C,interactive:e}))):null};export{D as ChartLegend};
+//# sourceMappingURL=ChartLegend.js.map

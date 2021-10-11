@@ -1,0 +1,2 @@
+import t,{createContext as o,useContext as a,useReducer as i}from"react";import{drawerActions as w,DrawerReducer as d}from"./drawer.helpers";const n=o({}),s=o({}),v=()=>{const e=a(n),r=a(s);return{drawerState:e,drawerActions:r}},A=({children:e})=>{const[r,c]=i(d,{data:{}});return t.createElement(n.Provider,{value:r},t.createElement(s.Provider,{value:w(r,c)},e))};export{s as DrawerActionContext,A as DrawerProvider,n as DrawerStateContext,v as useDrawer};
+//# sourceMappingURL=DrawerProvider.js.map

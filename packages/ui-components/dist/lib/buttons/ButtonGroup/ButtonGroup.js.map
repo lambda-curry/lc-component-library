@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../src/lib/buttons/ButtonGroup/ButtonGroup.tsx"],
+  "sourcesContent": ["import React, { FC } from 'react';\nimport classNames from 'classnames';\nimport './button-group.css';\n\nexport const ButtonGroup: FC<{ className?: string }> = ({ className, ...props }) => (\n  <div {...props} className={classNames('lc-button-group', className)} />\n);\n"],
+  "mappings": "+kBAAA,qBACA,0BACA,2BAEO,KAAM,GAA0C,AAAC,GAAyB,CAAzB,QAAE,cAAF,EAAgB,IAAhB,EAAgB,CAAd,cACxD,uBAAC,MAAD,OAAS,GAAT,CAAgB,UAAW,EAAW,kBAAmB",
+  "names": []
+}

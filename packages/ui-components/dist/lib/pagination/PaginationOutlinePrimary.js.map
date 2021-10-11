@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/lib/pagination/PaginationOutlinePrimary.tsx"],
+  "sourcesContent": ["import MuiPagination from '@material-ui/lab/Pagination';\nimport classNames from 'classnames';\nimport React, { FC, ReactElement } from 'react';\nimport { PaginationProps } from './Pagination';\nimport './pagination.css';\n\nexport const PaginationOutlinePrimary: FC<PaginationProps> = ({ className, pagesCount, ...props }): ReactElement => {\n  return (\n    <MuiPagination\n      className={classNames('lc-pagination-outline-primary', className)}\n      count={pagesCount}\n      variant=\"outlined\"\n      {...props}\n    />\n  );\n};\n"],
+  "mappings": "2fAAA,2CACA,0BACA,qBAEA,yBAEO,KAAM,GAAgD,AAAC,GAAsD,CAAtD,QAAE,aAAW,cAAb,EAA4B,IAA5B,EAA4B,CAA1B,YAAW,eACzE,MACE,iBAAC,EAAD,GACE,UAAW,EAAW,gCAAiC,GACvD,MAAO,EACP,QAAQ,YACJ",
+  "names": []
+}

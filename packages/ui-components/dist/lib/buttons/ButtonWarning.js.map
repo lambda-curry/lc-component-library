@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/lib/buttons/ButtonWarning.tsx"],
+  "sourcesContent": ["import React, { FC, forwardRef } from 'react';\nimport classNames from 'classnames';\nimport { ButtonProps } from './ButtonBase';\nimport { ButtonStyled } from './ButtonStyled';\n\nexport const ButtonWarning: FC<ButtonProps> = forwardRef(({ className, ...props }, ref) => (\n  <ButtonStyled\n    {...props}\n    ref={ref}\n    className={classNames(\n      [\n        `lc-button-warning`,\n        `lc-text-white`,\n        `lc-bg-warning`,\n        `lc-border-warning`,\n        `hover:lc-text-white`,\n        `hover:lc-bg-warning-dark`,\n        `hover:lc-border-warning-dark`,\n        `focus-visible:lc-ring-warning`\n      ],\n      className\n    )}\n  />\n));\n"],
+  "mappings": "+kBAAA,sCACA,0BAEA,8CAEO,KAAM,GAAiC,EAAW,CAAC,EAAyB,IAAK,CAA9B,QAAE,cAAF,EAAgB,IAAhB,EAAgB,CAAd,cAC1D,uBAAC,EAAD,OACM,GADN,CAEE,IAAK,EACL,UAAW,EACT,CACE,oBACA,gBACA,gBACA,oBACA,sBACA,2BACA,+BACA,iCAEF",
+  "names": []
+}

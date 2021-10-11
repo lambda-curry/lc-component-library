@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/lib/tabs/index.ts"],
+  "sourcesContent": ["export * from './Tabs';\n"],
+  "mappings": "AAAA",
+  "names": []
+}

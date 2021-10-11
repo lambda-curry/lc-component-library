@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../../../../../../../var/folders/m_/gjk6s3nj5nxgpgyp46dzdj740000gp/T/tmp-48391-FGAqyRBZVyit/ui-components/src/lib/form/form.css"],
+  "sourcesContent": ["/* purgecss start ignore */\n\n#lc-unsaved-changes-modal .flex-spacer {\n    flex: 1;\n  }\n\n/* purgecss end ignore */\n"],
+  "mappings": "AAEA,uCACI",
+  "names": []
+}

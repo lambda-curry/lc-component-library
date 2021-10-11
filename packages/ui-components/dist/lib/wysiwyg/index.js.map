@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/lib/wysiwyg/index.ts"],
+  "sourcesContent": ["export { Wysiwyg } from './Wysiwyg';\n"],
+  "mappings": "AAAA",
+  "names": []
+}
