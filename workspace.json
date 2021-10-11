@@ -75,13 +75,14 @@
       "projectType": "application",
       "implicitDependencies": ["ui-components"],
       "targets": {
-        "e2e-local": {
+        "e2e-dev": {
           "executor": "@nrwl/cypress:cypress",
           "options": {
             "cypressConfig": "packages/ui-components-e2e/cypress.json",
             "devServerTarget": "ui-components:storybook",
             "tsConfig": "packages/ui-components-e2e/tsconfig.json",
-            "record": true
+            "record": true,
+            "watch": true
           }
         },
         "e2e": {
