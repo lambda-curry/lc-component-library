@@ -1,0 +1,344 @@
+import { useState } from 'react';
+import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs';
+import { InputSelect, Form, ButtonOutline } from '../../..';
+import { usStates } from '../../../util/usStates';
+import dedent from 'string-dedent';
+import './input-select-story.css';
+
+<Meta title="Components/Inputs/Input Select" component={InputSelect} />
+
+# Input Select
+
+<Canvas>
+  <Story
+    name="Input Select"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+          <Form
+            enableReinitialize={true}
+            initialValues={{
+              select: undefined,
+              select_gray_bg: undefined,
+              initialSelect: { label: 'Option 1', value: 1 },
+              selectValueOnly: 2
+            }}
+            onSubmit={() => {}}
+          >
+            {formikProps => {
+              return (
+                <>
+                  <ButtonOutline onClick={() => formikProps.resetForm()}>Reset</ButtonOutline>
+                  <p className="lc-mb-8">Value: {JSON.stringify(formikProps.values.select)}</p>
+                  <InputSelect
+                    label="Select Option"
+                    name="select"
+                    options={[
+                      { label: 'Option 1', value: 1 },
+                      { label: 'Option 2', value: 2 },
+                      { label: 'Option 3', value: 3 }
+                    ]}
+                    formikProps={formikProps}
+                  />
+                  <div className="lc-p-16 lc-bg-gray lc-text-white">
+                    <p className="lc-mb-8">Value: {JSON.stringify(formikProps.values.select_gray_bg)}</p>
+                    <InputSelect
+                      labelPlacement="above"
+                      label="Select Option"
+                      name="select_gray_bg"
+                      options={[
+                        { label: 'Option 1', value: 1 },
+                        { label: 'Option 2', value: 2 },
+                        { label: 'Option 3', value: 3 }
+                      ]}
+                      formikProps={formikProps}
+                    />
+                  </div>
+                  <p className="lc-mb-8">
+                    Value with initial form value: {JSON.stringify(formikProps.values.initialSelect)}
+                  </p>
+                  <InputSelect
+                    label="Select Option"
+                    name="initialSelect"
+                    options={[
+                      { label: 'Option 1', value: 1 },
+                      { label: 'Option 2', value: 2 },
+                      { label: 'Option 3', value: 3 }
+                    ]}
+                    formikProps={formikProps}
+                  />
+                  <p className="lc-my-8">
+                    Value when <code>optionValueKey</code> is passed: {\`\${formikProps.values.selectValueOnly}\`}
+                  </p>
+                  <InputSelect
+                    label="Select Option"
+                    name="selectValueOnly"
+                    optionValueKey="value"
+                    options={[
+                      { label: 'Option 1', value: 1 },
+                      { label: 'Option 2', value: 2 },
+                      { label: 'Option 3', value: 3 }
+                    ]}
+                    formikProps={formikProps}
+                  />
+                </>
+              );
+            }}
+          </Form>`
+        }
+      }
+    }}
+  >
+    <div className="input-select-story">
+      <Form
+        enableReinitialize={true}
+        initialValues={{
+          select: undefined,
+          select_gray_bg: undefined,
+          initialSelect: { label: 'Option 1', value: 1 },
+          selectValueOnly: 2
+        }}
+        onSubmit={() => {}}
+      >
+        {formikProps => {
+          return (
+            <>
+              <ButtonOutline onClick={() => formikProps.resetForm()}>Reset</ButtonOutline>
+              <p className="lc-mb-8">Value: {JSON.stringify(formikProps.values.select)}</p>
+              <InputSelect
+                label="Select Option"
+                name="select"
+                options={[
+                  { label: 'Option 1', value: 1 },
+                  { label: 'Option 2', value: 2 },
+                  { label: 'Option 3', value: 3 }
+                ]}
+                formikProps={formikProps}
+              />
+              <div className="lc-p-16 lc-mb-24 lc-bg-gray lc-text-white">
+                <p className="lc-mb-8">Value: {JSON.stringify(formikProps.values.select_gray_bg)}</p>
+                <InputSelect
+                  labelPlacement="above"
+                  label="Select Option"
+                  name="select_gray_bg"
+                  options={[
+                    { label: 'Option 1', value: 1 },
+                    { label: 'Option 2', value: 2 },
+                    { label: 'Option 3', value: 3 }
+                  ]}
+                  formikProps={formikProps}
+                />
+              </div>
+              <p className="lc-mb-8">
+                Value with initial form value: {JSON.stringify(formikProps.values.initialSelect)}
+              </p>
+              <InputSelect
+                label="Select Option"
+                name="initialSelect"
+                options={[
+                  { label: 'Option 1', value: 1 },
+                  { label: 'Option 2', value: 2 },
+                  { label: 'Option 3', value: 3 }
+                ]}
+                formikProps={formikProps}
+              />
+              <p className="lc-my-8">
+                Value when <code>optionValueKey</code> is passed: {`${formikProps.values.selectValueOnly}`}
+              </p>
+              <InputSelect
+                label="Select Option"
+                name="selectValueOnly"
+                optionValueKey="value"
+                options={[
+                  { label: 'Option 1', value: 1 },
+                  { label: 'Option 2', value: 2 },
+                  { label: 'Option 3', value: 3 }
+                ]}
+                formikProps={formikProps}
+              />
+            </>
+          );
+        }}
+      </Form>
+    </div>
+  </Story>
+  <Story
+    name="Input Select with Custom Input Value"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+          <Form enableReinitialize={true} initialValues={{ customValue: undefined }} onSubmit={() => {}}>
+            {formikProps => {
+              return (
+                <>
+                  <ButtonOutline onClick={() => formikProps.resetForm()}>Reset</ButtonOutline>
+                  <p className="lc-my-8">Value: {\`\${formikProps.values.customValue}\`}</p>
+                  <InputSelect
+                    label="Select Custom Value"
+                    name="customValue"
+                    optionValueKey="value"
+                    options={[
+                      { label: 'Option 1', value: '1' },
+                      { label: 'Option 2', value: '2' },
+                      { label: 'Option 3', value: '3' }
+                    ]}
+                    formikProps={formikProps}
+                    allowCreateOption={true}
+                  />
+                </>
+              );
+            }}
+          </Form>`
+        }
+      }
+    }}
+  >
+    {() => {
+      return (
+        <div className="input-form-story">
+          <Form enableReinitialize={true} initialValues={{ customValue: undefined }} onSubmit={() => {}}>
+            {formikProps => {
+              return (
+                <>
+                  <ButtonOutline onClick={() => formikProps.resetForm()}>Reset</ButtonOutline>
+                  <p className="lc-my-8">Value: {`${formikProps.values.customValue}`}</p>
+                  <InputSelect
+                    label="Select Custom Value"
+                    name="customValue"
+                    options={[
+                      { label: 'Option 1', value: '1' },
+                      { label: 'Option 2', value: '2' },
+                      { label: 'Option 3', value: '3' }
+                    ]}
+                    formikProps={formikProps}
+                    allowCreateOption={true}
+                  />
+                </>
+              );
+            }}
+          </Form>
+        </div>
+      );
+    }}
+  </Story>
+  <Story
+    name="US State Select"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+          <Form enableReinitialize={true} initialValues={{ state: undefined }} onSubmit={() => {}}>
+            {formikProps => {
+              return (
+                <>
+                  <ButtonOutline onClick={() => formikProps.resetForm()}>Reset</ButtonOutline>
+                  <p className="lc-my-8">Value: {\`\${formikProps.values.state}\`}</p>
+                  <InputSelect
+                    label="State"
+                    name="state"
+                    optionLabelKey="name"
+                    optionValueKey="code"
+                    options={usStates}
+                    formikProps={formikProps}
+                  />
+                </>
+              );
+            }}
+          </Form>`
+        }
+      }
+    }}
+  >
+    {() => {
+      return (
+        <div className="input-form-story">
+          <Form enableReinitialize={true} initialValues={{ state: null }} onSubmit={() => {}}>
+            {formikProps => {
+              return (
+                <>
+                  <ButtonOutline onClick={() => formikProps.resetForm()}>Reset</ButtonOutline>
+                  <p className="lc-my-8">Value: {`${formikProps.values.state}`}</p>
+                  <InputSelect
+                    label="State"
+                    name="state"
+                    optionLabelKey="name"
+                    optionValueKey="code"
+                    options={usStates}
+                    formikProps={formikProps}
+                    autocompleteConfig={{ disableClearable: false }}
+                  />
+                </>
+              );
+            }}
+          </Form>
+        </div>
+      );
+    }}
+  </Story>
+  <Story
+    name="Multiselect"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+          <Form enableReinitialize={true} initialValues={{ multiselect: [] }} onSubmit={() => {}}>
+            {formikProps => {
+              return (
+                <>
+                  <ButtonOutline onClick={() => formikProps.resetForm()}>Reset</ButtonOutline>
+                  <p className="lc-my-8">Value: {\`\${formikProps.values.multiselect}\`}</p>
+                  <InputSelect
+                    label="Multiselect input"
+                    name="multiselect"
+                    options={[
+                      { label: 'Option 1', value: 1 },
+                      { label: 'Option 2', value: 2 },
+                      { label: 'Option 3', value: 3 }
+                      { label: 'Option 4', value: 4 }
+                      { label: 'Option 5', value: 5 }
+                    ]}
+                    formikProps={formikProps}
+                    autocompleteConfig={{ multiple: true }}
+                  />
+                </>
+              );
+            }}
+          </Form>`
+        }
+      }
+    }}
+  >
+    {() => {
+      return (
+        <div className="input-form-story">
+          <Form enableReinitialize={true} initialValues={{ multiselect: [] }} onSubmit={() => {}}>
+            {formikProps => {
+              return (
+                <>
+                  <ButtonOutline onClick={() => formikProps.resetForm()}>Reset</ButtonOutline>
+                  <p className="lc-my-8">Value: {`${formikProps.values.multiselect}`}</p>
+                  <InputSelect
+                    label="Multiselect input"
+                    name="multiselect"
+                    options={[
+                      { label: 'Option 1', value: 1 },
+                      { label: 'Option 2', value: 2 },
+                      { label: 'Option 3', value: 3 },
+                      { label: 'Option 4', value: 4 },
+                      { label: 'Option 5', value: 5 }
+                    ]}
+                    formikProps={formikProps}
+                    autocompleteConfig={{ multiple: true }}
+                  />
+                </>
+              );
+            }}
+          </Form>
+        </div>
+      );
+    }}
+  </Story>
+  <ArgsTable of={InputSelect} />
+</Canvas>

@@ -1,0 +1,36 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { IconButton } from '../IconButton';
+import { defaultIcons } from '../../icon/Icon';
+import dedent from 'string-dedent';
+
+import './icon-button-story.css';
+
+<Meta title="Components/Buttons/Icon Buttons" component={IconButton} />
+
+# Icon Buttons
+
+<Canvas>
+  <Story
+    name="Icon Buttons"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`<IconButton key={iconName} icon={iconName} />
+          <div className="lc-my-4 lc-text-primary">
+            <IconButton className="match-text-color" icon="eye" />
+          </div>`
+        }
+      }
+    }}
+  >
+    <div className="icon-button-story">
+      {Object.keys(defaultIcons).map(iconName => (
+        <IconButton key={iconName} icon={iconName} />
+      ))}
+      <div className="lc-my-4 lc-text-primary">
+        <IconButton className="match-text-color" icon="eye" />
+      </div>
+    </div>
+  </Story>
+  <ArgsTable of={IconButton} />
+</Canvas>

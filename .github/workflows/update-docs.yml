@@ -1,0 +1,58 @@
+name: Build and Deploy Component Library Docs
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  cypress-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+          cache: 'yarn'
+      - name: Test Components
+        run: yarn && npx nx e2e ui-components-e2e
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+
+  build-docs:
+    needs: cypress-docs
+    if: ${{ github.event_name != 'pull_request' }}
+    runs-on: ubuntu-latest
+    steps:
+      # Check out code
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+          cache: 'yarn'
+      - name: Build docs
+        run: yarn && npx nx build-docs ui-components
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_PASS }}
+      # And make it available for the builds
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          file: deploy/Dockerfile
+          tags: lambdacurry/component-library-docs:${{ github.sha }}
+      - name: Helm Update
+        uses: WyriHaximus/github-action-helm3@v2
+        with:
+          exec: helm repo add lambdacurry https://charts.lambdacurry.dev --username lambdacurry --password ${{ secrets.LAMBDACURRY_CHART_PASSWORD }} && helm upgrade component-library-docs --reuse-values --set images.nginx.tag=${{ github.sha }} --set images.nginx.repository=lambdacurry/component-library-docs lambdacurry/static-site -n component-library
+          kubeconfig: '${{ secrets.KUBECONFIG }}'

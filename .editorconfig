@@ -13,13 +13,13 @@ trim_trailing_whitespace = true
 [{*.css,*.scss}]
 indent_size = 2
 
-[{*.js,*.jsx,*.tsx,*.ts}]
+[{*.js,*.jsx,*.tsx,*.ts,*.mjs}]
 indent_size = 2
 
 [*.json]
 indent_size = 2
 
-[*.md]
+[*.md,*.mdx]
 indent_size = 4
 trim_trailing_whitespace = false
 

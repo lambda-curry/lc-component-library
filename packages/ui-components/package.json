@@ -1,0 +1,76 @@
+{
+  "name": "@lambdacurry/component-library",
+  "version": "2.8.2-beta.1",
+  "description": "A React component library created by Lambda Curry.",
+  "author": "Lambda Curry",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "esbuild": "rm -rf dist && NODE_ENV=production node ./esbuild.mjs && tsc --project tsconfig.lib.json --emitDeclarationOnly --outDir dist",
+    "build": "yarn esbuild",
+    "sb": "yarn storybook",
+    "storybook": "start-storybook -s ./static -p 6007",
+    "build:storybook": "STORYBOOK_ENV=production build-storybook -s static -o docs"
+  },
+  "sideEffects": [
+    "./src/lib/charts/BarChart/roundedBarCharts.ts"
+  ],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=12.13.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.3%",
+      "not ie 11",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/Lambda-Curry/lc-component-library/issues"
+  },
+  "homepage": "https://github.com/Lambda-Curry/lc-component-library#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lambda-Curry/lc-component-library.git"
+  },
+  "keywords": [
+    "react",
+    "component",
+    "library"
+  ],
+  "dependencies": {
+    "@szhsin/react-menu": "*",
+    "react-quill": "*",
+    "tailwindcss": "*"
+  },
+  "devDependencies": {
+    "@nrwl/storybook": "*",
+    "autoprefixer": "*",
+    "cypress": "*",
+    "postcss": "*",
+    "postcss-cli": "*",
+    "postcss-focus-visible": "*",
+    "postcss-functions": "*",
+    "postcss-import": "*",
+    "postcss-loader": "*",
+    "postcss-mixins": "*",
+    "postcss-nested": "*",
+    "postcss-scss": "*",
+    "postcss-simple-vars": "*",
+    "postcss-strip-inline-comments": "*",
+    "postcss-url": "*",
+    "webpack": "*"
+  }
+}

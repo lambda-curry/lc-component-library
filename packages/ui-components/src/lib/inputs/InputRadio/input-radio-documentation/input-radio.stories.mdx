@@ -1,0 +1,74 @@
+import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs';
+import { InputRadioGroup, Form } from '../../..';
+import dedent from 'string-dedent';
+import { inputRadioExample1, inputRadioExample2 } from './input-radio.examples.tsx';
+
+<Meta title="Components/Inputs/Input Radio Group" component={InputRadioGroup} />
+
+# Radio Input
+
+<Canvas>
+  <Story
+    name="Input Radio"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+            <Form
+              initialValues={{
+                sampleRadio: 'Yes'
+              }}
+              onSubmit={() => undefined}
+            >
+              {formikProps => (
+                <>
+                  Value: {formikProps.values.sampleRadio}
+                  <InputRadio label="Yes" name="sampleRadio" value="Yes" formikProps={formikProps} />
+                  <InputRadio label="No" name="sampleRadio" value="No" formikProps={formikProps} />
+                </>
+              )}
+            </Form>`
+        }
+      }
+    }}
+  >
+    {inputRadioExample1.bind({})}
+  </Story>
+  <Story
+    name="Input Radio - Horizontal"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+            <Form
+              initialValues={{
+                sampleRadio: 'Yes'
+              }}
+              onSubmit={() => undefined}
+            >
+              {formikProps => (
+                <>
+                  Radio buttons aligned horizontally
+                  <br />
+                  Value: {formikProps.values.sampleRadio}
+                  <InputRadioGroup
+                    formikProps={formikProps}
+                    legend="Sample Radio"
+                    name="sampleRadio"
+                    row
+                    value={formikProps.values.sampleRadio}
+                  >
+                    <InputRadio id="sampleRadio.yes" label="Yes" value="Yes" />
+                    <InputRadio id="sampleRadio.no" label="No" value="No" />
+                  </InputRadioGroup>
+                </>
+              )}
+            </Form>`
+        }
+      }
+    }}
+  >
+    {inputRadioExample2.bind({})}
+  </Story>
+  <ArgsTable of={InputRadioGroup} />
+</Canvas>

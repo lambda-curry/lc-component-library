@@ -1,0 +1,5 @@
+{
+  "extends": "../tsconfig.json",
+  "exclude": ["../**/*.spec.js", "../**/*.spec.ts", "../**/*.spec.tsx", "../**/*.spec.jsx"],
+  "include": ["../**/*", "../../../postcss.config.js", "../../../util"]
+}

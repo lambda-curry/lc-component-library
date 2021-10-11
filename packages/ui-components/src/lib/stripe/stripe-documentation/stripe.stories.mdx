@@ -1,0 +1,112 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs';
+import { StripeCardInput } from '..';
+import { StripeExample1, StripeExampleRejectedBrands, StripeExampleAcceptedBrands } from '.';
+
+import dedent from 'string-dedent';
+
+<Meta title="Components/Inputs/Stripe" component={StripeCardInput} />
+
+# Stripe
+
+<Canvas>
+  <Story
+    name="Stripe Card Input"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+          <StripeFormWrapper STRIPE_KEY={process.env.STORYBOOK_STRIPE_KEY}>
+            <Form initialValues={{ 'stripe-input': undefined }} onSubmit={() => {}}>
+              {formikProps => (
+                <div className="stripe-story">
+                  <p>Values: {JSON.stringify(formikProps.values)}</p>
+                  <StripeCardInput name="stripe-input" />
+                </div>
+              )}
+            </Form>
+          </StripeFormWrapper>`
+        }
+      }
+    }}
+  >
+    <StripeExample1 />
+    <p className="lc-mt-16">
+      Tip: Test with Stripe's{' '}
+      <a href="https://stripe.com/docs/testing#cards" target="_blank">
+        basic test card numbers
+      </a>
+      .
+    </p>
+  </Story>
+  <ArgsTable of={StripeCardInput} />
+</Canvas>
+
+# Stripe With Rejected Brands
+
+<Canvas>
+  <Story
+    name="Stripe Card Input with Rejected Brands"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+          <StripeFormWrapper
+            initialValues={{ 'stripe-input': undefined }}
+            STRIPE_KEY={process.env.STORYBOOK_STRIPE_KEY}
+            onSubmit={() => {}}
+          >
+            {formikProps => {
+              return (
+                <div className="stripe-story">
+                  <p>Values: {JSON.stringify(formikProps.values)}</p>
+                  <StripeCardInput
+                    label="Stripe Input"
+                    name="stripe-input"
+                    rejectedBrands={['discover', 'diners', 'jcb', 'unionpay']}
+                  />
+                </div>
+              );
+            }}
+          </StripeFormWrapper>`
+        }
+      }
+    }}
+  >
+    <StripeExampleRejectedBrands />
+  </Story>
+</Canvas>
+
+# Stripe with accepted brands and a custom error message
+
+<Canvas>
+  <Story
+    name="Stripe Card Input with accepted brands and a custom error message"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+          <StripeFormWrapper
+            initialValues={{ 'stripe-input': undefined }}
+            STRIPE_KEY={process.env.STORYBOOK_STRIPE_KEY}
+            onSubmit={() => {}}
+          >
+            {formikProps => {
+              return (
+                <div className="stripe-story">
+                  <p className="lc-mb-16">Accepted brands: {JSON.stringify(acceptedBrands)}</p>
+                  <StripeCardInput
+                    label="Stripe Input"
+                    name="stripe-input"
+                    acceptedBrands={acceptedBrands as StripeCardBrands[]}
+                  />
+                </div>
+              );
+            }}
+          </StripeFormWrapper>`
+        }
+      }
+    }}
+  >
+    <StripeExampleAcceptedBrands />
+  </Story>
+</Canvas>

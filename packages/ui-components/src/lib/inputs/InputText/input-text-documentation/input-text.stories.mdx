@@ -1,0 +1,97 @@
+import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs';
+import { InputText, Form, Icon } from '../../..';
+import dedent from 'string-dedent';
+import './input-text-story.css';
+
+export const InputTextExample = () => (
+  <div className="input-text-story">
+    <Form
+      initialValues={{
+        sampleInput1: '',
+        shrunkenLabelInput: '',
+        sampleInput2: '',
+        sampleInput3: '',
+        sampleInput4: '',
+        sampleInputStandard: '',
+        sampleInput5: '',
+        'test[safe]': ''
+      }}
+      onSubmit={() => {}}
+    >
+      {formikProps => (
+        <>
+          <p className="lc-mb-16">{JSON.stringify(formikProps.values)}</p>
+          <InputText name="sampleInput1" label="Text Input" formikProps={formikProps} />
+          <InputText
+            name="shrunkenLabelInput"
+            label="Text Input"
+            inputConfig={{ shrinkLabel: true }}
+            formikProps={formikProps}
+          />
+          <InputText name="sampleInput2" label="Text Input" value="Example" formikProps={formikProps} />
+          <InputText name="sampleInput3" label="Password Input" type="password" formikProps={formikProps} />
+          <div className="input-text-story-dark">
+            <InputText
+              name="sampleInput4"
+              label="Label Above"
+              labelPlacement="above"
+              placeholder="Enter text..."
+              formikProps={formikProps}
+            />
+          </div>
+          <div className="input-text-story-dark">
+            <InputText
+              className="dark-mode"
+              variant="standard"
+              name="sampleInputStandard"
+              label="Dark Mode Standard Variant"
+              placeholder="Enter text..."
+              prefix={<Icon name="mailOutline" className="h-20 w-20" />}
+              formikProps={formikProps}
+            />
+          </div>
+          <InputText
+            name="sampleInput5"
+            label="Text Input"
+            helperText="Example helper text can be placed below the input"
+            formikProps={formikProps}
+          />
+          <p className="lc-mb-16">
+            Here is an example if you need to avoid Formik's default behavior of nesting based off of form names <br />{' '}
+            (uses this technique:{' '}
+            <a href="https://formik.org/docs/guides/arrays#avoid-nesting" target="_blank">
+              Avoid Nesting
+            </a>
+            )
+          </p>
+          <InputText
+            name="test[safe]"
+            inputConfig={{ safeName: true }}
+            label="Text Input with a 'safe name'"
+            formikProps={formikProps}
+          />
+        </>
+      )}
+    </Form>
+  </div>
+);
+
+<Meta title="Components/Inputs/Input Text" component={InputText} />
+
+# Text Input
+
+<Canvas>
+  <Story
+    name="Input Text"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent``
+        }
+      }
+    }}
+  >
+    {InputTextExample.bind({})}
+  </Story>
+  <ArgsTable of={InputText} />
+</Canvas>
