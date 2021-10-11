@@ -4,7 +4,6 @@
     "*.css": "scss"
   },
   "cSpell.words": [
-    "Multiselect",
     "browserslist",
     "chartjs",
     "compat",
@@ -16,7 +15,9 @@
     "lambdacurry",
     "luxon",
     "multiline",
+    "Multiselect",
     "notistack",
+    "nrwl",
     "outdir",
     "parens",
     "postbuild",
