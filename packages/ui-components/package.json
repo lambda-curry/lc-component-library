@@ -53,7 +53,7 @@
   "dependencies": {
     "@date-io/luxon": "*",
     "@material-ui/core": "*",
-    "@material-ui/lab": "*",
+    "@material-ui/lab": "4.0.0-alpha.60",
     "@material-ui/pickers": "*",
     "@stripe/react-stripe-js": "*",
     "@stripe/stripe-js": "*",
