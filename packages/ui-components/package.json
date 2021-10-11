@@ -54,7 +54,7 @@
     "@date-io/luxon": "*",
     "@material-ui/core": "*",
     "@material-ui/lab": "4.0.0-alpha.60",
-    "@material-ui/pickers": "*",
+    "@material-ui/pickers": "4.0.0-alpha.12",
     "@stripe/react-stripe-js": "*",
     "@stripe/stripe-js": "*",
     "@szhsin/react-menu": "*",
