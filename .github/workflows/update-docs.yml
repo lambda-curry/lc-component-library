@@ -45,19 +45,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+          PERCY_PARALLEL_TOTAL: 3
       - name: Stop NX Agents
         run: npx nx-cloud stop-all-agents
-  finalize-tests:
-    needs: cypress-docs
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-      - name: Percy Finalize
-        run: npx percy build:finalize
-        env:
-          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
   build-docs:
     needs: cypress-docs
     if: ${{ github.event_name != 'pull_request' }}
