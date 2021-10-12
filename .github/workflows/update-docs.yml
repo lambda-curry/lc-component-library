@@ -43,6 +43,8 @@ jobs:
       - name: Stop NX Agents
         run: npx nx-cloud stop-all-agents
       - run: npx percy build:finalize
+        env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
   build-docs:
     needs: cypress-docs
     if: ${{ github.event_name != 'pull_request' }}
