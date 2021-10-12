@@ -9,6 +9,9 @@ env:
 jobs:
   cypress-docs:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        machines: [1, 2, 3]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -18,13 +21,20 @@ jobs:
           cache: 'yarn'
       - name: Test Components
         run: yarn && npx nx-cloud start-ci-run
-        # https://github.com/nrwl/nx/issues/1604 needs -- --parallel at the end to work
-      - run: npx nx run ui-components-e2e:e2e --ciBuildId=${{ secrets.GITHUB_TOKEN }} --parallel --max-parallel=3 -- --parallel
-      - run: npx nx-cloud stop-all-agents
+      - run: npx nx build-docs ui-components
+      - name: run tests
+        uses: cypress-io/github-action@v1
+        timeout-minutes: 10
+        with:
+          record: true
+          parallel: true
+          start: nx serve-docs ui-components
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+      - name: Stop NX Agents
+        run: npx nx-cloud stop-all-agents
   build-docs:
     needs: cypress-docs
     if: ${{ github.event_name != 'pull_request' }}
@@ -61,20 +71,3 @@ jobs:
         with:
           exec: helm repo add lambdacurry https://charts.lambdacurry.dev --username lambdacurry --password ${{ secrets.LAMBDACURRY_CHART_PASSWORD }} && helm upgrade component-library-docs --reuse-values --set images.nginx.tag=${{ github.sha }} --set images.nginx.repository=lambdacurry/component-library-docs lambdacurry/static-site -n component-library
           kubeconfig: '${{ secrets.KUBECONFIG }}'
-  agents:
-    runs-on: ubuntu-latest
-    name: Agent
-    timeout-minutes: 60
-    strategy:
-      matrix:
-        agent: [1, 2, 3]
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-          cache: 'yarn'
-      - name: Install dependencies
-        run: yarn
-      - name: Start Nx Agent ${{ matrix.agent }}
-        run: npx nx-cloud start-agent
