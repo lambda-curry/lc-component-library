@@ -4,7 +4,7 @@ describe('pagination', () => {
   });
 
   it('should change the active page on click', () => {
-    cy.screenshot();
+    cy.percySnapshot();
     const pageNumbers = Array.from(Array(10).keys()).map(i => (i + 1).toString());
     pageNumbers.forEach(pageNumber => {
       cy.contains(pageNumber).click();

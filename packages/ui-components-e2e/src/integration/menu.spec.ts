@@ -12,7 +12,7 @@ describe('menu', () => {
     cy.contains('Menu').click();
     cy.get('.szh-menu .szh-menu__submenu').trigger('mouseover');
     cy.get('ul.szh-menu--state-open ul.szh-menu--state-open').should('be.visible');
-    cy.screenshot();
+    cy.percySnapshot();
   });
 });
 

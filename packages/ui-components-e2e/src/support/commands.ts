@@ -1,4 +1,5 @@
 import 'cypress-wait-until';
+import '@percy/cypress';
 
 // ***********************************************
 // This example commands.js shows you how to

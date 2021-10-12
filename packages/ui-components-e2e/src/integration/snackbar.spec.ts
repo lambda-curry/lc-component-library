@@ -6,7 +6,7 @@ describe('buttons', () => {
   it('should render a snackbar and then should disappear after 5 seconds', () => {
     cy.contains('Default').click();
     cy.get('.snackbar').should('contain', 'Your notification here.');
-    cy.screenshot();
+    cy.percySnapshot();
     cy.waitUntil(() => cy.get('.snackbar', { timeout: 8000 }).should('not.be.visible'));
   });
 
@@ -18,7 +18,7 @@ describe('buttons', () => {
       cy.get('.snackbar > div').should('have.css', 'background-color', `rgb(${color})`);
     });
 
-    cy.screenshot();
+    cy.percySnapshot();
   });
 
   it('should render a warning .snackbar with the background color rgb(var(--lc-color-warning))', () => {
@@ -29,7 +29,7 @@ describe('buttons', () => {
       cy.get('.snackbar > div').should('have.css', 'background-color', `rgb(${color})`);
     });
 
-    cy.screenshot();
+    cy.percySnapshot();
   });
 
   it('should render an error .snackbar with the background color rgb(var(--lc-color-danger))', () => {
@@ -40,7 +40,7 @@ describe('buttons', () => {
       cy.get('.snackbar > div').should('have.css', 'background-color', `rgb(${color})`);
     });
 
-    cy.screenshot();
+    cy.percySnapshot();
   });
 
   it('should render an info .snackbar with the background color rgb(var(--lc-color-primary))', () => {
@@ -51,6 +51,6 @@ describe('buttons', () => {
       cy.get('.snackbar > div').should('have.css', 'background-color', `rgb(${color})`);
     });
 
-    cy.screenshot();
+    cy.percySnapshot();
   });
 });

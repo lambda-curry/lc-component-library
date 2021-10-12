@@ -35,10 +35,12 @@ jobs:
           parallel: true
           start: npx nx serve-docs ui-components
           project: packages/ui-components-e2e
+          command-prefix: 'percy exec -- npx'
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
       - name: Stop NX Agents
         run: npx nx-cloud stop-all-agents
   build-docs:

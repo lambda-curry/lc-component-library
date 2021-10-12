@@ -6,7 +6,7 @@ describe('drawer', () => {
   it('should open and close the drawer', () => {
     cy.contains('Open Drawer').click();
     cy.get('.lc-drawer-content').should('be.visible');
-    cy.screenshot();
+    cy.percySnapshot();
     cy.get('body').click();
     cy.get('.lc-drawer-content').should('not.exist');
   });
