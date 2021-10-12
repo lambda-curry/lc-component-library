@@ -28,13 +28,82 @@ import dedent from 'string-dedent';
     }}
   >
     {() => {
-      const [open, setOpen] = useState(false);
+      const [modalOneOpen, setModalOneOpen] = useState(false);
+      const [modalTwoOpen, setModalTwoOpen] = useState(false);
       return (
         <div className="modals-story">
-          <ButtonPrimary onClick={() => setOpen(!open)}>Toggle Modal</ButtonPrimary>
-          <Modal isOpen={open} onAfterClose={() => setOpen(false)}>
-            <Title>Modal Title</Title>
-            <p className="text">This is an example modal.</p>
+          <h4>Modal with a little content</h4>
+          <p>
+            <ButtonPrimary onClick={() => setModalOneOpen(!modalOneOpen)}>Toggle Modal One</ButtonPrimary>
+          </p>
+          <Modal isOpen={modalOneOpen} onAfterClose={() => setModalOneOpen(false)}>
+            <Title>Modal One</Title>
+            <p className="text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua. Cursus mattis molestie a iaculis at erat pellentesque. Gravida neque convallis a cras
+              semper auctor.
+            </p>
+          </Modal>
+          <br />
+          <h4>Modal with a lot of content</h4>
+          <p>
+            <ButtonPrimary onClick={() => setModalTwoOpen(!modalTwoOpen)}>Toggle Modal Two</ButtonPrimary>
+          </p>
+          <Modal isOpen={modalTwoOpen} onAfterClose={() => setModalTwoOpen(false)}>
+            <Title>Modal Two</Title>
+            <p className="text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua. Cursus mattis molestie a iaculis at erat pellentesque. Gravida neque convallis a cras
+              semper auctor. In ornare quam viverra orci sagittis eu volutpat odio. Elementum sagittis vitae et leo duis
+              ut. Integer malesuada nunc vel risus commodo. A scelerisque purus semper eget duis at tellus at urna.
+              Velit dignissim sodales ut eu sem integer vitae justo. Arcu vitae elementum curabitur vitae nunc sed
+              velit. Velit egestas dui id ornare arcu odio ut. Vitae nunc sed velit dignissim sodales ut eu sem. Dis
+              parturient montes nascetur ridiculus mus mauris vitae. Accumsan tortor posuere ac ut consequat semper
+              viverra nam. Molestie a iaculis at erat. At tellus at urna condimentum. Curabitur gravida arcu ac tortor
+              dignissim convallis aenean. Scelerisque purus semper eget duis at tellus at urna condimentum. Facilisis
+              gravida neque convallis a cras semper auctor.
+            </p>
+            <p className="text">
+              In hac habitasse platea dictumst. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim
+              cras. Praesent elementum facilisis leo vel fringilla est ullamcorper. Pellentesque elit ullamcorper
+              dignissim cras. Augue neque gravida in fermentum et sollicitudin. Interdum velit euismod in pellentesque
+              massa placerat duis. Cursus sit amet dictum sit amet justo donec enim. Non blandit massa enim nec dui nunc
+              mattis enim ut. Convallis a cras semper auctor neque vitae tempus. Velit egestas dui id ornare arcu odio
+              ut sem. Ac tortor vitae purus faucibus. Magna etiam tempor orci eu lobortis. Neque egestas congue quisque
+              egestas diam in arcu cursus euismod. Ornare aenean euismod elementum nisi. Neque aliquam vestibulum morbi
+              blandit cursus risus at ultrices mi. Sem et tortor consequat id. Condimentum mattis pellentesque id nibh
+              tortor id aliquet lectus proin. Semper feugiat nibh sed pulvinar proin gravida. Etiam non quam lacus
+              suspendisse.
+            </p>
+            <p className="text">
+              Amet venenatis urna cursus eget. Egestas sed sed risus pretium quam vulputate dignissim suspendisse in. Et
+              netus et malesuada fames ac turpis egestas maecenas. Donec enim diam vulputate ut pharetra sit. Arcu dui
+              vivamus arcu felis bibendum ut tristique. Turpis cursus in hac habitasse platea. Lobortis feugiat vivamus
+              at augue eget arcu dictum varius. Iaculis nunc sed augue lacus viverra vitae congue eu consequat. Fusce ut
+              placerat orci nulla pellentesque dignissim enim sit. Porttitor rhoncus dolor purus non. Nisl purus in
+              mollis nunc sed id semper risus. Non diam phasellus vestibulum lorem. Gravida dictum fusce ut placerat
+              orci nulla. Id aliquet risus feugiat in ante metus dictum at tempor. Aliquet nec ullamcorper sit amet.
+              Vulputate sapien nec sagittis aliquam.
+            </p>
+            <p className="text">
+              Dui vivamus arcu felis bibendum ut. Hendrerit dolor magna eget est lorem ipsum dolor sit amet. Eu
+              scelerisque felis imperdiet proin fermentum leo vel. A condimentum vitae sapien pellentesque habitant. Non
+              nisi est sit amet facilisis. Varius vel pharetra vel turpis nunc eget. Tempus iaculis urna id volutpat.
+              Elementum facilisis leo vel fringilla. Amet porttitor eget dolor morbi non arcu. Ut diam quam nulla
+              porttitor massa id neque aliquam vestibulum. Non enim praesent elementum facilisis leo vel fringilla.
+              Scelerisque purus semper eget duis at tellus at urna condimentum. Platea dictumst quisque sagittis purus
+              sit amet volutpat. Facilisis volutpat est velit egestas dui. Nunc sed blandit libero volutpat.
+            </p>
+            <p className="text">
+              Volutpat blandit aliquam etiam erat velit scelerisque in dictum non. Sollicitudin tempor id eu nisl nunc
+              mi ipsum faucibus. Enim sit amet venenatis urna cursus eget. Sit amet consectetur adipiscing elit ut
+              aliquam purus. Commodo ullamcorper a lacus vestibulum sed arcu non odio euismod. Vitae auctor eu augue ut
+              lectus arcu bibendum. Vestibulum lectus mauris ultrices eros in cursus turpis. Id volutpat lacus laoreet
+              non curabitur gravida arcu ac. Purus viverra accumsan in nisl nisi scelerisque eu ultrices. Tortor pretium
+              viverra suspendisse potenti nullam. Dui id ornare arcu odio ut sem. Semper risus in hendrerit gravida
+              rutrum quisque. Egestas purus viverra accumsan in nisl nisi scelerisque eu ultrices. Iaculis at erat
+              pellentesque adipiscing commodo elit at imperdiet.
+            </p>
           </Modal>
         </div>
       );
