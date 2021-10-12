@@ -26,23 +26,6 @@ jobs:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
-    agents:
-      runs-on: ubuntu-latest
-      name: Agent 1
-      timeout-minutes: 30
-      strategy:
-        matrix:
-          agent: [1, 2, 3]
-      steps:
-        - uses: actions/checkout@v2
-        - uses: actions/setup-node@v2
-          with:
-            node-version: '14'
-            cache: 'yarn'
-        - name: Install dependencies
-          run: yarn
-        - name: Start Nx Agent ${{ matrix.agent }}
-          run: npx nx-cloud start-agent
   build-docs:
     needs: cypress-docs
     if: ${{ github.event_name != 'pull_request' }}
@@ -79,3 +62,23 @@ jobs:
         with:
           exec: helm repo add lambdacurry https://charts.lambdacurry.dev --username lambdacurry --password ${{ secrets.LAMBDACURRY_CHART_PASSWORD }} && helm upgrade component-library-docs --reuse-values --set images.nginx.tag=${{ github.sha }} --set images.nginx.repository=lambdacurry/component-library-docs lambdacurry/static-site -n component-library
           kubeconfig: '${{ secrets.KUBECONFIG }}'
+
+workflows:
+  e2e:
+    agents:
+      runs-on: ubuntu-latest
+      name: Agent 1
+      timeout-minutes: 30
+      strategy:
+        matrix:
+          agent: [1, 2, 3]
+      steps:
+        - uses: actions/checkout@v2
+        - uses: actions/setup-node@v2
+          with:
+            node-version: '14'
+            cache: 'yarn'
+        - name: Install dependencies
+          run: yarn
+        - name: Start Nx Agent ${{ matrix.agent }}
+          run: npx nx-cloud start-agent
