@@ -19,14 +19,30 @@ jobs:
           node-version: '14'
           cache: 'yarn'
       - name: Test Components
-        run: yarn && npx nx-cloud start-ci-run --ma
+        run: yarn && npx nx-cloud start-ci-run
       - run: npx nx run ui-components-e2e:e2e --parallel --max-parallel=4 --ciBuildId=${{ secrets.GITHUB_TOKEN }}
       - run: npx nx-cloud stop-all-agents
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
-
+    agents:
+      runs-on: ubuntu-latest
+      name: Agent 1
+      timeout-minutes: 30
+      strategy:
+        matrix:
+          agent: [1, 2, 3]
+      steps:
+        - uses: actions/checkout@v2
+        - uses: actions/setup-node@v2
+          with:
+            node-version: '14'
+            cache: 'yarn'
+        - name: Install dependencies
+          run: yarn
+        - name: Start Nx Agent ${{ matrix.agent }}
+          run: npx nx-cloud start-agent
   build-docs:
     needs: cypress-docs
     if: ${{ github.event_name != 'pull_request' }}
