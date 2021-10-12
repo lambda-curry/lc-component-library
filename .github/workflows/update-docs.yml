@@ -38,8 +38,8 @@ jobs:
           cache: 'yarn'
       - name: Build docs
         run: npx nx-cloud start-ci-run
-        run: yarn && npx nx build-docs ui-components
-        run: npx nx-cloud stop-all-agents
+        - run: yarn && npx nx build-docs ui-components
+        - run: npx nx-cloud stop-all-agents
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       - name: Login to DockerHub
