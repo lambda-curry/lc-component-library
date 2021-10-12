@@ -9,6 +9,7 @@
     "compat",
     "concat",
     "datalabels",
+    "Deps",
     "dropzone",
     "duplicative",
     "formik",
