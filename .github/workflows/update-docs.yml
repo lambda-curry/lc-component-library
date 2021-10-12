@@ -7,6 +7,9 @@ on:
 jobs:
   cypress-docs:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        machines: [1, 2, 3]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -23,8 +26,9 @@ jobs:
         timeout-minutes: 10
         with:
           record: true
+          parallel: true
           start: npx nx serve-docs ui-components
-          config-file: packages/ui-components-e2e/cypress.json
+          project: packages/ui-components-e2e2
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
