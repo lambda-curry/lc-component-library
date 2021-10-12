@@ -6,7 +6,8 @@ on:
   pull_request:
 
 env:
-  NX_CLOUD_DISTRIBUTED_EXECUTION: true
+  # Serve Docs runs an http server that cannot be shared across matrix machines, would be cool to figure that out
+  NX_CLOUD_DISTRIBUTED_EXECUTION: false
 
 jobs:
   cypress-docs:
