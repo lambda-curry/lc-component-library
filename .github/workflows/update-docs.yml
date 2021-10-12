@@ -17,8 +17,8 @@ jobs:
           cache: 'yarn'
       - name: Test Components
         run: npx nx-cloud start-ci-run
-        run: yarn && npx nx e2e ui-components-e2e --parallel --ciBuildId=${{ secrets.GITHUB_TOKEN }}
-        run: npx nx-cloud stop-all-agents
+      - run: yarn && npx nx e2e ui-components-e2e --parallel --ciBuildId=${{ secrets.GITHUB_TOKEN }}
+      - run: npx nx-cloud stop-all-agents
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
