@@ -28,7 +28,7 @@ jobs:
           record: true
           parallel: true
           start: npx nx serve-docs ui-components
-          project: packages/ui-components-e2e2
+          project: packages/ui-components-e2e
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
