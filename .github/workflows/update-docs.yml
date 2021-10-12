@@ -4,14 +4,9 @@ on:
     branches:
       - master
   pull_request:
-env:
-  NX_CLOUD_DISTRIBUTED_EXECUTION: true
 jobs:
   cypress-docs:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        machines: [1, 2, 3]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -28,8 +23,7 @@ jobs:
         timeout-minutes: 10
         with:
           record: true
-          parallel: true
-          start: nx serve-docs ui-components
+          start: npx nx serve-docs ui-components
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
