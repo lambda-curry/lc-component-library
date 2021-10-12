@@ -1,6 +1,10 @@
 @import '../../../node_modules/@szhsin/react-menu/dist/index.css';
 
 .lc-menu {
+  &-button-wrapper {
+    width: fit-content;
+  }
+
   .rc-menu__item {
     display: flex;
     justify-content: space-between;

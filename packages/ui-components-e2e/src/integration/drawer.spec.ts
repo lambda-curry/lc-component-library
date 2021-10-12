@@ -8,7 +8,6 @@ describe('drawer', () => {
     cy.get('.lc-drawer-content').should('be.visible');
     cy.screenshot();
     cy.get('body').click();
-    cy.get('.lc-drawer-content').should('not.be.visible');
-    cy.screenshot();
+    cy.get('.lc-drawer-content').should('not.exist');
   });
 });

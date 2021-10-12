@@ -14,9 +14,15 @@
     "clean": "find . -name \"node_modules\" -type d -prune -exec rm -rf '{}' + && yarn"
   },
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/@szhsin",
+      "**/@szhsin/**"
+    ]
+  },
   "dependencies": {
     "@date-io/luxon": "^2.10.8",
     "@material-ui/core": "^4.12.3",
@@ -24,7 +30,7 @@
     "@material-ui/pickers": "4.0.0-alpha.12",
     "@stripe/react-stripe-js": "^1.5.0",
     "@stripe/stripe-js": "^1.18.0",
-    "@szhsin/react-menu": "1.11.0",
+    "@szhsin/react-menu": "^2.1.0",
     "chart.js": "^2.9.4",
     "chartjs-plugin-datalabels": "^1.0.0",
     "classnames": "^2.3.1",
@@ -108,7 +114,7 @@
     "copy-webpack-plugin": "^9.0.1",
     "cpy-cli": "^3.1.1",
     "css-color-converter": "^2.0.0",
-    "cypress": "^8.5.0",
+    "cypress": "8.6.0",
     "cypress-wait-until": "^1.7.1",
     "esbuild": "^0.13.3",
     "esbuild-plugin-svgr": "^0.0.3",

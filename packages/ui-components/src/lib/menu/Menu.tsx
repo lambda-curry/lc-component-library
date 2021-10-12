@@ -76,8 +76,8 @@ const mapMenuItems = (menuItems: MenuItems) =>
   });
 
 export const Menu: FC<MenuProps | HoverMenuProps> = props => {
-  const { toggleMenu, state, ...menuStateProps } = useMenuState();
   const ref = useRef(null);
+  const { toggleMenu, state, ...menuStateProps } = useMenuState();
 
   if ('hover' in props) {
     const { menuButton, menuItems, hover, ...hoverMenuProps } = props;
@@ -88,10 +88,10 @@ export const Menu: FC<MenuProps | HoverMenuProps> = props => {
           {menuButton}
         </div>
         <ControlledMenu
+          state={state}
           {...menuStateProps}
           {...(hoverMenuProps as HoverMenuProps)}
           anchorRef={ref}
-          align="end"
           onClose={() => toggleMenu(false)}
           onMouseLeave={() => toggleMenu(false)}
         >

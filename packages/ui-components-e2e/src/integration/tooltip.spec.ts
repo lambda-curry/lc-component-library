@@ -9,6 +9,5 @@ describe('tooltip', () => {
     cy.screenshot();
     cy.get('.lc-icon-pencil').trigger('mouseout');
     cy.get('.MuiTooltip-popper').should('not.exist');
-    cy.screenshot();
   });
 });

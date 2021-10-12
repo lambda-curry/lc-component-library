@@ -6,18 +6,23 @@ describe('menu', () => {
   it('should open the first menu', () => {
     cy.contains('Menu').click();
     cy.get('.szh-menu').should('be.visible');
-    cy.screenshot();
   });
 
   it('should show the submenu on hover', () => {
     cy.contains('Menu').click();
-    cy.get('.szh-menu').within(() => {
-      cy.get('.szh-menu__submenu')
-        .trigger('mouseover')
-        .within(() => {
-          cy.get('ul.szh-menu--state-open').should('be.visible');
-        });
-      cy.screenshot();
-    });
+    cy.get('.szh-menu .szh-menu__submenu').trigger('mouseover');
+    cy.get('ul.szh-menu--state-open ul.szh-menu--state-open').should('be.visible');
+    cy.screenshot();
+  });
+});
+
+describe('menu with hover attr', () => {
+  beforeEach(() => {
+    cy.visit('/iframe.html?id=components-menu--menu-with-hover&args=&viewMode=story');
+  });
+
+  it('should show the menu on hover', () => {
+    cy.contains('Click me').trigger('mouseover');
+    cy.get('.szh-menu .szh-menu__submenu').should('be.visible');
   });
 });
