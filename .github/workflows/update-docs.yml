@@ -19,7 +19,7 @@ jobs:
       - name: Test Components
         run: yarn && npx nx-cloud start-ci-run
         # https://github.com/nrwl/nx/issues/1604 needs -- --parallel at the end to work
-      - run: npx nx run ui-components-e2e:e2e --parallel --max-parallel=3 --ciBuildId=${{ secrets.GITHUB_TOKEN }} -- --parallel
+      - run: npx nx run ui-components-e2e:e2e --parallel --max-parallel=3 -- --parallel
       - run: npx nx-cloud stop-all-agents
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
