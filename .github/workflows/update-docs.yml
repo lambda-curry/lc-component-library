@@ -19,7 +19,7 @@ jobs:
       - run: npx nx-cloud start-ci-run
       - run: npx nx build-docs ui-components
       - name: Run E2E Tests
-        uses: cypress-io/github-action@v1
+        uses: cypress-io/github-action@v2
         timeout-minutes: 10
         with:
           record: true
