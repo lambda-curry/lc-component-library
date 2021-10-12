@@ -40,6 +40,8 @@ jobs:
           start: npx nx serve-docs ui-components
           project: packages/ui-components-e2e
           command-prefix: 'percy exec --parallel -- npx'
+          wait-on: 'http://localhost:6007'
+          wait-on-timeout: 120
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
