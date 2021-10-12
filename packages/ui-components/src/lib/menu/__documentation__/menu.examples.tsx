@@ -5,7 +5,6 @@ export const MenuExample1 = () => {
   return (
     <div className="menu-story" style={{ height: '200px' }}>
       <Menu
-        align="end"
         menuButton={(menuButtonProps: any) => (
           <ButtonPrimary {...menuButtonProps} icon={<Icon name="chevronDown" />} iconPlacement="end">
             Menu
@@ -33,8 +32,9 @@ export const MenuExample1 = () => {
 };
 
 export const MenuExample2 = () => {
+  // padding left is to show off the align end
   return (
-    <div className="menu-story" style={{ height: '200px' }}>
+    <div className="menu-story" style={{ height: '200px', paddingLeft: '100px' }}>
       <Menu
         hover
         align="end"

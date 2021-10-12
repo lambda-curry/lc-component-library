@@ -1,4 +1,5 @@
 import 'cypress-wait-until';
+import '@percy/cypress';
 
 // ***********************************************
 // This example commands.js shows you how to
@@ -33,3 +34,8 @@ Cypress.Commands.add('login', (email, password) => {
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+// -- This is a parent command --
+Cypress.Commands.add('clickOutside', function () {
+  return cy.get('body').click(0, 0);
+});

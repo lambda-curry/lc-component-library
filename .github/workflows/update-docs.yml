@@ -5,9 +5,16 @@ on:
       - master
   pull_request:
 
+env:
+  # Serve Docs runs an http server that cannot be shared across matrix machines, would be cool to figure that out
+  NX_CLOUD_DISTRIBUTED_EXECUTION: false
+
 jobs:
   cypress-docs:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        machines: [1, 2, 3]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -15,13 +22,32 @@ jobs:
         with:
           node-version: '14'
           cache: 'yarn'
-      - name: Test Components
-        run: yarn && npx nx e2e ui-components-e2e
+      - uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - name: Install Deps
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn
+      - run: npx nx-cloud start-ci-run
+      - name: Run E2E Tests
+        uses: cypress-io/github-action@v2
+        timeout-minutes: 10
+        with:
+          record: true
+          parallel: true
+          start: npx nx serve-docs ui-components
+          project: packages/ui-components-e2e
+          command-prefix: 'percy exec --parallel -- npx'
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
-
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+          PERCY_PARALLEL_TOTAL: 3
+      - name: Stop NX Agents
+        run: npx nx-cloud stop-all-agents
   build-docs:
     needs: cypress-docs
     if: ${{ github.event_name != 'pull_request' }}
@@ -35,7 +61,9 @@ jobs:
           node-version: '14'
           cache: 'yarn'
       - name: Build docs
-        run: yarn && npx nx build-docs ui-components
+        run: yarn && npx nx-cloud start-ci-run
+      - run: npx nx build-docs ui-components
+      - run: npx nx-cloud stop-all-agents
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       - name: Login to DockerHub

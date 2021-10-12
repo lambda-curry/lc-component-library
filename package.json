@@ -11,12 +11,19 @@
   "author": "Lambda Curry",
   "license": "ISC",
   "scripts": {
-    "clean": "find . -name \"node_modules\" -type d -prune -exec rm -rf '{}' + && yarn"
+    "clean": "find . -name \"node_modules\" -type d -prune -exec rm -rf '{}' + && yarn",
+    "e2e": "percy exec -- nx e2e ui-components-e2e"
   },
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/@szhsin",
+      "**/@szhsin/**"
+    ]
+  },
   "dependencies": {
     "@date-io/luxon": "^2.10.8",
     "@material-ui/core": "^4.12.3",
@@ -24,7 +31,7 @@
     "@material-ui/pickers": "4.0.0-alpha.12",
     "@stripe/react-stripe-js": "^1.5.0",
     "@stripe/stripe-js": "^1.18.0",
-    "@szhsin/react-menu": "1.11.0",
+    "@szhsin/react-menu": "^2.1.0",
     "chart.js": "^2.9.4",
     "chartjs-plugin-datalabels": "^1.0.0",
     "classnames": "^2.3.1",
@@ -69,6 +76,8 @@
     "@nrwl/tao": "^12.10.0",
     "@nrwl/web": "^12.10.0",
     "@nrwl/workspace": "12.10.0",
+    "@percy/cli": "^1.0.0-beta.68",
+    "@percy/cypress": "^3.1.1",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.0-rc.2",
     "@storybook/addon-actions": "^6.3.10",
     "@storybook/addon-essentials": "^6.3.10",
@@ -108,7 +117,7 @@
     "copy-webpack-plugin": "^9.0.1",
     "cpy-cli": "^3.1.1",
     "css-color-converter": "^2.0.0",
-    "cypress": "^8.5.0",
+    "cypress": "8.6.0",
     "cypress-wait-until": "^1.7.1",
     "esbuild": "^0.13.3",
     "esbuild-plugin-svgr": "^0.0.3",

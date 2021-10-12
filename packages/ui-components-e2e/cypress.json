@@ -11,5 +11,6 @@
   "screenshots": true,
   "videosFolder": "../../dist/cypress/apps/ui-components-e2e/videos",
   "screenshotsFolder": "../../dist/cypress/apps/ui-components-e2e/screenshots",
-  "chromeWebSecurity": false
+  "chromeWebSecurity": false,
+  "parallel": true
 }
