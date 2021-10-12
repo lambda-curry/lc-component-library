@@ -16,7 +16,9 @@ jobs:
           node-version: '14'
           cache: 'yarn'
       - name: Test Components
-        run: yarn && npx nx e2e ui-components-e2e
+        run: npx nx-cloud start-ci-run
+        run: yarn && npx nx e2e ui-components-e2e --parallel --ciBuildId=${{ secrets.GITHUB_TOKEN }}
+        run: npx nx-cloud stop-all-agents
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -35,7 +37,9 @@ jobs:
           node-version: '14'
           cache: 'yarn'
       - name: Build docs
+        run: npx nx-cloud start-ci-run
         run: yarn && npx nx build-docs ui-components
+        run: npx nx-cloud stop-all-agents
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       - name: Login to DockerHub
