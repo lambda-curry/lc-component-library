@@ -7,7 +7,7 @@ describe('modal', () => {
     cy.contains('Toggle Modal').click();
     cy.get('.lc-modal.ReactModal__Content--after-open').should('be.visible');
     // eslint-disable-next-line cypress/no-unnecessary-waiting
-    cy.wait(400);
+    cy.wait(550);
     cy.percySnapshot();
     cy.get('.lc-icon-close').click();
     cy.get('.lc-modal').should('not.exist');
