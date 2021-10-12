@@ -24,6 +24,7 @@ jobs:
         with:
           record: true
           start: npx nx serve-docs ui-components
+          config-file: packages/ui-components-e2e/cypress.json
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
