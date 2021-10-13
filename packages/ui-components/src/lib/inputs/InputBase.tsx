@@ -19,7 +19,7 @@ export type InputProps = Omit<OutlinedTextFieldProps, 'variant' | 'prefix'> & {
   name: string;
   prefix?: ReactNode;
   suffix?: ReactNode;
-  formikProps?: Partial<FormikProps<any>>;
+  formikProps?: Partial<FormikProps<any>> | FormikProps<any>;
   labelPlacement?: LabelPlacements;
   variant?: 'outlined' | 'standard' | 'filled'; // Don't remove any typing because this breaks the build. - Jake
   inputConfig?: InputConfig;
