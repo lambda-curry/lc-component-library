@@ -58,6 +58,7 @@
     "@stripe/react-stripe-js": "*",
     "@stripe/stripe-js": "*",
     "@szhsin/react-menu": "^2.1.0",
+    "@types/react-modal": "^3.12.1",
     "chart.js": "2.9.4",
     "chartjs-plugin-datalabels": "1.0.0",
     "classnames": "*",
