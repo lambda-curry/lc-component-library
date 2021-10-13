@@ -83,7 +83,6 @@
   },
   "devDependencies": {
     "@nrwl/storybook": "*",
-    "@types/react-modal": "*",
     "autoprefixer": "*",
     "cypress": "*",
     "postcss": "*",

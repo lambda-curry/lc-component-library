@@ -21,7 +21,9 @@
     ],
     "nohoist": [
       "**/@szhsin",
-      "**/@szhsin/**"
+      "**/@szhsin/**",
+      "**/react-modal",
+      "**/react-modal/**"
     ]
   },
   "dependencies": {
