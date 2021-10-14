@@ -20,17 +20,17 @@
 
     &-border-white {
       .MuiOutlinedInput-notchedOutline {
-        border-color: white;
+        border-color: #fff;
       }
     }
 
     &.dark-mode {
       .MuiFormLabel-root {
-        color: white;
+        color: #fff;
       }
 
       .MuiInputBase-input {
-        color: white;
+        color: #fff;
       }
 
       .MuiInput-underline:before {
@@ -38,7 +38,7 @@
       }
 
       .MuiInput-underline:after {
-        border-bottom: 2px solid white;
+        border-bottom: 2px solid #fff;
       }
 
       input:-internal-autofill-selected {
@@ -48,7 +48,7 @@
       .MuiInputAdornment-root *,
       .MuiFormHelperText-root,
       .MuiFormHelperText-root.Mui-error {
-        color: white;
+        color: #fff;
       }
     }
   }
@@ -87,7 +87,7 @@
     @apply lc-border-danger;
   }
 
-  // Override for Marcus to center the input label
+  /* Override for Marcus to center the input label */
   .MuiInputLabel-outlined.MuiInputLabel-marginDense {
     @apply lc-text-black;
     top: -1px;
@@ -141,21 +141,22 @@
 
   &-above {
     input:not([type='color']) {
-      background-color: white;
+      background-color: #fff;
       border-radius: 4px;
     }
   }
 }
 
-// Fixes
-
+/* Fixes */
 .lc-input {
-  // Fix for hover style outline
+  /* Fix for hover style outline */
   .MuiOutlinedInput-notchedOutline {
     top: -6px;
 
-    // Note: we need to apply these classes because there is a clash with classNames that are being obfuscated in the production build
-    // between the snackbars and the Material UI components. It seems like it might have to something to do with the `makeStyles` object/classNames.
+    /*
+     Note: we need to apply these classes because there is a clash with classNames that are being obfuscated in the production build
+     between the snackbars and the Material UI components. It seems like it might have to something to do with the `makeStyles` object/classNames.
+    */
     position: absolute !important;
   }
   .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
@@ -166,13 +167,13 @@
   }
 }
 
-// Fixes height of input select
+/* Fixes height of input select */
 .lc-input-select .lc-input .MuiOutlinedInput-root input.MuiAutocomplete-input {
   box-sizing: content-box;
   height: 16px;
 }
 
-// Fixes font inside of dropdowns
+/* Fixes font inside of dropdowns */
 .MuiAutocomplete-popper {
   @apply lc-font-sans;
 }

@@ -56,7 +56,7 @@ $snackbars-min-width: 280px;
   */
   &-success {
     @apply lc-text-white;
-    background-color: rgb(var(--lc-color-success)) !important;
+    background-color: rgba(var(--lc-color-success), 1) !important;
 
     .snackbar-action-primary {
       @apply lc-text-success;
@@ -65,7 +65,7 @@ $snackbars-min-width: 280px;
 
   &-warning {
     @apply lc-text-white;
-    background-color: rgb(var(--lc-color-warning)) !important;
+    background-color: rgba(var(--lc-color-warning), 1) !important;
 
     .snackbar-action-primary {
       @apply lc-text-warning;
@@ -74,7 +74,7 @@ $snackbars-min-width: 280px;
 
   &-danger {
     @apply lc-text-white;
-    background-color: rgb(var(--lc-color-danger)) !important;
+    background-color: rgba(var(--lc-color-danger), 1) !important;
 
     .snackbar-action-primary {
       @apply lc-text-danger;
@@ -83,7 +83,7 @@ $snackbars-min-width: 280px;
 
   &-info {
     @apply lc-text-white;
-    background-color: rgb(var(--lc-color-primary)) !important;
+    background-color: rgba(var(--lc-color-primary), 1) !important;
 
     .snackbar-action-primary {
       @apply lc-text-primary;

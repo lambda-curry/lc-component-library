@@ -8,8 +8,6 @@
   &-input {
     position: relative;
     appearance: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
     height: 20px;
     width: 40px;
     border-radius: 10px;

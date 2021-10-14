@@ -29,7 +29,7 @@
 
     &--active {
       color: inherit;
-      background-color: rgb(var(--lc-color-gray-lighter));
+      background-color: rgba(var(--lc-color-gray-lighter), 1);
     }
 
     .lc-icon:first-child {

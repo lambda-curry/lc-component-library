@@ -47,19 +47,19 @@
   }
 }
 
-// Fixes times when rem font-size is way off for autocomplete paper.
+/* Fixes times when rem font-size is way off for autocomplete paper. */
 body .MuiAutocomplete-paper {
   font-size: inherit;
   font-family: inherit;
 }
 
-// Fixes when material UI popovers are within a modal.
+/* Fixes when material UI popovers are within a modal. */
 .ReactModal__Body--open .MuiAutocomplete-popper {
   z-index: 10000;
 }
 
 .lc-input-label-above {
   .MuiAutocomplete-inputRoot[class*='MuiOutlinedInput-root'] {
-    background: white;
+    background: #fff;
   }
 }

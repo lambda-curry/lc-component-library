@@ -1,4 +1,5 @@
-// Note: need both classes for specificity here to override tailwind classes
+/* Note: need both classes for specificity here to override tailwind classes */
+
 .lc-button.lc-icon-button {
   display: inline-flex;
   min-height: auto;

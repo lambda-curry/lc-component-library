@@ -1,6 +1,7 @@
 /*
 We use the `postcss-functions` plugin to allow us to write functions in JS and then execute them in our CSS files.
 */
+
 :root {
   --lc-color-transparent: transparent;
   --lc-color-current: currentColor;
@@ -30,7 +31,6 @@ We use the `postcss-functions` plugin to allow us to write functions in JS and t
   --lc-color-danger: hexToRGB(#e53e3e);
   --lc-color-danger-dark: hexToRGB(#c53030);
 
-  // TODO: We need to find a better variable name for this. Since it is only used for the switch currently, perhaps `switch-active` would be better?
   --lc-color-active: hexToRGB(#5bd067);
 
   --lc-font-family-sans: 'lc-gilroy', sans-serif;

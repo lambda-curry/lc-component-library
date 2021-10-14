@@ -7,7 +7,6 @@
   @apply lc-border-gray-lighter;
 
   opacity: 0;
-  transition: opacity 1s ease-in;
   display: flex;
   align-items: center;
   position: absolute;

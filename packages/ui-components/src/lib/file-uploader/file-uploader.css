@@ -17,7 +17,7 @@
     @apply lc-transition-all;
     @apply lc-rounded-sm;
 
-    border-color: rgb(var(--lc-color-gray-lighter));
+    border-color: rgba(var(--lc-color-gray-lighter), 1);
     background-color: transparent;
 
     &:hover {
@@ -33,14 +33,14 @@
     }
 
     &-accept {
-      color: rgb(var(--lc-color-primary)) !important;
-      border-color: rgb(var(--lc-color-primary)) !important;
-      background-color: rgb(var(--lc-color-primary), 0.05) !important;
+      color: rgba(var(--lc-color-primary, 1)) !important;
+      border-color: rgba(var(--lc-color-primary, 1)) !important;
+      background-color: rgba(var(--lc-color-primary), 0.05) !important;
     }
 
     &-reject {
-      color: rgb(var(--lc-color-danger)) !important;
-      border-color: rgb(var(--lc-color-danger)) !important;
+      color: rgba(var(--lc-color-danger, 1)) !important;
+      border-color: rgba(var(--lc-color-danger, 1)) !important;
       background-color: rgba(var(--lc-color-danger), 0.05) !important;
     }
 

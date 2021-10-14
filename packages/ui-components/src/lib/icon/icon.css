@@ -34,7 +34,7 @@
 
     &:not(.lc-icon-color) svg,
     &:not(.lc-icon-color) path {
-      fill: white;
+      fill: #fff;
     }
   }
 }
