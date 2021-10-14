@@ -133,73 +133,71 @@ export const FileUploader: FC<FileUploaderProps> = ({
   });
 
   return (
-    <>
-      <div
-        className={classNames('lc-file-uploader', className, {
-          'lc-file-uploader-disabled': disabled
-        })}
-      >
-        <div {...getRootProps({ className: dropzoneClassName })}>
-          <input name={name} {...getInputProps()} />
+    <div
+      className={classNames('lc-file-uploader', className, {
+        'lc-file-uploader-disabled': disabled
+      })}
+    >
+      <div {...getRootProps({ className: dropzoneClassName })}>
+        <input name={name} {...getInputProps()} />
 
-          {files && files.length > 0 && (
-            <ul className="lc-file-uploader-dropzone-files">
-              {files.map((file: FileUpload, index: number) => (
-                <li key={index}>
-                  <ButtonUnstyled
-                    className="lc-file-uploader-dropzone-file"
-                    disabled={replaceOnly}
-                    onClick={event => removeFile(event, index)}
-                  >
-                    <div className="lc-file-uploader-dropzone-file-thumb">
-                      <img
-                        src={file.preview}
-                        alt="File upload preview"
-                        className="lc-file-uploader-dropzone-file-thumb-image"
-                      />
-                      <div className="lc-file-uploader-dropzone-file-thumb-overlay">
-                        <Icon name="trash" className="lc-file-uploader-dropzone-file-remove-icon" />
-                      </div>
+        {files && files.length > 0 && (
+          <ul className="lc-file-uploader-dropzone-files">
+            {files.map((file: FileUpload, index: number) => (
+              <li key={index}>
+                <ButtonUnstyled
+                  className="lc-file-uploader-dropzone-file"
+                  disabled={replaceOnly}
+                  onClick={event => removeFile(event, index)}
+                >
+                  <div className="lc-file-uploader-dropzone-file-thumb">
+                    <img
+                      src={file.preview}
+                      alt="File upload preview"
+                      className="lc-file-uploader-dropzone-file-thumb-image"
+                    />
+                    <div className="lc-file-uploader-dropzone-file-thumb-overlay">
+                      <Icon name="trash" className="lc-file-uploader-dropzone-file-remove-icon" />
                     </div>
+                  </div>
 
-                    {multiple && file.name && <div className="lc-file-uploader-dropzone-file-name">{file.name}</div>}
-                  </ButtonUnstyled>
-                </li>
-              ))}
-            </ul>
-          )}
+                  {multiple && file.name && <div className="lc-file-uploader-dropzone-file-name">{file.name}</div>}
+                </ButtonUnstyled>
+              </li>
+            ))}
+          </ul>
+        )}
 
-          {(!files || files.length < 1) && (
-            <>
-              <img
-                alt="File upload placeholder"
-                src={placeholderImage}
-                className="lc-file-uploader-dropzone-placeholder"
-              />
-              <div className="lc-file-uploader-dropzone-text">{getDropzoneText()}</div>
-            </>
+        {(!files || files.length < 1) && (
+          <>
+            <img
+              alt="File upload placeholder"
+              src={placeholderImage}
+              className="lc-file-uploader-dropzone-placeholder"
+            />
+            <div className="lc-file-uploader-dropzone-text">{getDropzoneText()}</div>
+          </>
+        )}
+      </div>
+
+      <div className="lc-file-uploader-footer">
+        <div className="lc-file-uploader-actions">
+          <ButtonAccent onClick={open}>Choose File{multiple && 's'}</ButtonAccent>
+          {((files && files.length > 0 && !replaceOnly) || error) && (
+            <ButtonLink onClick={clearAll} style={{ marginLeft: '12px' }}>
+              Clear {multiple && <>All</>}
+            </ButtonLink>
           )}
         </div>
 
-        <div className="lc-file-uploader-footer">
-          <div className="lc-file-uploader-actions">
-            <ButtonAccent onClick={open}>Choose File{multiple && 's'}</ButtonAccent>
-            {((files && files.length > 0 && !replaceOnly) || error) && (
-              <ButtonLink onClick={clearAll} style={{ marginLeft: '12px' }}>
-                Clear {multiple && <>All</>}
-              </ButtonLink>
-            )}
-          </div>
+        <div className="lc-flex-1" />
 
-          <div className="lc-flex-1" />
-
-          <div className="lc-file-uploader-restrictions">
-            {accept && <>{formatMimeTypesForDisplay(accept)}. </>}
-            {maxSize && <>Max size of {formatBytes(maxSize)}. </>}
-            {minSize && <>Min size of {formatBytes(minSize)}.</>}
-          </div>
+        <div className="lc-file-uploader-restrictions">
+          {accept && <>{formatMimeTypesForDisplay(accept)}. </>}
+          {maxSize && <>Max size of {formatBytes(maxSize)}. </>}
+          {minSize && <>Min size of {formatBytes(minSize)}.</>}
         </div>
       </div>
-    </>
+    </div>
   );
 };

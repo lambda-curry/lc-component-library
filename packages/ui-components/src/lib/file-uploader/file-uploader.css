@@ -39,8 +39,8 @@
     }
 
     &-reject {
-      color: rgba(var(--lc-color-danger, 1)) !important;
-      border-color: rgba(var(--lc-color-danger, 1)) !important;
+      color: rgba(var(--lc-color-danger), 1) !important;
+      border-color: rgba(var(--lc-color-danger), 1) !important;
       background-color: rgba(var(--lc-color-danger), 0.05) !important;
     }
 
