@@ -62,7 +62,7 @@ const mapMenuItems = (menuItems: MenuItems) =>
       return (
         <MenuItem key={i} {...menuItemProps}>
           {startIcon}
-          <span className="rc-menu__item__children">{children}</span>
+          <span className="szh-menu__item__children">{children}</span>
           {endIcon}
         </MenuItem>
       );
