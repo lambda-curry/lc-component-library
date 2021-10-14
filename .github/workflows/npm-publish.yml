@@ -24,7 +24,7 @@ jobs:
           node-version: 14
       - name: Install Dependencies
         if: steps.check.outputs.changed == 'true'
-        run: yarn && npx nx build ui-components
+        run: yarn && npx nx build ui-components --prod
       - name: Prepare & Publish
         if: steps.check.outputs.changed == 'true'
         id: publish

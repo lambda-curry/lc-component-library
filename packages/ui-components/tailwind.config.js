@@ -1,12 +1,10 @@
-const { createGlobPatternsForDependencies } = require('@nrwl/react/tailwind');
-
 const defaultTheme = require('tailwindcss/defaultTheme');
 const { cssVar } = require('./tailwind/helpers');
 const { baseColors, themeColors } = require('./tailwind/colors');
 
 module.exports = {
   purge: {
-    content: createGlobPatternsForDependencies(__dirname)
+    content: ['./src/**/*.tsx']
   },
   prefix: 'lc-',
   theme: {
