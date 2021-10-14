@@ -11,6 +11,6 @@
   }
 
   .MuiRadio-colorPrimary.Mui-checked {
-    color: rgba(var(--lc-color-primary));
+    color: rgba(var(--lc-color-primary), 1);
   }
 }
