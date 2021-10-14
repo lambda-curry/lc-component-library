@@ -1,6 +1,5 @@
 {
   "extends": "stylelint-config-recommended",
-  "plugins": ["stylelint-scss"],
   "rules": {
     "at-rule-no-unknown": null,
     "max-nesting-depth": 6,

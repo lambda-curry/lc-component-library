@@ -17,13 +17,11 @@ import tailwindcss from 'tailwindcss';
 import tailwindConfig from './tailwind.config.js';
 import autoprefixer from 'autoprefixer';
 
-const allSrcFiles = glob.sync(
-  './src/**/*+(.ts|.tsx|.css|.svg|.png|.jpg|.jpeg|.gif)'
-);
+const allSrcFiles = glob.sync('./src/**/*+(.ts|.tsx|.css|.svg|.png|.jpg|.jpeg|.gif)');
 const documentationFiles = glob.sync('./src/**/*documentation*/*');
 const typeDefinitionFiles = glob.sync('./src/**/*+(.d.ts)');
 const excludeFiles = [...documentationFiles, ...typeDefinitionFiles];
-const entryPoints = allSrcFiles.filter((item) => !excludeFiles.includes(item));
+const entryPoints = allSrcFiles.filter(item => !excludeFiles.includes(item));
 
 const options = {
   entryPoints,
@@ -45,27 +43,23 @@ const options = {
         cssImport(),
         cssStripComments,
         cssNested,
-        cssSimpleVars,
         cssMixins,
+        cssSimpleVars(),
         cssFunctions({ functions: cssUtil }),
         cssUrl({
           url: 'copy',
           maxSize: 10 * 1024, // inline files < 10k, copy files > 10k
           fallback: 'copy',
           optimizeSvgEncode: true,
-          assetsPath: 'dist/assets',
+          assetsPath: 'dist/assets'
         }),
         cssFocusVisible,
         tailwindcss(tailwindConfig),
-        autoprefixer,
-      ],
+        autoprefixer
+      ]
     }),
     svgr({
-      template: (
-        { template },
-        opts,
-        { imports, interfaces, componentName, props, jsx, exports }
-      ) => {
+      template: ({ template }, opts, { imports, interfaces, componentName, props, jsx, exports }) => {
         const plugins = ['jsx'];
         if (opts.typescript) {
           plugins.push('typescript');
@@ -77,9 +71,9 @@ const options = {
             return ${jsx};
           }
           `;
-      },
-    }),
-  ],
+      }
+    })
+  ]
 };
 
 build(options).catch(() => process.exit(1));
