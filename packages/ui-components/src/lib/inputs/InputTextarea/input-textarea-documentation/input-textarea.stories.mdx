@@ -1,0 +1,49 @@
+import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs';
+import { InputTextarea, Form } from '../../..';
+import dedent from 'string-dedent';
+// import './input-textarea-story.css';
+
+<Meta title="Components/Inputs/Input Textarea" component={InputTextarea} />
+
+# Textarea Input
+
+<Canvas>
+  <Story
+    name="Input Textarea"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+            <Form
+              initialValues={{
+                sampleInput1: '',
+              }}
+              onSubmit={() => {}}
+            >
+              {formikProps => (
+                <>
+                  <InputTextarea name="sampleInput1" label="Textarea Input" formikProps={formikProps} />
+                </>
+              )}
+            </Form>`
+        }
+      }
+    }}
+  >
+    <div className="input-text-story">
+      <Form
+        initialValues={{
+          sampleInput1: ''
+        }}
+        onSubmit={() => {}}
+      >
+        {formikProps => (
+          <>
+            <InputTextarea name="sampleInput1" label="Textarea Input" formikProps={formikProps} characterLimit={500} />
+          </>
+        )}
+      </Form>
+    </div>
+  </Story>
+  <ArgsTable of={InputTextarea} />
+</Canvas>

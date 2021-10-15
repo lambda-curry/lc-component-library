@@ -1,0 +1,48 @@
+.MuiSlider-root {
+  margin: 12px 0;
+
+  .MuiSlider-thumb {
+    @apply lc-border-4 lc-border-solid lc-border-primary;
+    width: 16px;
+    height: 16px;
+    background-color: #fff;
+  }
+
+  .MuiSlider-rail,
+  .MuiSlider-track {
+    @apply lc-bg-primary;
+    height: 6px;
+  }
+
+  .MuiSlider-rail {
+    opacity: 1;
+    background-color: #f3f3f3;
+    border-radius: 3px;
+  }
+
+  .MuiSlider-valueLabel {
+    background: none;
+    font-size: 12px;
+    left: 50%;
+    top: -26px;
+    transform: translate(-50%, 0) !important;
+
+    & > span {
+      display: block;
+      width: auto;
+      height: auto;
+      background-color: #f3f3f3;
+      padding: 2px 6px;
+      border-radius: 4px;
+      transform: none;
+      white-space: nowrap;
+
+      & > span {
+        @apply lc-text-gray-darker;
+        display: block;
+        transform: none;
+        text-align: center;
+      }
+    }
+  }
+}

@@ -1,0 +1,57 @@
+.lc-stripe-card-input {
+  @apply lc-mb-24;
+  width: 100%;
+
+  /* some of these styles were copied from MUI to match their input styles */
+  .StripeElement {
+    @apply lc-border-1 lc-border-solid lc-border-gray-lighter;
+    @apply lc-text-gray-darker;
+    font-size: 16px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    background-color: #fff;
+    width: 100%;
+    padding: 12px 14px;
+    line-height: 1.1876em;
+    letter-spacing: 0.00938em;
+
+    &:hover {
+      @apply lc-border-gray;
+    }
+
+    &--focus {
+      @apply lc-border-primary;
+      box-shadow: none;
+    }
+
+    &--invalid {
+      @apply lc-border-danger;
+    }
+
+    &--webkit-autofill {
+      background-color: #fefde5 !important;
+    }
+  }
+
+  &-label {
+    @apply lc-mb-8;
+    display: block;
+    font-size: 12px;
+  }
+
+  &-invalid {
+    .StripeElement {
+      @apply lc-border-danger;
+    }
+  }
+
+  &-error {
+    @apply lc-text-danger;
+    font-size: 0.8em;
+    line-height: 1.25;
+    font-family: inherit;
+    margin-top: 8px;
+    margin-left: 14px;
+    margin-right: 14px;
+  }
+}

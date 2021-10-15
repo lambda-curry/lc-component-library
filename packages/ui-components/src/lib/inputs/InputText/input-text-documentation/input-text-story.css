@@ -1,0 +1,14 @@
+.input-text-story {
+  &-dark {
+    @apply lc-bg-gray-dark;
+    margin: 16px 0;
+    padding: 16px;
+
+    .lc-input-label {
+      color: #fff;
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+}

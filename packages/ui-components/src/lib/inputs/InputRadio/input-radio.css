@@ -1,0 +1,16 @@
+.lc-input-radio {
+  &-group {
+    .MuiFormLabel-root {
+      color: inherit;
+      font-family: inherit;
+
+      &.Mui-focused {
+        color: inherit;
+      }
+    }
+  }
+
+  .MuiRadio-colorPrimary.Mui-checked {
+    color: rgba(var(--lc-color-primary), 1);
+  }
+}
