@@ -1,5 +1,5 @@
 import React, { FC, KeyboardEvent, MouseEvent } from 'react';
-import { Drawer as MuiDrawer } from '@material-ui/core';
+import { Drawer as MuiDrawer, DrawerProps as MuiDrawerProps } from '@material-ui/core';
 import classNames from 'classnames';
 import './drawer.css';
 import { DrawerType } from './drawer.helpers';
@@ -7,7 +7,7 @@ import { useDrawer } from './DrawerProvider';
 
 export type DrawerAnchor = 'top' | 'left' | 'bottom' | 'right';
 
-export interface DrawerProps {
+export interface DrawerProps extends MuiDrawerProps {
   name: string;
   className?: string;
   options?: { anchor?: DrawerAnchor; width?: number };
