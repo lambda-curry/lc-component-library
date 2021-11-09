@@ -8,6 +8,9 @@ import dedent from 'string-dedent';
 
 # Stripe
 
+Note: Charts have a dependency on the Stripe JS client. We help with tree shaking by only including this component at `/lib/stripe`
+`import { StripeCardInput } from @lambdacurry/component-library/lib/stripe;`
+
 <Canvas>
   <Story
     name="Stripe Card Input"
