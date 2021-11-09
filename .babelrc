@@ -4,7 +4,8 @@
     [
       "@babel/env",
       {
-        "targets": ["last 2 versions"]
+        "targets": ["last 2 versions"],
+        "modules": false
       }
     ],
     "@babel/preset-typescript"
