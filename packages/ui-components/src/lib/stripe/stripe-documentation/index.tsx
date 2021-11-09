@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { StripeCardInput, StripeFormWrapper, StripeCardBrand } from '../..';
+import { StripeCardInput, StripeFormWrapper, StripeCardBrand } from '..';
 import { ButtonPrimary } from '../../buttons';
 
 export const StripeExample1: FC = () => (
