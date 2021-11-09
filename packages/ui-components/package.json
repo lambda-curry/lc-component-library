@@ -4,9 +4,9 @@
   "description": "A React component library created by Lambda Curry.",
   "author": "Lambda Curry",
   "license": "ISC",
-  "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "type": "module",
   "scripts": {
     "esbuild": "rm -rf dist && NODE_ENV=production node ./esbuild.mjs && tsc --project tsconfig.lib.json --emitDeclarationOnly --outDir dist",
     "build": "yarn esbuild",
