@@ -1,6 +1,5 @@
 import React, { FC, useState, useEffect } from 'react';
 import ReactModal from 'react-modal';
-import type { Props as ReactModalProps } from 'react-modal';
 import classNames from 'classnames';
 import { IconButton } from '../icon-button';
 import { Card, CardContent } from '@material-ui/core';
@@ -8,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import './modal.css';
 
-export interface ModalProps extends ReactModalProps {
+export interface ModalProps extends ReactModal.Props {
   closeButton?: boolean;
 }
 

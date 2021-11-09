@@ -37,7 +37,8 @@
   },
   "files": [
     "../../node_modules/@nrwl/react/typings/cssmodule.d.ts",
-    "../../node_modules/@nrwl/react/typings/image.d.ts"
+    "../../node_modules/@nrwl/react/typings/image.d.ts",
+    "../../node_modules/@types/react-modal/index.d.ts"
   ],
   "exclude": [
     "__mocks__",
