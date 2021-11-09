@@ -1,12 +1,6 @@
 {
   "name": "@lambdacurry/component-library",
-  "version": "0.0.0",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "sideEffects": [
-    "./src/lib/charts/BarChart/roundedBarCharts.ts"
-  ],
+  "version": "0.0.1",
   "description": "A React component library created by Lambda Curry.",
   "author": "Lambda Curry",
   "license": "ISC",

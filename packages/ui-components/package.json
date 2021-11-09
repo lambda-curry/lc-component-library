@@ -1,6 +1,6 @@
 {
   "name": "@lambdacurry/component-library",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "A React component library created by Lambda Curry.",
   "author": "Lambda Curry",
   "license": "ISC",
@@ -14,9 +14,7 @@
     "storybook": "start-storybook -s ./static -p 6007",
     "build:storybook": "STORYBOOK_ENV=production build-storybook -s static -o docs"
   },
-  "sideEffects": [
-    "./src/lib/charts/BarChart/roundedBarCharts.ts"
-  ],
+  "sideEffects": false,
   "files": [
     "dist",
     "src"
@@ -57,13 +55,12 @@
     "@material-ui/pickers": "4.0.0-alpha.12",
     "@stripe/react-stripe-js": "*",
     "@stripe/stripe-js": "*",
-    "@szhsin/react-menu": "^2.1.0",
     "@types/react-modal": "^3.12.1",
+    "@szhsin/react-menu": "^2.1.0",
     "chart.js": "2.9.4",
     "chartjs-plugin-datalabels": "1.0.0",
     "classnames": "*",
     "clipboard": "*",
-    "core-js": "*",
     "formik": "*",
     "framer-motion": "*",
     "lodash": "*",
@@ -85,6 +82,7 @@
   "devDependencies": {
     "@nrwl/storybook": "*",
     "autoprefixer": "*",
+    "core-js": "*",
     "cypress": "*",
     "postcss": "*",
     "postcss-cli": "*",

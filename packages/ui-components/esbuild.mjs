@@ -28,7 +28,7 @@ const options = {
   outdir: './dist',
   outbase: './src',
   format: 'esm',
-  tsconfig: 'tsconfig.json',
+  tsconfig: './tsconfig.lib.json',
   logLevel: 'info',
   minify: true,
   sourcemap: true,
