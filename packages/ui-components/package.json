@@ -55,6 +55,7 @@
     "@material-ui/pickers": "4.0.0-alpha.12",
     "@stripe/react-stripe-js": "*",
     "@stripe/stripe-js": "*",
+    "@types/react-modal": "^3.12.1",
     "@szhsin/react-menu": "^2.1.0",
     "chart.js": "2.9.4",
     "chartjs-plugin-datalabels": "1.0.0",
@@ -80,7 +81,6 @@
   },
   "devDependencies": {
     "@nrwl/storybook": "*",
-    "@types/react-modal": "^3.12.1",
     "autoprefixer": "*",
     "core-js": "*",
     "cypress": "*",
