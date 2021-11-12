@@ -1,12 +1,13 @@
 {
   "name": "@lambdacurry/component-library",
-  "version": "0.0.1-beta.0",
+  "version": "0.0.0",
   "description": "A React component library created by Lambda Curry.",
   "author": "Lambda Curry",
   "license": "ISC",
   "scripts": {
     "clean": "find . -name \"node_modules\" -type d -prune -exec rm -rf '{}' + && yarn",
-    "e2e": "percy exec -- nx e2e ui-components-e2e"
+    "e2e": "percy exec -- nx e2e ui-components-e2e",
+    "publish:beta": "npx nx run ui-components:publish-beta"
   },
   "private": true,
   "workspaces": {

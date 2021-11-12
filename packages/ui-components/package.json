@@ -1,6 +1,6 @@
 {
   "name": "@lambdacurry/component-library",
-  "version": "4.0.0",
+  "version": "4.0.1-beta.5",
   "description": "A React component library created by Lambda Curry.",
   "author": "Lambda Curry",
   "license": "ISC",
@@ -11,7 +11,10 @@
     "build": "yarn esbuild",
     "sb": "yarn storybook",
     "storybook": "start-storybook -s ./static -p 6007",
-    "build:storybook": "STORYBOOK_ENV=production build-storybook -s static -o docs"
+    "build:storybook": "STORYBOOK_ENV=production build-storybook -s static -o docs",
+    "prepublish:beta": "yarn install && yarn build && yarn release:beta",
+    "release:beta": "npm version prerelease --preid=beta",
+    "publish:beta": "yarn publish --tag beta"
   },
   "sideEffects": false,
   "files": [
