@@ -15,7 +15,7 @@ export interface InputConfig {
   shrinkLabel?: boolean;
 }
 
-export type InputProps = Omit<OutlinedTextFieldProps, 'variant' | 'prefix'> & {
+export interface InputProps extends Omit<OutlinedTextFieldProps, 'variant' | 'prefix'> {
   name: string;
   prefix?: ReactNode;
   suffix?: ReactNode;
@@ -23,7 +23,7 @@ export type InputProps = Omit<OutlinedTextFieldProps, 'variant' | 'prefix'> & {
   labelPlacement?: LabelPlacements;
   variant?: 'outlined' | 'standard' | 'filled'; // Don't remove any typing because this breaks the build. - Jake
   inputConfig?: InputConfig;
-};
+}
 
 export const InputBase: FC<InputProps> = ({
   name,

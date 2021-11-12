@@ -6,7 +6,6 @@ import { MultilineInput } from '../../multiline-input';
 export interface InputTextareaProps extends InputProps {
   rows?: number;
   characterLimit?: number;
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const InputTextarea: FC<InputTextareaProps> = ({

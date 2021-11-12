@@ -11,11 +11,11 @@ import { Icon } from '../../icon/Icon';
 
 import './input-checkbox.css';
 
-export type InputCheckboxProps = {
+export interface InputCheckboxProps extends CheckboxProps {
   label: string;
   labelPlacement?: FormControlLabelProps['labelPlacement'];
   formikProps?: FormikProps<any>;
-} & CheckboxProps;
+}
 
 export const InputCheckbox: FC<InputCheckboxProps> = ({
   label,

@@ -24,7 +24,7 @@ export type AutoCompleteChange = (
   details?: AutocompleteChangeDetails<any> | undefined
 ) => void;
 
-export type InputSelectProps = Omit<InputProps, 'onChange'> & {
+export interface InputSelectProps extends Omit<InputProps, 'onChange'> {
   value?: any;
   options: any[];
   optionLabelKey?: string;
@@ -33,7 +33,7 @@ export type InputSelectProps = Omit<InputProps, 'onChange'> & {
   allowCreateOption?: boolean;
   disableFilterOptionsByValue?: boolean;
   onChange?: AutoCompleteChange;
-};
+}
 
 export const InputSelect: FC<InputSelectProps> = ({
   options,

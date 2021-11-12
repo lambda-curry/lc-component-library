@@ -25,6 +25,13 @@ export interface InputSearchReducerAction {
   payload?: any;
 }
 
+export interface InputSearchProps extends Omit<InputSelectProps, 'options'> {
+  url: string;
+  searchParam?: string;
+  searchOptions?: InputSearchOptions;
+  getOptions?: (data: any) => any[];
+}
+
 const inputSearchReducers = {
   setStatus: (state: InputSearchReducerState, status: ServerRequestStatus) => ({ ...state, status }),
   setOptions: (state: InputSearchReducerState, options: any[]) => ({ ...state, options }),
@@ -40,13 +47,6 @@ export const inputSearchReducer = (
   }
   const nextState: InputSearchReducerState = inputSearchReducers[action.name](state, action.payload);
   return nextState;
-};
-
-type InputSearchProps = Omit<InputSelectProps, 'options'> & {
-  url: string;
-  searchParam?: string;
-  searchOptions?: InputSearchOptions;
-  getOptions?: (data: any) => any[];
 };
 
 export const InputSearch: FC<InputSearchProps> = ({

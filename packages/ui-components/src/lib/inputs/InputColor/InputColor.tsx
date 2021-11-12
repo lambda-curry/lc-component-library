@@ -22,7 +22,7 @@ const InputColorMask: FC<TextMaskCustomProps> = props => {
 
   return (
     <MaskedInput
-      mask={['#', ...new Array(6).fill(hexColorRegex, 0)]}
+      mask={['#', ...new Array(6).fill(hexColorRegex)]}
       {...rest}
       ref={(ref: any) => {
         inputRef(ref ? ref.inputElement : null);

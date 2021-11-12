@@ -34,7 +34,9 @@ const PhoneMask: FC<TextMaskCustomProps> = props => {
   );
 };
 
-export const InputPhone: FC<InputProps> = ({ className, ...props }) => {
+export interface InputPhoneProps extends InputProps {}
+
+export const InputPhone: FC<InputPhoneProps> = ({ className, ...props }) => {
   props.InputProps = { ...props.InputProps, inputComponent: PhoneMask as any };
   return (
     <InputBase

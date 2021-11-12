@@ -7,7 +7,7 @@ import { DateTime } from 'luxon';
 import { get as _get } from 'lodash';
 import classNames from 'classnames';
 
-export type InputDateProps = Omit<InputProps, 'onChange'> & {
+export interface InputDateProps extends Omit<InputProps, 'onChange'> {
   value?: Date | string;
   onChange?: (date: Date | string | null) => void;
   inputFormat?: string;
@@ -15,7 +15,7 @@ export type InputDateProps = Omit<InputProps, 'onChange'> & {
   disablePast?: boolean;
   className?: string;
   datePickerProps?: Partial<DatePickerProps>;
-};
+}
 
 const toDateTime = (value: string | Date, format?: string): DateTime | null => {
   if (format && typeof value === 'string') return DateTime.fromFormat(value, format);
