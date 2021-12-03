@@ -1,5 +1,4 @@
 import React, { FC, useEffect, useState, ChangeEvent } from 'react';
-import { Autocomplete } from '@mui/lab';
 import {
   Paper,
   Chip,
@@ -7,7 +6,8 @@ import {
   AutocompleteChangeDetails,
   AutocompleteProps,
   FilterOptionsState,
-  AutocompleteGetTagProps
+  AutocompleteGetTagProps,
+  Autocomplete
 } from '@mui/material';
 import classNames from 'classnames';
 import { InputText } from '../InputText/InputText';
