@@ -1,6 +1,6 @@
 import React, { FC, ChangeEvent } from 'react';
 import classNames from 'classnames';
-import { InputAdornment } from '@material-ui/core';
+import { InputAdornment } from '@mui/material';
 import MaskedInput from 'react-text-mask';
 import { InputText } from '../InputText/InputText';
 import { InputProps } from '../InputBase';

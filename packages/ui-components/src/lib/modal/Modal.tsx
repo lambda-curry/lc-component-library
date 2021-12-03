@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect } from 'react';
 import ReactModal from 'react-modal';
 import classNames from 'classnames';
 import { IconButton } from '../icon-button';
-import { Card, CardContent } from '@material-ui/core';
+import { Card, CardContent } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import './modal.css';

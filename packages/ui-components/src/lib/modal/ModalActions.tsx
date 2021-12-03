@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import classNames from 'classnames';
-import { CardActions, CardActionsProps } from '@material-ui/core';
+import { CardActions, CardActionsProps } from '@mui/material';
 
 export interface ModalActionsProps extends CardActionsProps {}
 

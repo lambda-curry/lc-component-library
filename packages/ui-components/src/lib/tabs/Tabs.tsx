@@ -1,7 +1,7 @@
 import React, { FC, ReactNode, useEffect, useState, ChangeEvent } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import { Tabs as MuiTabs, Tab, TabsProps as MuiTabsProps } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
+import AppBar from '@mui/material/AppBar';
+import { Tabs as MuiTabs, Tab, TabsProps as MuiTabsProps } from '@mui/material';
 import classNames from 'classnames';
 
 export interface TabPanelProps {

@@ -1,9 +1,9 @@
 import React, { ChangeEvent, FocusEvent, ReactNode, FC } from 'react';
-import TextField, { OutlinedTextFieldProps } from '@material-ui/core/TextField';
+import TextField, { OutlinedTextFieldProps } from '@mui/material/TextField';
 import { FormikProps } from 'formik';
 import classNames from 'classnames';
 import { get as _get, set as _set } from 'lodash';
-import { InputAdornment } from '@material-ui/core';
+import { InputAdornment } from '@mui/material';
 import './input.css';
 
 type LabelPlacements = 'inset' | 'above';

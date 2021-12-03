@@ -1,7 +1,7 @@
 import React, { FC, ChangeEvent } from 'react';
 import classNames from 'classnames';
 import { FormikProps } from 'formik';
-import { FormControl, FormLabel, RadioGroup, RadioGroupProps } from '@material-ui/core';
+import { FormControl, FormLabel, RadioGroup, RadioGroupProps } from '@mui/material';
 import './input-radio.css';
 
 export interface InputRadioGroupProps extends RadioGroupProps {

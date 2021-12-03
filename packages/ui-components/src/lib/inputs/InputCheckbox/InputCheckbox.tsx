@@ -4,7 +4,7 @@ import {
   CheckboxProps,
   FormControlLabel as MuiFormControlLabel,
   FormControlLabelProps
-} from '@material-ui/core';
+} from '@mui/material';
 import classNames from 'classnames';
 import { FormikProps } from 'formik';
 import { Icon } from '../../icon/Icon';

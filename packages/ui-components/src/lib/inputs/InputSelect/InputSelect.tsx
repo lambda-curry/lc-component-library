@@ -1,13 +1,14 @@
 import React, { FC, useEffect, useState, ChangeEvent } from 'react';
+import { Autocomplete } from '@mui/lab';
 import {
-  Autocomplete,
-  AutocompleteChangeDetails,
+  Paper,
+  Chip,
   AutocompleteChangeReason,
-  AutocompleteGetTagProps,
+  AutocompleteChangeDetails,
   AutocompleteProps,
-  FilterOptionsState
-} from '@material-ui/lab';
-import { Paper, Chip } from '@material-ui/core';
+  FilterOptionsState,
+  AutocompleteGetTagProps
+} from '@mui/material';
 import classNames from 'classnames';
 import { InputText } from '../InputText/InputText';
 import { Icon } from '../../icon/Icon';
@@ -145,7 +146,7 @@ export const InputSelect: FC<InputSelectProps> = ({
       if (typeof onChange === 'function') onChange(event, normalizedValue, reason, details);
     },
     openOnFocus: true,
-    closeIcon: <Icon className="lc-input-select-icon-close" name="close" />,
+    clearIcon: <Icon className="lc-input-select-icon-close" name="close" />,
     popupIcon: <Icon className="lc-input-select-icon-popup" name="chevronDown" />,
     renderInput: params => {
       const inputProps = {
@@ -170,7 +171,7 @@ export const InputSelect: FC<InputSelectProps> = ({
     PaperComponent: props => <Paper className="lc-input-select-paper" {...props} />,
     getOptionLabel: (option: { [key: string]: any }) => _get(option, optionLabelKey) || '',
     getOptionDisabled: option => option.isDisabled,
-    getOptionSelected,
+    // getOptionSelected,
     filterOptions,
     disableClearable: true,
     autoHighlight: false,

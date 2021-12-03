@@ -1,5 +1,5 @@
 import React, { FC, KeyboardEvent, MouseEvent } from 'react';
-import { Drawer as MuiDrawer, DrawerProps as MuiDrawerProps } from '@material-ui/core';
+import { Drawer as MuiDrawer, DrawerProps as MuiDrawerProps } from '@mui/material';
 import classNames from 'classnames';
 import './drawer.css';
 import { DrawerType } from './drawer.helpers';

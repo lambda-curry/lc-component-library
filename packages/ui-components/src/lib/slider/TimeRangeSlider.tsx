@@ -1,4 +1,4 @@
-import React, { FC, FormEvent, FocusEvent } from 'react';
+import React, { FC, FocusEvent } from 'react';
 import { Slider, SliderProps } from './Slider';
 import { DateTime, Interval, LocaleOptions } from 'luxon';
 import classNames from 'classnames';
@@ -41,7 +41,7 @@ const labelFromRangeMinutes = (rangeMinutes: number) => {
 
 export interface TimeRangeSliderProps extends Omit<SliderProps, 'value' | 'onChange'> {
   value?: TimeRange;
-  onChange?: (event: FormEvent<any>, value: TimeRange) => void;
+  onChange?: (event: Event, value: TimeRange) => void;
   minuteInterval?: number;
   minTime?: string;
   maxTime?: string;
@@ -84,10 +84,10 @@ export const TimeRangeSlider: FC<TimeRangeSliderProps> = ({
 
   const rangeValue = [intervalStartInMinutes(valueInterval), intervalEndInMinutes(valueInterval)];
 
-  const handleChange: (event: FormEvent<any>, value: number | number[]) => void = (event, rangeValue) => {
+  const handleChange: (event: Event, value: number | number[]) => void = (event, rangeValue) => {
     if (!rangeValue) return;
     const timeRange: TimeRange = timeRangeFromRangeValue(rangeValue as number[], { minTime, min });
-    if (typeof onChange === 'function') onChange(event as FormEvent<any>, timeRange);
+    if (typeof onChange === 'function') onChange(event, timeRange);
 
     if (formikProps) formikProps.setFieldValue(name, timeRange);
   };
@@ -110,8 +110,6 @@ export const TimeRangeSlider: FC<TimeRangeSliderProps> = ({
       step={minuteInterval}
       valueLabelDisplay={valueLabelDisplay}
       valueLabelFormat={minutes => labelFromRangeMinutes(minutes)}
-      // Note: Mui types were expecting onChange?: (((event: ChangeEvent<{}>, value: number | number[]) => void) & ((event: FormEvent<HTMLSpanElement>) => void)) | undefined
-      // but ((event: FormEvent<HTMLSpanElement>) => void)) is coming from an extended value and I'm not sure what to do about that. - Jake 10/05/2020
       onChange={handleChange}
       onBlur={handleBlur}
     />

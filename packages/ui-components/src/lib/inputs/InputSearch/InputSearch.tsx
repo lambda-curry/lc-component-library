@@ -2,7 +2,7 @@ import React, { FC, Reducer, useEffect, useReducer, ChangeEvent } from 'react';
 import classNames from 'classnames';
 import { AutoCompleteChange, InputSelect, InputSelectProps } from '../InputSelect/InputSelect';
 import { useAsyncEffect, useDebounce } from '../../hooks';
-import { AutocompleteInputChangeReason } from '@material-ui/lab';
+import { AutocompleteInputChangeReason } from '@mui/material/useAutocomplete';
 import { get as _get } from 'lodash';
 
 export interface InputSearchReducerState {
