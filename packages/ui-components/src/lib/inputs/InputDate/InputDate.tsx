@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
-import { DatePicker, DatePickerProps, LocalizationProvider } from '@material-ui/pickers';
 import { InputText } from '../InputText/InputText';
 import { InputProps } from '../InputBase';
 import LuxonUtils from '@date-io/luxon';
 import { DateTime } from 'luxon';
 import { get as _get } from 'lodash';
 import classNames from 'classnames';
+import { DatePicker, DatePickerProps, LocalizationProvider } from '@mui/lab';
 
 export type InputDateProps = Omit<InputProps, 'onChange'> & {
   value?: Date | string;
