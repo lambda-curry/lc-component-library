@@ -80,15 +80,9 @@
     @apply lc-border-danger;
   }
 
-  /* Override for Marcus to center the input label */
-  .MuiInputLabel-outlined.MuiInputLabel-marginDense {
-    @apply lc-text-black;
-    top: -1px;
-    opacity: 0.64;
-
+  .MuiInputLabel-outlined.MuiInputLabel-root {
     &:not(.MuiInputLabel-shrink) {
-      transform: translate(14px, 17px);
-      opacity: 0.44;
+      top: -3px;
     }
   }
 
