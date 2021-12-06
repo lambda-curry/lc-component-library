@@ -171,7 +171,6 @@ export const InputSelect: FC<InputSelectProps> = ({
     PaperComponent: props => <Paper className="lc-input-select-paper" {...props} />,
     getOptionLabel: (option: { [key: string]: any }) => _get(option, optionLabelKey) || '',
     getOptionDisabled: option => option.isDisabled,
-    getOptionSelected,
     filterOptions,
     disableClearable: true,
     autoHighlight: false,
