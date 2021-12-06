@@ -4,14 +4,63 @@ import dedent from 'string-dedent';
 
 import './theme-story.css';
 
-<Meta title="Theming" component={() => <></>} />
+<Meta title="Theming" />
 
 # Theming
 
 This component utilizes MUI https://mui.com/, which requires a theme to be set for its components.
-We provided a ThemeBase component that can be utilized a the root of your application to set the theme.
+When using components that utilize MUI (basically all form inputs), you can use the `ThemeBase` component we provide
+wrapped around your app to set the theme up for those components.
 
-Mixing Tailwind with CSS Variables provides some powerful tools for themeing.
+We also utilize css variables to control attributes of our library.
+
+Here is an example of our default theme:
+
+```CSS
+:root {
+  --lc-color-transparent: transparent;
+  --lc-color-current: currentColor;
+  --lc-color-black: hexToRGB(#000);
+  --lc-color-white: hexToRGB(#fff);
+
+  --lc-color-gray-lightest: hexToRGB(#f5f6fa);
+  --lc-color-gray-lighter: hexToRGB(#e2e2e2);
+  --lc-color-gray-light: hexToRGB(#bdbdbd);
+  --lc-color-gray: hexToRGB(#a0a5ba);
+  --lc-color-gray-dark: hexToRGB(#707070);
+  --lc-color-gray-darker: hexToRGB(#404040);
+
+  --lc-color-primary: hexToRGB(#3182ce);
+  --lc-color-primary-dark: hexToRGB(#2c5282);
+  --lc-color-primary-light: hexToRGB(#5e9bd5);
+
+  --lc-color-accent: hexToRGB(#ed64a6);
+  --lc-color-accent-dark: hexToRGB(#b83280);
+
+  --lc-color-success: hexToRGB(#48bb78);
+  --lc-color-success-dark: hexToRGB(#2f855a);
+
+  --lc-color-warning: hexToRGB(#ed8936);
+  --lc-color-warning-dark: hexToRGB(#dd6b20);
+
+  --lc-color-danger: hexToRGB(#e53e3e);
+  --lc-color-danger-dark: hexToRGB(#c53030);
+
+  --lc-color-active: hexToRGB(#5bd067);
+
+  --lc-font-family-sans: 'lc-gilroy', sans-serif;
+  --lc-font-family-code: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+
+  --lc-border-radius: 6px;
+}
+```
+
+If using PostCSS or SCSS you can utilize a `hexToRGB` function to convert hex colors to a (#, #, #) format.
+These RBG values are used so we can more easilty control the opacity of our colors (with Tailwind).
+
+While developing on the component library, mixing Tailwind with CSS Variables provides some powerful tools for themeing.
+Note: You probably shouldn't rely on `lc-` classNames in the consumer project of this library. We prefixed them so
+none of the classNames would conflict with other Tailwind projects.
 
 <Canvas>
   <Story
