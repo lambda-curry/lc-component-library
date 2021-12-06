@@ -100,7 +100,6 @@ export const InputBase: FC<InputProps> = forwardRef(
           name={config.safeName ? `['${name}']` : name}
           id={id || name}
           label={config.labelPlacement === 'inset' ? label : false}
-          size="small"
           {...props}
           InputProps={InputProps}
           error={hasError}

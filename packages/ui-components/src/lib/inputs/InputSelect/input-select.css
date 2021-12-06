@@ -1,10 +1,8 @@
 .lc-input-select {
   .MuiAutocomplete-inputRoot[class*='MuiOutlinedInput-root'] {
-    padding: 4px;
-
     .MuiAutocomplete-input {
-      height: 38px;
-      padding: 12px 0 12px 4px;
+      box-sizing: content-box;
+      height: 16px;
 
       &:first-child {
         padding-left: 12px;
@@ -12,19 +10,12 @@
     }
   }
 
-  .MuiAutocomplete-endAdornment {
-    top: calc(50% - 15px);
-  }
-
-  .MuiInputLabel-outlined {
-    top: -1px;
-    transform: translate(14px, 17px);
-  }
-
   .MuiAutocomplete-tag.MuiChip-root {
     @apply lc-bg-gray-lighter;
     @apply lc-font-sans;
     height: 32px;
+    margin-top: -2px;
+    margin-bottom: -2px;
     font-size: 12px;
     border-radius: 4px;
 
@@ -56,10 +47,4 @@ body .MuiAutocomplete-paper {
 /* Fixes when material UI popovers are within a modal. */
 .ReactModal__Body--open .MuiAutocomplete-popper {
   z-index: 10000;
-}
-
-.lc-input-label-above {
-  .MuiAutocomplete-inputRoot[class*='MuiOutlinedInput-root'] {
-    background: #fff;
-  }
 }

@@ -9,12 +9,10 @@
       @apply lc-rounded;
     }
 
-    input:not([type='color']) {
+    .MuiOutlinedInput-input:not([type='color']) {
       @apply lc-rounded;
       box-sizing: content-box;
-      height: 28px;
-      padding-top: 10px;
-      padding-bottom: 10px;
+      height: 16px;
       zoom: 1;
     }
 
@@ -68,11 +66,6 @@
   }
 
   .MuiOutlinedInput-multiline {
-    &.MuiOutlinedInput-marginDense {
-      padding-top: 14px;
-      padding-bottom: 15px;
-    }
-
     textarea {
       resize: vertical;
       min-height: 100px;
@@ -147,30 +140,20 @@
   }
 }
 
+.lc-input-label-above {
+  .MuiAutocomplete-inputRoot[class*='MuiOutlinedInput-root'] {
+    background: #fff;
+  }
+}
+
 /* Fixes */
 .lc-input {
-  /* Fix for hover style outline */
-  .MuiOutlinedInput-notchedOutline {
-    top: -6px;
-
-    /*
-     Note: we need to apply these classes because there is a clash with classNames that are being obfuscated in the production build
-     between the snackbars and the Material UI components. It seems like it might have to something to do with the `makeStyles` object/classNames.
-    */
-    position: absolute !important;
-  }
   .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
     @apply lc-border-primary;
   }
   .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
     @apply lc-border-primary;
   }
-}
-
-/* Fixes height of input select */
-.lc-input-select .lc-input .MuiOutlinedInput-root input.MuiAutocomplete-input {
-  box-sizing: content-box;
-  height: 16px;
 }
 
 /* Fixes font inside of dropdowns */
