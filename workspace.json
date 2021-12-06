@@ -75,7 +75,7 @@
     "ui-components-e2e": {
       "root": "packages/ui-components-e2e",
       "sourceRoot": "packages/ui-components-e2e/src",
-      "projectType": "aplication",
+      "projectType": "application",
       "implicitDependencies": ["ui-components"],
       "targets": {
         "e2e-dev": {
