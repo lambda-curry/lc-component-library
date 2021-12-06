@@ -1,7 +1,8 @@
 import React, { FC, ReactNode, useEffect, useState, ChangeEvent } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import { Tabs as MuiTabs, Tab, TabsProps as MuiTabsProps } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
+import AppBar from '@mui/material/AppBar';
+import MuiTabs, { TabsProps as MuiTabsProps } from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 import classNames from 'classnames';
 
 export interface TabPanelProps {
@@ -14,7 +15,7 @@ const TabPanel: FC<TabPanelProps> = props => {
 
   return (
     <div role="tabpanel" hidden={value !== index} id={`tabpanel-${index}`} aria-labelledby={`tab-${index}`} {...other}>
-      {value === index && <>{children}</>}
+      {value === index && children}
     </div>
   );
 };

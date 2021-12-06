@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react';
-import { makeStyles, Theme } from '@material-ui/core/styles';
-import { Tooltip as MuiTooltip, TooltipProps as MuiTooltipProps } from '@material-ui/core';
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import MuiTooltip, { TooltipProps as MuiTooltipProps } from '@mui/material/Tooltip';
 import { useOnClickOutside } from '../hooks';
 
 export interface TooltipOptions {

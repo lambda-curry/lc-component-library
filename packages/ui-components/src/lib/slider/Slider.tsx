@@ -1,5 +1,6 @@
-import React, { FC, ChangeEvent, FocusEvent, ElementType, HTMLAttributes, ReactNode } from 'react';
-import { Mark, Slider as MuiSlider, ValueLabelProps } from '@material-ui/core';
+import React, { FC, FocusEvent, ElementType, HTMLAttributes, ReactNode, SyntheticEvent } from 'react';
+import MuiSlider, { SliderValueLabel } from '@mui/material/Slider';
+
 import classNames from 'classnames';
 import { FormikProps } from 'formik';
 import './slider.css';
@@ -19,19 +20,19 @@ export interface SliderProps {
   disabled?: boolean;
   getAriaLabel?: (index: number) => string;
   getAriaValueText?: (value: number, index: number) => string;
-  marks?: boolean | Mark[];
+  marks?: boolean | { label: string; value: any }[];
   max?: number;
   min?: number;
-  onChange?: (event: ChangeEvent<any>, value: number | number[]) => void;
+  onChange?: (event: Event, value: number | number[]) => void;
   onBlur?: (event: FocusEvent) => void;
-  onChangeCommitted?: (event: ChangeEvent<any>, value: number | number[]) => void;
+  onChangeCommitted?: (event: Event | SyntheticEvent<Element, Event>, value: number | number[]) => void;
   orientation?: 'horizontal' | 'vertical';
   step?: number | null;
   scale?: (value: number) => number;
   ThumbComponent?: ElementType<HTMLAttributes<HTMLSpanElement>>;
   track?: 'normal' | false | 'inverted';
   value?: number | number[];
-  ValueLabelComponent?: ElementType<ValueLabelProps>;
+  ValueLabelComponent?: typeof SliderValueLabel;
   valueLabelDisplay?: 'on' | 'auto' | 'off';
   valueLabelFormat?: string | ((value: number, index: number) => ReactNode);
 }
@@ -48,7 +49,7 @@ export const Slider: FC<SliderProps> = ({
   value,
   ...sliderProps
 }) => {
-  const handleChange: (event: ChangeEvent<any>, value: any) => void = (event, newValue) => {
+  const handleChange: (event: Event, value: number | number[], activeThumb: number) => void = (event, newValue) => {
     if (typeof onChange === 'function') onChange(event, newValue);
     if (formikProps) formikProps.setFieldValue(name, newValue);
   };

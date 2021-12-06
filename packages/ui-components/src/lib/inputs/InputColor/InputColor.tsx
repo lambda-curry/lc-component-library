@@ -1,36 +1,31 @@
 import React, { FC, ChangeEvent } from 'react';
 import classNames from 'classnames';
-import { InputAdornment } from '@material-ui/core';
-import MaskedInput from 'react-text-mask';
+import InputAdornment from '@mui/material/InputAdornment';
+import { IMaskInput } from 'react-imask';
 import { InputText } from '../InputText/InputText';
 import { InputProps } from '../InputBase';
 import { isHexColor, hexColorRegex } from '../../util/colors';
 
 import './input-color.css';
 
-interface TextMaskCustomProps {
-  mask?: (string | RegExp)[];
-  inputRef: (ref: HTMLInputElement | null) => void;
-}
-
 export interface InputColorProps extends InputProps {
   onPickerChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const InputColorMask: FC<TextMaskCustomProps> = props => {
-  const { inputRef, mask, ...rest } = props;
-
+// Resource: https://mui.com/components/text-fields/
+// Issue with types: https://github.com/uNmAnNeR/imaskjs/issues/554
+const InputColorMask = React.forwardRef<HTMLElement, any>((props, ref) => {
   return (
-    <MaskedInput
-      mask={['#', ...new Array(6).fill(hexColorRegex, 0)]}
-      {...rest}
-      ref={(ref: any) => {
-        inputRef(ref ? ref.inputElement : null);
+    <IMaskInput
+      {...props}
+      mask="#HHHHHH"
+      definitions={{
+        H: hexColorRegex
       }}
-      placeholderChar={'\u2000'}
+      inputRef={ref}
     />
   );
-};
+});
 
 export const InputColor: FC<InputColorProps> = ({
   className,

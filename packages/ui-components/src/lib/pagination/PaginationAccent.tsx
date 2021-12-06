@@ -1,4 +1,4 @@
-import MuiPagination from '@material-ui/lab/Pagination';
+import MuiPagination from '@mui/material/Pagination';
 import classNames from 'classnames';
 import React, { FC, ReactElement } from 'react';
 import { PaginationProps } from './Pagination';

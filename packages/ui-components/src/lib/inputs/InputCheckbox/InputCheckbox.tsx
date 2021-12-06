@@ -1,10 +1,6 @@
 import React, { FC, ChangeEvent } from 'react';
-import {
-  Checkbox as MuiCheckbox,
-  CheckboxProps,
-  FormControlLabel as MuiFormControlLabel,
-  FormControlLabelProps
-} from '@material-ui/core';
+import MuiCheckbox, { CheckboxProps } from '@mui/material/Checkbox';
+import MuiFormControlLabel, { FormControlLabelProps } from '@mui/material/FormControlLabel';
 import classNames from 'classnames';
 import { FormikProps } from 'formik';
 import { Icon } from '../../icon/Icon';

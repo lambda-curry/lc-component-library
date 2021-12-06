@@ -1,3 +1,6 @@
+const path = require('path');
+const toPath = filePath => path.join(process.cwd(), filePath);
+
 module.exports = {
   typescript: {
     check: false,
@@ -41,6 +44,14 @@ module.exports = {
     config.module.rules = config.module.rules.filter(
       r => !(r.test instanceof RegExp && r.test.toString().includes('less'))
     );
+
+    // Note: https://github.com/mui-org/material-ui/issues/24282#issuecomment-796755133
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@emotion/core': toPath('node_modules/@emotion/react'),
+      'emotion-theming': toPath('node_modules/@emotion/react')
+    };
+
     return config;
   }
 };

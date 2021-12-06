@@ -70,10 +70,9 @@
     "react-dom": "*",
     "react-dropzone": "*",
     "react-image-crop": "*",
-    "react-input-mask": "*",
+    "react-imask": "*",
     "react-modal": "^3.14.3",
     "react-quill": "*",
-    "react-text-mask": "*",
     "regenerator-runtime": "*",
     "tailwindcss": "*",
     "yup": "*"
