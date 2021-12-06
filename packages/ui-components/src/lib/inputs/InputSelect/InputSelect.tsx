@@ -1,14 +1,14 @@
 import React, { FC, useEffect, useState, ChangeEvent } from 'react';
-import {
-  Paper,
-  Chip,
+import Paper from '@mui/material/Paper';
+import Chip from '@mui/material/Chip';
+import Autocomplete, {
   AutocompleteChangeReason,
   AutocompleteChangeDetails,
   AutocompleteProps,
-  FilterOptionsState,
-  AutocompleteGetTagProps,
-  Autocomplete
-} from '@mui/material';
+  AutocompleteRenderGetTagProps
+} from '@mui/material/Autocomplete';
+import { FilterOptionsState } from '@mui/material/useAutocomplete';
+
 import classNames from 'classnames';
 import { InputText } from '../InputText/InputText';
 import { Icon } from '../../icon/Icon';
@@ -177,7 +177,7 @@ export const InputSelect: FC<InputSelectProps> = ({
     autoHighlight: false,
     autoSelect: false,
     autoComplete: true,
-    renderTags: (valueArray: any[], getTagProps: AutocompleteGetTagProps) => (
+    renderTags: (valueArray: any[], getTagProps: AutocompleteRenderGetTagProps) => (
       <>
         {valueArray.map((valueArrayItem, index) => {
           const selectedOption = options.find(option => getOptionSelected(option, valueArrayItem));

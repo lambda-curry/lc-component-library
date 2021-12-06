@@ -1,5 +1,6 @@
 import React, { FC, FocusEvent, ElementType, HTMLAttributes, ReactNode, SyntheticEvent } from 'react';
-import { Mark, Slider as MuiSlider, ValueLabelProps } from '@mui/material';
+import MuiSlider, { SliderValueLabel } from '@mui/material/Slider';
+
 import classNames from 'classnames';
 import { FormikProps } from 'formik';
 import './slider.css';
@@ -19,7 +20,7 @@ export interface SliderProps {
   disabled?: boolean;
   getAriaLabel?: (index: number) => string;
   getAriaValueText?: (value: number, index: number) => string;
-  marks?: boolean | Mark[];
+  marks?: boolean | { label: string; value: any }[];
   max?: number;
   min?: number;
   onChange?: (event: Event, value: number | number[]) => void;
@@ -31,7 +32,7 @@ export interface SliderProps {
   ThumbComponent?: ElementType<HTMLAttributes<HTMLSpanElement>>;
   track?: 'normal' | false | 'inverted';
   value?: number | number[];
-  ValueLabelComponent?: ElementType<ValueLabelProps>;
+  ValueLabelComponent?: typeof SliderValueLabel;
   valueLabelDisplay?: 'on' | 'auto' | 'off';
   valueLabelFormat?: string | ((value: number, index: number) => ReactNode);
 }

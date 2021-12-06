@@ -2,7 +2,8 @@ import React, { FC, useState, useEffect } from 'react';
 import ReactModal from 'react-modal';
 import classNames from 'classnames';
 import { IconButton } from '../icon-button';
-import { Card, CardContent } from '@mui/material';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import './modal.css';

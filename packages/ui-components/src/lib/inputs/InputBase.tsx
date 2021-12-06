@@ -3,7 +3,7 @@ import TextField, { OutlinedTextFieldProps } from '@mui/material/TextField';
 import { FormikProps } from 'formik';
 import classNames from 'classnames';
 import { get as _get, set as _set } from 'lodash';
-import { InputAdornment } from '@mui/material';
+import InputAdornment from '@mui/material/InputAdornment';
 import './input.css';
 
 type LabelPlacements = 'inset' | 'above';
