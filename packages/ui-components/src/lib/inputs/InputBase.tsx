@@ -19,7 +19,10 @@ const useInputStyles = makeStyles({
     }
   },
   inputLabel: {
-    top: 'calc((56px - var(--lc-input-height)) * -1 / 2)',
+    // Note: nesting here helps with specificity
+    '&.MuiInputLabel-root': {
+      top: 'calc((56px - var(--lc-input-height)) * -1 / 2)'
+    },
     '&.MuiInputLabel-shrink': {
       top: '0'
     }

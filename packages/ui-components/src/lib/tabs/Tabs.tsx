@@ -29,28 +29,36 @@ function a11yProps(index: any) {
 
 const useStyles = makeStyles(() => ({
   appBar: {
-    backgroundColor: 'rgba(0,0,0,0)',
-    boxShadow: 'none',
-    color: 'inherit'
+    '.lc-tabs &': {
+      backgroundColor: 'rgba(0,0,0,0)',
+      boxShadow: 'none',
+      color: 'inherit'
+    }
   },
   indicator: {
-    backgroundColor: 'rgba(var(--lc-color-primary), 1)'
+    '.lc-tabs &': {
+      backgroundColor: 'rgba(var(--lc-color-primary), 1)'
+    }
   },
   root: {
-    flexGrow: 1,
-    fontFamily: 'inherit'
+    '&.lc-tabs': {
+      flexGrow: 1,
+      fontFamily: 'inherit'
+    }
   },
   tab: {
-    textTransform: 'none',
-    borderBottom: '2px solid rgba(var(--lc-color-primary-light), 1)',
-    color: 'black',
-    fontFamily: 'inherit',
-    maxWidth: 'none',
-    '&:focus': {
-      outline: 'none'
-    },
-    '&.Mui-selected': {
-      fontWeight: '700'
+    '.lc-tabs &': {
+      textTransform: 'none',
+      borderBottom: '2px solid rgba(var(--lc-color-primary-light), 1)',
+      color: 'black',
+      fontFamily: 'inherit',
+      maxWidth: 'none',
+      '&:focus': {
+        outline: 'none'
+      },
+      '&.Mui-selected': {
+        fontWeight: '700'
+      }
     }
   }
 }));
@@ -80,7 +88,7 @@ export const Tabs: FC<TabsProps> = ({
   }, [initialValue]);
 
   return (
-    <div className={classNames(classes.root, className)}>
+    <div className={classNames(classes.root, className, 'lc-tabs')}>
       <AppBar className={classes.appBar} color="default" position="static">
         <MuiTabs
           variant={variant}
