@@ -5,7 +5,8 @@ import Autocomplete, {
   AutocompleteChangeReason,
   AutocompleteChangeDetails,
   AutocompleteProps,
-  AutocompleteRenderGetTagProps
+  AutocompleteRenderGetTagProps,
+  createFilterOptions
 } from '@mui/material/Autocomplete';
 import { FilterOptionsState } from '@mui/material/useAutocomplete';
 
@@ -16,7 +17,6 @@ import { InputProps } from '../InputBase';
 import { isEqual as _isEqual, get as _get, set as _set } from 'lodash';
 
 import './input-select.css';
-import { lowercaseString } from '../../util/js-helpers';
 
 export type AutoCompleteChange = (
   event: ChangeEvent<any>,
@@ -56,13 +56,9 @@ export const InputSelect: FC<InputSelectProps> = ({
     return optionValueKey ? _get(option, optionValueKey) === value || _isEqual(option, value) : _isEqual(option, value);
   };
 
-  const getOptionSelected = (option: any, value: any) => {
-    return optionAndValueAreEqual(option, value);
-  };
-
   const getControlledValue = () => {
     const valueFromProps = props.formikProps ? _get(props.formikProps.values, name) : props.value;
-    const selectedOption = options.find(option => getOptionSelected(option, valueFromProps));
+    const selectedOption = options.find(option => optionAndValueAreEqual(option, valueFromProps));
 
     const defaultValue = isMultiselect ? [] : null;
 
@@ -77,7 +73,7 @@ export const InputSelect: FC<InputSelectProps> = ({
     let isCustomValue = false;
     let normalizedValue = newValue;
 
-    const selectedOption = options.find(option => getOptionSelected(option, newValue));
+    const selectedOption = options.find(option => optionAndValueAreEqual(option, newValue));
 
     // Check to see if we have a matching option.
     if (selectedOption) {
@@ -106,21 +102,7 @@ export const InputSelect: FC<InputSelectProps> = ({
   const getNormalizedValue = (newValue: any) =>
     isMultiselect ? getNormalizedValueMultiple(newValue) : getNormalizedValueSingle(newValue);
 
-  const filterOptions = (options: any[], params: FilterOptionsState<any>) =>
-    options.filter(option => {
-      const optionLabel = _get(option, optionLabelKey) || '';
-      const optionValue = option && optionValueKey ? _get(option, optionValueKey) : option;
-      const inputValue = lowercaseString(params.inputValue);
-
-      let valueMatch = false;
-      const labelMatch = lowercaseString(optionLabel).includes(inputValue);
-
-      if (!disableFilterOptionsByValue && (typeof optionValue === 'string' || typeof optionValue === 'number')) {
-        valueMatch = lowercaseString(optionValue).includes(inputValue);
-      }
-
-      return valueMatch || labelMatch;
-    });
+  const filterOptions = createFilterOptions<any>();
 
   const controlledValue = getControlledValue();
 
@@ -155,12 +137,18 @@ export const InputSelect: FC<InputSelectProps> = ({
         disabled: props.disabled
       };
 
+      const inputLabelProps = {
+        ...params.InputLabelProps,
+        ...props.InputLabelProps
+      };
+
       return (
         <InputText
           name={name}
           {...params}
           {...props}
           inputProps={inputProps}
+          InputLabelProps={inputLabelProps}
           // Prevent InputBase from calling `formikProps.handleChange`
           // Because it is overriding our change event and preventing
           // the creation of custom options
@@ -171,16 +159,16 @@ export const InputSelect: FC<InputSelectProps> = ({
     PaperComponent: props => <Paper className="lc-input-select-paper" {...props} />,
     getOptionLabel: (option: { [key: string]: any }) => _get(option, optionLabelKey) || '',
     getOptionDisabled: option => option.isDisabled,
-    // getOptionSelected,
     filterOptions,
     disableClearable: true,
     autoHighlight: false,
     autoSelect: false,
     autoComplete: true,
+    isOptionEqualToValue: optionAndValueAreEqual,
     renderTags: (valueArray: any[], getTagProps: AutocompleteRenderGetTagProps) => (
       <>
         {valueArray.map((valueArrayItem, index) => {
-          const selectedOption = options.find(option => getOptionSelected(option, valueArrayItem));
+          const selectedOption = options.find(option => optionAndValueAreEqual(option, valueArrayItem));
           const label = selectedOption
             ? _get(selectedOption, optionLabelKey)
             : _get(valueArrayItem, optionLabelKey) || valueArrayItem;
@@ -199,12 +187,10 @@ export const InputSelect: FC<InputSelectProps> = ({
       if (typeof option === 'string' || typeof option === 'number') {
         return option;
       }
-
       // Add "xxx" option created dynamically
       if (option.inputValue) {
         return option.inputValue;
       }
-
       // Regular option
       return _get(option, optionLabelKey);
     }
@@ -215,17 +201,21 @@ export const InputSelect: FC<InputSelectProps> = ({
     filterOptions: (options: any[], params: FilterOptionsState<any>) => {
       const filteredOptions = filterOptions(options, params);
 
+      const { inputValue } = params;
+      const isExisting = options.some(option => inputValue === option.title);
+
       // Suggest the creation of a new value
-      if (params.inputValue !== '') {
-        filteredOptions.unshift(_set({ inputValue: params.inputValue }, optionLabelKey, `Use "${params.inputValue}"`));
+      if (inputValue !== '' && !isExisting) {
+        filteredOptions.unshift(
+          _set({ [optionValueKey || 'value']: inputValue }, optionLabelKey, `Use "${params.inputValue}"`)
+        );
       }
 
       return filteredOptions;
     },
     selectOnFocus: true,
     clearOnBlur: true,
-    handleHomeEndKeys: true,
-    renderOption: (option: any) => _get(option, optionLabelKey)
+    handleHomeEndKeys: true
   };
 
   const autocompleteProps = {

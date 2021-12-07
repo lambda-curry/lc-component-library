@@ -3,7 +3,6 @@
 
   &.lc-input {
     display: flex;
-    margin-bottom: 24px;
 
     .MuiOutlinedInput-root {
       @apply lc-rounded;
@@ -11,8 +10,6 @@
 
     .MuiOutlinedInput-input:not([type='color']) {
       @apply lc-rounded;
-      box-sizing: content-box;
-      height: 16px;
       zoom: 1;
     }
 
@@ -80,19 +77,7 @@
     @apply lc-border-danger;
   }
 
-  /* Override for Marcus to center the input label */
-  .MuiInputLabel-outlined.MuiInputLabel-marginDense {
-    @apply lc-text-black;
-    top: -1px;
-    opacity: 0.64;
-
-    &:not(.MuiInputLabel-shrink) {
-      transform: translate(14px, 17px);
-      opacity: 0.44;
-    }
-  }
-
-  .MuiInputLabel-outlined.MuiInputLabel-marginDense.Mui-disabled,
+  .MuiInputLabel-outlined.Mui-disabled,
   .MuiOutlinedInput-root.Mui-disabled {
     @apply lc-text-black;
     opacity: 0.35;

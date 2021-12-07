@@ -8,11 +8,12 @@ import './theme-story.css';
 
 # Theming
 
-This component utilizes MUI https://mui.com/, which requires a theme to be set for its components.
+This component utilizes MUI https://mui.com/, which depending on your project, might require a theme to be set for its components.
 When using components that utilize MUI (basically all form inputs), you can use the `ThemeBase` component we provide
 wrapped around your app to set the theme up for those components.
 
-We also utilize css variables to control attributes of our library.
+We also utilize css variables to control attributes of our library. If you want to use your own theme colors, you can
+override these css variables in your project.
 
 Here is an example of our default theme:
 
@@ -52,6 +53,8 @@ Here is an example of our default theme:
   --lc-font-family-code: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 
   --lc-border-radius: 6px;
+  --lc-input-height: 48px;
+  --lc-button-height: var(--lc-input-height);
 }
 ```
 
