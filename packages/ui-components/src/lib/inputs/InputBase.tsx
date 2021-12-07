@@ -9,23 +9,13 @@ import './input.css';
 
 type LabelPlacements = 'inset' | 'above';
 
-const isLargerInput = () => {
-  if (typeof window === 'undefined') return false;
-  const height = getComputedStyle(document.documentElement).getPropertyValue('--lc-input-height');
-  return parseInt(height.replace('px', '')) >= 56;
-};
-
-// Note: if you utilize the css property to create a custom sized input that changes the value of isLargerInput
-// then you will need to adjust the top positioning of the input element
 const useInputStyles = makeStyles({
-  root: {
-    height: 'var(--lc-input-height)'
-  },
   input: {
     height: 'var(--lc-input-height)',
     '& input': {
-      position: 'relative',
-      top: isLargerInput() ? 'unset' : 'calc((56px - var(--lc-input-height)) * -1 / 2)'
+      boxSizing: 'border-box',
+      maxHeight: 'var(--lc-input-height)',
+      position: 'relative'
     }
   },
   inputLabel: {
@@ -66,6 +56,7 @@ export const InputBase: FC<InputProps> = forwardRef(
       labelPlacement = 'inset',
       variant = 'outlined',
       inputConfig,
+      margin = 'normal',
       ...props
     },
     ref
@@ -131,12 +122,12 @@ export const InputBase: FC<InputProps> = forwardRef(
           name={config.safeName ? `['${name}']` : name}
           id={id || name}
           label={config.labelPlacement === 'inset' ? label : false}
-          margin="dense"
+          margin={margin}
           {...props}
           InputProps={InputProps}
           error={hasError}
           helperText={helperText}
-          className={classNames(className, 'lc-input', styleClasses.root)}
+          className={classNames(className, 'lc-input')}
           value={fieldValue}
           onChange={handleChange}
           onBlur={handleBlur}

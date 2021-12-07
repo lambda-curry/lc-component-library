@@ -2,8 +2,6 @@
   width: 100%;
 
   &.lc-input {
-    display: flex;
-
     .MuiOutlinedInput-root {
       @apply lc-rounded;
     }
@@ -118,8 +116,16 @@
   margin-bottom: 8px;
 
   &-above {
-    input:not([type='color']) {
+    .lc-input-label {
+      margin-top: 16px;
+      margin-bottom: -8px;
+    }
+
+    .MuiOutlinedInput-root {
       background-color: #fff;
+    }
+
+    input {
       border-radius: 4px;
     }
   }
