@@ -46,6 +46,10 @@
     }
 
     // configure height with --lc-input-height
+    .MuiOutlinedInput-root {
+      height: var(--lc-input-height);
+    }
+
     .MuiInputBase-input {
       box-sizing: border-box;
       height: var(--lc-input-height);

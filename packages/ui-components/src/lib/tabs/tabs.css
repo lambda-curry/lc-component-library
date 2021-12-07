@@ -1,4 +1,6 @@
 .lc-tabs {
+  width: 100%;
+
   .MuiTab-root {
     @apply lc-flex-grow;
     text-transform: none;
