@@ -44,6 +44,22 @@
         color: #fff;
       }
     }
+
+    // configure height with --lc-input-height
+    .MuiInputBase-input {
+      box-sizing: border-box;
+      height: var(--lc-input-height);
+
+      input {
+        box-sizing: border-box;
+        max-height: var(--lc-input-height);
+        position: relative;
+      }
+    }
+
+    .MuiInputLabel-root:not(.MuiInputLabel-shrink) {
+      top: calc((56px - var(--lc-input-height)) * -1 / 2);
+    }
   }
 
   .MuiTypography-body1,

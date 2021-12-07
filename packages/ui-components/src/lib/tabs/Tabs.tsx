@@ -1,9 +1,8 @@
 import React, { FC, ReactNode, useEffect, useState, ChangeEvent } from 'react';
-import makeStyles from '@mui/styles/makeStyles';
-import AppBar from '@mui/material/AppBar';
 import MuiTabs, { TabsProps as MuiTabsProps } from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import classNames from 'classnames';
+import './tabs.css';
 
 export interface TabPanelProps {
   index: any;
@@ -27,42 +26,6 @@ function a11yProps(index: any) {
   };
 }
 
-const useStyles = makeStyles(() => ({
-  appBar: {
-    '.lc-tabs &': {
-      backgroundColor: 'rgba(0,0,0,0)',
-      boxShadow: 'none',
-      color: 'inherit'
-    }
-  },
-  indicator: {
-    '.lc-tabs &': {
-      backgroundColor: 'rgba(var(--lc-color-primary), 1)'
-    }
-  },
-  root: {
-    '&.lc-tabs': {
-      flexGrow: 1,
-      fontFamily: 'inherit'
-    }
-  },
-  tab: {
-    '.lc-tabs &': {
-      textTransform: 'none',
-      borderBottom: '2px solid rgba(var(--lc-color-primary-light), 1)',
-      color: 'black',
-      fontFamily: 'inherit',
-      maxWidth: 'none',
-      '&:focus': {
-        outline: 'none'
-      },
-      '&.Mui-selected': {
-        fontWeight: '700'
-      }
-    }
-  }
-}));
-
 export interface TabsProps extends Omit<MuiTabsProps, 'onChange'> {
   ariaLabel?: string;
   className?: string;
@@ -79,8 +42,6 @@ export const Tabs: FC<TabsProps> = ({
   value: initialValue = 0,
   ...rest
 }) => {
-  const classes = useStyles();
-
   const [value, setValue] = useState(initialValue);
 
   useEffect(() => {
@@ -88,30 +49,26 @@ export const Tabs: FC<TabsProps> = ({
   }, [initialValue]);
 
   return (
-    <div className={classNames(classes.root, className, 'lc-tabs')}>
-      <AppBar className={classes.appBar} color="default" position="static">
-        <MuiTabs
-          variant={variant}
-          aria-label={ariaLabel}
-          classes={{ indicator: classes.indicator }}
-          {...rest}
-          onChange={(event, value) => {
-            setValue(value);
-            if (onChange) onChange(event, value);
-          }}
-          value={value}
-        >
-          {tabs.map((tab, index) => (
-            <Tab
-              key={`${typeof tab.label === 'string' ? tab.label.replace(' ', '') : ''}_tab_${index}`}
-              className={classes.tab}
-              value={index}
-              label={tab.label}
-              {...a11yProps(index)}
-            />
-          ))}
-        </MuiTabs>
-      </AppBar>
+    <div className={classNames(className, 'lc-tabs')}>
+      <MuiTabs
+        variant={variant}
+        aria-label={ariaLabel}
+        {...rest}
+        onChange={(event, value) => {
+          setValue(value);
+          if (onChange) onChange(event, value);
+        }}
+        value={value}
+      >
+        {tabs.map((tab, index) => (
+          <Tab
+            key={`${typeof tab.label === 'string' ? tab.label.replace(' ', '') : ''}_tab_${index}`}
+            value={index}
+            label={tab.label}
+            {...a11yProps(index)}
+          />
+        ))}
+      </MuiTabs>
 
       {tabs.map((tab, index) => (
         <TabPanel

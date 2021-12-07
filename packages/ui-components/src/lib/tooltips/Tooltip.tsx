@@ -1,8 +1,7 @@
 import React, { FC, useState } from 'react';
-import { Theme } from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
 import MuiTooltip, { TooltipProps as MuiTooltipProps } from '@mui/material/Tooltip';
 import { useOnClickOutside } from '../hooks';
+import './tooltip.css';
 
 export interface TooltipOptions {
   openOnClick?: boolean;
@@ -10,18 +9,6 @@ export interface TooltipOptions {
 export interface TooltipProps extends MuiTooltipProps {
   options?: TooltipOptions;
 }
-
-const useStyles = makeStyles((theme: Theme) => ({
-  arrow: {
-    color: theme.palette.common.black
-  },
-  tooltip: {
-    fontFamily: 'var(--lc-font-family-sans)',
-    backgroundColor: theme.palette.common.black,
-    padding: '10px 12px 12px',
-    fontSize: '13px'
-  }
-}));
 
 export const useTooltip = () => {
   const [tooltipOpen, setTooltipOpen] = useState(false);
@@ -45,14 +32,11 @@ export const Tooltip: FC<TooltipProps> = ({
   options = {} as TooltipOptions,
   ...props
 }) => {
-  const styles = useStyles();
-
   const { openOnClick } = options;
 
   return (
     <MuiTooltip
       arrow
-      classes={styles}
       placement={placement}
       disableFocusListener={openOnClick}
       disableHoverListener={openOnClick}

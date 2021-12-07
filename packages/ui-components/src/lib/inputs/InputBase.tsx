@@ -4,30 +4,9 @@ import { FormikProps } from 'formik';
 import classNames from 'classnames';
 import { get as _get, set as _set } from 'lodash';
 import InputAdornment from '@mui/material/InputAdornment';
-import { makeStyles } from '@mui/styles';
 import './input.css';
 
 type LabelPlacements = 'inset' | 'above';
-
-const useInputStyles = makeStyles({
-  input: {
-    height: 'var(--lc-input-height)',
-    '& input': {
-      boxSizing: 'border-box',
-      maxHeight: 'var(--lc-input-height)',
-      position: 'relative'
-    }
-  },
-  inputLabel: {
-    // Note: nesting here helps with specificity
-    '&.MuiInputLabel-root': {
-      top: 'calc((56px - var(--lc-input-height)) * -1 / 2)'
-    },
-    '&.MuiInputLabel-shrink': {
-      top: '0'
-    }
-  }
-});
 
 export interface InputConfig {
   labelPlacement?: 'inset' | 'above';
@@ -64,8 +43,6 @@ export const InputBase: FC<InputProps> = forwardRef(
     },
     ref
   ) => {
-    const styleClasses = useInputStyles();
-
     const config: InputConfig = {
       labelPlacement,
       ...formikProps?.status?.formConfig,
@@ -85,8 +62,7 @@ export const InputBase: FC<InputProps> = forwardRef(
     const InputProps = {
       startAdornment: prefix ? <InputAdornment position="start">{prefix}</InputAdornment> : false,
       endAdornment: suffix ? <InputAdornment position="end">{suffix}</InputAdornment> : false,
-      ...props.InputProps, // Note: don't remove these, passing `InputProps` in here allows InputSelect to work correctly
-      className: classNames(props.InputProps?.className, styleClasses.input)
+      ...props.InputProps // Note: don't remove these, passing `InputProps` in here allows InputSelect to work correctly
     };
 
     const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -137,8 +113,7 @@ export const InputBase: FC<InputProps> = forwardRef(
           variant={variant}
           InputLabelProps={{
             shrink: config.shrinkLabel,
-            ...props.InputLabelProps,
-            className: classNames(styleClasses.inputLabel, props.InputLabelProps?.className)
+            ...props.InputLabelProps
           }}
         />
         {config?.safeName && (

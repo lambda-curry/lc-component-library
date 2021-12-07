@@ -1,0 +1,11 @@
+.MuiTooltip-popper {
+  .MuiTooltip {
+    &-tooltip {
+      @apply lc-text-sm lc-font-sans lc-bg-gray-darker;
+      padding: 10px 12px 12px;
+    }
+    &-arrow {
+      @apply lc-text-gray-darker;
+    }
+  }
+}

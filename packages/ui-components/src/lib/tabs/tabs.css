@@ -1,0 +1,22 @@
+.lc-tabs {
+  .MuiTab-root {
+    @apply lc-flex-grow;
+    text-transform: none;
+    font-family: inherit;
+    @apply lc-border-b-2 lc-border-primary-light lc-text-black;
+    max-width: none;
+
+    &:focus {
+      outline: none;
+    }
+
+    &.Mui-selected {
+      @apply lc-text-primary;
+      @apply lc-font-bold;
+    }
+  }
+
+  .MuiTabs-indicator {
+    @apply lc-bg-primary;
+  }
+}
