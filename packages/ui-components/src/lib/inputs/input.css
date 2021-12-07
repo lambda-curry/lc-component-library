@@ -47,7 +47,8 @@
 
     // configure height with --lc-input-height
     .MuiInputBase-root {
-      padding: 0;
+      padding-top: 0;
+      padding-bottom: 0;
       height: var(--lc-input-height);
     }
 
