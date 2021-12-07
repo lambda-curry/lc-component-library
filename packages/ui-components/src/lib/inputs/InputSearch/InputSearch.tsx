@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { AutoCompleteChange, InputSelect, InputSelectProps } from '../InputSelect/InputSelect';
 import { useAsyncEffect, useDebounce } from '../../hooks';
 import { AutocompleteInputChangeReason } from '@mui/material/useAutocomplete';
-import { get as _get } from 'lodash';
+import _get from 'lodash/get';
 
 export interface InputSearchReducerState {
   status?: ServerRequestStatus;

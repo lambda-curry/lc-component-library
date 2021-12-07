@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { InputText } from '../InputText/InputText';
 import { InputProps } from '../InputBase';
 import { DateTime } from 'luxon';
-import { get as _get } from 'lodash';
+import _get from 'lodash/get';
 import classNames from 'classnames';
 import DatePicker, { DatePickerProps } from '@mui/lab/DatePicker';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';

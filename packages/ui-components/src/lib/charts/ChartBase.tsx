@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { ChartTooltipModel, ChartType } from 'chart.js';
 import ChartComponent, { ChartComponentProps } from 'react-chartjs-2';
 import { renderChartTooltip } from './ChartTooltip/ChartTooltip';
-import { merge } from 'lodash';
+import merge from 'lodash/merge';
 import {
   ChartJSData,
   ChartJSOptions,

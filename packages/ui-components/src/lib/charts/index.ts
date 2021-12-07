@@ -1,6 +1,6 @@
 import { ChartFontOptions, ChartOptions } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { merge } from 'lodash';
+import merge from 'lodash/merge';
 import { defaults } from 'react-chartjs-2';
 import { getCssVar } from '../util/colors';
 

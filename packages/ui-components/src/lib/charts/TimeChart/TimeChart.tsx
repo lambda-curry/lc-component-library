@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import classNames from 'classnames';
-import { merge } from 'lodash';
+import merge from 'lodash/merge';
 import { ChartJSOptions, ChartTooltipComponent } from '../chart.helpers';
 import { LineChart, LineChartProps } from '../LineChart/LineChart';
 import { ChartLegend } from '../ChartLegend/ChartLegend';

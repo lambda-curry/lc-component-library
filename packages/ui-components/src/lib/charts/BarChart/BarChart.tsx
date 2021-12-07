@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { merge } from 'lodash';
+import merge from 'lodash/merge';
 import classNames from 'classnames';
 import { ChartJSData, ChartJSOptions } from '../chart.helpers';
 import { AxialChart, AxialChartProps } from '../AxialChart';

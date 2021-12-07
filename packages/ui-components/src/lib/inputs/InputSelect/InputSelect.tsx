@@ -14,7 +14,9 @@ import classNames from 'classnames';
 import { InputText } from '../InputText/InputText';
 import { Icon } from '../../icon/Icon';
 import { InputProps } from '../InputBase';
-import { isEqual as _isEqual, get as _get, set as _set } from 'lodash';
+import _isEqual from 'lodash/isEqual';
+import _get from 'lodash/get';
+import _set from 'lodash/set';
 
 import './input-select.css';
 

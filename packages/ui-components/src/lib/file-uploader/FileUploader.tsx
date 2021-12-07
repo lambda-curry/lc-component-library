@@ -1,7 +1,7 @@
 // Vendors
 import React, { FC, useEffect } from 'react';
 import { useDropzone, FileRejection, DropEvent, DropzoneOptions } from 'react-dropzone';
-import { get as _get } from 'lodash';
+import _get from 'lodash/get';
 import classNames from 'classnames';
 
 // Components

@@ -5,7 +5,8 @@ import { useField, useFormikContext } from 'formik';
 import './stripe-card-input.css';
 import { arrayToListString } from '../util/formatters';
 import classNames from 'classnames';
-import { get as _get, set as _set } from 'lodash';
+import _get from 'lodash/get';
+import _set from 'lodash/set';
 
 export type StripeCardBrand = Exclude<Stripe.StripeCardElementChangeEvent['brand'], 'unknown'>;
 

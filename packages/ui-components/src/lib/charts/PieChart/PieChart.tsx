@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { merge } from 'lodash';
+import merge from 'lodash/merge';
 import classNames from 'classnames';
 import { ChartBase, ChartBaseProps } from '../ChartBase';
 import { ChartJSData, getComputedPieChartJSData, getPieChartPercentage, PieChartData } from '../chart.helpers';

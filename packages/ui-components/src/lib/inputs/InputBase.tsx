@@ -2,7 +2,8 @@ import React, { ChangeEvent, FocusEvent, ReactNode, FC, forwardRef } from 'react
 import TextField, { OutlinedTextFieldProps } from '@mui/material/TextField';
 import { FormikProps } from 'formik';
 import classNames from 'classnames';
-import { get as _get, set as _set } from 'lodash';
+import _get from 'lodash/get';
+import _set from 'lodash/set';
 import InputAdornment from '@mui/material/InputAdornment';
 import './input.css';
 

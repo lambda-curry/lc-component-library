@@ -1,6 +1,6 @@
 import React, { useEffect, FunctionComponent } from 'react';
 import { FormikProps } from 'formik';
-import { get as _get } from 'lodash';
+import _get from 'lodash/get';
 import { MultilineInput } from '../multiline-input';
 import './wysiwyg.css';
 
