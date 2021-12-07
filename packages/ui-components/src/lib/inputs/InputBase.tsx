@@ -15,6 +15,8 @@ const isLargerInput = () => {
   return parseInt(height.replace('px', '')) >= 56;
 };
 
+// Note: if you utilize the css property to create a custom sized input that changes the value of isLargerInput
+// then you will need to adjust the top positioning of the input element
 const useInputStyles = makeStyles({
   root: {
     height: 'var(--lc-input-height)'
@@ -86,7 +88,7 @@ export const InputBase: FC<InputProps> = forwardRef(
     const hasError = !!fieldError || !!serverError || props.error;
     const helperText = fieldError || serverError || props.helperText;
 
-    const InputProps: any = {
+    const InputProps = {
       startAdornment: prefix ? <InputAdornment position="start">{prefix}</InputAdornment> : false,
       endAdornment: suffix ? <InputAdornment position="end">{suffix}</InputAdornment> : false,
       ...props.InputProps, // Note: don't remove these, passing `InputProps` in here allows InputSelect to work correctly
