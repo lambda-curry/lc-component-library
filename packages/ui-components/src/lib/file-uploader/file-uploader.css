@@ -80,6 +80,7 @@
       @apply lc-p-4;
       @apply lc-w-full;
       @apply lc-max-w-full;
+      @apply lc-h-auto;
 
       &:hover {
         @apply lc-text-primary-dark;
