@@ -4,9 +4,35 @@ import { FormikProps } from 'formik';
 import classNames from 'classnames';
 import { get as _get, set as _set } from 'lodash';
 import InputAdornment from '@mui/material/InputAdornment';
+import { makeStyles } from '@mui/styles';
 import './input.css';
 
 type LabelPlacements = 'inset' | 'above';
+
+const isLargerInput = () => {
+  if (typeof window === 'undefined') return false;
+  const height = getComputedStyle(document.documentElement).getPropertyValue('--lc-input-height');
+  return parseInt(height.replace('px', '')) >= 56;
+};
+
+const useInputStyles = makeStyles({
+  root: {
+    height: 'var(--lc-input-height)'
+  },
+  input: {
+    height: 'var(--lc-input-height)',
+    '& input': {
+      position: 'relative',
+      top: isLargerInput() ? 'unset' : 'calc((56px - var(--lc-input-height)) * -1 / 2)'
+    }
+  },
+  inputLabel: {
+    top: 'calc((56px - var(--lc-input-height)) * -1 / 2)',
+    '&.MuiInputLabel-shrink': {
+      top: '0'
+    }
+  }
+});
 
 export interface InputConfig {
   labelPlacement?: 'inset' | 'above';
@@ -42,6 +68,8 @@ export const InputBase: FC<InputProps> = forwardRef(
     },
     ref
   ) => {
+    const styleClasses = useInputStyles();
+
     const config: InputConfig = {
       labelPlacement,
       ...formikProps?.status?.formConfig,
@@ -61,7 +89,8 @@ export const InputBase: FC<InputProps> = forwardRef(
     const InputProps: any = {
       startAdornment: prefix ? <InputAdornment position="start">{prefix}</InputAdornment> : false,
       endAdornment: suffix ? <InputAdornment position="end">{suffix}</InputAdornment> : false,
-      ...props.InputProps // Note: don't remove these, passing `InputProps` in here allows InputSelect to work correctly
+      ...props.InputProps, // Note: don't remove these, passing `InputProps` in here allows InputSelect to work correctly
+      className: classNames(props.InputProps?.className, styleClasses.input)
     };
 
     const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -100,16 +129,21 @@ export const InputBase: FC<InputProps> = forwardRef(
           name={config.safeName ? `['${name}']` : name}
           id={id || name}
           label={config.labelPlacement === 'inset' ? label : false}
+          margin="dense"
           {...props}
           InputProps={InputProps}
           error={hasError}
           helperText={helperText}
-          className={classNames(className, 'lc-input')}
+          className={classNames(className, 'lc-input', styleClasses.root)}
           value={fieldValue}
           onChange={handleChange}
           onBlur={handleBlur}
           variant={variant}
-          InputLabelProps={{ shrink: config.shrinkLabel, ...props.InputLabelProps }}
+          InputLabelProps={{
+            shrink: config.shrinkLabel,
+            ...props.InputLabelProps,
+            className: classNames(styleClasses.inputLabel, props.InputLabelProps?.className)
+          }}
         />
         {config?.safeName && (
           <input

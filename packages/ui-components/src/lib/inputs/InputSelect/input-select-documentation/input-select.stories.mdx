@@ -41,7 +41,7 @@ import dedent from 'string-dedent';
                     ]}
                     formikProps={formikProps}
                   />
-                  <div className="lc-p-16 lc-bg-gray lc-text-white">
+                  <div className="lc-p-16 lc-bg-gray-dark lc-text-white">
                     <p className="lc-mb-8">Value: {JSON.stringify(formikProps.values.select_gray_bg)}</p>
                     <InputSelect
                       labelPlacement="above"
@@ -116,12 +116,13 @@ import dedent from 'string-dedent';
                 ]}
                 formikProps={formikProps}
               />
-              <div className="lc-p-16 lc-mb-24 lc-bg-gray lc-text-white">
+              <div className="lc-p-16 lc-mb-24 lc-bg-gray-dark lc-text-white">
                 <p className="lc-mb-8">Value: {JSON.stringify(formikProps.values.select_gray_bg)}</p>
                 <InputSelect
                   labelPlacement="above"
                   label="Select Option"
                   name="select_gray_bg"
+                  placeholder="Select an option"
                   options={[
                     { label: 'Option 1', value: 1 },
                     { label: 'Option 2', value: 2 },
@@ -203,10 +204,11 @@ import dedent from 'string-dedent';
               return (
                 <>
                   <ButtonOutline onClick={() => formikProps.resetForm()}>Reset</ButtonOutline>
-                  <p className="lc-my-8">Value: {`${formikProps.values.customValue}`}</p>
+                  <p className="lc-my-8">Value: {JSON.stringify(formikProps.values.customValue)}</p>
                   <InputSelect
                     label="Select Custom Value"
                     name="customValue"
+                    optionValueKey="value"
                     options={[
                       { label: 'Option 1', value: '1' },
                       { label: 'Option 2', value: '2' },
@@ -318,10 +320,11 @@ import dedent from 'string-dedent';
               return (
                 <>
                   <ButtonOutline onClick={() => formikProps.resetForm()}>Reset</ButtonOutline>
-                  <p className="lc-my-8">Value: {`${formikProps.values.multiselect}`}</p>
+                  <p className="lc-my-8">Value: {JSON.stringify(formikProps.values.multiselect)}</p>
                   <InputSelect
                     label="Multiselect input"
                     name="multiselect"
+                    optionValueKey="value"
                     options={[
                       { label: 'Option 1', value: 1 },
                       { label: 'Option 2', value: 2 },

@@ -9,7 +9,6 @@ export const ButtonStyled: FC<ButtonProps> = forwardRef(({ className, ...props }
     className={classNames(
       [
         `lc-button-styled`,
-        `lc-h-48`,
         `lc-py-14`,
         `lc-px-20`,
         `lc-text-sm`,

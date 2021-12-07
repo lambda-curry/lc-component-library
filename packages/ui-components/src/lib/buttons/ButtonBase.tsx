@@ -1,5 +1,6 @@
 import React, { FC, ReactNode, ButtonHTMLAttributes, AnchorHTMLAttributes, forwardRef, ForwardedRef } from 'react';
 import classNames from 'classnames';
+import './button.css';
 
 export type ButtonRef = HTMLButtonElement & HTMLAnchorElement;
 

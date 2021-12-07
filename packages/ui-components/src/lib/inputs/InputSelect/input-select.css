@@ -1,9 +1,6 @@
 .lc-input-select {
   .MuiAutocomplete-inputRoot[class*='MuiOutlinedInput-root'] {
     .MuiAutocomplete-input {
-      box-sizing: content-box;
-      height: 16px;
-
       &:first-child {
         padding-left: 12px;
       }
