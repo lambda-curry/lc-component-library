@@ -46,7 +46,8 @@
     }
 
     // configure height with --lc-input-height
-    .MuiOutlinedInput-root {
+    .MuiInputBase-root {
+      padding: 0;
       height: var(--lc-input-height);
     }
 
