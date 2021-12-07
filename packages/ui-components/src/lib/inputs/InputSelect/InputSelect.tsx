@@ -201,8 +201,6 @@ export const InputSelect: FC<InputSelectProps> = ({
     filterOptions: (options: any[], params: FilterOptionsState<any>) => {
       const filteredOptions = filterOptions(options, params);
 
-      console.log('filterOptions', filteredOptions);
-
       const { inputValue } = params;
       const isExisting = options.some(option => inputValue === option.title);
 
@@ -212,8 +210,6 @@ export const InputSelect: FC<InputSelectProps> = ({
           _set({ [optionValueKey || 'value']: inputValue }, optionLabelKey, `Use "${params.inputValue}"`)
         );
       }
-
-      console.log('>>>', filteredOptions);
 
       return filteredOptions;
     },
