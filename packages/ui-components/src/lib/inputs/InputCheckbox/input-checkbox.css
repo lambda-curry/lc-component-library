@@ -1,8 +1,5 @@
 .lc-input-checkbox {
   &.MuiFormControlLabel-root {
-    margin-top: -11px;
-    margin-bottom: 8px;
-
     .MuiCheckbox {
       &-colorPrimary.Mui-checked {
         @apply lc-text-primary;
