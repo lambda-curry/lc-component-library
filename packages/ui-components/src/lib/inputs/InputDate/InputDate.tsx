@@ -15,7 +15,7 @@ export type InputDateProps = Omit<InputProps, 'onChange'> & {
   valueFormat?: string;
   disablePast?: boolean;
   className?: string;
-  datePickerProps?: Partial<DatePickerProps>;
+  datePickerProps?: Partial<DatePickerProps<DateTime>>;
 };
 
 const fromDateTime = (dt: DateTime | null, format?: string): Date | string | null => {
@@ -29,9 +29,9 @@ export const InputDate: FC<InputDateProps> = ({
   value,
   onChange,
   formikProps,
-  inputFormat,
+  inputFormat = 'LL/dd/yyyy',
   disablePast = false,
-  valueFormat = 'LL/dd/yyyy',
+  valueFormat,
   className,
   datePickerProps = {},
   ...props
@@ -44,7 +44,7 @@ export const InputDate: FC<InputDateProps> = ({
         {...datePickerProps}
         label={label}
         value={fieldValue}
-        onChange={(updatedDate: unknown, keyboardInputValue?: string | undefined) => {
+        onChange={(updatedDate: DateTime | null, keyboardInputValue?: string | undefined) => {
           const updatedValue = fromDateTime(updatedDate as DateTime | null, valueFormat);
           if (formikProps?.setFieldValue) formikProps.setFieldValue(props.name, updatedValue);
           if (typeof onChange === 'function') onChange(updatedValue);
