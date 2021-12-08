@@ -68,6 +68,24 @@
     }
   }
 
+  // unset configured height for multiline inputs
+  .lc-multiline-input & {
+    .MuiInputBase-root {
+      height: unset;
+      padding-bottom: 8px;
+      min-height: 48px;
+    }
+
+    .MuiInputBase-input {
+      height: unset;
+      resize: vertical;
+    }
+
+    .MuiInputLabel-root:not(.MuiInputLabel-shrink) {
+      top: unset;
+    }
+  }
+
   .MuiTypography-body1,
   .MuiInputBase-root,
   .MuiInputLabel-root,
