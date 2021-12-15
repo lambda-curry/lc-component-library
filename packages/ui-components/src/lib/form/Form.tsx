@@ -1,14 +1,15 @@
-import React, { FC, Reducer, useReducer, ReactElement, Dispatch } from 'react';
-import { Formik, FormikConfig, FormikProps, Form as FormikForm, useFormikContext } from 'formik';
-import classNames from 'classnames';
+import React, { Reducer, useReducer, ReactElement, Dispatch } from 'react';
+import { Formik, FormikConfig, FormikProps, Form as FormikForm, useFormikContext, FormikHelpers } from 'formik';
 import { useOnClickOutside } from '../hooks';
 import { Modal, ModalHeader, ModalActions } from '../modal';
 import { formReducer, FormReducerAction, FormReducerState } from './Form.helpers';
 import { InputConfig } from '../inputs/InputBase';
-import './form.css';
 import { Button } from '../buttons/Button';
 import { ButtonPrimary } from '../buttons/ButtonPrimary';
+import { usePersistedFormValues } from '../hooks/usePersistedFormValues';
+import classNames from 'classnames';
 import ReactModal from 'react-modal';
+import './form.css';
 
 export interface FormConfig extends InputConfig {}
 
@@ -25,24 +26,56 @@ export interface UnsavedChangesConfig {
   modalProps?: UnsavedChangesModalProps;
 }
 
-export interface FormProps<T> extends FormikConfig<T> {
+export interface PersistValuesConfig<T> {
+  persistFunction: (values: T) => void;
+  debounce?: number;
+}
+
+export interface FormProps<T> extends Omit<FormikConfig<T>, 'onSubmit'> {
   className?: string;
   confirmUnsavedChanges?: boolean;
+  persistValuesConfig: PersistValuesConfig<T>;
   unsavedChangesConfig?: UnsavedChangesConfig;
   withoutFormElement?: boolean;
   formConfig?: FormConfig;
   children: (formikProps: FormikProps<T>) => ReactElement;
+  onSubmit?: (values: T, formikHelpers: FormikHelpers<T>) => void | Promise<any>;
 }
 
-const FormContent: FC<{
+interface PersistedValuesProps<T> extends PersistValuesConfig<T> {
+  formikProps: FormikProps<T>;
+}
+
+function PersistedValues<T>(props: PersistedValuesProps<T>) {
+  const { formikProps, persistFunction, debounce } = props;
+  const { values } = formikProps;
+
+  usePersistedFormValues(values, persistFunction, debounce);
+
+  return null;
+}
+
+function FormContent<T>({
+  className,
+  state,
+  dispatch,
+  withoutFormElement,
+  confirmUnsavedChanges,
+  unsavedChangesConfig,
+  persistValuesConfig,
+  children,
+  ...rest
+}: {
   className?: string;
   state: FormReducerState;
   dispatch: Dispatch<FormReducerAction>;
   withoutFormElement?: boolean;
   confirmUnsavedChanges?: boolean;
   unsavedChangesConfig: UnsavedChangesConfig;
-}> = ({ className, state, dispatch, withoutFormElement, confirmUnsavedChanges, unsavedChangesConfig, ...rest }) => {
-  const formContext = useFormikContext();
+  persistValuesConfig: PersistValuesConfig<T>;
+  children: ReactElement;
+}): ReactElement {
+  const formContext = useFormikContext<T>();
 
   const handleClickOutside = (event: MouseEvent | TouchEvent) => {
     if (!confirmUnsavedChanges || !event.target || !state.shouldCheckForUnsavedChanges || !formContext.dirty) return;
@@ -62,16 +95,24 @@ const FormContent: FC<{
   );
 
   return withoutFormElement ? (
-    <div className={classNames(className, 'lc-form')} {...rest} />
+    <div className={classNames(className, 'lc-form')} {...rest}>
+      {children}
+    </div>
   ) : (
-    <FormikForm className={classNames(className, 'lc-form')} {...rest} />
+    <FormikForm className={classNames(className, 'lc-form')} {...rest}>
+      <>
+        {persistValuesConfig && <PersistedValues {...persistValuesConfig} formikProps={formContext} />}
+        {children}
+      </>
+    </FormikForm>
   );
-};
+}
 
 export function Form<T>({
   className,
   children,
   withoutFormElement,
+  persistValuesConfig,
   confirmUnsavedChanges,
   unsavedChangesConfig = {},
   formConfig,
@@ -138,12 +179,13 @@ export function Form<T>({
   } = unsavedChangesConfig.modalProps || {};
 
   return (
-    <Formik {...props} initialStatus={{ ...props.initialStatus, formConfig }}>
+    <Formik {...(props as FormikConfig<T>)} initialStatus={{ ...props.initialStatus, formConfig }}>
       {(formikProps: FormikProps<T>) => (
-        <FormContent
+        <FormContent<T>
           className={className}
           state={state}
           dispatch={dispatch}
+          persistValuesConfig={persistValuesConfig}
           withoutFormElement={withoutFormElement}
           confirmUnsavedChanges={confirmUnsavedChanges}
           unsavedChangesConfig={unsavedChangesConfig}
