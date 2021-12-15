@@ -4,6 +4,7 @@ import { FormikProps } from 'formik';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import RadioGroup, { RadioGroupProps } from '@mui/material/RadioGroup';
+import { useFormContext } from '../../hooks';
 import './input-radio.css';
 
 export interface InputRadioGroupProps extends RadioGroupProps {
@@ -13,6 +14,8 @@ export interface InputRadioGroupProps extends RadioGroupProps {
 }
 
 export const InputRadioGroup: FC<InputRadioGroupProps> = ({ className, formikProps, label, onChange, ...props }) => {
+  const formContext = useFormContext();
+  if (!formikProps && formContext) formikProps = formContext;
   const fieldProps = formikProps?.getFieldProps(props.name);
   const value = props.value ?? fieldProps?.value;
 

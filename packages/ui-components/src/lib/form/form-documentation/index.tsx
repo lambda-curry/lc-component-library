@@ -21,7 +21,7 @@ export const FormExample1: FC = () => {
       >
         {formikProps => (
           <>
-            <InputText autoComplete="off" label="Text Input" name="input" formikProps={formikProps} />
+            <InputText autoComplete="off" label="Text Input" name="input" />
             {formikProps.dirty ? (
               <ButtonPrimary type="submit">Save</ButtonPrimary>
             ) : (
@@ -51,12 +51,8 @@ export const FormExample2: FC = () => {
         })}
         formConfig={{ labelPlacement: 'above' }}
       >
-        {formikProps => (
-          <>
-            <InputText autoComplete="off" label="Text Input 1" name="input1" formikProps={formikProps} />
-            <InputText autoComplete="off" label="Text Input 2" name="input2" formikProps={formikProps} />
-          </>
-        )}
+        <InputText autoComplete="off" label="Text Input 1" name="input1" />
+        <InputText autoComplete="off" label="Text Input 2" name="input2" />
       </Form>
     </div>
   );
