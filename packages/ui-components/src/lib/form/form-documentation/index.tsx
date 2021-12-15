@@ -77,6 +77,7 @@ export const FormExample3: FC = () => {
           {`persistValuesConfig={{ persistFunction: (values) =>  localStorage.setItem('example-form', JSON.stringify(values)) }}`}
         </code>
       </p>
+      <InputText label="Text Input 3" name="input3" />
       <Form
         enableReinitialize
         initialValues={values}
@@ -87,12 +88,8 @@ export const FormExample3: FC = () => {
           input2: Yup.string().required(`Please enter an input value.`)
         })}
       >
-        {formikProps => (
-          <>
-            <InputText autoComplete="off" label="Text Input 1" name="input1" formikProps={formikProps} />
-            <InputText autoComplete="off" label="Text Input 2" name="input2" formikProps={formikProps} />
-          </>
-        )}
+        <InputText autoComplete="off" label="Text Input 1" name="input1" />
+        <InputText autoComplete="off" label="Text Input 2" name="input2" />
       </Form>
     </div>
   );

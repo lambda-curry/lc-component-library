@@ -1,10 +1,12 @@
-import React, { ChangeEvent, FocusEvent, ReactNode, FC, forwardRef } from 'react';
+import React, { ChangeEvent, FocusEvent, ReactNode, FC, forwardRef, useContext } from 'react';
 import TextField, { OutlinedTextFieldProps } from '@mui/material/TextField';
 import { FormikProps } from 'formik';
 import classNames from 'classnames';
 import _get from 'lodash/get';
 import _set from 'lodash/set';
 import InputAdornment from '@mui/material/InputAdornment';
+import { FormikContext } from 'formik';
+
 import './input.css';
 
 type LabelPlacements = 'inset' | 'above';
@@ -49,6 +51,9 @@ export const InputBase: FC<InputProps> = forwardRef(
       ...formikProps?.status?.formConfig,
       ...inputConfig
     };
+
+    const formContext = useContext(FormikContext); // Using context this way instead of useFormikContext suppresses the error if it is not within Formik
+    if (formContext) formikProps = formContext;
 
     const fieldValue = formikProps ? _get(formikProps?.values, name) : props.value;
     const fieldError =

@@ -39,17 +39,13 @@ export interface FormProps<T> extends Omit<FormikConfig<T>, 'onSubmit'> {
   unsavedChangesConfig?: UnsavedChangesConfig;
   withoutFormElement?: boolean;
   formConfig?: FormConfig;
-  children: (formikProps: FormikProps<T>) => ReactElement;
+  children: ((formikProps: FormikProps<T>) => ReactElement) | ReactElement | ReactElement[];
   onSubmit?: (values: T, formikHelpers: FormikHelpers<T>) => void | Promise<any>;
 }
 
-interface PersistedValuesProps<T> extends PersistValuesConfig<T> {
-  formikProps: FormikProps<T>;
-}
-
-function PersistedValues<T>(props: PersistedValuesProps<T>) {
-  const { formikProps, persistFunction, persistKey, debounce } = props;
-  const { values } = formikProps;
+function PersistedValues<T>(props: PersistValuesConfig<T>) {
+  const { persistFunction, persistKey, debounce } = props;
+  const values = useFormikContext<T>().values;
   const persistKeyOrFunction = persistKey || persistFunction;
 
   usePersistedFormValues(values, persistKeyOrFunction, debounce);
@@ -98,8 +94,6 @@ function FormContent<T>({
 
   const shouldPersistValues = !!(persistValuesConfig?.persistFunction || persistValuesConfig?.persistKey);
 
-  console.log('>>>', persistValuesConfig);
-
   return withoutFormElement ? (
     <div className={classNames(className, 'lc-form')} {...rest}>
       {children}
@@ -107,7 +101,7 @@ function FormContent<T>({
   ) : (
     <FormikForm className={classNames(className, 'lc-form')} {...rest}>
       <>
-        {shouldPersistValues && <PersistedValues {...persistValuesConfig} formikProps={formContext} />}
+        {shouldPersistValues && <PersistedValues<T> {...persistValuesConfig} />}
         {children}
       </>
     </FormikForm>
@@ -197,7 +191,7 @@ export function Form<T>({
           unsavedChangesConfig={unsavedChangesConfig}
         >
           <>
-            {children(formikProps)}
+            {typeof children === 'function' ? children(formikProps) : children}
             <Modal
               id="lc-unsaved-changes-modal"
               isOpen={state.activeModal === 'unsavedChangesModal'}

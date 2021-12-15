@@ -15,15 +15,11 @@ export const usePersistedFormValues = <T>(
 ) => {
   const previousValues = usePrevious(values);
 
-  console.log('>>>', previousValues);
-
   useEffect(() => {
     if (!persistKeyOrFunction || !_isEqual(values, previousValues)) return;
 
     const persistFunction =
       typeof persistKeyOrFunction === 'string' ? defaultPersistFunction<T>(persistKeyOrFunction) : persistKeyOrFunction;
-
-    console.log('>>>', persistFunction);
 
     const debouncedPersistFunction = _debounce(persistFunction, debounce || 300);
     debouncedPersistFunction(values);
