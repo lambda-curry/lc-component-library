@@ -3,13 +3,29 @@ import _isEqual from 'lodash/isEqual';
 import _debounce from 'lodash/debounce';
 import { usePrevious } from './usePrevious';
 
-export const usePersistedFormValues = <T>(values: T, persistFunction?: (values: T) => void, debounce?: number) => {
+const defaultPersistFunction = <T>(persistKey: string) => {
+  if (typeof window === 'undefined') return () => null;
+  return (values: T) => window.localStorage.setItem(persistKey, JSON.stringify(values));
+};
+
+export const usePersistedFormValues = <T>(
+  values: T,
+  persistKeyOrFunction?: string | ((values: T) => void),
+  debounce?: number
+) => {
   const previousValues = usePrevious(values);
 
+  console.log('>>>', previousValues);
+
   useEffect(() => {
-    if (!persistFunction || !_isEqual(values, previousValues)) return;
+    if (!persistKeyOrFunction || !_isEqual(values, previousValues)) return;
+
+    const persistFunction =
+      typeof persistKeyOrFunction === 'string' ? defaultPersistFunction<T>(persistKeyOrFunction) : persistKeyOrFunction;
+
+    console.log('>>>', persistFunction);
 
     const debouncedPersistFunction = _debounce(persistFunction, debounce || 300);
     debouncedPersistFunction(values);
-  }, [debounce, values, persistFunction, previousValues]);
+  }, [debounce, values, persistKeyOrFunction, previousValues]);
 };

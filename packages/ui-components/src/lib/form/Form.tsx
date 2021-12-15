@@ -27,7 +27,8 @@ export interface UnsavedChangesConfig {
 }
 
 export interface PersistValuesConfig<T> {
-  persistFunction: (values: T) => void;
+  persistKey?: string;
+  persistFunction?: (values: T) => void;
   debounce?: number;
 }
 
@@ -47,10 +48,11 @@ interface PersistedValuesProps<T> extends PersistValuesConfig<T> {
 }
 
 function PersistedValues<T>(props: PersistedValuesProps<T>) {
-  const { formikProps, persistFunction, debounce } = props;
+  const { formikProps, persistFunction, persistKey, debounce } = props;
   const { values } = formikProps;
+  const persistKeyOrFunction = persistKey || persistFunction;
 
-  usePersistedFormValues(values, persistFunction, debounce);
+  usePersistedFormValues(values, persistKeyOrFunction, debounce);
 
   return null;
 }
@@ -94,6 +96,10 @@ function FormContent<T>({
     '[data-lc-trigger-unsaved-changes]'
   );
 
+  const shouldPersistValues = !!(persistValuesConfig?.persistFunction || persistValuesConfig?.persistKey);
+
+  console.log('>>>', persistValuesConfig);
+
   return withoutFormElement ? (
     <div className={classNames(className, 'lc-form')} {...rest}>
       {children}
@@ -101,7 +107,7 @@ function FormContent<T>({
   ) : (
     <FormikForm className={classNames(className, 'lc-form')} {...rest}>
       <>
-        {persistValuesConfig && <PersistedValues {...persistValuesConfig} formikProps={formContext} />}
+        {shouldPersistValues && <PersistedValues {...persistValuesConfig} formikProps={formContext} />}
         {children}
       </>
     </FormikForm>
