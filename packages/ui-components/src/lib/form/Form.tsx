@@ -34,7 +34,7 @@ export interface PersistValuesConfig<T> {
 export interface FormProps<T> extends Omit<FormikConfig<T>, 'onSubmit'> {
   className?: string;
   confirmUnsavedChanges?: boolean;
-  persistValuesConfig: PersistValuesConfig<T>;
+  persistValuesConfig?: PersistValuesConfig<T>;
   unsavedChangesConfig?: UnsavedChangesConfig;
   withoutFormElement?: boolean;
   formConfig?: FormConfig;
@@ -72,7 +72,7 @@ function FormContent<T>({
   withoutFormElement?: boolean;
   confirmUnsavedChanges?: boolean;
   unsavedChangesConfig: UnsavedChangesConfig;
-  persistValuesConfig: PersistValuesConfig<T>;
+  persistValuesConfig?: PersistValuesConfig<T>;
   children: ReactElement;
 }): ReactElement {
   const formContext = useFormikContext<T>();
