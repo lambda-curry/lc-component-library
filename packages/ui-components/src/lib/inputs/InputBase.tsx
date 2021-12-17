@@ -1,10 +1,11 @@
-import React, { ChangeEvent, FocusEvent, ReactNode, FC, forwardRef } from 'react';
+import React, { ChangeEvent, FocusEvent, ReactNode, FC, forwardRef, useContext } from 'react';
 import TextField, { OutlinedTextFieldProps } from '@mui/material/TextField';
 import { FormikProps } from 'formik';
 import classNames from 'classnames';
 import _get from 'lodash/get';
 import _set from 'lodash/set';
 import InputAdornment from '@mui/material/InputAdornment';
+import { useFormContext } from '../hooks';
 import './input.css';
 
 type LabelPlacements = 'inset' | 'above';
@@ -44,6 +45,9 @@ export const InputBase: FC<InputProps> = forwardRef(
     },
     ref
   ) => {
+    const formContext = useFormContext();
+    if (!formikProps && formContext) formikProps = formContext;
+
     const config: InputConfig = {
       labelPlacement,
       ...formikProps?.status?.formConfig,

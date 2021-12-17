@@ -19,6 +19,7 @@ import _get from 'lodash/get';
 import _set from 'lodash/set';
 
 import './input-select.css';
+import { useFormContext } from '../../hooks';
 
 export type AutoCompleteChange = (
   event: ChangeEvent<any>,
@@ -50,6 +51,9 @@ export const InputSelect: FC<InputSelectProps> = ({
   disableFilterOptionsByValue,
   ...props
 }) => {
+  const formContext = useFormContext();
+  if (!props.formikProps && formContext) props.formikProps = formContext;
+
   const allowCustomValue = autocompleteConfig?.freeSolo || allowCreateOption;
   const isMultiselect = autocompleteConfig?.multiple;
 

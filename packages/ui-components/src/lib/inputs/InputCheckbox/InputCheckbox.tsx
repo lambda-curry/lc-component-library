@@ -6,6 +6,7 @@ import { FormikProps } from 'formik';
 import { Icon } from '../../icon/Icon';
 
 import './input-checkbox.css';
+import { useFormContext } from '../../hooks';
 
 export type InputCheckboxProps = {
   label: string;
@@ -22,6 +23,9 @@ export const InputCheckbox: FC<InputCheckboxProps> = ({
   formikProps,
   ...props
 }) => {
+  const formContext = useFormContext();
+  if (!formikProps && formContext) formikProps = formContext;
+
   const fieldProps = formikProps?.getFieldProps(props.name);
   const fieldValue = !!fieldProps?.value || !!props.checked;
 

@@ -3,6 +3,7 @@ import { FormikProps } from 'formik';
 import classNames from 'classnames';
 
 import './input-switch.css';
+import { useFormContext } from '../../hooks';
 
 export interface InputSwitchProps {
   id?: string;
@@ -31,6 +32,9 @@ export const InputSwitch: FC<InputSwitchProps> = ({
   onChange,
   ...props
 }) => {
+  const formContext = useFormContext();
+  if (!formikProps && formContext) formikProps = formContext;
+
   const fieldProps = formikProps?.getFieldProps(name);
   const fieldValue = !!fieldProps?.value || !!props.checked;
   const [label, setLabel] = useState(props.label);
