@@ -11,7 +11,7 @@ $snackbars-min-width: 280px;
   margin-left: 4px;
   min-height: 40px;
   font-weight: 700;
-  border-radius: 6px;
+  @apply lc-rounded;
   border: 1px solid rgba(255, 255, 255, 0.35) !important;
 
   &:hover:not([disabled]),
@@ -36,15 +36,17 @@ $snackbars-min-width: 280px;
   padding: 8px;
   pointer-events: auto !important;
 
-  [class*='SnackbarItem-contentRoot'] {
-    @apply lc-font-sans;
-    @apply lc-text-sm;
-    @apply lc-text-white;
-    @apply lc-bg-gray-darker;
-    padding: 8px 16px;
-    min-width: $snackbars-min-width;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-    border-radius: 6px;
+  .SnackbarContent-root {
+    .SnackbarContainer-root & {
+      @apply lc-font-sans;
+      @apply lc-text-sm;
+      @apply lc-text-white;
+      @apply lc-bg-gray-darker;
+      padding: 8px 16px;
+      min-width: $snackbars-min-width;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+      @apply lc-rounded;
+    }
   }
 
   /*

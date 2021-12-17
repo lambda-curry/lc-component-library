@@ -1,5 +1,9 @@
 .lc-input-select {
   .MuiAutocomplete-inputRoot[class*='MuiOutlinedInput-root'] {
+    &:not(.MuiInputBase-adornedStart) {
+      padding-left: 0;
+    }
+
     .MuiAutocomplete-input {
       &:first-child {
         padding-left: 12px;

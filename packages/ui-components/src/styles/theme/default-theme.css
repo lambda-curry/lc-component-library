@@ -36,7 +36,7 @@ We use the `postcss-functions` plugin to allow us to write functions in JS and t
   --lc-font-family-sans: 'lc-gilroy', sans-serif;
   --lc-font-family-code: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 
-  --lc-border-radius: 6px;
+  --lc-border-radius: 0px;
   --lc-input-height: 48px;
   --lc-button-height: var(--lc-input-height);
 }
