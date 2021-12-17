@@ -84,7 +84,7 @@ module.exports = {
       none: 'none',
       xs: '2px',
       sm: '4px',
-      DEFAULT: '6px',
+      DEFAULT: 'var(--lc-border-radius)',
       md: '6px',
       lg: '8px',
       xl: '12px'
