@@ -17,6 +17,16 @@
       }
     }
 
+    .MuiFormLabel-root {
+      &.MuiInputLabel-shrink {
+        @apply lc-text-primary;
+      }
+
+      &:not(.MuiInputLabel-shrink) {
+        top: calc((56px - var(--lc-input-height)) * -1 / 2);
+      }
+    }
+
     &.dark-mode {
       .MuiFormLabel-root {
         color: #fff;
@@ -61,10 +71,6 @@
         max-height: var(--lc-input-height);
         position: relative;
       }
-    }
-
-    .MuiInputLabel-root:not(.MuiInputLabel-shrink) {
-      top: calc((56px - var(--lc-input-height)) * -1 / 2);
     }
   }
 
