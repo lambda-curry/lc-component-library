@@ -8,7 +8,8 @@
     "clean": "find . -name \"node_modules\" -type d -prune -exec rm -rf '{}' + && yarn",
     "e2e": "percy exec -- nx e2e ui-components-e2e",
     "storybook": "nx run ui-components:storybook",
-    "sb": "yarn storybook"
+    "sb": "yarn storybook",
+    "npm-version": "cd packages/ui-components && npm version"
   },
   "private": true,
   "workspaces": {
