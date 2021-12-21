@@ -1,0 +1,40 @@
+{
+  "root": "packages/ui-components-e2e",
+  "sourceRoot": "packages/ui-components-e2e/src",
+  "projectType": "application",
+  "implicitDependencies": [
+    "ui-components"
+  ],
+  "targets": {
+    "e2e-dev": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "packages/ui-components-e2e/cypress.json",
+        "devServerTarget": "ui-components:storybook",
+        "tsConfig": "packages/ui-components-e2e/tsconfig.json",
+        "record": true,
+        "watch": true
+      }
+    },
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "packages/ui-components-e2e/cypress.json",
+        "devServerTarget": "ui-components:serve-docs",
+        "tsConfig": "packages/ui-components-e2e/tsconfig.json",
+        "record": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "packages/ui-components-e2e/**/*.{js,ts}"
+        ]
+      }
+    }
+  }
+}
