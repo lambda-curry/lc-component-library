@@ -1,25 +1,27 @@
-import React, { FC, useEffect, useState, ChangeEvent } from 'react';
+import React, { FC, useEffect, useState, ChangeEvent, useRef } from 'react';
+import classNames from 'classnames';
 import Paper from '@mui/material/Paper';
 import Chip from '@mui/material/Chip';
 import Autocomplete, {
-  AutocompleteChangeReason,
+  AutocompleteChangeReason as MuiAutocompleteChangeReason,
   AutocompleteChangeDetails,
   AutocompleteProps,
-  AutocompleteRenderGetTagProps,
-  createFilterOptions
+  AutocompleteRenderGetTagProps
 } from '@mui/material/Autocomplete';
 import { FilterOptionsState } from '@mui/material/useAutocomplete';
-
-import classNames from 'classnames';
-import { InputText } from '../InputText/InputText';
-import { Icon } from '../../icon/Icon';
-import { InputProps } from '../InputBase';
 import _isEqual from 'lodash/isEqual';
 import _get from 'lodash/get';
 import _set from 'lodash/set';
 
-import './input-select.css';
+import { InputText } from '../InputText/InputText';
+import { Icon } from '../../icon/Icon';
+import { InputProps } from '../InputBase';
 import { useFormContext } from '../../hooks';
+import { lowercaseString } from '../../util/js-helpers';
+
+import './input-select.css';
+
+export type AutocompleteChangeReason = MuiAutocompleteChangeReason | 'autoFill';
 
 export type AutoCompleteChange = (
   event: ChangeEvent<any>,
@@ -56,6 +58,9 @@ export const InputSelect: FC<InputSelectProps> = ({
 
   const allowCustomValue = autocompleteConfig?.freeSolo || allowCreateOption;
   const isMultiselect = autocompleteConfig?.multiple;
+
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [isAutoFilling, setAutoFilling] = useState<boolean>(false);
 
   const optionAndValueAreEqual = (option: any, value: any) => {
     // Note: Sometimes we pass in the value as true value and sometimes value is the selected option.
@@ -108,7 +113,37 @@ export const InputSelect: FC<InputSelectProps> = ({
   const getNormalizedValue = (newValue: any) =>
     isMultiselect ? getNormalizedValueMultiple(newValue) : getNormalizedValueSingle(newValue);
 
-  const filterOptions = createFilterOptions<any>();
+  const handleChange = (
+    event: React.SyntheticEvent,
+    newValue: any,
+    reason: AutocompleteChangeReason | 'autoFill',
+    details?: any
+  ) => {
+    const normalizedValue = getNormalizedValue(newValue);
+
+    setValue(normalizedValue);
+
+    const hasSafeName = props.formikProps?.status?.formConfig?.safeName || props.inputConfig?.safeName;
+    if (props.formikProps?.setFieldValue)
+      props.formikProps.setFieldValue(hasSafeName ? `['${name}']` : name, normalizedValue);
+    if (typeof onChange === 'function') onChange(event, normalizedValue, reason, details);
+  };
+
+  const filterOptions = (options: any[], params: FilterOptionsState<any>) =>
+    options.filter(option => {
+      const optionLabel = _get(option, optionLabelKey) || '';
+      const optionValue = option && optionValueKey ? _get(option, optionValueKey) : option;
+      const inputValue = lowercaseString(params.inputValue);
+
+      let valueMatch = false;
+      const labelMatch = lowercaseString(optionLabel).includes(inputValue);
+
+      if (!disableFilterOptionsByValue && (typeof optionValue === 'string' || typeof optionValue === 'number')) {
+        valueMatch = lowercaseString(optionValue).includes(inputValue);
+      }
+
+      return valueMatch || labelMatch;
+    });
 
   const controlledValue = getControlledValue();
 
@@ -120,19 +155,29 @@ export const InputSelect: FC<InputSelectProps> = ({
     setValue(controlledValue);
   }, [controlledValue]);
 
+  const onAnimationStart = ({ animationName }: AnimationEvent) => {
+    if (animationName === 'mui-auto-fill') return setAutoFilling(true);
+    if (animationName === 'mui-auto-fill-cancel') return setAutoFilling(false);
+  };
+
+  // Note: We need to manually handle the browser autofill event by listening for 'animationstart' and handling it based on the
+  // animation name. This is because there is currently no native way to listen explicitly for autofill events.
+  useEffect(() => {
+    const input = inputRef.current?.querySelector(`input[name="${name}"]`);
+
+    // @ts-ignore
+    input.addEventListener('animationstart', onAnimationStart, false);
+
+    return () => {
+      // @ts-ignore
+      input?.removeEventListener('animationstart', onAnimationStart, false);
+    };
+  }, [inputRef]);
+
   const autocompleteDefaultProps: AutocompleteProps<any, boolean, boolean, boolean> = {
     options,
     value,
-    onChange: (event, newValue, reason, details) => {
-      const normalizedValue = getNormalizedValue(newValue);
-
-      setValue(normalizedValue);
-
-      const hasSafeName = props.formikProps?.status?.formConfig?.safeName || props.inputConfig?.safeName;
-      if (props.formikProps?.setFieldValue)
-        props.formikProps.setFieldValue(hasSafeName ? `['${name}']` : name, normalizedValue);
-      if (typeof onChange === 'function') onChange(event, normalizedValue, reason, details);
-    },
+    onChange: handleChange,
     openOnFocus: true,
     clearIcon: <Icon className="lc-input-select-icon-close" name="close" />,
     popupIcon: <Icon className="lc-input-select-icon-popup" name="chevronDown" />,
@@ -155,14 +200,21 @@ export const InputSelect: FC<InputSelectProps> = ({
           {...props}
           inputProps={inputProps}
           InputLabelProps={inputLabelProps}
-          // Prevent InputBase from calling `formikProps.handleChange`
-          // Because it is overriding our change event and preventing
-          // the creation of custom options
+          ref={inputRef}
+          // Important: Prevent `InputBase` from calling `formikProps.handleChange` because it is overriding
+          // our change event and preventing the creation of custom options.
           formikProps={{ ...props.formikProps, handleChange: undefined }}
+          onChange={event => {
+            if (isAutoFilling) handleChange(event, event.target.value, 'autoFill');
+          }}
+          // Important: We need to manually reset the `isAutoFilling` state. Doing it inside the `handleChange`
+          // function proved ineffective because of a race condition with the `animationstart` event listener
+          // on the input. Now, every time a user manually clicks on the input, it will reset the state.
+          onMouseDown={() => setAutoFilling(false)}
         />
       );
     },
-    PaperComponent: props => <Paper className="lc-input-select-paper" {...props} />,
+    PaperComponent: props => (!isAutoFilling ? <Paper className="lc-input-select-paper" {...props} /> : null),
     getOptionLabel: (option: { [key: string]: any }) => _get(option, optionLabelKey) || '',
     getOptionDisabled: option => option.isDisabled,
     filterOptions,
