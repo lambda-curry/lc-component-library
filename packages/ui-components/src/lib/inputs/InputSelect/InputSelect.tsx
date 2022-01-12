@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState, ChangeEvent, useRef } from 'react';
+import React, { FC, useEffect, useState, ChangeEvent } from 'react';
 import classNames from 'classnames';
 import Paper from '@mui/material/Paper';
 import Chip from '@mui/material/Chip';
@@ -59,17 +59,35 @@ export const InputSelect: FC<InputSelectProps> = ({
   const allowCustomValue = autocompleteConfig?.freeSolo || allowCreateOption;
   const isMultiselect = autocompleteConfig?.multiple;
 
-  const inputRef = useRef<HTMLInputElement>(null);
   const [isAutoFilling, setAutoFilling] = useState<boolean>(false);
 
-  const optionAndValueAreEqual = (option: any, value: any) => {
+  const optionMatchesValue = (option: any, value: any) => {
     // Note: Sometimes we pass in the value as true value and sometimes value is the selected option.
     return optionValueKey ? _get(option, optionValueKey) === value || _isEqual(option, value) : _isEqual(option, value);
   };
 
+  const optionMatchesValueOrLabel = (option: any, value: any) => {
+    const optionLabel = _get(option, optionLabelKey) || '';
+    const optionValue = option && optionValueKey ? _get(option, optionValueKey) : option;
+    const inputValue = lowercaseString(value);
+
+    let valueMatch = false;
+    const labelMatch = lowercaseString(optionLabel).includes(inputValue);
+
+    if (!disableFilterOptionsByValue && (typeof optionValue === 'string' || typeof optionValue === 'number')) {
+      valueMatch = lowercaseString(optionValue).includes(inputValue);
+    }
+
+    return valueMatch || labelMatch;
+  };
+
+  const findOptionByValue = (value: any) => options.find(option => optionMatchesValue(option, value));
+
+  const findOptionByValueOrLabel = (value: any) => options.find(option => optionMatchesValueOrLabel(option, value));
+
   const getControlledValue = () => {
     const valueFromProps = props.formikProps ? _get(props.formikProps.values, name) : props.value;
-    const selectedOption = options.find(option => optionAndValueAreEqual(option, valueFromProps));
+    const selectedOption = findOptionByValue(valueFromProps);
 
     const defaultValue = isMultiselect ? [] : null;
 
@@ -84,7 +102,7 @@ export const InputSelect: FC<InputSelectProps> = ({
     let isCustomValue = false;
     let normalizedValue = newValue;
 
-    const selectedOption = options.find(option => optionAndValueAreEqual(option, newValue));
+    const selectedOption = findOptionByValue(newValue);
 
     // Check to see if we have a matching option.
     if (selectedOption) {
@@ -129,21 +147,15 @@ export const InputSelect: FC<InputSelectProps> = ({
     if (typeof onChange === 'function') onChange(event, normalizedValue, reason, details);
   };
 
+  // Note: This function only exists to handle auto-filling right now.
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const selectedOption = findOptionByValueOrLabel(event.target.value);
+    if (props.inputProps?.autoComplete === 'on' && selectedOption && isAutoFilling)
+      handleChange(event, selectedOption, 'autoFill');
+  };
+
   const filterOptions = (options: any[], params: FilterOptionsState<any>) =>
-    options.filter(option => {
-      const optionLabel = _get(option, optionLabelKey) || '';
-      const optionValue = option && optionValueKey ? _get(option, optionValueKey) : option;
-      const inputValue = lowercaseString(params.inputValue);
-
-      let valueMatch = false;
-      const labelMatch = lowercaseString(optionLabel).includes(inputValue);
-
-      if (!disableFilterOptionsByValue && (typeof optionValue === 'string' || typeof optionValue === 'number')) {
-        valueMatch = lowercaseString(optionValue).includes(inputValue);
-      }
-
-      return valueMatch || labelMatch;
-    });
+    options.filter(option => optionMatchesValueOrLabel(option, params.inputValue));
 
   const controlledValue = getControlledValue();
 
@@ -155,25 +167,6 @@ export const InputSelect: FC<InputSelectProps> = ({
     setValue(controlledValue);
   }, [controlledValue]);
 
-  const onAnimationStart = ({ animationName }: AnimationEvent) => {
-    if (animationName === 'mui-auto-fill') return setAutoFilling(true);
-    if (animationName === 'mui-auto-fill-cancel') return setAutoFilling(false);
-  };
-
-  // Note: We need to manually handle the browser autofill event by listening for 'animationstart' and handling it based on the
-  // animation name. This is because there is currently no native way to listen explicitly for autofill events.
-  useEffect(() => {
-    const input = inputRef.current?.querySelector(`input[name="${name}"]`);
-
-    // @ts-ignore
-    input.addEventListener('animationstart', onAnimationStart, false);
-
-    return () => {
-      // @ts-ignore
-      input?.removeEventListener('animationstart', onAnimationStart, false);
-    };
-  }, [inputRef]);
-
   const autocompleteDefaultProps: AutocompleteProps<any, boolean, boolean, boolean> = {
     options,
     value,
@@ -182,6 +175,7 @@ export const InputSelect: FC<InputSelectProps> = ({
     clearIcon: <Icon className="lc-input-select-icon-close" name="close" />,
     popupIcon: <Icon className="lc-input-select-icon-popup" name="chevronDown" />,
     renderInput: params => {
+      // Note: To enable auto-filling, pass in `autoComplete: 'on'` in the `inputProps` when configuring the component.
       const inputProps = {
         ...params.inputProps,
         ...props.inputProps,
@@ -200,12 +194,18 @@ export const InputSelect: FC<InputSelectProps> = ({
           {...props}
           inputProps={inputProps}
           InputLabelProps={inputLabelProps}
-          ref={inputRef}
           // Important: Prevent `InputBase` from calling `formikProps.handleChange` because it is overriding
           // our change event and preventing the creation of custom options.
           formikProps={{ ...props.formikProps, handleChange: undefined }}
-          onChange={event => {
-            if (isAutoFilling) handleChange(event, event.target.value, 'autoFill');
+          onChange={handleInputChange}
+          // Note: We need to manually handle the browser autofill event by listening for 'animationstart' and handling it based on the
+          // animation name. This is because there is currently no native way to listen explicitly for autofill events.
+          // See the following links for reference:
+          // - https://codedaily.io/tutorials/Animated-Input-Label-with-Chrome-Autofill-Detection-in-React
+          // - https://medium.com/@brunn/detecting-autofilled-fields-in-javascript-aed598d25da7
+          onAnimationStart={({ animationName }) => {
+            if (animationName === 'mui-auto-fill') return setAutoFilling(true);
+            if (animationName === 'mui-auto-fill-cancel') return setAutoFilling(false);
           }}
           // Important: We need to manually reset the `isAutoFilling` state. Doing it inside the `handleChange`
           // function proved ineffective because of a race condition with the `animationstart` event listener
@@ -214,6 +214,7 @@ export const InputSelect: FC<InputSelectProps> = ({
         />
       );
     },
+    // Note: We hide the popup when the browser is auto-filling because it blocks other elements.
     PaperComponent: props => (!isAutoFilling ? <Paper className="lc-input-select-paper" {...props} /> : null),
     getOptionLabel: (option: { [key: string]: any }) => _get(option, optionLabelKey) || '',
     getOptionDisabled: option => option.isDisabled,
@@ -222,11 +223,11 @@ export const InputSelect: FC<InputSelectProps> = ({
     autoHighlight: false,
     autoSelect: false,
     autoComplete: true,
-    isOptionEqualToValue: optionAndValueAreEqual,
+    isOptionEqualToValue: optionMatchesValue,
     renderTags: (valueArray: any[], getTagProps: AutocompleteRenderGetTagProps) => (
       <>
         {valueArray.map((valueArrayItem, index) => {
-          const selectedOption = options.find(option => optionAndValueAreEqual(option, valueArrayItem));
+          const selectedOption = findOptionByValue(valueArrayItem);
           const label = selectedOption
             ? _get(selectedOption, optionLabelKey)
             : _get(valueArrayItem, optionLabelKey) || valueArrayItem;
