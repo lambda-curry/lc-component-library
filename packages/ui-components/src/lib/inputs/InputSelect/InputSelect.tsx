@@ -203,6 +203,7 @@ export const InputSelect: FC<InputSelectProps> = ({
           // See the following links for reference:
           // - https://codedaily.io/tutorials/Animated-Input-Label-with-Chrome-Autofill-Detection-in-React
           // - https://medium.com/@brunn/detecting-autofilled-fields-in-javascript-aed598d25da7
+          // - https://gist.github.com/jonathantneal/d462fc2bf761a10c9fca60eb634f6977
           onAnimationStart={({ animationName }) => {
             if (animationName === 'mui-auto-fill') return setAutoFilling(true);
             if (animationName === 'mui-auto-fill-cancel') return setAutoFilling(false);
