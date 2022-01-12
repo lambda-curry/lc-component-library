@@ -198,8 +198,8 @@ export const InputSelect: FC<InputSelectProps> = ({
           // our change event and preventing the creation of custom options.
           formikProps={{ ...props.formikProps, handleChange: undefined }}
           onChange={handleInputChange}
-          // Note: We need to manually handle the browser autofill event by listening for 'animationstart' and handling it based on the
-          // animation name. This is because there is currently no native way to listen explicitly for autofill events.
+          // Note: We need to manually handle the browser auto-fill event by listening for 'animationstart' and handling it based on the
+          // animation name. This is because there is currently no native way to listen explicitly for auto-fill events.
           // See the following links for reference:
           // - https://codedaily.io/tutorials/Animated-Input-Label-with-Chrome-Autofill-Detection-in-React
           // - https://medium.com/@brunn/detecting-autofilled-fields-in-javascript-aed598d25da7
