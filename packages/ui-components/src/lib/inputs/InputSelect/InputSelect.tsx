@@ -1,25 +1,27 @@
 import React, { FC, useEffect, useState, ChangeEvent } from 'react';
+import classNames from 'classnames';
 import Paper from '@mui/material/Paper';
 import Chip from '@mui/material/Chip';
 import Autocomplete, {
-  AutocompleteChangeReason,
+  AutocompleteChangeReason as MuiAutocompleteChangeReason,
   AutocompleteChangeDetails,
   AutocompleteProps,
-  AutocompleteRenderGetTagProps,
-  createFilterOptions
+  AutocompleteRenderGetTagProps
 } from '@mui/material/Autocomplete';
 import { FilterOptionsState } from '@mui/material/useAutocomplete';
-
-import classNames from 'classnames';
-import { InputText } from '../InputText/InputText';
-import { Icon } from '../../icon/Icon';
-import { InputProps } from '../InputBase';
 import _isEqual from 'lodash/isEqual';
 import _get from 'lodash/get';
 import _set from 'lodash/set';
 
-import './input-select.css';
+import { InputText } from '../InputText/InputText';
+import { Icon } from '../../icon/Icon';
+import { InputProps } from '../InputBase';
 import { useFormContext } from '../../hooks';
+import { lowercaseString } from '../../util/js-helpers';
+
+import './input-select.css';
+
+export type AutocompleteChangeReason = MuiAutocompleteChangeReason | 'autoFill';
 
 export type AutoCompleteChange = (
   event: ChangeEvent<any>,
@@ -57,14 +59,35 @@ export const InputSelect: FC<InputSelectProps> = ({
   const allowCustomValue = autocompleteConfig?.freeSolo || allowCreateOption;
   const isMultiselect = autocompleteConfig?.multiple;
 
-  const optionAndValueAreEqual = (option: any, value: any) => {
+  const [isAutoFilling, setAutoFilling] = useState<boolean>(false);
+
+  const optionMatchesValue = (option: any, value: any) => {
     // Note: Sometimes we pass in the value as true value and sometimes value is the selected option.
     return optionValueKey ? _get(option, optionValueKey) === value || _isEqual(option, value) : _isEqual(option, value);
   };
 
+  const optionMatchesValueOrLabel = (option: any, value: any) => {
+    const optionLabel = _get(option, optionLabelKey) || '';
+    const optionValue = option && optionValueKey ? _get(option, optionValueKey) : option;
+    const inputValue = lowercaseString(value);
+
+    let valueMatch = false;
+    const labelMatch = lowercaseString(optionLabel).includes(inputValue);
+
+    if (!disableFilterOptionsByValue && (typeof optionValue === 'string' || typeof optionValue === 'number')) {
+      valueMatch = lowercaseString(optionValue).includes(inputValue);
+    }
+
+    return valueMatch || labelMatch;
+  };
+
+  const findOptionByValue = (value: any) => options.find(option => optionMatchesValue(option, value));
+
+  const findOptionByValueOrLabel = (value: any) => options.find(option => optionMatchesValueOrLabel(option, value));
+
   const getControlledValue = () => {
     const valueFromProps = props.formikProps ? _get(props.formikProps.values, name) : props.value;
-    const selectedOption = options.find(option => optionAndValueAreEqual(option, valueFromProps));
+    const selectedOption = findOptionByValue(valueFromProps);
 
     const defaultValue = isMultiselect ? [] : null;
 
@@ -79,7 +102,7 @@ export const InputSelect: FC<InputSelectProps> = ({
     let isCustomValue = false;
     let normalizedValue = newValue;
 
-    const selectedOption = options.find(option => optionAndValueAreEqual(option, newValue));
+    const selectedOption = findOptionByValue(newValue);
 
     // Check to see if we have a matching option.
     if (selectedOption) {
@@ -108,7 +131,31 @@ export const InputSelect: FC<InputSelectProps> = ({
   const getNormalizedValue = (newValue: any) =>
     isMultiselect ? getNormalizedValueMultiple(newValue) : getNormalizedValueSingle(newValue);
 
-  const filterOptions = createFilterOptions<any>();
+  const handleChange = (
+    event: React.SyntheticEvent,
+    newValue: any,
+    reason: AutocompleteChangeReason | 'autoFill',
+    details?: any
+  ) => {
+    const normalizedValue = getNormalizedValue(newValue);
+
+    setValue(normalizedValue);
+
+    const hasSafeName = props.formikProps?.status?.formConfig?.safeName || props.inputConfig?.safeName;
+    if (props.formikProps?.setFieldValue)
+      props.formikProps.setFieldValue(hasSafeName ? `['${name}']` : name, normalizedValue);
+    if (typeof onChange === 'function') onChange(event, normalizedValue, reason, details);
+  };
+
+  // Note: This function only exists to handle auto-filling right now.
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const selectedOption = findOptionByValueOrLabel(event.target.value);
+    if (props.inputProps?.autoComplete === 'on' && selectedOption && isAutoFilling)
+      handleChange(event, selectedOption, 'autoFill');
+  };
+
+  const filterOptions = (options: any[], params: FilterOptionsState<any>) =>
+    options.filter(option => optionMatchesValueOrLabel(option, params.inputValue));
 
   const controlledValue = getControlledValue();
 
@@ -123,20 +170,12 @@ export const InputSelect: FC<InputSelectProps> = ({
   const autocompleteDefaultProps: AutocompleteProps<any, boolean, boolean, boolean> = {
     options,
     value,
-    onChange: (event, newValue, reason, details) => {
-      const normalizedValue = getNormalizedValue(newValue);
-
-      setValue(normalizedValue);
-
-      const hasSafeName = props.formikProps?.status?.formConfig?.safeName || props.inputConfig?.safeName;
-      if (props.formikProps?.setFieldValue)
-        props.formikProps.setFieldValue(hasSafeName ? `['${name}']` : name, normalizedValue);
-      if (typeof onChange === 'function') onChange(event, normalizedValue, reason, details);
-    },
+    onChange: handleChange,
     openOnFocus: true,
     clearIcon: <Icon className="lc-input-select-icon-close" name="close" />,
     popupIcon: <Icon className="lc-input-select-icon-popup" name="chevronDown" />,
     renderInput: params => {
+      // Note: To enable auto-filling, pass in `autoComplete: 'on'` in the `inputProps` when configuring the component.
       const inputProps = {
         ...params.inputProps,
         ...props.inputProps,
@@ -155,14 +194,29 @@ export const InputSelect: FC<InputSelectProps> = ({
           {...props}
           inputProps={inputProps}
           InputLabelProps={inputLabelProps}
-          // Prevent InputBase from calling `formikProps.handleChange`
-          // Because it is overriding our change event and preventing
-          // the creation of custom options
+          // Important: Prevent `InputBase` from calling `formikProps.handleChange` because it is overriding
+          // our change event and preventing the creation of custom options.
           formikProps={{ ...props.formikProps, handleChange: undefined }}
+          onChange={handleInputChange}
+          // Note: We need to manually handle the browser auto-fill event by listening for 'animationstart' and handling it based on the
+          // animation name. This is because there is currently no native way to listen explicitly for auto-fill events.
+          // See the following links for reference:
+          // - https://codedaily.io/tutorials/Animated-Input-Label-with-Chrome-Autofill-Detection-in-React
+          // - https://medium.com/@brunn/detecting-autofilled-fields-in-javascript-aed598d25da7
+          // - https://gist.github.com/jonathantneal/d462fc2bf761a10c9fca60eb634f6977
+          onAnimationStart={({ animationName }) => {
+            if (animationName === 'mui-auto-fill') return setAutoFilling(true);
+            if (animationName === 'mui-auto-fill-cancel') return setAutoFilling(false);
+          }}
+          // Important: We need to manually reset the `isAutoFilling` state. Doing it inside the `handleChange`
+          // function proved ineffective because of a race condition with the `animationstart` event listener
+          // on the input. Now, every time a user manually clicks on the input, it will reset the state.
+          onMouseDown={() => setAutoFilling(false)}
         />
       );
     },
-    PaperComponent: props => <Paper className="lc-input-select-paper" {...props} />,
+    // Note: We hide the popup when the browser is auto-filling because it blocks other elements.
+    PaperComponent: props => (!isAutoFilling ? <Paper className="lc-input-select-paper" {...props} /> : null),
     getOptionLabel: (option: { [key: string]: any }) => _get(option, optionLabelKey) || '',
     getOptionDisabled: option => option.isDisabled,
     filterOptions,
@@ -170,11 +224,11 @@ export const InputSelect: FC<InputSelectProps> = ({
     autoHighlight: false,
     autoSelect: false,
     autoComplete: true,
-    isOptionEqualToValue: optionAndValueAreEqual,
+    isOptionEqualToValue: optionMatchesValue,
     renderTags: (valueArray: any[], getTagProps: AutocompleteRenderGetTagProps) => (
       <>
         {valueArray.map((valueArrayItem, index) => {
-          const selectedOption = options.find(option => optionAndValueAreEqual(option, valueArrayItem));
+          const selectedOption = findOptionByValue(valueArrayItem);
           const label = selectedOption
             ? _get(selectedOption, optionLabelKey)
             : _get(valueArrayItem, optionLabelKey) || valueArrayItem;
