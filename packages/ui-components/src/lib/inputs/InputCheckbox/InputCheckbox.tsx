@@ -31,8 +31,7 @@ export const InputCheckbox: FC<InputCheckboxProps> = ({
   const fieldProps = formikProps?.getFieldProps(props.name);
   const fieldValue = _get(formikProps?.values, props.name);
   const fieldInitialValue = _get(formikProps?.initialValues, props.name);
-  const isChecked =
-    !!props.checked || (Array.isArray(fieldInitialValue) ? fieldValue.includes(props.value) : !!fieldValue);
+  const isChecked = !!props.checked || (Array.isArray(fieldValue) ? fieldValue.includes(props.value) : !!fieldValue);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (typeof onChange === 'function') onChange(event, event.target.checked);
