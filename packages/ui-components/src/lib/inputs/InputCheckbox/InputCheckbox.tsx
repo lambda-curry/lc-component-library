@@ -30,17 +30,16 @@ export const InputCheckbox: FC<InputCheckboxProps> = ({
 
   const fieldProps = formikProps?.getFieldProps(props.name);
   const fieldValue = _get(formikProps?.values, props.name);
-  const fieldInitialValue = _get(formikProps?.initialValues, props.name);
   const isChecked = !!props.checked || (Array.isArray(fieldValue) ? fieldValue.includes(props.value) : !!fieldValue);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (typeof onChange === 'function') onChange(event, event.target.checked);
 
-    // Note: Unless the `fieldInitialValue` is an array, we want to treat it as a boolean,
+    // Note: Unless the `fieldValue` is an array, we want to treat it as a boolean,
     // so we will just skip calling the default `fieldProps.onChange` which assumes the
     // value should be an array unless it is explicitly set to a boolean.
-    if (formikProps && !Array.isArray(fieldInitialValue)) return formikProps.setFieldValue(props.name, !!!fieldValue);
-    if (fieldProps && Array.isArray(fieldInitialValue)) return fieldProps.onChange(event);
+    if (formikProps && !Array.isArray(fieldValue)) return formikProps.setFieldValue(props.name, !!!fieldValue);
+    if (fieldProps && Array.isArray(fieldValue)) return fieldProps.onChange(event);
   };
 
   return (
