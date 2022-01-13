@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Meta, Story, Canvas, ArgsTable, Source } from '@storybook/addon-docs';
 import { InputCheckbox, Form, Button } from '../../..';
 import dedent from 'string-dedent';
@@ -9,7 +10,7 @@ import dedent from 'string-dedent';
 
 <Canvas>
   <Story
-    name="Input Checkbox Default"
+    name="Default behavior"
     parameters={{
       docs: {
         source: {
@@ -18,7 +19,7 @@ import dedent from 'string-dedent';
           <Form enableReinitialize={true} initialValues={{ checkboxDefault: false }} onSubmit={() => {}}>
             {formikProps => (
               <>
-                <p>Value: {\`\${formikProps.values.checkboxDefault}\`}</p>
+                <p>Value: {JSON.stringify(formikProps.values)}</p>
                 <InputCheckbox name="checkboxDefault" label="Default checkbox" formikProps={formikProps} />
                 <Button
                   onClick={() => {
@@ -39,8 +40,8 @@ import dedent from 'string-dedent';
       <Form enableReinitialize={true} initialValues={{ checkboxDefault: false }} onSubmit={() => {}}>
         {formikProps => (
           <>
-            <p>Value: {`${formikProps.values.checkboxDefault}`}</p>
-            <InputCheckbox name="checkboxDefault" label="Default checkbox" formikProps={formikProps} />
+            <p>Value: {JSON.stringify(formikProps.values)}</p>
+            <InputCheckbox name="checkboxDefault" label="Default checkbox" />
             <Button
               onClick={() => {
                 formikProps.resetForm();
@@ -54,7 +55,7 @@ import dedent from 'string-dedent';
     </div>
   </Story>
   <Story
-    name="Input Checkbox Checked"
+    name="Checked"
     parameters={{
       docs: {
         source: {
@@ -71,7 +72,7 @@ import dedent from 'string-dedent';
     </div>
   </Story>
   <Story
-    name="Input Checkbox Disabled"
+    name="Disabled"
     parameters={{
       docs: {
         source: {
@@ -88,23 +89,115 @@ import dedent from 'string-dedent';
     </div>
   </Story>
   <Story
-    name="Input Checkbox Label Placement"
+    name="Label Placement"
     parameters={{
       docs: {
         source: {
           code: dedent`
             <h4>Label Placement</h4>
-            <InputCheckbox name="chedWithLabelEnd" label={\`Label placement "end"\`} labelPlacement="end" />
-            <InputCheckbox name="switchWithLabeLStart" label={\`Label placement "start"\`} labelPlacement="start" />`
+            <Form initialValues={{ checkboxWithLabelEnd: false, checkboxWithLabeLStart: false }}>
+              {formikProps => (
+                <>
+                  <p>Value: {JSON.stringify(formikProps.values)}</p>
+                  <InputCheckbox name="checkboxWithLabelEnd" label={\`Label placement "end"\`} labelPlacement="end" />
+                  <InputCheckbox name="checkboxWithLabeLStart" label={\`Label placement "start"\`} labelPlacement="start" />
+                </>
+              )}
+            </Form>`
         }
       }
     }}
   >
     <div className="input-checkbox-story">
       <h4>Label Placement</h4>
-      <InputCheckbox name="chedWithLabelEnd" label={`Label placement "end"`} labelPlacement="end" />
-      <InputCheckbox name="switchWithLabeLStart" label={`Label placement "start"`} labelPlacement="start" />
+      <Form initialValues={{ checkboxWithLabelEnd: false, checkboxWithLabeLStart: false }}>
+        {formikProps => (
+          <>
+            <p>Value: {JSON.stringify(formikProps.values)}</p>
+            <InputCheckbox name="checkboxWithLabelEnd" label={`Label placement "end"`} labelPlacement="end" />
+            <InputCheckbox name="checkboxWithLabeLStart" label={`Label placement "start"`} labelPlacement="start" />
+          </>
+        )}
+      </Form>
     </div>
+  </Story>
+  <Story
+    name="Checkbox Arrays"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+            <h4>Checkbox Arrays</h4>
+            <Form initialValues={{ checkboxes: [] }}>
+              {formikProps => (
+                <>
+                  <p>Value: {\`\${formikProps.values.checkboxes}\`}</p>
+                  {Array.from(Array(5).keys()).map(index => (
+                    <div key={index}>
+                      <InputCheckbox name="checkboxes" value={\`checkbox\${index}\`} label={\`Checkbox \${index + 1}\`} />
+                    </div>
+                  ))}
+                </>
+              )}
+            </Form>`
+        }
+      }
+    }}
+  >
+    <div className="input-checkbox-story">
+      <h4>Checkbox Arrays</h4>
+      <Form initialValues={{ checkboxes: [] }}>
+        {formikProps => (
+          <>
+            <p>Value: {JSON.stringify(formikProps.values)}</p>
+            {Array.from(Array(5).keys()).map(index => (
+              <div key={index}>
+                <InputCheckbox name="checkboxes" value={`checkbox${index}`} label={`Checkbox ${index + 1}`} />
+              </div>
+            ))}
+          </>
+        )}
+      </Form>
+    </div>
+  </Story>
+  <Story
+    name="Without Formik"
+    parameters={{
+      docs: {
+        source: {
+          code: dedent`
+          {() => {
+            const [checked, setChecked] = useState(false);
+            return (
+              <>
+                <h4>Using without Formik</h4>
+                <InputCheckbox
+                  name="checkboxWithoutFormik"
+                  label="Checkbox without Formik"
+                  checked={checked}
+                  onChange={(event, checked) => setChecked(checked)}
+                />
+              </>
+            );
+          }}`
+        }
+      }
+    }}
+  >
+    {() => {
+      const [checked, setChecked] = useState(false);
+      return (
+        <div className="input-checkbox-story">
+          <h4>Using without Formik</h4>
+          <InputCheckbox
+            name={`checkboxWithoutFormik`}
+            label="Checkbox without Formik"
+            checked={checked}
+            onChange={(event, checked) => setChecked(checked)}
+          />
+        </div>
+      );
+    }}
   </Story>
   <ArgsTable of={InputCheckbox} />
 </Canvas>

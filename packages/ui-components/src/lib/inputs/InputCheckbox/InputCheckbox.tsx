@@ -4,11 +4,13 @@ import MuiFormControlLabel, { FormControlLabelProps } from '@mui/material/FormCo
 import classNames from 'classnames';
 import { FormikProps } from 'formik';
 import { Icon } from '../../icon/Icon';
+import { get as _get } from 'lodash';
 
 import './input-checkbox.css';
 import { useFormContext } from '../../hooks';
 
 export type InputCheckboxProps = {
+  name: string;
   label: string;
   labelPlacement?: FormControlLabelProps['labelPlacement'];
   formikProps?: FormikProps<any>;
@@ -27,7 +29,8 @@ export const InputCheckbox: FC<InputCheckboxProps> = ({
   if (!formikProps && formContext) formikProps = formContext;
 
   const fieldProps = formikProps?.getFieldProps(props.name);
-  const fieldValue = !!fieldProps?.value || !!props.checked;
+  const fieldValue = _get(formikProps?.values, props.name);
+  const isChecked = !!props.checked || (Array.isArray(fieldValue) ? fieldValue.includes(props.value) : !!fieldValue);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (typeof onChange === 'function') onChange(event, event.target.checked);
@@ -42,7 +45,7 @@ export const InputCheckbox: FC<InputCheckboxProps> = ({
       control={
         <MuiCheckbox
           {...props}
-          checked={fieldValue}
+          checked={isChecked}
           onChange={handleChange}
           icon={<Icon name="checkbox" className="lc-input-checkbox-icon" />}
           checkedIcon={<Icon name="checkboxFilled" className="lc-input-checkbox-icon-filled" />}
