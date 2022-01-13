@@ -34,7 +34,12 @@ export const InputCheckbox: FC<InputCheckboxProps> = ({
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (typeof onChange === 'function') onChange(event, event.target.checked);
-    if (fieldProps?.onChange) fieldProps.onChange(event);
+
+    // Note: Unless the `fieldValue` is an array, we want to treat it as a boolean,
+    // so we will just skip calling the default `fieldProps.onChange` which assumes the
+    // value should be an array unless it is explicitly set to a boolean.
+    if (formikProps && !Array.isArray(fieldValue)) return formikProps.setFieldValue(props.name, !!!fieldValue);
+    if (fieldProps && Array.isArray(fieldValue)) return fieldProps.onChange(event);
   };
 
   return (
