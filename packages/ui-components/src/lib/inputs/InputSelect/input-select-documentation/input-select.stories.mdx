@@ -268,8 +268,8 @@ import dedent from 'string-dedent';
                     optionLabelKey="name"
                     optionValueKey="code"
                     options={usStates}
-                    formikProps={formikProps}
                     autocompleteConfig={{ disableClearable: false }}
+                    inputProps={{ autoComplete: 'on' }}
                   />
                 </>
               );
