@@ -23,6 +23,10 @@ indent_size = 2
 indent_size = 4
 trim_trailing_whitespace = false
 
+[*.mdx]
+indent_size = 2
+trim_trailing_whitespace = false
+
 [.*rc]
 indent_size = 2
 
