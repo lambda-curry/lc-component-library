@@ -116,18 +116,19 @@ import './button-story.css';
       {}
     );
     return (
-    <p>{JSON.stringify(state)}</p>
-    <ButtonGroup>
-      <ButtonPrimary className={classNames({ active: state.left })} onClick={() => toggle('left')}>
-        Left
-      </ButtonPrimary>
-      <ButtonPrimary className={classNames({ active: state.middle })} onClick={() => toggle('middle')}>
-        Middle
-      </ButtonPrimary>
-      <ButtonPrimary className={classNames({ active: state.right })} onClick={() => toggle('right')}>
-        Right
-      </ButtonPrimary>
-    </ButtonGroup>)`
+      <p>{JSON.stringify(state)}</p>
+      <ButtonGroup>
+        <ButtonPrimary className={classNames({ active: state.left })} onClick={() => toggle('left')}>
+          Left
+        </ButtonPrimary>
+        <ButtonPrimary className={classNames({ active: state.middle })} onClick={() => toggle('middle')}>
+          Middle
+        </ButtonPrimary>
+        <ButtonPrimary className={classNames({ active: state.right })} onClick={() => toggle('right')}>
+          Right
+        </ButtonPrimary>
+      </ButtonGroup>
+    )`
         }
       }
     }}
