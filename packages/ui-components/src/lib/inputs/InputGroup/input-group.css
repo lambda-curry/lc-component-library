@@ -3,13 +3,7 @@
   @apply lc-flex-row;
   @apply lc-flex-nowrap;
   @apply lc-items-start;
-  @apply lc--m-12;
-  @apply lc-mb-12;
-
-  .lc-input-wrapper,
-  .lc-button {
-    @apply lc-m-12;
-  }
+  @apply lc-gap-24;
 
   .lc-input-wrapper,
   .lc-input-select {
