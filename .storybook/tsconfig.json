@@ -1,5 +1,5 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "../tsconfig.base.json",
   "exclude": [
     "../**/*.spec.js",
     "../**/*.test.js",
@@ -8,8 +8,7 @@
     "../**/*.spec.tsx",
     "../**/*.test.tsx",
     "../**/*.spec.jsx",
-    "../**/*.test.jsx",
-    "jest.config.ts"
+    "../**/*.test.jsx"
   ],
-  "include": ["../**/*", "../../../postcss.config.js", "../../../util"]
+  "include": ["../**/*"]
 }
