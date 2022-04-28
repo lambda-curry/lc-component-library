@@ -11,11 +11,20 @@ const PhoneMask = React.forwardRef<HTMLElement, any>((props, ref) => {
 
 export const InputPhone: FC<InputProps> = ({ className, ...props }) => {
   props.InputProps = { ...props.InputProps, inputComponent: PhoneMask as any };
+
   return (
     <InputBase
       placeholder="(   )    -    "
       type="text"
       className={classNames('lc-input-phone', className)}
+      inputProps={{
+        onAccept: (value: string, mask: any) => {
+          // Note: this is a workaround for an autocomplete issue and assumes only 10 digits phone numbers
+          if (mask._unmaskedValue.length === 10 && props.formikProps?.setFieldValue) {
+            props.formikProps.setFieldValue(props.name, value);
+          }
+        }
+      }}
       {...props}
     />
   );
