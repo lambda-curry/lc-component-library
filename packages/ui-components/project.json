@@ -16,22 +16,16 @@
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "packages/ui-components/**/*.{ts,tsx,js,jsx}"
-        ]
+        "lintFilePatterns": ["packages/ui-components/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/packages/ui-components"
-      ],
+      "outputs": ["coverage/packages/ui-components"],
       "options": {
-        "jestConfig": "packages/ui-components/jest.config.js",
+        "jestConfig": "packages/ui-components/jest.config.ts",
         "passWithNoTests": true
       }
     },
@@ -52,9 +46,7 @@
     },
     "build-docs": {
       "executor": "@nrwl/storybook:build",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "uiFramework": "@storybook/react",
         "outputPath": "docs",
@@ -75,5 +67,6 @@
         "port": 6007
       }
     }
-  }
+  },
+  "tags": []
 }

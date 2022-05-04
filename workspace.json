@@ -3,15 +3,5 @@
   "projects": {
     "ui-components": "packages/ui-components",
     "ui-components-e2e": "packages/ui-components-e2e"
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/react"
-  },
-  "generators": {
-    "@nrwl/react": {
-      "application": {
-        "babel": true
-      }
-    }
   }
 }
