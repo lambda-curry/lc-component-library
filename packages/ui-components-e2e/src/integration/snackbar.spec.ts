@@ -1,4 +1,4 @@
-describe('buttons', () => {
+describe('snackbar', () => {
   beforeEach(() => {
     cy.visit('/iframe.html?id=components-snackbars--snackbars&args=&viewMode=story');
   });
