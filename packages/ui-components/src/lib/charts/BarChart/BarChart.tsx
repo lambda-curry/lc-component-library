@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, PropsWithChildren } from 'react';
 import merge from 'lodash/merge';
 import classNames from 'classnames';
 import { ChartJSData, ChartJSOptions } from '../chart.helpers';
@@ -8,7 +8,14 @@ import './roundedBarCharts';
 
 export interface BarChartProps extends Partial<AxialChartProps> {}
 
-export const BarChart: FC<BarChartProps> = ({ labels, datasets, chartJSData, options, className, ...props }) => {
+export const BarChart: FC<PropsWithChildren<BarChartProps>> = ({
+  labels,
+  datasets,
+  chartJSData,
+  options,
+  className,
+  ...props
+}) => {
   const defaultOptions: ChartJSOptions = {
     borderRadius: 100
   };

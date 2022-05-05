@@ -39,7 +39,6 @@ export interface FormProps<T> extends Omit<FormikConfig<T>, 'onSubmit'> {
   unsavedChangesConfig?: UnsavedChangesConfig;
   withoutFormElement?: boolean;
   formConfig?: FormConfig;
-  children: ((formikProps: FormikProps<T>) => ReactElement) | ReactElement | ReactElement[];
   onSubmit?: (values: T, formikHelpers: FormikHelpers<T>) => void | Promise<any>;
 }
 

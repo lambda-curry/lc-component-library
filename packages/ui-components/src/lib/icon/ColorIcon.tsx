@@ -35,6 +35,7 @@ export interface ColorIconProps {
 export const ColorIcon: FC<ColorIconProps> = ({ className, name, viewBox = '0 0 24 24', ...props }) => {
   const registeredIcons = useContext(RegisteredIconContext);
 
+  // @ts-ignore
   const icons: IconsMap = {
     ...defaultColorIcons,
     ...registeredIcons

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, PropsWithChildren } from 'react';
 import { ChartDataSets } from 'chart.js';
 import classNames from 'classnames';
 import merge from 'lodash/merge';
@@ -15,7 +15,7 @@ export interface AxialChartProps extends ChartBaseProps {
   >;
 }
 
-export const AxialChart: FC<AxialChartProps> = ({ options, className, ...props }) => {
+export const AxialChart: FC<PropsWithChildren<AxialChartProps>> = ({ options, className, ...props }) => {
   const defaultOptions: ChartJSOptions = {
     scales: {
       gridLines: {

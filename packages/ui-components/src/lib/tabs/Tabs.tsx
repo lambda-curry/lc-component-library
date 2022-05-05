@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useEffect, useState, ChangeEvent } from 'react';
+import React, { FC, ReactNode, useEffect, useState, ChangeEvent, PropsWithChildren } from 'react';
 import MuiTabs, { TabsProps as MuiTabsProps } from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import classNames from 'classnames';
@@ -9,7 +9,7 @@ export interface TabPanelProps {
   value: any;
 }
 
-const TabPanel: FC<TabPanelProps> = props => {
+const TabPanel: FC<PropsWithChildren<TabPanelProps>> = props => {
   const { children, value, index, ...other } = props;
 
   return (
@@ -64,6 +64,7 @@ export const Tabs: FC<TabsProps> = ({
           <Tab
             key={`${typeof tab.label === 'string' ? tab.label.replace(' ', '') : ''}_tab_${index}`}
             value={index}
+            // @ts-ignore
             label={tab.label}
             {...a11yProps(index)}
           />

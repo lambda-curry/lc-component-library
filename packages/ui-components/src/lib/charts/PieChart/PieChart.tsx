@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, PropsWithChildren } from 'react';
 import merge from 'lodash/merge';
 import classNames from 'classnames';
 import { ChartBase, ChartBaseProps } from '../ChartBase';
@@ -11,7 +11,7 @@ export interface PieChartProps extends Partial<ChartBaseProps> {
   data?: PieChartData;
 }
 
-export const PieChart: FC<PieChartProps> = ({ className, options, chartJSData, data, ...props }) => {
+export const PieChart: FC<PropsWithChildren<PieChartProps>> = ({ className, options, chartJSData, data, ...props }) => {
   const computedChartJSData = getComputedPieChartJSData(chartJSData, data);
 
   const defaultOptions: ChartOptions = {
@@ -52,7 +52,7 @@ export const PieChart: FC<PieChartProps> = ({ className, options, chartJSData, d
   );
 };
 
-const PieChartLegend: FC<{ data: ChartJSData }> = ({ data }) => {
+const PieChartLegend: FC<PropsWithChildren<{ data: ChartJSData }>> = ({ data }) => {
   if (!data.datasets || !data.datasets[0].data || !data.labels) return null;
 
   const dataset = data.datasets[0];

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, PropsWithChildren } from 'react';
 import classNames from 'classnames';
 import merge from 'lodash/merge';
 import { ChartJSData, ChartJSOptions } from '../chart.helpers';
@@ -6,7 +6,14 @@ import { AxialChart, AxialChartProps } from '../AxialChart';
 
 export interface LineChartProps extends Partial<AxialChartProps> {}
 
-export const LineChart: FC<LineChartProps> = ({ labels, datasets, chartJSData, options, className, ...props }) => {
+export const LineChart: FC<PropsWithChildren<LineChartProps>> = ({
+  labels,
+  datasets,
+  chartJSData,
+  options,
+  className,
+  ...props
+}) => {
   const defaultOptions: ChartJSOptions = {};
 
   const getComputedData = (): ChartJSData => {

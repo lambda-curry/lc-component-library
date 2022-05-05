@@ -1,5 +1,5 @@
-import React, { FC, ReactNode, createRef } from 'react';
-import { SnackbarProvider as MuiSnackbarProvider } from 'notistack';
+import React, { FC, ReactNode, createRef, PropsWithChildren } from 'react';
+import { SnackbarProvider as MuiSnackbarProvider, SnackbarKey } from 'notistack';
 import { SnackbarAction } from './SnackbarAction';
 
 import './snackbars.css';
@@ -8,14 +8,15 @@ export interface SnackbarProviderProps {
   children: ReactNode;
 }
 
-export const SnackbarProvider: FC<SnackbarProviderProps> = props => {
+export const SnackbarProvider: FC<PropsWithChildren<SnackbarProviderProps>> = props => {
   // Add default action to all snackbars
   const snackbarProviderRef = createRef<MuiSnackbarProvider>();
-  const onClickDismiss = (key: string) => {
+  const onClickDismiss = (key: SnackbarKey) => {
     if (snackbarProviderRef?.current) snackbarProviderRef.current.closeSnackbar(key);
   };
 
   return (
+    // @ts-ignore
     <MuiSnackbarProvider
       ref={snackbarProviderRef}
       classes={{
@@ -30,7 +31,7 @@ export const SnackbarProvider: FC<SnackbarProviderProps> = props => {
         vertical: 'bottom',
         horizontal: 'center'
       }}
-      action={(key: string) => <SnackbarAction onClick={() => onClickDismiss(key)}>Dismiss</SnackbarAction>}
+      action={(key: SnackbarKey) => <SnackbarAction onClick={() => onClickDismiss(key)}>Dismiss</SnackbarAction>}
       {...props}
     />
   );

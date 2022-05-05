@@ -1,8 +1,8 @@
-import React, { FC, FocusEvent } from 'react';
-import { Slider, SliderProps } from './Slider';
+import React, { FC, FocusEvent, PropsWithChildren } from 'react';
 import { DateTime, Interval, LocaleOptions } from 'luxon';
 import classNames from 'classnames';
 import { isNullOrUndefined } from '../util/js-helpers';
+import { Slider, SliderProps } from './Slider';
 
 export interface TimeRange {
   startTime: string; // 00:00 - 24:00
@@ -47,7 +47,7 @@ export interface TimeRangeSliderProps extends Omit<SliderProps, 'value' | 'onCha
   maxTime?: string;
 }
 
-export const TimeRangeSlider: FC<TimeRangeSliderProps> = ({
+export const TimeRangeSlider: FC<PropsWithChildren<TimeRangeSliderProps>> = ({
   className,
   name,
   value,

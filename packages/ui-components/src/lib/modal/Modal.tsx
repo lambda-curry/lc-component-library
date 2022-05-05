@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect, PropsWithChildren } from 'react';
 import ReactModal from 'react-modal';
 import classNames from 'classnames';
 import { IconButton } from '../icon-button';
@@ -12,7 +12,13 @@ export interface ModalProps extends ReactModal.Props {
   closeButton?: boolean;
 }
 
-export const Modal: FC<ModalProps> = ({ isOpen = false, className, closeButton = true, children, ...rest }) => {
+export const Modal: FC<PropsWithChildren<ModalProps>> = ({
+  isOpen = false,
+  className,
+  closeButton = true,
+  children,
+  ...rest
+}) => {
   const [open, setOpen] = useState(isOpen);
 
   useEffect(() => {
@@ -20,6 +26,7 @@ export const Modal: FC<ModalProps> = ({ isOpen = false, className, closeButton =
   }, [isOpen]);
 
   return (
+    // @ts-ignore
     <ReactModal {...rest} isOpen={open} className={classNames('lc-modal', className)} closeTimeoutMS={500}>
       <AnimatePresence>
         {open ? (
@@ -33,6 +40,7 @@ export const Modal: FC<ModalProps> = ({ isOpen = false, className, closeButton =
               {closeButton ? (
                 <IconButton className="lc-modal-close" icon="close" onClick={() => setOpen(false)} />
               ) : null}
+              {/* @ts-ignore */}
               <CardContent>{children}</CardContent>
             </Card>
           </motion.div>

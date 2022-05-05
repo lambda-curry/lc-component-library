@@ -5,9 +5,10 @@ import { InputBase, InputProps } from '../InputBase';
 
 // Resource: https://mui.com/components/text-fields/
 // Issue with types: https://github.com/uNmAnNeR/imaskjs/issues/554
-const PhoneMask = React.forwardRef<HTMLElement, any>((props, ref) => {
-  return <IMaskInput {...props} mask="(000) 000-0000" inputRef={ref} />;
-});
+const PhoneMask = React.forwardRef<HTMLElement, any>((props, ref) => (
+  // @ts-ignore
+  <IMaskInput {...props} mask="(000) 000-0000" inputRef={ref} />
+));
 
 export const InputPhone: FC<InputProps> = ({ className, ...props }) => {
   props.InputProps = { ...props.InputProps, inputComponent: PhoneMask as any };

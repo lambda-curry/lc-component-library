@@ -1,10 +1,9 @@
-import React, { useEffect, FunctionComponent } from 'react';
+import React, { useEffect, FC } from 'react';
 import { FormikProps } from 'formik';
+import ReactQuill from 'react-quill';
 import _get from 'lodash/get';
 import { MultilineInput } from '../multiline-input';
 import './wysiwyg.css';
-
-import ReactQuill from 'react-quill';
 
 // Note: should extend ReactQuill.ComponentProps, but I couldn't figure out how to import it.
 export interface WysiwygProps {
@@ -44,7 +43,7 @@ const quillConfig = {
   }
 };
 
-export const Wysiwyg: FunctionComponent<WysiwygProps> = ({
+export const Wysiwyg: FC<WysiwygProps> = ({
   placeholder = 'Enter your text here...',
   characterLimit = 0,
   formikProps,
@@ -88,6 +87,7 @@ export const Wysiwyg: FunctionComponent<WysiwygProps> = ({
         };
 
         return (
+          // @ts-ignore
           <ReactQuill
             className="wysiwyg-editor"
             placeholder={placeholder}

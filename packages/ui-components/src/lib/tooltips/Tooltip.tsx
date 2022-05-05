@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, PropsWithChildren, useState } from 'react';
 import MuiTooltip, { TooltipProps as MuiTooltipProps } from '@mui/material/Tooltip';
 import { useOnClickOutside } from '../hooks';
 import './tooltip.css';
@@ -25,7 +25,7 @@ export const useTooltip = () => {
   return { tooltipOpen, handleTooltipOpen, handleTooltipClose };
 };
 
-export const Tooltip: FC<TooltipProps> = ({
+export const Tooltip: FC<PropsWithChildren<TooltipProps>> = ({
   className,
   children,
   placement = 'top',
