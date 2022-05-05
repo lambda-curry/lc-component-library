@@ -2,11 +2,11 @@ import React, { FC, useState } from 'react';
 import * as Stripe from '@stripe/stripe-js';
 import { CardElement } from '@stripe/react-stripe-js';
 import { useField, useFormikContext } from 'formik';
-import './stripe-card-input.css';
-import { arrayToListString } from '../util/formatters';
 import classNames from 'classnames';
 import _get from 'lodash/get';
 import _set from 'lodash/set';
+import { arrayToListString } from '../util/formatters';
+import './stripe-card-input.css';
 
 export type StripeCardBrand = Exclude<Stripe.StripeCardElementChangeEvent['brand'], 'unknown'>;
 

@@ -14,7 +14,6 @@ export type ButtonProps = (ButtonHTMLAttributes<any> & AnchorHTMLAttributes<any>
   type?: 'button' | 'submit' | 'reset';
   icon?: ReactNode;
   iconPlacement?: 'end' | 'start';
-  children?: ReactNode;
 };
 
 export const ButtonBase: FC<ButtonProps> = forwardRef(

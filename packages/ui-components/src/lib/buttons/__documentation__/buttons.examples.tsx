@@ -1,5 +1,4 @@
 import React, { FC, useReducer } from 'react';
-
 import classNames from 'classnames';
 import {
   Button,
@@ -17,9 +16,9 @@ import {
   ButtonGroup,
   ColorIcon,
   Icon,
-  ButtonUnstyled
+  ButtonUnstyled,
+  ButtonLink
 } from '../..';
-import { ButtonLink } from '../ButtonLink';
 
 export const ButtonExamples1: FC = () => (
   <div className="button-story">

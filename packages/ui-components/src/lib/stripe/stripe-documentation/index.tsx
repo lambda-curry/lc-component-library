@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { FormikProps } from 'formik';
 import { StripeCardInput, StripeFormWrapper, StripeCardBrand } from '..';
 import { ButtonPrimary } from '../../buttons';
 
@@ -9,7 +10,7 @@ export const StripeExample1: FC = () => (
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     onSubmit={() => {}}
   >
-    {formikProps => {
+    {(formikProps: FormikProps<any>) => {
       return (
         <div className="stripe-story">
           <p className="lc-mb-16">Values: {JSON.stringify(formikProps.values)}</p>
@@ -31,7 +32,7 @@ export const StripeExampleRejectedBrands: FC = () => {
       // eslint-disable-next-line @typescript-eslint/no-empty-function
       onSubmit={() => {}}
     >
-      {formikProps => {
+      {(formikProps: FormikProps<any>) => {
         return (
           <div className="stripe-story">
             <p className="lc-mb-16">Rejected brands: {JSON.stringify(rejectedBrands)}</p>
@@ -58,7 +59,7 @@ export const StripeExampleAcceptedBrands: FC = () => {
       // eslint-disable-next-line @typescript-eslint/no-empty-function
       onSubmit={() => {}}
     >
-      {formikProps => {
+      {(formikProps: FormikProps<any>) => {
         return (
           <div className="stripe-story">
             <p className="lc-mb-16">Accepted brands: {JSON.stringify(acceptedBrands)}</p>
@@ -66,7 +67,7 @@ export const StripeExampleAcceptedBrands: FC = () => {
               label="Stripe Input"
               name="stripe-input"
               acceptedBrands={acceptedBrands as StripeCardBrand[]}
-              acceptedBrandsErrorMessage={brand =>
+              acceptedBrandsErrorMessage={(brand: string) =>
                 `Sorry, we do not accept ${brand}. Try one of these instead: ${acceptedBrands.join(', ')}.`
               }
             />

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState, ChangeEvent } from 'react';
+import React, { AnimationEvent, FC, useEffect, useState, ChangeEvent } from 'react';
 import classNames from 'classnames';
 import Paper from '@mui/material/Paper';
 import Chip from '@mui/material/Chip';
@@ -209,7 +209,7 @@ export const InputSelect: FC<InputSelectProps> = ({
           // - https://codedaily.io/tutorials/Animated-Input-Label-with-Chrome-Autofill-Detection-in-React
           // - https://medium.com/@brunn/detecting-autofilled-fields-in-javascript-aed598d25da7
           // - https://gist.github.com/jonathantneal/d462fc2bf761a10c9fca60eb634f6977
-          onAnimationStart={({ animationName }) => {
+          onAnimationStart={({ animationName }: AnimationEvent<HTMLInputElement>) => {
             if (animationName === 'mui-auto-fill') return setAutoFilling(true);
           }}
           // Important: We need to manually reset the `isAutoFilling` state. Doing it inside the `handleChange`
@@ -220,6 +220,8 @@ export const InputSelect: FC<InputSelectProps> = ({
       );
     },
     // Note: We hide the popup when the browser is auto-filling because it blocks other elements.
+    // TODO: #106 Fix React 18 TypeScript errors @jaredhill4
+    // @ts-ignore
     PaperComponent: props => (!isAutoFilling ? <Paper className="lc-input-select-paper" {...props} /> : null),
     getOptionLabel: (option: { [key: string]: any }) => _get(option, optionLabelKey) || '',
     getOptionDisabled: option => option.isDisabled,

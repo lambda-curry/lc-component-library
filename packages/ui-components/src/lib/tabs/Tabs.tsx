@@ -64,6 +64,8 @@ export const Tabs: FC<TabsProps> = ({
           <Tab
             key={`${typeof tab.label === 'string' ? tab.label.replace(' ', '') : ''}_tab_${index}`}
             value={index}
+            // TODO: #106 Fix React 18 TypeScript errors @jaredhill4
+            // @ts-ignore
             label={tab.label}
             {...a11yProps(index)}
           />

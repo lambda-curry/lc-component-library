@@ -1,6 +1,5 @@
-import classNames from 'classnames';
 import React, { FC, HTMLAttributes } from 'react';
-
+import classNames from 'classnames';
 import './input-group.css';
 
 export interface InputGroupProps extends HTMLAttributes<HTMLDivElement> {

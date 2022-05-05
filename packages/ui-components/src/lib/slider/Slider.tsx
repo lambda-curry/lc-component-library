@@ -1,10 +1,9 @@
 import React, { FC, FocusEvent, ElementType, HTMLAttributes, ReactNode, SyntheticEvent } from 'react';
 import MuiSlider, { SliderValueLabel } from '@mui/material/Slider';
-
-import classNames from 'classnames';
 import { FormikProps } from 'formik';
-import './slider.css';
+import classNames from 'classnames';
 import { isNullOrUndefined } from '../util/js-helpers';
+import './slider.css';
 
 export interface SliderProps {
   id?: string;

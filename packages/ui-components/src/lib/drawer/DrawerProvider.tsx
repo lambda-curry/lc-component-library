@@ -12,7 +12,7 @@ export const useDrawer = () => {
   return { drawerState, drawerActions };
 };
 
-export const DrawerProvider: FC<any> = ({ children }) => {
+export const DrawerProvider: FC = ({ children }) => {
   const [state, dispatch] = useReducer(DrawerReducer, { data: {} });
 
   return (

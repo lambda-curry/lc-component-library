@@ -35,6 +35,8 @@ export interface ColorIconProps {
 export const ColorIcon: FC<ColorIconProps> = ({ className, name, viewBox = '0 0 24 24', ...props }) => {
   const registeredIcons = useContext(RegisteredIconContext);
 
+  // TODO: #106 Fix React 18 TypeScript errors @jaredhill4
+  // @ts-ignore
   const icons: IconsMap = {
     ...defaultColorIcons,
     ...registeredIcons

@@ -20,6 +20,8 @@ export const Modal: FC<ModalProps> = ({ isOpen = false, className, closeButton =
   }, [isOpen]);
 
   return (
+    // TODO: #106 Fix React 18 TypeScript errors @jaredhill4
+    // @ts-ignore
     <ReactModal {...rest} isOpen={open} className={classNames('lc-modal', className)} closeTimeoutMS={500}>
       <AnimatePresence>
         {open ? (
@@ -33,6 +35,7 @@ export const Modal: FC<ModalProps> = ({ isOpen = false, className, closeButton =
               {closeButton ? (
                 <IconButton className="lc-modal-close" icon="close" onClick={() => setOpen(false)} />
               ) : null}
+              {/* @ts-ignore */}
               <CardContent>{children}</CardContent>
             </Card>
           </motion.div>

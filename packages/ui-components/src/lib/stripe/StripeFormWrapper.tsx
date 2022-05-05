@@ -1,13 +1,12 @@
-import React, { FC, ReactElement } from 'react';
+import React, { FC } from 'react';
 import * as Stripe from '@stripe/stripe-js';
 import { CardElement, Elements, useElements, useStripe } from '@stripe/react-stripe-js';
-import { FormikConfig, FormikHelpers, FormikProps } from 'formik';
+import { FormikConfig, FormikHelpers } from 'formik';
 import { Form } from '../form';
 
 export interface StripeFormWrapperProps extends FormikConfig<any> {
   className?: string;
   onError?: (reason: string) => void;
-  children: (formikProps: FormikProps<any>) => ReactElement;
 }
 
 const StripeFormWrapperContent: FC<StripeFormWrapperProps> = props => {

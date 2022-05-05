@@ -1,8 +1,8 @@
 import React, { FC, FocusEvent } from 'react';
-import { Slider, SliderProps } from './Slider';
 import { DateTime, Interval, LocaleOptions } from 'luxon';
 import classNames from 'classnames';
 import { isNullOrUndefined } from '../util/js-helpers';
+import { Slider, SliderProps } from './Slider';
 
 export interface TimeRange {
   startTime: string; // 00:00 - 24:00
