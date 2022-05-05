@@ -64,7 +64,6 @@ export const InputBase: FC<InputProps> = forwardRef(
     const hasError = !!fieldError || !!serverError || props.error;
     const helperText = fieldError || serverError || props.helperText;
 
-    // Note: Typing `prefix` and `suffix` as `ReactNode` causes the build to break.
     const InputProps = {
       // @ts-ignore
       startAdornment: prefix ? <InputAdornment position="start">{prefix}</InputAdornment> : false,
