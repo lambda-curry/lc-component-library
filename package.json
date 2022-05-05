@@ -7,6 +7,7 @@
   "scripts": {
     "clean": "find . -name \"node_modules\" -type d -prune -exec rm -rf '{}' + && yarn",
     "e2e": "percy exec -- nx e2e ui-components-e2e",
+    "e2e-dev": "percy exec -- nx e2e-dev ui-components-e2e",
     "build": "nx run ui-components:build:production",
     "storybook": "nx run ui-components:storybook",
     "sb": "yarn storybook",
