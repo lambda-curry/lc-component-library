@@ -1,12 +1,4 @@
-import React, {
-  FC,
-  ReactNode,
-  ButtonHTMLAttributes,
-  AnchorHTMLAttributes,
-  forwardRef,
-  ForwardedRef,
-  PropsWithChildren
-} from 'react';
+import React, { FC, ReactNode, ButtonHTMLAttributes, AnchorHTMLAttributes, forwardRef, ForwardedRef } from 'react';
 import classNames from 'classnames';
 import './button.css';
 
@@ -16,15 +8,13 @@ export type ButtonAs =
   | keyof Pick<JSX.IntrinsicElements, 'a' | 'button'>
   | ((props: ButtonHTMLAttributes<any> & AnchorHTMLAttributes<any>) => JSX.Element);
 
-export type ButtonProps = PropsWithChildren<
-  (ButtonHTMLAttributes<any> & AnchorHTMLAttributes<any>) & {
-    as?: ButtonAs;
-    ref?: ForwardedRef<HTMLButtonElement & HTMLAnchorElement>;
-    type?: 'button' | 'submit' | 'reset';
-    icon?: ReactNode;
-    iconPlacement?: 'end' | 'start';
-  }
->;
+export type ButtonProps = (ButtonHTMLAttributes<any> & AnchorHTMLAttributes<any>) & {
+  as?: ButtonAs;
+  ref?: ForwardedRef<HTMLButtonElement & HTMLAnchorElement>;
+  type?: 'button' | 'submit' | 'reset';
+  icon?: ReactNode;
+  iconPlacement?: 'end' | 'start';
+};
 
 export const ButtonBase: FC<ButtonProps> = forwardRef(
   ({ className, as: T = 'button', type = 'button', icon, iconPlacement, children, ...props }, ref) => (

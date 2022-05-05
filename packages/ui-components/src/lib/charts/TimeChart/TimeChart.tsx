@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import merge from 'lodash/merge';
 import { ChartJSOptions, ChartTooltipComponent } from '../chart.helpers';
@@ -11,7 +11,7 @@ import './time-chart.css';
 
 export interface TimeChartProps extends LineChartProps {}
 
-export const TimeChart: FC<PropsWithChildren<TimeChartProps>> = ({ options, datasets = [], className, ...props }) => {
+export const TimeChart: FC<TimeChartProps> = ({ options, datasets = [], className, ...props }) => {
   const { datasetDisplayLimit = datasets.length } = options || {};
   const [visibleDatasets, setVisibleDatasets] = useState<LineChartProps['datasets']>(datasets);
   const [activeIndexes, setActiveIndexes] = useState(

@@ -1,4 +1,4 @@
-import React, { FC, FocusEvent, PropsWithChildren } from 'react';
+import React, { FC, FocusEvent } from 'react';
 import { DateTime, Interval, LocaleOptions } from 'luxon';
 import classNames from 'classnames';
 import { isNullOrUndefined } from '../util/js-helpers';
@@ -47,7 +47,7 @@ export interface TimeRangeSliderProps extends Omit<SliderProps, 'value' | 'onCha
   maxTime?: string;
 }
 
-export const TimeRangeSlider: FC<PropsWithChildren<TimeRangeSliderProps>> = ({
+export const TimeRangeSlider: FC<TimeRangeSliderProps> = ({
   className,
   name,
   value,

@@ -1,9 +1,9 @@
-import React, { FC, PropsWithChildren } from 'react';
+import React, { FC } from 'react';
 import { FormikProps } from 'formik';
 import { StripeCardInput, StripeFormWrapper, StripeCardBrand } from '..';
 import { ButtonPrimary } from '../../buttons';
 
-export const StripeExample1: FC<PropsWithChildren<unknown>> = () => (
+export const StripeExample1: FC = () => (
   <StripeFormWrapper
     initialValues={{ 'stripe-input': undefined }}
     STRIPE_KEY={process.env.STORYBOOK_STRIPE_KEY}
@@ -22,7 +22,7 @@ export const StripeExample1: FC<PropsWithChildren<unknown>> = () => (
   </StripeFormWrapper>
 );
 
-export const StripeExampleRejectedBrands: FC<PropsWithChildren<unknown>> = () => {
+export const StripeExampleRejectedBrands: FC = () => {
   const rejectedBrands = ['discover', 'diners', 'jcb', 'unionpay'];
 
   return (
@@ -49,7 +49,7 @@ export const StripeExampleRejectedBrands: FC<PropsWithChildren<unknown>> = () =>
   );
 };
 
-export const StripeExampleAcceptedBrands: FC<PropsWithChildren<unknown>> = () => {
+export const StripeExampleAcceptedBrands: FC = () => {
   const acceptedBrands = ['visa', 'mastercard', 'amex'];
 
   return (

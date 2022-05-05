@@ -1,12 +1,4 @@
-import React, {
-  FC,
-  FocusEvent,
-  ElementType,
-  HTMLAttributes,
-  ReactNode,
-  SyntheticEvent,
-  PropsWithChildren
-} from 'react';
+import React, { FC, FocusEvent, ElementType, HTMLAttributes, ReactNode, SyntheticEvent } from 'react';
 import MuiSlider, { SliderValueLabel } from '@mui/material/Slider';
 import { FormikProps } from 'formik';
 import classNames from 'classnames';
@@ -44,7 +36,7 @@ export interface SliderProps {
   valueLabelFormat?: string | ((value: number, index: number) => ReactNode);
 }
 
-export const Slider: FC<PropsWithChildren<SliderProps>> = ({
+export const Slider: FC<SliderProps> = ({
   id,
   name,
   valueLabelDisplay = 'auto',

@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren, ReactNode, TableHTMLAttributes } from 'react';
+import React, { FC, ReactNode, TableHTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import './table.css';
@@ -8,7 +8,7 @@ export interface TableProps extends TableHTMLAttributes<HTMLTableElement> {
   footnote?: ReactNode;
 }
 
-export const Table: FC<PropsWithChildren<TableProps>> = ({ className, footnote, ...props }) => (
+export const Table: FC<TableProps> = ({ className, footnote, ...props }) => (
   <>
     <div className={classNames('lc-table-wrapper', className)}>
       <table className="lc-table" {...props} />

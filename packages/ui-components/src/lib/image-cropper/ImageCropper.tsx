@@ -1,5 +1,5 @@
 // Vendors
-import React, { FC, useState, useEffect, PropsWithChildren } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import ReactCrop, { Crop } from 'react-image-crop';
 
 // Components
@@ -20,7 +20,7 @@ import './image-cropper.css';
 import { ImageCropperProps, CroppedImage } from './ImageCropper.types';
 import classNames from 'classnames';
 
-export const ImageCropper: FC<PropsWithChildren<ImageCropperProps>> = ({
+export const ImageCropper: FC<ImageCropperProps> = ({
   src,
   file,
   mimeType = 'image/jpeg',

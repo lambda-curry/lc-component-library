@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, PropsWithChildren } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import ReactModal from 'react-modal';
 import classNames from 'classnames';
 import { IconButton } from '../icon-button';
@@ -12,13 +12,7 @@ export interface ModalProps extends ReactModal.Props {
   closeButton?: boolean;
 }
 
-export const Modal: FC<PropsWithChildren<ModalProps>> = ({
-  isOpen = false,
-  className,
-  closeButton = true,
-  children,
-  ...rest
-}) => {
+export const Modal: FC<ModalProps> = ({ isOpen = false, className, closeButton = true, children, ...rest }) => {
   const [open, setOpen] = useState(isOpen);
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import React, { FC, ChangeEvent, PropsWithChildren } from 'react';
+import React, { FC, ChangeEvent } from 'react';
 import classNames from 'classnames';
 import { FormikProps } from 'formik';
 import FormControl from '@mui/material/FormControl';
@@ -13,13 +13,7 @@ export interface InputRadioGroupProps extends RadioGroupProps {
   label?: string;
 }
 
-export const InputRadioGroup: FC<PropsWithChildren<InputRadioGroupProps>> = ({
-  className,
-  formikProps,
-  label,
-  onChange,
-  ...props
-}) => {
+export const InputRadioGroup: FC<InputRadioGroupProps> = ({ className, formikProps, label, onChange, ...props }) => {
   const formContext = useFormContext();
   if (!formikProps && formContext) formikProps = formContext;
   const fieldProps = formikProps?.getFieldProps(props.name);

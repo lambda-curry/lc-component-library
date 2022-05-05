@@ -1,7 +1,7 @@
-import React, { FC, PropsWithChildren, ReactElement } from 'react';
+import React, { FC } from 'react';
 import * as Stripe from '@stripe/stripe-js';
 import { CardElement, Elements, useElements, useStripe } from '@stripe/react-stripe-js';
-import { FormikConfig, FormikHelpers, FormikProps } from 'formik';
+import { FormikConfig, FormikHelpers } from 'formik';
 import { Form } from '../form';
 
 export interface StripeFormWrapperProps extends FormikConfig<any> {
@@ -9,7 +9,7 @@ export interface StripeFormWrapperProps extends FormikConfig<any> {
   onError?: (reason: string) => void;
 }
 
-const StripeFormWrapperContent: FC<PropsWithChildren<StripeFormWrapperProps>> = props => {
+const StripeFormWrapperContent: FC<StripeFormWrapperProps> = props => {
   const elements = useElements();
   const stripe = useStripe();
   const { onSubmit, onError, ...formikConfig } = props;
@@ -41,10 +41,7 @@ const StripeFormWrapperContent: FC<PropsWithChildren<StripeFormWrapperProps>> = 
 };
 
 // Setup Stripe.js and the Elements provider
-export const StripeFormWrapper: FC<PropsWithChildren<{ STRIPE_KEY?: string } & StripeFormWrapperProps>> = ({
-  STRIPE_KEY,
-  ...props
-}) => {
+export const StripeFormWrapper: FC<{ STRIPE_KEY?: string } & StripeFormWrapperProps> = ({ STRIPE_KEY, ...props }) => {
   if (!STRIPE_KEY) throw new Error('STRIPE_KEY is required for StripeFormWrapper');
 
   const stripePromise = Stripe.loadStripe(STRIPE_KEY);

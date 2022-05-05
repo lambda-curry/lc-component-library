@@ -1,4 +1,4 @@
-import React, { FC, forwardRef, PropsWithChildren } from 'react';
+import React, { FC, forwardRef } from 'react';
 import classNames from 'classnames';
 import { InputBase, InputProps } from '../InputBase';
 

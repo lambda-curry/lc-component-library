@@ -11,7 +11,6 @@ export interface WysiwygProps {
   formikProps: FormikProps<any>;
   templateVariables?: string[];
   characterLimit?: number;
-  children?: React.ReactElement<any>;
   placeholder: string;
 }
 

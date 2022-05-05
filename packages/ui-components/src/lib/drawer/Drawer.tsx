@@ -1,4 +1,4 @@
-import React, { FC, KeyboardEvent, MouseEvent, PropsWithChildren } from 'react';
+import React, { FC, KeyboardEvent, MouseEvent } from 'react';
 import MuiDrawer, { DrawerProps as MuiDrawerProps } from '@mui/material/Drawer';
 import classNames from 'classnames';
 import './drawer.css';
@@ -23,7 +23,7 @@ const toggleDrawer: (
   toggleFunction({ name });
 };
 
-export const Drawer: FC<PropsWithChildren<DrawerProps>> = ({ name, className, options: overrides, ...props }) => {
+export const Drawer: FC<DrawerProps> = ({ name, className, options: overrides, ...props }) => {
   const { drawerActions, drawerState } = useDrawer();
   const isOpen = drawerState.active === name;
 

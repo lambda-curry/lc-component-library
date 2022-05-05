@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren, ReactElement, useRef } from 'react';
+import React, { FC, ReactElement, useRef } from 'react';
 import {
   Menu as RCMenu,
   MenuItem,
@@ -75,7 +75,7 @@ const mapMenuItems = (menuItems: MenuItems) =>
     return null;
   });
 
-export const Menu: FC<PropsWithChildren<MenuProps | HoverMenuProps>> = props => {
+export const Menu: FC<MenuProps | HoverMenuProps> = props => {
   const ref = useRef(null);
   const { toggleMenu, state, ...menuStateProps } = useMenuState();
 

@@ -1,4 +1,4 @@
-import React, { FC, createContext, Context, useContext, useReducer, PropsWithChildren } from 'react';
+import React, { FC, createContext, Context, useContext, useReducer } from 'react';
 import { drawerActions, DrawerActions, DrawerReducer } from './drawer.helpers';
 
 export const DrawerStateContext: Context<any> = createContext({});
@@ -12,7 +12,7 @@ export const useDrawer = () => {
   return { drawerState, drawerActions };
 };
 
-export const DrawerProvider: FC<PropsWithChildren<any>> = ({ children }) => {
+export const DrawerProvider: FC = ({ children }) => {
   const [state, dispatch] = useReducer(DrawerReducer, { data: {} });
 
   return (

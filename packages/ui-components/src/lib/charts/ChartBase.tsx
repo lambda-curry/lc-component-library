@@ -1,4 +1,4 @@
-import React, { FC, createRef, PropsWithChildren } from 'react';
+import React, { FC, createRef } from 'react';
 import classNames from 'classnames';
 import { ChartTooltipModel, ChartType } from 'chart.js';
 import ChartComponent, { ChartComponentProps } from 'react-chartjs-2';
@@ -24,7 +24,7 @@ export interface ChartBaseProps extends Omit<ChartComponentProps, 'data'> {
   type: ChartType;
 }
 
-export const ChartBase: FC<PropsWithChildren<ChartBaseProps>> = ({
+export const ChartBase: FC<ChartBaseProps> = ({
   type,
   options,
   chartJSData: data,
