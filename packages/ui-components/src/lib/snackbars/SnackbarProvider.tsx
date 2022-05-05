@@ -16,6 +16,7 @@ export const SnackbarProvider: FC<SnackbarProviderProps> = props => {
   };
 
   return (
+    // TODO: #106 Fix React 18 TypeScript errors @jaredhill4
     // @ts-ignore
     <MuiSnackbarProvider
       ref={snackbarProviderRef}

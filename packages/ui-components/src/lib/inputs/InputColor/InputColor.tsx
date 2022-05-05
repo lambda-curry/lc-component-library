@@ -15,6 +15,7 @@ export interface InputColorProps extends InputProps {
 // Resource: https://mui.com/components/text-fields/
 // Issue with types: https://github.com/uNmAnNeR/imaskjs/issues/554
 const InputColorMask = React.forwardRef<HTMLElement, any>((props, ref) => (
+  // TODO: #106 Fix React 18 TypeScript errors @jaredhill4
   // @ts-ignore
   <IMaskInput
     {...props}

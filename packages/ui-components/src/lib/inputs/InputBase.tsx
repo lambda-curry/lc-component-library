@@ -65,8 +65,10 @@ export const InputBase: FC<InputProps> = forwardRef(
     const helperText = fieldError || serverError || props.helperText;
 
     const InputProps = {
+      // TODO: #106 Fix React 18 TypeScript errors @jaredhill4
       // @ts-ignore
       startAdornment: prefix ? <InputAdornment position="start">{prefix}</InputAdornment> : false,
+      // TODO: #106 Fix React 18 TypeScript errors @jaredhill4
       // @ts-ignore
       endAdornment: suffix ? <InputAdornment position="end">{suffix}</InputAdornment> : false,
       ...props.InputProps // Note: don't remove these, passing `InputProps` in here allows InputSelect to work correctly

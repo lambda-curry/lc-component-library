@@ -86,6 +86,7 @@ export const Wysiwyg: FC<WysiwygProps> = ({
         };
 
         return (
+          // TODO: #106 Fix React 18 TypeScript errors @jaredhill4
           // @ts-ignore
           <ReactQuill
             className="wysiwyg-editor"

@@ -220,6 +220,7 @@ export const InputSelect: FC<InputSelectProps> = ({
       );
     },
     // Note: We hide the popup when the browser is auto-filling because it blocks other elements.
+    // TODO: #106 Fix React 18 TypeScript errors @jaredhill4
     // @ts-ignore
     PaperComponent: props => (!isAutoFilling ? <Paper className="lc-input-select-paper" {...props} /> : null),
     getOptionLabel: (option: { [key: string]: any }) => _get(option, optionLabelKey) || '',
