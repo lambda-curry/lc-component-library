@@ -11,10 +11,8 @@ export interface ThemeBaseProps {
   theme?: Theme;
 }
 
-export const ThemeBase: FC<ThemeBaseProps> = ({ as: T = 'div', className, theme = muiTheme, ...props }) => {
-  return (
-    <MUIThemeProvider theme={muiTheme}>
-      <T className={classNames('lc-theme-base', className)} {...props} />
-    </MUIThemeProvider>
-  );
-};
+export const ThemeBase: FC<ThemeBaseProps> = ({ as: T = 'div', className, theme = muiTheme, ...props }) => (
+  <MUIThemeProvider theme={muiTheme}>
+    <T className={classNames('lc-theme-base', className)} {...props} />
+  </MUIThemeProvider>
+);
