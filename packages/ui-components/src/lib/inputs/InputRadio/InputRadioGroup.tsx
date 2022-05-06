@@ -16,8 +16,9 @@ export interface InputRadioGroupProps extends RadioGroupProps {
 export const InputRadioGroup: FC<InputRadioGroupProps> = ({ className, formikProps, label, onChange, ...props }) => {
   const formContext = useFormContext();
   if (!formikProps && formContext) formikProps = formContext;
+
   const fieldProps = formikProps?.getFieldProps(props.name);
-  const value = props.value ?? fieldProps?.value;
+  const fieldValue = props.value ?? fieldProps?.value;
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (onChange) onChange(event, event.target.value);
@@ -27,7 +28,7 @@ export const InputRadioGroup: FC<InputRadioGroupProps> = ({ className, formikPro
   return (
     <FormControl className={classNames('lc-input-radio-group', className)} component="fieldset">
       {label && <FormLabel component="legend">{label}</FormLabel>}
-      <RadioGroup aria-label={props.name} onChange={handleChange} value={value} {...props} />
+      <RadioGroup aria-label={props.name} onChange={handleChange} value={fieldValue} {...props} />
     </FormControl>
   );
 };

@@ -3,25 +3,18 @@ import { InputPhone, Form } from '../../..';
 import dedent from 'string-dedent';
 import './input-phone-story.css';
 
-export const InputPhoneExample = () => {
-  return (
-    <div className="input-text-story">
-      <Form
-        initialValues={{
-          phone: ''
-        }}
-        onSubmit={() => {}}
-      >
-        {formikProps => (
-          <>
-            <p className="lc-mb-16">Values: {JSON.stringify(formikProps.values)}</p>
-            <InputPhone name="phone" label="Phone Input" formikProps={formikProps} />
-          </>
-        )}
-      </Form>
-    </div>
-  );
-};
+export const InputPhoneExample = () => (
+  <div className="input-text-story">
+    <Form initialValues={{ phone: '' }} onSubmit={() => {}}>
+      {formikProps => (
+        <>
+          <p className="lc-mb-16">Values: {JSON.stringify(formikProps.values)}</p>
+          <InputPhone name="phone" label="Phone Input" />
+        </>
+      )}
+    </Form>
+  </div>
+);
 
 <Meta title="Components/Inputs/Input Phone" component={InputPhone} />
 

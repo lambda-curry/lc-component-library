@@ -15,16 +15,11 @@ import dedent from 'string-dedent';
         source: {
           code: dedent`
             <h4>Default</h4>
-            <Form
-              initialValues={{
-                switchDefault: false
-              }}
-              onSubmit={() => {}}
-            >
+            <Form initialValues={{ switchDefault: false }} onSubmit={() => {}}>
               {formikProps => (
                 <>
                   <p>Value: {\`\${formikProps.values.switchDefault}\`}</p>
-                  <InputSwitch name="switchDefault" formikProps={formikProps} />
+                  <InputSwitch name="switchDefault" />
                   <Button
                     onClick={() => {
                       formikProps.resetForm();
@@ -41,16 +36,11 @@ import dedent from 'string-dedent';
   >
     <div className="input-switch-story">
       <h4>Default</h4>
-      <Form
-        initialValues={{
-          switchDefault: false
-        }}
-        onSubmit={() => {}}
-      >
+      <Form initialValues={{ switchDefault: false }} onSubmit={() => {}}>
         {formikProps => (
           <>
             <p>Value: {`${formikProps.values.switchDefault}`}</p>
-            <InputSwitch name="switchDefault" formikProps={formikProps} />
+            <InputSwitch name="switchDefault" />
             <Button
               onClick={() => {
                 formikProps.resetForm();
@@ -70,13 +60,8 @@ import dedent from 'string-dedent';
         source: {
           code: dedent`
             <h4>Active</h4>
-            <Form
-              initialValues={{
-                switchActive: true
-              }}
-              onSubmit={() => {}}
-            >
-              {formikProps => <InputSwitch name="switchActive" formikProps={formikProps} />}
+            <Form initialValues={{ switchActive: true }} onSubmit={() => {}}>
+              {formikProps => <InputSwitch name="switchActive" />}
             </Form>`
         }
       }
@@ -84,13 +69,8 @@ import dedent from 'string-dedent';
   >
     <div className="input-switch-story">
       <h4>Active</h4>
-      <Form
-        initialValues={{
-          switchActive: true
-        }}
-        onSubmit={() => {}}
-      >
-        {formikProps => <InputSwitch name="switchActive" formikProps={formikProps} />}
+      <Form initialValues={{ switchActive: true }} onSubmit={() => {}}>
+        {formikProps => <InputSwitch name="switchActive" />}
       </Form>
     </div>
   </Story>
@@ -101,13 +81,8 @@ import dedent from 'string-dedent';
         source: {
           code: dedent`
             <h4>Disabled</h4>
-            <Form
-              initialValues={{
-                switchActive: true
-              }}
-              onSubmit={() => {}}
-            >
-              {formikProps => <InputSwitch name="switchActive" disabled={true} formikProps={formikProps} />}
+            <Form initialValues={{ switchActive: true }} onSubmit={() => {}}>
+              {formikProps => <InputSwitch name="switchActive" disabled={true} />}
             </Form>`
         }
       }
@@ -115,13 +90,8 @@ import dedent from 'string-dedent';
   >
     <div className="input-switch-story">
       <h4>Disabled</h4>
-      <Form
-        initialValues={{
-          switchActive: true
-        }}
-        onSubmit={() => {}}
-      >
-        {formikProps => <InputSwitch name="switchActive" disabled={true} formikProps={formikProps} />}
+      <Form initialValues={{ switchActive: true }} onSubmit={() => {}}>
+        {formikProps => <InputSwitch name="switchActive" disabled={true} />}
       </Form>
     </div>
   </Story>
@@ -132,23 +102,12 @@ import dedent from 'string-dedent';
         source: {
           code: dedent`
             <h4>With Label</h4>
-            <Form
-              initialValues={{
-                switchWithLabelEnd: true,
-                switchWithLabeLStart: false
-              }}
-              onSubmit={() => {}}
-            >
+            <Form initialValues={{ switchWithLabelEnd: true, switchWithLabeLStart: false }} onSubmit={() => {}}>
               {formikProps => (
                 <>
-                  <InputSwitch name="switchWithLabelEnd" label="Click Me" labelPlacement="end" formikProps={formikProps} />
-                  &nbsp;&nbsp;&nbsp;&nbsp;<InputSwitch
-                    name="switchWithLabeLStart"
-                    labelOn="On"
-                    labelOff="Off"
-                    labelPlacement="start"
-                    formikProps={formikProps}
-                  />
+                  <InputSwitch name="switchWithLabelEnd" label="Click Me" labelPlacement="end" />
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <InputSwitch name="switchWithLabeLStart" labelOn="On" labelOff="Off" labelPlacement="start" />
                 </>
               )}
             </Form>`
@@ -158,24 +117,12 @@ import dedent from 'string-dedent';
   >
     <div className="input-switch-story">
       <h4>With Label</h4>
-      <Form
-        initialValues={{
-          switchWithLabelEnd: true,
-          switchWithLabeLStart: false
-        }}
-        onSubmit={() => {}}
-      >
+      <Form initialValues={{ switchWithLabelEnd: true, switchWithLabeLStart: false }} onSubmit={() => {}}>
         {formikProps => (
           <>
-            <InputSwitch name="switchWithLabelEnd" label="Click Me" labelPlacement="end" formikProps={formikProps} />
+            <InputSwitch name="switchWithLabelEnd" label="Click Me" labelPlacement="end" />
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <InputSwitch
-              name="switchWithLabeLStart"
-              labelOn="On"
-              labelOff="Off"
-              labelPlacement="start"
-              formikProps={formikProps}
-            />
+            <InputSwitch name="switchWithLabeLStart" labelOn="On" labelOff="Off" labelPlacement="start" />
           </>
         )}
       </Form>

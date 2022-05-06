@@ -7,6 +7,7 @@ import { InputProps } from '../InputBase';
 import { isHexColor, hexColorRegex } from '../../util/colors';
 
 import './input-color.css';
+import { useFormContext } from '../../hooks';
 
 export interface InputColorProps extends InputProps {
   onPickerChange?: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -33,6 +34,9 @@ export const InputColor: FC<InputColorProps> = ({
   onPickerChange,
   ...props
 }) => {
+  const formContext = useFormContext();
+  if (!props.formikProps && formContext) props.formikProps = formContext;
+
   const fieldProps = props.formikProps?.getFieldProps ? props.formikProps.getFieldProps(props.name) : null;
   const fieldHelpers = props.formikProps?.getFieldHelpers ? props.formikProps.getFieldHelpers(props.name) : null;
   const fieldValue = fieldProps?.value || props.value;
