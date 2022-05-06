@@ -13,15 +13,11 @@ import dedent from 'string-dedent';
       docs: {
         source: {
           code: dedent`
-            <Form
-              initialValues={{
-                color: '#000000'
-              }}
-              onSubmit={() => {}}
-            >
+            <Form initialValues={{ color: '#000000' }} onSubmit={() => {}}>
               {formikProps => (
                 <>
-                  <InputColor name="color" formikProps={formikProps} />
+                  <p>Value: {JSON.stringify(formikProps.values)}</p>
+                  <InputColor name="color" />
                 </>
               )}
             </Form>`
@@ -30,15 +26,11 @@ import dedent from 'string-dedent';
     }}
   >
     <div className="input-text-story">
-      <Form
-        initialValues={{
-          color: '#000000'
-        }}
-        onSubmit={() => {}}
-      >
+      <Form initialValues={{ color: '#000000' }} onSubmit={() => {}}>
         {formikProps => (
           <>
-            <InputColor id="color" name="color" formikProps={formikProps} />
+            <p>Value: {JSON.stringify(formikProps.values)}</p>
+            <InputColor id="color" name="color" />
           </>
         )}
       </Form>

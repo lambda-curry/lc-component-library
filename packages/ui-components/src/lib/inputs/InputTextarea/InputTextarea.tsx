@@ -1,5 +1,6 @@
 import React, { FC, ChangeEvent } from 'react';
 import classNames from 'classnames';
+import { useFormContext } from '../../hooks';
 import { InputBase, InputProps } from '../InputBase';
 import { MultilineInput } from '../../multiline-input';
 
@@ -16,6 +17,9 @@ export const InputTextarea: FC<InputTextareaProps> = ({
   onChange,
   ...props
 }) => {
+  const formContext = useFormContext();
+  if (!props.formikProps && formContext) props.formikProps = formContext;
+
   const fieldProps = props.formikProps?.getFieldProps ? props.formikProps?.getFieldProps(props.name) : null;
   const fieldValue = fieldProps?.value || props.value;
 

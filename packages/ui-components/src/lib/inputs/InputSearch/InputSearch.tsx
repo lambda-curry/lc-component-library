@@ -1,7 +1,7 @@
 import React, { FC, Reducer, useEffect, useReducer, ChangeEvent } from 'react';
 import classNames from 'classnames';
 import { AutoCompleteChange, InputSelect, InputSelectProps } from '../InputSelect/InputSelect';
-import { useAsyncEffect, useDebounce } from '../../hooks';
+import { useAsyncEffect, useDebounce, useFormContext } from '../../hooks';
 import { AutocompleteInputChangeReason } from '@mui/material/useAutocomplete';
 import _get from 'lodash/get';
 
@@ -59,6 +59,9 @@ export const InputSearch: FC<InputSearchProps> = ({
   placeholder = 'Type to search...',
   ...props
 }) => {
+  const formContext = useFormContext();
+  if (!props.formikProps && formContext) props.formikProps = formContext;
+
   const selectedValue = _get(props.formikProps?.values, props.name);
   const getValueLabel: (value: any, options: any[]) => string = (value, options) => {
     if (!options) return '';

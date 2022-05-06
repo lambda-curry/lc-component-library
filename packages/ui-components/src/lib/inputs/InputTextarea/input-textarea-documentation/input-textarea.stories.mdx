@@ -14,15 +14,11 @@ import dedent from 'string-dedent';
       docs: {
         source: {
           code: dedent`
-            <Form
-              initialValues={{
-                sampleInput1: '',
-              }}
-              onSubmit={() => {}}
-            >
+            <Form initialValues={{ sampleInput1: '' }} onSubmit={() => {}}>
               {formikProps => (
                 <>
-                  <InputTextarea name="sampleInput1" label="Textarea Input" formikProps={formikProps} />
+                  <p>Value: {JSON.stringify(formikProps.values)}</p>
+                  <InputTextarea name="sampleInput1" label="Textarea Input" characterLimit={500} />
                 </>
               )}
             </Form>`
@@ -31,15 +27,11 @@ import dedent from 'string-dedent';
     }}
   >
     <div className="input-text-story">
-      <Form
-        initialValues={{
-          sampleInput1: ''
-        }}
-        onSubmit={() => {}}
-      >
+      <Form initialValues={{ sampleInput1: '' }} onSubmit={() => {}}>
         {formikProps => (
           <>
-            <InputTextarea name="sampleInput1" label="Textarea Input" formikProps={formikProps} characterLimit={500} />
+            <p>Value: {JSON.stringify(formikProps.values)}</p>
+            <InputTextarea name="sampleInput1" label="Textarea Input" characterLimit={500} />
           </>
         )}
       </Form>
