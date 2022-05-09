@@ -11,7 +11,11 @@
     "build": "nx run ui-components:build:production",
     "storybook": "nx run ui-components:storybook",
     "sb": "yarn storybook",
-    "npm-version": "cd packages/ui-components && npm version"
+    "npm-version": "cd packages/ui-components && npm version",
+    "yalc-publish": "cd packages/ui-components && yalc publish",
+    "yalc-push": "cd packages/ui-components && yalc push",
+    "preyalc-publish": "yarn build && yalc publish",
+    "preyalc-push": "yarn build && yalc push"
   },
   "private": true,
   "workspaces": {
