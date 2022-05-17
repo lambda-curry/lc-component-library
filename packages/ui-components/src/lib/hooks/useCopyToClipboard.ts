@@ -6,7 +6,7 @@ type CopyStates = 'copyable' | 'copied' | 'error';
 export function useCopyToClipboard(
   copyText: string,
   copyTarget: string,
-  config?: { copied?: string; copyable?: string; error?: string; container?: HTMLElement }
+  config?: { copied?: string; copyable?: string; error?: string; options?: ClipboardJS.Options }
 ): [string, CopyStates] {
   const [copyState, setCopyState] = useState<CopyStates>('copyable');
   const [clipboard, setClipboard] = useState<ClipboardJS>();
@@ -23,8 +23,8 @@ export function useCopyToClipboard(
     const targetElements = document.querySelectorAll(copyTarget);
     if (targetElements.length) {
       targetElements.forEach(targetElement => targetElement.setAttribute('data-clipboard-text', copyText));
-      const newClipboard = config?.container
-        ? new ClipboardJS(targetElements, { container: config.container })
+      const newClipboard = config?.options
+        ? new ClipboardJS(targetElements, config.options)
         : new ClipboardJS(targetElements);
       setClipboard(newClipboard);
     }
