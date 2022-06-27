@@ -7,7 +7,7 @@ import './icon-button.css';
 
 export interface IconButtonProps extends ButtonProps {
   icon: IconNames | ReactNode;
-  iconProps?: IconProps;
+  iconProps?: Partial<Omit<IconProps, 'name'>>;
 }
 
 export const IconButton: FC<IconButtonProps> = forwardRef(({ className, icon, iconProps, ...props }, ref) => (
