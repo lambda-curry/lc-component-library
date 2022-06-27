@@ -47,8 +47,10 @@ import { ReactComponent as help } from '../../assets/icons/help.svg';
 import { ReactComponent as home } from '../../assets/icons/home.svg';
 import { ReactComponent as inbox } from '../../assets/icons/inbox.svg';
 import { ReactComponent as income } from '../../assets/icons/income.svg';
+import { ReactComponent as instagram } from '../../assets/icons/instagram.svg';
 import { ReactComponent as laptop } from '../../assets/icons/laptop.svg';
 import { ReactComponent as lifeRing } from '../../assets/icons/lifeRing.svg';
+import { ReactComponent as linkedin } from '../../assets/icons/linkedin.svg';
 import { ReactComponent as location } from '../../assets/icons/location.svg';
 import { ReactComponent as mailOutline } from '../../assets/icons/mailOutline.svg';
 import { ReactComponent as menu } from '../../assets/icons/menu.svg';
@@ -124,8 +126,10 @@ export const defaultIcons = {
   home,
   inbox,
   income,
+  instagram,
   laptop,
   lifeRing,
+  linkedin,
   location,
   mailOutline,
   menu,
@@ -165,7 +169,8 @@ const aliasMap = {
   pdf: 'filePDF',
   ringVolume: 'phoneRing',
   visibility: 'eye',
-  question: 'help'
+  question: 'help',
+  linkedIn: 'linkedin'
 };
 
 export type IconsMap = { [x: string]: FC<SVGProps<SVGSVGElement>> };
