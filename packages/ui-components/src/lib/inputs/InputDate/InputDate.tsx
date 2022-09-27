@@ -41,6 +41,8 @@ export const InputDate: FC<InputDateProps> = ({
 
   const fieldValue = formikProps ? _get(formikProps?.values, props.name, '') : value;
 
+  console.log(`>>> ${props.name}`, formikProps?.errors);
+
   return (
     <LocalizationProvider dateAdapter={AdapterLuxon}>
       <DatePicker
@@ -58,6 +60,11 @@ export const InputDate: FC<InputDateProps> = ({
           <InputText
             {...renderProps}
             {...props}
+            error={
+              props.error ||
+              (formikProps?.errors && formikProps?.errors[props.name]) ||
+              (formikProps?.values && formikProps?.values[props.name] === 'Invalid DateTime')
+            }
             formikProps={formikProps}
             className={classNames('lc-input-date', className)}
           />

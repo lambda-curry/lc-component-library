@@ -7,7 +7,7 @@ export const inputDateExample1: FC<any> = () => {
   const formikProps: FormikProps<any> = useFormik({
     initialValues: {
       sampleDate: new Date(),
-      formattedDate: undefined,
+      formattedDate: '',
       onChangeDate: new Date()
     },
     onSubmit: () => undefined

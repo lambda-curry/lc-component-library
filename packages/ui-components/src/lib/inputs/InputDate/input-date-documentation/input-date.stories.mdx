@@ -17,7 +17,7 @@ import { inputDateExample1 } from './input-date.examples.tsx';
   const formikProps: FormikProps<any> = useFormik({
     initialValues: {
       sampleDate: new Date(),
-      formattedDate: undefined,
+      formattedDate: '',
       onChangeDate: new Date()
     },
     onSubmit: () => undefined
