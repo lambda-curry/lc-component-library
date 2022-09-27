@@ -2,9 +2,8 @@ import React, { FC } from 'react';
 import { DateTime } from 'luxon';
 import _get from 'lodash/get';
 import classNames from 'classnames';
-import DatePicker, { DatePickerProps } from '@mui/lab/DatePicker';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import LuxonAdapter from '@mui/lab/AdapterLuxon';
+import { DatePicker, DatePickerProps, LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterLuxon } from '@mui/x-date-pickers/AdapterLuxon';
 import { useFormContext } from '../../hooks';
 import { InputText } from '../InputText/InputText';
 import { InputProps } from '../InputBase';
@@ -43,7 +42,7 @@ export const InputDate: FC<InputDateProps> = ({
   const fieldValue = formikProps ? _get(formikProps?.values, props.name, '') : value;
 
   return (
-    <LocalizationProvider dateAdapter={LuxonAdapter}>
+    <LocalizationProvider dateAdapter={AdapterLuxon}>
       <DatePicker
         {...datePickerProps}
         label={label}
