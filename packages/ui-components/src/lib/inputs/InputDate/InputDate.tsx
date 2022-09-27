@@ -15,7 +15,7 @@ export type InputDateProps = Omit<InputProps, 'onChange'> & {
   valueFormat?: string;
   disablePast?: boolean;
   className?: string;
-  datePickerProps?: Partial<DatePickerProps<DateTime>>;
+  datePickerProps?: Partial<DatePickerProps<DateTime, DateTime>>;
 };
 
 const fromDateTime = (dt: DateTime | null, format?: string): Date | string | null => {
