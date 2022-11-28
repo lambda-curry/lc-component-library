@@ -12,6 +12,7 @@ export const ButtonOutlineSuccess: FC<ButtonProps> = forwardRef(({ className, ..
         `lc-button-outline-success`,
         `lc-text-success`,
         `lc-border-success`,
+        `lc-bg-transparent`,
         `hover:lc-text-white`,
         `hover:lc-bg-success`,
         `focus-visible:lc-ring-success`

@@ -1,10 +1,11 @@
 {
-  "root": "packages/ui-components",
+  "name": "ui-components",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/ui-components/src",
   "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "command": "yarn esbuild",
         "outputPath": "dist",
@@ -23,7 +24,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/ui-components"],
+      "outputs": ["{workspaceRoot}/coverage/packages/ui-components"],
       "options": {
         "jestConfig": "packages/ui-components/jest.config.ts",
         "passWithNoTests": true

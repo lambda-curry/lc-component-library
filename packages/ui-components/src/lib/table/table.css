@@ -29,16 +29,11 @@
     & th,
     & td {
       @apply lc-text-left;
-      @apply lc-px-20;
-      @apply lc-py-16;
+      @apply lc-px-20 md:lc-px-24;
+      @apply lc-py-16 md:lc-py-20;
 
       &:last-child:not(:first-child) {
         @apply lc-text-right;
-      }
-
-      @media screen and (min-width: theme('screens.md')) {
-        @apply lc-px-24;
-        @apply lc-py-20;
       }
     }
   }

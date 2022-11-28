@@ -16,7 +16,6 @@ export const ButtonStyled: FC<ButtonProps> = forwardRef(({ className, ...props }
         `lc-font-bold`,
         `lc-border-1`,
         `lc-rounded`,
-        `lc-bg-transparent`,
         `lc-border-solid`,
         `focus:lc-ring-4`,
         `focus:lc-ring-opacity-50`,

@@ -11,6 +11,7 @@ export const ButtonOutlineDanger: FC<ButtonProps> = forwardRef(({ className, ...
       [
         `lc-button-outline-danger`,
         `lc-text-danger`,
+        `lc-bg-transparent`,
         `lc-border-danger`,
         `hover:lc-text-white`,
         `hover:lc-bg-danger`,

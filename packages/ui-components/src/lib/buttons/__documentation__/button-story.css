@@ -1,5 +1,3 @@
-.button-story {
-  .lc-button {
-    margin: 8px;
-  }
+.button-story .lc-button {
+  margin: 8px;
 }

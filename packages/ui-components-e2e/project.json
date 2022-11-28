@@ -1,5 +1,6 @@
 {
-  "root": "packages/ui-components-e2e",
+  "name": "ui-components-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/ui-components-e2e/src",
   "projectType": "application",
   "implicitDependencies": ["ui-components"],

@@ -1,4 +1,5 @@
-module.exports = {
+/* eslint-disable */
+export default {
   displayName: 'ui-components',
 
   transform: {
@@ -6,5 +7,5 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: '../../coverage/packages/ui-components',
-  preset: '../../jest.preset.ts'
+  preset: '../../jest.preset.js'
 };
