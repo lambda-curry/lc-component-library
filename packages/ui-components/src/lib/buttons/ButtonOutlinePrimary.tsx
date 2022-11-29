@@ -12,6 +12,7 @@ export const ButtonOutlinePrimary: FC<ButtonProps> = forwardRef(({ className, ..
         `lc-button-outline-primary`,
         `lc-text-primary`,
         `lc-border-primary`,
+        `lc-bg-transparent`,
         `hover:lc-text-white`,
         `hover:lc-bg-primary`,
         `focus-visible:lc-ring-primary`

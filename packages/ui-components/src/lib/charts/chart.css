@@ -14,7 +14,7 @@
       display: inline-block;
       width: 11px;
       height: 11px;
-      margin-right: theme('spacing.12');
+      @apply lc-mr-12;
       border-radius: 100%;
     }
 
@@ -29,11 +29,10 @@
     display: flex;
     flex-flow: row wrap;
     list-style: none;
-    padding: theme('spacing.16') 0;
-    margin: -theme('spacing.4') -theme('spacing.16');
+    @apply lc-py-16 -lc-my-4 -lc-mx-16;
 
     &-item {
-      padding: theme('spacing.4') theme('spacing.16');
+      @apply lc-py-4 lc-px-16;
 
       &-label {
         @apply lc-font-normal;
@@ -41,13 +40,14 @@
       }
 
       &-value {
-        margin-left: theme('spacing.4');
+        @apply lc-ml-4;
+        
       }
 
       &-button {
         &.lc-button {
-          padding: theme('spacing.8') theme('spacing.16');
           border-radius: 100px;
+          @apply lc-py-8 lc-px-16;
           @apply lc-border-1;
           @apply lc-border-solid;
           @apply lc-text-gray-light;
@@ -79,12 +79,11 @@
     }
 
     &-interactive {
-      padding: theme('spacing.8') 0;
-      margin: -theme('spacing.8') -theme('spacing.8');
+      @apply lc-py-8 -lc-mx-8;
     }
 
     &-interactive &-item {
-      padding: theme('spacing.8') theme('spacing.8');
+      @apply lc-p-8;
     }
   }
 

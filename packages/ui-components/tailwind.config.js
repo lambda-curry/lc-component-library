@@ -1,12 +1,23 @@
+const { createGlobPatternsForDependencies } = require('@nrwl/react/tailwind');
 const defaultTheme = require('tailwindcss/defaultTheme');
 const { cssVar } = require('./tailwind/helpers');
 const { baseColors, themeColors } = require('./tailwind/colors');
 
 module.exports = {
-  purge: {
-    content: ['./src/**/*.tsx']
-  },
+  content: [`${__dirname}/src/lib/**/*.tsx`, ...createGlobPatternsForDependencies(__dirname)],
   prefix: 'lc-',
+  extend: {
+    fontWeight: {
+      ...defaultTheme.fontWeight,
+      ultralight: 200,
+      regular: 400,
+      heavy: 900
+    },
+    scale: {
+      ...defaultTheme.scale,
+      98: '.98'
+    }
+  },
   theme: {
     ...defaultTheme,
     colors: {
@@ -57,12 +68,6 @@ module.exports = {
       sans: cssVar('font-family-sans'),
       code: cssVar('font-family-code')
     },
-    fontWeight: {
-      ...defaultTheme.fontWeight,
-      ultralight: 200,
-      regular: 400,
-      heavy: 900
-    },
     fontSize: {
       xs: ['12px', '1.5'],
       sm: ['14px', '1.5'],
@@ -88,10 +93,6 @@ module.exports = {
       md: '6px',
       lg: '8px',
       xl: '12px'
-    },
-    scale: {
-      ...defaultTheme.scale,
-      98: '.98'
     }
   },
   variants: {

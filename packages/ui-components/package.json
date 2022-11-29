@@ -76,7 +76,6 @@
     "react-modal": "^3.15.1",
     "react-quill": "*",
     "regenerator-runtime": "*",
-    "tailwindcss": "*",
     "yup": "*"
   },
   "devDependencies": {
@@ -96,6 +95,7 @@
     "postcss-simple-vars": "*",
     "postcss-strip-inline-comments": "*",
     "postcss-url": "*",
+    "tailwindcss": "*",
     "webpack": "*"
   }
 }

@@ -1,4 +1,4 @@
-import React, { Reducer, useReducer, ReactElement, Dispatch } from 'react';
+import React, { Reducer, useReducer, Dispatch, ReactChild } from 'react';
 import { Formik, FormikConfig, FormikProps, Form as FormikForm, useFormikContext, FormikHelpers } from 'formik';
 import { useOnClickOutside } from '../hooks';
 import { Modal, ModalHeader, ModalActions } from '../modal';
@@ -70,8 +70,8 @@ function FormContent<T>({
   confirmUnsavedChanges?: boolean;
   unsavedChangesConfig: UnsavedChangesConfig;
   persistValuesConfig?: PersistValuesConfig<T>;
-  children: ReactElement;
-}): ReactElement {
+  children: ReactChild;
+}) {
   const formContext = useFormikContext<T>();
 
   const handleClickOutside = (event: MouseEvent | TouchEvent) => {
@@ -116,7 +116,7 @@ export function Form<T>({
   unsavedChangesConfig = {},
   formConfig,
   ...props
-}: FormProps<T>): ReactElement {
+}: FormProps<T>) {
   unsavedChangesConfig = {
     targetQuerySelector: 'a:not([href="#"]), button, .navbar-back',
     ...unsavedChangesConfig
@@ -178,7 +178,7 @@ export function Form<T>({
   } = unsavedChangesConfig.modalProps || {};
 
   return (
-    <Formik {...(props as FormikConfig<T>)} initialStatus={{ ...props.initialStatus, formConfig }}>
+    <Formik<any> {...(props as FormikConfig<T>)} initialStatus={{ ...props.initialStatus, formConfig }}>
       {(formikProps: FormikProps<T>) => (
         <FormContent<T>
           className={className}

@@ -11,6 +11,7 @@ export const ButtonOutlineAccent: FC<ButtonProps> = forwardRef(({ className, ...
       [
         `lc-button-outline-accent`,
         `lc-text-accent`,
+        `lc-bg-transparent`,
         `lc-border-accent`,
         `hover:lc-text-white`,
         `hover:lc-bg-accent`,
