@@ -3,8 +3,6 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 const { cssVar } = require('./tailwind/helpers');
 const { baseColors, themeColors } = require('./tailwind/colors');
 
-console.log('>>>>>>', { ...baseColors, ...themeColors });
-
 module.exports = {
   content: [`${__dirname}/src/lib/**/*.tsx`, ...createGlobPatternsForDependencies(__dirname)],
   prefix: 'lc-',
