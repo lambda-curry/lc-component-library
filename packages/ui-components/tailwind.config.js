@@ -4,7 +4,7 @@ const { cssVar } = require('./tailwind/helpers');
 const { baseColors, themeColors } = require('./tailwind/colors');
 
 module.exports = {
-  content: [`${__dirname}/src/lib/**/*.tsx`, ...createGlobPatternsForDependencies(__dirname)],
+  content: [`${__dirname}/src/lib/**/*.{tsx,mdx}`, ...createGlobPatternsForDependencies(__dirname)],
   prefix: 'lc-',
   extend: {
     fontWeight: {

@@ -291,5 +291,10 @@ export const InputSelect: FC<InputSelectProps> = ({
     ...autocompleteConfig
   };
 
-  return <Autocomplete className={classNames('lc-input-select', className)} {...autocompleteProps} />;
+  return (
+    <Autocomplete
+      className={classNames('lc-input-select', className, { 'lc-input-multiselect': isMultiselect })}
+      {...autocompleteProps}
+    />
+  );
 };

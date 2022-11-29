@@ -57,9 +57,17 @@
 
     // configure height with --lc-input-height
     .MuiInputBase-root {
-      padding-top: 0;
-      padding-bottom: 0;
+      box-sizing: border-box;
+      padding: 3px;
       height: var(--lc-input-height);
+
+      &.MuiInputBase-adornedEnd {
+        padding-right: 12px;
+      }
+
+      &.MuiInputBase-adornedStart {
+        padding-left: 12px;
+      }
     }
 
     .MuiInputBase-input {
@@ -180,6 +188,10 @@
 .lc-input-label-above {
   .MuiAutocomplete-inputRoot[class*='MuiOutlinedInput-root'] {
     background: #fff;
+  }
+
+  fieldset.MuiOutlinedInput-notchedOutline span {
+    padding: 0 !important;
   }
 }
 

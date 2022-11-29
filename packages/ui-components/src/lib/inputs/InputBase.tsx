@@ -91,7 +91,7 @@ export const InputBase: FC<InputProps> = forwardRef(
       if (typeof props.onBlur === 'function') props.onBlur(event);
     };
 
-    const hasLabelAbove = label && config.labelPlacement === 'above';
+    const hasLabelAbove = config.labelPlacement === 'above';
 
     return (
       <div

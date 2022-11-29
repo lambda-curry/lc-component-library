@@ -19,6 +19,7 @@ export type InputDateProps = Omit<InputProps, 'onChange'> & {
 };
 
 const fromDateTime = (dt: DateTime | null, format?: string): Date | string | null => {
+  console.log('>>>> onChange', dt);
   if (!dt) return null;
   if (format) return dt.toFormat(format);
   return dt.toJSDate();
@@ -40,8 +41,9 @@ export const InputDate: FC<InputDateProps> = ({
   if (!formikProps && formContext) formikProps = formContext;
 
   const fieldValue = formikProps ? _get(formikProps?.values, props.name, '') : value;
-
-  console.log(`>>> ${props.name}`, formikProps?.errors);
+  console.log('>>> fieldValue', fieldValue);
+  // console.log(`>>> values ${props.name}:`, JSON.stringify(formikProps?.values));
+  // console.log(`>>> errors ${props.name}:`, JSON.stringify(formikProps?.errors));
 
   return (
     <LocalizationProvider dateAdapter={AdapterLuxon}>
@@ -50,7 +52,12 @@ export const InputDate: FC<InputDateProps> = ({
         label={label}
         value={fieldValue}
         onChange={(updatedDate: DateTime | null, keyboardInputValue?: string | undefined) => {
-          const updatedValue = fromDateTime(updatedDate as DateTime | null, valueFormat);
+          console.log('>>>> onChange', updatedDate?.isValid, keyboardInputValue);
+
+          const updatedValue = updatedDate?.isValid ? fromDateTime(updatedDate, valueFormat) : keyboardInputValue;
+
+          if (!updatedValue) return;
+
           if (formikProps?.setFieldValue) formikProps.setFieldValue(props.name, updatedValue);
           if (typeof onChange === 'function') onChange(updatedValue);
         }}
