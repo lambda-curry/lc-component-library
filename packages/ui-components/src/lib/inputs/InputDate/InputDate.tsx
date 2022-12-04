@@ -18,12 +18,6 @@ export type InputDateProps = Omit<InputProps, 'onChange'> & {
   datePickerProps?: Partial<DatePickerProps<DateTime, DateTime>>;
 };
 
-const fromDateTime = (dt: DateTime | null, format?: string): Date | string | null => {
-  if (!dt) return null;
-  if (format) return dt.toFormat(format);
-  return dt.toJSDate();
-};
-
 export const InputDate: FC<InputDateProps> = ({
   label = 'Select Date',
   value,
@@ -38,22 +32,29 @@ export const InputDate: FC<InputDateProps> = ({
 }) => {
   const formContext = useFormContext();
   if (!formikProps && formContext) formikProps = formContext;
-
   const fieldValue = formikProps ? _get(formikProps?.values, props.name, '') : value;
+  const [inputValue, setInputValue] = React.useState<DateTime | null>(fieldValue);
 
   return (
     <LocalizationProvider dateAdapter={AdapterLuxon}>
       <DatePicker
         {...datePickerProps}
         label={label}
-        value={fieldValue}
-        onChange={(updatedDate: DateTime | null, keyboardInputValue?: string | undefined) => {
-          const updatedValue = updatedDate?.isValid ? fromDateTime(updatedDate, valueFormat) : keyboardInputValue;
+        value={inputValue}
+        onChange={(dateTime: DateTime | null, keyboardInputValue?: string | undefined) => {
+          if (!dateTime) return setInputValue(dateTime);
 
-          if (!updatedValue) return;
+          if (formikProps?.setFieldValue) {
+            if (!dateTime.isValid) {
+              formikProps.setFieldValue(props.name, keyboardInputValue);
+              return setInputValue(dateTime);
+            } else {
+              if (valueFormat) formikProps.setFieldValue(props.name, dateTime.toFormat(valueFormat));
+              else formikProps.setFieldValue(props.name, dateTime.toJSDate());
+            }
+          }
 
-          if (formikProps?.setFieldValue) formikProps.setFieldValue(props.name, updatedValue);
-          if (typeof onChange === 'function') onChange(updatedValue);
+          setInputValue(dateTime);
         }}
         inputFormat={inputFormat || valueFormat}
         disablePast={disablePast}
@@ -66,7 +67,6 @@ export const InputDate: FC<InputDateProps> = ({
               (formikProps?.errors && formikProps?.errors[props.name]) ||
               (formikProps?.values && formikProps?.values[props.name] === 'Invalid DateTime')
             }
-            formikProps={formikProps}
             className={classNames('lc-input-date', className)}
           />
         )}
