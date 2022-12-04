@@ -42,18 +42,19 @@ export const InputDate: FC<InputDateProps> = ({
         label={label}
         value={inputValue}
         onChange={(dateTime: DateTime | null, keyboardInputValue?: string | undefined) => {
-          if (!dateTime) return setInputValue(dateTime);
+          if (!dateTime) return setInputValue(null);
+
+          const dateValue = valueFormat ? dateTime.toFormat(valueFormat) : dateTime.toJSDate();
 
           if (formikProps?.setFieldValue) {
             if (!dateTime.isValid) {
               formikProps.setFieldValue(props.name, keyboardInputValue);
-              return setInputValue(dateTime);
             } else {
-              if (valueFormat) formikProps.setFieldValue(props.name, dateTime.toFormat(valueFormat));
-              else formikProps.setFieldValue(props.name, dateTime.toJSDate());
+              formikProps.setFieldValue(props.name, dateValue);
             }
           }
 
+          if (dateTime.isValid && typeof onChange === 'function') onChange(dateValue);
           setInputValue(dateTime);
         }}
         inputFormat={inputFormat || valueFormat}
