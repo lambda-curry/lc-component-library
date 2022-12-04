@@ -7,6 +7,7 @@ import { AdapterLuxon } from '@mui/x-date-pickers/AdapterLuxon';
 import { useFormContext } from '../../hooks';
 import { InputText } from '../InputText/InputText';
 import { InputProps } from '../InputBase';
+import { useEffect } from 'react';
 
 export type InputDateProps = Omit<InputProps, 'onChange'> & {
   value?: Date | string;
@@ -33,7 +34,12 @@ export const InputDate: FC<InputDateProps> = ({
   const formContext = useFormContext();
   if (!formikProps && formContext) formikProps = formContext;
   const fieldValue = formikProps ? _get(formikProps?.values, props.name, '') : value;
+  const fieldDateTime = valueFormat ? DateTime.fromFormat(fieldValue, valueFormat) : DateTime.fromISO(fieldValue);
   const [inputValue, setInputValue] = React.useState<DateTime | null>(fieldValue);
+
+  useEffect(() => {
+    if (fieldDateTime.isValid) setInputValue(fieldDateTime);
+  }, [fieldValue]);
 
   return (
     <LocalizationProvider dateAdapter={AdapterLuxon}>
