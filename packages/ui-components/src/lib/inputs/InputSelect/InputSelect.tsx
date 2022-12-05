@@ -54,6 +54,8 @@ export const InputSelect: FC<InputSelectProps> = ({
   ...props
 }) => {
   const formContext = useFormContext();
+  const [inputValue, setInputValue] = useState('');
+
   if (!props.formikProps && formContext) props.formikProps = formContext;
 
   const allowCustomValue = autocompleteConfig?.freeSolo || allowCreateOption;
@@ -160,6 +162,8 @@ export const InputSelect: FC<InputSelectProps> = ({
 
   // Note: This function only exists to handle auto-filling right now.
   const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setInputValue(event.target.value);
+
     const selectedOption = event.target.value ? findOptionByValueOrLabel(event.target.value) : null;
 
     if (props.inputProps?.autoComplete !== 'off' && selectedOption && isAutoFilling)
@@ -290,6 +294,15 @@ export const InputSelect: FC<InputSelectProps> = ({
     ...(allowCreateOption ? autocompleteCreateOptionProps : {}),
     ...autocompleteConfig
   };
+
+  // Allows the input to keep it's value when the user selects an option when disableCloseOnSelect is true
+  if (isMultiselect && autocompleteProps.disableCloseOnSelect) {
+    autocompleteProps.inputValue = inputValue;
+    autocompleteProps.onBlur = event => {
+      setInputValue('');
+      if (autocompleteProps.onBlur) autocompleteProps.onBlur(event);
+    };
+  }
 
   return (
     <Autocomplete
