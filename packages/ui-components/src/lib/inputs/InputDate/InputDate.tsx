@@ -38,7 +38,7 @@ export const InputDate: FC<InputDateProps> = ({
   const [inputValue, setInputValue] = React.useState<DateTime | null>(fieldValue);
 
   useEffect(() => {
-    if (fieldDateTime.isValid) setInputValue(fieldValue);
+    if (fieldDateTime.isValid || fieldValue === '' || fieldValue === null) setInputValue(fieldValue);
   }, [fieldValue]);
 
   return (
