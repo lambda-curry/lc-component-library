@@ -23,43 +23,44 @@
     @apply lc--mt-24;
   }
 
-  thead,
-  tbody,
-  tfoot {
-    & th,
-    & td {
-      @apply lc-text-left;
-      @apply lc-px-20 md:lc-px-24;
-      @apply lc-py-16 md:lc-py-20;
-
-      &:last-child:not(:first-child) {
-        @apply lc-text-right;
-      }
-    }
+  thead th,
+  thead td,
+  tbody th,
+  tbody td,
+  tfoot th,
+  tfoot td {
+    @apply lc-text-left;
+    @apply lc-px-20 md:lc-px-24;
+    @apply lc-py-16 md:lc-py-20;
   }
 
-  thead,
-  tfoot {
-    & th,
-    & td {
-      @apply lc-text-gray-dark;
-      @apply lc-font-normal;
-    }
+  thead th:last-child:not(:first-child),
+  thead td:last-child:not(:first-child),
+  tbody th:last-child:not(:first-child),
+  tbody td:last-child:not(:first-child),
+  tfoot th:last-child:not(:first-child),
+  tfoot td:last-child:not(:first-child) {
+    @apply lc-text-right;
   }
 
-  thead {
-    & th,
-    & td {
-      @apply lc-pt-0;
-    }
+  thead th,
+  thead td,
+  tfoot th,
+  tfoot td {
+    @apply lc-text-gray-dark;
+    @apply lc-font-normal;
   }
 
-  tbody {
-    tr:nth-child(odd) {
-      & td,
-      & th {
-        @apply lc-bg-gray-lightest;
-      }
-    }
+  thead th,
+  thead td {
+    @apply lc-pt-0;
+  }
+
+  tbody tr:nth-child(odd) td {
+    @apply lc-bg-gray-lightest;
+  }
+
+  tbody tr:nth-child(odd) th {
+    @apply lc-bg-gray-lightest;
   }
 }
