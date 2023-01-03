@@ -52,7 +52,7 @@ export const InputDate: FC<InputDateProps> = ({
         onChange={(dateTime: DateTime | null, keyboardInputValue?: string | undefined) => {
           if (!dateTime) return setInputValue(null);
 
-          const dateValue = valueFormat ? dateTime.toFormat(valueFormat) : dateTime.toJSDate();
+          const dateValue = valueFormat ? dateTime.toFormat(valueFormat) : dateTime.startOf('day').toJSDate();
 
           if (formikProps?.setFieldValue) {
             if (!dateTime.isValid) {
