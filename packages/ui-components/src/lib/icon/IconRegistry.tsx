@@ -1,10 +1,10 @@
-import React, { FC, createContext } from 'react';
+import React, { FC, createContext, PropsWithChildren } from 'react';
 import { IconsMap } from './Icon';
 import './icon.css';
 
 export const RegisteredIconContext = createContext<IconsMap>({});
 
-export interface IconRegistryProps {
+export interface IconRegistryProps extends PropsWithChildren<unknown> {
   icons: IconsMap;
 }
 
