@@ -12,18 +12,26 @@ import { useEffect } from 'react';
 // https://github.com/mui/material-ui/issues/30591#issuecomment-1377997824
 class Adapter extends AdapterLuxon {
   public getWeekdays = () => {
-    return ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+    return ['Su', 'M', 'Tu', 'W', 'Th', 'F', 'Sa'];
   };
 
   getWeekArray = (date: DateTime) => {
-    const { days } = date.endOf('month').endOf('week').diff(date.startOf('month').startOf('week'), 'days').toObject();
+    date = date.setLocale('en-US');
+
+    // Manually adjust the start and end of the week to begin on Sunday
+    const startOfMonth = date.startOf('month');
+    const endOfMonth = date.endOf('month');
+    const startOfFirstWeek = startOfMonth.minus({ days: startOfMonth.weekday % 7 });
+    const endOfLastWeek = endOfMonth.plus({ days: 6 - (endOfMonth.weekday % 7) });
+    const { days } = endOfLastWeek.diff(startOfFirstWeek, 'days').toObject();
 
     let weeks: DateTime[][] = [];
     new Array(Math.round(days ?? 0))
       .fill(0)
       .map((_, i) => i)
-      .map(day => date.startOf('month').startOf('week').minus({ days: 1 }).plus({ days: day }))
+      .map(day => startOfFirstWeek.plus({ days: day }))
       .forEach((v, i) => {
+        console.log('v', v.toLocaleString(), 'i', i);
         if (i === 0 || (i % 7 === 0 && i > 6)) {
           weeks.push([v]);
           return;
