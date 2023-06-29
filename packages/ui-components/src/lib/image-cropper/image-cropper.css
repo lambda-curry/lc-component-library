@@ -60,7 +60,7 @@
       @apply lc-rounded-sm;
       @apply lc-mr-8;
 
-      img {
+      & img {
         @apply lc-w-40;
         @apply lc-h-40;
         @apply lc-object-contain;

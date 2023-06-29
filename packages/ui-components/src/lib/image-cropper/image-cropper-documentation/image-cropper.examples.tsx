@@ -5,6 +5,7 @@ import { FileUpload } from '../../file-uploader/FileUploader.types';
 import { ImageCropper } from '../ImageCropper';
 import { fetchFileFromURL } from '../ImageCropper.helpers';
 import { CroppedImage } from '../ImageCropper.types';
+import { Button } from '../../buttons';
 
 export const ImageCropperExample = () => {
   const [open, setOpen] = useState(false);
@@ -12,7 +13,7 @@ export const ImageCropperExample = () => {
   const [croppedImage, setCroppedImage] = useState<CroppedImage | null>(null);
 
   const fetchImage = async () => {
-    const imageURL = 'https://source.unsplash.com/random/800x600';
+    const imageURL = 'https://picsum.photos/800/600';
     const imageFile = await fetchFileFromURL(imageURL);
     const preview = URL.createObjectURL(imageFile);
 
@@ -35,6 +36,10 @@ export const ImageCropperExample = () => {
     setCroppedImage(newCroppedImage);
   };
 
+  const handleReset = () => {
+    setCroppedImage(null);
+  };
+
   if (!file) return <>Loading image...</>;
 
   return (
@@ -45,9 +50,16 @@ export const ImageCropperExample = () => {
         onSave={handleSave}
         onAfterClose={handleClose}
       />
-      <ButtonUnstyled onClick={handleImageClick}>
-        <img src={croppedImage ? croppedImage.preview : file.preview} />
+
+      <ButtonUnstyled onClick={handleImageClick} className="!lc-inline-block lc-max-w-100 lc-p-0">
+        <img src={croppedImage ? croppedImage.preview : file.preview} className="lc-block lc-max-w-100" />
       </ButtonUnstyled>
+
+      {croppedImage && (
+        <div className="lc-mt-16" onClick={handleReset}>
+          <Button>Reset</Button>
+        </div>
+      )}
     </>
   );
 };
@@ -58,7 +70,7 @@ export const ImageCropperExampleString = `
   const [croppedImage, setCroppedImage] = useState<CroppedImage | null>(null);
 
   const fetchImage = async () => {
-    const imageURL = 'https://source.unsplash.com/random/800x600';
+    const imageURL = 'https://picsum.photos/800/600';
     const imageFile = await fetchFileFromURL(imageURL);
     const preview = URL.createObjectURL(imageFile);
 

@@ -17,6 +17,7 @@
   --lc-icon-button-color: var(--lc-color-gray-dark);
   --lc-icon-button-hover-bg-color: var(--lc-color-gray-lighter);
   --lc-icon-button-hover-bg-transparency: 1;
+  position: relative;
   background-color: transparent;
   color: rgba(var(--lc-icon-button-color), 1);
 
