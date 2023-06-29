@@ -63,8 +63,6 @@ export const InputSelect: FC<InputSelectProps> = ({
 
   const [isAutoFilling, setAutoFilling] = useState<boolean>(false);
 
-  const lowercaseString: (value: string | number) => string = value => `${value}`.toLowerCase();
-
   const optionMatchesValue = (option: any, value: any) => {
     // Note: Sometimes we pass in the value as true value and sometimes value is the selected option.
     return optionValueKey ? _get(option, optionValueKey) === value || _isEqual(option, value) : _isEqual(option, value);
