@@ -63,6 +63,8 @@ export const InputSelect: FC<InputSelectProps> = ({
 
   const [isAutoFilling, setAutoFilling] = useState<boolean>(false);
 
+  const lowercaseString: (value: string | number) => string = value => `${value}`.toLowerCase();
+
   const optionMatchesValue = (option: any, value: any) => {
     // Note: Sometimes we pass in the value as true value and sometimes value is the selected option.
     return optionValueKey ? _get(option, optionValueKey) === value || _isEqual(option, value) : _isEqual(option, value);
@@ -173,6 +175,8 @@ export const InputSelect: FC<InputSelectProps> = ({
   // Note: We had to use a `useEffect` here to handle cases where the form is reset or manipulated outside of the input
   // For some reason setting the initialInputValue in the initial useState did not reset the input on a form reset
   useEffect(() => {
+    if (_isEqual(controlledValue, value)) return;
+
     setValue(controlledValue);
   }, [controlledValue]);
 
@@ -298,9 +302,10 @@ export const InputSelect: FC<InputSelectProps> = ({
   // Allows the input to keep it's value when the user selects an option when disableCloseOnSelect is true
   if (isMultiselect && autocompleteProps.disableCloseOnSelect) {
     autocompleteProps.inputValue = inputValue;
+    const existingOnBlur = autocompleteProps.onBlur;
     autocompleteProps.onBlur = event => {
-      setInputValue('');
-      if (autocompleteProps.onBlur) autocompleteProps.onBlur(event);
+      if (inputValue) setInputValue('');
+      if (existingOnBlur) existingOnBlur(event);
     };
   }
 
